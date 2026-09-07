@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3 class="recommended-title">Keep Reading</h3>
               <a href="#/archive" class="btn-view-more">View all articles →</a>
             </div>
-            <div class="articles-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="recommended-grid">
               ${recommendedArticles.map(rec => `
                 <a href="#/p/${rec.slug}" class="article-card">
                   <div class="card-image-wrap">
