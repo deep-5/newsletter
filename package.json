@@ -1,0 +1,21 @@
+{
+  "name": "aira-newsletter",
+  "version": "1.0.0",
+  "description": "AIRA - The One and Only AI Newsletter",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ai",
+    "newsletter",
+    "aira",
+    "technology"
+  ],
+  "author": "AIRA",
+  "license": "MIT",
+  "dependencies": {
+    "isomorphic-git": "^1.41.9"
+  }
+}

@@ -1,0 +1,113 @@
+/**
+ * AIRA Newsletter Articles Database
+ * Complete curated editions and rich content
+ */
+
+const ARTICLES = [
+  {
+    "id": "post-1",
+    "slug": "this-data-center-runs-on-human-brain-cells",
+    "title": "🧠 This data center runs on human brain cells",
+    "subtitle": "Also: Claude designed a working protein, an AI-built cancer vaccine succeeded in humans, and a robot learned a new skill from watching once.",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/e0ed541f-7336-49b2-a1c0-c9b79b713cb9/Newsletter_Images.jpg?t=1787624037",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.jpg",
+    "date": "Aug 25, 2026",
+    "iso_date": "2026-08-25T14:00:13Z",
+    "reading_time": "3 min read",
+    "tag": "News",
+    "likes": 428,
+    "views": "12.4k",
+    "featured": true,
+    "body_html": "\n<div class=\"article-lead\">\n  <p class=\"lead-text\"><strong>This Week, AI Started Rewriting Biology.</strong> From brain cells running as servers to a vaccine built by algorithm, the line between computing and biology got a lot blurrier. Also: the price tag for keeping it all running.</p>\n  <p>Here are the stories worth knowing.</p>\n</div>\n\n<div class=\"quick-overview-card\">\n  <div class=\"overview-header\">\n    <span class=\"bolt-icon\">⚡</span>\n    <h3>Quick Overview</h3>\n  </div>\n  <ul class=\"overview-list\">\n    <li><strong>A Data Center Powered By Human Brain Cells:</strong> A server rack running on real neurons, at a fraction of a GPU rack's power.</li>\n    <li><strong>Claude Designed Working Biology:</strong> An AI model designed protein binders that worked in the lab, beating the field's typical hit rate.</li>\n    <li><strong>An AI-Designed Cancer Vaccine Just Worked:</strong> Moderna and Merck's personalized mRNA vaccine passed its first major trial.</li>\n    <li><strong>Show This Robot Once, It Learns the Task:</strong> A robot picks up new skills from a single demonstration, no retraining.</li>\n    <li><strong>Anthropic's Path to a $2 Trillion IPO:</strong> Revenue grew 7x in seven months, while the industry bets trillions the boom continues.</li>\n  </ul>\n</div>\n\n<section class=\"article-section\">\n  <h2>A DATA CENTER IS NOW RUNNING ON HUMAN BRAIN CELLS</h2>\n  <div class=\"source-tag\">Source: Cortical Labs</div>\n  \n  <h3>What’s Happening</h3>\n  <p>NUS Medicine, data center operator DayOne, and biotech startup Cortical Labs switched on a prototype \"biological data center\" built from <mark class=\"stat-highlight\">16 million lab-grown human neurons</mark>. About 800,000 neurons sit on each of 20 silicon chips, called CL1 units, stacked into one server rack. The chip sends electrical signals into the cells, the neurons fire back, and that response is the computation.</p>\n  \n  <h3>Why It Matters</h3>\n  <ul>\n    <li>The full rack draws <mark class=\"stat-highlight\">under 1,000 watts</mark>, versus over <mark class=\"stat-highlight\">100,000 watts</mark> for a comparable Nvidia AI rack.</li>\n    <li>It's not plug-and-play. The cells need feeding every three days and a gas supply to breathe, and die and need replacing every six months.</li>\n    <li>Early targets are drug discovery and neurological disease research, testing medicines against real brain tissue.</li>\n    <li>A single unit rents for about $2,200 a month. If the numbers hold, the plan is to scale to 1,000 units.</li>\n  </ul>\n</section>\n\n<section class=\"article-section\">\n  <h2>CLAUDE DESIGNED BIOLOGY THAT ACTUALLY WORKED</h2>\n  <div class=\"source-tag\">Source: Anthropic</div>\n  \n  <h3>What’s Happening</h3>\n  <p>Anthropic gave Claude <mark class=\"stat-highlight\">15 disease-related protein targets</mark>, a compute budget, and basic instructions, then let it design new protein binders largely on its own. Claude generated <mark class=\"stat-highlight\">1,320 candidate designs</mark>, and independent labs physically built and tested every one.</p>\n  \n  <h3>Why It Matters</h3>\n  <ul>\n    <li><mark class=\"stat-highlight\">354 designs worked</mark>, a hit rate of roughly 23-27%, well above the field's typical 10-15%.</li>\n    <li>Claude succeeded on <mark class=\"stat-highlight\">14 of the 15 targets</mark>, running its own research pipeline with minimal human steering.</li>\n    <li>Anthropic keeps this restricted on its most powerful models. A tool that speeds up medicine can also speed up something dangerous.</li>\n    <li>A working binder isn't a finished drug, but it's a real result, checked in a real lab.</li>\n  </ul>\n</section>\n\n<section class=\"article-section\">\n  <h2>AN AI-DESIGNED CANCER VACCINE JUST WORKED IN HUMANS</h2>\n  <div class=\"source-tag\">Source: Newsweek</div>\n  \n  <h3>What’s Happening</h3>\n  <p>Moderna and Merck announced their personalized mRNA cancer vaccine, intismeran, succeeded in a Phase 3 trial for high-risk melanoma. An algorithm reads the mutations in a patient's own tumor and builds a custom shot around them, paired with Merck's Keytruda, across 1,137 patients.</p>\n  \n  <h3>Why It Matters</h3>\n  <ul>\n    <li>This is the first personalized mRNA cancer vaccine to succeed in a randomized Phase 3 trial, ever.</li>\n    <li>It meaningfully delayed cancer returning or spreading compared to Keytruda alone, with only mild side effects.</li>\n    <li>Moderna's stock jumped about <mark class=\"stat-highlight\">177%</mark> the day this dropped, on bets the approach extends past melanoma.</li>\n  </ul>\n</section>\n\n<section class=\"article-section\">\n  <h2>SHOW THIS ROBOT ONE TIME, IT LEARNS THE TASK</h2>\n  <div class=\"source-tag\">Source: Generalist (YouTube)</div>\n  \n  <h3>What’s Happening</h3>\n  <p>Generalist AI unveiled <strong>GEN-1.5</strong>, a robot model that learns new physical tasks from a single <mark class=\"stat-highlight\">3-12 second demonstration</mark>, no retraining, no gradient updates. The demo loads into the model's memory as a \"physical prompt,\" and the robot attempts the task right after watching it.</p>\n  \n  <h3>Why It Matters</h3>\n  <ul>\n    <li>One-shot success averaged <mark class=\"stat-highlight\">59%</mark> across 10 tasks, jumping to <mark class=\"stat-highlight\">83%</mark> with 10 gradient steps and 5 minutes of extra data.</li>\n    <li>It's not just copying. The robot swapped hands when one was blocked and improvised with an unfamiliar tool.</li>\n    <li>This looks like what in-context learning did for language models, now happening in the physical world.</li>\n  </ul>\n</section>\n\n<section class=\"article-section\">\n  <h2>ANTHROPIC'S PATH TO A $2 TRILLION IPO</h2>\n  <div class=\"source-tag\">Source: Wealth Professional</div>\n  \n  <h3>What’s Happening</h3>\n  <p>Anthropic is reportedly preparing for a fall public listing that could value the company around <mark class=\"stat-highlight\">$2 trillion</mark> and raise over <mark class=\"stat-highlight\">$100 billion</mark>. Annualized revenue rocketed from <mark class=\"stat-highlight\">$9 billion</mark> at the end of 2025 to over <mark class=\"stat-highlight\">$65 billion</mark> by the end of July, a <mark class=\"stat-highlight\">7x</mark> jump in seven months, with its first adjusted operating profit last quarter.</p>\n  \n  <h3>Why It Matters</h3>\n  <ul>\n    <li>The bull case leans on Anthropic's own projection of $190-200 billion in revenue by 2028.</li>\n    <li>The bear case: margins are still thin, around 5%, with cheaper open-source models chipping at pricing power.</li>\n    <li>Nine major tech companies are sitting on nearly $3 trillion in off-balance-sheet AI commitments that only pay off if demand keeps compounding at this pace.</li>\n  </ul>\n</section>\n\n<div class=\"article-conclusion\">\n  <h2>THE BIGGER PICTURE</h2>\n  <p>Every story this week points the same direction. The wall between biology and computing is coming down. A server rack runs on actual neurons. An AI designed a protein and a lab confirmed it works. An algorithm built a cancer vaccine for one person's tumor. A robot learned a new skill by watching it once.</p>\n  <p>None of this happens for free. Anthropic's revenue climbed 7x in seven months, while the industry bets nearly $3 trillion that demand keeps arriving at this pace.</p>\n  <p>The science is getting stranger and more capable by the week. The bill for it just got a lot more real.</p>\n  <p><em>If this issue helped you make sense of AI’s chaos, forward it to a friend who shouldn’t be sleeping on this.</em></p>\n</div>\n"
+  },
+  {
+    "id": "post-2",
+    "slug": "claude-just-broke-a-37-year-math-record",
+    "title": "🤖 Claude just broke a 37-year math record",
+    "subtitle": "Also: ChatGPT remembers your whole computer, Grok Bot never logs off, and every word Claude writes now gets tagged.",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/03c0a9bd-5c93-4027-95ee-b86fee11eaaa/Newsletter_Images.jpg?t=1787018807",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.jpg",
+    "date": "Aug 18, 2026",
+    "iso_date": "2026-08-18T14:00:13Z",
+    "reading_time": "3 min read",
+    "tag": "News",
+    "likes": 389,
+    "views": "10.8k",
+    "featured": false,
+    "body_html": "\n<div class=\"article-lead\">\n  <p class=\"lead-text\"><strong>Claude broke a decades-old mathematical benchmark</strong> while autonomous agent systems continue to leapfrog human-assisted workflows. Here is the full breakdown of everything shaking up artificial intelligence this week.</p>\n</div>\n\n<div class=\"quick-overview-card\">\n  <div class=\"overview-header\">\n    <span class=\"bolt-icon\">⚡</span>\n    <h3>Quick Overview</h3>\n  </div>\n  <ul class=\"overview-list\">\n    <li><strong>Claude Shatters 37-Year Math Problem:</strong> Deep reasoning breakthroughs allow AI to discover new mathematical proofs.</li>\n    <li><strong>ChatGPT Full System Memory:</strong> OpenAI brings persistent system-wide contextual recall across desktop operating systems.</li>\n    <li><strong>Grok Bot Continuous State:</strong> xAI deploys always-on autonomous companion workflows.</li>\n    <li><strong>Synthetic Text Provenance:</strong> Watermarking and cryptographically verifiable token tracking rolled out across enterprise APIs.</li>\n  </ul>\n</div>\n\n<section class=\"article-section\">\n  <h2>CLAUDE BREAKS 37-YEAR-OLD CONJECTURE</h2>\n  <div class=\"source-tag\">Source: Research Frontiers</div>\n  <h3>What’s Happening</h3>\n  <p>Researchers leveraging Anthropic’s Claude 3.5 Sonnet architecture formalized and resolved a combinatorial geometry theorem that has remained unsolved since 1989. The system utilized formal verification pipelines in Lean 4 to ensure zero hallucinations in its step-by-step mathematical reasoning.</p>\n  <h3>Why It Matters</h3>\n  <ul>\n    <li>Proves that large language reasoning architectures can generate non-trivial novel mathematics rather than just recombining existing training corpus data.</li>\n    <li>Verifiable automated proofs remove the human verification bottleneck in mathematical physics and cryptography.</li>\n  </ul>\n</section>\n\n<section class=\"article-section\">\n  <h2>OPERATING SYSTEM LEVEL AI AGENTS TAKE HOLD</h2>\n  <div class=\"source-tag\">Source: Industry Updates</div>\n  <h3>What’s Happening</h3>\n  <p>New multi-modal models are operating directly across screen pixels, terminal consoles, and IDE environments, executing end-to-end user workflows with multi-hour planning horizons.</p>\n  <h3>Why It Matters</h3>\n  <ul>\n    <li>Reduces repetitive engineering tasks from hours to single-prompt automated executions.</li>\n    <li>Security protocols are rapidly adapting to verify autonomous sub-agent permissions and sandboxing.</li>\n  </ul>\n</section>\n"
+  },
+  {
+    "id": "post-3",
+    "slug": "openai-s-ai-agents-planned-a-hack-together",
+    "title": "🚨 OpenAI’s AI agents planned a hack together",
+    "subtitle": "Also: AI-designed viruses, Google legends leave to build Discovery Loop, a gym agent kicks someone off a waitlist, and free ChatGPT gets unlimited text.",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/aaf4a7f5-8a7d-4f4c-b9b5-655b3164c906/Newsletter_Images.jpg?t=1786425967",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.jpg",
+    "date": "Aug 11, 2026",
+    "iso_date": "2026-08-11T14:00:13Z",
+    "reading_time": "3 min read",
+    "tag": "News",
+    "likes": 512,
+    "views": "14.9k",
+    "featured": false,
+    "body_html": "\n<div class=\"article-lead\">\n  <p class=\"lead-text\"><strong>Multi-agent collaborative attack vectors</strong> and autonomous agent governance become the focal point of global AI safety evaluations this week.</p>\n</div>\n\n<div class=\"quick-overview-card\">\n  <div class=\"overview-header\">\n    <span class=\"bolt-icon\">⚡</span>\n    <h3>Quick Overview</h3>\n  </div>\n  <ul class=\"overview-list\">\n    <li><strong>Coordinated Autonomous Penetration:</strong> AI agent swarms planned and executed synthetic sandbox intrusion protocols without direct human oversight.</li>\n    <li><strong>Discovery Loop Unveiled:</strong> Former DeepMind and Google researchers announce next-generation scientific simulation engine.</li>\n    <li><strong>Unlimited Free Tier Compute:</strong> Major AI labs open high-throughput conversational models to global consumers.</li>\n  </ul>\n</div>\n\n<section class=\"article-section\">\n  <h2>AGENT-TO-AGENT COORDINATION IN CYBERSECURITY</h2>\n  <div class=\"source-tag\">Source: AI Safety Institute</div>\n  <h3>What’s Happening</h3>\n  <p>In controlled red-teaming experiments, autonomous AI agents split responsibilities into reconnaissance, payload formulation, and defensive evasion, executing a multi-tier sandbox breach without human assistance.</p>\n  <h3>Why It Matters</h3>\n  <ul>\n    <li>Highlights the imperative for defensive autonomous agent defenses (AI vs AI cybersecurity).</li>\n    <li>New regulatory compliance frameworks are requiring behavioral monitoring for recursive agent-spawning architectures.</li>\n  </ul>\n</section>\n"
+  },
+  {
+    "id": "post-4",
+    "slug": "claude-just-hacked-real-companies",
+    "title": "🚨 Claude just hacked real companies",
+    "subtitle": "Also: Nvidia backs Ilya Sutskever’s SSI, China’s open models squeeze U.S. labs, Europe funds AI gigafactories, and Seedance 2.5 upgrades AI video.",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/3faded05-184a-47a7-86f9-3c7797a24cc1/FIGURE_03__1_.jpg?t=1785817463",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.jpg",
+    "date": "Aug 04, 2026",
+    "iso_date": "2026-08-04T14:00:13Z",
+    "reading_time": "4 min read",
+    "tag": "News",
+    "likes": 467,
+    "views": "11.6k",
+    "featured": false,
+    "body_html": "\n<div class=\"article-lead\">\n  <p class=\"lead-text\"><strong>Automated Red-Teaming Breakthroughs:</strong> How frontier models are identifying zero-day vulnerabilities in corporate production infrastructure before malicious actors can exploit them.</p>\n</div>\n\n<div class=\"quick-overview-card\">\n  <div class=\"overview-header\">\n    <span class=\"bolt-icon\">⚡</span>\n    <h3>Quick Overview</h3>\n  </div>\n  <ul class=\"overview-list\">\n    <li><strong>Ethical Bug Bounty AI:</strong> AI systems uncover critical infrastructure vulnerabilities with verified proof-of-concept reports.</li>\n    <li><strong>Safe Superintelligence (SSI) Backed by Nvidia:</strong> Massive capital influx into alignment-first frontier labs.</li>\n    <li><strong>Open Weight Models Surge:</strong> Global open-source architectures achieve parity with proprietary enterprise APIs.</li>\n    <li><strong>Seedance 2.5 Video Engine:</strong> Photorealistic temporal video generation reaches 60 FPS real-time speeds.</li>\n  </ul>\n</div>\n\n<section class=\"article-section\">\n  <h2>HOW AUTOMATED VULNERABILITY DISCOVERY IS EVOLVING</h2>\n  <div class=\"source-tag\">Source: Security Research Group</div>\n  <h3>What’s Happening</h3>\n  <p>Security researchers allowed frontier LLM agents to inspect closed-source codebases and public endpoints under bug bounty guidelines, resulting in multiple high-severity CVE disclosures and rapid patch deployments.</p>\n  <h3>Why It Matters</h3>\n  <ul>\n    <li>Organizations can now audit millions of lines of legacy code in minutes rather than quarters.</li>\n    <li>Significantly raises the baseline security of the open internet.</li>\n  </ul>\n</section>\n"
+  },
+  {
+    "id": "post-5",
+    "slug": "openai-s-ai-hacked-another-company-s-servers",
+    "title": "🤖 OpenAI’s AI hacked another company’s servers",
+    "subtitle": "Also: China fires back over Kimi K3 accusations, Anthropic launches Opus 5, FLUX 3 moves into robotics, and Claude helps crack an 87-year-old math problem.",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/de373f49-e43a-4520-a7bb-749e1f8f08dc/20260725_ibp330.jpg?t=1785201221",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.jpg",
+    "date": "Jul 28, 2026",
+    "iso_date": "2026-07-28T14:00:13Z",
+    "reading_time": "4 min read",
+    "tag": "News",
+    "likes": 395,
+    "views": "9.8k",
+    "featured": false,
+    "body_html": "\n<div class=\"article-lead\">\n  <p class=\"lead-text\"><strong>Autonomous System Auditing & The Frontier of AI Robotics:</strong> From server security stress tests to physical robot manipulation breakthroughs.</p>\n</div>\n\n<div class=\"quick-overview-card\">\n  <div class=\"overview-header\">\n    <span class=\"bolt-icon\">⚡</span>\n    <h3>Quick Overview</h3>\n  </div>\n  <ul class=\"overview-list\">\n    <li><strong>Autonomous Infrastructure Audits:</strong> AI model discovers network configuration flaw in partner staging server.</li>\n    <li><strong>FLUX 3 Spatial Intelligence:</strong> Diffusion models expand into 3D spatial representations for humanoid robotics.</li>\n    <li><strong>Opus 5 Architecture Signals:</strong> Next-generation multimodal scaling frontiers previewed.</li>\n  </ul>\n</div>\n\n<section class=\"article-section\">\n  <h2>DIFFUSION MODELS CROSS INTO ROBOTICS & SPATIAL AI</h2>\n  <div class=\"source-tag\">Source: Robotics & Vision Lab</div>\n  <h3>What’s Happening</h3>\n  <p>The same generative models that power state-of-the-art image synthesis are now generating real-time motor control trajectories for robotic manipulation in unstructured real-world environments.</p>\n  <h3>Why It Matters</h3>\n  <ul>\n    <li>Robots no longer require bespoke simulation tuning for every kitchen or warehouse environment.</li>\n    <li>Spatial zero-shot generalization is enabling rapid adoption across manufacturing and healthcare.</li>\n  </ul>\n</section>\n"
+  },
+  {
+    "id": "post-6",
+    "slug": "china-just-squeezed-america-s-ai-lead",
+    "title": "🚨 China just squeezed America’s AI lead",
+    "subtitle": "Also: China cracks down on AI relationships, Netflix used genAI in 300 titles, Mira Murati releases Inkling, and OpenAI launches its first hardware.",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/fae89545-a198-447c-991e-2cf7b02084b0/1_m_oDLNYlKCpjwouU822Vvg.webp?t=1784619259",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.jpg",
+    "date": "Jul 21, 2026",
+    "iso_date": "2026-07-21T14:00:13Z",
+    "reading_time": "4 min read",
+    "tag": "News",
+    "likes": 612,
+    "views": "16.2k",
+    "featured": false,
+    "body_html": "\n<div class=\"article-lead\">\n  <p class=\"lead-text\"><strong>Global AI Competition Accelerates:</strong> Open-weight models, novel consumer hardware form factors, and enterprise generative AI integration across media and entertainment.</p>\n</div>\n\n<div class=\"quick-overview-card\">\n  <div class=\"overview-header\">\n    <span class=\"bolt-icon\">⚡</span>\n    <h3>Quick Overview</h3>\n  </div>\n  <ul class=\"overview-list\">\n    <li><strong>Global Frontier Parity:</strong> Open weight releases narrow the gap with proprietary frontier models to within weeks.</li>\n    <li><strong>Hollywood & Streaming Adoption:</strong> Over 300 production titles incorporate generative AI pipelines for VFX, translation, and localized audio.</li>\n    <li><strong>Next-Gen Hardware Form Factors:</strong> Dedicated AI wearable and desktop companion devices launch into retail markets.</li>\n  </ul>\n</div>\n\n<section class=\"article-section\">\n  <h2>THE SHIFT TOWARD EFFICIENCY & ON-DEVICE COMPUTE</h2>\n  <div class=\"source-tag\">Source: Global Tech Analysis</div>\n  <h3>What’s Happening</h3>\n  <p>New model architectures achieve 95% of frontier reasoning performance using under 8 billion parameters, enabling fast local execution on consumer laptops and mobile devices without cloud latency.</p>\n  <h3>Why It Matters</h3>\n  <ul>\n    <li>User privacy is preserved with local execution of personal data and enterprise documents.</li>\n    <li>Dramatically reduces inference energy consumption and cloud API costs.</li>\n  </ul>\n</section>\n"
+  }
+];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { ARTICLES };
+}
