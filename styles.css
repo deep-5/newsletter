@@ -937,9 +937,60 @@ img {
   line-height: 1.5;
 }
 
-/* Reader Rating Poll - Removed */
-.poll-box, ._1gbf4vw0, ._1gbf4vw1, ._1gbf4vw2, ._1gbf4vw3, ._1gbf4vw6, ._1gbf4vw7, ._1gbf4vw8, [class*="_1gbf4vw"] {
-  display: none !important;
+/* Edition Feedback Rating Card (Exact Beehiiv Design) */
+.edition-feedback-card {
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  margin: 44px 0 36px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.feedback-card-title {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0B0A0A;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.feedback-card-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.feedback-pill-btn {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D8;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #18181B;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feedback-pill-btn:hover {
+  border-color: #18181B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feedback-pill-btn.active {
+  background: #18181B;
+  color: #FFFFFF;
+  border-color: #18181B;
 }
 
 /* Inline Article Subscribe Card */
