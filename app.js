@@ -2,6 +2,7 @@
  * AIRA Newsletter - Application Controller & Router
  * Brand: AIRA
  * Connected with Supabase Database Backend
+ * Full Library of 56 Articles + Dynamic Load More + Archive + Tags + Search
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const state = {
     currentRoute: '',
     selectedTag: 'All',
+    displayedCount: 9,
     likedPosts: JSON.parse(localStorage.getItem('aira_likes') || '{}'),
     pollVotes: JSON.parse(localStorage.getItem('aira_polls') || '{}'),
     comments: JSON.parse(localStorage.getItem('aira_comments') || '{}'),
@@ -59,10 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return { name: 'home' };
   }
 
-  function navigate(path) {
-    window.location.hash = path;
-  }
-
   async function renderCurrentRoute() {
     const route = getRoute();
     state.currentRoute = route.name;
@@ -91,12 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 1. Homepage View
+  // 1. Homepage View (With Dynamic Load More)
   // =========================================================================
   function renderHomePage() {
     const filteredArticles = state.selectedTag === 'All' 
       ? articles 
       : articles.filter(a => a.tag.toLowerCase() === state.selectedTag.toLowerCase());
+
+    const visibleArticles = filteredArticles.slice(0, state.displayedCount);
+    const hasMore = filteredArticles.length > state.displayedCount;
 
     appContainer.innerHTML = `
       <!-- Hero Section -->
@@ -139,13 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="feed-header">
             <h2 class="feed-title">Articles</h2>
             <div class="filter-pills">
-              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All</button>
+              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${articles.length})</button>
               <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
+              <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
             </div>
           </div>
 
-          <div class="articles-grid">
-            ${filteredArticles.map(article => `
+          <div class="articles-grid" id="main-articles-grid">
+            ${visibleArticles.map(article => `
               <a href="#/p/${article.slug}" class="article-card">
                 <div class="card-image-wrap">
                   <img src="${article.image_url}" alt="${article.title}" class="card-thumbnail" loading="lazy" />
@@ -165,6 +167,15 @@ document.addEventListener('DOMContentLoaded', () => {
               </a>
             `).join('')}
           </div>
+
+          ${hasMore ? `
+            <div class="load-more-wrap">
+              <button id="btn-load-more" class="btn-load-more">
+                <span>Load more articles</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          ` : ''}
         </div>
       </section>
     `;
@@ -179,9 +190,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.filter-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
         state.selectedTag = e.target.getAttribute('data-tag');
+        state.displayedCount = 9;
         renderHomePage();
       });
     });
+
+    // Bind Load More button
+    const loadMoreBtn = document.getElementById('btn-load-more');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        state.displayedCount += 9;
+        renderHomePage();
+      });
+    }
   }
 
   // =========================================================================
@@ -220,9 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Breadcrumb -->
           <div class="breadcrumb-nav">
             <a href="#/" class="breadcrumb-link">Home</a>
-            <span>/</span>
-            <a href="#/" class="breadcrumb-link">Posts</a>
-            <span>/</span>
+            <span class="breadcrumb-separator">/</span>
+            <a href="#/archive" class="breadcrumb-link">Posts</a>
+            <span class="breadcrumb-separator">/</span>
             <span>${article.title}</span>
           </div>
 
@@ -314,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <section class="recommended-section">
             <div class="recommended-header">
               <h3 class="recommended-title">Keep Reading</h3>
-              <a href="#/" class="btn-view-more">View all articles →</a>
+              <a href="#/archive" class="btn-view-more">View all articles →</a>
             </div>
             <div class="articles-grid" style="grid-template-columns: repeat(2, 1fr);">
               ${recommendedArticles.map(rec => `
@@ -412,14 +433,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 3. Archive View
+  // 3. Archive View (All 56 Articles Chronologically)
   // =========================================================================
   function renderArchivePage() {
     appContainer.innerHTML = `
       <section class="archive-page-view">
         <div class="article-container">
           <h1 class="page-title">Archive</h1>
-          <p class="page-description">Complete chronological history of all AIRA newsletter editions.</p>
+          <p class="page-description">Complete chronological history of all ${articles.length} AIRA newsletter editions and guides.</p>
 
           <div class="timeline-list">
             ${articles.map(article => `
@@ -443,6 +464,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Tags View
   // =========================================================================
   function renderTagsPage() {
+    const newsCount = articles.filter(a => a.tag === 'News').length;
+    const promptsCount = articles.filter(a => a.tag === 'Prompts').length;
+
     appContainer.innerHTML = `
       <section class="tags-page-view">
         <div class="article-container">
@@ -456,7 +480,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>The latest breakthrough models, AI agents, enterprise updates, and research papers.</p>
               </div>
               <div class="timeline-meta">
-                <span class="card-tag-badge" style="position: static;">${articles.length} posts</span>
+                <span class="card-tag-badge" style="position: static;">${newsCount} posts</span>
+              </div>
+            </div>
+
+            <div class="timeline-item" onclick="window.location.hash='#/'">
+              <div class="timeline-content">
+                <h4>Prompts & Workflows</h4>
+                <p>Actionable prompt engineering patterns, cheat codes, automation workflows, and productivity guides.</p>
+              </div>
+              <div class="timeline-meta">
+                <span class="card-tag-badge" style="position: static;">${promptsCount} posts</span>
               </div>
             </div>
           </div>
@@ -501,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. Search & Modal Handlers
+  // 6. Search & Modal Handlers (Fast index over all 56 articles)
   // =========================================================================
   function openModal(modal) {
     if (modal) {
@@ -558,11 +592,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!searchResults) return;
     const q = query.trim().toLowerCase();
     const matches = q === '' 
-      ? articles.slice(0, 4) 
+      ? articles.slice(0, 6) 
       : articles.filter(a => 
           a.title.toLowerCase().includes(q) || 
-          a.subtitle.toLowerCase().includes(q)
-        );
+          a.subtitle.toLowerCase().includes(q) ||
+          a.slug.toLowerCase().includes(q)
+        ).slice(0, 10);
 
     if (matches.length === 0) {
       searchResults.innerHTML = '<p style="padding: 16px; color: var(--color-text-muted); text-align: center;">No articles found matching "' + query + '"</p>';
@@ -572,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchResults.innerHTML = matches.map(m => `
       <div class="search-result-item" onclick="window.location.hash='#/p/${m.slug}'; document.getElementById('search-modal').classList.remove('active'); document.body.style.overflow='';">
         <h5>${m.title}</h5>
-        <p>${m.subtitle}</p>
+        <p>${m.subtitle || m.date}</p>
       </div>
     `).join('');
   }

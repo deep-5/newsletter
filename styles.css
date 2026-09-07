@@ -397,6 +397,37 @@ img {
   gap: 28px;
 }
 
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.btn-load-more {
+  background: #FFFFFF;
+  color: #18181B;
+  border: 1px solid #D4D4D8;
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 32px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-load-more:hover {
+  background: #18181B;
+  color: #FFFFFF;
+  border-color: #18181B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
 .article-card {
   background: #FFFFFF;
   border: 1px solid var(--color-border);
