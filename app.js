@@ -285,16 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ${article.body_html}
           </div>
 
-          <!-- Rating Poll Widget -->
-          <div class="poll-box">
-            <h3 class="poll-heading">What did you think of today's edition?</h3>
-            <div class="poll-options">
-              <button class="poll-btn ${postPoll === 'loved' ? 'selected' : ''}" data-vote="loved">⭐⭐⭐⭐⭐ Loved it</button>
-              <button class="poll-btn ${postPoll === 'good' ? 'selected' : ''}" data-vote="good">⭐⭐⭐ Good, not great</button>
-              <button class="poll-btn ${postPoll === 'needs_work' ? 'selected' : ''}" data-vote="needs_work">⭐ Needs improvement</button>
-            </div>
-          </div>
-
           <!-- Inline Subscribe Card -->
           <div class="article-subscribe-card">
             <img src="assets/logo.jpg" alt="AIRA" class="article-sub-logo" onerror="this.src='assets/logo.svg'" />
@@ -390,20 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-
-    // Bind Poll Options
-    document.querySelectorAll('.poll-btn').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const vote = e.currentTarget.getAttribute('data-vote');
-        state.pollVotes[article.slug] = vote;
-        localStorage.setItem('aira_polls', JSON.stringify(state.pollVotes));
-        if (window.DatabaseService) {
-          await window.DatabaseService.recordPollVote(article.slug, vote);
-        }
-        showToast('Thanks for your feedback! 🌟');
-        await renderPostPage(article.slug);
-      });
-    });
 
     // Bind Article Inline Subscribe
     const artSubForm = document.getElementById('article-sub-form');
