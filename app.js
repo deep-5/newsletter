@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       postComments = state.comments[article.slug] || [];
     }
 
-    const recommendedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 2);
+    const recommendedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3);
 
     appContainer.innerHTML = `
       <article class="article-page-view">
