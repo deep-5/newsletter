@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     currentRoute: '',
     selectedTag: 'All',
     displayedCount: 9,
+    toolCategoryFilter: 'all',
+    toolPricingFilter: 'all',
+    toolSearchQuery: '',
     likedPosts: JSON.parse(localStorage.getItem('aira_likes') || '{}'),
     pollVotes: JSON.parse(localStorage.getItem('aira_polls') || '{}'),
     comments: JSON.parse(localStorage.getItem('aira_comments') || '{}'),
@@ -50,14 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Routing Logic
   // =========================================================================
   function getRoute() {
-    const hash = window.location.hash.slice(1);
-    if (!hash || hash === '/' || hash === '') return { name: 'home' };
-    if (hash.startsWith('/p/')) {
-      const slug = hash.replace('/p/', '');
+    const rawHash = window.location.hash.slice(1);
+    const [hashPath, hashQuery] = rawHash.split('?');
+    if (!hashPath || hashPath === '/' || hashPath === '') return { name: 'home' };
+    if (hashPath.startsWith('/p/')) {
+      const slug = hashPath.replace('/p/', '');
       return { name: 'post', slug };
     }
-    if (hash === '/archive') return { name: 'archive' };
-    if (hash === '/tags') return { name: 'tags' };
+    if (hashPath === '/archive') return { name: 'archive' };
+    if (hashPath === '/tags') {
+      const params = new URLSearchParams(hashQuery || '');
+      const category = params.get('category') || 'all';
+      return { name: 'tags', category };
+    }
     return { name: 'home' };
   }
 
@@ -84,6 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (route.name === 'archive') {
       renderArchivePage();
     } else if (route.name === 'tags') {
+      if (route.category && route.category !== 'all') {
+        state.toolCategoryFilter = route.category;
+      }
       renderTagsPage();
     }
   }
@@ -484,42 +495,286 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4. Tags View
+  // 4. Tags / AI Tools Directory View
   // =========================================================================
   function renderTagsPage() {
-    const newsCount = articles.filter(a => a.tag === 'News').length;
-    const promptsCount = articles.filter(a => a.tag === 'Prompts').length;
+    const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { categories: [], tools: [] };
+    const allTools = toolsData.tools || [];
+    const categories = toolsData.categories || [];
+
+    // Helper to get category display name
+    function getCategoryName(catId) {
+      const found = categories.find(c => c.id === catId);
+      return found ? found.name : catId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    // Helper to calculate tool count per category
+    function getCategoryCount(catId) {
+      if (catId === 'all') return allTools.length;
+      return allTools.filter(t => (t.categories && t.categories.includes(catId)) || t.category === catId).length;
+    }
+
+    function getFilteredTools() {
+      return allTools.filter(tool => {
+        // Category filter
+        if (state.toolCategoryFilter !== 'all') {
+          const matchCat = (tool.categories && tool.categories.includes(state.toolCategoryFilter)) || tool.category === state.toolCategoryFilter;
+          if (!matchCat) return false;
+        }
+
+        // Pricing filter
+        if (state.toolPricingFilter !== 'all') {
+          if (tool.pricing.toLowerCase() !== state.toolPricingFilter.toLowerCase()) return false;
+        }
+
+        // Search query
+        if (state.toolSearchQuery.trim() !== '') {
+          const q = state.toolSearchQuery.trim().toLowerCase();
+          const nameMatch = tool.name.toLowerCase().includes(q);
+          const descMatch = tool.description.toLowerCase().includes(q);
+          const catMatch = tool.categories ? tool.categories.some(c => c.toLowerCase().includes(q)) : false;
+          const badgeMatch = tool.badge ? tool.badge.toLowerCase().includes(q) : false;
+          if (!nameMatch && !descMatch && !catMatch && !badgeMatch) return false;
+        }
+
+        return true;
+      });
+    }
+
+    function renderToolCard(tool) {
+      const pricingClass = `pricing-${tool.pricing.toLowerCase().replace(/\s+/g, '-')}`;
+      const firstCats = (tool.categories || [tool.category]).slice(0, 3);
+
+      return `
+        <div class="tool-card ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}">
+          <div class="tool-card-top">
+            <div class="tool-icon-avatar">
+              <span>${tool.icon || '⚡'}</span>
+            </div>
+            <div class="tool-title-group">
+              <div class="tool-badges-row">
+                ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
+                <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
+              </div>
+              <h3 class="tool-card-name">${tool.name}</h3>
+            </div>
+          </div>
+
+          <p class="tool-card-desc">${tool.description}</p>
+
+          <div class="tool-card-bottom">
+            <div class="tool-pill-tags">
+              ${firstCats.map(c => `
+                <button type="button" class="tool-category-badge" data-category="${c}">
+                  ${getCategoryName(c)}
+                </button>
+              `).join('')}
+            </div>
+
+            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${tool.name}">
+              <span>Visit</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateView() {
+      const filtered = getFilteredTools();
+      const currentCatObj = categories.find(c => c.id === state.toolCategoryFilter);
+      const currentCatName = currentCatObj ? currentCatObj.name : 'All Tools';
+
+      const gridEl = document.getElementById('tools-grid-container');
+      const countEl = document.getElementById('tools-count-container');
+
+      if (countEl) {
+        countEl.innerHTML = `
+          <div class="tools-count-text">
+            Showing <strong>${filtered.length}</strong> ${filtered.length === 1 ? 'AI tool' : 'AI tools'}
+            ${state.toolCategoryFilter !== 'all' ? ` in <span class="active-cat-name">${currentCatName}</span>` : ''}
+            ${state.toolPricingFilter !== 'all' ? ` • <span class="active-pricing-name">${state.toolPricingFilter}</span>` : ''}
+            ${state.toolSearchQuery ? ` • matching "<em>${state.toolSearchQuery}</em>"` : ''}
+          </div>
+          ${(state.toolCategoryFilter !== 'all' || state.toolPricingFilter !== 'all' || state.toolSearchQuery) ? `
+            <button class="reset-filters-btn" id="btn-reset-tools-filters">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>Reset filters</span>
+            </button>
+          ` : ''}
+        `;
+
+        const resetBtn = document.getElementById('btn-reset-tools-filters');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            state.toolCategoryFilter = 'all';
+            state.toolPricingFilter = 'all';
+            state.toolSearchQuery = '';
+            const searchInputEl = document.getElementById('tool-search-input');
+            if (searchInputEl) searchInputEl.value = '';
+            const clearBtnEl = document.getElementById('tool-search-clear');
+            if (clearBtnEl) clearBtnEl.style.display = 'none';
+            document.querySelectorAll('.cat-filter-pill').forEach(p => {
+              p.classList.toggle('active', p.getAttribute('data-cat-id') === 'all');
+            });
+            document.querySelectorAll('.pricing-filter-pill').forEach(p => {
+              p.classList.toggle('active', p.getAttribute('data-pricing') === 'all');
+            });
+            updateView();
+          });
+        }
+      }
+
+      if (gridEl) {
+        if (filtered.length === 0) {
+          gridEl.innerHTML = `
+            <div class="tools-empty-state">
+              <div class="empty-state-icon">⚡</div>
+              <h3 class="empty-state-title">No AI tools found</h3>
+              <p class="empty-state-desc">No tools matched your active search or filters. Try adjusting your query or resetting filters.</p>
+              <button class="empty-reset-action-btn" id="btn-empty-reset">Show All AI Tools</button>
+            </div>
+          `;
+          const emptyResetBtn = document.getElementById('btn-empty-reset');
+          if (emptyResetBtn) {
+            emptyResetBtn.addEventListener('click', () => {
+              state.toolCategoryFilter = 'all';
+              state.toolPricingFilter = 'all';
+              state.toolSearchQuery = '';
+              const searchInputEl = document.getElementById('tool-search-input');
+              if (searchInputEl) searchInputEl.value = '';
+              renderTagsPage();
+            });
+          }
+        } else {
+          gridEl.innerHTML = filtered.map(renderToolCard).join('');
+          // Bind card tag clicks
+          gridEl.querySelectorAll('.tool-category-badge').forEach(badge => {
+            badge.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const cat = badge.getAttribute('data-category');
+              if (cat) {
+                state.toolCategoryFilter = cat;
+                document.querySelectorAll('.cat-filter-pill').forEach(p => {
+                  const isMatch = p.getAttribute('data-cat-id') === cat;
+                  p.classList.toggle('active', isMatch);
+                  if (isMatch) p.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                });
+                updateView();
+              }
+            });
+          });
+        }
+      }
+    }
 
     appContainer.innerHTML = `
-      <section class="tags-page-view">
-        <div class="article-container">
-          <h1 class="page-title">Tags</h1>
-          <p class="page-description">Explore AIRA newsletter topics and coverage.</p>
+      <section class="tools-directory-view">
+        <div class="container">
+          <!-- Directory Hero Header -->
+          <div class="tools-hero-banner">
+            <div class="tools-hero-badge">
+              <span class="bolt">⚡</span>
+              <span>AIRA Directory • ${allTools.length} AI Tools • ${categories.length - 1} Categories</span>
+            </div>
+            <h1 class="tools-hero-title">AI Tools & Categories</h1>
+            <p class="tools-hero-subtitle">
+              Discover, compare, and explore the most powerful AI tools, models, and apps across every workflow.
+            </p>
 
-          <div class="timeline-list">
-            <div class="timeline-item" onclick="window.location.hash='#/'">
-              <div class="timeline-content">
-                <h4>News & Research</h4>
-                <p>The latest breakthrough models, AI agents, enterprise updates, and research papers.</p>
+            <!-- Search & Pricing Control Bar -->
+            <div class="tools-controls-row">
+              <div class="tool-search-box-wrap">
+                <svg class="tool-search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="tool-search-input" class="tool-search-field" placeholder="Search by tool name, use-case, features..." value="${state.toolSearchQuery}" />
+                <button type="button" id="tool-search-clear" class="tool-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};">✕</button>
               </div>
-              <div class="timeline-meta">
-                <span class="card-tag-badge" style="position: static;">${newsCount} posts</span>
+
+              <div class="tools-pricing-pill-group">
+                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'all' ? 'active' : ''}" data-pricing="all">All</button>
+                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'Free' ? 'active' : ''}" data-pricing="Free">Free</button>
+                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'Freemium' ? 'active' : ''}" data-pricing="Freemium">Freemium</button>
+                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'Paid' ? 'active' : ''}" data-pricing="Paid">Paid</button>
               </div>
             </div>
 
-            <div class="timeline-item" onclick="window.location.hash='#/'">
-              <div class="timeline-content">
-                <h4>Prompts & Workflows</h4>
-                <p>Actionable prompt engineering patterns, cheat codes, automation workflows, and productivity guides.</p>
-              </div>
-              <div class="timeline-meta">
-                <span class="card-tag-badge" style="position: static;">${promptsCount} posts</span>
+            <!-- Categories Horizontal Filter List -->
+            <div class="categories-filter-wrapper">
+              <div class="categories-filter-scroll" id="categories-filter-scroll">
+                ${categories.map(cat => {
+                  const count = getCategoryCount(cat.id);
+                  const isActive = state.toolCategoryFilter === cat.id;
+                  return `
+                    <button type="button" class="cat-filter-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
+                      <span class="cat-pill-icon">${cat.icon || '🏷️'}</span>
+                      <span class="cat-pill-name">${cat.name}</span>
+                      <span class="cat-pill-count">${count}</span>
+                    </button>
+                  `;
+                }).join('')}
               </div>
             </div>
           </div>
+
+          <!-- Status Bar -->
+          <div class="tools-status-bar" id="tools-count-container"></div>
+
+          <!-- Grid of Tool Cards -->
+          <div class="tools-directory-grid" id="tools-grid-container"></div>
         </div>
       </section>
     `;
+
+    // Bind Category Filter Buttons
+    document.querySelectorAll('.cat-filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const catId = pill.getAttribute('data-cat-id');
+        state.toolCategoryFilter = catId;
+        document.querySelectorAll('.cat-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        updateView();
+      });
+    });
+
+    // Bind Pricing Filter Buttons
+    document.querySelectorAll('.pricing-filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const pricing = pill.getAttribute('data-pricing');
+        state.toolPricingFilter = pricing;
+        document.querySelectorAll('.pricing-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
+        updateView();
+      });
+    });
+
+    // Bind Search Input
+    const searchInput = document.getElementById('tool-search-input');
+    const searchClear = document.getElementById('tool-search-clear');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        state.toolSearchQuery = e.target.value;
+        if (searchClear) {
+          searchClear.style.display = e.target.value ? 'flex' : 'none';
+        }
+        updateView();
+      });
+    }
+
+    if (searchClear) {
+      searchClear.addEventListener('click', () => {
+        state.toolSearchQuery = '';
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        searchClear.style.display = 'none';
+        updateView();
+      });
+    }
+
+    // Initial render of cards
+    updateView();
   }
 
   // =========================================================================
