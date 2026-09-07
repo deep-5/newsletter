@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4 class="kr-title">${rec.title}</h4>
                     <p class="kr-subtitle">${rec.subtitle}</p>
                     <div class="kr-brand-row">
-                      <img src="assets/logo.jpg" alt="AIRA" class="kr-brand-logo" onerror="this.src='assets/logo.svg'" />
+                      <span class="kr-bolt-icon">⚡</span>
                       <span class="kr-brand-name">AIRA</span>
                     </div>
                   </div>

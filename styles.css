@@ -1342,24 +1342,31 @@ img {
 .keep-reading-list {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
 }
 
-.keep-reading-item {
+.keep-reading-item,
+.keep-reading-item:hover,
+.keep-reading-item:visited,
+.keep-reading-item:active {
   display: flex;
   gap: 24px;
   align-items: flex-start;
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
   transition: transform 0.15s ease;
 }
 
+.keep-reading-item * {
+  text-decoration: none !important;
+}
+
 .kr-thumb-wrap {
   width: 250px;
-  height: 155px;
+  height: 150px;
   flex-shrink: 0;
   position: relative;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   background: #F4F4F5;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -1373,21 +1380,21 @@ img {
 }
 
 .keep-reading-item:hover .kr-thumb-img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .kr-tag-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: rgba(244, 244, 245, 0.92);
+  background: rgba(244, 244, 245, 0.94);
   color: #18181B;
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 6px;
+  padding: 2px 8px;
+  border-radius: 4px;
   backdrop-filter: blur(4px);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .kr-content {
@@ -1401,14 +1408,15 @@ img {
   font-size: 0.8125rem;
   color: #71717A;
   margin-bottom: 6px;
+  font-weight: 500;
 }
 
 .kr-title {
   font-family: var(--font-header);
-  font-size: 1.25rem;
+  font-size: 1.22rem;
   font-weight: 800;
   color: #0B0A0A;
-  line-height: 1.3;
+  line-height: 1.32;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
   display: -webkit-box;
@@ -1419,7 +1427,7 @@ img {
 
 .keep-reading-item:hover .kr-title {
   color: #000000;
-  text-decoration: underline;
+  text-decoration: underline !important;
   text-underline-offset: 3px;
 }
 
@@ -1437,21 +1445,21 @@ img {
 .kr-brand-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: auto;
 }
 
-.kr-brand-logo {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  object-fit: cover;
+.kr-bolt-icon {
+  font-size: 0.85rem;
+  color: #18181B;
+  line-height: 1;
 }
 
 .kr-brand-name {
   font-size: 0.8125rem;
-  font-weight: 600;
-  color: #52525B;
+  font-weight: 700;
+  color: #3F3F46;
+  letter-spacing: -0.01em;
 }
 
 /* ==========================================================================
