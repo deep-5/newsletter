@@ -301,37 +301,62 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
 
-          <!-- Inline Subscribe Card -->
+          <!-- Inline Subscribe Card (Premium Clean Modern Card) -->
           <div class="article-subscribe-card">
-            <img src="assets/logo.jpg" alt="AIRA" class="article-sub-logo" onerror="this.src='assets/logo.svg'" />
-            <h3 class="article-sub-title">Stay Ahead in AI with AIRA</h3>
-            <p class="article-sub-desc">Get the latest breakthroughs, model benchmarks, tools, and tutorials delivered straight to your inbox.</p>
-            <form class="subscribe-form-hero" id="article-sub-form">
-              <input type="email" class="subscribe-input" placeholder="Your email address" required />
-              <button type="submit" class="subscribe-btn-hero">Subscribe</button>
+            <div class="article-sub-badge">
+              <img src="assets/logo.jpg" alt="AIRA" class="article-sub-logo" onerror="this.src='assets/logo.svg'" />
+            </div>
+            <h3 class="article-sub-title">Stay Ahead in Artificial Intelligence</h3>
+            <p class="article-sub-desc">Join 50,000+ engineers, founders, and leaders getting our free weekly breakdowns of AI models, tools, and breakthroughs.</p>
+            
+            <form class="article-sub-form-clean" id="article-sub-form">
+              <div class="sub-input-wrap">
+                <input type="email" class="sub-clean-input" placeholder="Enter your email..." required />
+                <button type="submit" class="sub-clean-btn">Subscribe Free</button>
+              </div>
+              <span class="sub-guarantee-text">⚡ Free weekly edition • No spam • Unsubscribe anytime</span>
             </form>
           </div>
 
-          <!-- Discussion Section -->
+          <!-- Discussion Section (Modern Substack/Beehiiv Style) -->
           <section class="comments-section">
-            <h3 class="comments-header">Discussion (${postComments.length})</h3>
-            <form class="comment-input-box" id="comment-form">
-              <input type="text" id="comment-name-input" placeholder="Your Name (Optional)" style="padding: 10px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 0.95rem;" />
-              <textarea class="comment-textarea" placeholder="Share your thoughts on this edition..." required></textarea>
-              <div class="comment-submit-row">
+            <div class="comments-header-row">
+              <h3 class="comments-header">Discussion <span class="comments-count-pill">${postComments.length}</span></h3>
+            </div>
+            
+            <form class="comment-composer-card" id="comment-form">
+              <div class="comment-composer-top">
+                <div class="comment-user-avatar">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <input type="text" id="comment-name-input" class="comment-name-field" placeholder="Your name (optional)" />
+              </div>
+              <textarea class="comment-textarea" placeholder="Write a thoughtful comment..." rows="3" required></textarea>
+              <div class="comment-composer-footer">
+                <span class="comment-hint-text">Be respectful and constructive</span>
                 <button type="submit" class="comment-submit-btn">Post Comment</button>
               </div>
             </form>
 
             <div class="comments-list" id="comments-list">
-              ${postComments.length === 0 ? '<p style="color: var(--color-text-muted); font-size: 0.9375rem;">No comments yet. Start the conversation!</p>' : ''}
-              ${postComments.map(c => `
-                <div class="comment-item">
-                  <div class="comment-author-row">
-                    <span class="comment-author-name">${c.author}</span>
-                    <span class="comment-date">${c.date}</span>
+              ${postComments.length === 0 ? `
+                <div class="comments-empty-state">
+                  <div class="empty-icon-wrap">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                   </div>
-                  <p class="comment-text">${c.text}</p>
+                  <p class="empty-title">No comments yet</p>
+                  <p class="empty-subtitle">Be the first to share your thoughts on this edition!</p>
+                </div>
+              ` : postComments.map(c => `
+                <div class="comment-item">
+                  <div class="comment-item-avatar">${(c.author || 'A').charAt(0).toUpperCase()}</div>
+                  <div class="comment-item-content">
+                    <div class="comment-author-row">
+                      <span class="comment-author-name">${c.author}</span>
+                      <span class="comment-date">${c.date}</span>
+                    </div>
+                    <p class="comment-text">${c.text}</p>
+                  </div>
                 </div>
               `).join('')}
             </div>
@@ -340,20 +365,29 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Recommended Reading -->
           <section class="recommended-section">
             <div class="recommended-header">
-              <h3 class="recommended-title">Keep Reading</h3>
-              <a href="#/archive" class="btn-view-more">View all articles →</a>
+              <div>
+                <h3 class="recommended-title">Keep Reading</h3>
+                <p class="recommended-subtitle">More popular editions from AIRA</p>
+              </div>
+              <a href="#/archive" class="btn-view-more">
+                <span>View all</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
             </div>
+            
             <div class="recommended-grid">
               ${recommendedArticles.map(rec => `
-                <a href="#/p/${rec.slug}" class="article-card">
-                  <div class="card-image-wrap">
-                    <img src="${rec.image_url}" alt="${rec.title}" class="card-thumbnail" loading="lazy" />
+                <a href="#/p/${rec.slug}" class="rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="${rec.image_url}" alt="${rec.title}" class="rec-card-thumbnail" loading="lazy" />
+                    <span class="rec-card-badge">${rec.tag || 'AI NEWS'}</span>
                   </div>
-                  <div class="card-body">
-                    <h3 class="card-title">${rec.title}</h3>
-                    <p class="card-subtitle">${rec.subtitle}</p>
-                    <div class="card-footer">
-                      <span class="card-meta-date">${rec.date} • ${rec.reading_time}</span>
+                  <div class="rec-card-body">
+                    <h4 class="rec-card-title">${rec.title}</h4>
+                    <p class="rec-card-subtitle">${rec.subtitle}</p>
+                    <div class="rec-card-footer">
+                      <span class="rec-card-meta">${rec.date} • ${rec.reading_time}</span>
+                      <span class="rec-card-read-link">Read →</span>
                     </div>
                   </div>
                 </a>

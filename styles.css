@@ -998,44 +998,116 @@ img {
   border-color: #18181B;
 }
 
-/* Inline Article Subscribe Card (Centered Compact Box) */
+/* ==========================================================================
+   Inner Page Bottom Components (100% Polish & Responsive Design)
+   ========================================================================== */
+
+/* 1. Inline Article Subscribe Card (Clean Light Aesthetic) */
 .article-subscribe-card {
-  background: linear-gradient(135deg, #18181B 0%, #09090B 100%);
-  color: #FFFFFF;
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 32px 24px;
   text-align: center;
   max-width: 580px;
   width: 100%;
   margin: 40px auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.article-sub-badge {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
 }
 
 .article-sub-logo {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  margin: 0 auto 16px auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .article-sub-title {
   font-family: var(--font-header);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 800;
+  color: #0B0A0A;
   margin-bottom: 8px;
   letter-spacing: -0.02em;
+  line-height: 1.3;
 }
 
 .article-sub-desc {
-  color: #A1A1AA;
+  color: #52525B;
   max-width: 440px;
   margin: 0 auto 20px auto;
   font-size: 0.9375rem;
   line-height: 1.5;
 }
 
-/* Comments / Discussion */
+.article-sub-form-clean {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.sub-input-wrap {
+  display: flex;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #D4D4D8;
+  border-radius: 8px;
+  padding: 4px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.sub-input-wrap:focus-within {
+  border-color: #18181B;
+  box-shadow: 0 0 0 2px rgba(24, 24, 27, 0.08);
+}
+
+.sub-clean-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  color: #18181B;
+  background: transparent;
+  min-width: 0;
+}
+
+.sub-clean-input::placeholder {
+  color: #A1A1AA;
+}
+
+.sub-clean-btn {
+  background: #18181B;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.sub-clean-btn:hover {
+  background: #000000;
+}
+
+.sub-guarantee-text {
+  font-size: 0.78rem;
+  color: #71717A;
+}
+
+/* 2. Comments / Discussion Section (Modern Composer UI) */
 .comments-section {
   margin: 48px auto 36px auto;
   padding-top: 36px;
@@ -1044,40 +1116,106 @@ img {
   width: 100%;
 }
 
+.comments-header-row {
+  margin-bottom: 20px;
+}
+
 .comments-header {
   font-family: var(--font-header);
   font-size: 1.35rem;
   font-weight: 800;
-  margin-bottom: 20px;
   letter-spacing: -0.02em;
+  color: #0B0A0A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.comment-input-box {
+.comments-count-pill {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  background: #F4F4F5;
+  color: #52525B;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.comment-composer-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.15s ease;
+}
+
+.comment-composer-card:focus-within {
+  border-color: #A1A1AA;
+}
+
+.comment-composer-top {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.comment-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #F4F4F5;
+  color: #71717A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.comment-name-field {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: #18181B;
+  padding: 6px 10px;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+}
+
+.comment-name-field:focus {
+  background: #FFFFFF;
+  border-color: #18181B;
 }
 
 .comment-textarea {
   width: 100%;
-  min-height: 90px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
-  font-size: 0.95rem;
-  resize: vertical;
+  min-height: 80px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9375rem;
   font-family: inherit;
-  background: #FFFFFF;
+  color: #18181B;
+  resize: vertical;
+  background: #FAFAFA;
+  margin-bottom: 12px;
 }
 
 .comment-textarea:focus {
+  background: #FFFFFF;
   border-color: #18181B;
 }
 
-.comment-submit-row {
+.comment-composer-footer {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-hint-text {
+  font-size: 0.78rem;
+  color: #A1A1AA;
 }
 
 .comment-submit-btn {
@@ -1085,8 +1223,8 @@ img {
   color: #FFFFFF;
   font-weight: 600;
   font-size: 0.875rem;
-  padding: 9px 20px;
-  border-radius: var(--radius-sm);
+  padding: 8px 18px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -1095,49 +1233,98 @@ img {
   background: #000000;
 }
 
+.comments-empty-state {
+  text-align: center;
+  padding: 32px 16px;
+  background: #FAFAFA;
+  border: 1px dashed #E5E7EB;
+  border-radius: 12px;
+}
+
+.empty-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #F4F4F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px auto;
+}
+
+.empty-title {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #27272A;
+  margin-bottom: 4px;
+}
+
+.empty-subtitle {
+  font-size: 0.8125rem;
+  color: #71717A;
+}
+
 .comments-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .comment-item {
+  display: flex;
+  gap: 12px;
   background: #FAFAFA;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 16px 18px;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.comment-item-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #18181B;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.comment-item-content {
+  flex: 1;
 }
 
 .comment-author-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-  gap: 6px;
+  margin-bottom: 4px;
 }
 
 .comment-author-name {
   font-weight: 700;
   font-size: 0.9375rem;
-  color: var(--color-text-primary);
+  color: #0B0A0A;
 }
 
 .comment-date {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  color: #71717A;
 }
 
 .comment-text {
-  font-size: 0.9375rem;
-  color: var(--color-text-primary);
-  line-height: 1.55;
+  font-size: 0.9rem;
+  color: #27272A;
+  line-height: 1.5;
   word-break: break-word;
 }
 
-/* Recommended Reading Section */
+/* 3. Recommended Reading ("Keep Reading") Section */
 .recommended-section {
-  margin: 48px auto 20px auto;
+  margin: 50px auto 20px auto;
   padding-top: 36px;
   border-top: 1px solid var(--color-border);
   width: 100%;
@@ -1147,35 +1334,150 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-  gap: 10px;
+  margin-bottom: 22px;
+  gap: 12px;
 }
 
 .recommended-title {
   font-family: var(--font-header);
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 800;
+  color: #0B0A0A;
   letter-spacing: -0.02em;
+}
+
+.recommended-subtitle {
+  font-size: 0.85rem;
+  color: #71717A;
+  margin-top: 2px;
 }
 
 .btn-view-more {
   font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--color-text-primary);
-  display: flex;
+  font-size: 0.875rem;
+  color: #18181B;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #F4F4F5;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .btn-view-more:hover {
-  text-decoration: underline;
+  background: #E4E4E7;
+  color: #000000;
 }
 
 .recommended-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 20px;
+}
+
+.rec-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.rec-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #D4D4D8;
+}
+
+.rec-card-image-wrap {
+  width: 100%;
+  height: 160px;
+  position: relative;
+  background: #F4F4F5;
+  overflow: hidden;
+}
+
+.rec-card-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.rec-card:hover .rec-card-thumbnail {
+  transform: scale(1.03);
+}
+
+.rec-card-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(11, 10, 10, 0.85);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.rec-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.rec-card-title {
+  font-family: var(--font-header);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  color: #0B0A0A;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rec-card-subtitle {
+  font-size: 0.8125rem;
+  color: #52525B;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.rec-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #F3F4F6;
+}
+
+.rec-card-meta {
+  font-size: 0.75rem;
+  color: #71717A;
+}
+
+.rec-card-read-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #18181B;
 }
 
 /* ==========================================================================
@@ -1601,19 +1903,42 @@ img {
 
   /* Responsive Subscribe Card */
   .article-subscribe-card {
-    padding: 28px 16px;
+    padding: 24px 16px;
     margin: 32px auto;
     border-radius: 12px;
     max-width: 100%;
   }
 
   .article-sub-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .article-sub-desc {
     font-size: 0.875rem;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+  }
+
+  .sub-input-wrap {
+    flex-direction: column;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .sub-clean-input {
+    background: #FFFFFF;
+    border: 1px solid #D4D4D8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    width: 100%;
+  }
+
+  .sub-clean-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9375rem;
   }
 
   /* Responsive Discussion / Comments */
@@ -1624,44 +1949,26 @@ img {
 
   .comments-header {
     font-size: 1.2rem;
-    margin-bottom: 16px;
   }
 
-  .comment-input-box {
-    margin-bottom: 24px;
-    gap: 10px;
+  .comment-composer-card {
+    padding: 14px;
   }
 
-  #comment-name-input {
-    max-width: 100%;
-  }
-
-  .comment-textarea {
-    min-height: 80px;
-    padding: 10px 12px;
-    font-size: 0.9rem;
-  }
-
-  .comment-submit-row {
-    justify-content: stretch;
+  .comment-composer-footer {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
   }
 
   .comment-submit-btn {
     width: 100%;
     padding: 10px;
-    font-size: 0.9rem;
   }
 
   .comment-item {
-    padding: 12px 14px;
-  }
-
-  .comment-author-name {
-    font-size: 0.875rem;
-  }
-
-  .comment-text {
-    font-size: 0.875rem;
+    padding: 12px;
+    gap: 10px;
   }
 
   /* Responsive Recommended Reading */
@@ -1671,7 +1978,7 @@ img {
   }
 
   .recommended-header {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .recommended-title {
@@ -1680,6 +1987,10 @@ img {
 
   .recommended-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
+  }
+
+  .rec-card-image-wrap {
+    height: 180px;
   }
 }
