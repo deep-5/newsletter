@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       postComments = state.comments[article.slug] || [];
     }
 
-    const recommendedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3);
+    const recommendedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 2);
 
     appContainer.innerHTML = `
       <article class="article-page-view">
@@ -303,52 +303,37 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
 
-          <!-- Inline Subscribe Card (Premium Clean Modern Card) -->
+          <!-- Inline Subscribe Card (Exact Dark UI) -->
           <div class="article-subscribe-card">
             <div class="article-sub-badge">
-              <img src="assets/logo.jpg" alt="AIRA" class="article-sub-logo" onerror="this.src='assets/logo.svg'" />
+              <span class="sub-bolt-icon">⚡</span>
             </div>
-            <h3 class="article-sub-title">Stay Ahead in Artificial Intelligence</h3>
-            <p class="article-sub-desc">Join 50,000+ engineers, founders, and leaders getting our free weekly breakdowns of AI models, tools, and breakthroughs.</p>
+            <h3 class="article-sub-title">Stay Ahead in AI with AIRA</h3>
+            <p class="article-sub-desc">Get the latest breakthroughs, model benchmarks, tools, and tutorials delivered straight to your inbox.</p>
             
-            <form class="article-sub-form-clean" id="article-sub-form">
-              <div class="sub-input-wrap">
-                <input type="email" class="sub-clean-input" placeholder="Enter your email..." required />
-                <button type="submit" class="sub-clean-btn">Subscribe Free</button>
+            <form class="article-sub-form-dark" id="article-sub-form">
+              <div class="sub-dark-input-wrap">
+                <input type="email" class="sub-dark-input" placeholder="Your email address" required />
+                <button type="submit" class="sub-dark-btn">Subscribe</button>
               </div>
-              <span class="sub-guarantee-text">⚡ Free weekly edition • No spam • Unsubscribe anytime</span>
             </form>
           </div>
 
-          <!-- Discussion Section (Modern Substack/Beehiiv Style) -->
+          <!-- Discussion Section (Exact Minimalist Clean UI) -->
           <section class="comments-section">
-            <div class="comments-header-row">
-              <h3 class="comments-header">Discussion <span class="comments-count-pill">${postComments.length}</span></h3>
-            </div>
+            <h3 class="comments-section-title">Discussion (${postComments.length})</h3>
             
             <form class="comment-composer-card" id="comment-form">
-              <div class="comment-composer-top">
-                <div class="comment-user-avatar">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </div>
-                <input type="text" id="comment-name-input" class="comment-name-field" placeholder="Your name (optional)" />
-              </div>
-              <textarea class="comment-textarea" placeholder="Write a thoughtful comment..." rows="3" required></textarea>
-              <div class="comment-composer-footer">
-                <span class="comment-hint-text">Be respectful and constructive</span>
+              <input type="text" id="comment-name-input" class="comment-name-input" placeholder="Your Name (Optional)" />
+              <textarea class="comment-textarea" placeholder="Share your thoughts on this edition..." rows="3" required></textarea>
+              <div class="comment-submit-row">
                 <button type="submit" class="comment-submit-btn">Post Comment</button>
               </div>
             </form>
 
             <div class="comments-list" id="comments-list">
               ${postComments.length === 0 ? `
-                <div class="comments-empty-state">
-                  <div class="empty-icon-wrap">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                  </div>
-                  <p class="empty-title">No comments yet</p>
-                  <p class="empty-subtitle">Be the first to share your thoughts on this edition!</p>
-                </div>
+                <p class="comments-empty-text">No comments yet. Start the conversation!</p>
               ` : postComments.map(c => `
                 <div class="comment-item">
                   <div class="comment-item-avatar">${(c.author || 'A').charAt(0).toUpperCase()}</div>
@@ -364,24 +349,29 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </section>
 
-          <!-- Recommended Reading (Exact Image 2 Design) -->
+          <!-- Recommended Reading ("Keep Reading" 2-Card Grid Design) -->
           <section class="recommended-section">
-            <h3 class="recommended-title">Keep Reading</h3>
+            <div class="recommended-header-row">
+              <div class="recommended-header-left">
+                <h3 class="recommended-title">Keep Reading</h3>
+                <p class="recommended-subtitle">More popular editions from AIRA</p>
+              </div>
+              <a href="#/archive" class="btn-view-all-kr">View all →</a>
+            </div>
             
-            <div class="keep-reading-list">
+            <div class="keep-reading-grid">
               ${recommendedArticles.map(rec => `
-                <a href="#/p/${rec.slug}" class="keep-reading-item">
-                  <div class="kr-thumb-wrap">
-                    <img src="${rec.image_url}" alt="${rec.title}" class="kr-thumb-img" loading="lazy" />
-                    <span class="kr-tag-badge">${rec.tag || 'News'}</span>
+                <a href="#/p/${rec.slug}" class="kr-card">
+                  <div class="kr-card-image-wrap">
+                    <img src="${rec.image_url}" alt="${rec.title}" class="kr-card-img" loading="lazy" />
+                    <span class="kr-card-badge">${(rec.tag || 'News').toUpperCase()}</span>
                   </div>
-                  <div class="kr-content">
-                    <div class="kr-meta-top">${rec.date} • ${rec.reading_time}</div>
-                    <h4 class="kr-title">${rec.title}</h4>
-                    <p class="kr-subtitle">${rec.subtitle}</p>
-                    <div class="kr-brand-row">
-                      <span class="kr-bolt-icon">⚡</span>
-                      <span class="kr-brand-name">AIRA</span>
+                  <div class="kr-card-body">
+                    <h4 class="kr-card-title">${rec.title}</h4>
+                    <p class="kr-card-subtitle">${rec.subtitle || ''}</p>
+                    <div class="kr-card-footer">
+                      <span class="kr-card-date">${rec.date} • ${rec.reading_time}</span>
+                      <span class="kr-card-read-more">Read →</span>
                     </div>
                   </div>
                 </a>
