@@ -362,32 +362,24 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </section>
 
-          <!-- Recommended Reading -->
+          <!-- Recommended Reading (Exact Image 2 Design) -->
           <section class="recommended-section">
-            <div class="recommended-header">
-              <div>
-                <h3 class="recommended-title">Keep Reading</h3>
-                <p class="recommended-subtitle">More popular editions from AIRA</p>
-              </div>
-              <a href="#/archive" class="btn-view-more">
-                <span>View all</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
+            <h3 class="recommended-title">Keep Reading</h3>
             
-            <div class="recommended-grid">
+            <div class="keep-reading-list">
               ${recommendedArticles.map(rec => `
-                <a href="#/p/${rec.slug}" class="rec-card">
-                  <div class="rec-card-image-wrap">
-                    <img src="${rec.image_url}" alt="${rec.title}" class="rec-card-thumbnail" loading="lazy" />
-                    <span class="rec-card-badge">${rec.tag || 'AI NEWS'}</span>
+                <a href="#/p/${rec.slug}" class="keep-reading-item">
+                  <div class="kr-thumb-wrap">
+                    <img src="${rec.image_url}" alt="${rec.title}" class="kr-thumb-img" loading="lazy" />
+                    <span class="kr-tag-badge">${rec.tag || 'News'}</span>
                   </div>
-                  <div class="rec-card-body">
-                    <h4 class="rec-card-title">${rec.title}</h4>
-                    <p class="rec-card-subtitle">${rec.subtitle}</p>
-                    <div class="rec-card-footer">
-                      <span class="rec-card-meta">${rec.date} • ${rec.reading_time}</span>
-                      <span class="rec-card-read-link">Read →</span>
+                  <div class="kr-content">
+                    <div class="kr-meta-top">${rec.date} • ${rec.reading_time}</div>
+                    <h4 class="kr-title">${rec.title}</h4>
+                    <p class="kr-subtitle">${rec.subtitle}</p>
+                    <div class="kr-brand-row">
+                      <img src="assets/logo.jpg" alt="AIRA" class="kr-brand-logo" onerror="this.src='assets/logo.svg'" />
+                      <span class="kr-brand-name">AIRA</span>
                     </div>
                   </div>
                 </a>
