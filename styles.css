@@ -937,45 +937,9 @@ img {
   line-height: 1.5;
 }
 
-/* Reader Rating Poll */
-.poll-box {
-  background: #FAFAFA;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  text-align: center;
-  margin: 44px 0;
-}
-
-.poll-heading {
-  font-family: var(--font-header);
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-
-.poll-options {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.poll-btn {
-  background: #FFFFFF;
-  border: 1px solid #D4D4D8;
-  border-radius: var(--radius-sm);
-  padding: 10px 18px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.poll-btn:hover, .poll-btn.selected {
-  background: #18181B;
-  color: #FFFFFF;
-  border-color: #18181B;
+/* Reader Rating Poll - Removed */
+.poll-box, ._1gbf4vw0, ._1gbf4vw1, ._1gbf4vw2, ._1gbf4vw3, ._1gbf4vw6, ._1gbf4vw7, ._1gbf4vw8, [class*="_1gbf4vw"] {
+  display: none !important;
 }
 
 /* Inline Article Subscribe Card */
