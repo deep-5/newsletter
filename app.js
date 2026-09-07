@@ -544,12 +544,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderToolCard(tool) {
       const pricingClass = `pricing-${tool.pricing.toLowerCase().replace(/\s+/g, '-')}`;
       const firstCats = (tool.categories || [tool.category]).slice(0, 3);
+      const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${tool.domain || 'ai.com'}&sz=128`;
+      const fallbackIcon = tool.icon || '⚡';
 
       return `
         <div class="tool-card ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}">
           <div class="tool-card-top">
             <div class="tool-icon-avatar">
-              <span>${tool.icon || '⚡'}</span>
+              <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>';" />
             </div>
             <div class="tool-title-group">
               <div class="tool-badges-row">
