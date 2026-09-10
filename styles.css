@@ -3056,6 +3056,89 @@ body.aira-gate-active .site-footer {
   color: #00BA66;
 }
 
+/* ==========================================================================
+   Visual WYSIWYG Editor Studio Styles
+   ========================================================================== */
+.beehiiv-visual-canvas {
+  background: #FFFFFF;
+  border: 2px solid #CBD5E1;
+  border-radius: 10px;
+  padding: 28px 24px;
+  min-height: 480px;
+  max-height: 750px;
+  overflow-y: auto;
+  line-height: 1.75;
+  outline: none;
+  color: #18181B;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: text;
+}
+
+.beehiiv-visual-canvas:focus {
+  border-color: #00BA66;
+  box-shadow: 0 0 0 3px rgba(0, 186, 102, 0.15);
+}
+
+.beehiiv-visual-canvas:empty:before {
+  content: "Click here to type directly or choose a template above...";
+  color: #94A3B8;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.editor-rich-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.editor-rich-btn {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #1E293B;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.editor-rich-btn:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+  color: #0F172A;
+}
+
+.editor-rich-btn:active {
+  transform: translateY(1px);
+}
+
+.btn-component-insert {
+  border-radius: 5px;
+  padding: 5px 11px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.btn-component-insert:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .tools-directory-view {

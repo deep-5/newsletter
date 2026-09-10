@@ -1477,42 +1477,66 @@ Output Format:
                   </div>
                 </div>
 
-                <!-- Body Editor with Snippet Inserters, Beehiiv Image Button & Live Preview Toggle -->
-                <div class="form-group" style="margin-top: 10px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-                    <label class="form-label" style="margin: 0;">Article Body Content (HTML / Content) *</label>
+                <!-- Body Editor with Visual WYSIWYG & HTML Mode -->
+                <div class="form-group" style="margin-top: 14px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                      <label class="form-label" style="margin: 0; font-size: 0.95rem; font-weight: 700;">Article Body Studio *</label>
+                      <span style="font-size: 0.8125rem; color: #047857; font-weight: 600; margin-left: 6px;">✨ Visual Interactive Editor (Click & Type Directly)</span>
+                    </div>
                     
-                    <!-- Mode Toggle: Code vs Preview -->
+                    <!-- Mode Toggle: Visual vs HTML Code -->
                     <div style="display: inline-flex; background: #F1F5F9; border-radius: 6px; padding: 2px;">
-                      <button type="button" id="tab-code-mode" class="editor-view-toggle active" style="border: none; background: #FFFFFF; font-weight: 600; font-size: 0.75rem; padding: 5px 12px; border-radius: 4px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">📝 HTML Code</button>
-                      <button type="button" id="tab-preview-mode" class="editor-view-toggle" style="border: none; background: transparent; font-weight: 600; font-size: 0.75rem; padding: 5px 12px; border-radius: 4px; cursor: pointer; color: #64748B;">👁️ Live Preview</button>
+                      <button type="button" id="tab-visual-mode" class="editor-view-toggle active" style="border: none; background: #FFFFFF; font-weight: 700; font-size: 0.78rem; padding: 6px 14px; border-radius: 4px; cursor: pointer; color: #0F172A; box-shadow: 0 1px 2px rgba(0,0,0,0.08);">✨ Visual Editor</button>
+                      <button type="button" id="tab-code-mode" class="editor-view-toggle" style="border: none; background: transparent; font-weight: 600; font-size: 0.78rem; padding: 6px 14px; border-radius: 4px; cursor: pointer; color: #64748B;">📝 HTML Code</button>
                     </div>
                   </div>
 
-                  <!-- Snippet Helper Toolbar -->
-                  <div id="editor-snippet-toolbar" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 10px; align-items: center;">
-                    <button type="button" id="btn-open-image-studio" style="background: #18181B; color: #FFFFFF; border: 1px solid #18181B; border-radius: 5px; padding: 5px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                      🖼️ + Add / Upload Image
-                    </button>
-                    <span style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; margin: 0 4px;">|</span>
-                    <button type="button" class="btn-insert-snippet" data-snippet="beehiiv_card" style="background: #E8FDF2; color: #047857; border: 1px solid #A7F3D0; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 🟢 Story Card</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="beehiiv_banner" style="background: #E8FDF2; color: #047857; border: 1px solid #A7F3D0; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 🏷️ Green Banner</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="takeaway" style="background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 💡 Takeaway</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="toolstack" style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 🛠️ Tool Stack</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="quote" style="background: #F3E8FF; color: #6B21A8; border: 1px solid #E9D5FF; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 💬 Quote Box</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="prompt" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">📋 Prompt Box</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="h2" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">H2</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="p" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Paragraph</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="ul" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">List</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="signoff" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">✍️ Signoff</button>
+                  <!-- Visual Toolbar -->
+                  <div id="editor-rich-toolbar" class="editor-rich-toolbar">
+                    <!-- Row 1: Formatting Tools -->
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+                      <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #64748B; margin-right: 4px;">Format:</span>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="createLink" title="Insert Link">🔗 Link</button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="unlink" title="Remove Link">🔗✕</button>
+                      <span style="color: #CBD5E1; margin: 0 2px;">|</span>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="formatBlock" data-val="H2" title="H2 Heading">H2</button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="formatBlock" data-val="H3" title="H3 Subheading">H3</button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="formatBlock" data-val="P" title="Normal Paragraph">P</button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="insertUnorderedList" title="Bullet List">• List</button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="insertOrderedList" title="Numbered List">1. List</button>
+                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="removeFormat" title="Clear Formatting">🧹 Clear</button>
+                    </div>
+
+                    <!-- Row 2: Beehiiv Components & Cards Inserter -->
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding-top: 6px; border-top: 1px solid #E2E8F0;">
+                      <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #047857; margin-right: 4px;">🐝 Beehiiv Cards:</span>
+                      <button type="button" id="btn-open-image-studio" class="btn-component-insert" style="background: #18181B; color: #FFFFFF; font-weight: 700; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+                        🖼️ + Add / Upload Image
+                      </button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="beehiiv_card" style="background: #E8FDF2; color: #047857; font-weight: 700; border: 1px solid #A7F3D0;">+ 🟢 Story Card</button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="beehiiv_banner" style="background: #E8FDF2; color: #047857; font-weight: 700; border: 1px solid #A7F3D0;">+ 🏷️ Banner</button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="takeaway" style="background: #FEF3C7; color: #92400E; font-weight: 700; border: 1px solid #FDE68A;">+ 💡 Takeaway</button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="toolstack" style="background: #EFF6FF; color: #1D4ED8; font-weight: 700; border: 1px solid #BFDBFE;">+ 🛠️ Tool Stack</button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="quote" style="background: #F3E8FF; color: #6B21A8; font-weight: 700; border: 1px solid #E9D5FF;">+ 💬 Quote Box</button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="prompt" style="background: #FFFFFF; color: #18181B; font-weight: 600; border: 1px solid #CBD5E1;">📋 Prompt Box</button>
+                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="signoff" style="background: #FFFFFF; color: #18181B; font-weight: 600; border: 1px solid #CBD5E1;">✍️ Signoff</button>
+                    </div>
                   </div>
 
-                  <!-- Textarea Code Editor -->
-                  <textarea id="editor-body" class="form-control-textarea" style="min-height: 380px; font-family: monospace; font-size: 0.875rem;" required>${art.body_html || ''}</textarea>
-                  
-                  <!-- Live Preview Pane -->
-                  <div id="editor-preview-container" class="article-rich-body" style="display: none; min-height: 380px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 24px; max-height: 600px; overflow-y: auto;">
+                  <!-- Helpful Visual Tip -->
+                  <div id="visual-editor-tip" style="margin-bottom: 8px; font-size: 0.78rem; color: #64748B; display: flex; align-items: center; gap: 6px;">
+                    <span>💡 <strong>Tip:</strong> Neeche diye hue visual cards ya text par kahin bhi click karein aur directly Word / Notion ki tarah likhein!</span>
                   </div>
+
+                  <!-- Visual Canvas (Default WYSIWYG) -->
+                  <div id="editor-visual-canvas" class="article-rich-body beehiiv-visual-canvas" contenteditable="true" spellcheck="true">${art.body_html || ''}</div>
+
+                  <!-- Textarea Code Editor (Hidden by default, shown in HTML mode) -->
+                  <textarea id="editor-body" class="form-control-textarea" style="display: none; min-height: 480px; font-family: monospace; font-size: 0.875rem;">${art.body_html || ''}</textarea>
                 </div>
 
                 <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border);">
@@ -1768,126 +1792,109 @@ Output Format:
         });
       }
 
-      // Insert Image Action
-      if (btnInsertImgConfirm) {
-        btnInsertImgConfirm.addEventListener('click', () => {
-          const imgSrc = currentSelectedImgSrc || (modalImgUrlInput ? modalImgUrlInput.value.trim() : '');
-          if (!imgSrc) {
-            showToast('Please select or paste an image first! ⚠️');
-            return;
-          }
-
-          const captionText = modalImgCaptionInput.value.trim();
-          const linkUrl = modalImgLinkInput.value.trim();
-          const altText = modalImgAltInput.value.trim() || captionText || 'Article Image';
-
-          const imgHtml = `
-<div class="section-image-box" style="margin: 24px 0; text-align: center;">
-  ${linkUrl ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">` : ''}
-    <img src="${imgSrc}" alt="${altText}" class="section-inline-img" style="max-width: 100%; border-radius: 8px;" loading="lazy" />
-  ${linkUrl ? `</a>` : ''}
-  ${captionText ? `<small><p style="color: var(--color-text-muted); font-size: 0.8125rem; margin-top: 6px; font-style: italic;">${captionText}</p></small>` : ''}
-</div>
-`;
-
-          const bodyTextarea = document.getElementById('editor-body');
-          if (bodyTextarea) {
-            insertTextAtCursor(bodyTextarea, imgHtml);
-            const previewPane = document.getElementById('editor-preview-container');
-            if (previewPane && previewPane.style.display !== 'none') {
-              previewPane.innerHTML = bodyTextarea.value;
-            }
-            showToast('Beehiiv-style image inserted! 🖼️✨');
-          }
-
-          closeImageModal();
-        });
-      }
-
-      // Template selection handlers
-      document.querySelectorAll('.btn-select-template').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const tmplId = e.currentTarget.getAttribute('data-template-id');
-          const tmpl = ARTICLE_TEMPLATES.find(t => t.id === tmplId);
-          if (!tmpl) return;
-
-          const bodyTextarea = document.getElementById('editor-body');
-          if (bodyTextarea && bodyTextarea.value.trim().length > 50) {
-            if (!confirm(`Apply "${tmpl.name}"? This will replace the current body text.`)) {
-              return;
-            }
-          }
-
-          if (titleInp && (!titleInp.value || isNew)) {
-            titleInp.value = tmpl.sampleTitle;
-            if (slugInp) {
-              slugInp.value = tmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            }
-          }
-          const subtitleInp = document.getElementById('editor-subtitle');
-          if (subtitleInp && (!subtitleInp.value || isNew)) {
-            subtitleInp.value = tmpl.sampleSubtitle;
-          }
-          const tagSelect = document.getElementById('editor-tag');
-          if (tagSelect) {
-            tagSelect.value = tmpl.tag;
-          }
-          const timeInp = document.getElementById('editor-reading-time');
-          if (timeInp) {
-            timeInp.value = tmpl.readingTime;
-          }
-          if (bodyTextarea) {
-            bodyTextarea.value = tmpl.body;
-          }
-          const previewPane = document.getElementById('editor-preview-container');
-          if (previewPane && previewPane.style.display !== 'none') {
-            previewPane.innerHTML = tmpl.body;
-          }
-
-          showToast(`Loaded "${tmpl.name}"! 🚀`);
-        });
-      });
-
-      // Snippet insertion handlers
-      document.querySelectorAll('.btn-insert-snippet').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const type = e.currentTarget.getAttribute('data-snippet');
-          const snippetText = SNIPPETS[type];
-          if (!snippetText) return;
-          const bodyTextarea = document.getElementById('editor-body');
-          if (bodyTextarea) {
-            insertTextAtCursor(bodyTextarea, snippetText);
-            const previewPane = document.getElementById('editor-preview-container');
-            if (previewPane && previewPane.style.display !== 'none') {
-              previewPane.innerHTML = bodyTextarea.value;
-            }
-            showToast(`Inserted ${type.toUpperCase()} block! 📝`);
-          }
-        });
-      });
-
-      // Mode toggle (HTML Code vs Live Preview)
+      // Visual Canvas & Code Textarea Elements
+      const visualCanvas = document.getElementById('editor-visual-canvas');
+      const codeTextarea = document.getElementById('editor-body');
+      const tabVisual = document.getElementById('tab-visual-mode');
       const tabCode = document.getElementById('tab-code-mode');
-      const tabPreview = document.getElementById('tab-preview-mode');
-      const bodyTextarea = document.getElementById('editor-body');
-      const previewPane = document.getElementById('editor-preview-container');
+      const tipEl = document.getElementById('visual-editor-tip');
 
-      if (tabCode && tabPreview && bodyTextarea && previewPane) {
-        tabCode.addEventListener('click', () => {
-          tabCode.classList.add('active');
-          tabPreview.classList.remove('active');
-          bodyTextarea.style.display = 'block';
-          previewPane.style.display = 'none';
-        });
+      function syncVisualToCode() {
+        if (visualCanvas && codeTextarea) {
+          codeTextarea.value = visualCanvas.innerHTML;
+        }
+      }
 
-        tabPreview.addEventListener('click', () => {
-          tabPreview.classList.add('active');
-          tabCode.classList.remove('active');
-          previewPane.innerHTML = bodyTextarea.value || '<p style="color: #9CA3AF; font-style: italic;">No content to preview yet.</p>';
-          bodyTextarea.style.display = 'none';
-          previewPane.style.display = 'block';
+      function syncCodeToVisual() {
+        if (visualCanvas && codeTextarea) {
+          visualCanvas.innerHTML = codeTextarea.value;
+        }
+      }
+
+      if (visualCanvas) {
+        ['input', 'keyup', 'paste', 'blur'].forEach(evt => {
+          visualCanvas.addEventListener(evt, syncVisualToCode);
         });
       }
+
+      if (codeTextarea) {
+        codeTextarea.addEventListener('input', syncCodeToVisual);
+      }
+
+      // Helper to insert HTML directly into visual editor canvas or fallback to code
+      function insertVisualBlock(html) {
+        if (!visualCanvas) return;
+        visualCanvas.focus();
+        const sel = window.getSelection();
+        let inserted = false;
+        if (sel && sel.rangeCount > 0) {
+          const range = sel.getRangeAt(0);
+          if (visualCanvas.contains(range.commonAncestorContainer)) {
+            range.deleteContents();
+            const temp = document.createElement('div');
+            temp.innerHTML = html.trim();
+            const frag = document.createDocumentFragment();
+            let node, lastNode;
+            while ((node = temp.firstChild)) {
+              lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+            if (lastNode) {
+              const newRange = document.createRange();
+              newRange.setStartAfter(lastNode);
+              newRange.collapse(true);
+              sel.removeAllRanges();
+              sel.addRange(newRange);
+            }
+            inserted = true;
+          }
+        }
+        if (!inserted) {
+          const temp = document.createElement('div');
+          temp.innerHTML = html.trim();
+          while (temp.firstChild) {
+            visualCanvas.appendChild(temp.firstChild);
+          }
+        }
+        syncVisualToCode();
+      }
+
+      // Rich Formatting Actions (Bold, Italic, Link, H2, H3, Lists, Clear)
+      document.querySelectorAll('.btn-rich-format').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const cmd = btn.getAttribute('data-cmd');
+          const val = btn.getAttribute('data-val') || null;
+          if (visualCanvas) visualCanvas.focus();
+          if (cmd === 'createLink') {
+            const url = prompt('Enter link URL (e.g. https://example.com):', 'https://');
+            if (url && url.trim() && url !== 'https://') {
+              document.execCommand('createLink', false, url.trim());
+              visualCanvas.querySelectorAll('a:not(.beehiiv-link)').forEach(a => {
+                a.classList.add('beehiiv-link');
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+              });
+            }
+          } else if (cmd === 'formatBlock') {
+            document.execCommand('formatBlock', false, `<${val}>`);
+          } else {
+            document.execCommand(cmd, false, val);
+          }
+          syncVisualToCode();
+        });
+      });
+
+      // Insert Visual Beehiiv Cards / Blocks
+      document.querySelectorAll('.btn-insert-visual-block').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const blockType = e.currentTarget.getAttribute('data-block');
+          const snippetHtml = SNIPPETS[blockType];
+          if (!snippetHtml) return;
+          insertVisualBlock(snippetHtml);
+          showToast(`Inserted ${blockType.replace(/_/g, ' ').toUpperCase()} card! 📝`);
+        });
+      });
 
       // Handle Save Submission
       const form = document.getElementById('inline-article-form');
@@ -1904,7 +1911,14 @@ Output Format:
           const reading_time = document.getElementById('editor-reading-time').value.trim() || '4 minutes';
           const image_url = document.getElementById('editor-image').value.trim() || 'assets/logo.jpg';
           const author = document.getElementById('editor-author').value.trim() || 'AIRA';
-          const body_html = document.getElementById('editor-body').value.trim();
+          
+          let body_html = '';
+          if (tabVisual && tabVisual.classList.contains('active') && visualCanvas) {
+            syncVisualToCode();
+            body_html = visualCanvas.innerHTML.trim();
+          } else if (codeTextarea) {
+            body_html = codeTextarea.value.trim();
+          }
 
           if (!title || !slug || !body_html) {
             showToast('Please fill in title, slug, and body content!');
