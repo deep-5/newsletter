@@ -1,17 +1,8 @@
 /**
- * AIRA Newsletter - Google Sheets & Database Integration
- * Connected to Google Sheet:
- * https://docs.google.com/spreadsheets/d/1TxwtcRBFNN6SdvZM5f2g1ZU9uRp_iSTNaCFrmF3wDig/edit?usp=sharing
+ * AIRA Newsletter - Database & Subscriber Integration
  */
 
-// Google Sheets Configuration
-const GOOGLE_SHEETS_CONFIG = {
-  spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/1TxwtcRBFNN6SdvZM5f2g1ZU9uRp_iSTNaCFrmF3wDig/edit?usp=sharing',
-  spreadsheetId: '1TxwtcRBFNN6SdvZM5f2g1ZU9uRp_iSTNaCFrmF3wDig',
-  scriptUrl: ''
-};
-
-// Optional: Supabase Config
+// Optional: Supabase Config (Leave default for pure client-side storage)
 const SUPABASE_CONFIG = {
   url: 'https://YOUR_PROJECT_ID.supabase.co',
   anonKey: 'YOUR_SUPABASE_ANON_KEY'
@@ -29,18 +20,17 @@ if (typeof supabase !== 'undefined' && SUPABASE_CONFIG.url !== 'https://YOUR_PRO
 }
 
 // =========================================================================
-// Database & Google Sheets Operations
+// Database & Subscriber Operations
 // =========================================================================
 
 const DatabaseService = {
   /**
-   * Add email subscriber to Google Sheets and Database
+   * Add email subscriber to Database
    */
   async subscribe(email, source = 'AIRA Website') {
     const cleanEmail = (email || '').trim().toLowerCase();
     if (!cleanEmail) return { success: false };
 
-    const timestamp = new Date().toISOString();
     const readableDate = new Date().toLocaleString('en-US', {
       timeZone: 'Asia/Kolkata',
       year: 'numeric',
@@ -51,27 +41,7 @@ const DatabaseService = {
       second: '2-digit'
     });
 
-    // 1. Send directly to Google Sheets Webhook
-    if (GOOGLE_SHEETS_CONFIG.scriptUrl && !GOOGLE_SHEETS_CONFIG.scriptUrl.includes('YOUR_DEPLOYED_WEB_APP_ID')) {
-      try {
-        const formData = new FormData();
-        formData.append('email', cleanEmail);
-        formData.append('source', source);
-        formData.append('timestamp', readableDate);
-        formData.append('page', window.location.href);
-
-        await fetch(GOOGLE_SHEETS_CONFIG.scriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        });
-        console.log('⚡ Subscriber successfully synced to Google Sheet:', cleanEmail);
-      } catch (err) {
-        console.warn('Google Sheets sync warning:', err);
-      }
-    }
-
-    // 2. Send to Supabase if active
+    // 1. Send to Supabase if active
     if (supabaseClient) {
       try {
         const { data, error } = await supabaseClient
@@ -86,7 +56,7 @@ const DatabaseService = {
       }
     }
     
-    // 3. Store locally in browser storage
+    // 2. Store in local browser storage
     const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
     const exists = list.some(item => (typeof item === 'string' ? item : item.email) === cleanEmail);
     if (!exists) {

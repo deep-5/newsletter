@@ -740,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 5. Subscription Handler (Connected to Google Sheets & Database)
+  // 5. Subscription Handler (Connected to Database)
   // =========================================================================
   async function handleSubscribeSubmit(e) {
     e.preventDefault();
