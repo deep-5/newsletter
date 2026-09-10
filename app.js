@@ -55,13 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function getRoute() {
     const rawHash = window.location.hash.slice(1);
     const [hashPath, hashQuery] = rawHash.split('?');
-    if (!hashPath || hashPath === '/' || hashPath === '') return { name: 'home' };
+    const isUnlocked = sessionStorage.getItem('aira_unlocked') === 'true';
+
+    // When opening root URL for the first time without unlock: show Gate
+    if (!hashPath || hashPath === '/' || hashPath === '') {
+      if (!isUnlocked) {
+        return { name: 'gate' };
+      }
+      return { name: 'home' };
+    }
+    if (hashPath === '/home') return { name: 'home' };
+    if (hashPath === '/subscribe') return { name: 'subscribe' };
     if (hashPath.startsWith('/p/')) {
       const slug = hashPath.replace('/p/', '');
       return { name: 'post', slug };
     }
     if (hashPath === '/archive') return { name: 'archive' };
-    if (hashPath === '/subscribe') return { name: 'subscribe' };
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
     if (hashPath === '/tags') {
       const params = new URLSearchParams(hashQuery || '');
@@ -75,10 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const route = getRoute();
     state.currentRoute = route.name;
     
+    // Toggle Gate Mode on body (hides header/footer on gate screen)
+    if (route.name === 'gate' || route.name === 'subscribe') {
+      document.body.classList.add('aira-gate-active');
+    } else {
+      document.body.classList.remove('aira-gate-active');
+    }
+
     // Update active navbar link
     document.querySelectorAll('.nav-link').forEach(link => {
       const target = link.getAttribute('data-nav');
-      if (target === route.name) {
+      if (target === route.name || (route.name === 'gate' && target === 'home')) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -87,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.scrollTo({ top: 0, behavior: 'instant' });
 
-    if (route.name === 'home') {
+    if (route.name === 'gate' || route.name === 'subscribe') {
+      renderSubscribeGatePage();
+    } else if (route.name === 'home') {
       renderHomePage();
-    } else if (route.name === 'subscribe') {
-      renderSubscribePage();
     } else if (route.name === 'post') {
       await renderPostPage(route.slug);
     } else if (route.name === 'archive') {
@@ -106,9 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 1. Dedicated Subscribe Landing Page (#/subscribe)
+  // 1. Dedicated Subscribe Landing Gate (Appears before entering website)
   // =========================================================================
-  function renderSubscribePage() {
+  function renderSubscribeGatePage() {
     appContainer.innerHTML = `
       <section class="subscribe-landing-page">
         <div class="sub-landing-container">
@@ -122,29 +138,75 @@ document.addEventListener('DOMContentLoaded', () => {
             Level up your AI knowledge in just 5 minutes | Join 30,000+ people from Google, OpenAI, Meta, Apple.
           </p>
           
-          <form class="sub-pill-form" id="landing-sub-form">
+          <form class="sub-pill-form" id="gate-sub-form">
             <div class="sub-pill-wrap">
-              <input type="email" class="sub-pill-input" placeholder="Enter Your Email" required />
+              <input type="email" class="sub-pill-input" placeholder="Enter Your Email" required autocomplete="email" />
               <button type="submit" class="sub-pill-btn">Subscribe</button>
             </div>
           </form>
 
           <div>
-            <a href="#/" class="sub-landing-read-link">Let me read it first →</a>
+            <button type="button" id="btn-gate-read-first" class="sub-landing-read-link">Let me read it first →</button>
           </div>
         </div>
       </section>
     `;
 
-    // Bind landing form
-    const landingForm = document.getElementById('landing-sub-form');
-    if (landingForm) {
-      landingForm.addEventListener('submit', handleSubscribeSubmit);
+    // Bind Gate Subscribe Form
+    const gateForm = document.getElementById('gate-sub-form');
+    if (gateForm) {
+      gateForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = gateForm.querySelector('.sub-pill-input');
+        const submitBtn = gateForm.querySelector('.sub-pill-btn');
+        const email = input ? input.value.trim() : '';
+        if (!email) return;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Subscribing...';
+        }
+
+        try {
+          if (window.DatabaseService) {
+            await window.DatabaseService.subscribe(email, 'Landing Gate Page');
+          } else {
+            const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+            if (!list.includes(email)) {
+              list.push(email);
+              localStorage.setItem('aira_subscribers', JSON.stringify(list));
+            }
+          }
+
+          sessionStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_subscribed', 'true');
+
+          if (submitBtn) submitBtn.innerHTML = 'Subscribed! ✓';
+          showToast('🎉 Welcome to AIRA! Access granted.');
+
+          setTimeout(() => {
+            window.location.hash = '#/home';
+          }, 600);
+        } catch (err) {
+          console.error('Subscription error:', err);
+          sessionStorage.setItem('aira_unlocked', 'true');
+          window.location.hash = '#/home';
+        }
+      });
+    }
+
+    // Bind "Let me read it first"
+    const readFirstBtn = document.getElementById('btn-gate-read-first');
+    if (readFirstBtn) {
+      readFirstBtn.addEventListener('click', () => {
+        sessionStorage.setItem('aira_unlocked', 'true');
+        window.location.hash = '#/home';
+      });
     }
   }
 
   // =========================================================================
-  // 1b. Homepage View (With Dynamic Load More)
+  // 1b. Homepage View (With Dynamic Load More & Clean AIRA Hero)
   // =========================================================================
   function renderHomePage() {
     const filteredArticles = state.selectedTag === 'All' 
@@ -155,29 +217,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasMore = filteredArticles.length > state.displayedCount;
 
     appContainer.innerHTML = `
-      <!-- Hero Section -->
+      <!-- Clean AIRA Hero Section -->
       <section class="hero-section">
         <div class="container">
           <div class="hero-logo-box">
-            <div class="sub-landing-icon-card" style="margin: 0 auto 20px auto;">
-              <img src="assets/logo.jpg" alt="AIRA Logo" class="sub-landing-logo-img" onerror="this.src='assets/logo.svg'" />
-            </div>
+            <img src="assets/logo.jpg" alt="AIRA Logo" class="hero-logo-img" onerror="this.src='assets/logo.svg'" />
           </div>
           <h1 class="hero-title">AIRA</h1>
-          <p class="hero-tagline">Level up your AI knowledge in just 5 minutes | Join 30,000+ people from Google, OpenAI, Meta, Apple.</p>
+          <p class="hero-tagline">The one and only AI newsletter. Join us and get the best AI news, tools, and tutorials completely FREE!</p>
           
           <form class="subscribe-form-hero" id="hero-sub-form">
-            <input type="email" class="subscribe-input" placeholder="Enter Your Email" required />
+            <input type="email" class="subscribe-input" placeholder="Enter your email" required />
             <button type="submit" class="subscribe-btn-hero">Subscribe</button>
           </form>
 
-          <div>
-            <a href="#main-articles-grid" class="hero-read-first-link" onclick="document.getElementById('main-articles-grid')?.scrollIntoView({behavior: 'smooth'}); return false;">Let me read it first →</a>
-          </div>
-
           <div class="social-bar-hero">
             <a href="https://whatsapp.com/channel/0029VbC1KWlICVfsFtYhmZ3B" target="_blank" rel="noopener" class="social-icon-btn" title="WhatsApp">
-              <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.99.54 1.761.819 2.796.82 3.18 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.807-5.768-5.807zm0 10.455c-.933 0-1.62-.276-2.434-.76l-.174-.103-1.802.472.48-1.758-.113-.18c-.534-.848-.815-1.523-.815-2.36 0-2.618 2.13-4.748 4.748-4.748 2.617 0 4.747 2.13 4.747 4.748 0 2.618-2.13 4.748-4.747 4.748zm2.607-3.565c-.143-.072-.847-.418-.978-.466-.131-.048-.226-.072-.321.072-.095.143-.369.466-.452.561-.083.096-.167.108-.31.036-.143-.072-.603-.222-1.149-.707-.424-.378-.711-.845-.794-.988-.083-.143-.009-.22.063-.291.064-.064.143-.167.214-.25.072-.084.095-.144.143-.239.048-.096.024-.179-.012-.25-.036-.072-.321-.774-.44-1.06-.116-.28-.234-.241-.321-.246l-.274-.005c-.095 0-.25.036-.381.179-.131.143-.5 488-.5 1.19 0 .702.512 1.38 1.583 2.809 1.488 1.987 2.106 2.059 2.487 2.059.512 0 .976-.321 1.119-.774.143-.452.143-.845.1-.929-.048-.083-.143-.131-.286-.202zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.981-1.306A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.167c-1.636 0-3.17-.487-4.457-1.326l-.32-.209-2.955.775.789-2.88-.228-.363A8.136 8.136 0 0 1 3.833 12c0-4.503 3.664-8.167 8.167-8.167 4.503 0 8.167 3.664 8.167 8.167 0 4.503-3.664 8.167-8.167 8.167z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.99.54 1.761.819 2.796.82 3.18 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.807-5.768-5.807zm0 10.455c-.933 0-1.62-.276-2.434-.76l-.174-.103-1.802.472.48-1.758-.113-.18c-.534-.848-.815-1.523-.815-2.36 0-2.618 2.13-4.748 4.748-4.748 2.617 0 4.747 2.13 4.747 4.748 0 2.618-2.13 4.748-4.748 4.748zm2.607-3.565c-.143-.072-.847-.418-.978-.466-.131-.048-.226-.072-.321.072-.095.143-.369.466-.452.561-.083.096-.167.108-.31.036-.143-.072-.603-.222-1.149-.707-.424-.378-.711-.845-.794-.988-.083-.143-.009-.22.063-.291.064-.064.143-.167.214-.25.072-.084.095-.144.143-.239.048-.096.024-.179-.012-.25-.036-.072-.321-.774-.44-1.06-.116-.28-.234-.241-.321-.246l-.274-.005c-.095 0-.25.036-.381.179-.131.143-.5 488-.5 1.19 0 .702.512 1.38 1.583 2.809 1.488 1.987 2.106 2.059 2.487 2.059.512 0 .976-.321 1.119-.774.143-.452.143-.845.1-.929-.048-.083-.143-.131-.286-.202zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.981-1.306A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.167c-1.636 0-3.17-.487-4.457-1.326l-.32-.209-2.955.775.789-2.88-.228-.363A8.136 8.136 0 0 1 3.833 12c0-4.503 3.664-8.167 8.167-8.167 4.503 0 8.167 3.664 8.167 8.167 0 4.503-3.664 8.167-8.167 8.167z"/></svg>
             </a>
             <a href="https://www.linkedin.com/company/ai-tools-&-ai-news/?viewAsMember=true" target="_blank" rel="noopener" class="social-icon-btn" title="LinkedIn">
               <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.77v8.37H6.46v-8.37M7.85 6.44a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
