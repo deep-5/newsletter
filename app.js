@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <h1 class="sub-landing-title">AIRA</h1>
           
           <p class="sub-landing-tagline">
-            Level up your AI knowledge in just 5 minutes | Join 30,000+ people from Google, OpenAI, Meta, Apple.
+            Level up your AI knowledge in just 5 minutes | Join ALL people from Google, OpenAI, Meta, Apple.
           </p>
           
           <form class="sub-pill-form" id="gate-sub-form">
@@ -144,10 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <button type="submit" class="sub-pill-btn">Subscribe</button>
             </div>
           </form>
-
-          <div>
-            <button type="button" id="btn-gate-read-first" class="sub-landing-read-link">Let me read it first →</button>
-          </div>
         </div>
       </section>
     `;
@@ -192,15 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
           sessionStorage.setItem('aira_unlocked', 'true');
           window.location.hash = '#/home';
         }
-      });
-    }
-
-    // Bind "Let me read it first"
-    const readFirstBtn = document.getElementById('btn-gate-read-first');
-    if (readFirstBtn) {
-      readFirstBtn.addEventListener('click', () => {
-        sessionStorage.setItem('aira_unlocked', 'true');
-        window.location.hash = '#/home';
       });
     }
   }
