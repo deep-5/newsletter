@@ -2858,6 +2858,53 @@ body.aira-gate-active .site-footer {
   background: #000000;
 }
 
+/* Admin Article Templates & Editor Enhancements */
+.btn-select-template {
+  transition: all 0.15s ease;
+}
+
+.btn-select-template:hover {
+  border-color: #18181B !important;
+  background: #F8FAFC !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.btn-insert-snippet {
+  transition: all 0.15s ease;
+}
+
+.btn-insert-snippet:hover {
+  background: #18181B !important;
+  color: #FFFFFF !important;
+  border-color: #18181B !important;
+}
+
+.editor-view-toggle {
+  transition: all 0.15s ease;
+}
+
+.editor-view-toggle.active {
+  background: #FFFFFF !important;
+  color: #18181B !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Callout & Perspective Box Styles */
+.aira-perspective-box {
+  background: #F8FAFC;
+  border-left: 4px solid #18181B;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 22px 0;
+}
+
+.aira-perspective-box p {
+  margin: 0 !important;
+  color: #18181B;
+  font-size: 1rem;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .tools-directory-view {
@@ -2904,4 +2951,5 @@ body.aira-gate-active .site-footer {
     min-height: auto;
   }
 }
+
 

@@ -855,6 +855,299 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
+  // Article Templates & Snippets Library for Admin Studio
+  // =========================================================================
+  const ARTICLE_TEMPLATES = [
+    {
+      id: 'news-standard',
+      name: '📰 Standard AI News Edition',
+      tag: 'News',
+      readingTime: '4 minutes',
+      desc: 'Intro briefing + Main story + 💡 AIRA Perspective + Featured tools + News bites',
+      sampleTitle: 'Next-Gen AI Breakthrough: Key Insights & Industry Impact',
+      sampleSubtitle: 'Plus: Top AI Tools and Weekly Intelligence Breakdown',
+      body: `<div id="content-blocks">
+  <div>
+    <p>Welcome back to AIRA — your essential intelligence briefing on cutting-edge AI breakthroughs, models, tools, and tutorials.</p>
+    <p>Here is what we are unpacking in today's edition:</p>
+    <ul>
+      <li><strong>Major Headline:</strong> Breakthrough model launch and capabilities</li>
+      <li><strong>Enterprise Move:</strong> Strategic AI partnership and funding</li>
+      <li><strong>Super Tools:</strong> 4 high-leverage productivity tools</li>
+      <li><strong>⚡ Quick AI News Bites:</strong> 4 Rapid industry updates</li>
+    </ul>
+    <p><em>Estimated reading time: 4 minutes.</em></p>
+  </div>
+
+  <div>
+    <h2>🚀 Major Story: Breakthrough Model Capabilities</h2>
+    <div class="section-image-box" style="margin: 20px 0; text-align: center;">
+      <img src="assets/logo.jpg" class="section-inline-img" style="max-width: 100%; border-radius: 8px;" loading="lazy" />
+      <small><p style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 6px;">Image Source: AIRA Intelligence</p></small>
+    </div>
+    <p>OpenAI has officially announced their newest frontier model, featuring unprecedented reasoning capabilities and autonomous task execution.</p>
+    <ul>
+      <li><strong>Key Benchmark:</strong> Outperforms existing models on complex reasoning benchmarks by 38%.</li>
+      <li><strong>Direct Computer Control:</strong> Capable of interacting with native software, APIs, and workflows in real time.</li>
+      <li><strong>Availability:</strong> Rolling out to all Pro and Enterprise subscribers starting this week.</li>
+    </ul>
+    <div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 24px 0;">
+      <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 AIRA Perspective:</strong> The shift from conversational chatbots to action-oriented agents is accelerating. Companies that integrate these automated workflows will see massive productivity gains.</p>
+    </div>
+  </div>
+
+  <div>
+    <h2>🏢 Enterprise Move: Strategic AI Integration</h2>
+    <p>Global enterprises are rapidly consolidating their AI infrastructure to build customized internal agents.</p>
+    <ul>
+      <li><strong>Deployment Scale:</strong> Over 50,000 corporate seats enabled across Fortune 500 companies.</li>
+      <li><strong>Security & Privacy:</strong> Fully on-premise and VPC compliance guarantees zero data retention.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>🛠️ Featured AI Tools (Productivity & Coding)</h3>
+    <p><strong><a href="#" target="_blank">Tool 1</a>:</strong> AI agent that automates customer support workflows and data entry.</p>
+    <p><strong><a href="#" target="_blank">Tool 2</a>:</strong> Full-stack code refactoring and bug identification assistant.</p>
+    <p><strong><a href="#" target="_blank">Tool 3</a>:</strong> Research synthesizer that turns 100-page PDFs into executive briefs.</p>
+  </div>
+
+  <div>
+    <h4>⚡ ⚡ Quick AI News Bites</h4>
+    <ul>
+      <li><strong>Mistral AI:</strong> Raises €3B in fresh funding round to build open-weights models.</li>
+      <li><strong>Google DeepMind:</strong> Releases new multimodal benchmark for robotic control.</li>
+      <li><strong>Meta AI:</strong> Expands real-time voice translation across WhatsApp and Instagram.</li>
+      <li><strong>NVIDIA:</strong> Unveils next-generation AI accelerators with 4x memory bandwidth.</li>
+    </ul>
+  </div>
+
+  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+    Until next time,<br><strong>AIRA</strong>
+  </div>
+</div>`
+    },
+    {
+      id: 'tool-review',
+      name: '🛠️ AI Tool Review & Breakdown',
+      tag: 'AI Tools',
+      readingTime: '5 minutes',
+      desc: 'Tool overview + Specs card + Top 3 features + Pros/Cons grid + AIRA verdict',
+      sampleTitle: 'Hands-On Review: Testing the Most Powerful AI Coding Workspace',
+      sampleSubtitle: 'Features, Benchmarks, Pros & Cons, and How It Compares to Alternatives',
+      body: `<div id="content-blocks">
+  <div>
+    <p>Welcome back to AIRA. Today we are diving deep into a comprehensive review of a groundbreaking AI productivity tool designed to transform developer workflows.</p>
+  </div>
+
+  <div>
+    <h2>🌟 Tool Spotlight: Overview & What It Does</h2>
+    <p>This platform combines modern language models with a deeply integrated workspace, allowing users to build and automate complex tasks in minutes.</p>
+    
+    <div style="background: #F8FAFC; border: 1px solid #E4E4E7; border-left: 4px solid #10B981; border-radius: 8px; padding: 20px; margin: 24px 0;">
+      <h4 style="margin-top: 0; margin-bottom: 12px; font-size: 1.1rem; color: #0F172A;">⚡ Quick Specifications</h4>
+      <p style="margin: 6px 0;"><strong>Category:</strong> AI Coding & Productivity</p>
+      <p style="margin: 6px 0;"><strong>Pricing:</strong> Free Starter tier / $20 per month Pro</p>
+      <p style="margin: 6px 0;"><strong>Key Integrations:</strong> GitHub, VS Code, Slack, Terminal</p>
+      <p style="margin: 6px 0;"><strong>Best For:</strong> Engineers, Designers, and Solo Founders</p>
+    </div>
+  </div>
+
+  <div>
+    <h3>🚀 Top 3 Killer Features</h3>
+    <ul>
+      <li><strong>1. Autonomous Workspace Agents:</strong> Handles multi-file refactoring, dependency updates, and automated testing without manual intervention.</li>
+      <li><strong>2. Infinite Context Indexing:</strong> Searches and recalls entire project codebases with zero latency.</li>
+      <li><strong>3. One-Click Staging Deployments:</strong> Generates live shareable previews with temporary sandbox environments.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>⚖️ Pros & Cons</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
+      <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 18px; border-radius: 8px;">
+        <strong style="color: #166534; font-size: 1rem;">✅ What We Loved</strong>
+        <ul style="margin: 10px 0 0 16px; padding: 0; font-size: 0.95rem; line-height: 1.6;">
+          <li>Blazing fast response times</li>
+          <li>Accurate multi-file reasoning</li>
+          <li>Generous free monthly quota</li>
+        </ul>
+      </div>
+      <div style="background: #FEF2F2; border: 1px solid #FECACA; padding: 18px; border-radius: 8px;">
+        <strong style="color: #991B1B; font-size: 1rem;">⚠️ What Needs Work</strong>
+        <ul style="margin: 10px 0 0 16px; padding: 0; font-size: 0.95rem; line-height: 1.6;">
+          <li>Requires fast internet connection</li>
+          <li>Steep learning curve for custom plugins</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3>💡 The AIRA Verdict</h3>
+    <p>Overall Score: <strong>9.2 / 10</strong>. A must-try tool for any modern creator or engineer looking to 10x their output.</p>
+  </div>
+
+  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+    Until next time,<br><strong>AIRA</strong>
+  </div>
+</div>`
+    },
+    {
+      id: 'prompt-tutorial',
+      name: '💡 AI Prompt & Step-by-Step Tutorial',
+      tag: 'Prompts',
+      readingTime: '4 minutes',
+      desc: 'Goal explanation + Copyable master prompt block + Step-by-step tutorial + Pro tips',
+      sampleTitle: 'Master Prompting: The Exact Framework to Generate Flawless Code',
+      sampleSubtitle: 'Step-by-Step Guide, Copy-Paste Prompt Template, and Real-World Examples',
+      body: `<div id="content-blocks">
+  <div>
+    <p>Welcome to AIRA's prompt engineering masterclass. In this edition, we share an exact formula you can use right away to generate clean, bug-free outputs from any frontier model.</p>
+  </div>
+
+  <div>
+    <h2>🎯 Why Generic Prompts Fail</h2>
+    <p>Most people give models vague instructions like <em>"Write code for a login page"</em>. The model has to guess constraints, framework choices, and security considerations.</p>
+    <p>Instead, structured role prompting with constraints yields 10x better results.</p>
+  </div>
+
+  <div>
+    <h2>📋 The Master Copy-Paste Prompt</h2>
+    <p>Copy this prompt directly into ChatGPT, Claude, or Gemini:</p>
+    
+    <div style="background: #18181B; color: #F4F4F5; padding: 22px; border-radius: 8px; font-family: monospace; font-size: 0.875rem; line-height: 1.6; margin: 20px 0; border: 1px solid #27272A; white-space: pre-wrap;">Act as a Senior AI Software Architect. Your task is to design and implement:
+
+[INSERT TASK / FEATURE DESCRIPTION HERE]
+
+Tech Stack & Constraints:
+- Architecture: Clean, modular, responsive
+- Performance: Zero unnecessary dependencies
+- Error Handling: Comprehensive edge case validation
+
+Output Format:
+1. High-level architectural overview (3 bullet points)
+2. Complete, copy-paste ready code block with comments
+3. Verification and test cases</div>
+  </div>
+
+  <div>
+    <h3>🛠️ Step-by-Step Implementation</h3>
+    <ol>
+      <li><strong>Step 1: Set the Persona & Role:</strong> Clearly define the expertise level you expect.</li>
+      <li><strong>Step 2: Provide Domain Constraints:</strong> List libraries, frameworks, or database schemas.</li>
+      <li><strong>Step 3: Force Verification:</strong> Ask the model to double-check its logic before producing the final code.</li>
+    </ol>
+  </div>
+
+  <div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 24px 0;">
+    <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 Pro-Tip:</strong> Always include one "Bad Example" in your prompt to show the model what mistakes to specifically avoid.</p>
+  </div>
+
+  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+    Until next time,<br><strong>AIRA</strong>
+  </div>
+</div>`
+    },
+    {
+      id: 'weekly-roundup',
+      name: '⚡ Weekly AI Roundup (Top 5 Stories)',
+      tag: 'News',
+      readingTime: '3 minutes',
+      desc: '5 Numbered stories with clean highlights, stats, and takeaways',
+      sampleTitle: 'The AI Weekly: 5 Major Breakthroughs You Might Have Missed',
+      sampleSubtitle: 'Model Releases, Open Source Surprises, and Global Policy Updates',
+      body: `<div id="content-blocks">
+  <div>
+    <p>Welcome back to AIRA's weekly roundup. Here is our curated summary of the 5 most important developments in artificial intelligence this week.</p>
+  </div>
+
+  <div>
+    <h2>1. 🤖 Major Model Upgrade Released</h2>
+    <p>A new frontier model release has shattered previous reasoning benchmarks across mathematics, coding, and logical inference.</p>
+    <ul>
+      <li><strong>Key Stat:</strong> Achieved a 94.2% score on competitive coding benchmarks.</li>
+      <li><strong>Impact:</strong> Available to all developers via API at 50% lower cost per token.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h2>2. 🧠 Open Source Innovation Surges</h2>
+    <p>A new open-weights model capable of running locally on consumer laptops has been released, matching models 5x its size.</p>
+  </div>
+
+  <div>
+    <h2>3. ⚡ Autonomous AI Agents in Production</h2>
+    <p>Leading tech companies report that automated AI agents are now resolving over 40% of standard IT tickets without human intervention.</p>
+  </div>
+
+  <div>
+    <h2>4. 💼 Venture Capital & Tech Mergers</h2>
+    <p>Over $4.2B in venture funding was deployed this week into specialized AI hardware and energy infrastructure startups.</p>
+  </div>
+
+  <div>
+    <h2>5. 🛡️ Global Safety & Governance Guidelines</h2>
+    <p>International regulatory bodies convened to establish universal evaluation standards for autonomous AI agents.</p>
+  </div>
+
+  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+    Until next time,<br><strong>AIRA</strong>
+  </div>
+</div>`
+    },
+    {
+      id: 'blank-clean',
+      name: '📄 Clean Minimal Starter',
+      tag: 'News',
+      readingTime: '3 minutes',
+      desc: 'Minimal clean layout with header, paragraph, bullet list, and signoff',
+      sampleTitle: 'Title of Your New Article Edition',
+      sampleSubtitle: 'Subtitle or key highlight of this edition',
+      body: `<div id="content-blocks">
+  <div>
+    <p>Welcome back to AIRA — your essential intelligence briefing on cutting-edge AI breakthroughs, models, tools, and tutorials.</p>
+  </div>
+
+  <div>
+    <h2>Main Section Title</h2>
+    <p>Write your article content here...</p>
+    <ul>
+      <li><strong>Key Point 1:</strong> Detail here.</li>
+      <li><strong>Key Point 2:</strong> Detail here.</li>
+    </ul>
+  </div>
+
+  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+    Until next time,<br><strong>AIRA</strong>
+  </div>
+</div>`
+    }
+  ];
+
+  const SNIPPETS = {
+    h2: '\n<h2>🌟 Section Heading Here</h2>\n',
+    p: '\n<p>Write your detailed paragraph explanation here...</p>\n',
+    ul: '\n<ul>\n  <li><strong>Point 1:</strong> Key detail explanation.</li>\n  <li><strong>Point 2:</strong> Key detail explanation.</li>\n  <li><strong>Point 3:</strong> Key detail explanation.</li>\n</ul>\n',
+    perspective: '\n<div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 22px 0;">\n  <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 AIRA Perspective:</strong> Add your analytical takeaway and future implications here.</p>\n</div>\n',
+    prompt: '\n<div style="background: #18181B; color: #F4F4F5; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.875rem; line-height: 1.6; margin: 20px 0; border: 1px solid #27272A; white-space: pre-wrap;">Act as a Senior AI Specialist.\n\nTask: [Insert Task Here]\n\nOutput Format:\n- Key Insights\n- Step-by-Step Plan</div>\n',
+    tools: '\n<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 18px 20px; margin: 20px 0;">\n  <h4 style="margin-top: 0; margin-bottom: 8px;">🛠️ Featured Tool Name</h4>\n  <p><strong><a href="https://example.com" target="_blank">Tool Name</a>:</strong> AI platform description and primary use case.</p>\n</div>\n',
+    newsbites: '\n<div style="margin: 24px 0;">\n  <h4>⚡ ⚡ Quick AI News Bites</h4>\n  <ul>\n    <li><strong>Company A:</strong> Releases new model update with benchmark improvements.</li>\n    <li><strong>Company B:</strong> Announces major AI partnership for enterprise automation.</li>\n  </ul>\n</div>\n',
+    image: '\n<div class="section-image-box" style="margin: 20px 0; text-align: center;">\n  <img src="assets/logo.jpg" class="section-inline-img" style="max-width: 100%; border-radius: 8px;" loading="lazy" />\n  <small><p style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 6px;">Image Source: AIRA Intelligence</p></small>\n</div>\n',
+    signoff: '\n<div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">\n  Until next time,<br><strong>AIRA</strong>\n</div>\n'
+  };
+
+  function insertTextAtCursor(el, text) {
+    if (!el) return;
+    const start = el.selectionStart || 0;
+    const end = el.selectionEnd || 0;
+    const val = el.value;
+    el.value = val.substring(0, start) + text + val.substring(end);
+    el.selectionStart = el.selectionEnd = start + text.length;
+    el.focus();
+  }
+
+  // =========================================================================
   // 4b. Admin Control Center & Articles Editor (#/admin or #/subscribers)
   // =========================================================================
   function renderAdminPage() {
@@ -896,11 +1189,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <!-- Editor Card -->
             <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
-              <div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border);">
-                <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Article Editor</span>
+              <div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border);">
+                <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Article Studio</span>
                 <h2 style="font-family: var(--font-header); font-size: 1.75rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">
-                  ${isNew ? 'Create New Article Edition' : 'Edit Article: ' + (art.title || '')}
+                  ${isNew ? '➕ Create New Article Edition' : '✏️ Edit Article: ' + (art.title || '')}
                 </h2>
+              </div>
+
+              <!-- Ready-Made Template Selector Bar -->
+              <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px 20px; margin-bottom: 28px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-weight: 700; font-size: 0.95rem; color: #0F172A; display: inline-flex; align-items: center; gap: 6px;">
+                    ✨ Article Templates (Click to Load)
+                  </span>
+                  <span style="color: var(--color-text-muted); font-size: 0.8125rem;">Select any template to instantly load pre-formatted layouts</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+                  ${ARTICLE_TEMPLATES.map(tmpl => `
+                    <button type="button" class="btn-select-template" data-template-id="${tmpl.id}" style="text-align: left; background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px 14px; cursor: pointer;">
+                      <div style="font-weight: 700; font-size: 0.875rem; color: #1E293B; margin-bottom: 3px;">${tmpl.name}</div>
+                      <div style="font-size: 0.75rem; color: #64748B; line-height: 1.35;">${tmpl.desc}</div>
+                    </button>
+                  `).join('')}
+                </div>
               </div>
 
               <form id="inline-article-form" class="article-edit-form">
@@ -935,11 +1246,11 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   <div class="form-group">
                     <label class="form-label">Publication Date</label>
-                    <input type="text" id="editor-date" class="form-control-input" value="${art.date || 'Sep 10, 2026'}" />
+                    <input type="text" id="editor-date" class="form-control-input" value="${art.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}" />
                   </div>
                   <div class="form-group">
                     <label class="form-label">Reading Time</label>
-                    <input type="text" id="editor-reading-time" class="form-control-input" value="${art.reading_time || '5 minutes'}" />
+                    <input type="text" id="editor-reading-time" class="form-control-input" value="${art.reading_time || '4 minutes'}" />
                   </div>
                 </div>
 
@@ -954,12 +1265,41 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label class="form-label">Article Body Content (HTML / Content) *</label>
-                  <textarea id="editor-body" class="form-control-textarea" style="min-height: 320px; font-family: monospace; font-size: 0.875rem;" required>${art.body_html || ''}</textarea>
+                <!-- Body Editor with Snippet Inserters & Live Preview Toggle -->
+                <div class="form-group" style="margin-top: 10px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                    <label class="form-label" style="margin: 0;">Article Body Content (HTML / Content) *</label>
+                    
+                    <!-- Mode Toggle: Code vs Preview -->
+                    <div style="display: inline-flex; background: #F1F5F9; border-radius: 6px; padding: 2px;">
+                      <button type="button" id="tab-code-mode" class="editor-view-toggle active" style="border: none; background: #FFFFFF; font-weight: 600; font-size: 0.75rem; padding: 5px 12px; border-radius: 4px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">📝 HTML Code</button>
+                      <button type="button" id="tab-preview-mode" class="editor-view-toggle" style="border: none; background: transparent; font-weight: 600; font-size: 0.75rem; padding: 5px 12px; border-radius: 4px; cursor: pointer; color: #64748B;">👁️ Live Preview</button>
+                    </div>
+                  </div>
+
+                  <!-- Snippet Helper Toolbar -->
+                  <div id="editor-snippet-toolbar" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 10px;">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #64748B; align-self: center; margin-right: 4px;">+ Insert:</span>
+                    <button type="button" class="btn-insert-snippet" data-snippet="h2" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">H2 Heading</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="p" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Paragraph</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="ul" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Bullet List</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="perspective" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">💡 AIRA Box</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="prompt" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">📋 Prompt Box</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="tools" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">🛠️ Tool Box</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="newsbites" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">⚡ News Bites</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="image" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">🖼️ Image</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="signoff" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">✍️ Signoff</button>
+                  </div>
+
+                  <!-- Textarea Code Editor -->
+                  <textarea id="editor-body" class="form-control-textarea" style="min-height: 380px; font-family: monospace; font-size: 0.875rem;" required>${art.body_html || ''}</textarea>
+                  
+                  <!-- Live Preview Pane -->
+                  <div id="editor-preview-container" class="article-rich-body" style="display: none; min-height: 380px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 24px; max-height: 600px; overflow-y: auto;">
+                  </div>
                 </div>
 
-                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border);">
                   <button type="button" id="btn-cancel-inline-editor" class="btn-cancel-modal">Cancel</button>
                   <button type="submit" class="btn-save-modal" style="font-size: 0.95rem; padding: 11px 28px;">💾 Save & Publish</button>
                 </div>
@@ -989,6 +1329,91 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
+      // Template selection handlers
+      document.querySelectorAll('.btn-select-template').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const tmplId = e.currentTarget.getAttribute('data-template-id');
+          const tmpl = ARTICLE_TEMPLATES.find(t => t.id === tmplId);
+          if (!tmpl) return;
+
+          const bodyTextarea = document.getElementById('editor-body');
+          if (bodyTextarea && bodyTextarea.value.trim().length > 50) {
+            if (!confirm(`Apply "${tmpl.name}"? This will replace the current body text.`)) {
+              return;
+            }
+          }
+
+          if (titleInp && (!titleInp.value || isNew)) {
+            titleInp.value = tmpl.sampleTitle;
+            if (slugInp) {
+              slugInp.value = tmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            }
+          }
+          const subtitleInp = document.getElementById('editor-subtitle');
+          if (subtitleInp && (!subtitleInp.value || isNew)) {
+            subtitleInp.value = tmpl.sampleSubtitle;
+          }
+          const tagSelect = document.getElementById('editor-tag');
+          if (tagSelect) {
+            tagSelect.value = tmpl.tag;
+          }
+          const timeInp = document.getElementById('editor-reading-time');
+          if (timeInp) {
+            timeInp.value = tmpl.readingTime;
+          }
+          if (bodyTextarea) {
+            bodyTextarea.value = tmpl.body;
+          }
+          const previewPane = document.getElementById('editor-preview-container');
+          if (previewPane && previewPane.style.display !== 'none') {
+            previewPane.innerHTML = tmpl.body;
+          }
+
+          showToast(`Loaded "${tmpl.name}"! 🚀`);
+        });
+      });
+
+      // Snippet insertion handlers
+      document.querySelectorAll('.btn-insert-snippet').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const type = e.currentTarget.getAttribute('data-snippet');
+          const snippetText = SNIPPETS[type];
+          if (!snippetText) return;
+          const bodyTextarea = document.getElementById('editor-body');
+          if (bodyTextarea) {
+            insertTextAtCursor(bodyTextarea, snippetText);
+            const previewPane = document.getElementById('editor-preview-container');
+            if (previewPane && previewPane.style.display !== 'none') {
+              previewPane.innerHTML = bodyTextarea.value;
+            }
+            showToast(`Inserted ${type.toUpperCase()} block! 📝`);
+          }
+        });
+      });
+
+      // Mode toggle (HTML Code vs Live Preview)
+      const tabCode = document.getElementById('tab-code-mode');
+      const tabPreview = document.getElementById('tab-preview-mode');
+      const bodyTextarea = document.getElementById('editor-body');
+      const previewPane = document.getElementById('editor-preview-container');
+
+      if (tabCode && tabPreview && bodyTextarea && previewPane) {
+        tabCode.addEventListener('click', () => {
+          tabCode.classList.add('active');
+          tabPreview.classList.remove('active');
+          bodyTextarea.style.display = 'block';
+          previewPane.style.display = 'none';
+        });
+
+        tabPreview.addEventListener('click', () => {
+          tabPreview.classList.add('active');
+          tabCode.classList.remove('active');
+          previewPane.innerHTML = bodyTextarea.value || '<p style="color: #9CA3AF; font-style: italic;">No content to preview yet.</p>';
+          bodyTextarea.style.display = 'none';
+          previewPane.style.display = 'block';
+        });
+      }
+
       // Handle Save Submission
       const form = document.getElementById('inline-article-form');
       if (form) {
@@ -1000,8 +1425,8 @@ document.addEventListener('DOMContentLoaded', () => {
           let slug = document.getElementById('editor-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
           const subtitle = document.getElementById('editor-subtitle').value.trim();
           const tag = document.getElementById('editor-tag').value;
-          const date = document.getElementById('editor-date').value.trim() || 'Sep 10, 2026';
-          const reading_time = document.getElementById('editor-reading-time').value.trim() || '5 minutes';
+          const date = document.getElementById('editor-date').value.trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+          const reading_time = document.getElementById('editor-reading-time').value.trim() || '4 minutes';
           const image_url = document.getElementById('editor-image').value.trim() || 'assets/logo.jpg';
           const author = document.getElementById('editor-author').value.trim() || 'AIRA';
           const body_html = document.getElementById('editor-body').value.trim();
@@ -1343,17 +1768,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const addNewBtn = document.getElementById('btn-add-new-article');
     if (addNewBtn) {
       addNewBtn.addEventListener('click', () => {
+        const defaultTmpl = ARTICLE_TEMPLATES[0];
         state.adminEditingArticle = {
           isNew: true,
-          title: '',
-          slug: '',
-          subtitle: '',
-          tag: 'News',
+          title: defaultTmpl.sampleTitle,
+          slug: defaultTmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+          subtitle: defaultTmpl.sampleSubtitle,
+          tag: defaultTmpl.tag,
           date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-          reading_time: '5 minutes',
+          reading_time: defaultTmpl.readingTime,
           image_url: 'assets/logo.jpg',
           author: 'AIRA',
-          body_html: '<div id="content-blocks">\n  <p>Welcome to this edition of AIRA...</p>\n</div>'
+          body_html: defaultTmpl.body
         };
         renderAdminPage();
       });
