@@ -215,6 +215,10 @@ def clean_and_format_article(html, slug, raw_date):
     c = re.sub(r'element="[^"]*"', '', c)
     c = re.sub(r'screen="[^"]*"', '', c)
 
+    # Strip leading duplicate hero image from body if present
+    pattern = r'^\s*(?:<div[^>]*>\s*)*<div\s+class=["\']section-image-box["\']>\s*<img\s+src=["\']([^"\']+)["\'][^>]*>\s*</div>\s*(?:</div>\s*)*'
+    c = re.sub(pattern, '', c, count=1, flags=re.IGNORECASE).strip()
+
     # Strip leading closing tags & trailing opening tags
     c = re.sub(r'^(?:\s*<\/(?:a|div|span|p|h1|h2|h3|h4|section|article)>\s*)+', '', c, flags=re.IGNORECASE)
     c = re.sub(r'(?:<div[^>]*>|<p[^>]*>|<span[^>]*>|<h4[^>]*>|<h3[^>]*>|\s*)+$', '', c, flags=re.IGNORECASE)
