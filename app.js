@@ -859,6 +859,136 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const ARTICLE_TEMPLATES = [
     {
+      id: 'beehiiv-signal',
+      name: '🐝 Beehiiv Signature (The Signal)',
+      tag: 'News',
+      readingTime: '4 minutes',
+      desc: 'Top Green Banner (THE SIGNAL) + Story Cards + Takeaways + Tool Stack + Quotes',
+      sampleTitle: 'Practical plays, shipped fast 🚀',
+      sampleSubtitle: 'PLUS: All you need for AI agents that convert, micro-products that win, and tools that end fatigue',
+      body: `<div class="beehiiv-newsletter-body">
+  <!-- Card 1: THE SIGNAL Header Card -->
+  <div class="beehiiv-card border-green">
+    <div class="beehiiv-banner-header">
+      THE SIGNAL
+    </div>
+    <p>Hey there, this week we are cutting through the noise and focusing on what actually moves companies forward.</p>
+    <p><strong>Here is the playbook:</strong> just three stories and one clear action item from your AI arsenal, contextualized for <a href="#" class="beehiiv-link">maximum growth</a>. No fluffy AI hype, just practical plays, shipped fast, and now done for you below.</p>
+    <div style="font-size: 0.85rem; color: #64748B; margin-top: 12px; font-style: italic;">
+      ⏱️ Estimated reading time: 4 minutes
+    </div>
+  </div>
+
+  <!-- Card 2: Growth / Case Study Card with Image, Caption & Quote -->
+  <div class="beehiiv-card border-green">
+    <span class="beehiiv-tag">GROWTH / CASE STUDY</span>
+    <h2 class="beehiiv-headline">
+      🌍 AI touches the real world
+    </h2>
+    
+    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
+      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
+      <small><p class="beehiiv-caption">Robotics in action - Courtesy: OpenAI & Physical Intelligence</p></small>
+    </div>
+
+    <p>Robotics moves beyond labs and <a href="#" class="beehiiv-link">enters factory floors</a>. Instead of code-only tasks, models are now picking, grasping, packing, and sorting with autonomy that surpasses traditional deterministic automation by 4x across initial pilots.</p>
+    
+    <div class="beehiiv-quote">
+      "The next wave of AI isn't chatbots answering your questions, it's AI models taking autonomous actions in the physical world."
+      <div class="author">— Jensen Huang</div>
+    </div>
+  </div>
+
+  <!-- Card 3: 01: The new feed is your inbox -->
+  <div class="beehiiv-card border-green">
+    <span class="beehiiv-tag">AI / TECH / TRENDS</span>
+    <h2 class="beehiiv-headline">
+      01: The new feed is your inbox
+    </h2>
+    
+    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
+      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
+      <small><p class="beehiiv-caption">Image Source: AIRA Research & Insights</p></small>
+    </div>
+
+    <p>Audiences are shifting attention to <a href="#" class="beehiiv-link">curated email newsletters</a> where algorithms can't hide content. Direct distribution builds higher affinity, 6x higher conversion on offers, and guaranteed inbox delivery.</p>
+
+    <div class="beehiiv-takeaway">
+      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> You will be in a position where you can command audience attention without paying gatekeeper tax on every post.</p>
+    </div>
+  </div>
+
+  <!-- Card 4: 02: Micro-monetization is back -->
+  <div class="beehiiv-card border-green">
+    <span class="beehiiv-tag">CREATOR ECONOMY</span>
+    <h2 class="beehiiv-headline">
+      02: Micro-monetization is back
+    </h2>
+    
+    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
+      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
+      <small><p class="beehiiv-caption">Micro-payments and direct-to-creator paradigm</p></small>
+    </div>
+
+    <p>Tiny paid perks, tokenized access, and micro-subscriptions generate higher lifetime values than bloated courses. Readers pay for speed, clarity, and instant access.</p>
+
+    <div class="beehiiv-takeaway">
+      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Package one core solution that saves <a href="#" class="beehiiv-link">2 to 10 hours</a>. Price it for impulsive purchase and instant ROI.</p>
+    </div>
+  </div>
+
+  <!-- Card 5: 03: Real-time visuals, zero rendering -->
+  <div class="beehiiv-card border-green">
+    <span class="beehiiv-tag">AI TOOLS</span>
+    <h2 class="beehiiv-headline">
+      03: Real-time visuals, zero rendering
+    </h2>
+    
+    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
+      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
+      <small><p class="beehiiv-caption">Real-time generative UI in action</p></small>
+    </div>
+
+    <p>Generative software interfaces are updating on the fly. Web apps produce custom dashboards and code layouts in real-time matching user intent.</p>
+
+    <div class="beehiiv-takeaway">
+      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Ship tools with dynamic UI layouts that tailor to each user session.</p>
+    </div>
+  </div>
+
+  <!-- Card 6: Maker Playbook & Tool Stack Card -->
+  <div class="beehiiv-card border-green">
+    <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-top: 0; margin-bottom: 12px;">
+      04: Maker Playbook:
+    </h3>
+    <ul style="margin: 0 0 20px 20px; padding: 0; line-height: 1.6;">
+      <li>Set up a recurring cadence: 1 live email every 48 hours for brand gravity.</li>
+      <li>One flagship asset + 3 micro-products that solve immediate friction.</li>
+      <li>Repurpose each edition into a 4-part social breakdown for organic reach.</li>
+    </ul>
+
+    <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-top: 24px; margin-bottom: 12px; border-top: 1px dashed #E2E8F0; padding-top: 18px;">
+      🛠️ Tool Stack of the Week:
+    </h3>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+      <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Flux Pro</a>:</strong> State-of-the-art AI imagery model for photoreal cover banners.</p>
+      <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Claude Code</a>:</strong> AI agent for instant multi-file software engineering.</p>
+      <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">ClickTailwind</a>:</strong> Curates everything you need for responsive web cards.</p>
+    </div>
+
+    <div class="beehiiv-quote">
+      "Execution isn't rare. What is rare is consistent delivery that compounds value week over week."
+      <div class="author">— AIRA Intel</div>
+    </div>
+  </div>
+
+  <!-- Signoff -->
+  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 1rem;">
+    Until next week,<br><strong>AIRA</strong>
+  </div>
+</div>`
+    },
+    {
       id: 'news-standard',
       name: '📰 Standard AI News Edition',
       tag: 'News',
@@ -1126,15 +1256,55 @@ Output Format:
   ];
 
   const SNIPPETS = {
+    beehiiv_card: `
+<div class="beehiiv-card border-green">
+  <span class="beehiiv-tag">CATEGORY / TAG</span>
+  <h2 class="beehiiv-headline">
+    🌟 Story Title Here
+  </h2>
+  <p>Write your story breakdown paragraph here with <a href="#" class="beehiiv-link">bold highlight link</a>.</p>
+  <div class="beehiiv-takeaway">
+    <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Key action item or takeaway for readers.</p>
+  </div>
+</div>
+`,
+    beehiiv_banner: `
+<div class="beehiiv-card border-green">
+  <div class="beehiiv-banner-header">
+    THE SIGNAL
+  </div>
+  <p>Introductory briefing content goes here...</p>
+</div>
+`,
+    takeaway: `
+<div class="beehiiv-takeaway">
+  <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Add actionable summary here.</p>
+</div>
+`,
+    quote: `
+<div class="beehiiv-quote">
+  "Add inspiring or key thought quote here."
+  <div class="author">— Author / Speaker</div>
+</div>
+`,
+    toolstack: `
+<div class="beehiiv-card border-green">
+  <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 0 0 14px 0;">
+    🛠️ Tool Stack of the Week:
+  </h3>
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Tool Name 1</a>:</strong> Description of tool and capabilities.</p>
+    <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Tool Name 2</a>:</strong> Description of tool and capabilities.</p>
+  </div>
+</div>
+`,
     h2: '\n<h2>🌟 Section Heading Here</h2>\n',
     p: '\n<p>Write your detailed paragraph explanation here...</p>\n',
     ul: '\n<ul>\n  <li><strong>Point 1:</strong> Key detail explanation.</li>\n  <li><strong>Point 2:</strong> Key detail explanation.</li>\n  <li><strong>Point 3:</strong> Key detail explanation.</li>\n</ul>\n',
     perspective: '\n<div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 22px 0;">\n  <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 AIRA Perspective:</strong> Add your analytical takeaway and future implications here.</p>\n</div>\n',
     prompt: '\n<div style="background: #18181B; color: #F4F4F5; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.875rem; line-height: 1.6; margin: 20px 0; border: 1px solid #27272A; white-space: pre-wrap;">Act as a Senior AI Specialist.\n\nTask: [Insert Task Here]\n\nOutput Format:\n- Key Insights\n- Step-by-Step Plan</div>\n',
-    tools: '\n<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 18px 20px; margin: 20px 0;">\n  <h4 style="margin-top: 0; margin-bottom: 8px;">🛠️ Featured Tool Name</h4>\n  <p><strong><a href="https://example.com" target="_blank">Tool Name</a>:</strong> AI platform description and primary use case.</p>\n</div>\n',
     newsbites: '\n<div style="margin: 24px 0;">\n  <h4>⚡ ⚡ Quick AI News Bites</h4>\n  <ul>\n    <li><strong>Company A:</strong> Releases new model update with benchmark improvements.</li>\n    <li><strong>Company B:</strong> Announces major AI partnership for enterprise automation.</li>\n  </ul>\n</div>\n',
-    image: '\n<div class="section-image-box" style="margin: 20px 0; text-align: center;">\n  <img src="assets/logo.jpg" class="section-inline-img" style="max-width: 100%; border-radius: 8px;" loading="lazy" />\n  <small><p style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 6px;">Image Source: AIRA Intelligence</p></small>\n</div>\n',
-    signoff: '\n<div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">\n  Until next time,<br><strong>AIRA</strong>\n</div>\n'
+    signoff: '\n<div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">\n  Until next week,<br><strong>AIRA</strong>\n</div>\n'
   };
 
   function insertTextAtCursor(el, text) {
@@ -1322,16 +1492,18 @@ Output Format:
                   <!-- Snippet Helper Toolbar -->
                   <div id="editor-snippet-toolbar" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 10px; align-items: center;">
                     <button type="button" id="btn-open-image-studio" style="background: #18181B; color: #FFFFFF; border: 1px solid #18181B; border-radius: 5px; padding: 5px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                      🖼️ + Add / Upload Image (Beehiiv)
+                      🖼️ + Add / Upload Image
                     </button>
                     <span style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; margin: 0 4px;">|</span>
-                    <button type="button" class="btn-insert-snippet" data-snippet="h2" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">H2 Heading</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="p" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Paragraph</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="ul" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Bullet List</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="perspective" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">💡 AIRA Box</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="beehiiv_card" style="background: #E8FDF2; color: #047857; border: 1px solid #A7F3D0; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 🟢 Story Card</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="beehiiv_banner" style="background: #E8FDF2; color: #047857; border: 1px solid #A7F3D0; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 🏷️ Green Banner</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="takeaway" style="background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 💡 Takeaway</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="toolstack" style="background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 🛠️ Tool Stack</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="quote" style="background: #F3E8FF; color: #6B21A8; border: 1px solid #E9D5FF; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">+ 💬 Quote Box</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="prompt" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">📋 Prompt Box</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="tools" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">🛠️ Tool Box</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="newsbites" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">⚡ News Bites</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="h2" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">H2</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="p" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Paragraph</button>
+                    <button type="button" class="btn-insert-snippet" data-snippet="ul" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">List</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="signoff" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">✍️ Signoff</button>
                   </div>
 
