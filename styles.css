@@ -3056,43 +3056,6 @@ body.aira-gate-active .site-footer {
   color: #00BA66;
 }
 
-.beehiiv-card h1,
-.beehiiv-card h2,
-.beehiiv-card h3,
-.beehiiv-card h4 {
-  font-family: var(--font-header);
-  font-weight: 800;
-  color: #0F172A;
-  margin-top: 0;
-  margin-bottom: 12px;
-  line-height: 1.35;
-}
-
-.beehiiv-card h1 { font-size: 1.4rem; }
-.beehiiv-card h2 { font-size: 1.28rem; }
-.beehiiv-card h3 { font-size: 1.15rem; }
-.beehiiv-card h4 { font-size: 1.05rem; }
-
-.beehiiv-card p {
-  color: #334155;
-  font-size: 0.96rem;
-  line-height: 1.7;
-  margin-bottom: 12px;
-}
-
-.beehiiv-card ul,
-.beehiiv-card ol {
-  margin: 10px 0 14px 20px;
-  padding: 0;
-  color: #334155;
-  font-size: 0.95rem;
-  line-height: 1.65;
-}
-
-.beehiiv-card li {
-  margin-bottom: 6px;
-}
-
 /* ==========================================================================
    Visual WYSIWYG Editor Studio Styles
    ========================================================================== */
