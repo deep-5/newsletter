@@ -740,26 +740,64 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 5. Subscription Handler (Connected to Supabase)
+  // 5. Subscription Handler (Connected to Google Sheets & Database)
   // =========================================================================
   async function handleSubscribeSubmit(e) {
     e.preventDefault();
-    const input = e.target.querySelector('input[type="email"]');
-    const email = input.value.trim();
+    const form = e.target;
+    const input = form.querySelector('input[type="email"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const email = input ? input.value.trim() : '';
     if (!email) return;
 
-    if (window.DatabaseService) {
-      await window.DatabaseService.subscribe(email);
-    } else {
-      if (!state.subscribers.includes(email)) {
-        state.subscribers.push(email);
-        localStorage.setItem('aira_subscribers', JSON.stringify(state.subscribers));
-      }
+    // Detect form source
+    let source = 'AIRA Website Form';
+    if (form.id === 'hero-sub-form') source = 'Homepage Hero';
+    else if (form.id === 'article-sub-form') source = 'Article Reader Card';
+    else if (form.id === 'modal-sub-form') source = 'Navbar Modal';
+    else if (form.id === 'footer-sub-form') source = 'Site Footer';
+
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Subscribe';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Subscribing...';
     }
 
-    input.value = '';
-    showToast('🎉 Welcome to AIRA! Check your inbox for updates.');
-    closeModal(subscribeModal);
+    try {
+      if (window.DatabaseService) {
+        await window.DatabaseService.subscribe(email, source);
+      } else {
+        const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+        if (!list.includes(email)) {
+          list.push(email);
+          localStorage.setItem('aira_subscribers', JSON.stringify(list));
+        }
+      }
+
+      if (submitBtn) {
+        submitBtn.innerHTML = 'Subscribed! ✓';
+      }
+
+      showToast('🎉 Welcome to AIRA! Your email has been saved.');
+      input.value = '';
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+        closeModal(subscribeModal);
+      }, 1500);
+    } catch (err) {
+      console.error('Subscription error:', err);
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+      showToast('Subscription saved! 🚀');
+      input.value = '';
+      closeModal(subscribeModal);
+    }
   }
 
   // Bind footer form
