@@ -160,18 +160,53 @@ def clean_and_format_article(html, slug, raw_date):
     c = re.sub(r'<a[^>]*>(?:(?!<\/a>).)*?(?:steel_on_black|beehiiv_newsletter_banner|profile_picture).*?<\/a>', '', c, flags=re.DOTALL | re.IGNORECASE)
     c = re.sub(r'<div[^>]*class=["\']section-image-box["\'][^>]*>\s*</div>', '', c)
 
+    # Clean unicode entities safely
+    c = c.replace('\u2019', "'").replace('\u2018', "'").replace('\u201c', '"').replace('\u201d', '"')
+    c = c.replace('\u2014', '—').replace('\u2013', '–').replace('\u2026', '...').replace('\ufffd', "'")
+    c = c.replace('&rsquo;', "'").replace('&lsquo;', "'").replace('&rdquo;', '"').replace('&ldquo;', '"')
+    c = c.replace('&mdash;', '—').replace('&ndash;', '–').replace('&hellip;', '...')
+
+    # Strip sponsor tracker divs, "In partnership with" and magic.beehiiv blocks
+    c = re.sub(r'<div[^>]*>\s*<p[^>]*>\s*<b[^>]*>\s*(?:In partnership with|Sponsored by)[^<]*</b>\s*</p>\s*(?:<a[^>]*>.*?</a>)?\s*</div>', '', c, flags=re.DOTALL | re.IGNORECASE)
+    c = re.sub(r'<a[^>]*href=["\'][^"\']*magic\.beehiiv\.com[^"\']*["\'][^>]*>.*?</a>', '', c, flags=re.DOTALL | re.IGNORECASE)
+    c = re.sub(r'<div[^>]*class=["\']section-image-box["\'][^>]*>\s*<img[^>]*magic\.beehiiv\.com[^>]*>\s*</div>', '', c, flags=re.DOTALL | re.IGNORECASE)
+
+    # Clean publication-specific greetings and headers
+    c = re.sub(r'Welcome(?: back)?,?\s*(?:Toastie Pals|Toasties|Toastie|Pals)!?', 'Welcome to AIRA!', c, flags=re.IGNORECASE)
+    c = re.sub(r'Sneak peek of today\'s (?:AI Toast|AIRA|Toast):', "Here is what we're covering in today's edition:", c, flags=re.IGNORECASE)
+    c = re.sub(r'Here\'?s what\'?s on the menu today:?', "Here is what we're breaking down today:", c, flags=re.IGNORECASE)
+    c = re.sub(r'Total read time:?\s*About\s*(\d+)\s*minutes?[^<]*', r'Estimated reading time: \1 minutes.', c, flags=re.IGNORECASE)
+
+    # Standardize and rewrite section headers
+    c = re.sub(r'<i><b>Crispy Bites:?\s*</b></i>', '<strong>⚡ Key Summary:</strong> ', c, flags=re.IGNORECASE)
+    c = re.sub(r'<b><i>Crispy Bites:?\s*</i></b>', '<strong>⚡ Key Summary:</strong> ', c, flags=re.IGNORECASE)
+    c = re.sub(r'<b>Crispy Bites:?\s*</b>', '<strong>⚡ Key Summary:</strong> ', c, flags=re.IGNORECASE)
+    c = re.sub(r'<i>Crispy Bites:?\s*</i>', '<strong>⚡ Key Summary:</strong> ', c, flags=re.IGNORECASE)
+    c = re.sub(r'Crispy Bites:?', '<strong>⚡ Key Summary:</strong>', c, flags=re.IGNORECASE)
+
+    c = re.sub(r'Quick AI News Bites|Quick AI Bites|Quick Toasts', '⚡ Quick AI News Bites', c, flags=re.IGNORECASE)
+    c = re.sub(r'Personal Take:?', '<strong>💡 AIRA Perspective:</strong>', c, flags=re.IGNORECASE)
+    c = re.sub(r'Key Insights:?', '<strong>🔍 Key Takeaways:</strong>', c, flags=re.IGNORECASE)
+    c = re.sub(r'Superhero Tools', '🛠️ Featured AI Tools', c, flags=re.IGNORECASE)
+
     # 100% AIRA Branding Replacement
     c = re.sub(r'Long\s*Live\s*AI', 'AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'longliveai', 'AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'AI\s*Toast', 'AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'aitoast', 'AIRA', c, flags=re.IGNORECASE)
-    c = re.sub(r'Poonam\s*Soni', 'AIRA', c, flags=re.IGNORECASE)
+    c = re.sub(r'Poonam\s*Soni', 'AIRA Editorial', c, flags=re.IGNORECASE)
     c = re.sub(r'CodeByPoonam', 'AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'VIBEWITHPOONAM', 'AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'@longliveai', '@AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'@aitoast', '@AIRA', c, flags=re.IGNORECASE)
     c = re.sub(r'https:\/\/(?:AIRA|aitoast|longliveai)\.beehiiv\.com\/p\/([a-zA-Z0-9_-]+)', r'#/p/\1', c, flags=re.IGNORECASE)
     c = re.sub(r'https:\/\/(?:AIRA|aitoast|longliveai)\.beehiiv\.com[^\s"\'<]*', '#/', c, flags=re.IGNORECASE)
+
+    # Remove old sponsor CTA blocks and survey tables
+    c = re.sub(r'<div[^>]*>(?:(?!<\/div>).)*?(?:Boost revenue and gain new customers|Reach over \d+K AI enthusiasts|SPONSOR US|Partner With Us).*?<\/div>', '', c, flags=re.DOTALL | re.IGNORECASE)
+    c = re.sub(r'<h[1-6][^>]*>(?:Boost revenue|Reach over \d+K|SPONSOR US|Partner With Us).*?</h[1-6]>', '', c, flags=re.IGNORECASE)
+    c = re.sub(r'<table[^>]*>(?:(?!<\/table>).)*?(?:Did you like Today|participate in polls|Login.*?Subscribe).*?<\/table>', '', c, flags=re.DOTALL | re.IGNORECASE)
+    c = re.sub(r'<div[^>]*>(?:(?!<\/div>).)*?(?:Did you like Today|participate in polls).*?<\/div>', '', c, flags=re.DOTALL | re.IGNORECASE)
 
     # Remove style, class mess and data attributes
     c = re.sub(r'style="[^"]*"', '', c)
@@ -184,7 +219,7 @@ def clean_and_format_article(html, slug, raw_date):
     c = re.sub(r'^(?:\s*<\/(?:a|div|span|p|h1|h2|h3|h4|section|article)>\s*)+', '', c, flags=re.IGNORECASE)
     c = re.sub(r'(?:<div[^>]*>|<p[^>]*>|<span[^>]*>|<h4[^>]*>|<h3[^>]*>|\s*)+$', '', c, flags=re.IGNORECASE)
 
-    for _ in range(3):
+    for _ in range(4):
         c = re.sub(r'<div[^>]*>\s*</div>', '', c)
         c = re.sub(r'<p[^>]*>\s*</p>', '', c)
         c = re.sub(r'<span[^>]*>\s*</span>', '', c)
