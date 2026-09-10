@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return { name: 'post', slug };
     }
     if (hashPath === '/archive') return { name: 'archive' };
+    if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
     if (hashPath === '/tags') {
       const params = new URLSearchParams(hashQuery || '');
       const category = params.get('category') || 'all';
@@ -91,6 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
       await renderPostPage(route.slug);
     } else if (route.name === 'archive') {
       renderArchivePage();
+    } else if (route.name === 'admin') {
+      renderAdminPage();
     } else if (route.name === 'tags') {
       if (route.category && route.category !== 'all') {
         state.toolCategoryFilter = route.category;
@@ -737,6 +740,134 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render of cards
     updateView();
+  }
+
+  // =========================================================================
+  // 4b. Admin Subscriber Dashboard View (#/admin or #/subscribers)
+  // =========================================================================
+  function renderAdminPage() {
+    const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+    const normalizedList = list.map((item, idx) => {
+      if (typeof item === 'string') {
+        return { id: idx + 1, email: item, date: 'Earlier', source: 'Website Form' };
+      }
+      return { id: idx + 1, email: item.email, date: item.date || 'Earlier', source: item.source || 'Website Form' };
+    });
+
+    appContainer.innerHTML = `
+      <section class="admin-page-view" style="padding: 48px 0 80px 0;">
+        <div class="container" style="max-width: 960px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Admin</span>
+              <h1 style="font-family: var(--font-header); font-size: 2.2rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">Subscriber Dashboard</h1>
+              <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 4px;">Real-time list of all users who subscribed via your newsletter forms.</p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button id="btn-copy-emails" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                📋 Copy All Emails
+              </button>
+              <button id="btn-export-csv" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                📥 Export to CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Metric Cards -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;">
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Total Subscribers</div>
+              <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${normalizedList.length}</div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Published Editions</div>
+              <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${articles.length}</div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Status</div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: #10B981; margin-top: 12px;">● Storage Active</div>
+            </div>
+          </div>
+
+          <!-- Subscribers Table -->
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Subscribers (${normalizedList.length})</span>
+              <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Real-Time</span>
+            </div>
+            
+            ${normalizedList.length === 0 ? `
+              <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
+                <div style="font-size: 2.5rem; margin-bottom: 12px;">📬</div>
+                <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No subscribers yet</h4>
+                <p style="font-size: 0.9rem;">Whenever someone enters their email on any form, it will show up here instantly.</p>
+              </div>
+            ` : `
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                  <thead>
+                    <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <th style="padding: 12px 18px;">#</th>
+                      <th style="padding: 12px 18px;">Email Address</th>
+                      <th style="padding: 12px 18px;">Date & Time</th>
+                      <th style="padding: 12px 18px;">Form Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${normalizedList.map(sub => `
+                      <tr style="border-bottom: 1px solid var(--color-border-light);">
+                        <td style="padding: 14px 18px; color: var(--color-text-muted);">${sub.id}</td>
+                        <td style="padding: 14px 18px; font-weight: 600; color: var(--color-text-primary); font-family: monospace; font-size: 0.9rem;">${sub.email}</td>
+                        <td style="padding: 14px 18px; color: var(--color-text-secondary);">${sub.date}</td>
+                        <td style="padding: 14px 18px;"><span style="background: #F4F4F5; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #18181B;">${sub.source}</span></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `}
+          </div>
+        </div>
+      </section>
+    `;
+
+    // Bind Copy Emails
+    const copyBtn = document.getElementById('btn-copy-emails');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        if (normalizedList.length === 0) {
+          showToast('No emails to copy yet!');
+          return;
+        }
+        const emailString = normalizedList.map(s => s.email).join(', ');
+        navigator.clipboard.writeText(emailString).then(() => {
+          showToast('All emails copied to clipboard! 📋');
+        });
+      });
+    }
+
+    // Bind Export CSV
+    const exportBtn = document.getElementById('btn-export-csv');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        if (normalizedList.length === 0) {
+          showToast('No subscribers to export yet!');
+          return;
+        }
+        const csvRows = ['ID,Email,Date,Source'];
+        normalizedList.forEach(s => {
+          csvRows.push(`"${s.id}","${s.email}","${s.date}","${s.source}"`);
+        });
+        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `AIRA_Subscribers_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Subscribers exported to CSV! 📥');
+      });
+    }
   }
 
   // =========================================================================
