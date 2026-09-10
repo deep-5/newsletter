@@ -1147,6 +1147,42 @@ Output Format:
     el.focus();
   }
 
+  // Image Optimizer Helper (Converts file to clean compressed Data URL)
+  function readAndOptimizeImage(file, maxWidth = 1200, maxHeight = 900, quality = 0.85) {
+    return new Promise((resolve, reject) => {
+      if (!file || !file.type.startsWith('image/')) {
+        return reject(new Error('Please select a valid image file.'));
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+          if (width > maxWidth || height > maxHeight) {
+            if (width / height > maxWidth / maxHeight) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            } else {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL(file.type === 'image/png' ? 'image/png' : 'image/jpeg', quality));
+        };
+        img.onerror = () => resolve(e.target.result);
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
   // =========================================================================
   // 4b. Admin Control Center & Articles Editor (#/admin or #/subscribers)
   // =========================================================================
@@ -1256,8 +1292,14 @@ Output Format:
 
                 <div class="form-grid-row">
                   <div class="form-group">
-                    <label class="form-label">Cover Image URL</label>
-                    <input type="url" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" />
+                    <label class="form-label">Cover Image URL / Upload</label>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                      <input type="url" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" style="flex: 1;" placeholder="https://... or upload" />
+                      <label for="editor-cover-file-input" style="background: #18181B; color: #FFFFFF; font-weight: 600; font-size: 0.8125rem; padding: 10px 14px; border-radius: var(--radius-sm); cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;" title="Upload photo from device">
+                        📁 Upload Cover
+                        <input type="file" id="editor-cover-file-input" accept="image/*" style="display: none;" />
+                      </label>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label class="form-label">Author Name</label>
@@ -1265,7 +1307,7 @@ Output Format:
                   </div>
                 </div>
 
-                <!-- Body Editor with Snippet Inserters & Live Preview Toggle -->
+                <!-- Body Editor with Snippet Inserters, Beehiiv Image Button & Live Preview Toggle -->
                 <div class="form-group" style="margin-top: 10px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
                     <label class="form-label" style="margin: 0;">Article Body Content (HTML / Content) *</label>
@@ -1278,8 +1320,11 @@ Output Format:
                   </div>
 
                   <!-- Snippet Helper Toolbar -->
-                  <div id="editor-snippet-toolbar" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 10px;">
-                    <span style="font-size: 0.75rem; font-weight: 700; color: #64748B; align-self: center; margin-right: 4px;">+ Insert:</span>
+                  <div id="editor-snippet-toolbar" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 10px; align-items: center;">
+                    <button type="button" id="btn-open-image-studio" style="background: #18181B; color: #FFFFFF; border: 1px solid #18181B; border-radius: 5px; padding: 5px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                      🖼️ + Add / Upload Image (Beehiiv)
+                    </button>
+                    <span style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; margin: 0 4px;">|</span>
                     <button type="button" class="btn-insert-snippet" data-snippet="h2" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">H2 Heading</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="p" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Paragraph</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="ul" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Bullet List</button>
@@ -1287,7 +1332,6 @@ Output Format:
                     <button type="button" class="btn-insert-snippet" data-snippet="prompt" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">📋 Prompt Box</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="tools" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">🛠️ Tool Box</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="newsbites" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">⚡ News Bites</button>
-                    <button type="button" class="btn-insert-snippet" data-snippet="image" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">🖼️ Image</button>
                     <button type="button" class="btn-insert-snippet" data-snippet="signoff" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;">✍️ Signoff</button>
                   </div>
 
@@ -1307,6 +1351,72 @@ Output Format:
             </div>
           </div>
         </section>
+
+        <!-- Beehiiv Image Inserter Modal -->
+        <div class="modal-overlay" id="beehiiv-image-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+          <div class="modal-card" style="max-width: 520px; width: 100%; padding: 26px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 20px 50px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border);">
+              <div>
+                <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #18181B; margin: 0;">🖼️ Insert Image (Beehiiv Style)</h3>
+                <p style="color: var(--color-text-muted); font-size: 0.8125rem; margin-top: 2px;">Upload from device or paste web link with caption & link</p>
+              </div>
+              <button type="button" id="btn-close-img-modal" style="background: transparent; border: none; font-size: 1.3rem; cursor: pointer; color: #71717A; padding: 4px 8px;">✕</button>
+            </div>
+
+            <!-- Mode Selector Tabs -->
+            <div style="display: flex; gap: 8px; margin-bottom: 16px; background: #F4F4F5; padding: 4px; border-radius: 8px;">
+              <button type="button" id="tab-img-upload" class="modal-tab-btn active">📁 Upload from Device</button>
+              <button type="button" id="tab-img-url" class="modal-tab-btn">🌐 Image Web URL</button>
+            </div>
+
+            <!-- Upload Zone -->
+            <div id="section-img-upload" style="margin-bottom: 16px;">
+              <label for="modal-img-file" class="image-drop-zone" id="modal-img-dropzone">
+                <div style="font-size: 2.2rem; margin-bottom: 6px;">📤</div>
+                <div style="font-weight: 700; font-size: 0.92rem; color: #1E293B;">Click to select or drag image here</div>
+                <div style="font-size: 0.75rem; color: #64748B; margin-top: 4px;">Supports PNG, JPG, WebP, GIF (Auto-optimized)</div>
+                <input type="file" id="modal-img-file" accept="image/*" style="display: none;" />
+              </label>
+            </div>
+
+            <!-- Web URL Zone -->
+            <div id="section-img-url" style="display: none; margin-bottom: 16px;">
+              <label class="form-label" style="font-size: 0.8125rem;">Image Direct URL *</label>
+              <input type="url" id="modal-img-url-input" class="form-control-input" placeholder="https://example.com/image.jpg" />
+            </div>
+
+            <!-- Caption / Source Credit -->
+            <div style="margin-bottom: 14px;">
+              <label class="form-label" style="font-size: 0.8125rem;">Caption & Source Credit (Optional)</label>
+              <input type="text" id="modal-img-caption-input" class="form-control-input" placeholder="e.g. Image Source: OpenAI / Midjourney / Reuters" />
+            </div>
+
+            <!-- Destination Link on Image -->
+            <div style="margin-bottom: 14px;">
+              <label class="form-label" style="font-size: 0.8125rem;">Clickable Link on Image (Optional)</label>
+              <input type="url" id="modal-img-link-input" class="form-control-input" placeholder="https://... (When reader clicks photo)" />
+            </div>
+
+            <!-- Alt Text -->
+            <div style="margin-bottom: 16px;">
+              <label class="form-label" style="font-size: 0.8125rem;">Alt Text / Description (Optional)</label>
+              <input type="text" id="modal-img-alt-input" class="form-control-input" placeholder="e.g. AI Model Architecture Diagram" />
+            </div>
+
+            <!-- Live Preview Card inside Modal -->
+            <div id="modal-img-preview-card" style="display: none; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px; margin-bottom: 18px; text-align: center;">
+              <div style="font-size: 0.75rem; font-weight: 700; color: #64748B; text-align: left; margin-bottom: 8px;">LIVE PREVIEW:</div>
+              <img id="modal-img-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" />
+              <div id="modal-img-preview-caption-text" style="font-size: 0.75rem; color: #64748B; margin-top: 6px; font-style: italic;"></div>
+            </div>
+
+            <!-- Modal Footer Actions -->
+            <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--color-border); padding-top: 16px;">
+              <button type="button" id="btn-cancel-img-modal" class="btn-cancel-modal" style="padding: 9px 18px; font-size: 0.875rem;">Cancel</button>
+              <button type="button" id="btn-insert-img-confirm" class="btn-save-modal" style="padding: 9px 22px; font-size: 0.875rem;">✨ Insert into Article</button>
+            </div>
+          </div>
+        </div>
       `;
 
       // Bind Back Button
@@ -1320,12 +1430,205 @@ Output Format:
         renderAdminPage();
       });
 
+      // Cover Image File Upload Handler
+      const coverFileInput = document.getElementById('editor-cover-file-input');
+      const coverUrlInput = document.getElementById('editor-image');
+      if (coverFileInput && coverUrlInput) {
+        coverFileInput.addEventListener('change', async (e) => {
+          const file = e.target.files?.[0];
+          if (file) {
+            try {
+              showToast('Optimizing cover image... ⏳');
+              const dataUrl = await readAndOptimizeImage(file, 1400, 900, 0.85);
+              coverUrlInput.value = dataUrl;
+              showToast('Cover image ready! 🖼️');
+            } catch (err) {
+              showToast('Error loading image. Please try another file.');
+            }
+          }
+        });
+      }
+
       // Auto-generate slug on typing title when new
       const titleInp = document.getElementById('editor-title');
       const slugInp = document.getElementById('editor-slug');
       if (titleInp && slugInp && isNew) {
         titleInp.addEventListener('input', () => {
           slugInp.value = titleInp.value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        });
+      }
+
+      // Beehiiv Image Inserter Modal Logic
+      const imgModal = document.getElementById('beehiiv-image-modal');
+      const openImgStudioBtn = document.getElementById('btn-open-image-studio');
+      const closeImgModalBtn = document.getElementById('btn-close-img-modal');
+      const cancelImgModalBtn = document.getElementById('btn-cancel-img-modal');
+      const tabImgUpload = document.getElementById('tab-img-upload');
+      const tabImgUrl = document.getElementById('tab-img-url');
+      const sectionImgUpload = document.getElementById('section-img-upload');
+      const sectionImgUrl = document.getElementById('section-img-url');
+      const modalImgFileInput = document.getElementById('modal-img-file');
+      const modalImgDropzone = document.getElementById('modal-img-dropzone');
+      const modalImgUrlInput = document.getElementById('modal-img-url-input');
+      const modalImgCaptionInput = document.getElementById('modal-img-caption-input');
+      const modalImgLinkInput = document.getElementById('modal-img-link-input');
+      const modalImgAltInput = document.getElementById('modal-img-alt-input');
+      const modalImgPreviewCard = document.getElementById('modal-img-preview-card');
+      const modalImgPreviewImg = document.getElementById('modal-img-preview-img');
+      const modalImgPreviewCaption = document.getElementById('modal-img-preview-caption-text');
+      const btnInsertImgConfirm = document.getElementById('btn-insert-img-confirm');
+
+      let currentSelectedImgSrc = '';
+
+      function updateModalImagePreview() {
+        if (currentSelectedImgSrc) {
+          modalImgPreviewImg.src = currentSelectedImgSrc;
+          const caption = modalImgCaptionInput.value.trim();
+          modalImgPreviewCaption.textContent = caption || '';
+          modalImgPreviewCard.style.display = 'block';
+        } else {
+          modalImgPreviewCard.style.display = 'none';
+        }
+      }
+
+      function openImageModal() {
+        if (!imgModal) return;
+        currentSelectedImgSrc = '';
+        if (modalImgFileInput) modalImgFileInput.value = '';
+        if (modalImgUrlInput) modalImgUrlInput.value = '';
+        if (modalImgCaptionInput) modalImgCaptionInput.value = '';
+        if (modalImgLinkInput) modalImgLinkInput.value = '';
+        if (modalImgAltInput) modalImgAltInput.value = '';
+        updateModalImagePreview();
+        imgModal.style.display = 'flex';
+      }
+
+      function closeImageModal() {
+        if (!imgModal) return;
+        imgModal.style.display = 'none';
+      }
+
+      if (openImgStudioBtn) openImgStudioBtn.addEventListener('click', openImageModal);
+      if (closeImgModalBtn) closeImgModalBtn.addEventListener('click', closeImageModal);
+      if (cancelImgModalBtn) cancelImgModalBtn.addEventListener('click', closeImageModal);
+
+      // Tab switching in Image Modal
+      if (tabImgUpload && tabImgUrl) {
+        tabImgUpload.addEventListener('click', () => {
+          tabImgUpload.classList.add('active');
+          tabImgUrl.classList.remove('active');
+          if (sectionImgUpload) sectionImgUpload.style.display = 'block';
+          if (sectionImgUrl) sectionImgUrl.style.display = 'none';
+        });
+
+        tabImgUrl.addEventListener('click', () => {
+          tabImgUrl.classList.add('active');
+          tabImgUpload.classList.remove('active');
+          if (sectionImgUpload) sectionImgUpload.style.display = 'none';
+          if (sectionImgUrl) sectionImgUrl.style.display = 'block';
+        });
+      }
+
+      // Handle Modal File Upload
+      if (modalImgFileInput) {
+        modalImgFileInput.addEventListener('change', async (e) => {
+          const file = e.target.files?.[0];
+          if (file) {
+            try {
+              showToast('Optimizing image... ⏳');
+              currentSelectedImgSrc = await readAndOptimizeImage(file, 1200, 800, 0.85);
+              if (!modalImgAltInput.value) {
+                modalImgAltInput.value = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
+              }
+              updateModalImagePreview();
+              showToast('Image ready! 🖼️');
+            } catch (err) {
+              showToast('Could not load image file.');
+            }
+          }
+        });
+      }
+
+      // Drag & Drop for Image Modal
+      if (modalImgDropzone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+          modalImgDropzone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            modalImgDropzone.classList.add('dragover');
+          });
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+          modalImgDropzone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            modalImgDropzone.classList.remove('dragover');
+          });
+        });
+        modalImgDropzone.addEventListener('drop', async (e) => {
+          const file = e.dataTransfer?.files?.[0];
+          if (file) {
+            try {
+              showToast('Optimizing image... ⏳');
+              currentSelectedImgSrc = await readAndOptimizeImage(file, 1200, 800, 0.85);
+              if (!modalImgAltInput.value) {
+                modalImgAltInput.value = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
+              }
+              updateModalImagePreview();
+              showToast('Image ready! 🖼️');
+            } catch (err) {
+              showToast('Could not load image file.');
+            }
+          }
+        });
+      }
+
+      // URL input changes
+      if (modalImgUrlInput) {
+        modalImgUrlInput.addEventListener('input', () => {
+          currentSelectedImgSrc = modalImgUrlInput.value.trim();
+          updateModalImagePreview();
+        });
+      }
+
+      // Caption input changes
+      if (modalImgCaptionInput) {
+        modalImgCaptionInput.addEventListener('input', () => {
+          updateModalImagePreview();
+        });
+      }
+
+      // Insert Image Action
+      if (btnInsertImgConfirm) {
+        btnInsertImgConfirm.addEventListener('click', () => {
+          const imgSrc = currentSelectedImgSrc || (modalImgUrlInput ? modalImgUrlInput.value.trim() : '');
+          if (!imgSrc) {
+            showToast('Please select or paste an image first! ⚠️');
+            return;
+          }
+
+          const captionText = modalImgCaptionInput.value.trim();
+          const linkUrl = modalImgLinkInput.value.trim();
+          const altText = modalImgAltInput.value.trim() || captionText || 'Article Image';
+
+          const imgHtml = `
+<div class="section-image-box" style="margin: 24px 0; text-align: center;">
+  ${linkUrl ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">` : ''}
+    <img src="${imgSrc}" alt="${altText}" class="section-inline-img" style="max-width: 100%; border-radius: 8px;" loading="lazy" />
+  ${linkUrl ? `</a>` : ''}
+  ${captionText ? `<small><p style="color: var(--color-text-muted); font-size: 0.8125rem; margin-top: 6px; font-style: italic;">${captionText}</p></small>` : ''}
+</div>
+`;
+
+          const bodyTextarea = document.getElementById('editor-body');
+          if (bodyTextarea) {
+            insertTextAtCursor(bodyTextarea, imgHtml);
+            const previewPane = document.getElementById('editor-preview-container');
+            if (previewPane && previewPane.style.display !== 'none') {
+              previewPane.innerHTML = bodyTextarea.value;
+            }
+            showToast('Beehiiv-style image inserted! 🖼️✨');
+          }
+
+          closeImageModal();
         });
       }
 

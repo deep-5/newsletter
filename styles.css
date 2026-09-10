@@ -2905,6 +2905,47 @@ body.aira-gate-active .site-footer {
   font-size: 1rem;
 }
 
+/* Beehiiv Image Inserter Modal & Uploader Styles */
+.image-drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #CBD5E1;
+  border-radius: 10px;
+  padding: 26px 16px;
+  text-align: center;
+  cursor: pointer;
+  background: #F8FAFC;
+  transition: all 0.2s ease;
+}
+
+.image-drop-zone:hover,
+.image-drop-zone.dragover {
+  border-color: #18181B;
+  background: #F1F5F9;
+  transform: scale(1.01);
+}
+
+.modal-tab-btn {
+  flex: 1;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: transparent;
+  color: #64748B;
+}
+
+.modal-tab-btn.active {
+  background: #FFFFFF !important;
+  color: #18181B !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .tools-directory-view {
@@ -2951,5 +2992,6 @@ body.aira-gate-active .site-footer {
     min-height: auto;
   }
 }
+
 
 
