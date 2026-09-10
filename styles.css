@@ -1790,14 +1790,67 @@ img {
   .articles-grid {
     grid-template-columns: 1fr;
   }
-  
-  .nav-center-links {
-    display: none;
+
+  .site-header {
+    height: auto;
+    min-height: 56px;
+    padding: 4px 0;
   }
-  
+
+  .nav-wrapper {
+    gap: 8px;
+  }
+
+  .brand-logo-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .nav-center-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 4px 2px;
+  }
+
+  .btn-subscribe-nav {
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+  }
+
   .hero-title {
     font-size: 2.15rem;
   }
+}
+
+@media (max-width: 420px) {
+  .nav-center-links {
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+    padding: 3px 2px;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .btn-subscribe-nav {
+    padding: 5px 9px;
+    font-size: 0.75rem;
+  }
+}
   
   .hero-tagline {
     font-size: 1rem;
