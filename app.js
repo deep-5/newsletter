@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return { name: 'post', slug };
     }
     if (hashPath === '/archive') return { name: 'archive' };
+    if (hashPath === '/subscribe') return { name: 'subscribe' };
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
     if (hashPath === '/tags') {
       const params = new URLSearchParams(hashQuery || '');
@@ -88,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (route.name === 'home') {
       renderHomePage();
+    } else if (route.name === 'subscribe') {
+      renderSubscribePage();
     } else if (route.name === 'post') {
       await renderPostPage(route.slug);
     } else if (route.name === 'archive') {
@@ -103,7 +106,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 1. Homepage View (With Dynamic Load More)
+  // 1. Dedicated Subscribe Landing Page (#/subscribe)
+  // =========================================================================
+  function renderSubscribePage() {
+    appContainer.innerHTML = `
+      <section class="subscribe-landing-page">
+        <div class="sub-landing-container">
+          <div class="sub-landing-icon-card">
+            <img src="assets/logo.jpg" alt="AIRA" class="sub-landing-logo-img" onerror="this.src='assets/logo.svg'" />
+          </div>
+          
+          <h1 class="sub-landing-title">AIRA</h1>
+          
+          <p class="sub-landing-tagline">
+            Level up your AI knowledge in just 5 minutes | Join 30,000+ people from Google, OpenAI, Meta, Apple.
+          </p>
+          
+          <form class="sub-pill-form" id="landing-sub-form">
+            <div class="sub-pill-wrap">
+              <input type="email" class="sub-pill-input" placeholder="Enter Your Email" required />
+              <button type="submit" class="sub-pill-btn">Subscribe</button>
+            </div>
+          </form>
+
+          <div>
+            <a href="#/" class="sub-landing-read-link">Let me read it first →</a>
+          </div>
+        </div>
+      </section>
+    `;
+
+    // Bind landing form
+    const landingForm = document.getElementById('landing-sub-form');
+    if (landingForm) {
+      landingForm.addEventListener('submit', handleSubscribeSubmit);
+    }
+  }
+
+  // =========================================================================
+  // 1b. Homepage View (With Dynamic Load More)
   // =========================================================================
   function renderHomePage() {
     const filteredArticles = state.selectedTag === 'All' 
@@ -118,15 +159,21 @@ document.addEventListener('DOMContentLoaded', () => {
       <section class="hero-section">
         <div class="container">
           <div class="hero-logo-box">
-            <img src="assets/logo.jpg" alt="AIRA Logo" class="hero-logo-img" onerror="this.src='assets/logo.svg'" />
+            <div class="sub-landing-icon-card" style="margin: 0 auto 20px auto;">
+              <img src="assets/logo.jpg" alt="AIRA Logo" class="sub-landing-logo-img" onerror="this.src='assets/logo.svg'" />
+            </div>
           </div>
           <h1 class="hero-title">AIRA</h1>
-          <p class="hero-tagline">The one and only AI newsletter. Join us and get the best AI news, tools, and tutorials completely FREE!</p>
+          <p class="hero-tagline">Level up your AI knowledge in just 5 minutes | Join 30,000+ people from Google, OpenAI, Meta, Apple.</p>
           
           <form class="subscribe-form-hero" id="hero-sub-form">
-            <input type="email" class="subscribe-input" placeholder="Enter your email" required />
-            <button type="submit" class="subscribe-btn-hero">Join free</button>
+            <input type="email" class="subscribe-input" placeholder="Enter Your Email" required />
+            <button type="submit" class="subscribe-btn-hero">Subscribe</button>
           </form>
+
+          <div>
+            <a href="#main-articles-grid" class="hero-read-first-link" onclick="document.getElementById('main-articles-grid')?.scrollIntoView({behavior: 'smooth'}); return false;">Let me read it first →</a>
+          </div>
 
           <div class="social-bar-hero">
             <a href="https://whatsapp.com/channel/0029VbC1KWlICVfsFtYhmZ3B" target="_blank" rel="noopener" class="social-icon-btn" title="WhatsApp">
