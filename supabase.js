@@ -8,8 +8,7 @@
 const GOOGLE_SHEETS_CONFIG = {
   spreadsheetUrl: 'https://docs.google.com/spreadsheets/d/1TxwtcRBFNN6SdvZM5f2g1ZU9uRp_iSTNaCFrmF3wDig/edit?usp=sharing',
   spreadsheetId: '1TxwtcRBFNN6SdvZM5f2g1ZU9uRp_iSTNaCFrmF3wDig',
-  // Google Apps Script Web App URL (Deploy script in your Google Sheet > Extensions > Apps Script)
-  scriptUrl: 'https://script.google.com/macros/s/AKfycbx_YOUR_DEPLOYED_WEB_APP_ID/exec'
+  scriptUrl: ''
 };
 
 // Optional: Supabase Config
