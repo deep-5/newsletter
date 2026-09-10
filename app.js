@@ -868,7 +868,201 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isCustomized = !!localStorage.getItem('aira_custom_articles');
 
-    // Filtered articles for admin editor
+    // IF EDITING AN ARTICLE: Render Full-Screen Inline Editor Studio
+    if (state.adminEditingArticle) {
+      const art = state.adminEditingArticle;
+      const isNew = !!art.isNew;
+
+      appContainer.innerHTML = `
+        <section class="admin-page-view" style="padding: 36px 0 80px 0;">
+          <div class="container" style="max-width: 980px;">
+            <!-- Top Action Header -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+              <button type="button" id="btn-back-to-list" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                ← Back to Articles List
+              </button>
+              
+              <div style="display: flex; gap: 10px; align-items: center;">
+                ${!isNew ? `
+                  <a href="#/p/${art.slug}" target="_blank" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; text-decoration: none; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px;">
+                    👁️ View Live ↗
+                  </a>
+                ` : ''}
+                <button type="submit" form="inline-article-form" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 24px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
+                  💾 Save & Publish
+                </button>
+              </div>
+            </div>
+
+            <!-- Editor Card -->
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+              <div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border);">
+                <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Article Editor</span>
+                <h2 style="font-family: var(--font-header); font-size: 1.75rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">
+                  ${isNew ? 'Create New Article Edition' : 'Edit Article: ' + (art.title || '')}
+                </h2>
+              </div>
+
+              <form id="inline-article-form" class="article-edit-form">
+                <input type="hidden" id="edit-orig-slug" value="${art.slug || ''}" />
+                <input type="hidden" id="edit-is-new-val" value="${isNew ? 'true' : 'false'}" />
+
+                <div class="form-grid-row">
+                  <div class="form-group">
+                    <label class="form-label">Article Title *</label>
+                    <input type="text" id="editor-title" class="form-control-input" value="${(art.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. Anthropic Unveils Claude 3.7 Sonnet" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">URL Slug *</label>
+                    <input type="text" id="editor-slug" class="form-control-input" value="${art.slug || ''}" placeholder="e.g. anthropic-unveils-claude-3-7" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Subtitle / Sub-headline</label>
+                  <input type="text" id="editor-subtitle" class="form-control-input" value="${(art.subtitle || '').replace(/"/g, '&quot;')}" placeholder="e.g. Plus: How to Turn Off the Gemini Watermark" />
+                </div>
+
+                <div class="form-grid-row form-grid-3">
+                  <div class="form-group">
+                    <label class="form-label">Category Tag *</label>
+                    <select id="editor-tag" class="form-control-input">
+                      <option value="News" ${art.tag === 'News' ? 'selected' : ''}>News</option>
+                      <option value="Prompts" ${art.tag === 'Prompts' ? 'selected' : ''}>Prompts & Guides</option>
+                      <option value="AI Tools" ${art.tag === 'AI Tools' ? 'selected' : ''}>AI Tools</option>
+                      <option value="Tutorials" ${art.tag === 'Tutorials' ? 'selected' : ''}>Tutorials</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Publication Date</label>
+                    <input type="text" id="editor-date" class="form-control-input" value="${art.date || 'Sep 10, 2026'}" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Reading Time</label>
+                    <input type="text" id="editor-reading-time" class="form-control-input" value="${art.reading_time || '5 minutes'}" />
+                  </div>
+                </div>
+
+                <div class="form-grid-row">
+                  <div class="form-group">
+                    <label class="form-label">Cover Image URL</label>
+                    <input type="url" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Author Name</label>
+                    <input type="text" id="editor-author" class="form-control-input" value="${art.author || 'AIRA'}" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Article Body Content (HTML / Content) *</label>
+                  <textarea id="editor-body" class="form-control-textarea" style="min-height: 320px; font-family: monospace; font-size: 0.875rem;" required>${art.body_html || ''}</textarea>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+                  <button type="button" id="btn-cancel-inline-editor" class="btn-cancel-modal">Cancel</button>
+                  <button type="submit" class="btn-save-modal" style="font-size: 0.95rem; padding: 11px 28px;">💾 Save & Publish</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      `;
+
+      // Bind Back Button
+      document.getElementById('btn-back-to-list')?.addEventListener('click', () => {
+        state.adminEditingArticle = null;
+        renderAdminPage();
+      });
+
+      document.getElementById('btn-cancel-inline-editor')?.addEventListener('click', () => {
+        state.adminEditingArticle = null;
+        renderAdminPage();
+      });
+
+      // Auto-generate slug on typing title when new
+      const titleInp = document.getElementById('editor-title');
+      const slugInp = document.getElementById('editor-slug');
+      if (titleInp && slugInp && isNew) {
+        titleInp.addEventListener('input', () => {
+          slugInp.value = titleInp.value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        });
+      }
+
+      // Handle Save Submission
+      const form = document.getElementById('inline-article-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const origSlug = document.getElementById('edit-orig-slug').value;
+          const isNewVal = document.getElementById('edit-is-new-val').value === 'true';
+          const title = document.getElementById('editor-title').value.trim();
+          let slug = document.getElementById('editor-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          const subtitle = document.getElementById('editor-subtitle').value.trim();
+          const tag = document.getElementById('editor-tag').value;
+          const date = document.getElementById('editor-date').value.trim() || 'Sep 10, 2026';
+          const reading_time = document.getElementById('editor-reading-time').value.trim() || '5 minutes';
+          const image_url = document.getElementById('editor-image').value.trim() || 'assets/logo.jpg';
+          const author = document.getElementById('editor-author').value.trim() || 'AIRA';
+          const body_html = document.getElementById('editor-body').value.trim();
+
+          if (!title || !slug || !body_html) {
+            showToast('Please fill in title, slug, and body content!');
+            return;
+          }
+
+          if (isNewVal) {
+            if (state.articles.some(a => a.slug === slug)) {
+              slug = slug + '-' + Date.now().toString().slice(-4);
+            }
+            const newArt = {
+              id: 'post-' + Date.now(),
+              slug,
+              title,
+              subtitle,
+              image_url,
+              author,
+              author_avatar: 'assets/logo.jpg',
+              date,
+              iso_date: new Date().toISOString(),
+              reading_time,
+              tag,
+              likes: 0,
+              views: '1.0k',
+              featured: false,
+              body_html
+            };
+            saveArticles([newArt, ...state.articles]);
+            showToast('🎉 New article published successfully!');
+          } else {
+            const idx = state.articles.findIndex(a => a.slug === origSlug);
+            if (idx !== -1) {
+              state.articles[idx] = {
+                ...state.articles[idx],
+                slug,
+                title,
+                subtitle,
+                image_url,
+                author,
+                date,
+                reading_time,
+                tag,
+                body_html
+              };
+              saveArticles([...state.articles]);
+              showToast('💾 Article changes saved successfully!');
+            }
+          }
+
+          state.adminEditingArticle = null;
+          renderAdminPage();
+        });
+      }
+
+      return;
+    }
+
+    // LIST VIEW: Filtered articles
     const searchQ = (state.adminArticleSearch || '').toLowerCase().trim();
     const tagFilter = state.adminArticleTag || 'All';
     const filteredAdminArticles = state.articles.filter(a => {
@@ -920,16 +1114,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Navigation Tabs -->
           <div class="admin-tabs-nav">
-            <button class="admin-tab-btn ${state.adminTab === 'subscribers' ? 'active' : ''}" id="tab-subscribers">
-              📬 Subscribers (${normalizedList.length})
-            </button>
             <button class="admin-tab-btn ${state.adminTab === 'articles' ? 'active' : ''}" id="tab-articles">
               📝 Articles & Editor (${state.articles.length})
             </button>
+            <button class="admin-tab-btn ${state.adminTab === 'subscribers' ? 'active' : ''}" id="tab-subscribers">
+              📬 Subscribers (${normalizedList.length})
+            </button>
           </div>
 
-          <!-- TAB 1: SUBSCRIBERS -->
-          ${state.adminTab === 'subscribers' ? `
+          <!-- TAB: ARTICLES EDITOR & MANAGEMENT -->
+          ${state.adminTab === 'articles' ? `
+            <!-- Search & Filter Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 420px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem;" />
+              </div>
+
+              <div class="filter-pills" style="margin: 0;">
+                <button class="filter-pill ${tagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
+                <button class="filter-pill ${tagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
+                <button class="filter-pill ${tagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
+              </div>
+            </div>
+
+            <!-- Articles Table -->
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Articles (${filteredAdminArticles.length})</span>
+                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Click "Edit" to modify any article</span>
+              </div>
+
+              ${filteredAdminArticles.length === 0 ? `
+                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No articles found</h4>
+                  <p style="font-size: 0.9rem;">Try adjusting your search query or click "+ New Article" to write a new edition.</p>
+                </div>
+              ` : `
+                <div style="overflow-x: auto;">
+                  <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                    <thead>
+                      <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <th style="padding: 12px 16px;">Cover</th>
+                        <th style="padding: 12px 16px;">Title & Slug</th>
+                        <th style="padding: 12px 16px;">Category</th>
+                        <th style="padding: 12px 16px;">Date</th>
+                        <th style="padding: 12px 16px; text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${filteredAdminArticles.map(a => `
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                          <td style="padding: 12px 16px; width: 60px;">
+                            <img src="${a.image_url}" alt="${a.title}" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.jpg'" />
+                          </td>
+                          <td style="padding: 12px 16px; max-width: 380px;">
+                            <div style="font-weight: 700; color: var(--color-text-primary); font-size: 0.95rem; line-height: 1.35; margin-bottom: 4px;">${a.title}</div>
+                            <div style="font-size: 0.75rem; color: var(--color-text-muted); font-family: monospace;">#slug: ${a.slug}</div>
+                          </td>
+                          <td style="padding: 12px 16px;">
+                            <span style="background: #F4F4F5; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; color: #18181B;">${a.tag || 'News'}</span>
+                          </td>
+                          <td style="padding: 12px 16px; color: var(--color-text-secondary); white-space: nowrap; font-size: 0.8125rem;">
+                            ${a.date || 'Recent'}
+                          </td>
+                          <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
+                            <div style="display: inline-flex; gap: 8px; align-items: center;">
+                              <button class="btn-edit-article" data-slug="${a.slug}" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;">
+                                ✏️ Edit
+                              </button>
+                              <a href="#/p/${a.slug}" target="_blank" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8125rem;">
+                                👁️ View
+                              </a>
+                              <button class="btn-delete-article" data-slug="${a.slug}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;" title="Delete Article">
+                                🗑️
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              `}
+            </div>
+          ` : `
+            <!-- TAB: SUBSCRIBERS -->
             <!-- Metric Cards -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px;">
               <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
@@ -984,83 +1255,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               `}
             </div>
-          ` : `
-            <!-- TAB 2: ARTICLES EDITOR & MANAGEMENT -->
-            <!-- Search & Filter Controls -->
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 420px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem;" />
-              </div>
-
-              <div class="filter-pills" style="margin: 0;">
-                <button class="filter-pill ${tagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
-                <button class="filter-pill ${tagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
-                <button class="filter-pill ${tagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
-              </div>
-            </div>
-
-            <!-- Articles Table -->
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-                <span>Articles (${filteredAdminArticles.length})</span>
-                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Live Sync</span>
-              </div>
-
-              ${filteredAdminArticles.length === 0 ? `
-                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
-                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
-                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No articles found</h4>
-                  <p style="font-size: 0.9rem;">Try adjusting your search query or click "+ New Article" to write a new edition.</p>
-                </div>
-              ` : `
-                <div style="overflow-x: auto;">
-                  <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
-                    <thead>
-                      <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                        <th style="padding: 12px 16px;">Cover</th>
-                        <th style="padding: 12px 16px;">Title & Slug</th>
-                        <th style="padding: 12px 16px;">Category</th>
-                        <th style="padding: 12px 16px;">Date</th>
-                        <th style="padding: 12px 16px; text-align: right;">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      ${filteredAdminArticles.map(a => `
-                        <tr style="border-bottom: 1px solid var(--color-border-light);">
-                          <td style="padding: 12px 16px; width: 60px;">
-                            <img src="${a.image_url}" alt="${a.title}" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.jpg'" />
-                          </td>
-                          <td style="padding: 12px 16px; max-width: 380px;">
-                            <div style="font-weight: 700; color: var(--color-text-primary); font-size: 0.95rem; line-height: 1.35; margin-bottom: 4px;">${a.title}</div>
-                            <div style="font-size: 0.75rem; color: var(--color-text-muted); font-family: monospace;">#slug: ${a.slug}</div>
-                          </td>
-                          <td style="padding: 12px 16px;">
-                            <span style="background: #F4F4F5; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; color: #18181B;">${a.tag || 'News'}</span>
-                          </td>
-                          <td style="padding: 12px 16px; color: var(--color-text-secondary); white-space: nowrap; font-size: 0.8125rem;">
-                            ${a.date || 'Recent'}
-                          </td>
-                          <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
-                            <div style="display: inline-flex; gap: 8px; align-items: center;">
-                              <button class="btn-edit-article" data-slug="${a.slug}" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;">
-                                ✏️ Edit
-                              </button>
-                              <a href="#/p/${a.slug}" target="_blank" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 5px 10px; border-radius: 6px; text-decoration: none; font-size: 0.8125rem;">
-                                👁️ View
-                              </a>
-                              <button class="btn-delete-article" data-slug="${a.slug}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;" title="Delete Article">
-                                🗑️
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      `).join('')}
-                    </tbody>
-                  </table>
-                </div>
-              `}
-            </div>
           `}
         </div>
       </section>
@@ -1071,6 +1265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabSubscribers) {
       tabSubscribers.addEventListener('click', () => {
         state.adminTab = 'subscribers';
+        state.adminEditingArticle = null;
         renderAdminPage();
       });
     }
@@ -1079,6 +1274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabArticles) {
       tabArticles.addEventListener('click', () => {
         state.adminTab = 'articles';
+        state.adminEditingArticle = null;
         renderAdminPage();
       });
     }
@@ -1147,7 +1343,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const addNewBtn = document.getElementById('btn-add-new-article');
     if (addNewBtn) {
       addNewBtn.addEventListener('click', () => {
-        openArticleEditorModal(null);
+        state.adminEditingArticle = {
+          isNew: true,
+          title: '',
+          slug: '',
+          subtitle: '',
+          tag: 'News',
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+          reading_time: '5 minutes',
+          image_url: 'assets/logo.jpg',
+          author: 'AIRA',
+          body_html: '<div id="content-blocks">\n  <p>Welcome to this edition of AIRA...</p>\n</div>'
+        };
+        renderAdminPage();
       });
     }
 
@@ -1157,7 +1365,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const slug = e.currentTarget.getAttribute('data-slug');
         const found = state.articles.find(a => a.slug === slug);
         if (found) {
-          openArticleEditorModal(found);
+          state.adminEditingArticle = found;
+          renderAdminPage();
         }
       });
     });
@@ -1205,148 +1414,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-  }
-
-  // =========================================================================
-  // 4c. Article Editor Modal Functions
-  // =========================================================================
-  const articleEditModal = document.getElementById('article-edit-modal');
-  const articleEditForm = document.getElementById('article-edit-form');
-
-  function openArticleEditorModal(article) {
-    if (!articleEditModal || !articleEditForm) return;
-
-    const modalTitle = document.getElementById('article-modal-title');
-    const inputSlugOrig = document.getElementById('edit-article-slug-original');
-    const inputIsNew = document.getElementById('edit-is-new');
-    const inputTitle = document.getElementById('edit-article-title');
-    const inputSlug = document.getElementById('edit-article-slug');
-    const inputSubtitle = document.getElementById('edit-article-subtitle');
-    const inputTag = document.getElementById('edit-article-tag');
-    const inputDate = document.getElementById('edit-article-date');
-    const inputReadingTime = document.getElementById('edit-article-reading-time');
-    const inputImage = document.getElementById('edit-article-image');
-    const inputAuthor = document.getElementById('edit-article-author');
-    const inputBody = document.getElementById('edit-article-body');
-
-    if (article) {
-      modalTitle.innerText = 'Edit Article';
-      inputIsNew.value = 'false';
-      inputSlugOrig.value = article.slug;
-      inputTitle.value = article.title || '';
-      inputSlug.value = article.slug || '';
-      inputSubtitle.value = article.subtitle || '';
-      inputTag.value = article.tag || 'News';
-      inputDate.value = article.date || 'Sep 10, 2026';
-      inputReadingTime.value = article.reading_time || '5 minutes';
-      inputImage.value = article.image_url || '';
-      inputAuthor.value = article.author || 'AIRA';
-      inputBody.value = article.body_html || '';
-    } else {
-      modalTitle.innerText = 'Create New Article';
-      inputIsNew.value = 'true';
-      inputSlugOrig.value = '';
-      inputTitle.value = '';
-      inputSlug.value = '';
-      inputSubtitle.value = '';
-      inputTag.value = 'News';
-      inputDate.value = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-      inputReadingTime.value = '4 minutes';
-      inputImage.value = 'assets/logo.jpg';
-      inputAuthor.value = 'AIRA';
-      inputBody.value = `<div id="content-blocks"><p>Welcome to this edition of AIRA...</p></div>`;
-    }
-
-    openModal(articleEditModal);
-  }
-
-  if (articleEditForm) {
-    const titleInp = document.getElementById('edit-article-title');
-    const slugInp = document.getElementById('edit-article-slug');
-    if (titleInp && slugInp) {
-      titleInp.addEventListener('input', () => {
-        const isNew = document.getElementById('edit-is-new')?.value === 'true';
-        if (isNew) {
-          slugInp.value = titleInp.value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-        }
-      });
-    }
-
-    articleEditForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const isNew = document.getElementById('edit-is-new').value === 'true';
-      const origSlug = document.getElementById('edit-article-slug-original').value;
-      const title = document.getElementById('edit-article-title').value.trim();
-      let slug = document.getElementById('edit-article-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-      const subtitle = document.getElementById('edit-article-subtitle').value.trim();
-      const tag = document.getElementById('edit-article-tag').value;
-      const date = document.getElementById('edit-article-date').value.trim() || 'Sep 10, 2026';
-      const reading_time = document.getElementById('edit-article-reading-time').value.trim() || '5 minutes';
-      const image_url = document.getElementById('edit-article-image').value.trim() || 'assets/logo.jpg';
-      const author = document.getElementById('edit-article-author').value.trim() || 'AIRA';
-      const body_html = document.getElementById('edit-article-body').value.trim();
-
-      if (!title || !slug || !body_html) {
-        showToast('Please fill in title, slug, and content!');
-        return;
-      }
-
-      if (isNew) {
-        if (state.articles.some(a => a.slug === slug)) {
-          slug = slug + '-' + Date.now().toString().slice(-4);
-        }
-        const newArt = {
-          id: 'post-' + (state.articles.length + 1),
-          slug,
-          title,
-          subtitle,
-          image_url,
-          author,
-          author_avatar: 'assets/logo.jpg',
-          date,
-          iso_date: new Date().toISOString(),
-          reading_time,
-          tag,
-          likes: 0,
-          views: '1.0k',
-          featured: false,
-          body_html
-        };
-        saveArticles([newArt, ...state.articles]);
-        showToast('🎉 New article published!');
-      } else {
-        const idx = state.articles.findIndex(a => a.slug === origSlug);
-        if (idx !== -1) {
-          state.articles[idx] = {
-            ...state.articles[idx],
-            slug,
-            title,
-            subtitle,
-            image_url,
-            author,
-            date,
-            reading_time,
-            tag,
-            body_html
-          };
-          saveArticles([...state.articles]);
-          showToast('💾 Article changes saved!');
-        }
-      }
-
-      closeModal(articleEditModal);
-      if (state.currentRoute === 'admin') {
-        renderAdminPage();
-      }
-    });
-  }
-
-  // Cancel edit modal
-  const cancelEditBtn = document.getElementById('btn-cancel-article-edit');
-  if (cancelEditBtn) {
-    cancelEditBtn.addEventListener('click', () => {
-      closeModal(articleEditModal);
-    });
   }
 
   // =========================================================================
