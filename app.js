@@ -287,22 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ${article.body_html}
           </div>
 
-          <!-- Feedback Rating Box (Exact Requested Design) -->
-          <div class="edition-feedback-card">
-            <h3 class="feedback-card-title">What did you think of today's edition?</h3>
-            <div class="feedback-card-buttons">
-              <button class="feedback-pill-btn ${postPoll === 'loved' ? 'active' : ''}" data-vote="loved">
-                <span>⭐⭐⭐⭐⭐</span> <span>Loved it</span>
-              </button>
-              <button class="feedback-pill-btn ${postPoll === 'good' ? 'active' : ''}" data-vote="good">
-                <span>⭐⭐⭐</span> <span>Good, not great</span>
-              </button>
-              <button class="feedback-pill-btn ${postPoll === 'needs_work' ? 'active' : ''}" data-vote="needs_work">
-                <span>⭐</span> <span>Needs improvement</span>
-              </button>
-            </div>
-          </div>
-
           <!-- Inline Subscribe Card (Exact Dark UI) -->
           <div class="article-subscribe-card">
             <div class="article-sub-badge">
@@ -414,20 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-
-    // Bind Feedback Rating Buttons
-    document.querySelectorAll('.feedback-pill-btn').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const vote = e.currentTarget.getAttribute('data-vote');
-        state.pollVotes[article.slug] = vote;
-        localStorage.setItem('aira_polls', JSON.stringify(state.pollVotes));
-        if (window.DatabaseService) {
-          await window.DatabaseService.recordPollVote(article.slug, vote);
-        }
-        showToast('Thanks for your feedback! 🌟');
-        await renderPostPage(article.slug);
-      });
-    });
 
     // Bind Article Inline Subscribe
     const artSubForm = document.getElementById('article-sub-form');
