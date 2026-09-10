@@ -6,14 +6,36 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure articles data is loaded
-  const articles = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
+  // Helper to load articles from localStorage or default dataset
+  function getArticles() {
+    try {
+      const stored = localStorage.getItem('aira_custom_articles');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.error('Error loading custom articles from storage:', e);
+    }
+    return typeof ARTICLES !== 'undefined' ? ARTICLES : [];
+  }
+
+  function saveArticles(list) {
+    state.articles = list;
+    localStorage.setItem('aira_custom_articles', JSON.stringify(list));
+  }
   
   // App state
   const state = {
+    articles: getArticles(),
     currentRoute: '',
     selectedTag: 'All',
     displayedCount: 9,
+    adminTab: 'subscribers',
+    adminArticleSearch: '',
+    adminArticleTag: 'All',
     toolCategoryFilter: 'all',
     toolPricingFilter: 'all',
     toolSearchQuery: '',
@@ -197,8 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   function renderHomePage() {
     const filteredArticles = state.selectedTag === 'All' 
-      ? articles 
-      : articles.filter(a => a.tag.toLowerCase() === state.selectedTag.toLowerCase());
+      ? state.articles 
+      : state.articles.filter(a => a.tag.toLowerCase() === state.selectedTag.toLowerCase());
 
     const visibleArticles = filteredArticles.slice(0, state.displayedCount);
     const hasMore = filteredArticles.length > state.displayedCount;
@@ -235,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="feed-header">
             <h2 class="feed-title">Articles</h2>
             <div class="filter-pills">
-              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${articles.length})</button>
+              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
               <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
               <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
             </div>
@@ -304,13 +326,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Full Article Reader View
   // =========================================================================
   async function renderPostPage(slug) {
-    const article = articles.find(a => a.slug === slug);
+    const article = state.articles.find(a => a.slug === slug);
     if (!article) {
       appContainer.innerHTML = `
         <div class="article-container" style="padding: 80px 20px; text-align: center;">
           <h2 style="font-family: var(--font-header); font-size: 2rem; margin-bottom: 16px;">Article Not Found</h2>
           <p style="color: var(--color-text-secondary); margin-bottom: 24px;">The newsletter edition you are looking for does not exist.</p>
-          <a href="#/" class="btn-subscribe-nav">Return to Homepage</a>
+          <a href="#/home" class="btn-subscribe-nav">Return to Homepage</a>
         </div>
       `;
       return;
@@ -328,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
       postComments = state.comments[article.slug] || [];
     }
 
-    const recommendedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 2);
+    const recommendedArticles = state.articles.filter(a => a.slug !== article.slug).slice(0, 2);
 
     appContainer.innerHTML = `
       <article class="article-page-view">
@@ -527,10 +549,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <section class="archive-page-view">
         <div class="article-container">
           <h1 class="page-title">Archive</h1>
-          <p class="page-description">Complete chronological history of all ${articles.length} AIRA newsletter editions and guides.</p>
+          <p class="page-description">Complete chronological history of all ${state.articles.length} AIRA newsletter editions and guides.</p>
 
           <div class="timeline-list">
-            ${articles.map(article => `
+            ${state.articles.map(article => `
               <div class="timeline-item" onclick="window.location.hash='#/p/${article.slug}'">
                 <div class="timeline-content">
                   <h4>${article.title}</h4>
@@ -833,7 +855,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4b. Admin Subscriber Dashboard View (#/admin or #/subscribers)
+  // 4b. Admin Control Center & Articles Editor (#/admin or #/subscribers)
   // =========================================================================
   function renderAdminPage() {
     const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
@@ -844,82 +866,222 @@ document.addEventListener('DOMContentLoaded', () => {
       return { id: idx + 1, email: item.email, date: item.date || 'Earlier', source: item.source || 'Website Form' };
     });
 
+    const isCustomized = !!localStorage.getItem('aira_custom_articles');
+
+    // Filtered articles for admin editor
+    const searchQ = (state.adminArticleSearch || '').toLowerCase().trim();
+    const tagFilter = state.adminArticleTag || 'All';
+    const filteredAdminArticles = state.articles.filter(a => {
+      const matchTag = tagFilter === 'All' || (a.tag && a.tag.toLowerCase() === tagFilter.toLowerCase());
+      const matchSearch = searchQ === '' || 
+        (a.title && a.title.toLowerCase().includes(searchQ)) || 
+        (a.subtitle && a.subtitle.toLowerCase().includes(searchQ)) || 
+        (a.slug && a.slug.toLowerCase().includes(searchQ));
+      return matchTag && matchSearch;
+    });
+
     appContainer.innerHTML = `
-      <section class="admin-page-view" style="padding: 48px 0 80px 0;">
-        <div class="container" style="max-width: 960px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+      <section class="admin-page-view" style="padding: 40px 0 80px 0;">
+        <div class="container" style="max-width: 1040px;">
+          
+          <!-- Admin Header -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
             <div>
-              <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Admin</span>
-              <h1 style="font-family: var(--font-header); font-size: 2.2rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">Subscriber Dashboard</h1>
-              <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 4px;">Real-time list of all users who subscribed via your newsletter forms.</p>
+              <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Admin Control</span>
+              <h1 style="font-family: var(--font-header); font-size: 2.2rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">Admin Dashboard</h1>
+              <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 4px;">Manage subscribers and live newsletter articles catalog.</p>
             </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button id="btn-copy-emails" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
-                📋 Copy All Emails
-              </button>
-              <button id="btn-export-csv" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
-                📥 Export to CSV
-              </button>
-            </div>
-          </div>
 
-          <!-- Metric Cards -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;">
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-              <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Total Subscribers</div>
-              <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${normalizedList.length}</div>
-            </div>
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-              <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Published Editions</div>
-              <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${articles.length}</div>
-            </div>
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-              <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Status</div>
-              <div style="font-size: 1.15rem; font-weight: 700; color: #10B981; margin-top: 12px;">● Storage Active</div>
-            </div>
-          </div>
-
-          <!-- Subscribers Table -->
-          <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-            <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-              <span>Subscribers (${normalizedList.length})</span>
-              <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Real-Time</span>
-            </div>
-            
-            ${normalizedList.length === 0 ? `
-              <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
-                <div style="font-size: 2.5rem; margin-bottom: 12px;">📬</div>
-                <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No subscribers yet</h4>
-                <p style="font-size: 0.9rem;">Whenever someone enters their email on any form, it will show up here instantly.</p>
+            ${state.adminTab === 'subscribers' ? `
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button id="btn-copy-emails" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                  📋 Copy All Emails
+                </button>
+                <button id="btn-export-csv" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                  📥 Export to CSV
+                </button>
               </div>
             ` : `
-              <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
-                  <thead>
-                    <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                      <th style="padding: 12px 18px;">#</th>
-                      <th style="padding: 12px 18px;">Email Address</th>
-                      <th style="padding: 12px 18px;">Date & Time</th>
-                      <th style="padding: 12px 18px;">Form Source</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${normalizedList.map(sub => `
-                      <tr style="border-bottom: 1px solid var(--color-border-light);">
-                        <td style="padding: 14px 18px; color: var(--color-text-muted);">${sub.id}</td>
-                        <td style="padding: 14px 18px; font-weight: 600; color: var(--color-text-primary); font-family: monospace; font-size: 0.9rem;">${sub.email}</td>
-                        <td style="padding: 14px 18px; color: var(--color-text-secondary);">${sub.date}</td>
-                        <td style="padding: 14px 18px;"><span style="background: #F4F4F5; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #18181B;">${sub.source}</span></td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button id="btn-add-new-article" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                  ➕ New Article
+                </button>
+                <button id="btn-download-articles-js" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                  💾 Download articles.js
+                </button>
+                ${isCustomized ? `
+                  <button id="btn-reset-articles" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #DC2626; font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;" title="Reset to original 192 articles">
+                    🔄 Reset Defaults
+                  </button>
+                ` : ''}
               </div>
             `}
           </div>
+
+          <!-- Navigation Tabs -->
+          <div class="admin-tabs-nav">
+            <button class="admin-tab-btn ${state.adminTab === 'subscribers' ? 'active' : ''}" id="tab-subscribers">
+              📬 Subscribers (${normalizedList.length})
+            </button>
+            <button class="admin-tab-btn ${state.adminTab === 'articles' ? 'active' : ''}" id="tab-articles">
+              📝 Articles & Editor (${state.articles.length})
+            </button>
+          </div>
+
+          <!-- TAB 1: SUBSCRIBERS -->
+          ${state.adminTab === 'subscribers' ? `
+            <!-- Metric Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px;">
+              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Total Subscribers</div>
+                <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${normalizedList.length}</div>
+              </div>
+              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Published Editions</div>
+                <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${state.articles.length}</div>
+              </div>
+              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Storage Backend</div>
+                <div style="font-size: 1.15rem; font-weight: 700; color: #10B981; margin-top: 12px;">● Connected</div>
+              </div>
+            </div>
+
+            <!-- Subscribers Table -->
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Subscribers (${normalizedList.length})</span>
+                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Real-Time</span>
+              </div>
+              
+              ${normalizedList.length === 0 ? `
+                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">📬</div>
+                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No subscribers yet</h4>
+                  <p style="font-size: 0.9rem;">Whenever someone enters their email on any form, it will show up here instantly.</p>
+                </div>
+              ` : `
+                <div style="overflow-x: auto;">
+                  <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                    <thead>
+                      <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <th style="padding: 12px 18px;">#</th>
+                        <th style="padding: 12px 18px;">Email Address</th>
+                        <th style="padding: 12px 18px;">Date & Time</th>
+                        <th style="padding: 12px 18px;">Form Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${normalizedList.map(sub => `
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                          <td style="padding: 14px 18px; color: var(--color-text-muted);">${sub.id}</td>
+                          <td style="padding: 14px 18px; font-weight: 600; color: var(--color-text-primary); font-family: monospace; font-size: 0.9rem;">${sub.email}</td>
+                          <td style="padding: 14px 18px; color: var(--color-text-secondary);">${sub.date}</td>
+                          <td style="padding: 14px 18px;"><span style="background: #F4F4F5; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #18181B;">${sub.source}</span></td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              `}
+            </div>
+          ` : `
+            <!-- TAB 2: ARTICLES EDITOR & MANAGEMENT -->
+            <!-- Search & Filter Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 420px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem;" />
+              </div>
+
+              <div class="filter-pills" style="margin: 0;">
+                <button class="filter-pill ${tagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
+                <button class="filter-pill ${tagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
+                <button class="filter-pill ${tagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
+              </div>
+            </div>
+
+            <!-- Articles Table -->
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Articles (${filteredAdminArticles.length})</span>
+                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Live Sync</span>
+              </div>
+
+              ${filteredAdminArticles.length === 0 ? `
+                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No articles found</h4>
+                  <p style="font-size: 0.9rem;">Try adjusting your search query or click "+ New Article" to write a new edition.</p>
+                </div>
+              ` : `
+                <div style="overflow-x: auto;">
+                  <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                    <thead>
+                      <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <th style="padding: 12px 16px;">Cover</th>
+                        <th style="padding: 12px 16px;">Title & Slug</th>
+                        <th style="padding: 12px 16px;">Category</th>
+                        <th style="padding: 12px 16px;">Date</th>
+                        <th style="padding: 12px 16px; text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${filteredAdminArticles.map(a => `
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                          <td style="padding: 12px 16px; width: 60px;">
+                            <img src="${a.image_url}" alt="${a.title}" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.jpg'" />
+                          </td>
+                          <td style="padding: 12px 16px; max-width: 380px;">
+                            <div style="font-weight: 700; color: var(--color-text-primary); font-size: 0.95rem; line-height: 1.35; margin-bottom: 4px;">${a.title}</div>
+                            <div style="font-size: 0.75rem; color: var(--color-text-muted); font-family: monospace;">#slug: ${a.slug}</div>
+                          </td>
+                          <td style="padding: 12px 16px;">
+                            <span style="background: #F4F4F5; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; color: #18181B;">${a.tag || 'News'}</span>
+                          </td>
+                          <td style="padding: 12px 16px; color: var(--color-text-secondary); white-space: nowrap; font-size: 0.8125rem;">
+                            ${a.date || 'Recent'}
+                          </td>
+                          <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
+                            <div style="display: inline-flex; gap: 8px; align-items: center;">
+                              <button class="btn-edit-article" data-slug="${a.slug}" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;">
+                                ✏️ Edit
+                              </button>
+                              <a href="#/p/${a.slug}" target="_blank" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 5px 10px; border-radius: 6px; text-decoration: none; font-size: 0.8125rem;">
+                                👁️ View
+                              </a>
+                              <button class="btn-delete-article" data-slug="${a.slug}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;" title="Delete Article">
+                                🗑️
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              `}
+            </div>
+          `}
         </div>
       </section>
     `;
+
+    // Bind Tabs
+    const tabSubscribers = document.getElementById('tab-subscribers');
+    if (tabSubscribers) {
+      tabSubscribers.addEventListener('click', () => {
+        state.adminTab = 'subscribers';
+        renderAdminPage();
+      });
+    }
+
+    const tabArticles = document.getElementById('tab-articles');
+    if (tabArticles) {
+      tabArticles.addEventListener('click', () => {
+        state.adminTab = 'articles';
+        renderAdminPage();
+      });
+    }
 
     // Bind Copy Emails
     const copyBtn = document.getElementById('btn-copy-emails');
@@ -958,6 +1120,233 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Subscribers exported to CSV! 📥');
       });
     }
+
+    // Bind Article Search
+    const searchInput = document.getElementById('admin-search-articles');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        state.adminArticleSearch = e.target.value;
+        renderAdminPage();
+        const inputNow = document.getElementById('admin-search-articles');
+        if (inputNow) {
+          inputNow.focus();
+          inputNow.setSelectionRange(inputNow.value.length, inputNow.value.length);
+        }
+      });
+    }
+
+    // Bind Tag Filter Pills
+    document.querySelectorAll('[data-admin-tag]').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        state.adminArticleTag = e.target.getAttribute('data-admin-tag');
+        renderAdminPage();
+      });
+    });
+
+    // Bind Add New Article
+    const addNewBtn = document.getElementById('btn-add-new-article');
+    if (addNewBtn) {
+      addNewBtn.addEventListener('click', () => {
+        openArticleEditorModal(null);
+      });
+    }
+
+    // Bind Edit Article Buttons
+    document.querySelectorAll('.btn-edit-article').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const slug = e.currentTarget.getAttribute('data-slug');
+        const found = state.articles.find(a => a.slug === slug);
+        if (found) {
+          openArticleEditorModal(found);
+        }
+      });
+    });
+
+    // Bind Delete Article Buttons
+    document.querySelectorAll('.btn-delete-article').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const slug = e.currentTarget.getAttribute('data-slug');
+        const found = state.articles.find(a => a.slug === slug);
+        if (!found) return;
+        if (confirm(`Are you sure you want to delete "${found.title}"?`)) {
+          const updated = state.articles.filter(a => a.slug !== slug);
+          saveArticles(updated);
+          showToast(`🗑️ Article "${found.title.slice(0, 24)}..." deleted.`);
+          renderAdminPage();
+        }
+      });
+    });
+
+    // Bind Download articles.js
+    const downloadJsBtn = document.getElementById('btn-download-articles-js');
+    if (downloadJsBtn) {
+      downloadJsBtn.addEventListener('click', () => {
+        const jsContent = `/**\n * AIRA Newsletter Articles Database\n * Total ${state.articles.length} Editions\n */\n\nconst ARTICLES = ${JSON.stringify(state.articles, null, 2)};\n`;
+        const blob = new Blob([jsContent], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `articles.js`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('articles.js downloaded! 💾');
+      });
+    }
+
+    // Bind Reset Articles to Defaults
+    const resetBtn = document.getElementById('btn-reset-articles');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (confirm('Reset articles to the original 192 editions? This will discard custom local edits.')) {
+          localStorage.removeItem('aira_custom_articles');
+          state.articles = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
+          showToast('🔄 Restored default 192 articles!');
+          renderAdminPage();
+        }
+      });
+    }
+  }
+
+  // =========================================================================
+  // 4c. Article Editor Modal Functions
+  // =========================================================================
+  const articleEditModal = document.getElementById('article-edit-modal');
+  const articleEditForm = document.getElementById('article-edit-form');
+
+  function openArticleEditorModal(article) {
+    if (!articleEditModal || !articleEditForm) return;
+
+    const modalTitle = document.getElementById('article-modal-title');
+    const inputSlugOrig = document.getElementById('edit-article-slug-original');
+    const inputIsNew = document.getElementById('edit-is-new');
+    const inputTitle = document.getElementById('edit-article-title');
+    const inputSlug = document.getElementById('edit-article-slug');
+    const inputSubtitle = document.getElementById('edit-article-subtitle');
+    const inputTag = document.getElementById('edit-article-tag');
+    const inputDate = document.getElementById('edit-article-date');
+    const inputReadingTime = document.getElementById('edit-article-reading-time');
+    const inputImage = document.getElementById('edit-article-image');
+    const inputAuthor = document.getElementById('edit-article-author');
+    const inputBody = document.getElementById('edit-article-body');
+
+    if (article) {
+      modalTitle.innerText = 'Edit Article';
+      inputIsNew.value = 'false';
+      inputSlugOrig.value = article.slug;
+      inputTitle.value = article.title || '';
+      inputSlug.value = article.slug || '';
+      inputSubtitle.value = article.subtitle || '';
+      inputTag.value = article.tag || 'News';
+      inputDate.value = article.date || 'Sep 10, 2026';
+      inputReadingTime.value = article.reading_time || '5 minutes';
+      inputImage.value = article.image_url || '';
+      inputAuthor.value = article.author || 'AIRA';
+      inputBody.value = article.body_html || '';
+    } else {
+      modalTitle.innerText = 'Create New Article';
+      inputIsNew.value = 'true';
+      inputSlugOrig.value = '';
+      inputTitle.value = '';
+      inputSlug.value = '';
+      inputSubtitle.value = '';
+      inputTag.value = 'News';
+      inputDate.value = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      inputReadingTime.value = '4 minutes';
+      inputImage.value = 'assets/logo.jpg';
+      inputAuthor.value = 'AIRA';
+      inputBody.value = `<div id="content-blocks"><p>Welcome to this edition of AIRA...</p></div>`;
+    }
+
+    openModal(articleEditModal);
+  }
+
+  if (articleEditForm) {
+    const titleInp = document.getElementById('edit-article-title');
+    const slugInp = document.getElementById('edit-article-slug');
+    if (titleInp && slugInp) {
+      titleInp.addEventListener('input', () => {
+        const isNew = document.getElementById('edit-is-new')?.value === 'true';
+        if (isNew) {
+          slugInp.value = titleInp.value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        }
+      });
+    }
+
+    articleEditForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const isNew = document.getElementById('edit-is-new').value === 'true';
+      const origSlug = document.getElementById('edit-article-slug-original').value;
+      const title = document.getElementById('edit-article-title').value.trim();
+      let slug = document.getElementById('edit-article-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const subtitle = document.getElementById('edit-article-subtitle').value.trim();
+      const tag = document.getElementById('edit-article-tag').value;
+      const date = document.getElementById('edit-article-date').value.trim() || 'Sep 10, 2026';
+      const reading_time = document.getElementById('edit-article-reading-time').value.trim() || '5 minutes';
+      const image_url = document.getElementById('edit-article-image').value.trim() || 'assets/logo.jpg';
+      const author = document.getElementById('edit-article-author').value.trim() || 'AIRA';
+      const body_html = document.getElementById('edit-article-body').value.trim();
+
+      if (!title || !slug || !body_html) {
+        showToast('Please fill in title, slug, and content!');
+        return;
+      }
+
+      if (isNew) {
+        if (state.articles.some(a => a.slug === slug)) {
+          slug = slug + '-' + Date.now().toString().slice(-4);
+        }
+        const newArt = {
+          id: 'post-' + (state.articles.length + 1),
+          slug,
+          title,
+          subtitle,
+          image_url,
+          author,
+          author_avatar: 'assets/logo.jpg',
+          date,
+          iso_date: new Date().toISOString(),
+          reading_time,
+          tag,
+          likes: 0,
+          views: '1.0k',
+          featured: false,
+          body_html
+        };
+        saveArticles([newArt, ...state.articles]);
+        showToast('🎉 New article published!');
+      } else {
+        const idx = state.articles.findIndex(a => a.slug === origSlug);
+        if (idx !== -1) {
+          state.articles[idx] = {
+            ...state.articles[idx],
+            slug,
+            title,
+            subtitle,
+            image_url,
+            author,
+            date,
+            reading_time,
+            tag,
+            body_html
+          };
+          saveArticles([...state.articles]);
+          showToast('💾 Article changes saved!');
+        }
+      }
+
+      closeModal(articleEditModal);
+      if (state.currentRoute === 'admin') {
+        renderAdminPage();
+      }
+    });
+  }
+
+  // Cancel edit modal
+  const cancelEditBtn = document.getElementById('btn-cancel-article-edit');
+  if (cancelEditBtn) {
+    cancelEditBtn.addEventListener('click', () => {
+      closeModal(articleEditModal);
+    });
   }
 
   // =========================================================================
@@ -1034,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. Search & Modal Handlers (Fast index over all 56 articles)
+  // 6. Search & Modal Handlers (Fast index over all articles)
   // =========================================================================
   function openModal(modal) {
     if (modal) {
@@ -1091,8 +1480,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!searchResults) return;
     const q = query.trim().toLowerCase();
     const matches = q === '' 
-      ? articles.slice(0, 6) 
-      : articles.filter(a => 
+      ? state.articles.slice(0, 6) 
+      : state.articles.filter(a => 
           a.title.toLowerCase().includes(q) || 
           a.subtitle.toLowerCase().includes(q) ||
           a.slug.toLowerCase().includes(q)
@@ -1122,6 +1511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.key === 'Escape') {
       closeModal(searchModal);
       closeModal(subscribeModal);
+      if (articleEditModal) closeModal(articleEditModal);
     }
   });
 

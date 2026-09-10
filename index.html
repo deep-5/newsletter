@@ -27,7 +27,7 @@
   <link rel="apple-touch-icon" href="assets/logo.jpg" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=5.5" />
+  <link rel="stylesheet" href="styles.css?v=5.6" />
 </head>
 <body>
 
@@ -120,6 +120,79 @@
     </div>
   </div>
 
+  <!-- Article Editor Modal -->
+  <div class="modal-overlay" id="article-edit-modal">
+    <div class="modal-card article-modal-card">
+      <button class="modal-close-btn" aria-label="Close modal">✕</button>
+      <div class="article-modal-header">
+        <h3 id="article-modal-title" style="font-family: var(--font-header); font-size: 1.35rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 4px;">Edit Article</h3>
+        <p style="color: var(--color-text-muted); font-size: 0.875rem;">Create or update article details, thumbnail, tags, and content.</p>
+      </div>
+      
+      <form id="article-edit-form" class="article-edit-form">
+        <input type="hidden" id="edit-article-slug-original" value="" />
+        <input type="hidden" id="edit-is-new" value="false" />
+
+        <div class="form-grid-row">
+          <div class="form-group">
+            <label class="form-label">Article Title *</label>
+            <input type="text" id="edit-article-title" class="form-control-input" placeholder="e.g. Anthropic Unveils Claude 3.7 Sonnet" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">URL Slug *</label>
+            <input type="text" id="edit-article-slug" class="form-control-input" placeholder="e.g. anthropic-unveils-claude-3-7" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subtitle / Deck</label>
+          <input type="text" id="edit-article-subtitle" class="form-control-input" placeholder="e.g. Plus: How to Turn Off the Gemini Watermark" />
+        </div>
+
+        <div class="form-grid-row form-grid-3">
+          <div class="form-group">
+            <label class="form-label">Category Tag *</label>
+            <select id="edit-article-tag" class="form-control-input">
+              <option value="News">News</option>
+              <option value="Prompts">Prompts & Guides</option>
+              <option value="AI Tools">AI Tools</option>
+              <option value="Tutorials">Tutorials</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Publication Date</label>
+            <input type="text" id="edit-article-date" class="form-control-input" placeholder="e.g. Sep 10, 2026" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reading Time</label>
+            <input type="text" id="edit-article-reading-time" class="form-control-input" placeholder="e.g. 5 minutes" />
+          </div>
+        </div>
+
+        <div class="form-grid-row">
+          <div class="form-group">
+            <label class="form-label">Cover Image URL</label>
+            <input type="url" id="edit-article-image" class="form-control-input" placeholder="https://..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Author Name</label>
+            <input type="text" id="edit-article-author" class="form-control-input" placeholder="AIRA" value="AIRA" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Article HTML / Body Content *</label>
+          <textarea id="edit-article-body" class="form-control-textarea" rows="10" placeholder="<p>Write or paste your article content HTML here...</p>" required></textarea>
+        </div>
+
+        <div class="article-modal-footer">
+          <button type="button" class="btn-cancel-modal" id="btn-cancel-article-edit">Cancel</button>
+          <button type="submit" class="btn-save-modal" id="btn-save-article-edit">💾 Save Article</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
 
@@ -128,8 +201,8 @@
   <script src="supabase.js"></script>
 
   <!-- Data and Application Script -->
-  <script src="data/articles.js?v=5.5"></script>
-  <script src="data/tools.js?v=5.5"></script>
-  <script src="app.js?v=5.5"></script>
+  <script src="data/articles.js?v=5.6"></script>
+  <script src="data/tools.js?v=5.6"></script>
+  <script src="app.js?v=5.6"></script>
 </body>
 </html>
