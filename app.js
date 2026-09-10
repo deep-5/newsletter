@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Helper to load articles from localStorage or default dataset
   function getArticles() {
     try {
-      const stored = localStorage.getItem('aira_custom_articles');
+      const stored = localStorage.getItem('aira_custom_articles_v6');
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveArticles(list) {
     state.articles = list;
-    localStorage.setItem('aira_custom_articles', JSON.stringify(list));
+    localStorage.setItem('aira_custom_articles_v6', JSON.stringify(list));
   }
   
   // App state
@@ -1365,7 +1365,7 @@ Output Format:
       return { id: idx + 1, email: item.email, date: item.date || 'Earlier', source: item.source || 'Website Form' };
     });
 
-    const isCustomized = !!localStorage.getItem('aira_custom_articles');
+    const isCustomized = !!localStorage.getItem('aira_custom_articles_v6');
 
     // IF EDITING AN ARTICLE: Render Full-Screen Inline Editor Studio
     if (state.adminEditingArticle) {
@@ -2322,6 +2322,7 @@ Output Format:
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
         if (confirm('Reset articles to the original 192 editions? This will discard custom local edits.')) {
+          localStorage.removeItem('aira_custom_articles_v6');
           localStorage.removeItem('aira_custom_articles');
           state.articles = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
           showToast('🔄 Restored default 192 articles!');
