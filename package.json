@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "AIRA - The One and Only AI Newsletter",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node scripts/server.js"
   },
   "keywords": [
     "ai",
