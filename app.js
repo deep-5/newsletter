@@ -627,23 +627,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderToolCard(tool) {
-      const pricingClass = `pricing-${tool.pricing.toLowerCase().replace(/\s+/g, '-')}`;
-      const firstCats = (tool.categories || [tool.category]).slice(0, 3);
-      const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${tool.domain || 'ai.com'}&sz=128`;
+      const pricingClass = `pricing-${(tool.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}`;
+      const firstCats = (tool.categories || [tool.category || 'productivity']).slice(0, 3);
+      const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+      const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+      const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
       const fallbackIcon = tool.icon || '⚡';
 
       return `
         <div class="tool-card ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}">
           <div class="tool-card-top">
             <div class="tool-icon-avatar">
-              <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>';" />
+              <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
             </div>
             <div class="tool-title-group">
               <div class="tool-badges-row">
                 ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
                 <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
               </div>
-              <h3 class="tool-card-name">${tool.name}</h3>
+              <h3 class="tool-card-name" title="${tool.name}">${tool.name}</h3>
             </div>
           </div>
 

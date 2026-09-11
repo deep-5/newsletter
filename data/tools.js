@@ -708,8 +708,8 @@ const AI_TOOLS_DATA = {
       "url": "https://chat.mistral.ai/",
       "icon": "🌪️",
       "id": "mistral-le-chat",
-      "domain": "chat.mistral.ai",
-      "image": "https://www.google.com/s2/favicons?domain=chat.mistral.ai&sz=128"
+      "domain": "mistral.ai",
+      "image": "https://www.google.com/s2/favicons?domain=mistral.ai&sz=128"
     },
     {
       "name": "HuggingChat",
@@ -1624,8 +1624,8 @@ const AI_TOOLS_DATA = {
       "url": "https://podcast.adobe.com/enhance",
       "icon": "🎙️",
       "id": "adobe-podcast-ai",
-      "domain": "podcast.adobe.com",
-      "image": "https://www.google.com/s2/favicons?domain=podcast.adobe.com&sz=128"
+      "domain": "adobe.com",
+      "image": "https://www.google.com/s2/favicons?domain=adobe.com&sz=128"
     },
     {
       "name": "Cleanvoice AI",
@@ -4105,8 +4105,8 @@ const AI_TOOLS_DATA = {
       "url": "https://chat.deepseek.com/",
       "icon": "🐋",
       "id": "deepseek-r1",
-      "domain": "chat.deepseek.com",
-      "image": "https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=128"
+      "domain": "deepseek.com",
+      "image": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128"
     },
     {
       "name": "Jan AI",
@@ -4159,8 +4159,8 @@ const AI_TOOLS_DATA = {
       "url": "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code",
       "icon": "⌨️",
       "id": "claude-code",
-      "domain": "docs.anthropic.com",
-      "image": "https://www.google.com/s2/favicons?domain=docs.anthropic.com&sz=128"
+      "domain": "anthropic.com",
+      "image": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=128"
     },
     {
       "name": "Trae AI",
@@ -4210,8 +4210,8 @@ const AI_TOOLS_DATA = {
       "url": "https://stableaudio.com/",
       "icon": "🔊",
       "id": "stable-audio-2-0",
-      "domain": "stableaudio.com",
-      "image": "https://www.google.com/s2/favicons?domain=stableaudio.com&sz=128"
+      "domain": "stability.ai",
+      "image": "https://www.google.com/s2/favicons?domain=stability.ai&sz=128"
     },
     {
       "name": "Google NotebookLM",
@@ -6162,8 +6162,8 @@ const AI_TOOLS_DATA = {
       "url": "https://filmora.wondershare.com/",
       "icon": "⚡",
       "id": "filmora-14-ai",
-      "domain": "filmora.wondershare.com",
-      "image": "https://www.google.com/s2/favicons?domain=filmora.wondershare.com&sz=128"
+      "domain": "wondershare.com",
+      "image": "https://www.google.com/s2/favicons?domain=wondershare.com&sz=128"
     },
     {
       "name": "Koyeb AI",
@@ -6434,8 +6434,8 @@ const AI_TOOLS_DATA = {
       "url": "https://google-research.github.io/seanet/musiclm/examples/",
       "icon": "⚡",
       "id": "musiclm",
-      "domain": "google-research.github.io",
-      "image": "https://www.google.com/s2/favicons?domain=google-research.github.io&sz=128"
+      "domain": "google.com",
+      "image": "https://www.google.com/s2/favicons?domain=google.com&sz=128"
     },
     {
       "name": "AudioCraft (MusicGen)",
@@ -6451,8 +6451,8 @@ const AI_TOOLS_DATA = {
       "url": "https://audiocraft.metademolab.com/",
       "icon": "⚡",
       "id": "audiocraft-musicgen",
-      "domain": "audiocraft.metademolab.com",
-      "image": "https://www.google.com/s2/favicons?domain=audiocraft.metademolab.com&sz=128"
+      "domain": "meta.com",
+      "image": "https://www.google.com/s2/favicons?domain=meta.com&sz=128"
     },
     {
       "name": "Moises.ai",
@@ -6604,8 +6604,8 @@ const AI_TOOLS_DATA = {
       "url": "https://imagine.meta.com/",
       "icon": "⚡",
       "id": "imagine-by-meta",
-      "domain": "imagine.meta.com",
-      "image": "https://www.google.com/s2/favicons?domain=imagine.meta.com&sz=128"
+      "domain": "meta.com",
+      "image": "https://www.google.com/s2/favicons?domain=meta.com&sz=128"
     },
     {
       "name": "Clipping Magic",
