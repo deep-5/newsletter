@@ -1618,18 +1618,18 @@ body.aira-gate-active .site-footer {
 }
 
 /* ==========================================================================
-   AI Tools Directory View (/#/tags)
+   AI Tools Directory View (/#/tags) - 100% Fully Responsive & Clean Sizing
    ========================================================================== */
 .tools-directory-view {
-  padding: 40px 0 80px 0;
+  padding: 36px 0 80px 0;
   background: #FAFAFA;
   min-height: 80vh;
 }
 
 .tools-hero-banner {
   text-align: center;
-  max-width: 920px;
-  margin: 0 auto 36px auto;
+  max-width: 960px;
+  margin: 0 auto 28px auto;
   padding: 0 16px;
 }
 
@@ -1639,13 +1639,13 @@ body.aira-gate-active .site-footer {
   gap: 6px;
   background: #FFFFFF;
   border: 1px solid #E4E4E7;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 9999px;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: #18181B;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .tools-hero-badge .bolt {
@@ -1654,20 +1654,20 @@ body.aira-gate-active .site-footer {
 
 .tools-hero-title {
   font-family: var(--font-header);
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 900;
   letter-spacing: -0.03em;
   color: #09090B;
   line-height: 1.15;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .tools-hero-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #71717A;
   line-height: 1.5;
-  max-width: 640px;
-  margin: 0 auto 28px auto;
+  max-width: 600px;
+  margin: 0 auto 24px auto;
 }
 
 /* Controls Row: Search + Pricing */
@@ -1675,9 +1675,9 @@ body.aira-gate-active .site-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .tool-search-box-wrap {
@@ -1685,7 +1685,7 @@ body.aira-gate-active .site-footer {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
 }
 
 .tool-search-svg {
@@ -1697,20 +1697,20 @@ body.aira-gate-active .site-footer {
 
 .tool-search-field {
   width: 100%;
-  padding: 12px 38px 12px 42px;
+  padding: 10px 36px 10px 40px;
   background: #FFFFFF;
   border: 1px solid #D4D4D8;
   border-radius: 9999px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #09090B;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   transition: all 0.15s ease;
 }
 
 .tool-search-field:focus {
   outline: none;
   border-color: #18181B;
-  box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.1);
+  box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.08);
 }
 
 .tool-search-clear-btn {
@@ -1745,11 +1745,11 @@ body.aira-gate-active .site-footer {
 }
 
 .pricing-filter-pill {
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 9999px;
   background: transparent;
   border: none;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #71717A;
   cursor: pointer;
@@ -1766,24 +1766,25 @@ body.aira-gate-active .site-footer {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Category Filter Wrapped Cloud (No Scroller) */
+/* Category Filter Wrapper Box (Clean, Compact, Responsive) */
 .categories-filter-wrapper {
   width: 100%;
-  margin-top: 18px;
+  max-width: 960px;
+  margin: 16px auto 0 auto;
   background: #FFFFFF;
   border: 1px solid #E4E4E7;
-  border-radius: 16px;
-  padding: 16px 18px;
+  border-radius: 14px;
+  padding: 14px 18px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  text-align: center;
 }
 
-.categories-filter-scroll,
 .categories-filter-grid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 8px 10px;
+  gap: 7px 8px;
   overflow: visible;
   padding: 0;
 }
@@ -1791,12 +1792,12 @@ body.aira-gate-active .site-footer {
 .cat-filter-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 13px;
+  gap: 5px;
+  padding: 5px 11px;
   border-radius: 9999px;
   background: #F4F4F5;
   border: 1px solid #E4E4E7;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #3F3F46;
   cursor: pointer;
@@ -1815,27 +1816,58 @@ body.aira-gate-active .site-footer {
   background: #18181B;
   border-color: #18181B;
   color: #FFFFFF;
-  box-shadow: 0 2px 6px rgba(24, 24, 27, 0.2);
+  box-shadow: 0 2px 5px rgba(24, 24, 27, 0.18);
 }
 
 .cat-filter-pill.active .cat-pill-count {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
   color: #FFFFFF;
 }
 
 .cat-pill-icon {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   line-height: 1;
 }
 
 .cat-pill-count {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   background: #E4E4E7;
   color: #52525B;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 9999px;
   margin-left: 2px;
+}
+
+/* Category Expand/Collapse Toggle Button */
+.categories-toggle-row {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #E4E4E7;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-toggle-all-cats {
+  background: #F4F4F5;
+  border: 1px solid #E4E4E7;
+  color: #27272A;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-toggle-all-cats:hover {
+  background: #18181B;
+  border-color: #18181B;
+  color: #FFFFFF;
+  transform: translateY(-1px);
 }
 
 /* Status Bar */
@@ -1843,13 +1875,13 @@ body.aira-gate-active .site-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid #E4E4E7;
 }
 
 .tools-count-text {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #52525B;
 }
 
@@ -1895,27 +1927,12 @@ body.aira-gate-active .site-footer {
   gap: 20px;
 }
 
-@media (max-width: 1080px) {
-  .tools-directory-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .tools-directory-grid {
-    grid-template-columns: 1fr;
-  }
-  .tools-hero-title {
-    font-size: 2rem;
-  }
-}
-
 /* Tool Card */
 .tool-card {
   background: #FFFFFF;
   border: 1px solid #E4E4E7;
   border-radius: 14px;
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -1937,15 +1954,15 @@ body.aira-gate-active .site-footer {
 .tool-card-top {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
 .tool-icon-avatar {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 10px;
   background: #F4F4F5;
   border: 1px solid #E4E4E7;
   display: flex;
@@ -1954,6 +1971,293 @@ body.aira-gate-active .site-footer {
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   flex-shrink: 0;
+}
+
+.tool-logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 6px;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.tool-emoji {
+  font-size: 1.35rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.tool-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.tool-badge-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #B45309;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tool-badge-featured .bolt {
+  color: #D97706;
+}
+
+.tool-badge-neutral {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #4B5563;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  padding: 2px 5px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.tool-badge-pricing {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pricing-free {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.pricing-freemium {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.pricing-paid {
+  background: #FDF2F8;
+  color: #BE185D;
+  border: 1px solid #FBCFE8;
+}
+
+.tool-card-name {
+  font-family: var(--font-header);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #09090B;
+  line-height: 1.25;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tool-card-desc {
+  font-size: 0.85rem;
+  color: #52525B;
+  line-height: 1.45;
+  margin: 0 0 14px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.tool-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #F4F4F5;
+}
+
+.tool-pill-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.tool-category-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #F4F4F5;
+  color: #52525B;
+  border: 1px solid #E4E4E7;
+  padding: 2px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.tool-category-badge:hover {
+  background: #E4E4E7;
+  color: #18181B;
+}
+
+.tool-direct-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #18181B;
+  color: #FFFFFF !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.tool-direct-visit-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Empty State */
+.tools-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 20px;
+  background: #FFFFFF;
+  border: 1px dashed #D4D4D8;
+  border-radius: 14px;
+  margin: 16px 0;
+}
+
+.empty-state-icon {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.empty-state-title {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #09090B;
+  margin-bottom: 6px;
+}
+
+.empty-state-desc {
+  font-size: 0.9rem;
+  color: #71717A;
+  max-width: 400px;
+  margin: 0 auto 16px auto;
+  line-height: 1.5;
+}
+
+.empty-reset-action-btn {
+  background: #18181B;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 9px 18px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.empty-reset-action-btn:hover {
+  background: #000000;
+}
+
+/* Responsive Media Queries for AI Tools */
+@media (max-width: 1080px) {
+  .tools-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tools-hero-title {
+    font-size: 2.1rem;
+  }
+  .tools-hero-subtitle {
+    font-size: 0.95rem;
+  }
+  .categories-filter-wrapper {
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tools-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .tools-hero-banner {
+    margin-bottom: 20px;
+    padding: 0 12px;
+  }
+  .tools-hero-title {
+    font-size: 1.75rem;
+  }
+  .tools-controls-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .tool-search-box-wrap {
+    max-width: 100%;
+  }
+  .tools-pricing-pill-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .pricing-filter-pill {
+    flex: 1;
+    text-align: center;
+    padding: 6px 4px;
+  }
+  .categories-filter-wrapper {
+    padding: 10px;
+    margin-top: 12px;
+  }
+  .cat-filter-pill {
+    padding: 4px 9px;
+    font-size: 0.74rem;
+  }
+  .cat-pill-icon {
+    font-size: 0.8rem;
+  }
+  .cat-pill-count {
+    font-size: 0.65rem;
+    padding: 1px 5px;
+  }
+  .tools-status-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
 .tool-logo-img {

@@ -598,6 +598,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return allTools.filter(t => (t.categories && t.categories.includes(catId)) || t.category === catId).length;
     }
 
+    const initialVisibleCount = 18;
+    const activeIndex = categories.findIndex(c => c.id === state.toolCategoryFilter);
+    const isExpanded = state.categoriesExpanded || (activeIndex >= initialVisibleCount);
+    const visibleCategories = isExpanded ? categories : categories.slice(0, initialVisibleCount);
+    const hasMore = categories.length > initialVisibleCount;
+
     function getFilteredTools() {
       return allTools.filter(tool => {
         // Category filter
@@ -744,11 +750,17 @@ document.addEventListener('DOMContentLoaded', () => {
               const cat = badge.getAttribute('data-category');
               if (cat) {
                 state.toolCategoryFilter = cat;
-                document.querySelectorAll('.cat-filter-pill').forEach(p => {
-                  const isMatch = p.getAttribute('data-cat-id') === cat;
-                  p.classList.toggle('active', isMatch);
-                });
-                updateView();
+                const idx = categories.findIndex(c => c.id === cat);
+                if (idx >= initialVisibleCount) {
+                  state.categoriesExpanded = true;
+                  renderTagsPage();
+                } else {
+                  document.querySelectorAll('.cat-filter-pill').forEach(p => {
+                    const isMatch = p.getAttribute('data-cat-id') === cat;
+                    p.classList.toggle('active', isMatch);
+                  });
+                  updateView();
+                }
               }
             });
           });
@@ -786,10 +798,10 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
 
-            <!-- Categories Wrapped Filter List (No Horizontal Scroller) -->
+            <!-- Categories Clean Responsive Box -->
             <div class="categories-filter-wrapper">
               <div class="categories-filter-grid" id="categories-filter-grid">
-                ${categories.map(cat => {
+                ${visibleCategories.map(cat => {
                   const count = getCategoryCount(cat.id);
                   const isActive = state.toolCategoryFilter === cat.id;
                   return `
@@ -801,6 +813,14 @@ document.addEventListener('DOMContentLoaded', () => {
                   `;
                 }).join('')}
               </div>
+
+              ${hasMore ? `
+                <div class="categories-toggle-row">
+                  <button type="button" class="btn-toggle-all-cats" id="btn-toggle-all-cats">
+                    <span>${isExpanded ? 'Show Less ▴' : `Show All ${categories.length} Categories (${categories.length - initialVisibleCount} more) ▾`}</span>
+                  </button>
+                </div>
+              ` : ''}
             </div>
           </div>
 
@@ -822,6 +842,15 @@ document.addEventListener('DOMContentLoaded', () => {
         updateView();
       });
     });
+
+    // Bind Toggle All Categories Button
+    const toggleCatsBtn = document.getElementById('btn-toggle-all-cats');
+    if (toggleCatsBtn) {
+      toggleCatsBtn.addEventListener('click', () => {
+        state.categoriesExpanded = !isExpanded;
+        renderTagsPage();
+      });
+    }
 
     // Bind Pricing Filter Buttons
     document.querySelectorAll('.pricing-filter-pill').forEach(pill => {
