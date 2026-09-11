@@ -77,7 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function getRoute() {
     const rawHash = window.location.hash.slice(1);
     const [hashPath, hashQuery] = rawHash.split('?');
-    const isUnlocked = sessionStorage.getItem('aira_unlocked') === 'true';
+    const isUnlocked = localStorage.getItem('aira_subscribed') === 'true' || 
+                       localStorage.getItem('aira_unlocked') === 'true' || 
+                       sessionStorage.getItem('aira_unlocked') === 'true';
 
     // When opening root URL for the first time without unlock: show Gate
     if (!hashPath || hashPath === '/' || hashPath === '') {
@@ -87,7 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return { name: 'home' };
     }
     if (hashPath === '/home') return { name: 'home' };
-    if (hashPath === '/subscribe') return { name: 'subscribe' };
+    if (hashPath === '/subscribe') {
+      if (isUnlocked) {
+        return { name: 'home' };
+      }
+      return { name: 'subscribe' };
+    }
     if (hashPath.startsWith('/p/')) {
       const slug = hashPath.replace('/p/', '');
       return { name: 'post', slug };
@@ -197,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           sessionStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_unlocked', 'true');
           localStorage.setItem('aira_subscribed', 'true');
 
           if (submitBtn) submitBtn.innerHTML = 'Subscribed! ✓';
@@ -208,6 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
           console.error('Subscription error:', err);
           sessionStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_subscribed', 'true');
           window.location.hash = '#/home';
         }
       });
@@ -2366,6 +2376,10 @@ Output Format:
         }
       }
 
+      sessionStorage.setItem('aira_unlocked', 'true');
+      localStorage.setItem('aira_unlocked', 'true');
+      localStorage.setItem('aira_subscribed', 'true');
+
       if (submitBtn) {
         submitBtn.innerHTML = 'Subscribed! ✓';
       }
@@ -2382,6 +2396,9 @@ Output Format:
       }, 1500);
     } catch (err) {
       console.error('Subscription error:', err);
+      sessionStorage.setItem('aira_unlocked', 'true');
+      localStorage.setItem('aira_unlocked', 'true');
+      localStorage.setItem('aira_subscribed', 'true');
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
