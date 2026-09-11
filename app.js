@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentRoute: '',
     selectedTag: 'All',
     displayedCount: 9,
+    homeSearchQuery: '',
     adminTab: 'subscribers',
     adminArticleSearch: '',
     adminArticleTag: 'All',
@@ -225,18 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 1b. Homepage View (With Dynamic Load More & Clean AIRA Hero)
+  // 1b. Homepage View (With Interactive Search Bar & Live Filtering)
   // =========================================================================
   function renderHomePage() {
-    const filteredArticles = state.selectedTag === 'All' 
-      ? state.articles 
-      : state.articles.filter(a => a.tag.toLowerCase() === state.selectedTag.toLowerCase());
-
-    const visibleArticles = filteredArticles.slice(0, state.displayedCount);
-    const hasMore = filteredArticles.length > state.displayedCount;
-
     appContainer.innerHTML = `
-      <!-- Clean AIRA Hero Section -->
+      <!-- Clean AIRA Hero Section with Search Bar -->
       <section class="hero-section">
         <div class="container">
           <div class="hero-logo-box">
@@ -245,9 +239,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <h1 class="hero-title">AIRA</h1>
           <p class="hero-tagline">The one and only AI newsletter. Join us and get the best AI news, tools, and tutorials completely FREE!</p>
           
-          <form class="subscribe-form-hero" id="hero-sub-form">
-            <input type="email" class="subscribe-input" placeholder="Enter your email" required />
-            <button type="submit" class="subscribe-btn-hero">Subscribe</button>
+          <form class="search-form-hero" id="hero-search-form" onsubmit="event.preventDefault();">
+            <svg class="hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="hero-search-input" class="search-input-hero" placeholder="Search newsletter articles, AI news, topics..." value="${state.homeSearchQuery || ''}" autocomplete="off" />
+            <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="search-btn-hero" id="hero-search-btn">Search</button>
           </form>
 
           <div class="social-bar-hero">
@@ -261,18 +260,58 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </section>
 
-      <!-- Articles Feed -->
-      <section class="feed-section">
-        <div class="container">
-          <div class="feed-header">
-            <h2 class="feed-title">Articles</h2>
-            <div class="filter-pills">
-              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
-              <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
-              <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
-            </div>
-          </div>
+      <!-- Articles Feed Section -->
+      <section class="feed-section" id="main-articles-feed">
+        <div class="container" id="feed-container-inner"></div>
+      </section>
+    `;
 
+    function updateArticlesGrid() {
+      const feedInner = document.getElementById('feed-container-inner');
+      if (!feedInner) return;
+
+      const query = (state.homeSearchQuery || '').trim().toLowerCase();
+      let filteredArticles = state.selectedTag === 'All' 
+        ? state.articles 
+        : state.articles.filter(a => a.tag.toLowerCase() === state.selectedTag.toLowerCase());
+
+      if (query !== '') {
+        filteredArticles = filteredArticles.filter(a => {
+          const titleMatch = (a.title || '').toLowerCase().includes(query);
+          const subtitleMatch = (a.subtitle || '').toLowerCase().includes(query);
+          const tagMatch = (a.tag || '').toLowerCase().includes(query);
+          return titleMatch || subtitleMatch || tagMatch;
+        });
+      }
+
+      const visibleArticles = filteredArticles.slice(0, state.displayedCount);
+      const hasMore = filteredArticles.length > state.displayedCount;
+      const isSearching = query.length > 0;
+
+      feedInner.innerHTML = `
+        <div class="feed-header">
+          <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : 'Articles'}</h2>
+          <div class="filter-pills">
+            <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
+            <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
+            <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
+          </div>
+        </div>
+
+        ${isSearching ? `
+          <div class="search-results-indicator">
+            <span>Found <strong>${filteredArticles.length}</strong> ${filteredArticles.length === 1 ? 'article' : 'articles'} matching "<em>${state.homeSearchQuery}</em>"</span>
+            <button type="button" class="btn-clear-search-link" id="btn-clear-search-query">Clear search</button>
+          </div>
+        ` : ''}
+
+        ${visibleArticles.length === 0 ? `
+          <div class="no-articles-found">
+            <p style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">No articles found</p>
+            <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-bottom: 16px;">We couldn't find any articles matching "${state.homeSearchQuery}".</p>
+            <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
+          </div>
+        ` : `
           <div class="articles-grid" id="main-articles-grid">
             ${visibleArticles.map(article => `
               <a href="#/p/${article.slug}" class="article-card">
@@ -294,40 +333,90 @@ document.addEventListener('DOMContentLoaded', () => {
               </a>
             `).join('')}
           </div>
+        `}
 
-          ${hasMore ? `
-            <div class="load-more-wrap">
-              <button id="btn-load-more" class="btn-load-more">
-                <span>Load more articles</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-            </div>
-          ` : ''}
-        </div>
-      </section>
-    `;
+        ${hasMore ? `
+          <div class="load-more-wrap">
+            <button id="btn-load-more" class="btn-load-more">
+              <span>Load more articles</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+        ` : ''}
+      `;
 
-    // Bind hero form
-    const heroForm = document.getElementById('hero-sub-form');
-    if (heroForm) {
-      heroForm.addEventListener('submit', handleSubscribeSubmit);
+      // Bind filter pills
+      feedInner.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          state.selectedTag = e.currentTarget.getAttribute('data-tag');
+          state.displayedCount = 9;
+          updateArticlesGrid();
+        });
+      });
+
+      // Bind Load More button
+      const loadMoreBtn = document.getElementById('btn-load-more');
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+          state.displayedCount += 9;
+          updateArticlesGrid();
+        });
+      }
+
+      // Bind clear search buttons
+      const clearQueryBtn = document.getElementById('btn-clear-search-query');
+      if (clearQueryBtn) {
+        clearQueryBtn.addEventListener('click', clearHeroSearch);
+      }
+      const emptyClearBtn = document.getElementById('btn-empty-clear-search');
+      if (emptyClearBtn) {
+        emptyClearBtn.addEventListener('click', clearHeroSearch);
+      }
     }
 
-    // Bind filter pills
-    document.querySelectorAll('.filter-pill').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        state.selectedTag = e.target.getAttribute('data-tag');
-        state.displayedCount = 9;
-        renderHomePage();
-      });
-    });
+    function clearHeroSearch() {
+      state.homeSearchQuery = '';
+      const heroSearchInput = document.getElementById('hero-search-input');
+      if (heroSearchInput) {
+        heroSearchInput.value = '';
+        heroSearchInput.focus();
+      }
+      const heroSearchClear = document.getElementById('hero-search-clear');
+      if (heroSearchClear) heroSearchClear.style.display = 'none';
+      state.displayedCount = 9;
+      updateArticlesGrid();
+    }
 
-    // Bind Load More button
-    const loadMoreBtn = document.getElementById('btn-load-more');
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', () => {
-        state.displayedCount += 9;
-        renderHomePage();
+    // Initial render of grid
+    updateArticlesGrid();
+
+    // Bind hero search input
+    const heroSearchInput = document.getElementById('hero-search-input');
+    const heroSearchClear = document.getElementById('hero-search-clear');
+    const heroSearchForm = document.getElementById('hero-search-form');
+
+    if (heroSearchInput) {
+      heroSearchInput.addEventListener('input', (e) => {
+        state.homeSearchQuery = e.target.value;
+        if (heroSearchClear) {
+          heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
+        }
+        state.displayedCount = 9;
+        updateArticlesGrid();
+      });
+    }
+
+    if (heroSearchClear) {
+      heroSearchClear.addEventListener('click', clearHeroSearch);
+    }
+
+    if (heroSearchForm) {
+      heroSearchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const feedSection = document.getElementById('main-articles-feed');
+        if (feedSection) {
+          feedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     }
   }
