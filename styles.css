@@ -357,6 +357,42 @@ img {
   transform: translateY(-1px);
 }
 
+.social-bar-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.social-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F4F4F5;
+  border: 1px solid #E4E4E7;
+  color: #18181B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.social-icon-btn:hover {
+  background: #18181B;
+  color: #FFFFFF;
+  border-color: #18181B;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.social-icon-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
 .search-results-indicator {
   display: flex;
   align-items: center;
