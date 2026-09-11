@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>${article.title}</span>
           </div>
 
-          <!-- Header -->
+                    <!-- Header -->
           <header class="article-header">
             <span class="article-header-tag">${article.tag}</span>
             <h1 class="article-header-title">${article.title}</h1>
@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Hero Cover Image -->
           <div class="article-hero-cover">
-            <img src="${article.image_url}" alt="${article.title}" class="article-hero-img" />
+            <img src="${article.image_url}" alt="${article.title}" class="article-hero-img" loading="lazy" referrerpolicy="no-referrer" />
           </div>
 
           <!-- Body Content -->
