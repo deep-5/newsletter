@@ -1,6 +1,6 @@
 /**
  * AIRA Newsletter - AI Tools & Categories Directory Dataset
- * Official Logos & Comprehensive Collection of 277+ AI Tools
+ * Official Logos & Comprehensive Collection of 403+ AI Tools
  * Enriched with Top AI Tools from powerfulai.tools, Product Hunt, and Frontier Labs
  */
 
@@ -5239,6 +5239,2161 @@ const AI_TOOLS_DATA = {
       "id": "polymer-search",
       "domain": "polymersearch.com",
       "image": "https://www.google.com/s2/favicons?domain=polymersearch.com&sz=128"
+    },
+    {
+      "name": "2short.ai",
+      "category": "video-editing",
+      "categories": [
+        "video-editing",
+        "social-media",
+        "shorts"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Shorts Extractor",
+      "description": "Extracts short viral moments from long YouTube videos with facial tracking and animated subtitles.",
+      "url": "https://2short.ai/",
+      "icon": "✂️",
+      "id": "2short-ai",
+      "domain": "2short.ai",
+      "image": "https://www.google.com/s2/favicons?domain=2short.ai&sz=128"
+    },
+    {
+      "name": "AutoPod",
+      "category": "video-editing",
+      "categories": [
+        "video-editing",
+        "podcast"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "Premiere Pro Plugin",
+      "description": "Adobe Premiere Pro AI plugin that automatically edits multi-camera video podcasts in seconds.",
+      "url": "https://www.autopod.fm/",
+      "icon": "📻",
+      "id": "autopod",
+      "domain": "autopod.fm",
+      "image": "https://www.google.com/s2/favicons?domain=autopod.fm&sz=128"
+    },
+    {
+      "name": "Tavus",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "avatars",
+        "marketing"
+      ],
+      "pricing": "Paid",
+      "featured": true,
+      "badge": "1-to-1 Video AI",
+      "description": "Programmatic AI video generation platform that clones your face and voice to create thousands of personalized sales videos.",
+      "url": "https://www.tavus.io/",
+      "icon": "👤",
+      "id": "tavus",
+      "domain": "tavus.io",
+      "image": "https://www.google.com/s2/favicons?domain=tavus.io&sz=128"
+    },
+    {
+      "name": "Pipio",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "avatars"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "Custom Avatars",
+      "description": "Create video content with photorealistic virtual actors from simple text scripts in over 40 global languages.",
+      "url": "https://www.pipio.ai/",
+      "icon": "🎥",
+      "id": "pipio",
+      "domain": "pipio.ai",
+      "image": "https://www.google.com/s2/favicons?domain=pipio.ai&sz=128"
+    },
+    {
+      "name": "Civitai",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "community"
+      ],
+      "pricing": "Free",
+      "featured": true,
+      "badge": "Model Hub",
+      "description": "The premier open-source AI art model-sharing platform with thousands of free community LoRAs, checkpoints, and embeddings.",
+      "url": "https://civitai.com/",
+      "icon": "🏛️",
+      "id": "civitai",
+      "domain": "civitai.com",
+      "image": "https://www.google.com/s2/favicons?domain=civitai.com&sz=128"
+    },
+    {
+      "name": "OpenArt AI",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Art Generator",
+      "description": "Creative platform to generate, train custom models, upscale, and edit images with sketch-to-image and inpainting tools.",
+      "url": "https://openart.ai/",
+      "icon": "🎨",
+      "id": "openart-ai",
+      "domain": "openart.ai",
+      "image": "https://www.google.com/s2/favicons?domain=openart.ai&sz=128"
+    },
+    {
+      "name": "Artbreeder",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Gene Breeding",
+      "description": "Mix, breed, and manipulate character portraits, landscapes, and anime concepts by adjusting generative genetic sliders.",
+      "url": "https://www.artbreeder.com/",
+      "icon": "🧬",
+      "id": "artbreeder",
+      "domain": "artbreeder.com",
+      "image": "https://www.google.com/s2/favicons?domain=artbreeder.com&sz=128"
+    },
+    {
+      "name": "NightCafe Creator",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Art Community",
+      "description": "Community AI art studio supporting Stable Diffusion, DALL-E, and neural style transfer with daily art challenges.",
+      "url": "https://creator.nightcafe.studio/",
+      "icon": "☕",
+      "id": "nightcafe-creator",
+      "domain": "creator.nightcafe.studio",
+      "image": "https://www.google.com/s2/favicons?domain=creator.nightcafe.studio&sz=128"
+    },
+    {
+      "name": "PixAI",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "anime"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Anime Art",
+      "description": "Leading AI anime character generator with pose control, LoRA mixing, and fine-tuned manga illustration styles.",
+      "url": "https://pixai.art/",
+      "icon": "🌸",
+      "id": "pixai",
+      "domain": "pixai.art",
+      "image": "https://www.google.com/s2/favicons?domain=pixai.art&sz=128"
+    },
+    {
+      "name": "Tensor.Art",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Online SDXL",
+      "description": "Free online model hosting and generative cloud interface to run Stable Diffusion and Flux checkpoints without GPU hardware.",
+      "url": "https://tensor.art/",
+      "icon": "⚡",
+      "id": "tensor-art",
+      "domain": "tensor.art",
+      "image": "https://www.google.com/s2/favicons?domain=tensor.art&sz=128"
+    },
+    {
+      "name": "Pixelcut AI",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "e-commerce",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "E-Commerce Suite",
+      "description": "Design studio app that creates virtual photo shoots, removes objects, and creates clean white backgrounds for online stores.",
+      "url": "https://www.pixelcut.ai/",
+      "icon": "🛍️",
+      "id": "pixelcut-ai",
+      "domain": "pixelcut.ai",
+      "image": "https://www.google.com/s2/favicons?domain=pixelcut.ai&sz=128"
+    },
+    {
+      "name": "Cleanup.pictures",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Object Inpainter",
+      "description": "Fast inpainting tool to remove unwanted objects, people, blemishes, or text from any photo in seconds.",
+      "url": "https://cleanup.pictures/",
+      "icon": "🧹",
+      "id": "cleanup-pictures",
+      "domain": "cleanup.pictures",
+      "image": "https://www.google.com/s2/favicons?domain=cleanup.pictures&sz=128"
+    },
+    {
+      "name": "Magic Studio",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "All-in-One Photo",
+      "description": "AI photo editing suite for removing backgrounds, generating professional headshots, erasing objects, and uncropping photos.",
+      "url": "https://magicstudio.com/",
+      "icon": "🪄",
+      "id": "magic-studio",
+      "domain": "magicstudio.com",
+      "image": "https://www.google.com/s2/favicons?domain=magicstudio.com&sz=128"
+    },
+    {
+      "name": "Slazzer",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "e-commerce"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Auto Cutout",
+      "description": "Instant background removal tool with API integration for high-volume e-commerce catalogs and product imagery.",
+      "url": "https://www.slazzer.com/",
+      "icon": "✂️",
+      "id": "slazzer",
+      "domain": "slazzer.com",
+      "image": "https://www.google.com/s2/favicons?domain=slazzer.com&sz=128"
+    },
+    {
+      "name": "FastGPT",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "developer-tools",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Enterprise Knowledge Base",
+      "description": "Knowledge-base question-answering system based on LLMs with automated data preprocessing and workflow orchestration.",
+      "url": "https://fastgpt.in/",
+      "icon": "⚡",
+      "id": "fastgpt",
+      "domain": "fastgpt.in",
+      "image": "https://www.google.com/s2/favicons?domain=fastgpt.in&sz=128"
+    },
+    {
+      "name": "Brave Leo AI",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "privacy",
+        "search"
+      ],
+      "pricing": "Free",
+      "featured": false,
+      "badge": "Private Browser AI",
+      "description": "Private AI assistant built directly into the Brave browser that translates, summarizes, and analyzes web pages without tracking.",
+      "url": "https://brave.com/leo/",
+      "icon": "🦁",
+      "id": "brave-leo-ai",
+      "domain": "brave.com",
+      "image": "https://www.google.com/s2/favicons?domain=brave.com&sz=128"
+    },
+    {
+      "name": "DuckDuckGo AI Chat",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "privacy"
+      ],
+      "pricing": "Free",
+      "featured": false,
+      "badge": "100% Anonymous",
+      "description": "Anonymous conversational AI interface that lets you chat with Claude, GPT-4o mini, and Llama without logging IP addresses.",
+      "url": "https://duckduckgo.com/chat",
+      "icon": "🦆",
+      "id": "duckduckgo-ai-chat",
+      "domain": "duckduckgo.com",
+      "image": "https://www.google.com/s2/favicons?domain=duckduckgo.com&sz=128"
+    },
+    {
+      "name": "Sweep AI",
+      "category": "code-assistant",
+      "categories": [
+        "code-assistant",
+        "developer-tools"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Bug Fixer Agent",
+      "description": "AI software engineer that reads GitHub issues, writes unit tests, fixes bugs, and opens complete pull requests automatically.",
+      "url": "https://sweep.dev/",
+      "icon": "🧹",
+      "id": "sweep-ai",
+      "domain": "sweep.dev",
+      "image": "https://www.google.com/s2/favicons?domain=sweep.dev&sz=128"
+    },
+    {
+      "name": "Augment Code",
+      "category": "code-assistant",
+      "categories": [
+        "code-assistant",
+        "developer-tools"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "Team Codebase AI",
+      "description": "AI developer platform built for large engineering teams with whole-codebase context and rapid autocomplete.",
+      "url": "https://www.augmentcode.com/",
+      "icon": "⚡",
+      "id": "augment-code",
+      "domain": "augmentcode.com",
+      "image": "https://www.google.com/s2/favicons?domain=augmentcode.com&sz=128"
+    },
+    {
+      "name": "Webflow AI",
+      "category": "design",
+      "categories": [
+        "design",
+        "web-builder"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "Visual CMS",
+      "description": "Generate styled layout components, edit website copy, optimize SEO metadata, and build web animations inside Webflow.",
+      "url": "https://webflow.com/ai",
+      "icon": "🌐",
+      "id": "webflow-ai",
+      "domain": "webflow.com",
+      "image": "https://www.google.com/s2/favicons?domain=webflow.com&sz=128"
+    },
+    {
+      "name": "Typedream AI",
+      "category": "design",
+      "categories": [
+        "design",
+        "web-builder"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Notion-like Sites",
+      "description": "Build clean landing pages and responsive websites as simply as typing in Notion with integrated payment checkout.",
+      "url": "https://typedream.com/",
+      "icon": "✨",
+      "id": "typedream-ai",
+      "domain": "typedream.com",
+      "image": "https://www.google.com/s2/favicons?domain=typedream.com&sz=128"
+    },
+    {
+      "name": "Bubble AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "web-builder"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Fullstack No-Code",
+      "description": "Visual web app development platform that converts natural language prompts into complete database schemas and page layouts.",
+      "url": "https://bubble.io/",
+      "icon": "🫧",
+      "id": "bubble-ai",
+      "domain": "bubble.io",
+      "image": "https://www.google.com/s2/favicons?domain=bubble.io&sz=128"
+    },
+    {
+      "name": "Flowise AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "open-source"
+      ],
+      "pricing": "Free",
+      "featured": true,
+      "badge": "Drag & Drop LangChain",
+      "description": "Open source drag & drop UI to build customized LLM flow applications, agentic tools, and multi-agent memory workflows.",
+      "url": "https://flowiseai.com/",
+      "icon": "🔀",
+      "id": "flowise-ai",
+      "domain": "flowiseai.com",
+      "image": "https://www.google.com/s2/favicons?domain=flowiseai.com&sz=128"
+    },
+    {
+      "name": "Langflow",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "open-source"
+      ],
+      "pricing": "Free",
+      "featured": false,
+      "badge": "Visual AI Pipeline",
+      "description": "Dynamic graph visual framework for rapid prototyping and testing of Retrieval-Augmented Generation (RAG) applications.",
+      "url": "https://www.langflow.org/",
+      "icon": "🌊",
+      "id": "langflow",
+      "domain": "langflow.org",
+      "image": "https://www.google.com/s2/favicons?domain=langflow.org&sz=128"
+    },
+    {
+      "name": "LanguageTool AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "Multilingual Grammar",
+      "description": "Advanced multilingual grammar, style, and spell checker supporting over 30 languages with privacy-first standards.",
+      "url": "https://languagetool.org/",
+      "icon": "🔍",
+      "id": "languagetool-ai",
+      "domain": "languagetool.org",
+      "image": "https://www.google.com/s2/favicons?domain=languagetool.org&sz=128"
+    },
+    {
+      "name": "Winston AI",
+      "category": "ai-detection",
+      "categories": [
+        "ai-detection",
+        "writing"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "99.98% Accuracy",
+      "description": "Industry-grade AI detector that identifies synthetic text and generated images with detailed forensic proof reports.",
+      "url": "https://gowinston.ai/",
+      "icon": "🕵️",
+      "id": "winston-ai",
+      "domain": "gowinston.ai",
+      "image": "https://www.google.com/s2/favicons?domain=gowinston.ai&sz=128"
+    },
+    {
+      "name": "Phrasly AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "ai-detection"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "AI Humanizer",
+      "description": "Bypasses AI detection checkers by converting AI-written essays and articles into natural, human-flowing prose.",
+      "url": "https://phrasly.ai/",
+      "icon": "👤",
+      "id": "phrasly-ai",
+      "domain": "phrasly.ai",
+      "image": "https://www.google.com/s2/favicons?domain=phrasly.ai&sz=128"
+    },
+    {
+      "name": "Soundful",
+      "category": "music",
+      "categories": [
+        "music",
+        "creator-tools"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Royalty-Free Tracks",
+      "description": "AI music generator that lets creators, streamers, and brands generate unique background tracks at the click of a button.",
+      "url": "https://soundful.com/",
+      "icon": "🎶",
+      "id": "soundful",
+      "domain": "soundful.com",
+      "image": "https://www.google.com/s2/favicons?domain=soundful.com&sz=128"
+    },
+    {
+      "name": "Boomy Music",
+      "category": "music",
+      "categories": [
+        "music",
+        "social-media"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Instant Song Maker",
+      "description": "Make original songs in seconds and submit them to streaming platforms like Spotify, Apple Music, and TikTok to earn royalties.",
+      "url": "https://boomy.com/",
+      "icon": "🎧",
+      "id": "boomy-music",
+      "domain": "boomy.com",
+      "image": "https://www.google.com/s2/favicons?domain=boomy.com&sz=128"
+    },
+    {
+      "name": "Voicemod AI",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "gaming"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Real-time Voice Changer",
+      "description": "Real-time AI voice changer and soundboard for Discord, Twitch, and gaming with hundreds of realistic character voices.",
+      "url": "https://www.voicemod.net/",
+      "icon": "🎙️",
+      "id": "voicemod-ai",
+      "domain": "voicemod.net",
+      "image": "https://www.google.com/s2/favicons?domain=voicemod.net&sz=128"
+    },
+    {
+      "name": "Kits.ai",
+      "category": "music",
+      "categories": [
+        "music",
+        "voice"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Vocal Clone Studio",
+      "description": "AI voice platform for music producers to transform lead vocals into studio-licensed singer voices.",
+      "url": "https://www.kits.ai/",
+      "icon": "🎤",
+      "id": "kits-ai",
+      "domain": "kits.ai",
+      "image": "https://www.google.com/s2/favicons?domain=kits.ai&sz=128"
+    },
+    {
+      "name": "Auphonic",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "podcast"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Auto Mastering",
+      "description": "Automatic audio mastering service with intelligent leveling, loudness normalization (EBU R128), and noise reduction.",
+      "url": "https://auphonic.com/",
+      "icon": "🎛️",
+      "id": "auphonic",
+      "domain": "auphonic.com",
+      "image": "https://www.google.com/s2/favicons?domain=auphonic.com&sz=128"
+    },
+    {
+      "name": "Capacities AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "notes"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Object-Based Notes",
+      "description": "A studio for your mind: object-oriented note-taking app with AI assistant for tagging, outlining, and idea connections.",
+      "url": "https://capacities.io/",
+      "icon": "💡",
+      "id": "capacities-ai",
+      "domain": "capacities.io",
+      "image": "https://www.google.com/s2/favicons?domain=capacities.io&sz=128"
+    },
+    {
+      "name": "Anytype AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "privacy",
+        "offline"
+      ],
+      "pricing": "Free",
+      "featured": true,
+      "badge": "Local-First PKM",
+      "description": "Local-first, encrypted modular workspace for notes, documents, and tasks that gives you complete data ownership.",
+      "url": "https://anytype.io/",
+      "icon": "🔐",
+      "id": "anytype-ai",
+      "domain": "anytype.io",
+      "image": "https://www.google.com/s2/favicons?domain=anytype.io&sz=128"
+    },
+    {
+      "name": "Clockwise AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "calendar"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Team Focus Time",
+      "description": "Intelligent team calendar that synchronizes meetings across departments and creates uninterrupted Focus Time blocks.",
+      "url": "https://www.getclockwise.com/",
+      "icon": "🕒",
+      "id": "clockwise-ai",
+      "domain": "getclockwise.com",
+      "image": "https://www.google.com/s2/favicons?domain=getclockwise.com&sz=128"
+    },
+    {
+      "name": "Sunsama",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "calendar"
+      ],
+      "pricing": "Paid",
+      "featured": true,
+      "badge": "Daily Planner",
+      "description": "Mindful daily planning assistant that pulls tasks from Trello, Jira, Asana, and Gmail into a calm daily schedule.",
+      "url": "https://sunsama.com/",
+      "icon": "🌅",
+      "id": "sunsama",
+      "domain": "sunsama.com",
+      "image": "https://www.google.com/s2/favicons?domain=sunsama.com&sz=128"
+    },
+    {
+      "name": "Napkin AI",
+      "category": "presentations",
+      "categories": [
+        "presentations",
+        "design",
+        "visualizer"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "Text to Diagrams",
+      "description": "Instantly turns plain text paragraphs into clear diagrams, flowcharts, timelines, and infographics for documentation.",
+      "url": "https://www.napkin.ai/",
+      "icon": "📊",
+      "id": "napkin-ai",
+      "domain": "napkin.ai",
+      "image": "https://www.google.com/s2/favicons?domain=napkin.ai&sz=128"
+    },
+    {
+      "name": "Eraser AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "diagrams"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "Architecture Diagrams",
+      "description": "AI diagramming tool for engineering teams that generates cloud architectures, sequence diagrams, and flowcharts from code.",
+      "url": "https://www.eraser.io/",
+      "icon": "📐",
+      "id": "eraser-ai",
+      "domain": "eraser.io",
+      "image": "https://www.google.com/s2/favicons?domain=eraser.io&sz=128"
+    },
+    {
+      "name": "Miro Assist",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Mindmap Copilot",
+      "description": "Generates mind maps, summarizes sticky notes, and creates agile user journey maps on collaborative digital whiteboards.",
+      "url": "https://miro.com/ai/",
+      "icon": "🟡",
+      "id": "miro-assist",
+      "domain": "miro.com",
+      "image": "https://www.google.com/s2/favicons?domain=miro.com&sz=128"
+    },
+    {
+      "name": "Connected Papers",
+      "category": "research",
+      "categories": [
+        "research",
+        "visualizer"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "Visual Graph",
+      "description": "Visual tool to help researchers find and explore academic papers connected by co-citations and bibliographic coupling.",
+      "url": "https://www.connectedpapers.com/",
+      "icon": "🕸️",
+      "id": "connected-papers",
+      "domain": "connectedpapers.com",
+      "image": "https://www.google.com/s2/favicons?domain=connectedpapers.com&sz=128"
+    },
+    {
+      "name": "Inciteful",
+      "category": "research",
+      "categories": [
+        "research",
+        "academic"
+      ],
+      "pricing": "Free",
+      "featured": false,
+      "badge": "Free Citation Map",
+      "description": "Free tool that maps academic citation networks to find foundational research papers and interdisciplinary connections.",
+      "url": "https://inciteful.xyz/",
+      "icon": "🌐",
+      "id": "inciteful",
+      "domain": "inciteful.xyz",
+      "image": "https://www.google.com/s2/favicons?domain=inciteful.xyz&sz=128"
+    },
+    {
+      "name": "Litmaps",
+      "category": "research",
+      "categories": [
+        "research",
+        "visualizer"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Citation Timeline",
+      "description": "Creates citation maps, tracks new papers in your field, and generates literature review charts automatically.",
+      "url": "https://www.litmaps.com/",
+      "icon": "🗺️",
+      "id": "litmaps",
+      "domain": "litmaps.com",
+      "image": "https://www.google.com/s2/favicons?domain=litmaps.com&sz=128"
+    },
+    {
+      "name": "AskYourPDF",
+      "category": "research",
+      "categories": [
+        "research",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Document Summarizer",
+      "description": "Interactive AI PDF chat system that extracts data tables, summarizes key findings, and references exact page numbers.",
+      "url": "https://askyourpdf.com/",
+      "icon": "📑",
+      "id": "askyourpdf",
+      "domain": "askyourpdf.com",
+      "image": "https://www.google.com/s2/favicons?domain=askyourpdf.com&sz=128"
+    },
+    {
+      "name": "Scholarcy",
+      "category": "research",
+      "categories": [
+        "research",
+        "summarizer"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Flashcard Summaries",
+      "description": "Online AI article summarizer that breaks long academic papers and book chapters into bite-sized interactive summary cards.",
+      "url": "https://www.scholarcy.com/",
+      "icon": "📚",
+      "id": "scholarcy",
+      "domain": "scholarcy.com",
+      "image": "https://www.google.com/s2/favicons?domain=scholarcy.com&sz=128"
+    },
+    {
+      "name": "Afforai",
+      "category": "research",
+      "categories": [
+        "research",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Multi-Doc Search",
+      "description": "AI research assistant that searches, summarizes, and compares across hundreds of uploaded reference papers simultaneously.",
+      "url": "https://afforai.com/",
+      "icon": "🔬",
+      "id": "afforai",
+      "domain": "afforai.com",
+      "image": "https://www.google.com/s2/favicons?domain=afforai.com&sz=128"
+    },
+    {
+      "name": "Instantly.ai",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "business"
+      ],
+      "pricing": "Paid",
+      "featured": true,
+      "badge": "Cold Email Scale",
+      "description": "Scale your cold outreach with unlimited email warmup, AI email verification, and smart deliverability algorithms.",
+      "url": "https://instantly.ai/",
+      "icon": "⚡",
+      "id": "instantly-ai",
+      "domain": "instantly.ai",
+      "image": "https://www.google.com/s2/favicons?domain=instantly.ai&sz=128"
+    },
+    {
+      "name": "Gong.io",
+      "category": "business",
+      "categories": [
+        "business",
+        "enterprise"
+      ],
+      "pricing": "Paid",
+      "featured": true,
+      "badge": "Revenue Intelligence",
+      "description": "Captures and analyzes customer interactions across phone calls, emails, and web meetings to guide sales pipeline closure.",
+      "url": "https://www.gong.io/",
+      "icon": "🔔",
+      "id": "gong-io",
+      "domain": "gong.io",
+      "image": "https://www.google.com/s2/favicons?domain=gong.io&sz=128"
+    },
+    {
+      "name": "Koyfin AI",
+      "category": "business",
+      "categories": [
+        "business",
+        "finance"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Market Analytics",
+      "description": "Financial analytics platform with charting, company financials, macro dashboards, and AI equity research tools.",
+      "url": "https://www.koyfin.com/",
+      "icon": "📈",
+      "id": "koyfin-ai",
+      "domain": "koyfin.com",
+      "image": "https://www.google.com/s2/favicons?domain=koyfin.com&sz=128"
+    },
+    {
+      "name": "FeedHive",
+      "category": "social-media",
+      "categories": [
+        "social-media",
+        "marketing"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "AI Post Recycling",
+      "description": "AI social media scheduling and analytics tool that predicts post engagement and recycles your top-performing evergreen content.",
+      "url": "https://www.feedhive.com/",
+      "icon": "🐝",
+      "id": "feedhive",
+      "domain": "feedhive.com",
+      "image": "https://www.google.com/s2/favicons?domain=feedhive.com&sz=128"
+    },
+    {
+      "name": "Mokker AI",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "e-commerce"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Product Mockups",
+      "description": "Instant background replacement for e-commerce products with 100+ realistic scene templates for Amazon and Shopify listings.",
+      "url": "https://mokker.ai/",
+      "icon": "📦",
+      "id": "mokker-ai",
+      "domain": "mokker.ai",
+      "image": "https://www.google.com/s2/favicons?domain=mokker.ai&sz=128"
+    },
+    {
+      "name": "Claid.ai",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "e-commerce"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "Catalog Restorer",
+      "description": "Automate image enhancement, background generation, and quality grading for high-volume marketplace product photos.",
+      "url": "https://claid.ai/",
+      "icon": "🖼️",
+      "id": "claid-ai",
+      "domain": "claid.ai",
+      "image": "https://www.google.com/s2/favicons?domain=claid.ai&sz=128"
+    },
+    {
+      "name": "Microsoft Copilot 365",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "AI assistant deeply embedded across Word, Excel, PowerPoint, Outlook, and Teams.",
+      "url": "https://copilot.microsoft.com/",
+      "icon": "⚡",
+      "id": "microsoft-copilot-365",
+      "domain": "copilot.microsoft.com",
+      "image": "https://www.google.com/s2/favicons?domain=copilot.microsoft.com&sz=128"
+    },
+    {
+      "name": "Google Workspace Gemini",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "writing"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "AI writing, formula building, and image generation assistant built into Docs, Sheets, and Slides.",
+      "url": "https://workspace.google.com/solutions/ai/",
+      "icon": "⚡",
+      "id": "google-workspace-gemini",
+      "domain": "workspace.google.com",
+      "image": "https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128"
+    },
+    {
+      "name": "Filmora 14 AI",
+      "category": "video-editing",
+      "categories": [
+        "video-editing",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Video editing software with AI smart cutout, audio ducking, text-to-video, and AI motion tracking.",
+      "url": "https://filmora.wondershare.com/",
+      "icon": "⚡",
+      "id": "filmora-14-ai",
+      "domain": "filmora.wondershare.com",
+      "image": "https://www.google.com/s2/favicons?domain=filmora.wondershare.com&sz=128"
+    },
+    {
+      "name": "Koyeb AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Serverless platform to deploy high-performance AI inference models on global GPUs with zero configuration.",
+      "url": "https://www.koyeb.com/",
+      "icon": "⚡",
+      "id": "koyeb-ai",
+      "domain": "koyeb.com",
+      "image": "https://www.google.com/s2/favicons?domain=koyeb.com&sz=128"
+    },
+    {
+      "name": "Together AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Fastest cloud platform for fine-tuning, training, and running open-source generative AI models at scale.",
+      "url": "https://www.together.ai/",
+      "icon": "⚡",
+      "id": "together-ai",
+      "domain": "together.ai",
+      "image": "https://www.google.com/s2/favicons?domain=together.ai&sz=128"
+    },
+    {
+      "name": "Groq Cloud",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "hardware"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "LPU inference engine delivering 500+ tokens per second blazing-fast AI execution for Llama and Mixtral.",
+      "url": "https://groq.com/",
+      "icon": "⚡",
+      "id": "groq-cloud",
+      "domain": "groq.com",
+      "image": "https://www.google.com/s2/favicons?domain=groq.com&sz=128"
+    },
+    {
+      "name": "Fireworks AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Production AI platform serving compound models and function calling with sub-100ms time-to-first-token.",
+      "url": "https://fireworks.ai/",
+      "icon": "⚡",
+      "id": "fireworks-ai",
+      "domain": "fireworks.ai",
+      "image": "https://www.google.com/s2/favicons?domain=fireworks.ai&sz=128"
+    },
+    {
+      "name": "Baseten",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Machine learning infrastructure to deploy custom open source models behind autoscaling production APIs.",
+      "url": "https://www.baseten.co/",
+      "icon": "⚡",
+      "id": "baseten",
+      "domain": "baseten.co",
+      "image": "https://www.google.com/s2/favicons?domain=baseten.co&sz=128"
+    },
+    {
+      "name": "Modal Labs",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Cloud compute platform for running generative AI, serverless batch jobs, and GPU clusters in pure Python.",
+      "url": "https://modal.com/",
+      "icon": "⚡",
+      "id": "modal-labs",
+      "domain": "modal.com",
+      "image": "https://www.google.com/s2/favicons?domain=modal.com&sz=128"
+    },
+    {
+      "name": "RunPod",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Globally distributed GPU cloud rental platform to train and host AI models at lowest hourly rates.",
+      "url": "https://www.runpod.io/",
+      "icon": "⚡",
+      "id": "runpod",
+      "domain": "runpod.io",
+      "image": "https://www.google.com/s2/favicons?domain=runpod.io&sz=128"
+    },
+    {
+      "name": "Vast.ai",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "hardware"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Peer-to-peer GPU rental marketplace with heavily discounted Nvidia RTX and A100/H100 instances.",
+      "url": "https://vast.ai/",
+      "icon": "⚡",
+      "id": "vast-ai",
+      "domain": "vast.ai",
+      "image": "https://www.google.com/s2/favicons?domain=vast.ai&sz=128"
+    },
+    {
+      "name": "Lambda Labs GPU",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "High-performance AI GPU cloud and compute clusters specifically engineered for deep learning training.",
+      "url": "https://lambdalabs.com/",
+      "icon": "⚡",
+      "id": "lambda-labs-gpu",
+      "domain": "lambdalabs.com",
+      "image": "https://www.google.com/s2/favicons?domain=lambdalabs.com&sz=128"
+    },
+    {
+      "name": "Replicate",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "cloud"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Run and fine-tune open-source machine learning models with one line of cloud API code.",
+      "url": "https://replicate.com/",
+      "icon": "⚡",
+      "id": "replicate",
+      "domain": "replicate.com",
+      "image": "https://www.google.com/s2/favicons?domain=replicate.com&sz=128"
+    },
+    {
+      "name": "Fal.ai",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "image-generator"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Fastest generative media platform for developers to run Flux, Stable Diffusion, and Whisper at scale.",
+      "url": "https://fal.ai/",
+      "icon": "⚡",
+      "id": "fal-ai",
+      "domain": "fal.ai",
+      "image": "https://www.google.com/s2/favicons?domain=fal.ai&sz=128"
+    },
+    {
+      "name": "Deepgram",
+      "category": "text-to-speech",
+      "categories": [
+        "text-to-speech",
+        "audio-editing"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Enterprise-grade speech-to-text and text-to-speech API delivering real-time voice transcription.",
+      "url": "https://deepgram.com/",
+      "icon": "⚡",
+      "id": "deepgram",
+      "domain": "deepgram.com",
+      "image": "https://www.google.com/s2/favicons?domain=deepgram.com&sz=128"
+    },
+    {
+      "name": "AssemblyAI",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "transcription"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Industry-leading speech AI models for audio transcription, speaker diarization, and sentiment analysis.",
+      "url": "https://www.assemblyai.com/",
+      "icon": "⚡",
+      "id": "assemblyai",
+      "domain": "assemblyai.com",
+      "image": "https://www.google.com/s2/favicons?domain=assemblyai.com&sz=128"
+    },
+    {
+      "name": "Gladia AI",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "developer-tools"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Real-time multilingual speech-to-text API supporting 100+ languages with automatic punctuation.",
+      "url": "https://www.gladia.io/",
+      "icon": "⚡",
+      "id": "gladia-ai",
+      "domain": "gladia.io",
+      "image": "https://www.google.com/s2/favicons?domain=gladia.io&sz=128"
+    },
+    {
+      "name": "Riffusion",
+      "category": "music",
+      "categories": [
+        "music",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Real-time music generation model that produces custom melodies and singing tracks using spectrogram diffusion.",
+      "url": "https://www.riffusion.com/",
+      "icon": "⚡",
+      "id": "riffusion",
+      "domain": "riffusion.com",
+      "image": "https://www.google.com/s2/favicons?domain=riffusion.com&sz=128"
+    },
+    {
+      "name": "MusicLM",
+      "category": "music",
+      "categories": [
+        "music",
+        "research"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Google's research foundation model capable of generating high-fidelity music from rich text prompts.",
+      "url": "https://google-research.github.io/seanet/musiclm/examples/",
+      "icon": "⚡",
+      "id": "musiclm",
+      "domain": "google-research.github.io",
+      "image": "https://www.google.com/s2/favicons?domain=google-research.github.io&sz=128"
+    },
+    {
+      "name": "AudioCraft (MusicGen)",
+      "category": "music",
+      "categories": [
+        "music",
+        "developer-tools"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Meta's open-source generative audio toolkit for text-to-music (MusicGen) and sound effects (AudioGen).",
+      "url": "https://audiocraft.metademolab.com/",
+      "icon": "⚡",
+      "id": "audiocraft-musicgen",
+      "domain": "audiocraft.metademolab.com",
+      "image": "https://www.google.com/s2/favicons?domain=audiocraft.metademolab.com&sz=128"
+    },
+    {
+      "name": "Moises.ai",
+      "category": "music",
+      "categories": [
+        "music",
+        "audio-editing"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "The musician's AI app that isolates vocals, separates instruments, detects chords, and changes tempo in real time.",
+      "url": "https://moises.ai/",
+      "icon": "⚡",
+      "id": "moises-ai",
+      "domain": "moises.ai",
+      "image": "https://www.google.com/s2/favicons?domain=moises.ai&sz=128"
+    },
+    {
+      "name": "VocalRemover.org",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "music"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Free web application that extracts karaoke instrumental and acapella vocal tracks from any audio file.",
+      "url": "https://vocalremover.org/",
+      "icon": "⚡",
+      "id": "vocalremover-org",
+      "domain": "vocalremover.org",
+      "image": "https://www.google.com/s2/favicons?domain=vocalremover.org&sz=128"
+    },
+    {
+      "name": "Midjourney Niji 6",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "anime"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Specialized anime and manga illustration engine developed by Midjourney and Spellbrush.",
+      "url": "https://nijijourney.com/",
+      "icon": "⚡",
+      "id": "midjourney-niji-6",
+      "domain": "nijijourney.com",
+      "image": "https://www.google.com/s2/favicons?domain=nijijourney.com&sz=128"
+    },
+    {
+      "name": "Mage.space",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Fast online AI canvas for generating unlimited photorealistic images with 50+ diffusion checkpoints.",
+      "url": "https://www.mage.space/",
+      "icon": "⚡",
+      "id": "mage-space",
+      "domain": "mage.space",
+      "image": "https://www.google.com/s2/favicons?domain=mage.space&sz=128"
+    },
+    {
+      "name": "Deep Dream Generator",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "creative"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Artistic AI playground to create surreal digital paintings and dreamlike illustrations with neural styles.",
+      "url": "https://deepdreamgenerator.com/",
+      "icon": "⚡",
+      "id": "deep-dream-generator",
+      "domain": "deepdreamgenerator.com",
+      "image": "https://www.google.com/s2/favicons?domain=deepdreamgenerator.com&sz=128"
+    },
+    {
+      "name": "Wombo Dream",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "mobile"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Mobile-friendly AI art app that creates colorful fantasy paintings and wallpapers from simple keywords.",
+      "url": "https://dream.ai/",
+      "icon": "⚡",
+      "id": "wombo-dream",
+      "domain": "dream.ai",
+      "image": "https://www.google.com/s2/favicons?domain=dream.ai&sz=128"
+    },
+    {
+      "name": "StarryAI",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "mobile"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Generative art studio app that gives you 100% commercial ownership of your AI-created digital artwork.",
+      "url": "https://starryai.com/",
+      "icon": "⚡",
+      "id": "starryai",
+      "domain": "starryai.com",
+      "image": "https://www.google.com/s2/favicons?domain=starryai.com&sz=128"
+    },
+    {
+      "name": "Craiyon (DALL-E mini)",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "free"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Free, unlimited online AI image generator that creates 9 image variations from any text prompt.",
+      "url": "https://www.craiyon.com/",
+      "icon": "⚡",
+      "id": "craiyon-dall-e-mini",
+      "domain": "craiyon.com",
+      "image": "https://www.google.com/s2/favicons?domain=craiyon.com&sz=128"
+    },
+    {
+      "name": "Imagine by Meta",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "social-media"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Meta's standalone image generator powered by the Emu diffusion model for generating fast visual scenes.",
+      "url": "https://imagine.meta.com/",
+      "icon": "⚡",
+      "id": "imagine-by-meta",
+      "domain": "imagine.meta.com",
+      "image": "https://www.google.com/s2/favicons?domain=imagine.meta.com&sz=128"
+    },
+    {
+      "name": "Clipping Magic",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Accurate background removal tool with pixel-level touchup and auto-clipping for product photos.",
+      "url": "https://clippingmagic.com/",
+      "icon": "⚡",
+      "id": "clipping-magic",
+      "domain": "clippingmagic.com",
+      "image": "https://www.google.com/s2/favicons?domain=clippingmagic.com&sz=128"
+    },
+    {
+      "name": "Erase.bg",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "free"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Free AI tool to remove backgrounds from images of humans, animals, vehicles, and graphics in 5 seconds.",
+      "url": "https://www.erase.bg/",
+      "icon": "⚡",
+      "id": "erase-bg",
+      "domain": "erase.bg",
+      "image": "https://www.google.com/s2/favicons?domain=erase.bg&sz=128"
+    },
+    {
+      "name": "Upscale.media",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "enhancement"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Free AI image resolution enhancer that sharpens details and upscales photos up to 4x for web and print.",
+      "url": "https://www.upscale.media/",
+      "icon": "⚡",
+      "id": "upscale-media",
+      "domain": "upscale.media",
+      "image": "https://www.google.com/s2/favicons?domain=upscale.media&sz=128"
+    },
+    {
+      "name": "BigJPG",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "anime"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Specialized Deep Convolutional Neural Network upscaler for anime illustrations and wallpaper art.",
+      "url": "https://bigjpg.com/",
+      "icon": "⚡",
+      "id": "bigjpg",
+      "domain": "bigjpg.com",
+      "image": "https://www.google.com/s2/favicons?domain=bigjpg.com&sz=128"
+    },
+    {
+      "name": "HitPaw Photo Enhancer",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "enhancement"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Desktop photo quality restorer with face model, colorize model, and denoise enhancement algorithms.",
+      "url": "https://www.hitpaw.com/photo-enhancer.html",
+      "icon": "⚡",
+      "id": "hitpaw-photo-enhancer",
+      "domain": "hitpaw.com",
+      "image": "https://www.google.com/s2/favicons?domain=hitpaw.com&sz=128"
+    },
+    {
+      "name": "AVCLabs Photo Enhancer",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "enhancement"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "AI-powered photo enhancement software for portraits, landscapes, and e-commerce product catalogs.",
+      "url": "https://www.avclabs.com/photo-enhancer-ai.html",
+      "icon": "⚡",
+      "id": "avclabs-photo-enhancer",
+      "domain": "avclabs.com",
+      "image": "https://www.google.com/s2/favicons?domain=avclabs.com&sz=128"
+    },
+    {
+      "name": "Simplified AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "marketing",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "All-in-one creator app for copywriting, graphic design, video editing, and social media post scheduling.",
+      "url": "https://simplified.com/",
+      "icon": "⚡",
+      "id": "simplified-ai",
+      "domain": "simplified.com",
+      "image": "https://www.google.com/s2/favicons?domain=simplified.com&sz=128"
+    },
+    {
+      "name": "Content at Scale",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "seo"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Enterprise SEO publishing platform that generates 2,500+ word rankable blog posts that pass AI detectors.",
+      "url": "https://contentatscale.ai/",
+      "icon": "⚡",
+      "id": "content-at-scale",
+      "domain": "contentatscale.ai",
+      "image": "https://www.google.com/s2/favicons?domain=contentatscale.ai&sz=128"
+    },
+    {
+      "name": "LongShot AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "seo"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Fact-checked AI content assistant with real-time fact verifying for articles in finance, health, and tech.",
+      "url": "https://www.longshot.ai/",
+      "icon": "⚡",
+      "id": "longshot-ai",
+      "domain": "longshot.ai",
+      "image": "https://www.google.com/s2/favicons?domain=longshot.ai&sz=128"
+    },
+    {
+      "name": "ProWritingAid AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "education"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Grammar checker, style editor, and writing coach for fiction authors, copywriters, and professionals.",
+      "url": "https://prowritingaid.com/",
+      "icon": "⚡",
+      "id": "prowritingaid-ai",
+      "domain": "prowritingaid.com",
+      "image": "https://www.google.com/s2/favicons?domain=prowritingaid.com&sz=128"
+    },
+    {
+      "name": "Hemingway Editor AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Highlights lengthy, complex sentences and common errors to make your writing bold, clear, and punchy.",
+      "url": "https://hemingwayapp.com/",
+      "icon": "⚡",
+      "id": "hemingway-editor-ai",
+      "domain": "hemingwayapp.com",
+      "image": "https://www.google.com/s2/favicons?domain=hemingwayapp.com&sz=128"
+    },
+    {
+      "name": "StealthGPT",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "ai-detection"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Engineered to produce undetectable AI essays and copywriting that bypasses Turnitin and GPTZero.",
+      "url": "https://www.stealthgpt.ai/",
+      "icon": "⚡",
+      "id": "stealthgpt",
+      "domain": "stealthgpt.ai",
+      "image": "https://www.google.com/s2/favicons?domain=stealthgpt.ai&sz=128"
+    },
+    {
+      "name": "HideMyAI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "ai-detection"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Humanizes AI text while preserving formatting, original meaning, and keyword density for SEO rankings.",
+      "url": "https://hidemy.ai/",
+      "icon": "⚡",
+      "id": "hidemyai",
+      "domain": "hidemy.ai",
+      "image": "https://www.google.com/s2/favicons?domain=hidemy.ai&sz=128"
+    },
+    {
+      "name": "Wix Studio AI",
+      "category": "design",
+      "categories": [
+        "design",
+        "web-builder"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Advanced web creation platform for agencies with responsive AI layouts and custom CSS controls.",
+      "url": "https://www.wix.com/studio",
+      "icon": "⚡",
+      "id": "wix-studio-ai",
+      "domain": "wix.com",
+      "image": "https://www.google.com/s2/favicons?domain=wix.com&sz=128"
+    },
+    {
+      "name": "AppyPie AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "mobile"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "No-code app maker that converts text descriptions into mobile apps, chatbots, and graphic assets.",
+      "url": "https://www.appypie.com/",
+      "icon": "⚡",
+      "id": "appypie-ai",
+      "domain": "appypie.com",
+      "image": "https://www.google.com/s2/favicons?domain=appypie.com&sz=128"
+    },
+    {
+      "name": "Glide Apps AI",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Build powerful internal business tools and portals from spreadsheets and SQL databases with AI.",
+      "url": "https://www.glideapps.com/",
+      "icon": "⚡",
+      "id": "glide-apps-ai",
+      "domain": "glideapps.com",
+      "image": "https://www.google.com/s2/favicons?domain=glideapps.com&sz=128"
+    },
+    {
+      "name": "n8n AI Workflows",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "automation"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Fair-code workflow automation tool for technical teams to build self-hosted LangChain and AI agents.",
+      "url": "https://n8n.io/",
+      "icon": "⚡",
+      "id": "n8n-ai-workflows",
+      "domain": "n8n.io",
+      "image": "https://www.google.com/s2/favicons?domain=n8n.io&sz=128"
+    },
+    {
+      "name": "Storydoc AI",
+      "category": "presentations",
+      "categories": [
+        "presentations",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Interactive presentation and proposal builder that tracks reading time, clicks, and client engagement.",
+      "url": "https://storydoc.com/",
+      "icon": "⚡",
+      "id": "storydoc-ai",
+      "domain": "storydoc.com",
+      "image": "https://www.google.com/s2/favicons?domain=storydoc.com&sz=128"
+    },
+    {
+      "name": "Visme AI",
+      "category": "presentations",
+      "categories": [
+        "presentations",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Create interactive presentations, infographics, and reports with automated brand style matching.",
+      "url": "https://www.visme.co/",
+      "icon": "⚡",
+      "id": "visme-ai",
+      "domain": "visme.co",
+      "image": "https://www.google.com/s2/favicons?domain=visme.co&sz=128"
+    },
+    {
+      "name": "Piktochart AI",
+      "category": "presentations",
+      "categories": [
+        "presentations",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Turns long documents, survey reports, and articles into clean visual infographics and charts.",
+      "url": "https://piktochart.com/",
+      "icon": "⚡",
+      "id": "piktochart-ai",
+      "domain": "piktochart.com",
+      "image": "https://www.google.com/s2/favicons?domain=piktochart.com&sz=128"
+    },
+    {
+      "name": "Infogram AI",
+      "category": "presentations",
+      "categories": [
+        "presentations",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Interactive charts, maps, and infographics builder for journalists, marketing analysts, and educators.",
+      "url": "https://infogram.com/",
+      "icon": "⚡",
+      "id": "infogram-ai",
+      "domain": "infogram.com",
+      "image": "https://www.google.com/s2/favicons?domain=infogram.com&sz=128"
+    },
+    {
+      "name": "Whimsical AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "diagrams"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Fast mind mapping, flowcharting, and wireframing tool with instant AI brainstorming and branching.",
+      "url": "https://whimsical.com/ai",
+      "icon": "⚡",
+      "id": "whimsical-ai",
+      "domain": "whimsical.com",
+      "image": "https://www.google.com/s2/favicons?domain=whimsical.com&sz=128"
+    },
+    {
+      "name": "FigJam AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Figma's online whiteboard with AI features to generate project plans, sprint retros, and team icebreakers.",
+      "url": "https://www.figma.com/figjam/ai/",
+      "icon": "⚡",
+      "id": "figjam-ai",
+      "domain": "figma.com",
+      "image": "https://www.google.com/s2/favicons?domain=figma.com&sz=128"
+    },
+    {
+      "name": "MindMeister AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "mindmap"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Collaborative online mind mapping tool with AI suggestions for project planning and creative brainstorming.",
+      "url": "https://www.mindmeister.com/",
+      "icon": "⚡",
+      "id": "mindmeister-ai",
+      "domain": "mindmeister.com",
+      "image": "https://www.google.com/s2/favicons?domain=mindmeister.com&sz=128"
+    },
+    {
+      "name": "XMind AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "mindmap"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Full-featured visual brainstorming app that auto-expands ideas into structured node trees in real time.",
+      "url": "https://xmind.ai/",
+      "icon": "⚡",
+      "id": "xmind-ai",
+      "domain": "xmind.ai",
+      "image": "https://www.google.com/s2/favicons?domain=xmind.ai&sz=128"
+    },
+    {
+      "name": "Explainpaper",
+      "category": "research",
+      "categories": [
+        "research",
+        "academic"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Highlight confusing or dense scientific paragraphs to get plain-English explanations instantly.",
+      "url": "https://www.explainpaper.com/",
+      "icon": "⚡",
+      "id": "explainpaper",
+      "domain": "explainpaper.com",
+      "image": "https://www.google.com/s2/favicons?domain=explainpaper.com&sz=128"
+    },
+    {
+      "name": "Seamless.ai",
+      "category": "business",
+      "categories": [
+        "business",
+        "marketing"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Real-time B2B search engine for sales leads, executive contact info, and direct phone numbers.",
+      "url": "https://seamless.ai/",
+      "icon": "⚡",
+      "id": "seamless-ai",
+      "domain": "seamless.ai",
+      "image": "https://www.google.com/s2/favicons?domain=seamless.ai&sz=128"
+    },
+    {
+      "name": "Smartlead.ai",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Cold email platform with infinite mailboxes, rotating IP warmup, and unified multi-channel inbox.",
+      "url": "https://smartlead.ai/",
+      "icon": "⚡",
+      "id": "smartlead-ai",
+      "domain": "smartlead.ai",
+      "image": "https://www.google.com/s2/favicons?domain=smartlead.ai&sz=128"
+    },
+    {
+      "name": "Lemlist AI",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "business"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Personalized cold outreach platform that generates tailored email sequences and dynamic landing pages.",
+      "url": "https://www.lemlist.com/",
+      "icon": "⚡",
+      "id": "lemlist-ai",
+      "domain": "lemlist.com",
+      "image": "https://www.google.com/s2/favicons?domain=lemlist.com&sz=128"
+    },
+    {
+      "name": "Salesloft AI",
+      "category": "business",
+      "categories": [
+        "business",
+        "enterprise"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Revenue orchestration platform that prioritizes buyer engagement signals and guides deal execution.",
+      "url": "https://salesloft.com/",
+      "icon": "⚡",
+      "id": "salesloft-ai",
+      "domain": "salesloft.com",
+      "image": "https://www.google.com/s2/favicons?domain=salesloft.com&sz=128"
+    },
+    {
+      "name": "Pencil AI Ads",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Generates high-performing Facebook, Instagram, and TikTok video ad variations in under 1 minute.",
+      "url": "https://www.trypencil.com/",
+      "icon": "⚡",
+      "id": "pencil-ai-ads",
+      "domain": "trypencil.com",
+      "image": "https://www.google.com/s2/favicons?domain=trypencil.com&sz=128"
+    },
+    {
+      "name": "Quickads.ai",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "AI ad generator for performance marketers: create multi-format banners in 30+ sizes from one prompt.",
+      "url": "https://www.quickads.ai/",
+      "icon": "⚡",
+      "id": "quickads-ai",
+      "domain": "quickads.ai",
+      "image": "https://www.google.com/s2/favicons?domain=quickads.ai&sz=128"
+    },
+    {
+      "name": "Masterpiece Studio 3D",
+      "category": "3d",
+      "categories": [
+        "3d",
+        "gaming"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "The first complete VR and desktop AI 3D generative suite to create, rig, skin, and animate 3D game models.",
+      "url": "https://masterpiecestudio.com/",
+      "icon": "⚡",
+      "id": "masterpiece-studio-3d",
+      "domain": "masterpiecestudio.com",
+      "image": "https://www.google.com/s2/favicons?domain=masterpiecestudio.com&sz=128"
+    },
+    {
+      "name": "3DFY.ai",
+      "category": "3d",
+      "categories": [
+        "3d",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Text-to-3D engine that generates high-quality 3D assets with physically-based rendering (PBR) maps.",
+      "url": "https://3dfy.ai/",
+      "icon": "⚡",
+      "id": "3dfy-ai",
+      "domain": "3dfy.ai",
+      "image": "https://www.google.com/s2/favicons?domain=3dfy.ai&sz=128"
+    },
+    {
+      "name": "Charisma.ai",
+      "category": "gaming",
+      "categories": [
+        "gaming",
+        "story-teller"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Interactive storytelling engine that powers adaptive dialog, emotion engines, and immersive narratives.",
+      "url": "https://charisma.ai/",
+      "icon": "⚡",
+      "id": "charisma-ai",
+      "domain": "charisma.ai",
+      "image": "https://www.google.com/s2/favicons?domain=charisma.ai&sz=128"
+    },
+    {
+      "name": "Layer.ai",
+      "category": "gaming",
+      "categories": [
+        "gaming",
+        "design"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Enterprise game art production pipeline for generating consistent style-consistent 2D assets and UI icons.",
+      "url": "https://layer.ai/",
+      "icon": "⚡",
+      "id": "layer-ai",
+      "domain": "layer.ai",
+      "image": "https://www.google.com/s2/favicons?domain=layer.ai&sz=128"
+    },
+    {
+      "name": "Promethean AI",
+      "category": "gaming",
+      "categories": [
+        "gaming",
+        "3d"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "The world's first AI assistant that works with artists to build complex 3D virtual game worlds.",
+      "url": "https://www.prometheanai.com/",
+      "icon": "⚡",
+      "id": "promethean-ai",
+      "domain": "prometheanai.com",
+      "image": "https://www.google.com/s2/favicons?domain=prometheanai.com&sz=128"
+    },
+    {
+      "name": "Latitude Games",
+      "category": "gaming",
+      "categories": [
+        "gaming",
+        "story-teller"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "",
+      "description": "Game studio pioneering open-ended generative AI video games with dynamic procedural world states.",
+      "url": "https://latitude.io/",
+      "icon": "⚡",
+      "id": "latitude-games",
+      "domain": "latitude.io",
+      "image": "https://www.google.com/s2/favicons?domain=latitude.io&sz=128"
+    },
+    {
+      "name": "Loom AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "video-editing"
+      ],
+      "pricing": "Freemium",
+      "featured": true,
+      "badge": "Auto Summaries",
+      "description": "Instantly generates titles, executive summaries, chapters, and action items for recorded Loom video messages.",
+      "url": "https://www.loom.com/ai",
+      "icon": "📹",
+      "id": "loom-ai",
+      "domain": "loom.com",
+      "image": "https://www.google.com/s2/favicons?domain=loom.com&sz=128"
+    },
+    {
+      "name": "Unity Muse",
+      "category": "gaming",
+      "categories": [
+        "gaming",
+        "developer-tools",
+        "3d"
+      ],
+      "pricing": "Paid",
+      "featured": true,
+      "badge": "Game Engine AI",
+      "description": "Suite of AI capabilities for Unity creators to generate game textures, sprites, animations, and C# code logic.",
+      "url": "https://unity.com/products/muse",
+      "icon": "🕹️",
+      "id": "unity-muse",
+      "domain": "unity.com",
+      "image": "https://www.google.com/s2/favicons?domain=unity.com&sz=128"
+    },
+    {
+      "name": "MetaHuman Creator",
+      "category": "3d",
+      "categories": [
+        "3d",
+        "gaming",
+        "avatars"
+      ],
+      "pricing": "Free",
+      "featured": true,
+      "badge": "Photoreal Humans",
+      "description": "Cloud-streamed app by Epic Games that empowers anyone to create fully rigged, photorealistic digital humans in minutes.",
+      "url": "https://www.unrealengine.com/en-US/metahuman",
+      "icon": "👤",
+      "id": "metahuman-creator",
+      "domain": "unrealengine.com",
+      "image": "https://www.google.com/s2/favicons?domain=unrealengine.com&sz=128"
+    },
+    {
+      "name": "Blender AI Add-on",
+      "category": "3d",
+      "categories": [
+        "3d",
+        "developer-tools",
+        "creative"
+      ],
+      "pricing": "Free",
+      "featured": false,
+      "badge": "Open Source 3D",
+      "description": "Integrates generative AI directly into Blender 3D for prompt-based texture generation and procedural geometry modeling.",
+      "url": "https://www.blender.org/",
+      "icon": "🧊",
+      "id": "blender-ai-add-on",
+      "domain": "blender.org",
+      "image": "https://www.google.com/s2/favicons?domain=blender.org&sz=128"
+    },
+    {
+      "name": "Cisco AI Assistant",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "business"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "Webex Collaboration",
+      "description": "Automated meeting catch-up, live multi-language audio translation, and message tone rewriting in Webex.",
+      "url": "https://www.webex.com/ai-assistant.html",
+      "icon": "🌐",
+      "id": "cisco-ai-assistant",
+      "domain": "webex.com",
+      "image": "https://www.google.com/s2/favicons?domain=webex.com&sz=128"
+    },
+    {
+      "name": "Papago AI",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "translation"
+      ],
+      "pricing": "Free",
+      "featured": false,
+      "badge": "Asian Languages",
+      "description": "Naver's specialized neural translation engine with superior accuracy for Korean, Japanese, and Chinese dialogues.",
+      "url": "https://papago.naver.com/",
+      "icon": "🦜",
+      "id": "papago-ai",
+      "domain": "papago.naver.com",
+      "image": "https://www.google.com/s2/favicons?domain=papago.naver.com&sz=128"
+    },
+    {
+      "name": "Reverso AI Context",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "education",
+        "translation"
+      ],
+      "pricing": "Freemium",
+      "featured": false,
+      "badge": "Context Translator",
+      "description": "AI-based contextual translation and bilingual concordance engine with millions of real-life sentence examples.",
+      "url": "https://www.reverso.net/",
+      "icon": "🔄",
+      "id": "reverso-ai-context",
+      "domain": "reverso.net",
+      "image": "https://www.google.com/s2/favicons?domain=reverso.net&sz=128"
+    },
+    {
+      "name": "Resemble AI Voice",
+      "category": "text-to-speech",
+      "categories": [
+        "text-to-speech",
+        "gaming",
+        "security"
+      ],
+      "pricing": "Paid",
+      "featured": false,
+      "badge": "Deepfake Defense",
+      "description": "Realistic voice cloning platform with neural watermarking and deepfake detection algorithms for media security.",
+      "url": "https://www.resemble.ai/",
+      "icon": "🔊",
+      "id": "resemble-ai-voice",
+      "domain": "resemble.ai",
+      "image": "https://www.google.com/s2/favicons?domain=resemble.ai&sz=128"
     }
   ]
 };
