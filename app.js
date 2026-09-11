@@ -578,7 +578,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </section>
     `;
   }
-
   // =========================================================================
   // 4. Tags / AI Tools Directory View
   // =========================================================================
@@ -748,7 +747,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.cat-filter-pill').forEach(p => {
                   const isMatch = p.getAttribute('data-cat-id') === cat;
                   p.classList.toggle('active', isMatch);
-                  if (isMatch) p.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 });
                 updateView();
               }
@@ -788,9 +786,9 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
 
-            <!-- Categories Horizontal Filter List -->
+            <!-- Categories Wrapped Filter List (No Horizontal Scroller) -->
             <div class="categories-filter-wrapper">
-              <div class="categories-filter-scroll" id="categories-filter-scroll">
+              <div class="categories-filter-grid" id="categories-filter-grid">
                 ${categories.map(cat => {
                   const count = getCategoryCount(cat.id);
                   const isActive = state.toolCategoryFilter === cat.id;
@@ -821,7 +819,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const catId = pill.getAttribute('data-cat-id');
         state.toolCategoryFilter = catId;
         document.querySelectorAll('.cat-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
-        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         updateView();
       });
     });
