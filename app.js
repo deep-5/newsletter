@@ -865,466 +865,489 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // Article Templates & Snippets Library for Admin Studio
+  // Article Templates & Card Data Library for Visual Studio
   // =========================================================================
   const ARTICLE_TEMPLATES = [
     {
       id: 'beehiiv-signal',
-      name: '🐝 Beehiiv Signature (The Signal)',
+      name: '🐝 Beehiiv Signature (Story Cards)',
       tag: 'News',
       readingTime: '4 minutes',
       desc: 'Top Green Banner (THE SIGNAL) + Story Cards + Takeaways + Tool Stack + Quotes',
       sampleTitle: 'Practical plays, shipped fast 🚀',
       sampleSubtitle: 'PLUS: All you need for AI agents that convert, micro-products that win, and tools that end fatigue',
-      body: `<div class="beehiiv-newsletter-body">
-  <!-- Card 1: THE SIGNAL Header Card -->
-  <div class="beehiiv-card border-green">
-    <div class="beehiiv-banner-header">
-      THE SIGNAL
-    </div>
-    <p>Hey there, this week we are cutting through the noise and focusing on what actually moves companies forward.</p>
-    <p><strong>Here is the playbook:</strong> just three stories and one clear action item from your AI arsenal, contextualized for <a href="#" class="beehiiv-link">maximum growth</a>. No fluffy AI hype, just practical plays, shipped fast, and now done for you below.</p>
-    <div style="font-size: 0.85rem; color: #64748B; margin-top: 12px; font-style: italic;">
-      ⏱️ Estimated reading time: 4 minutes
-    </div>
-  </div>
-
-  <!-- Card 2: Growth / Case Study Card with Image, Caption & Quote -->
-  <div class="beehiiv-card border-green">
-    <span class="beehiiv-tag">GROWTH / CASE STUDY</span>
-    <h2 class="beehiiv-headline">
-      🌍 AI touches the real world
-    </h2>
-    
-    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
-      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
-      <small><p class="beehiiv-caption">Robotics in action - Courtesy: OpenAI & Physical Intelligence</p></small>
-    </div>
-
-    <p>Robotics moves beyond labs and <a href="#" class="beehiiv-link">enters factory floors</a>. Instead of code-only tasks, models are now picking, grasping, packing, and sorting with autonomy that surpasses traditional deterministic automation by 4x across initial pilots.</p>
-    
-    <div class="beehiiv-quote">
-      "The next wave of AI isn't chatbots answering your questions, it's AI models taking autonomous actions in the physical world."
-      <div class="author">— Jensen Huang</div>
-    </div>
-  </div>
-
-  <!-- Card 3: 01: The new feed is your inbox -->
-  <div class="beehiiv-card border-green">
-    <span class="beehiiv-tag">AI / TECH / TRENDS</span>
-    <h2 class="beehiiv-headline">
-      01: The new feed is your inbox
-    </h2>
-    
-    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
-      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
-      <small><p class="beehiiv-caption">Image Source: AIRA Research & Insights</p></small>
-    </div>
-
-    <p>Audiences are shifting attention to <a href="#" class="beehiiv-link">curated email newsletters</a> where algorithms can't hide content. Direct distribution builds higher affinity, 6x higher conversion on offers, and guaranteed inbox delivery.</p>
-
-    <div class="beehiiv-takeaway">
-      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> You will be in a position where you can command audience attention without paying gatekeeper tax on every post.</p>
-    </div>
-  </div>
-
-  <!-- Card 4: 02: Micro-monetization is back -->
-  <div class="beehiiv-card border-green">
-    <span class="beehiiv-tag">CREATOR ECONOMY</span>
-    <h2 class="beehiiv-headline">
-      02: Micro-monetization is back
-    </h2>
-    
-    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
-      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
-      <small><p class="beehiiv-caption">Micro-payments and direct-to-creator paradigm</p></small>
-    </div>
-
-    <p>Tiny paid perks, tokenized access, and micro-subscriptions generate higher lifetime values than bloated courses. Readers pay for speed, clarity, and instant access.</p>
-
-    <div class="beehiiv-takeaway">
-      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Package one core solution that saves <a href="#" class="beehiiv-link">2 to 10 hours</a>. Price it for impulsive purchase and instant ROI.</p>
-    </div>
-  </div>
-
-  <!-- Card 5: 03: Real-time visuals, zero rendering -->
-  <div class="beehiiv-card border-green">
-    <span class="beehiiv-tag">AI TOOLS</span>
-    <h2 class="beehiiv-headline">
-      03: Real-time visuals, zero rendering
-    </h2>
-    
-    <div class="section-image-box" style="margin: 18px 0; text-align: center;">
-      <img src="assets/logo.jpg" class="section-inline-img" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px;" loading="lazy" />
-      <small><p class="beehiiv-caption">Real-time generative UI in action</p></small>
-    </div>
-
-    <p>Generative software interfaces are updating on the fly. Web apps produce custom dashboards and code layouts in real-time matching user intent.</p>
-
-    <div class="beehiiv-takeaway">
-      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Ship tools with dynamic UI layouts that tailor to each user session.</p>
-    </div>
-  </div>
-
-  <!-- Card 6: Maker Playbook & Tool Stack Card -->
-  <div class="beehiiv-card border-green">
-    <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-top: 0; margin-bottom: 12px;">
-      04: Maker Playbook:
-    </h3>
-    <ul style="margin: 0 0 20px 20px; padding: 0; line-height: 1.6;">
-      <li>Set up a recurring cadence: 1 live email every 48 hours for brand gravity.</li>
-      <li>One flagship asset + 3 micro-products that solve immediate friction.</li>
-      <li>Repurpose each edition into a 4-part social breakdown for organic reach.</li>
-    </ul>
-
-    <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-top: 24px; margin-bottom: 12px; border-top: 1px dashed #E2E8F0; padding-top: 18px;">
-      🛠️ Tool Stack of the Week:
-    </h3>
-    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
-      <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Flux Pro</a>:</strong> State-of-the-art AI imagery model for photoreal cover banners.</p>
-      <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Claude Code</a>:</strong> AI agent for instant multi-file software engineering.</p>
-      <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">ClickTailwind</a>:</strong> Curates everything you need for responsive web cards.</p>
-    </div>
-
-    <div class="beehiiv-quote">
-      "Execution isn't rare. What is rare is consistent delivery that compounds value week over week."
-      <div class="author">— AIRA Intel</div>
-    </div>
-  </div>
-
-  <!-- Signoff -->
-  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 1rem;">
-    Until next week,<br><strong>AIRA</strong>
-  </div>
-</div>`
+      cardData: {
+        intro: 'Hey there, this week we are cutting through the noise and focusing on what actually moves companies forward.\n\nHere is the playbook: just three stories and one clear action item from your AI arsenal, contextualized for maximum growth. No fluffy AI hype, just practical plays, shipped fast.',
+        stories: [
+          {
+            tag: 'GROWTH / CASE STUDY',
+            title: 'AI touches the physical world',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Robotics in action - Courtesy: OpenAI & Physical Intelligence',
+            imageLink: '',
+            body: 'Robotics moves beyond labs and enters factory floors. Instead of code-only tasks, models are now picking, grasping, packing, and sorting with autonomy that surpasses traditional deterministic automation by 4x across initial pilots.',
+            takeaway: 'Look for physical or hardware touchpoints where multimodal reasoning can eliminate manual triage.',
+            quote: 'The next wave of AI isn\'t chatbots answering your questions, it\'s AI models taking autonomous actions in the physical world.',
+            quoteAuthor: 'Jensen Huang'
+          },
+          {
+            tag: 'AI / TECH / TRENDS',
+            title: '01: The new feed is your inbox',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Image Source: AIRA Research & Insights',
+            imageLink: '',
+            body: 'Audiences are shifting attention to curated email newsletters where algorithms cannot hide content. Direct distribution builds higher affinity, 6x higher conversion on offers, and guaranteed inbox delivery.',
+            takeaway: 'You will be in a position where you can command audience attention without paying gatekeeper tax on every post.',
+            quote: '',
+            quoteAuthor: ''
+          },
+          {
+            tag: 'CREATOR ECONOMY',
+            title: '02: Micro-monetization is back',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Micro-payments and direct-to-creator paradigm',
+            imageLink: '',
+            body: 'Tiny paid perks, tokenized access, and micro-subscriptions generate higher lifetime values than bloated courses. Readers pay for speed, clarity, and instant access.',
+            takeaway: 'Package one core solution that saves 2 to 10 hours. Price it for impulsive purchase and instant ROI.',
+            quote: '',
+            quoteAuthor: ''
+          }
+        ],
+        tools: [
+          { name: 'Flux Pro', link: 'https://blackforestlabs.ai', desc: 'State-of-the-art AI imagery model for photoreal cover banners.' },
+          { name: 'Claude Code', link: 'https://anthropic.com', desc: 'AI agent for instant multi-file software engineering in terminal.' },
+          { name: 'ClickTailwind', link: 'https://tailwindcss.com', desc: 'Curates everything you need for responsive web cards.' }
+        ],
+        newsbites: [
+          { source: 'Mistral AI', text: 'Secures €3B round for next-gen models.' },
+          { source: 'Google DeepMind', text: 'Releases new multimodal benchmark.' },
+          { source: 'NVIDIA', text: 'Unveils next-generation AI accelerators with 4x memory bandwidth.' }
+        ],
+        signoff: 'Until next week,\nAIRA'
+      }
     },
     {
       id: 'news-standard',
       name: '📰 Standard AI News Edition',
       tag: 'News',
       readingTime: '4 minutes',
-      desc: 'Intro briefing + Main story + 💡 AIRA Perspective + Featured tools + News bites',
+      desc: 'Intro briefing + 2 Main stories + Takeaway boxes + Featured tools + News bites',
       sampleTitle: 'Next-Gen AI Breakthrough: Key Insights & Industry Impact',
       sampleSubtitle: 'Plus: Top AI Tools and Weekly Intelligence Breakdown',
-      body: `<div id="content-blocks">
-  <div>
-    <p>Welcome back to AIRA — your essential intelligence briefing on cutting-edge AI breakthroughs, models, tools, and tutorials.</p>
-    <p>Here is what we are unpacking in today's edition:</p>
-    <ul>
-      <li><strong>Major Headline:</strong> Breakthrough model launch and capabilities</li>
-      <li><strong>Enterprise Move:</strong> Strategic AI partnership and funding</li>
-      <li><strong>Super Tools:</strong> 4 high-leverage productivity tools</li>
-      <li><strong>⚡ Quick AI News Bites:</strong> 4 Rapid industry updates</li>
-    </ul>
-    <p><em>Estimated reading time: 4 minutes.</em></p>
-  </div>
-
-  <div>
-    <h2>🚀 Major Story: Breakthrough Model Capabilities</h2>
-    <div class="section-image-box" style="margin: 20px 0; text-align: center;">
-      <img src="assets/logo.jpg" class="section-inline-img" style="max-width: 100%; border-radius: 8px;" loading="lazy" />
-      <small><p style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 6px;">Image Source: AIRA Intelligence</p></small>
-    </div>
-    <p>OpenAI has officially announced their newest frontier model, featuring unprecedented reasoning capabilities and autonomous task execution.</p>
-    <ul>
-      <li><strong>Key Benchmark:</strong> Outperforms existing models on complex reasoning benchmarks by 38%.</li>
-      <li><strong>Direct Computer Control:</strong> Capable of interacting with native software, APIs, and workflows in real time.</li>
-      <li><strong>Availability:</strong> Rolling out to all Pro and Enterprise subscribers starting this week.</li>
-    </ul>
-    <div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 24px 0;">
-      <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 AIRA Perspective:</strong> The shift from conversational chatbots to action-oriented agents is accelerating. Companies that integrate these automated workflows will see massive productivity gains.</p>
-    </div>
-  </div>
-
-  <div>
-    <h2>🏢 Enterprise Move: Strategic AI Integration</h2>
-    <p>Global enterprises are rapidly consolidating their AI infrastructure to build customized internal agents.</p>
-    <ul>
-      <li><strong>Deployment Scale:</strong> Over 50,000 corporate seats enabled across Fortune 500 companies.</li>
-      <li><strong>Security & Privacy:</strong> Fully on-premise and VPC compliance guarantees zero data retention.</li>
-    </ul>
-  </div>
-
-  <div>
-    <h3>🛠️ Featured AI Tools (Productivity & Coding)</h3>
-    <p><strong><a href="#" target="_blank">Tool 1</a>:</strong> AI agent that automates customer support workflows and data entry.</p>
-    <p><strong><a href="#" target="_blank">Tool 2</a>:</strong> Full-stack code refactoring and bug identification assistant.</p>
-    <p><strong><a href="#" target="_blank">Tool 3</a>:</strong> Research synthesizer that turns 100-page PDFs into executive briefs.</p>
-  </div>
-
-  <div>
-    <h4>⚡ ⚡ Quick AI News Bites</h4>
-    <ul>
-      <li><strong>Mistral AI:</strong> Raises €3B in fresh funding round to build open-weights models.</li>
-      <li><strong>Google DeepMind:</strong> Releases new multimodal benchmark for robotic control.</li>
-      <li><strong>Meta AI:</strong> Expands real-time voice translation across WhatsApp and Instagram.</li>
-      <li><strong>NVIDIA:</strong> Unveils next-generation AI accelerators with 4x memory bandwidth.</li>
-    </ul>
-  </div>
-
-  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
-    Until next time,<br><strong>AIRA</strong>
-  </div>
-</div>`
+      cardData: {
+        intro: 'Welcome back to AIRA — your essential intelligence briefing on cutting-edge AI breakthroughs, models, tools, and tutorials.\n\nHere is what we are unpacking in today\'s edition:',
+        stories: [
+          {
+            tag: '01: MAJOR HEADLINE',
+            title: 'Breakthrough Model Capabilities Announced',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Image Source: AIRA Intelligence',
+            imageLink: '',
+            body: 'A new frontier model release has shattered previous reasoning benchmarks across mathematics, coding, and logical inference.\n\nDevelopers can now access this directly via API at 50% lower cost per token.',
+            takeaway: 'Integrate automated reasoning pipelines early to capture market share.',
+            quote: '',
+            quoteAuthor: ''
+          },
+          {
+            tag: '02: ENTERPRISE',
+            title: 'Strategic AI Infrastructure Consolidations',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Enterprise cloud deployments in 2026',
+            imageLink: '',
+            body: 'Global enterprises are rapidly consolidating their AI infrastructure to build customized internal agents with full data privacy guarantees.',
+            takeaway: 'Enterprise security and compliance are driving faster adoption of self-hosted weights.',
+            quote: '',
+            quoteAuthor: ''
+          }
+        ],
+        tools: [
+          { name: 'AgentX', link: 'https://example.com', desc: 'Automates customer support workflows and data entry.' },
+          { name: 'CodeRefactor AI', link: 'https://example.com', desc: 'Full-stack code refactoring and bug identification.' }
+        ],
+        newsbites: [
+          { source: 'OpenAI', text: 'Deploys real-time reasoning models to enterprise tiers.' },
+          { source: 'Meta AI', text: 'Expands real-time voice translation features.' }
+        ],
+        signoff: 'Until next time,\nAIRA'
+      }
     },
     {
       id: 'tool-review',
       name: '🛠️ AI Tool Review & Breakdown',
       tag: 'AI Tools',
       readingTime: '5 minutes',
-      desc: 'Tool overview + Specs card + Top 3 features + Pros/Cons grid + AIRA verdict',
+      desc: 'Tool overview + Specs + Killer features + Verdict & Takeaway',
       sampleTitle: 'Hands-On Review: Testing the Most Powerful AI Coding Workspace',
       sampleSubtitle: 'Features, Benchmarks, Pros & Cons, and How It Compares to Alternatives',
-      body: `<div id="content-blocks">
-  <div>
-    <p>Welcome back to AIRA. Today we are diving deep into a comprehensive review of a groundbreaking AI productivity tool designed to transform developer workflows.</p>
-  </div>
-
-  <div>
-    <h2>🌟 Tool Spotlight: Overview & What It Does</h2>
-    <p>This platform combines modern language models with a deeply integrated workspace, allowing users to build and automate complex tasks in minutes.</p>
-    
-    <div style="background: #F8FAFC; border: 1px solid #E4E4E7; border-left: 4px solid #10B981; border-radius: 8px; padding: 20px; margin: 24px 0;">
-      <h4 style="margin-top: 0; margin-bottom: 12px; font-size: 1.1rem; color: #0F172A;">⚡ Quick Specifications</h4>
-      <p style="margin: 6px 0;"><strong>Category:</strong> AI Coding & Productivity</p>
-      <p style="margin: 6px 0;"><strong>Pricing:</strong> Free Starter tier / $20 per month Pro</p>
-      <p style="margin: 6px 0;"><strong>Key Integrations:</strong> GitHub, VS Code, Slack, Terminal</p>
-      <p style="margin: 6px 0;"><strong>Best For:</strong> Engineers, Designers, and Solo Founders</p>
-    </div>
-  </div>
-
-  <div>
-    <h3>🚀 Top 3 Killer Features</h3>
-    <ul>
-      <li><strong>1. Autonomous Workspace Agents:</strong> Handles multi-file refactoring, dependency updates, and automated testing without manual intervention.</li>
-      <li><strong>2. Infinite Context Indexing:</strong> Searches and recalls entire project codebases with zero latency.</li>
-      <li><strong>3. One-Click Staging Deployments:</strong> Generates live shareable previews with temporary sandbox environments.</li>
-    </ul>
-  </div>
-
-  <div>
-    <h3>⚖️ Pros & Cons</h3>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">
-      <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 18px; border-radius: 8px;">
-        <strong style="color: #166534; font-size: 1rem;">✅ What We Loved</strong>
-        <ul style="margin: 10px 0 0 16px; padding: 0; font-size: 0.95rem; line-height: 1.6;">
-          <li>Blazing fast response times</li>
-          <li>Accurate multi-file reasoning</li>
-          <li>Generous free monthly quota</li>
-        </ul>
-      </div>
-      <div style="background: #FEF2F2; border: 1px solid #FECACA; padding: 18px; border-radius: 8px;">
-        <strong style="color: #991B1B; font-size: 1rem;">⚠️ What Needs Work</strong>
-        <ul style="margin: 10px 0 0 16px; padding: 0; font-size: 0.95rem; line-height: 1.6;">
-          <li>Requires fast internet connection</li>
-          <li>Steep learning curve for custom plugins</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <h3>💡 The AIRA Verdict</h3>
-    <p>Overall Score: <strong>9.2 / 10</strong>. A must-try tool for any modern creator or engineer looking to 10x their output.</p>
-  </div>
-
-  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
-    Until next time,<br><strong>AIRA</strong>
-  </div>
-</div>`
+      cardData: {
+        intro: 'Welcome back to AIRA. Today we are diving deep into a comprehensive review of a groundbreaking AI productivity tool designed to transform developer workflows.',
+        stories: [
+          {
+            tag: 'TOOL SPOTLIGHT',
+            title: 'Overview & What It Does',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Platform interface and workflow automation',
+            imageLink: '',
+            body: 'This platform combines modern language models with a deeply integrated workspace, allowing users to build and automate complex tasks in minutes.\n\nKey Specs:\n• Category: AI Coding & Productivity\n• Pricing: Free Starter tier / $20 per month Pro\n• Best For: Engineers, Designers, and Solo Founders',
+            takeaway: 'Saves 5-10 hours weekly for active developers.',
+            quote: '',
+            quoteAuthor: ''
+          },
+          {
+            tag: 'VERDICT',
+            title: 'Top Features & Final Score',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Benchmark results vs alternatives',
+            imageLink: '',
+            body: 'Top Features:\n1. Autonomous Workspace Agents: Multi-file refactoring without manual intervention.\n2. Infinite Context Indexing: Instant codebase recall.\n3. One-Click Staging Deployments.\n\nOverall Score: 9.2 / 10. A must-try tool for any modern creator or engineer.',
+            takeaway: 'Start on the free tier to benchmark against your existing stack.',
+            quote: '',
+            quoteAuthor: ''
+          }
+        ],
+        tools: [],
+        newsbites: [],
+        signoff: 'Until next time,\nAIRA'
+      }
     },
     {
       id: 'prompt-tutorial',
       name: '💡 AI Prompt & Step-by-Step Tutorial',
       tag: 'Prompts',
       readingTime: '4 minutes',
-      desc: 'Goal explanation + Copyable master prompt block + Step-by-step tutorial + Pro tips',
+      desc: 'Goal + Copyable master prompt + Step-by-step tutorial + Pro-tips',
       sampleTitle: 'Master Prompting: The Exact Framework to Generate Flawless Code',
       sampleSubtitle: 'Step-by-Step Guide, Copy-Paste Prompt Template, and Real-World Examples',
-      body: `<div id="content-blocks">
-  <div>
-    <p>Welcome to AIRA's prompt engineering masterclass. In this edition, we share an exact formula you can use right away to generate clean, bug-free outputs from any frontier model.</p>
-  </div>
-
-  <div>
-    <h2>🎯 Why Generic Prompts Fail</h2>
-    <p>Most people give models vague instructions like <em>"Write code for a login page"</em>. The model has to guess constraints, framework choices, and security considerations.</p>
-    <p>Instead, structured role prompting with constraints yields 10x better results.</p>
-  </div>
-
-  <div>
-    <h2>📋 The Master Copy-Paste Prompt</h2>
-    <p>Copy this prompt directly into ChatGPT, Claude, or Gemini:</p>
-    
-    <div style="background: #18181B; color: #F4F4F5; padding: 22px; border-radius: 8px; font-family: monospace; font-size: 0.875rem; line-height: 1.6; margin: 20px 0; border: 1px solid #27272A; white-space: pre-wrap;">Act as a Senior AI Software Architect. Your task is to design and implement:
-
-[INSERT TASK / FEATURE DESCRIPTION HERE]
-
-Tech Stack & Constraints:
-- Architecture: Clean, modular, responsive
-- Performance: Zero unnecessary dependencies
-- Error Handling: Comprehensive edge case validation
-
-Output Format:
-1. High-level architectural overview (3 bullet points)
-2. Complete, copy-paste ready code block with comments
-3. Verification and test cases</div>
-  </div>
-
-  <div>
-    <h3>🛠️ Step-by-Step Implementation</h3>
-    <ol>
-      <li><strong>Step 1: Set the Persona & Role:</strong> Clearly define the expertise level you expect.</li>
-      <li><strong>Step 2: Provide Domain Constraints:</strong> List libraries, frameworks, or database schemas.</li>
-      <li><strong>Step 3: Force Verification:</strong> Ask the model to double-check its logic before producing the final code.</li>
-    </ol>
-  </div>
-
-  <div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 24px 0;">
-    <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 Pro-Tip:</strong> Always include one "Bad Example" in your prompt to show the model what mistakes to specifically avoid.</p>
-  </div>
-
-  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
-    Until next time,<br><strong>AIRA</strong>
-  </div>
-</div>`
-    },
-    {
-      id: 'weekly-roundup',
-      name: '⚡ Weekly AI Roundup (Top 5 Stories)',
-      tag: 'News',
-      readingTime: '3 minutes',
-      desc: '5 Numbered stories with clean highlights, stats, and takeaways',
-      sampleTitle: 'The AI Weekly: 5 Major Breakthroughs You Might Have Missed',
-      sampleSubtitle: 'Model Releases, Open Source Surprises, and Global Policy Updates',
-      body: `<div id="content-blocks">
-  <div>
-    <p>Welcome back to AIRA's weekly roundup. Here is our curated summary of the 5 most important developments in artificial intelligence this week.</p>
-  </div>
-
-  <div>
-    <h2>1. 🤖 Major Model Upgrade Released</h2>
-    <p>A new frontier model release has shattered previous reasoning benchmarks across mathematics, coding, and logical inference.</p>
-    <ul>
-      <li><strong>Key Stat:</strong> Achieved a 94.2% score on competitive coding benchmarks.</li>
-      <li><strong>Impact:</strong> Available to all developers via API at 50% lower cost per token.</li>
-    </ul>
-  </div>
-
-  <div>
-    <h2>2. 🧠 Open Source Innovation Surges</h2>
-    <p>A new open-weights model capable of running locally on consumer laptops has been released, matching models 5x its size.</p>
-  </div>
-
-  <div>
-    <h2>3. ⚡ Autonomous AI Agents in Production</h2>
-    <p>Leading tech companies report that automated AI agents are now resolving over 40% of standard IT tickets without human intervention.</p>
-  </div>
-
-  <div>
-    <h2>4. 💼 Venture Capital & Tech Mergers</h2>
-    <p>Over $4.2B in venture funding was deployed this week into specialized AI hardware and energy infrastructure startups.</p>
-  </div>
-
-  <div>
-    <h2>5. 🛡️ Global Safety & Governance Guidelines</h2>
-    <p>International regulatory bodies convened to establish universal evaluation standards for autonomous AI agents.</p>
-  </div>
-
-  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
-    Until next time,<br><strong>AIRA</strong>
-  </div>
-</div>`
+      cardData: {
+        intro: 'Welcome to AIRA\'s prompt engineering masterclass. In this edition, we share an exact formula you can use right away to generate clean, bug-free outputs from any frontier model.',
+        stories: [
+          {
+            tag: 'THE FRAMEWORK',
+            title: 'Why Generic Prompts Fail & The Solution',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Structured prompt framework architecture',
+            imageLink: '',
+            body: 'Most people give models vague instructions like "Write code for a login page". The model has to guess constraints, framework choices, and security considerations.\n\nInstead, structured role prompting with explicit constraints yields 10x better results.',
+            takeaway: 'Always define the Persona, Task, Tech Constraints, and Output Format.',
+            quote: '',
+            quoteAuthor: ''
+          },
+          {
+            tag: 'STEP-BY-STEP',
+            title: 'How to Implement the Framework',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Execution workflow in Claude & ChatGPT',
+            imageLink: '',
+            body: 'Follow these 3 steps:\n• Step 1: Set the Persona & Role (define seniority).\n• Step 2: Provide Domain Constraints (list libraries & schemas).\n• Step 3: Force Verification (ask model to double-check its logic before producing output).',
+            takeaway: 'Always include one "Bad Example" to show the model what mistakes to avoid.',
+            quote: '',
+            quoteAuthor: ''
+          }
+        ],
+        tools: [],
+        newsbites: [],
+        signoff: 'Until next time,\nAIRA'
+      }
     },
     {
       id: 'blank-clean',
-      name: '📄 Clean Minimal Starter',
+      name: '📄 Clean Simple Starter',
       tag: 'News',
       readingTime: '3 minutes',
-      desc: 'Minimal clean layout with header, paragraph, bullet list, and signoff',
+      desc: 'Single story starter with image, description, and takeaway',
       sampleTitle: 'Title of Your New Article Edition',
       sampleSubtitle: 'Subtitle or key highlight of this edition',
-      body: `<div id="content-blocks">
-  <div>
-    <p>Welcome back to AIRA — your essential intelligence briefing on cutting-edge AI breakthroughs, models, tools, and tutorials.</p>
-  </div>
-
-  <div>
-    <h2>Main Section Title</h2>
-    <p>Write your article content here...</p>
-    <ul>
-      <li><strong>Key Point 1:</strong> Detail here.</li>
-      <li><strong>Key Point 2:</strong> Detail here.</li>
-    </ul>
-  </div>
-
-  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">
-    Until next time,<br><strong>AIRA</strong>
-  </div>
-</div>`
+      cardData: {
+        intro: 'Welcome back to AIRA — your essential intelligence briefing on cutting-edge AI breakthroughs, models, tools, and tutorials.',
+        stories: [
+          {
+            tag: '01: MAIN STORY',
+            title: 'Main Headline of Your Story',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Image Source: AIRA Intelligence',
+            imageLink: '',
+            body: 'Write your story text here. Simply type paragraphs or bullet points directly.\n\nYou can easily upload your own picture or paste an image web link above.',
+            takeaway: 'Key takeaway or action item for your readers.',
+            quote: '',
+            quoteAuthor: ''
+          }
+        ],
+        tools: [],
+        newsbites: [],
+        signoff: 'Until next time,\nAIRA'
+      }
     }
   ];
 
-  const SNIPPETS = {
-    beehiiv_card: `
-<div class="beehiiv-card border-green">
-  <span class="beehiiv-tag">CATEGORY / TAG</span>
-  <h2 class="beehiiv-headline">
-    🌟 Story Title Here
-  </h2>
-  <p>Write your story breakdown paragraph here with <a href="#" class="beehiiv-link">bold highlight link</a>.</p>
-  <div class="beehiiv-takeaway">
-    <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Key action item or takeaway for readers.</p>
-  </div>
-</div>
-`,
-    beehiiv_banner: `
-<div class="beehiiv-card border-green">
-  <div class="beehiiv-banner-header">
-    THE SIGNAL
-  </div>
-  <p>Introductory briefing content goes here...</p>
-</div>
-`,
-    takeaway: `
-<div class="beehiiv-takeaway">
-  <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> Add actionable summary here.</p>
-</div>
-`,
-    quote: `
-<div class="beehiiv-quote">
-  "Add inspiring or key thought quote here."
-  <div class="author">— Author / Speaker</div>
-</div>
-`,
-    toolstack: `
-<div class="beehiiv-card border-green">
-  <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 0 0 14px 0;">
-    🛠️ Tool Stack of the Week:
-  </h3>
-  <div style="display: flex; flex-direction: column; gap: 10px;">
-    <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Tool Name 1</a>:</strong> Description of tool and capabilities.</p>
-    <p style="margin: 0;"><strong><a href="#" class="beehiiv-link">Tool Name 2</a>:</strong> Description of tool and capabilities.</p>
-  </div>
-</div>
-`,
-    h2: '\n<h2>🌟 Section Heading Here</h2>\n',
-    p: '\n<p>Write your detailed paragraph explanation here...</p>\n',
-    ul: '\n<ul>\n  <li><strong>Point 1:</strong> Key detail explanation.</li>\n  <li><strong>Point 2:</strong> Key detail explanation.</li>\n  <li><strong>Point 3:</strong> Key detail explanation.</li>\n</ul>\n',
-    perspective: '\n<div class="aira-perspective-box" style="background: #F8FAFC; border-left: 4px solid #18181B; border-radius: 8px; padding: 18px 22px; margin: 22px 0;">\n  <p style="margin: 0; font-size: 1rem; color: #18181B;"><strong>💡 AIRA Perspective:</strong> Add your analytical takeaway and future implications here.</p>\n</div>\n',
-    prompt: '\n<div style="background: #18181B; color: #F4F4F5; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.875rem; line-height: 1.6; margin: 20px 0; border: 1px solid #27272A; white-space: pre-wrap;">Act as a Senior AI Specialist.\n\nTask: [Insert Task Here]\n\nOutput Format:\n- Key Insights\n- Step-by-Step Plan</div>\n',
-    newsbites: '\n<div style="margin: 24px 0;">\n  <h4>⚡ ⚡ Quick AI News Bites</h4>\n  <ul>\n    <li><strong>Company A:</strong> Releases new model update with benchmark improvements.</li>\n    <li><strong>Company B:</strong> Announces major AI partnership for enterprise automation.</li>\n  </ul>\n</div>\n',
-    signoff: '\n<div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border);">\n  Until next week,<br><strong>AIRA</strong>\n</div>\n'
-  };
+  function parseBodyHtmlToCardData(html) {
+    const defaultData = ARTICLE_TEMPLATES[0].cardData;
+    if (!html || typeof html !== 'string' || !html.trim()) {
+      return JSON.parse(JSON.stringify(defaultData));
+    }
+    const strip = (s) => (s || '').replace(/<[^>]+>/g, '').trim();
 
-  function insertTextAtCursor(el, text) {
-    if (!el) return;
-    const start = el.selectionStart || 0;
-    const end = el.selectionEnd || 0;
-    const val = el.value;
-    el.value = val.substring(0, start) + text + val.substring(end);
-    el.selectionStart = el.selectionEnd = start + text.length;
-    el.focus();
+    if (html.includes('beehiiv-card')) {
+      const cardRegex = /<div class="beehiiv-card[^"]*">([\s\S]*?)<\/div>\s*(?=(?:<div class="beehiiv-card|<div class="author-signoff"|<\/div>\s*$))/gi;
+      const matches = [...html.matchAll(cardRegex)];
+      if (matches.length > 0) {
+        let intro = '';
+        const stories = [];
+        const tools = [];
+        const newsbites = [];
+        let signoff = 'Until next week,\nAIRA';
+
+        matches.forEach((m, idx) => {
+          const block = m[1];
+          if (block.includes('beehiiv-banner-header') || (idx === 0 && !block.includes('beehiiv-headline') && !block.includes('<h2') && !block.includes('<h3'))) {
+            intro = strip(block.replace(/<div class="beehiiv-banner-header"[\s\S]*?<\/div>/i, ''));
+          } else if (block.includes('Tool Stack') || block.includes('Featured AI Tools') || block.includes('🛠️')) {
+            const toolMatches = [...block.matchAll(/<strong><a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>:?<\/strong>\s*:?\s*([\s\S]*?)(?:<\/p>|$)/gi)];
+            toolMatches.forEach(tm => {
+              tools.push({
+                name: strip(tm[2]),
+                link: tm[1] === '#' ? '' : tm[1],
+                desc: strip(tm[3])
+              });
+            });
+          } else if (block.includes('News Bites') || block.includes('Quick AI News') || block.includes('⚡')) {
+            const biteMatches = [...block.matchAll(/<li>(?:<strong>)?([\s\S]*?)(?:<\/strong>)?\s*:?\s*([\s\S]*?)<\/li>/gi)];
+            biteMatches.forEach(bm => {
+              newsbites.push({
+                source: strip(bm[1]).replace(/:$/, ''),
+                text: strip(bm[2])
+              });
+            });
+          } else {
+            const tagM = block.match(/<span class="beehiiv-tag">([\s\S]*?)<\/span>/i);
+            const headM = block.match(/<h[23][^>]*class="beehiiv-headline"[^>]*>([\s\S]*?)<\/h[23]>/i) || block.match(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/i);
+            const imgM = block.match(/<img[^>]+src="([^">]+)"[^>]*>/i);
+            const linkM = block.match(/<a[^>]+href="([^">]+)"[^>]*>\s*<img/i);
+            const captionM = block.match(/<(?:small|p)[^>]*class="beehiiv-caption"[^>]*>([\s\S]*?)<\/(?:small|p)>/i) || block.match(/<small[^>]*>([\s\S]*?)<\/small>/i);
+            const takeawayM = block.match(/<div class="beehiiv-takeaway">([\s\S]*?)<\/div>/i);
+            const quoteM = block.match(/<div class="beehiiv-quote">([\s\S]*?)<\/div>/i);
+            let quoteAuthor = '';
+            let quoteText = '';
+            if (quoteM) {
+              const authorM = quoteM[1].match(/<div class="author">([\s\S]*?)<\/div>/i);
+              if (authorM) quoteAuthor = strip(authorM[1]).replace(/^[—–-]\s*/, '');
+              quoteText = strip(quoteM[1].replace(/<div class="author"[\s\S]*?<\/div>/i, '')).replace(/^"|"$/g, '');
+            }
+
+            let bodyText = block
+              .replace(/<span class="beehiiv-tag"[\s\S]*?<\/span>/gi, '')
+              .replace(/<h[23][\s\S]*?<\/h[23]>/gi, '')
+              .replace(/<div class="section-image-box"[\s\S]*?<\/div>/gi, '')
+              .replace(/<img[^>]*>/gi, '')
+              .replace(/<div class="beehiiv-takeaway"[\s\S]*?<\/div>/gi, '')
+              .replace(/<div class="beehiiv-quote"[\s\S]*?<\/div>/gi, '')
+              .trim();
+
+            stories.push({
+              tag: tagM ? strip(tagM[1]) : `Story ${stories.length + 1}`,
+              title: headM ? strip(headM[1]) : 'Story Headline',
+              image: imgM ? imgM[1] : '',
+              imageCaption: captionM ? strip(captionM[1]) : '',
+              imageLink: linkM ? linkM[1] : '',
+              body: bodyText,
+              takeaway: takeawayM ? strip(takeawayM[1]).replace(/^Takeaway:\s*/i, '') : '',
+              quote: quoteText,
+              quoteAuthor: quoteAuthor
+            });
+          }
+        });
+
+        const signoffM = html.match(/<div class="author-signoff"[^>]*>([\s\S]*?)<\/div>/i);
+        if (signoffM) signoff = strip(signoffM[1].replace(/<br\s*\/?>/gi, '\n'));
+
+        return {
+          intro: intro || defaultData.intro,
+          stories: stories.length > 0 ? stories : defaultData.stories,
+          tools: tools.length > 0 ? tools : defaultData.tools,
+          newsbites: newsbites.length > 0 ? newsbites : defaultData.newsbites,
+          signoff
+        };
+      }
+    }
+
+    const headingRegex = /<h([234])[^>]*>([\s\S]*?)<\/h\1>/gi;
+    const matches = [...html.matchAll(headingRegex)];
+    
+    if (matches.length > 0) {
+      const introHtml = html.slice(0, matches[0].index).replace(/^<div id="content-blocks">\s*(?:<div>)?/i, '').trim();
+      const stories = [];
+      const tools = [];
+      const newsbites = [];
+
+      matches.forEach((m, i) => {
+        const nextStart = (i + 1 < matches.length) ? matches[i + 1].index : html.length;
+        const sectionContent = html.slice(m.index + m[0].length, nextStart);
+        const title = strip(m[2]);
+
+        if (title.includes('Featured AI Tools') || title.includes('Tool Stack') || title.includes('🛠️')) {
+          const toolMatches = [...sectionContent.matchAll(/<strong><a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>:?<\/strong>\s*:?\s*([\s\S]*?)(?:<\/p>|$)/gi)];
+          toolMatches.forEach(tm => {
+            tools.push({
+              name: strip(tm[2]),
+              link: tm[1] === '#' ? '' : tm[1],
+              desc: strip(tm[3])
+            });
+          });
+        } else if (title.includes('News Bites') || title.includes('Quick AI News') || title.includes('⚡')) {
+          const biteMatches = [...sectionContent.matchAll(/<li>(?:<strong>)?([\s\S]*?)(?:<\/strong>)?\s*:?\s*([\s\S]*?)<\/li>/gi)];
+          biteMatches.forEach(bm => {
+            newsbites.push({
+              source: strip(bm[1]).replace(/:$/, ''),
+              text: strip(bm[2])
+            });
+          });
+        } else {
+          const imgM = sectionContent.match(/<img[^>]+src="([^">]+)"[^>]*>/i);
+          const linkM = sectionContent.match(/<a[^>]+href="([^">]+)"[^>]*>\s*<img/i);
+          const captionM = sectionContent.match(/<small[^>]*>([\s\S]*?)<\/small>/i) || sectionContent.match(/<p[^>]*class="[^"]*caption[^"]*"[^>]*>([\s\S]*?)<\/p>/i);
+          const takeawayM = sectionContent.match(/<div class="[^"]*(?:takeaway|perspective)[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+
+          let cleanBody = sectionContent
+            .replace(/<div class="section-image-box"[\s\S]*?<\/div>/gi, '')
+            .replace(/<img[^>]*>/gi, '')
+            .replace(/<div class="[^"]*(?:takeaway|perspective)[^"]*"[\s\S]*?<\/div>/gi, '')
+            .replace(/<div class="author-signoff"[\s\S]*?<\/div>/gi, '')
+            .replace(/<\/div>\s*<\/div>\s*$/i, '')
+            .trim();
+
+          stories.push({
+            tag: `0${stories.length + 1}: ${title.split(':')[0] || 'STORY'}`.slice(0, 24).toUpperCase(),
+            title: title.replace(/^[\d\s.:\p{Emoji}]+/u, '').trim() || title,
+            image: imgM ? imgM[1] : '',
+            imageCaption: captionM ? strip(captionM[1]) : '',
+            imageLink: linkM ? linkM[1] : '',
+            body: cleanBody,
+            takeaway: takeawayM ? strip(takeawayM[1]).replace(/^.*?(?:Takeaway|Perspective):\s*/i, '') : '',
+            quote: '',
+            quoteAuthor: ''
+          });
+        }
+      });
+
+      const signoffM = html.match(/<div class="author-signoff"[^>]*>([\s\S]*?)<\/div>/i);
+      const signoff = signoffM ? strip(signoffM[1].replace(/<br\s*\/?>/gi, '\n')) : 'Until next week,\nAIRA';
+
+      return {
+        intro: strip(introHtml) || defaultData.intro,
+        stories: stories.length > 0 ? stories : defaultData.stories,
+        tools: tools.length > 0 ? tools : defaultData.tools,
+        newsbites: newsbites.length > 0 ? newsbites : defaultData.newsbites,
+        signoff
+      };
+    }
+
+    return JSON.parse(JSON.stringify(defaultData));
+  }
+
+  function compileCardDataToHtml(cardData) {
+    let html = '<div id="content-blocks">\n';
+
+    if (cardData.intro && cardData.intro.trim()) {
+      html += '  <div class="beehiiv-card border-green" style="margin-bottom: 24px;">\n';
+      html += '    <div class="beehiiv-banner-header">THE SIGNAL</div>\n';
+      const introLines = cardData.intro.trim().split(/\n\n+/);
+      introLines.forEach(line => {
+        html += `    <p>${line.trim().replace(/\n/g, '<br/>')}</p>\n`;
+      });
+      html += '  </div>\n\n';
+    }
+
+    if (Array.isArray(cardData.stories)) {
+      cardData.stories.forEach((story, idx) => {
+        html += `  <!-- Story Card ${idx + 1} -->\n`;
+        html += '  <div class="beehiiv-card border-green">\n';
+        
+        if (story.tag && story.tag.trim()) {
+          html += `    <span class="beehiiv-tag">${story.tag.trim()}</span>\n`;
+        }
+        
+        if (story.title && story.title.trim()) {
+          html += `    <h2 class="beehiiv-headline">${story.title.trim()}</h2>\n`;
+        }
+
+        if (story.image && story.image.trim()) {
+          html += '    <div class="section-image-box" style="margin: 18px 0; text-align: center;">\n';
+          if (story.imageLink && story.imageLink.trim()) {
+            html += `      <a href="${story.imageLink.trim()}" target="_blank" rel="noopener noreferrer">\n`;
+            html += `        <img src="${story.image.trim()}" alt="${(story.title || 'Story image').replace(/"/g, '&quot;')}" class="section-inline-img" style="width: 100%; max-height: 440px; object-fit: cover; border-radius: 8px;" loading="lazy" />\n`;
+            html += '      </a>\n';
+          } else {
+            html += `      <img src="${story.image.trim()}" alt="${(story.title || 'Story image').replace(/"/g, '&quot;')}" class="section-inline-img" style="width: 100%; max-height: 440px; object-fit: cover; border-radius: 8px;" loading="lazy" />\n`;
+          }
+          if (story.imageCaption && story.imageCaption.trim()) {
+            html += `      <small><p class="beehiiv-caption">${story.imageCaption.trim()}</p></small>\n`;
+          }
+          html += '    </div>\n';
+        }
+
+        if (story.body && story.body.trim()) {
+          const bodyContent = story.body.trim();
+          if (bodyContent.includes('<p>') || bodyContent.includes('<ul>') || bodyContent.includes('<div>')) {
+            html += `    ${bodyContent}\n`;
+          } else {
+            const paras = bodyContent.split(/\n\n+/).filter(p => p.trim());
+            paras.forEach(p => {
+              html += `    <p>${p.trim().replace(/\n/g, '<br/>')}</p>\n`;
+            });
+          }
+        }
+
+        if (story.takeaway && story.takeaway.trim()) {
+          html += `    <div class="beehiiv-takeaway">\n      <p style="margin: 0; color: #166534; font-size: 0.95rem;"><strong>Takeaway:</strong> ${story.takeaway.trim()}</p>\n    </div>\n`;
+        }
+
+        if (story.quote && story.quote.trim()) {
+          html += `    <div class="beehiiv-quote">\n      "${story.quote.trim()}"\n`;
+          if (story.quoteAuthor && story.quoteAuthor.trim()) {
+            html += `      <div class="author">— ${story.quoteAuthor.trim()}</div>\n`;
+          }
+          html += '    </div>\n';
+        }
+
+        html += '  </div>\n\n';
+      });
+    }
+
+    if (Array.isArray(cardData.tools) && cardData.tools.length > 0) {
+      html += '  <!-- Featured Tools -->\n';
+      html += '  <div class="beehiiv-card border-green">\n';
+      html += '    <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 0 0 14px 0;">\n';
+      html += '      🛠️ Tool Stack of the Week:\n';
+      html += '    </h3>\n';
+      html += '    <div style="display: flex; flex-direction: column; gap: 10px;">\n';
+      cardData.tools.forEach(t => {
+        html += `      <p style="margin: 0;"><strong><a href="${t.link || '#'}" class="beehiiv-link" target="_blank">${t.name || 'Tool'}</a>:</strong> ${t.desc || ''}</p>\n`;
+      });
+      html += '    </div>\n';
+      html += '  </div>\n\n';
+    }
+
+    if (Array.isArray(cardData.newsbites) && cardData.newsbites.length > 0) {
+      html += '  <!-- Quick News Bites -->\n';
+      html += '  <div class="beehiiv-card border-green">\n';
+      html += '    <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 0 0 14px 0;">\n';
+      html += '      ⚡ Quick AI News Bites\n';
+      html += '    </h3>\n';
+      html += '    <ul style="margin: 0 0 0 20px; padding: 0; line-height: 1.6;">\n';
+      cardData.newsbites.forEach(b => {
+        html += `      <li><strong>${b.source || 'News'}:</strong> ${b.text || ''}</li>\n`;
+      });
+      html += '    </ul>\n';
+      html += '  </div>\n\n';
+    }
+
+    if (cardData.signoff && cardData.signoff.trim()) {
+      html += '  <div class="author-signoff" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 1rem;">\n';
+      html += `    ${cardData.signoff.trim().replace(/\n/g, '<br/>')}\n`;
+      html += '  </div>\n';
+    }
+
+    html += '</div>';
+    return html;
   }
 
   // Image Optimizer Helper (Converts file to clean compressed Data URL)
@@ -1377,612 +1400,1104 @@ Output Format:
 
     const isCustomized = !!localStorage.getItem('aira_custom_articles');
 
-    // IF EDITING AN ARTICLE: Render Full-Screen Inline Editor Studio
+    // IF EDITING AN ARTICLE: Render Visual Card-by-Card Builder Studio
     if (state.adminEditingArticle) {
       const art = state.adminEditingArticle;
       const isNew = !!art.isNew;
+      let cardData = parseBodyHtmlToCardData(art.body_html || '');
+      let activeTab = 'cards'; // 'cards' | 'preview'
+      let activeImageTarget = null; // { type: 'cover' } or { type: 'story', index: i }
 
-      appContainer.innerHTML = `
-        <section class="admin-page-view" style="padding: 36px 0 80px 0;">
-          <div class="container" style="max-width: 980px;">
-            <!-- Top Action Header -->
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
-              <button type="button" id="btn-back-to-list" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
-                ← Back to Articles List
-              </button>
-              
-              <div style="display: flex; gap: 10px; align-items: center;">
-                ${!isNew ? `
-                  <a href="#/p/${art.slug}" target="_blank" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; text-decoration: none; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px;">
-                    👁️ View Live ↗
-                  </a>
-                ` : ''}
-                <button type="submit" form="inline-article-form" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 24px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
-                  💾 Save & Publish
+      function renderEditorUi() {
+        appContainer.innerHTML = `
+          <section class="admin-page-view" style="padding: 32px 0 80px 0;">
+            <div class="container" style="max-width: 980px;">
+              <!-- Top Action Bar -->
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+                <button type="button" id="btn-back-to-list" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+                  ← Back to Articles List
                 </button>
-              </div>
-            </div>
-
-            <!-- Editor Card -->
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
-              <div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border);">
-                <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Article Studio</span>
-                <h2 style="font-family: var(--font-header); font-size: 1.75rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">
-                  ${isNew ? '➕ Create New Article Edition' : '✏️ Edit Article: ' + (art.title || '')}
-                </h2>
-              </div>
-
-              <!-- Ready-Made Template Selector Bar -->
-              <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px 20px; margin-bottom: 28px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                  <span style="font-weight: 700; font-size: 0.95rem; color: #0F172A; display: inline-flex; align-items: center; gap: 6px;">
-                    ✨ Article Templates (Click to Load)
-                  </span>
-                  <span style="color: var(--color-text-muted); font-size: 0.8125rem;">Select any template to instantly load pre-formatted layouts</span>
+                
+                <!-- View Mode Switcher: Cards Builder vs Live Preview -->
+                <div style="display: inline-flex; background: #F1F5F9; border-radius: 8px; padding: 3px; border: 1px solid #E2E8F0;">
+                  <button type="button" id="tab-cards-mode" class="editor-view-toggle ${activeTab === 'cards' ? 'active' : ''}" style="border: none; background: ${activeTab === 'cards' ? '#FFFFFF' : 'transparent'}; font-weight: 700; font-size: 0.8125rem; padding: 7px 16px; border-radius: 6px; cursor: pointer; color: ${activeTab === 'cards' ? '#0F172A' : '#64748B'}; box-shadow: ${activeTab === 'cards' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'};">
+                    🎴 Visual Cards Builder
+                  </button>
+                  <button type="button" id="tab-preview-mode" class="editor-view-toggle ${activeTab === 'preview' ? 'active' : ''}" style="border: none; background: ${activeTab === 'preview' ? '#FFFFFF' : 'transparent'}; font-weight: 700; font-size: 0.8125rem; padding: 7px 16px; border-radius: 6px; cursor: pointer; color: ${activeTab === 'preview' ? '#0F172A' : '#64748B'}; box-shadow: ${activeTab === 'preview' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'};">
+                    👁️ Live Article Preview
+                  </button>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
-                  ${ARTICLE_TEMPLATES.map(tmpl => `
-                    <button type="button" class="btn-select-template" data-template-id="${tmpl.id}" style="text-align: left; background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px 14px; cursor: pointer;">
-                      <div style="font-weight: 700; font-size: 0.875rem; color: #1E293B; margin-bottom: 3px;">${tmpl.name}</div>
-                      <div style="font-size: 0.75rem; color: #64748B; line-height: 1.35;">${tmpl.desc}</div>
-                    </button>
-                  `).join('')}
+
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  ${!isNew ? `
+                    <a href="#/p/${art.slug}" target="_blank" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; text-decoration: none; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px;">
+                      👁️ View Live ↗
+                    </a>
+                  ` : ''}
+                  <button type="submit" form="inline-article-form" style="background: #00BA66; color: #FFFFFF; font-weight: 700; padding: 9px 24px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; border: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0,186,102,0.25);">
+                    💾 Save & Publish
+                  </button>
                 </div>
               </div>
 
-              <form id="inline-article-form" class="article-edit-form">
-                <input type="hidden" id="edit-orig-slug" value="${art.slug || ''}" />
-                <input type="hidden" id="edit-is-new-val" value="${isNew ? 'true' : 'false'}" />
-
-                <div class="form-grid-row">
-                  <div class="form-group">
-                    <label class="form-label">Article Title *</label>
-                    <input type="text" id="editor-title" class="form-control-input" value="${(art.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. Anthropic Unveils Claude 3.7 Sonnet" required />
+              <!-- Main Card Container -->
+              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+                
+                <!-- Studio Header -->
+                <div style="margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                  <div>
+                    <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Visual Article Studio</span>
+                    <h2 style="font-family: var(--font-header); font-size: 1.75rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">
+                      ${isNew ? '➕ Create New Article Edition' : '✏️ Edit Article: ' + (art.title || '')}
+                    </h2>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label">URL Slug *</label>
-                    <input type="text" id="editor-slug" class="form-control-input" value="${art.slug || ''}" placeholder="e.g. anthropic-unveils-claude-3-7" required />
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Subtitle / Sub-headline</label>
-                  <input type="text" id="editor-subtitle" class="form-control-input" value="${(art.subtitle || '').replace(/"/g, '&quot;')}" placeholder="e.g. Plus: How to Turn Off the Gemini Watermark" />
-                </div>
-
-                <div class="form-grid-row form-grid-3">
-                  <div class="form-group">
-                    <label class="form-label">Category Tag *</label>
-                    <select id="editor-tag" class="form-control-input">
-                      <option value="News" ${art.tag === 'News' ? 'selected' : ''}>News</option>
-                      <option value="Prompts" ${art.tag === 'Prompts' ? 'selected' : ''}>Prompts & Guides</option>
-                      <option value="AI Tools" ${art.tag === 'AI Tools' ? 'selected' : ''}>AI Tools</option>
-                      <option value="Tutorials" ${art.tag === 'Tutorials' ? 'selected' : ''}>Tutorials</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Publication Date</label>
-                    <input type="text" id="editor-date" class="form-control-input" value="${art.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}" />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Reading Time</label>
-                    <input type="text" id="editor-reading-time" class="form-control-input" value="${art.reading_time || '4 minutes'}" />
+                  <div style="background: #E8FDF2; color: #047857; font-weight: 700; font-size: 0.8125rem; padding: 6px 14px; border-radius: 20px; border: 1px solid #A7F3D0; display: inline-flex; align-items: center; gap: 6px;">
+                    ✨ 100% Visual Form (No HTML Code Needed)
                   </div>
                 </div>
 
-                <div class="form-grid-row">
-                  <div class="form-group">
-                    <label class="form-label">Cover Image URL / Upload</label>
-                    <div style="display: flex; gap: 8px; align-items: center;">
-                      <input type="url" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" style="flex: 1;" placeholder="https://... or upload" />
-                      <label for="editor-cover-file-input" style="background: #18181B; color: #FFFFFF; font-weight: 600; font-size: 0.8125rem; padding: 10px 14px; border-radius: var(--radius-sm); cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;" title="Upload photo from device">
-                        📁 Upload Cover
-                        <input type="file" id="editor-cover-file-input" accept="image/*" style="display: none;" />
-                      </label>
-                    </div>
+                <!-- Ready-Made Template Selector Bar -->
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px 20px; margin-bottom: 28px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 0.95rem; color: #0F172A; display: inline-flex; align-items: center; gap: 6px;">
+                      ✨ Ready-Made Templates (Click to Auto-Fill Cards)
+                    </span>
+                    <span style="color: var(--color-text-muted); font-size: 0.8125rem;">Select any template to populate story cards & layout</span>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label">Author Name</label>
-                    <input type="text" id="editor-author" class="form-control-input" value="${art.author || 'AIRA'}" />
-                  </div>
-                </div>
-
-                <!-- Body Editor with Visual WYSIWYG & HTML Mode -->
-                <div class="form-group" style="margin-top: 14px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
-                    <div>
-                      <label class="form-label" style="margin: 0; font-size: 0.95rem; font-weight: 700;">Article Body Studio *</label>
-                      <span style="font-size: 0.8125rem; color: #047857; font-weight: 600; margin-left: 6px;">✨ Visual Interactive Editor (Click & Type Directly)</span>
-                    </div>
-                    
-                    <!-- Mode Toggle: Visual vs HTML Code -->
-                    <div style="display: inline-flex; background: #F1F5F9; border-radius: 6px; padding: 2px;">
-                      <button type="button" id="tab-visual-mode" class="editor-view-toggle active" style="border: none; background: #FFFFFF; font-weight: 700; font-size: 0.78rem; padding: 6px 14px; border-radius: 4px; cursor: pointer; color: #0F172A; box-shadow: 0 1px 2px rgba(0,0,0,0.08);">✨ Visual Editor</button>
-                      <button type="button" id="tab-code-mode" class="editor-view-toggle" style="border: none; background: transparent; font-weight: 600; font-size: 0.78rem; padding: 6px 14px; border-radius: 4px; cursor: pointer; color: #64748B;">📝 HTML Code</button>
-                    </div>
-                  </div>
-
-                  <!-- Visual Toolbar -->
-                  <div id="editor-rich-toolbar" class="editor-rich-toolbar">
-                    <!-- Row 1: Formatting Tools -->
-                    <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
-                      <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #64748B; margin-right: 4px;">Format:</span>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="createLink" title="Insert Link">🔗 Link</button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="unlink" title="Remove Link">🔗✕</button>
-                      <span style="color: #CBD5E1; margin: 0 2px;">|</span>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="formatBlock" data-val="H2" title="H2 Heading">H2</button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="formatBlock" data-val="H3" title="H3 Subheading">H3</button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="formatBlock" data-val="P" title="Normal Paragraph">P</button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="insertUnorderedList" title="Bullet List">• List</button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="insertOrderedList" title="Numbered List">1. List</button>
-                      <button type="button" class="editor-rich-btn btn-rich-format" data-cmd="removeFormat" title="Clear Formatting">🧹 Clear</button>
-                    </div>
-
-                    <!-- Row 2: Beehiiv Components & Cards Inserter -->
-                    <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding-top: 6px; border-top: 1px solid #E2E8F0;">
-                      <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #047857; margin-right: 4px;">🐝 Beehiiv Cards:</span>
-                      <button type="button" id="btn-open-image-studio" class="btn-component-insert" style="background: #18181B; color: #FFFFFF; font-weight: 700; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
-                        🖼️ + Add / Upload Image
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+                    ${ARTICLE_TEMPLATES.map(tmpl => `
+                      <button type="button" class="btn-select-template" data-template-id="${tmpl.id}" style="text-align: left; background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px 14px; cursor: pointer; transition: all 0.15s ease;">
+                        <div style="font-weight: 700; font-size: 0.875rem; color: #1E293B; margin-bottom: 3px;">${tmpl.name}</div>
+                        <div style="font-size: 0.75rem; color: #64748B; line-height: 1.35;">${tmpl.desc}</div>
                       </button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="beehiiv_card" style="background: #E8FDF2; color: #047857; font-weight: 700; border: 1px solid #A7F3D0;">+ 🟢 Story Card</button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="beehiiv_banner" style="background: #E8FDF2; color: #047857; font-weight: 700; border: 1px solid #A7F3D0;">+ 🏷️ Banner</button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="takeaway" style="background: #FEF3C7; color: #92400E; font-weight: 700; border: 1px solid #FDE68A;">+ 💡 Takeaway</button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="toolstack" style="background: #EFF6FF; color: #1D4ED8; font-weight: 700; border: 1px solid #BFDBFE;">+ 🛠️ Tool Stack</button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="quote" style="background: #F3E8FF; color: #6B21A8; font-weight: 700; border: 1px solid #E9D5FF;">+ 💬 Quote Box</button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="prompt" style="background: #FFFFFF; color: #18181B; font-weight: 600; border: 1px solid #CBD5E1;">📋 Prompt Box</button>
-                      <button type="button" class="btn-component-insert btn-insert-visual-block" data-block="signoff" style="background: #FFFFFF; color: #18181B; font-weight: 600; border: 1px solid #CBD5E1;">✍️ Signoff</button>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- FORM -->
+                <form id="inline-article-form" class="article-edit-form">
+                  <input type="hidden" id="edit-orig-slug" value="${art.slug || ''}" />
+                  <input type="hidden" id="edit-is-new-val" value="${isNew ? 'true' : 'false'}" />
+
+                  <!-- ============================================== -->
+                  <!-- VIEW 1: VISUAL CARDS BUILDER -->
+                  <!-- ============================================== -->
+                  <div id="view-cards-builder" style="display: ${activeTab === 'cards' ? 'block' : 'none'};">
+                    
+                    <!-- Section 1: Article Header & Cover Photo -->
+                    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+                      <h3 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
+                        📌 1. Article Details & Cover Photo
+                      </h3>
+                      
+                      <div class="form-grid-row">
+                        <div class="form-group">
+                          <label class="form-label">Article Title *</label>
+                          <input type="text" id="editor-title" class="form-control-input" value="${(art.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. Practical AI Plays, Shipped Fast" required />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">URL Slug *</label>
+                          <input type="text" id="editor-slug" class="form-control-input" value="${art.slug || ''}" placeholder="e.g. practical-ai-plays" required />
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">Subtitle / Sub-headline</label>
+                        <input type="text" id="editor-subtitle" class="form-control-input" value="${(art.subtitle || '').replace(/"/g, '&quot;')}" placeholder="e.g. Plus: How to Turn Off the Gemini Watermark" />
+                      </div>
+
+                      <div class="form-grid-row form-grid-3">
+                        <div class="form-group">
+                          <label class="form-label">Category Tag *</label>
+                          <select id="editor-tag" class="form-control-input">
+                            <option value="News" ${art.tag === 'News' ? 'selected' : ''}>News</option>
+                            <option value="Prompts" ${art.tag === 'Prompts' ? 'selected' : ''}>Prompts & Guides</option>
+                            <option value="AI Tools" ${art.tag === 'AI Tools' ? 'selected' : ''}>AI Tools</option>
+                            <option value="Tutorials" ${art.tag === 'Tutorials' ? 'selected' : ''}>Tutorials</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Publication Date</label>
+                          <input type="text" id="editor-date" class="form-control-input" value="${art.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}" />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Reading Time</label>
+                          <input type="text" id="editor-reading-time" class="form-control-input" value="${art.reading_time || '4 minutes'}" />
+                        </div>
+                      </div>
+
+                      <!-- Article Cover Image Box with Live Preview & Direct Upload -->
+                      <div class="form-group" style="margin-top: 14px;">
+                        <label class="form-label" style="display: flex; justify-content: space-between;">
+                          <span>Article Cover Picture *</span>
+                          <span style="font-weight: 400; color: #64748B;">Upload photo or paste web link</span>
+                        </label>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: center; background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 14px;">
+                          <div style="text-align: center;">
+                            <img id="editor-cover-preview-img" src="${art.image_url || 'assets/logo.jpg'}" alt="Cover Preview" style="width: 130px; height: 86px; border-radius: 6px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
+                          </div>
+                          
+                          <div>
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                              <label class="btn-upload-photo-direct" style="padding: 8px 16px;">
+                                📷 Upload Cover Photo
+                                <input type="file" id="editor-cover-file-input" accept="image/*" style="display: none;" />
+                              </label>
+                              <button type="button" id="btn-modal-cover-img" class="btn-story-action">
+                                🌐 Advanced Image Tool
+                              </button>
+                            </div>
+                            <input type="url" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" placeholder="https://... or uploaded photo" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group" style="margin-top: 14px; margin-bottom: 0;">
+                        <label class="form-label">Author Name</label>
+                        <input type="text" id="editor-author" class="form-control-input" value="${art.author || 'AIRA'}" />
+                      </div>
+                    </div>
+
+                    <!-- Section 2: Newsletter Briefing / Intro (The Signal) -->
+                    <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: #166534; margin: 0; display: flex; align-items: center; gap: 6px;">
+                          📢 2. Newsletter Briefing / Intro Banner (THE SIGNAL)
+                        </h3>
+                        <span style="font-size: 0.78rem; font-weight: 600; color: #166534; background: #DCFCE7; padding: 3px 10px; border-radius: 12px;">Top Banner</span>
+                      </div>
+                      <p style="font-size: 0.8125rem; color: #15803D; margin-bottom: 10px;">Short executive intro or briefing summarizing what readers will learn in this edition.</p>
+                      <textarea id="editor-intro-text" class="form-control-textarea" rows="3" placeholder="Welcome back to AIRA... In this edition: story 1, story 2, and key tools.">${cardData.intro || ''}</textarea>
+                    </div>
+
+                    <!-- Section 3: Story Cards Section -->
+                    <div style="margin-bottom: 24px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                        <div>
+                          <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin: 0; display: flex; align-items: center; gap: 8px;">
+                            📰 3. Story Cards (<span id="story-count-badge">${cardData.stories.length}</span> Stories)
+                          </h3>
+                          <p style="font-size: 0.8125rem; color: #64748B; margin-top: 2px;">Each story card has its own title, picture, description text, and takeaway.</p>
+                        </div>
+                        <button type="button" id="btn-add-story-top" class="btn-save-modal" style="background: #18181B; padding: 8px 18px; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
+                          ➕ Add Story Card
+                        </button>
+                      </div>
+
+                      <!-- Container where individual story cards render -->
+                      <div id="story-cards-container">
+                        <!-- Rendered via renderStoryCardsList() -->
+                      </div>
+
+                      <!-- Big Add Story Button at bottom -->
+                      <button type="button" id="btn-add-story-bottom" class="btn-add-card-big">
+                        ➕ Add Another Story Card
+                      </button>
+                    </div>
+
+                    <!-- Section 4: Featured Tools (Optional) -->
+                    <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: #1E40AF; margin: 0; display: flex; align-items: center; gap: 6px;">
+                          🛠️ 4. Featured AI Tools of the Week (Optional)
+                        </h3>
+                        <button type="button" id="btn-add-tool-row" class="btn-story-action" style="background: #FFFFFF; color: #1E40AF; border-color: #93C5FD; font-weight: 700;">
+                          ➕ Add Tool
+                        </button>
+                      </div>
+                      <div id="tools-rows-container">
+                        <!-- Rendered via renderToolsList() -->
+                      </div>
+                    </div>
+
+                    <!-- Section 5: Quick News Bites (Optional) -->
+                    <div style="background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: #92400E; margin: 0; display: flex; align-items: center; gap: 6px;">
+                          ⚡ 5. Quick AI News Bites (Optional)
+                        </h3>
+                        <button type="button" id="btn-add-newsbite-row" class="btn-story-action" style="background: #FFFFFF; color: #92400E; border-color: #FCD34D; font-weight: 700;">
+                          ➕ Add News Bite
+                        </button>
+                      </div>
+                      <div id="newsbites-rows-container">
+                        <!-- Rendered via renderNewsbitesList() -->
+                      </div>
+                    </div>
+
+                    <!-- Section 6: Author Signoff -->
+                    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+                      <h3 style="font-size: 1.05rem; font-weight: 800; color: #0F172A; margin: 0 0 10px 0; display: flex; align-items: center; gap: 6px;">
+                        ✍️ 6. Signoff Note
+                      </h3>
+                      <textarea id="editor-signoff-text" class="form-control-textarea" rows="2" placeholder="Until next week,
+AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
+                    </div>
+
+                  </div>
+
+                  <!-- ============================================== -->
+                  <!-- VIEW 2: LIVE INTERACTIVE PREVIEW -->
+                  <!-- ============================================== -->
+                  <div id="view-live-preview" style="display: ${activeTab === 'preview' ? 'block' : 'none'};">
+                    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                      <span style="font-weight: 700; font-size: 0.875rem; color: #047857; display: inline-flex; align-items: center; gap: 6px;">
+                        💡 Live Preview Mode: Click on any photo to change/replace it with 1 click!
+                      </span>
+                      <button type="button" id="btn-return-to-builder" style="background: #18181B; color: #FFFFFF; font-size: 0.8125rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; border: none;">
+                        ← Back to Cards Builder
+                      </button>
+                    </div>
+
+                    <!-- Live Rendered Newsletter Canvas -->
+                    <div id="live-preview-canvas" class="article-rich-body" style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 32px 28px; background: #FFFFFF; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+                      <!-- Injected via updateLivePreviewCanvas() -->
                     </div>
                   </div>
 
-                  <!-- Helpful Visual Tip -->
-                  <div id="visual-editor-tip" style="margin-bottom: 8px; font-size: 0.78rem; color: #64748B; display: flex; align-items: center; gap: 6px;">
-                    <span>💡 <strong>Tip:</strong> Neeche diye hue visual cards ya text par kahin bhi click karein aur directly Word / Notion ki tarah likhein!</span>
+                  <!-- Bottom Submit & Cancel Actions -->
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--color-border); flex-wrap: wrap; gap: 12px;">
+                    <button type="button" id="btn-cancel-inline-editor" class="btn-cancel-modal">
+                      ✕ Cancel & Discard
+                    </button>
+                    
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                      <button type="button" id="btn-switch-preview-bottom" style="background: #F4F4F5; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 11px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                        ${activeTab === 'cards' ? '👁️ Preview Live Newsletter' : '🎴 Edit Cards'}
+                      </button>
+                      <button type="submit" class="btn-save-modal" style="font-size: 0.95rem; padding: 11px 32px; background: #00BA66; border: none; font-weight: 700; box-shadow: 0 2px 10px rgba(0,186,102,0.25);">
+                        💾 Save & Publish Article
+                      </button>
+                    </div>
                   </div>
 
-                  <!-- Visual Canvas (Default WYSIWYG) -->
-                  <div id="editor-visual-canvas" class="article-rich-body beehiiv-visual-canvas" contenteditable="true" spellcheck="true">${art.body_html || ''}</div>
-
-                  <!-- Textarea Code Editor (Hidden by default, shown in HTML mode) -->
-                  <textarea id="editor-body" class="form-control-textarea" style="display: none; min-height: 480px; font-family: monospace; font-size: 0.875rem;">${art.body_html || ''}</textarea>
-                </div>
-
-                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border);">
-                  <button type="button" id="btn-cancel-inline-editor" class="btn-cancel-modal">Cancel</button>
-                  <button type="submit" class="btn-save-modal" style="font-size: 0.95rem; padding: 11px 28px;">💾 Save & Publish</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <!-- Beehiiv Image Inserter Modal -->
-        <div class="modal-overlay" id="beehiiv-image-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
-          <div class="modal-card" style="max-width: 520px; width: 100%; padding: 26px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 20px 50px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border);">
-              <div>
-                <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #18181B; margin: 0;">🖼️ Insert Image (Beehiiv Style)</h3>
-                <p style="color: var(--color-text-muted); font-size: 0.8125rem; margin-top: 2px;">Upload from device or paste web link with caption & link</p>
+                </form>
               </div>
-              <button type="button" id="btn-close-img-modal" style="background: transparent; border: none; font-size: 1.3rem; cursor: pointer; color: #71717A; padding: 4px 8px;">✕</button>
             </div>
+          </section>
 
-            <!-- Mode Selector Tabs -->
-            <div style="display: flex; gap: 8px; margin-bottom: 16px; background: #F4F4F5; padding: 4px; border-radius: 8px;">
-              <button type="button" id="tab-img-upload" class="modal-tab-btn active">📁 Upload from Device</button>
-              <button type="button" id="tab-img-url" class="modal-tab-btn">🌐 Image Web URL</button>
-            </div>
+          <!-- Universal Beehiiv Image Replacer Modal -->
+          <div class="modal-overlay" id="beehiiv-image-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+            <div class="modal-card" style="max-width: 520px; width: 100%; padding: 26px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 20px 50px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border);">
+                <div>
+                  <h3 style="font-family: var(--font-header); font-size: 1.25rem; font-weight: 800; color: #18181B; margin: 0;">🖼️ Upload & Replace Picture</h3>
+                  <p style="color: var(--color-text-muted); font-size: 0.8125rem; margin-top: 2px;">Upload from device or paste web link with caption & link</p>
+                </div>
+                <button type="button" id="btn-close-img-modal" style="background: transparent; border: none; font-size: 1.3rem; cursor: pointer; color: #71717A; padding: 4px 8px;">✕</button>
+              </div>
 
-            <!-- Upload Zone -->
-            <div id="section-img-upload" style="margin-bottom: 16px;">
-              <label for="modal-img-file" class="image-drop-zone" id="modal-img-dropzone">
-                <div style="font-size: 2.2rem; margin-bottom: 6px;">📤</div>
-                <div style="font-weight: 700; font-size: 0.92rem; color: #1E293B;">Click to select or drag image here</div>
-                <div style="font-size: 0.75rem; color: #64748B; margin-top: 4px;">Supports PNG, JPG, WebP, GIF (Auto-optimized)</div>
-                <input type="file" id="modal-img-file" accept="image/*" style="display: none;" />
-              </label>
-            </div>
+              <!-- Mode Selector Tabs -->
+              <div style="display: flex; gap: 8px; margin-bottom: 16px; background: #F4F4F5; padding: 4px; border-radius: 8px;">
+                <button type="button" id="tab-img-upload" class="modal-tab-btn active">📁 Upload from Device</button>
+                <button type="button" id="tab-img-url" class="modal-tab-btn">🌐 Image Web URL</button>
+              </div>
 
-            <!-- Web URL Zone -->
-            <div id="section-img-url" style="display: none; margin-bottom: 16px;">
-              <label class="form-label" style="font-size: 0.8125rem;">Image Direct URL *</label>
-              <input type="url" id="modal-img-url-input" class="form-control-input" placeholder="https://example.com/image.jpg" />
-            </div>
+              <!-- Upload Zone -->
+              <div id="section-img-upload" style="margin-bottom: 16px;">
+                <label for="modal-img-file" class="image-drop-zone" id="modal-img-dropzone">
+                  <div style="font-size: 2.2rem; margin-bottom: 6px;">📤</div>
+                  <div style="font-weight: 700; font-size: 0.92rem; color: #1E293B;">Click to select photo or drag here</div>
+                  <div style="font-size: 0.75rem; color: #64748B; margin-top: 4px;">Supports PNG, JPG, WebP (Auto-optimized)</div>
+                  <input type="file" id="modal-img-file" accept="image/*" style="display: none;" />
+                </label>
+              </div>
 
-            <!-- Caption / Source Credit -->
-            <div style="margin-bottom: 14px;">
-              <label class="form-label" style="font-size: 0.8125rem;">Caption & Source Credit (Optional)</label>
-              <input type="text" id="modal-img-caption-input" class="form-control-input" placeholder="e.g. Image Source: OpenAI / Midjourney / Reuters" />
-            </div>
+              <!-- Web URL Zone -->
+              <div id="section-img-url" style="display: none; margin-bottom: 16px;">
+                <label class="form-label" style="font-size: 0.8125rem;">Image Direct URL *</label>
+                <input type="url" id="modal-img-url-input" class="form-control-input" placeholder="https://example.com/image.jpg" />
+              </div>
 
-            <!-- Destination Link on Image -->
-            <div style="margin-bottom: 14px;">
-              <label class="form-label" style="font-size: 0.8125rem;">Clickable Link on Image (Optional)</label>
-              <input type="url" id="modal-img-link-input" class="form-control-input" placeholder="https://... (When reader clicks photo)" />
-            </div>
+              <!-- Caption / Source Credit -->
+              <div style="margin-bottom: 14px;">
+                <label class="form-label" style="font-size: 0.8125rem;">Caption & Source Credit (Optional)</label>
+                <input type="text" id="modal-img-caption-input" class="form-control-input" placeholder="e.g. Image Source: OpenAI / Midjourney / AIRA" />
+              </div>
 
-            <!-- Alt Text -->
-            <div style="margin-bottom: 16px;">
-              <label class="form-label" style="font-size: 0.8125rem;">Alt Text / Description (Optional)</label>
-              <input type="text" id="modal-img-alt-input" class="form-control-input" placeholder="e.g. AI Model Architecture Diagram" />
-            </div>
+              <!-- Destination Link on Image -->
+              <div style="margin-bottom: 14px;">
+                <label class="form-label" style="font-size: 0.8125rem;">Clickable Link on Image (Optional)</label>
+                <input type="url" id="modal-img-link-input" class="form-control-input" placeholder="https://... (When reader clicks photo)" />
+              </div>
 
-            <!-- Live Preview Card inside Modal -->
-            <div id="modal-img-preview-card" style="display: none; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px; margin-bottom: 18px; text-align: center;">
-              <div style="font-size: 0.75rem; font-weight: 700; color: #64748B; text-align: left; margin-bottom: 8px;">LIVE PREVIEW:</div>
-              <img id="modal-img-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" />
-              <div id="modal-img-preview-caption-text" style="font-size: 0.75rem; color: #64748B; margin-top: 6px; font-style: italic;"></div>
-            </div>
+              <!-- Live Preview Card inside Modal -->
+              <div id="modal-img-preview-card" style="display: none; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px; margin-bottom: 18px; text-align: center;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: #64748B; text-align: left; margin-bottom: 8px;">IMAGE PREVIEW:</div>
+                <img id="modal-img-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" />
+                <div id="modal-img-preview-caption-text" style="font-size: 0.75rem; color: #64748B; margin-top: 6px; font-style: italic;"></div>
+              </div>
 
-            <!-- Modal Footer Actions -->
-            <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--color-border); padding-top: 16px;">
-              <button type="button" id="btn-cancel-img-modal" class="btn-cancel-modal" style="padding: 9px 18px; font-size: 0.875rem;">Cancel</button>
-              <button type="button" id="btn-insert-img-confirm" class="btn-save-modal" style="padding: 9px 22px; font-size: 0.875rem;">✨ Insert into Article</button>
+              <!-- Modal Footer Actions -->
+              <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--color-border); padding-top: 16px;">
+                <button type="button" id="btn-cancel-img-modal" class="btn-cancel-modal" style="padding: 9px 18px; font-size: 0.875rem;">Cancel</button>
+                <button type="button" id="btn-insert-img-confirm" class="btn-save-modal" style="padding: 9px 22px; font-size: 0.875rem; background: #00BA66;">✨ Apply Picture</button>
+              </div>
             </div>
           </div>
-        </div>
-      `;
+        `;
 
-      // Bind Back Button
-      document.getElementById('btn-back-to-list')?.addEventListener('click', () => {
-        state.adminEditingArticle = null;
-        renderAdminPage();
-      });
+        // Render sub-components
+        renderStoryCardsList();
+        renderToolsList();
+        renderNewsbitesList();
+        bindEditorEvents();
+      }
 
-      document.getElementById('btn-cancel-inline-editor')?.addEventListener('click', () => {
-        state.adminEditingArticle = null;
-        renderAdminPage();
-      });
+      // Render all story cards into DOM
+      function renderStoryCardsList() {
+        const container = document.getElementById('story-cards-container');
+        const countBadge = document.getElementById('story-count-badge');
+        if (countBadge) countBadge.textContent = cardData.stories.length;
+        if (!container) return;
 
-      // Cover Image File Upload Handler
-      const coverFileInput = document.getElementById('editor-cover-file-input');
-      const coverUrlInput = document.getElementById('editor-image');
-      if (coverFileInput && coverUrlInput) {
-        coverFileInput.addEventListener('change', async (e) => {
-          const file = e.target.files?.[0];
-          if (file) {
-            try {
-              showToast('Optimizing cover image... ⏳');
-              const dataUrl = await readAndOptimizeImage(file, 1400, 900, 0.85);
-              coverUrlInput.value = dataUrl;
-              showToast('Cover image ready! 🖼️');
-            } catch (err) {
-              showToast('Error loading image. Please try another file.');
-            }
+        container.innerHTML = cardData.stories.map((story, idx) => `
+          <div class="story-builder-card" data-story-idx="${idx}">
+            <!-- Card Header -->
+            <div class="story-builder-header">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="story-badge">Story #${idx + 1}</span>
+                <input type="text" class="form-control-input story-inp-tag" value="${(story.tag || '').replace(/"/g, '&quot;')}" placeholder="Category Tag (e.g. 01: BREAKTHROUGH)" style="max-width: 240px; font-size: 0.8125rem; padding: 4px 10px; font-weight: 700;" />
+              </div>
+              
+              <div class="story-actions-bar">
+                ${idx > 0 ? `<button type="button" class="btn-story-action btn-move-story-up" data-idx="${idx}" title="Move story up">⬆️</button>` : ''}
+                ${idx < cardData.stories.length - 1 ? `<button type="button" class="btn-story-action btn-move-story-down" data-idx="${idx}" title="Move story down">⬇️</button>` : ''}
+                ${cardData.stories.length > 1 ? `<button type="button" class="btn-story-action btn-story-delete btn-delete-story" data-idx="${idx}" title="Delete this story card">🗑️ Delete</button>` : ''}
+              </div>
+            </div>
+
+            <!-- Story Title -->
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label class="form-label" style="font-size: 0.8125rem; font-weight: 700;">Story Headline / Title *</label>
+              <input type="text" class="form-control-input story-inp-title" value="${(story.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. AI Models Are Passing Real-World Benchmarks" required style="font-weight: 700; font-size: 1.05rem;" />
+            </div>
+
+            <!-- Story Picture Card with 1-Click Upload & Live Preview -->
+            <div class="story-image-preview-box">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.8125rem; font-weight: 700; color: #334155;">📷 Story Picture & Caption:</span>
+                ${story.image ? `<button type="button" class="btn-story-action btn-remove-story-img" data-idx="${idx}" style="color: #DC2626; font-size: 0.75rem;">✕ Remove Photo</button>` : ''}
+              </div>
+
+              <div style="display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: center; text-align: left;">
+                <div style="text-align: center;">
+                  <img src="${story.image || 'assets/logo.jpg'}" class="story-img-preview" alt="Story preview" style="width: 130px; height: 90px; border-radius: 6px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
+                </div>
+                <div>
+                  <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                    <label class="btn-upload-photo-direct">
+                      📷 Upload Photo
+                      <input type="file" class="story-file-upload-input" data-idx="${idx}" accept="image/*" style="display: none;" />
+                    </label>
+                    <button type="button" class="btn-story-action btn-open-story-img-modal" data-idx="${idx}">
+                      🌐 Replace / Link Photo
+                    </button>
+                  </div>
+                  <input type="url" class="form-control-input story-inp-image" value="${story.image || ''}" data-idx="${idx}" placeholder="https://... or uploaded image" style="font-size: 0.8125rem; margin-bottom: 6px;" />
+                  <input type="text" class="form-control-input story-inp-caption" value="${(story.imageCaption || '').replace(/"/g, '&quot;')}" placeholder="Caption & Credit (e.g. Image Source: OpenAI / AIRA)" style="font-size: 0.8125rem;" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Story Body Content / Paragraphs -->
+            <div class="form-group" style="margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label class="form-label" style="font-size: 0.8125rem; font-weight: 700; margin: 0;">Story Text & Paragraphs *</label>
+                <div style="display: flex; gap: 4px;">
+                  <button type="button" class="btn-story-action btn-format-story" data-idx="${idx}" data-tag="b" title="Add Bold text" style="padding: 2px 8px;"><b>B</b></button>
+                  <button type="button" class="btn-story-action btn-format-story" data-idx="${idx}" data-tag="i" title="Add Italic text" style="padding: 2px 8px;"><i>I</i></button>
+                  <button type="button" class="btn-story-action btn-format-story" data-idx="${idx}" data-tag="link" title="Add Link" style="padding: 2px 8px;">🔗</button>
+                  <button type="button" class="btn-story-action btn-format-story" data-idx="${idx}" data-tag="bullet" title="Add Bullet point" style="padding: 2px 8px;">• List</button>
+                </div>
+              </div>
+              <textarea class="form-control-textarea story-inp-body" rows="5" placeholder="Write your story breakdown and details here. Simply type paragraphs or bullet points without any code.">${story.body || ''}</textarea>
+            </div>
+
+            <!-- Key Takeaway Box -->
+            <div class="form-group" style="margin-bottom: 10px; background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px 14px; border-radius: 8px;">
+              <label class="form-label" style="color: #166534; font-size: 0.8125rem; font-weight: 700; margin-bottom: 4px;">💡 Key Takeaway (Green Highlight Box)</label>
+              <input type="text" class="form-control-input story-inp-takeaway" value="${(story.takeaway || '').replace(/"/g, '&quot;')}" placeholder="e.g. Actionable advice or takeaway for the reader" style="background: #FFFFFF;" />
+            </div>
+
+            <!-- Quote Box (Optional) -->
+            <div style="display: grid; grid-template-columns: 1fr 200px; gap: 10px;">
+              <div class="form-group" style="margin: 0;">
+                <input type="text" class="form-control-input story-inp-quote" value="${(story.quote || '').replace(/"/g, '&quot;')}" placeholder="💬 Quote (Optional): e.g. The next wave of AI isn't chatbots..." style="font-size: 0.8125rem;" />
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <input type="text" class="form-control-input story-inp-quote-author" value="${(story.quoteAuthor || '').replace(/"/g, '&quot;')}" placeholder="Quote Author (e.g. Jensen Huang)" style="font-size: 0.8125rem;" />
+              </div>
+            </div>
+
+          </div>
+        `).join('');
+
+        bindStoryCardEvents();
+      }
+
+      // Render tools list
+      function renderToolsList() {
+        const container = document.getElementById('tools-rows-container');
+        if (!container) return;
+
+        if (!cardData.tools || cardData.tools.length === 0) {
+          container.innerHTML = `<div style="font-size: 0.8125rem; color: #64748B; font-style: italic;">No featured tools added yet. Click "+ Add Tool" above to add tools to this edition.</div>`;
+          return;
+        }
+
+        container.innerHTML = cardData.tools.map((tool, idx) => `
+          <div style="display: grid; grid-template-columns: 180px 220px 1fr 40px; gap: 8px; margin-bottom: 8px; align-items: center;" class="tool-row" data-tool-idx="${idx}">
+            <input type="text" class="form-control-input tool-inp-name" value="${(tool.name || '').replace(/"/g, '&quot;')}" placeholder="Tool Name (e.g. Flux Pro)" style="font-size: 0.8125rem; font-weight: 700;" />
+            <input type="url" class="form-control-input tool-inp-link" value="${tool.link || ''}" placeholder="Link (https://...)" style="font-size: 0.8125rem;" />
+            <input type="text" class="form-control-input tool-inp-desc" value="${(tool.desc || '').replace(/"/g, '&quot;')}" placeholder="Brief description of capability..." style="font-size: 0.8125rem;" />
+            <button type="button" class="btn-story-action btn-delete-tool" data-idx="${idx}" style="color: #DC2626; padding: 6px;" title="Remove tool">✕</button>
+          </div>
+        `).join('');
+
+        container.querySelectorAll('.btn-delete-tool').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            syncFormDataToCardData();
+            cardData.tools.splice(idx, 1);
+            renderToolsList();
+          });
+        });
+      }
+
+      // Render newsbites list
+      function renderNewsbitesList() {
+        const container = document.getElementById('newsbites-rows-container');
+        if (!container) return;
+
+        if (!cardData.newsbites || cardData.newsbites.length === 0) {
+          container.innerHTML = `<div style="font-size: 0.8125rem; color: #92400E; font-style: italic;">No quick news bites added yet. Click "+ Add News Bite" above to add 1-line rapid updates.</div>`;
+          return;
+        }
+
+        container.innerHTML = cardData.newsbites.map((bite, idx) => `
+          <div style="display: grid; grid-template-columns: 200px 1fr 40px; gap: 8px; margin-bottom: 8px; align-items: center;" class="newsbite-row" data-bite-idx="${idx}">
+            <input type="text" class="form-control-input bite-inp-source" value="${(bite.source || '').replace(/"/g, '&quot;')}" placeholder="Source / Company (e.g. OpenAI)" style="font-size: 0.8125rem; font-weight: 700;" />
+            <input type="text" class="form-control-input bite-inp-text" value="${(bite.text || '').replace(/"/g, '&quot;')}" placeholder="One-line news update..." style="font-size: 0.8125rem;" />
+            <button type="button" class="btn-story-action btn-delete-bite" data-idx="${idx}" style="color: #DC2626; padding: 6px;" title="Remove news bite">✕</button>
+          </div>
+        `).join('');
+
+        container.querySelectorAll('.btn-delete-bite').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            syncFormDataToCardData();
+            cardData.newsbites.splice(idx, 1);
+            renderNewsbitesList();
+          });
+        });
+      }
+
+      // Sync form inputs to cardData in memory
+      function syncFormDataToCardData() {
+        const introEl = document.getElementById('editor-intro-text');
+        if (introEl) cardData.intro = introEl.value.trim();
+
+        const signoffEl = document.getElementById('editor-signoff-text');
+        if (signoffEl) cardData.signoff = signoffEl.value.trim();
+
+        // Sync story cards
+        const storyCardsEls = document.querySelectorAll('.story-builder-card');
+        storyCardsEls.forEach((cardEl, idx) => {
+          if (cardData.stories[idx]) {
+            const tag = cardEl.querySelector('.story-inp-tag')?.value.trim() || '';
+            const title = cardEl.querySelector('.story-inp-title')?.value.trim() || '';
+            const image = cardEl.querySelector('.story-inp-image')?.value.trim() || '';
+            const caption = cardEl.querySelector('.story-inp-caption')?.value.trim() || '';
+            const link = cardEl.querySelector('.story-inp-link')?.value.trim() || '';
+            const body = cardEl.querySelector('.story-inp-body')?.value.trim() || '';
+            const takeaway = cardEl.querySelector('.story-inp-takeaway')?.value.trim() || '';
+            const quote = cardEl.querySelector('.story-inp-quote')?.value.trim() || '';
+            const quoteAuthor = cardEl.querySelector('.story-inp-quote-author')?.value.trim() || '';
+
+            cardData.stories[idx] = {
+              ...cardData.stories[idx],
+              tag,
+              title,
+              image,
+              imageCaption: caption,
+              imageLink: link,
+              body,
+              takeaway,
+              quote,
+              quoteAuthor
+            };
+          }
+        });
+
+        // Sync tools
+        const toolRows = document.querySelectorAll('.tool-row');
+        cardData.tools = [];
+        toolRows.forEach(row => {
+          const name = row.querySelector('.tool-inp-name')?.value.trim() || '';
+          const link = row.querySelector('.tool-inp-link')?.value.trim() || '';
+          const desc = row.querySelector('.tool-inp-desc')?.value.trim() || '';
+          if (name || desc) {
+            cardData.tools.push({ name, link, desc });
+          }
+        });
+
+        // Sync newsbites
+        const biteRows = document.querySelectorAll('.newsbite-row');
+        cardData.newsbites = [];
+        biteRows.forEach(row => {
+          const source = row.querySelector('.bite-inp-source')?.value.trim() || '';
+          const text = row.querySelector('.bite-inp-text')?.value.trim() || '';
+          if (source || text) {
+            cardData.newsbites.push({ source, text });
           }
         });
       }
 
-      // Auto-generate slug on typing title when new
-      const titleInp = document.getElementById('editor-title');
-      const slugInp = document.getElementById('editor-slug');
-      if (titleInp && slugInp && isNew) {
-        titleInp.addEventListener('input', () => {
-          slugInp.value = titleInp.value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      // Update Live Interactive Preview Canvas
+      function updateLivePreviewCanvas() {
+        syncFormDataToCardData();
+        const canvas = document.getElementById('live-preview-canvas');
+        if (!canvas) return;
+
+        const compiledHtml = compileCardDataToHtml(cardData);
+        canvas.innerHTML = compiledHtml;
+
+        // Wrap every image in live preview with 1-click replace overlay
+        const previewImages = canvas.querySelectorAll('img');
+        previewImages.forEach((img, idx) => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'live-preview-image-wrap';
+          wrapper.title = 'Click to replace or upload picture';
+          img.parentNode.insertBefore(wrapper, img);
+          wrapper.appendChild(img);
+
+          const overlay = document.createElement('div');
+          overlay.className = 'img-overlay-edit';
+          overlay.innerHTML = '<span>📷 Click to Replace Picture</span>';
+          wrapper.appendChild(overlay);
+
+          wrapper.addEventListener('click', () => {
+            // Find corresponding story
+            const storyIdx = Math.min(idx, cardData.stories.length - 1);
+            openImageModal({ type: 'story', index: storyIdx });
+          });
         });
       }
 
-      // Beehiiv Image Inserter Modal Logic
-      const imgModal = document.getElementById('beehiiv-image-modal');
-      const openImgStudioBtn = document.getElementById('btn-open-image-studio');
-      const closeImgModalBtn = document.getElementById('btn-close-img-modal');
-      const cancelImgModalBtn = document.getElementById('btn-cancel-img-modal');
-      const tabImgUpload = document.getElementById('tab-img-upload');
-      const tabImgUrl = document.getElementById('tab-img-url');
-      const sectionImgUpload = document.getElementById('section-img-upload');
-      const sectionImgUrl = document.getElementById('section-img-url');
-      const modalImgFileInput = document.getElementById('modal-img-file');
-      const modalImgDropzone = document.getElementById('modal-img-dropzone');
-      const modalImgUrlInput = document.getElementById('modal-img-url-input');
-      const modalImgCaptionInput = document.getElementById('modal-img-caption-input');
-      const modalImgLinkInput = document.getElementById('modal-img-link-input');
-      const modalImgAltInput = document.getElementById('modal-img-alt-input');
-      const modalImgPreviewCard = document.getElementById('modal-img-preview-card');
-      const modalImgPreviewImg = document.getElementById('modal-img-preview-img');
-      const modalImgPreviewCaption = document.getElementById('modal-img-preview-caption-text');
-      const btnInsertImgConfirm = document.getElementById('btn-insert-img-confirm');
+      // Bind story cards internal events (upload file, delete, move up/down, format helpers)
+      function bindStoryCardEvents() {
+        // Direct Photo File Upload on Story Card
+        document.querySelectorAll('.story-file-upload-input').forEach(inp => {
+          inp.addEventListener('change', async (e) => {
+            const file = e.target.files?.[0];
+            const idx = parseInt(e.target.getAttribute('data-idx'));
+            if (file) {
+              try {
+                showToast('Optimizing picture... ⏳');
+                const dataUrl = await readAndOptimizeImage(file, 1200, 800, 0.85);
+                syncFormDataToCardData();
+                if (cardData.stories[idx]) {
+                  cardData.stories[idx].image = dataUrl;
+                }
+                renderStoryCardsList();
+                showToast('Story picture updated! 🖼️');
+              } catch (err) {
+                showToast('Could not load image file.');
+              }
+            }
+          });
+        });
 
-      let currentSelectedImgSrc = '';
+        // Image URL input live preview
+        document.querySelectorAll('.story-inp-image').forEach(inp => {
+          inp.addEventListener('input', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-idx'));
+            const cardEl = document.querySelector(`.story-builder-card[data-story-idx="${idx}"]`);
+            const previewImg = cardEl?.querySelector('.story-img-preview');
+            if (previewImg) {
+              previewImg.src = e.target.value.trim() || 'assets/logo.jpg';
+            }
+          });
+        });
 
-      function updateModalImagePreview() {
-        if (currentSelectedImgSrc) {
-          modalImgPreviewImg.src = currentSelectedImgSrc;
-          const caption = modalImgCaptionInput.value.trim();
-          modalImgPreviewCaption.textContent = caption || '';
-          modalImgPreviewCard.style.display = 'block';
-        } else {
-          modalImgPreviewCard.style.display = 'none';
-        }
+        // Open Image Modal for specific story
+        document.querySelectorAll('.btn-open-story-img-modal').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            openImageModal({ type: 'story', index: idx });
+          });
+        });
+
+        // Remove story image
+        document.querySelectorAll('.btn-remove-story-img').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            syncFormDataToCardData();
+            if (cardData.stories[idx]) {
+              cardData.stories[idx].image = '';
+              cardData.stories[idx].imageCaption = '';
+            }
+            renderStoryCardsList();
+            showToast('Picture removed from story.');
+          });
+        });
+
+        // Move story up
+        document.querySelectorAll('.btn-move-story-up').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            if (idx > 0) {
+              syncFormDataToCardData();
+              const item = cardData.stories.splice(idx, 1)[0];
+              cardData.stories.splice(idx - 1, 0, item);
+              renderStoryCardsList();
+            }
+          });
+        });
+
+        // Move story down
+        document.querySelectorAll('.btn-move-story-down').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            if (idx < cardData.stories.length - 1) {
+              syncFormDataToCardData();
+              const item = cardData.stories.splice(idx, 1)[0];
+              cardData.stories.splice(idx + 1, 0, item);
+              renderStoryCardsList();
+            }
+          });
+        });
+
+        // Delete story
+        document.querySelectorAll('.btn-delete-story').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            if (cardData.stories.length > 1) {
+              syncFormDataToCardData();
+              cardData.stories.splice(idx, 1);
+              renderStoryCardsList();
+              showToast('Story card removed.');
+            }
+          });
+        });
+
+        // Story Text formatting helpers (Bold, Italic, Link, List)
+        document.querySelectorAll('.btn-format-story').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            const tagType = e.currentTarget.getAttribute('data-tag');
+            const cardEl = document.querySelector(`.story-builder-card[data-story-idx="${idx}"]`);
+            const textarea = cardEl?.querySelector('.story-inp-body');
+            if (!textarea) return;
+
+            const start = textarea.selectionStart || 0;
+            const end = textarea.selectionEnd || 0;
+            const val = textarea.value;
+            const selectedText = val.substring(start, end);
+
+            let insertText = '';
+            if (tagType === 'b') {
+              insertText = selectedText ? `<strong>${selectedText}</strong>` : '<strong>bold text</strong>';
+            } else if (tagType === 'i') {
+              insertText = selectedText ? `<em>${selectedText}</em>` : '<em>italic text</em>';
+            } else if (tagType === 'link') {
+              const url = prompt('Enter link URL (e.g. https://example.com):', 'https://');
+              if (url && url !== 'https://') {
+                insertText = `<a href="${url}" class="beehiiv-link" target="_blank">${selectedText || 'link text'}</a>`;
+              }
+            } else if (tagType === 'bullet') {
+              insertText = '\n• ' + (selectedText || 'Key point detail here');
+            }
+
+            if (insertText) {
+              textarea.value = val.substring(0, start) + insertText + val.substring(end);
+              textarea.focus();
+              textarea.selectionStart = textarea.selectionEnd = start + insertText.length;
+            }
+          });
+        });
       }
 
-      function openImageModal() {
-        if (!imgModal) return;
-        currentSelectedImgSrc = '';
-        if (modalImgFileInput) modalImgFileInput.value = '';
-        if (modalImgUrlInput) modalImgUrlInput.value = '';
-        if (modalImgCaptionInput) modalImgCaptionInput.value = '';
-        if (modalImgLinkInput) modalImgLinkInput.value = '';
-        if (modalImgAltInput) modalImgAltInput.value = '';
-        updateModalImagePreview();
-        imgModal.style.display = 'flex';
+      // Universal Image Modal Logic
+      function openImageModal(target) {
+        activeImageTarget = target;
+        const modal = document.getElementById('beehiiv-image-modal');
+        const urlInput = document.getElementById('modal-img-url-input');
+        const captionInput = document.getElementById('modal-img-caption-input');
+        const linkInput = document.getElementById('modal-img-link-input');
+        const previewCard = document.getElementById('modal-img-preview-card');
+        const previewImg = document.getElementById('modal-img-preview-img');
+        const previewCaption = document.getElementById('modal-img-preview-caption-text');
+        const fileInput = document.getElementById('modal-img-file');
+
+        if (!modal) return;
+        if (fileInput) fileInput.value = '';
+
+        let currentImg = '';
+        let currentCaption = '';
+        let currentLink = '';
+
+        if (target.type === 'cover') {
+          const coverInput = document.getElementById('editor-image');
+          currentImg = coverInput ? coverInput.value.trim() : '';
+        } else if (target.type === 'story' && cardData.stories[target.index]) {
+          const s = cardData.stories[target.index];
+          currentImg = s.image || '';
+          currentCaption = s.imageCaption || '';
+          currentLink = s.imageLink || '';
+        }
+
+        if (urlInput) urlInput.value = currentImg;
+        if (captionInput) captionInput.value = currentCaption;
+        if (linkInput) linkInput.value = currentLink;
+
+        if (currentImg) {
+          if (previewImg) previewImg.src = currentImg;
+          if (previewCaption) previewCaption.textContent = currentCaption;
+          if (previewCard) previewCard.style.display = 'block';
+        } else {
+          if (previewCard) previewCard.style.display = 'none';
+        }
+
+        modal.style.display = 'flex';
       }
 
       function closeImageModal() {
-        if (!imgModal) return;
-        imgModal.style.display = 'none';
+        const modal = document.getElementById('beehiiv-image-modal');
+        if (modal) modal.style.display = 'none';
+        activeImageTarget = null;
       }
 
-      if (openImgStudioBtn) openImgStudioBtn.addEventListener('click', openImageModal);
-      if (closeImgModalBtn) closeImgModalBtn.addEventListener('click', closeImageModal);
-      if (cancelImgModalBtn) cancelImgModalBtn.addEventListener('click', closeImageModal);
-
-      // Tab switching in Image Modal
-      if (tabImgUpload && tabImgUrl) {
-        tabImgUpload.addEventListener('click', () => {
-          tabImgUpload.classList.add('active');
-          tabImgUrl.classList.remove('active');
-          if (sectionImgUpload) sectionImgUpload.style.display = 'block';
-          if (sectionImgUrl) sectionImgUrl.style.display = 'none';
+      // Bind all editor interactions
+      function bindEditorEvents() {
+        // Back and Cancel buttons
+        document.getElementById('btn-back-to-list')?.addEventListener('click', () => {
+          state.adminEditingArticle = null;
+          renderAdminPage();
         });
 
-        tabImgUrl.addEventListener('click', () => {
-          tabImgUrl.classList.add('active');
-          tabImgUpload.classList.remove('active');
-          if (sectionImgUpload) sectionImgUpload.style.display = 'none';
-          if (sectionImgUrl) sectionImgUrl.style.display = 'block';
+        document.getElementById('btn-cancel-inline-editor')?.addEventListener('click', () => {
+          state.adminEditingArticle = null;
+          renderAdminPage();
         });
-      }
 
-      // Handle Modal File Upload
-      if (modalImgFileInput) {
-        modalImgFileInput.addEventListener('change', async (e) => {
-          const file = e.target.files?.[0];
-          if (file) {
-            try {
-              showToast('Optimizing image... ⏳');
-              currentSelectedImgSrc = await readAndOptimizeImage(file, 1200, 800, 0.85);
-              if (!modalImgAltInput.value) {
-                modalImgAltInput.value = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
-              }
-              updateModalImagePreview();
-              showToast('Image ready! 🖼️');
-            } catch (err) {
-              showToast('Could not load image file.');
-            }
+        // Tab Switching: Cards Builder vs Live Preview
+        const tabCards = document.getElementById('tab-cards-mode');
+        const tabPreview = document.getElementById('tab-preview-mode');
+        const viewCards = document.getElementById('view-cards-builder');
+        const viewPreview = document.getElementById('view-live-preview');
+        const btnReturn = document.getElementById('btn-return-to-builder');
+        const btnSwitchBottom = document.getElementById('btn-switch-preview-bottom');
+
+        function setViewTab(tab) {
+          activeTab = tab;
+          if (tab === 'cards') {
+            if (viewCards) viewCards.style.display = 'block';
+            if (viewPreview) viewPreview.style.display = 'none';
+            if (tabCards) { tabCards.style.background = '#FFFFFF'; tabCards.style.color = '#0F172A'; tabCards.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)'; }
+            if (tabPreview) { tabPreview.style.background = 'transparent'; tabPreview.style.color = '#64748B'; tabPreview.style.boxShadow = 'none'; }
+            if (btnSwitchBottom) btnSwitchBottom.textContent = '👁️ Preview Live Newsletter';
+          } else {
+            syncFormDataToCardData();
+            updateLivePreviewCanvas();
+            if (viewCards) viewCards.style.display = 'none';
+            if (viewPreview) viewPreview.style.display = 'block';
+            if (tabPreview) { tabPreview.style.background = '#FFFFFF'; tabPreview.style.color = '#0F172A'; tabPreview.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)'; }
+            if (tabCards) { tabCards.style.background = 'transparent'; tabCards.style.color = '#64748B'; tabCards.style.boxShadow = 'none'; }
+            if (btnSwitchBottom) btnSwitchBottom.textContent = '🎴 Edit Cards';
           }
-        });
-      }
+        }
 
-      // Drag & Drop for Image Modal
-      if (modalImgDropzone) {
-        ['dragenter', 'dragover'].forEach(eventName => {
-          modalImgDropzone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            modalImgDropzone.classList.add('dragover');
+        if (tabCards) tabCards.addEventListener('click', () => setViewTab('cards'));
+        if (tabPreview) tabPreview.addEventListener('click', () => setViewTab('preview'));
+        if (btnReturn) btnReturn.addEventListener('click', () => setViewTab('cards'));
+        if (btnSwitchBottom) {
+          btnSwitchBottom.addEventListener('click', () => {
+            setViewTab(activeTab === 'cards' ? 'preview' : 'cards');
+          });
+        }
+
+        // Auto slug generator on new title
+        const titleInp = document.getElementById('editor-title');
+        const slugInp = document.getElementById('editor-slug');
+        if (titleInp && slugInp && isNew) {
+          titleInp.addEventListener('input', () => {
+            slugInp.value = titleInp.value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          });
+        }
+
+        // Cover Image direct file upload
+        const coverFileInput = document.getElementById('editor-cover-file-input');
+        const coverUrlInput = document.getElementById('editor-image');
+        const coverPreviewImg = document.getElementById('editor-cover-preview-img');
+        if (coverFileInput && coverUrlInput) {
+          coverFileInput.addEventListener('change', async (e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              try {
+                showToast('Optimizing cover image... ⏳');
+                const dataUrl = await readAndOptimizeImage(file, 1400, 900, 0.85);
+                coverUrlInput.value = dataUrl;
+                if (coverPreviewImg) coverPreviewImg.src = dataUrl;
+                showToast('Cover image ready! 🖼️');
+              } catch (err) {
+                showToast('Error loading cover photo.');
+              }
+            }
+          });
+        }
+
+        if (coverUrlInput && coverPreviewImg) {
+          coverUrlInput.addEventListener('input', () => {
+            coverPreviewImg.src = coverUrlInput.value.trim() || 'assets/logo.jpg';
+          });
+        }
+
+        document.getElementById('btn-modal-cover-img')?.addEventListener('click', () => {
+          openImageModal({ type: 'cover' });
+        });
+
+        // Add Story buttons
+        const handleAddStory = () => {
+          syncFormDataToCardData();
+          cardData.stories.push({
+            tag: `0${cardData.stories.length + 1}: NEW STORY`.slice(0, 24).toUpperCase(),
+            title: 'New Story Headline',
+            image: 'assets/logo.jpg',
+            imageCaption: 'Image Source: AIRA Intelligence',
+            imageLink: '',
+            body: 'Write your story explanation here. Simply type paragraphs or bullet points without any code.',
+            takeaway: 'Key takeaway for readers.',
+            quote: '',
+            quoteAuthor: ''
+          });
+          renderStoryCardsList();
+          showToast('Added new story card! 📝');
+          // Scroll to new card
+          const lastCard = document.querySelector('.story-builder-card:last-child');
+          if (lastCard) lastCard.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        document.getElementById('btn-add-story-top')?.addEventListener('click', handleAddStory);
+        document.getElementById('btn-add-story-bottom')?.addEventListener('click', handleAddStory);
+
+        // Add Tool button
+        document.getElementById('btn-add-tool-row')?.addEventListener('click', () => {
+          syncFormDataToCardData();
+          if (!cardData.tools) cardData.tools = [];
+          cardData.tools.push({ name: '', link: '', desc: '' });
+          renderToolsList();
+        });
+
+        // Add News Bite button
+        document.getElementById('btn-add-newsbite-row')?.addEventListener('click', () => {
+          syncFormDataToCardData();
+          if (!cardData.newsbites) cardData.newsbites = [];
+          cardData.newsbites.push({ source: '', text: '' });
+          renderNewsbitesList();
+        });
+
+        // Ready-Made Template Presets Handler
+        document.querySelectorAll('.btn-select-template').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const tmplId = e.currentTarget.getAttribute('data-template-id');
+            const tmpl = ARTICLE_TEMPLATES.find(t => t.id === tmplId);
+            if (tmpl) {
+              if (confirm(`Load template "${tmpl.name}"? This will populate the story cards.`)) {
+                cardData = JSON.parse(JSON.stringify(tmpl.cardData));
+                if (titleInp && (!titleInp.value || isNew)) titleInp.value = tmpl.sampleTitle || titleInp.value;
+                if (slugInp && (!slugInp.value || isNew)) slugInp.value = (tmpl.sampleTitle || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                const subtitleInp = document.getElementById('editor-subtitle');
+                if (subtitleInp && (!subtitleInp.value || isNew)) subtitleInp.value = tmpl.sampleSubtitle || subtitleInp.value;
+                const tagSelect = document.getElementById('editor-tag');
+                if (tagSelect && tmpl.tag) tagSelect.value = tmpl.tag;
+                const introInp = document.getElementById('editor-intro-text');
+                if (introInp) introInp.value = cardData.intro || '';
+                const signoffInp = document.getElementById('editor-signoff-text');
+                if (signoffInp) signoffInp.value = cardData.signoff || '';
+
+                renderStoryCardsList();
+                renderToolsList();
+                renderNewsbitesList();
+                showToast(`✨ Loaded template "${tmpl.name}"!`);
+              }
+            }
           });
         });
-        ['dragleave', 'drop'].forEach(eventName => {
-          modalImgDropzone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            modalImgDropzone.classList.remove('dragover');
+
+        // Universal Image Modal Event Handlers
+        const btnCloseModal = document.getElementById('btn-close-img-modal');
+        const btnCancelModal = document.getElementById('btn-cancel-img-modal');
+        const tabUpload = document.getElementById('tab-img-upload');
+        const tabUrl = document.getElementById('tab-img-url');
+        const secUpload = document.getElementById('section-img-upload');
+        const secUrl = document.getElementById('section-img-url');
+        const modalFileInput = document.getElementById('modal-img-file');
+        const modalDropzone = document.getElementById('modal-img-dropzone');
+        const modalUrlInput = document.getElementById('modal-img-url-input');
+        const modalCaptionInput = document.getElementById('modal-img-caption-input');
+        const modalLinkInput = document.getElementById('modal-img-link-input');
+        const modalPreviewCard = document.getElementById('modal-img-preview-card');
+        const modalPreviewImg = document.getElementById('modal-img-preview-img');
+        const modalPreviewCaption = document.getElementById('modal-img-preview-caption-text');
+        const btnConfirmImg = document.getElementById('btn-insert-img-confirm');
+
+        if (btnCloseModal) btnCloseModal.addEventListener('click', closeImageModal);
+        if (btnCancelModal) btnCancelModal.addEventListener('click', closeImageModal);
+
+        if (tabUpload && tabUrl) {
+          tabUpload.addEventListener('click', () => {
+            tabUpload.classList.add('active');
+            tabUrl.classList.remove('active');
+            if (secUpload) secUpload.style.display = 'block';
+            if (secUrl) secUrl.style.display = 'none';
           });
-        });
-        modalImgDropzone.addEventListener('drop', async (e) => {
-          const file = e.dataTransfer?.files?.[0];
-          if (file) {
-            try {
-              showToast('Optimizing image... ⏳');
-              currentSelectedImgSrc = await readAndOptimizeImage(file, 1200, 800, 0.85);
-              if (!modalImgAltInput.value) {
-                modalImgAltInput.value = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
+          tabUrl.addEventListener('click', () => {
+            tabUrl.classList.add('active');
+            tabUpload.classList.remove('active');
+            if (secUpload) secUpload.style.display = 'none';
+            if (secUrl) secUrl.style.display = 'block';
+          });
+        }
+
+        let tempModalImageSrc = '';
+
+        if (modalFileInput) {
+          modalFileInput.addEventListener('change', async (e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              try {
+                showToast('Optimizing picture... ⏳');
+                tempModalImageSrc = await readAndOptimizeImage(file, 1200, 800, 0.85);
+                if (modalPreviewImg) modalPreviewImg.src = tempModalImageSrc;
+                if (modalPreviewCaption && modalCaptionInput) modalPreviewCaption.textContent = modalCaptionInput.value.trim();
+                if (modalPreviewCard) modalPreviewCard.style.display = 'block';
+                showToast('Image ready to apply! 🖼️');
+              } catch (err) {
+                showToast('Could not load image file.');
               }
-              updateModalImagePreview();
-              showToast('Image ready! 🖼️');
-            } catch (err) {
-              showToast('Could not load image file.');
             }
-          }
-        });
-      }
-
-      // URL input changes
-      if (modalImgUrlInput) {
-        modalImgUrlInput.addEventListener('input', () => {
-          currentSelectedImgSrc = modalImgUrlInput.value.trim();
-          updateModalImagePreview();
-        });
-      }
-
-      // Caption input changes
-      if (modalImgCaptionInput) {
-        modalImgCaptionInput.addEventListener('input', () => {
-          updateModalImagePreview();
-        });
-      }
-
-      // Visual Canvas & Code Textarea Elements
-      const visualCanvas = document.getElementById('editor-visual-canvas');
-      const codeTextarea = document.getElementById('editor-body');
-      const tabVisual = document.getElementById('tab-visual-mode');
-      const tabCode = document.getElementById('tab-code-mode');
-      const tipEl = document.getElementById('visual-editor-tip');
-
-      function syncVisualToCode() {
-        if (visualCanvas && codeTextarea) {
-          codeTextarea.value = visualCanvas.innerHTML;
+          });
         }
-      }
 
-      function syncCodeToVisual() {
-        if (visualCanvas && codeTextarea) {
-          visualCanvas.innerHTML = codeTextarea.value;
+        if (modalUrlInput) {
+          modalUrlInput.addEventListener('input', () => {
+            tempModalImageSrc = modalUrlInput.value.trim();
+            if (modalPreviewImg) modalPreviewImg.src = tempModalImageSrc;
+            if (modalPreviewCaption && modalCaptionInput) modalPreviewCaption.textContent = modalCaptionInput.value.trim();
+            if (modalPreviewCard) modalPreviewCard.style.display = tempModalImageSrc ? 'block' : 'none';
+          });
         }
-      }
 
-      if (visualCanvas) {
-        ['input', 'keyup', 'paste', 'blur'].forEach(evt => {
-          visualCanvas.addEventListener(evt, syncVisualToCode);
-        });
-      }
-
-      if (codeTextarea) {
-        codeTextarea.addEventListener('input', syncCodeToVisual);
-      }
-
-      // Helper to insert HTML directly into visual editor canvas or fallback to code
-      function insertVisualBlock(html) {
-        if (!visualCanvas) return;
-        visualCanvas.focus();
-        const sel = window.getSelection();
-        let inserted = false;
-        if (sel && sel.rangeCount > 0) {
-          const range = sel.getRangeAt(0);
-          if (visualCanvas.contains(range.commonAncestorContainer)) {
-            range.deleteContents();
-            const temp = document.createElement('div');
-            temp.innerHTML = html.trim();
-            const frag = document.createDocumentFragment();
-            let node, lastNode;
-            while ((node = temp.firstChild)) {
-              lastNode = frag.appendChild(node);
-            }
-            range.insertNode(frag);
-            if (lastNode) {
-              const newRange = document.createRange();
-              newRange.setStartAfter(lastNode);
-              newRange.collapse(true);
-              sel.removeAllRanges();
-              sel.addRange(newRange);
-            }
-            inserted = true;
-          }
+        if (modalCaptionInput) {
+          modalCaptionInput.addEventListener('input', () => {
+            if (modalPreviewCaption) modalPreviewCaption.textContent = modalCaptionInput.value.trim();
+          });
         }
-        if (!inserted) {
-          const temp = document.createElement('div');
-          temp.innerHTML = html.trim();
-          while (temp.firstChild) {
-            visualCanvas.appendChild(temp.firstChild);
-          }
+
+        if (btnConfirmImg) {
+          btnConfirmImg.addEventListener('click', () => {
+            const finalImg = tempModalImageSrc || (modalUrlInput ? modalUrlInput.value.trim() : '');
+            const finalCaption = modalCaptionInput ? modalCaptionInput.value.trim() : '';
+            const finalLink = modalLinkInput ? modalLinkInput.value.trim() : '';
+
+            if (activeImageTarget) {
+              if (activeImageTarget.type === 'cover') {
+                if (coverUrlInput) coverUrlInput.value = finalImg;
+                if (coverPreviewImg) coverPreviewImg.src = finalImg || 'assets/logo.jpg';
+              } else if (activeImageTarget.type === 'story' && cardData.stories[activeImageTarget.index]) {
+                cardData.stories[activeImageTarget.index].image = finalImg;
+                cardData.stories[activeImageTarget.index].imageCaption = finalCaption;
+                cardData.stories[activeImageTarget.index].imageLink = finalLink;
+                renderStoryCardsList();
+                if (activeTab === 'preview') {
+                  updateLivePreviewCanvas();
+                }
+              }
+              showToast('Picture updated successfully! 🖼️');
+            }
+            closeImageModal();
+          });
         }
-        syncVisualToCode();
-      }
 
-      // Rich Formatting Actions (Bold, Italic, Link, H2, H3, Lists, Clear)
-      document.querySelectorAll('.btn-rich-format').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const cmd = btn.getAttribute('data-cmd');
-          const val = btn.getAttribute('data-val') || null;
-          if (visualCanvas) visualCanvas.focus();
-          if (cmd === 'createLink') {
-            const url = prompt('Enter link URL (e.g. https://example.com):', 'https://');
-            if (url && url.trim() && url !== 'https://') {
-              document.execCommand('createLink', false, url.trim());
-              visualCanvas.querySelectorAll('a:not(.beehiiv-link)').forEach(a => {
-                a.classList.add('beehiiv-link');
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-              });
+        // Form Submit Handler
+        const form = document.getElementById('inline-article-form');
+        if (form) {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            syncFormDataToCardData();
+
+            const origSlug = document.getElementById('edit-orig-slug').value;
+            const isNewVal = document.getElementById('edit-is-new-val').value === 'true';
+            const title = document.getElementById('editor-title').value.trim();
+            let slug = document.getElementById('editor-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            const subtitle = document.getElementById('editor-subtitle').value.trim();
+            const tag = document.getElementById('editor-tag').value;
+            const date = document.getElementById('editor-date').value.trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            const reading_time = document.getElementById('editor-reading-time').value.trim() || '4 minutes';
+            const image_url = document.getElementById('editor-image').value.trim() || 'assets/logo.jpg';
+            const author = document.getElementById('editor-author').value.trim() || 'AIRA';
+
+            if (!title || !slug) {
+              showToast('Please fill in article title and slug!');
+              return;
             }
-          } else if (cmd === 'formatBlock') {
-            document.execCommand('formatBlock', false, `<${val}>`);
-          } else {
-            document.execCommand(cmd, false, val);
-          }
-          syncVisualToCode();
-        });
-      });
 
-      // Insert Visual Beehiiv Cards / Blocks
-      document.querySelectorAll('.btn-insert-visual-block').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const blockType = e.currentTarget.getAttribute('data-block');
-          const snippetHtml = SNIPPETS[blockType];
-          if (!snippetHtml) return;
-          insertVisualBlock(snippetHtml);
-          showToast(`Inserted ${blockType.replace(/_/g, ' ').toUpperCase()} card! 📝`);
-        });
-      });
+            // Compile clean HTML from cardData behind the scenes
+            const body_html = compileCardDataToHtml(cardData);
 
-      // Handle Save Submission
-      const form = document.getElementById('inline-article-form');
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const origSlug = document.getElementById('edit-orig-slug').value;
-          const isNewVal = document.getElementById('edit-is-new-val').value === 'true';
-          const title = document.getElementById('editor-title').value.trim();
-          let slug = document.getElementById('editor-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-          const subtitle = document.getElementById('editor-subtitle').value.trim();
-          const tag = document.getElementById('editor-tag').value;
-          const date = document.getElementById('editor-date').value.trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-          const reading_time = document.getElementById('editor-reading-time').value.trim() || '4 minutes';
-          const image_url = document.getElementById('editor-image').value.trim() || 'assets/logo.jpg';
-          const author = document.getElementById('editor-author').value.trim() || 'AIRA';
-          
-          let body_html = '';
-          if (tabVisual && tabVisual.classList.contains('active') && visualCanvas) {
-            syncVisualToCode();
-            body_html = visualCanvas.innerHTML.trim();
-          } else if (codeTextarea) {
-            body_html = codeTextarea.value.trim();
-          }
-
-          if (!title || !slug || !body_html) {
-            showToast('Please fill in title, slug, and body content!');
-            return;
-          }
-
-          if (isNewVal) {
-            if (state.articles.some(a => a.slug === slug)) {
-              slug = slug + '-' + Date.now().toString().slice(-4);
-            }
-            const newArt = {
-              id: 'post-' + Date.now(),
-              slug,
-              title,
-              subtitle,
-              image_url,
-              author,
-              author_avatar: 'assets/logo.jpg',
-              date,
-              iso_date: new Date().toISOString(),
-              reading_time,
-              tag,
-              likes: 0,
-              views: '1.0k',
-              featured: false,
-              body_html
-            };
-            saveArticles([newArt, ...state.articles]);
-            showToast('🎉 New article published successfully!');
-          } else {
-            const idx = state.articles.findIndex(a => a.slug === origSlug);
-            if (idx !== -1) {
-              state.articles[idx] = {
-                ...state.articles[idx],
+            if (isNewVal) {
+              if (state.articles.some(a => a.slug === slug)) {
+                slug = slug + '-' + Date.now().toString().slice(-4);
+              }
+              const newArt = {
+                id: 'post-' + Date.now(),
                 slug,
                 title,
                 subtitle,
                 image_url,
                 author,
+                author_avatar: 'assets/logo.jpg',
                 date,
+                iso_date: new Date().toISOString(),
                 reading_time,
                 tag,
+                likes: 0,
+                views: '1.0k',
+                featured: false,
                 body_html
               };
-              saveArticles([...state.articles]);
-              showToast('💾 Article changes saved successfully!');
+              saveArticles([newArt, ...state.articles]);
+              showToast('🎉 New article published successfully!');
+            } else {
+              const idx = state.articles.findIndex(a => a.slug === origSlug);
+              if (idx !== -1) {
+                state.articles[idx] = {
+                  ...state.articles[idx],
+                  slug,
+                  title,
+                  subtitle,
+                  image_url,
+                  author,
+                  date,
+                  reading_time,
+                  tag,
+                  body_html
+                };
+                saveArticles([...state.articles]);
+                showToast('💾 Article changes saved successfully!');
+              }
             }
-          }
 
-          state.adminEditingArticle = null;
-          renderAdminPage();
-        });
+            state.adminEditingArticle = null;
+            renderAdminPage();
+          });
+        }
       }
 
+      renderEditorUi();
       return;
     }
 
