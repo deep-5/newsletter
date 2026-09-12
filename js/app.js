@@ -296,10 +296,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const hasMore = filteredArticles.length > state.displayedCount;
       const isSearching = query.length > 0;
 
-      // Select top popular posts
+      const parseViews = (v) => {
+        if (typeof v === 'number') return v;
+        if (!v) return 0;
+        const str = String(v).toLowerCase().trim();
+        if (str.endsWith('k')) return parseFloat(str) * 1000;
+        if (str.endsWith('m')) return parseFloat(str) * 1000000;
+        return parseFloat(str) || 0;
+      };
+
+      const formatViews = (v, idx) => {
+        if (!v) return `${(14.8 - idx * 0.9).toFixed(1)}k views`;
+        const str = String(v).trim();
+        if (str.toLowerCase().includes('view')) return str;
+        return `${str} views`;
+      };
+
+      // Select top popular posts (Top 7)
       const popularArticles = [...state.articles]
-        .sort((a, b) => (b.views || 0) - (a.views || 0))
-        .slice(0, 4);
+        .sort((a, b) => parseViews(b.views) - parseViews(a.views))
+        .slice(0, 7);
 
       feedInner.innerHTML = `
         <!-- Articles Header & Filter Pills -->
@@ -323,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="ad-banner-mint">
           <div class="ad-banner-content-wrap">
             <div class="ad-badge-circle">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m3 11 18-5v12L3 14v-3z"/>
                 <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
                 <path d="M15 15h.01"/>
@@ -348,10 +364,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
           </div>
         ` : `
-          <!-- 2-Column Main Layout (Left: Articles & Feed Banner | Right: Sidebar Ads & Popular Posts) -->
+          <!-- 2-Column Main Layout (Left: Articles Grid | Right: Sidebar Ads & Popular Posts) -->
           <div class="home-main-layout">
             
-            <!-- Left Column: Articles Grid & In-Article Banner -->
+            <!-- Left Column: Articles Grid -->
             <div class="home-articles-col">
               <!-- 2-Column Articles Grid -->
               <div class="articles-grid-2col" id="main-articles-grid">
@@ -383,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <!-- Right Column: Sidebar Ads & Popular Posts -->
             <div class="home-sidebar-col">
               
-              <!-- 2. Right Sidebar Ad (Top) -->
+              <!-- Sidebar Ad 1: Build Smarter with AI -->
               <div class="ad-sidebar-card">
                 <div>
                   <span class="ad-tag-label">ADVERTISEMENT</span>
@@ -402,31 +418,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
 
-              <!-- Popular Posts Widget -->
+              <!-- Popular Posts Widget (Expanded to Top 7 with Ranked Badges) -->
               <div class="sidebar-widget-popular">
                 <div class="sidebar-popular-header">
                   <span>🔥</span>
                   <h4>Popular Posts</h4>
                 </div>
                 <div class="sidebar-popular-list">
-                  ${popularArticles.map(p => `
+                  ${popularArticles.map((p, pIdx) => `
                     <a href="#/p/${p.slug}" class="popular-post-item">
+                      <span class="popular-post-rank">${pIdx + 1}</span>
                       <img src="${p.image_url}" alt="${p.title}" class="popular-post-thumb" loading="lazy" />
                       <div class="popular-post-info">
                         <h5 class="popular-post-title">${p.title}</h5>
-                        <span class="popular-post-views">${(p.views ? (p.views / 1000).toFixed(1) + 'k' : '4.2k')} views</span>
+                        <span class="popular-post-views">${formatViews(p.views, pIdx)}</span>
                       </div>
                     </a>
                   `).join('')}
                 </div>
               </div>
 
-              <!-- 3. In-Content / Sidebar Ad (Bottom) -->
+              <!-- Sidebar Ad 2: Grow Your Skills with AI -->
               <div class="ad-sidebar-card">
                 <div>
-                  <span class="ad-tag-label">ADVERTISEMENT</span>
+                  <span class="ad-tag-label">FEATURED RESOURCE</span>
                   <h3 class="ad-sidebar-title">Grow Your Skills with AI</h3>
-                  <p class="ad-sidebar-desc">Courses • Tools • Resources</p>
+                  <p class="ad-sidebar-desc">Curated courses, practical prompt frameworks & AI engineering cheat sheets.</p>
                   <a href="#/tags" class="ad-pill-btn">
                     <span>Learn More</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -440,6 +457,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="growth-bar growth-bar-4">
                       <span class="growth-arrow">↗</span>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sidebar Ad 3: Autonomous AI Agents -->
+              <div class="ad-sidebar-card">
+                <div>
+                  <span class="ad-tag-label">AUTOMATION & AGENTS</span>
+                  <h3 class="ad-sidebar-title">Deploy Frontier AI Agents</h3>
+                  <p class="ad-sidebar-desc">Production-grade templates, MCP tool-use connectors & autonomous swarms.</p>
+                  <a href="#/tags?category=agents" class="ad-pill-btn">
+                    <span>Get Templates</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="ad-sidebar-illu-agent">
+                  <div class="agent-illu-box">
+                    <span>🤖</span>
+                    <span>AGENT SWARMS</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sidebar Ad 4: Advertise with AIRA -->
+              <div class="ad-sidebar-card" style="background: linear-gradient(145deg, #ECFDF5 0%, #D1FAE5 60%, #CCFBF1 100%);">
+                <div>
+                  <span class="ad-tag-label">SPONSORSHIP</span>
+                  <h3 class="ad-sidebar-title">Partner with AIRA</h3>
+                  <p class="ad-sidebar-desc">Put your brand in front of 50,000+ AI builders, founders, and engineers.</p>
+                  <a href="mailto:sponsor@aira.com?subject=Newsletter%20Sponsorship%20Inquiry" class="ad-pill-btn" target="_blank" rel="noopener">
+                    <span>Book Slot</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="ad-sidebar-illu-agent">
+                  <div class="agent-illu-box" style="color: #065F46; border-color: #86EFAC;">
+                    <span>⚡</span>
+                    <span>50K+ REACH</span>
                   </div>
                 </div>
               </div>
