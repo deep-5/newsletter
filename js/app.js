@@ -353,17 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             <!-- Left Column: Articles Grid & In-Article Banner -->
             <div class="home-articles-col">
-              <div class="latest-articles-bar">
-                <div class="latest-articles-title-group">
-                  <div class="latest-articles-indicator"></div>
-                  <h3 class="latest-articles-title">Latest Articles</h3>
-                </div>
-                <a href="#/archive" class="latest-articles-view-all">
-                  <span>View all</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-
               <!-- 2-Column Articles Grid -->
               <div class="articles-grid-2col" id="main-articles-grid">
                 ${visibleArticles.map(article => `
