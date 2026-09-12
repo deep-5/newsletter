@@ -287,11 +287,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
+      // Initial count of 6 articles matches the 2x3 grid in mockup
+      if (!state.displayedCount || state.displayedCount < 6) {
+        state.displayedCount = 6;
+      }
+
       const visibleArticles = filteredArticles.slice(0, state.displayedCount);
       const hasMore = filteredArticles.length > state.displayedCount;
       const isSearching = query.length > 0;
 
+      // Select top popular posts
+      const popularArticles = [...state.articles]
+        .sort((a, b) => (b.views || 0) - (a.views || 0))
+        .slice(0, 4);
+
       feedInner.innerHTML = `
+        <!-- Articles Header & Filter Pills -->
         <div class="feed-header">
           <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : 'Articles'}</h2>
           <div class="filter-pills">
@@ -308,6 +319,28 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
 
+        <!-- 1. Top Banner Ad (100% Matching Uploaded Mockup) -->
+        <div class="ad-banner-mint">
+          <div class="ad-banner-content-wrap">
+            <div class="ad-badge-circle">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 11 18-5v12L3 14v-3z"/>
+                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+                <path d="M15 15h.01"/>
+              </svg>
+            </div>
+            <div>
+              <span class="ad-tag-label">ADVERTISEMENT</span>
+              <h3 class="ad-banner-title">Your Ad Here</h3>
+              <p class="ad-banner-desc">Reach thousands of AI enthusiasts and professionals.</p>
+            </div>
+          </div>
+          <a href="mailto:sponsor@aira.com?subject=Advertise%20with%20AIRA" class="ad-pill-btn" target="_blank" rel="noopener">
+            <span>Get Started</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
         ${visibleArticles.length === 0 ? `
           <div class="no-articles-found">
             <p style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">No articles found</p>
@@ -315,44 +348,155 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
           </div>
         ` : `
-          <div class="articles-grid" id="main-articles-grid">
-            ${visibleArticles.map(article => `
-              <a href="#/p/${article.slug}" class="article-card">
-                <div class="card-image-wrap">
-                  <img src="${article.image_url}" alt="${article.title}" class="card-thumbnail" loading="lazy" />
-                  <span class="card-tag-badge">${article.tag}</span>
+          <!-- 2-Column Main Layout (Left: Articles & Feed Banner | Right: Sidebar Ads & Popular Posts) -->
+          <div class="home-main-layout">
+            
+            <!-- Left Column: Articles Grid & In-Article Banner -->
+            <div class="home-articles-col">
+              <div class="latest-articles-bar">
+                <div class="latest-articles-title-group">
+                  <div class="latest-articles-indicator"></div>
+                  <h3 class="latest-articles-title">Latest Articles</h3>
                 </div>
-                <div class="card-body">
-                  <h3 class="card-title">${article.title}</h3>
-                  <p class="card-subtitle">${article.subtitle}</p>
-                  <div class="card-footer">
-                    <div class="card-author-info">
-                      <img src="${article.author_avatar}" alt="${article.author}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
-                      <span class="card-author-name">${article.author}</span>
+                <a href="#/archive" class="latest-articles-view-all">
+                  <span>View all</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+
+              <!-- 2-Column Articles Grid -->
+              <div class="articles-grid-2col" id="main-articles-grid">
+                ${visibleArticles.map(article => `
+                  <a href="#/p/${article.slug}" class="article-card">
+                    <div class="card-image-wrap">
+                      <img src="${article.image_url}" alt="${article.title}" class="card-thumbnail" loading="lazy" />
+                      <span class="card-tag-badge">${article.tag}</span>
                     </div>
-                    <span class="card-meta-date">${article.date} • ${article.reading_time}</span>
+                    <div class="card-body">
+                      <h3 class="card-title">${article.title}</h3>
+                      <p class="card-subtitle">${article.subtitle}</p>
+                      <div class="card-footer">
+                        <div class="card-author-info">
+                          <img src="${article.author_avatar}" alt="${article.author}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
+                          <span class="card-author-name">${article.author}</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <span class="card-meta-date">${article.date} • ${article.reading_time}</span>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted); flex-shrink: 0;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                `).join('')}
+              </div>
+
+              <!-- 4. In-Article Banner (At the End of Article List) -->
+              <div class="ad-banner-mint" style="margin-top: 12px; margin-bottom: 24px;">
+                <div class="ad-banner-content-wrap">
+                  <div class="ad-badge-circle">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="ad-tag-label">ADVERTISEMENT</span>
+                    <h3 class="ad-banner-title">Level Up Your AI Skills</h3>
+                    <p class="ad-banner-desc">Learn from top resources, build real projects and get future ready.</p>
                   </div>
                 </div>
-              </a>
-            `).join('')}
+                <a href="#/tags" class="ad-pill-btn">
+                  <span>Explore Courses</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+
+              <!-- Load More Button -->
+              ${hasMore ? `
+                <div class="load-more-wrap" style="margin-top: 24px;">
+                  <button id="btn-load-more" class="btn-load-more">
+                    <span>Load more articles</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Right Column: Sidebar Ads & Popular Posts -->
+            <div class="home-sidebar-col">
+              
+              <!-- 2. Right Sidebar Ad (Top) -->
+              <div class="ad-sidebar-card">
+                <div>
+                  <span class="ad-tag-label">ADVERTISEMENT</span>
+                  <h3 class="ad-sidebar-title">Build Smarter with AI</h3>
+                  <p class="ad-sidebar-desc">Discover tools, courses and resources to grow your skills and career.</p>
+                  <a href="#/tags" class="ad-pill-btn">
+                    <span>Explore Now</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="ad-sidebar-illu-laptop">
+                  <div class="laptop-illu-card">
+                    <div class="laptop-illu-screen">[ AI ]</div>
+                    <div class="laptop-illu-base"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Popular Posts Widget -->
+              <div class="sidebar-widget-popular">
+                <div class="sidebar-popular-header">
+                  <span>🔥</span>
+                  <h4>Popular Posts</h4>
+                </div>
+                <div class="sidebar-popular-list">
+                  ${popularArticles.map(p => `
+                    <a href="#/p/${p.slug}" class="popular-post-item">
+                      <img src="${p.image_url}" alt="${p.title}" class="popular-post-thumb" loading="lazy" />
+                      <div class="popular-post-info">
+                        <h5 class="popular-post-title">${p.title}</h5>
+                        <span class="popular-post-views">${(p.views ? (p.views / 1000).toFixed(1) + 'k' : '4.2k')} views</span>
+                      </div>
+                    </a>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- 3. In-Content / Sidebar Ad (Bottom) -->
+              <div class="ad-sidebar-card">
+                <div>
+                  <span class="ad-tag-label">ADVERTISEMENT</span>
+                  <h3 class="ad-sidebar-title">Grow Your Skills with AI</h3>
+                  <p class="ad-sidebar-desc">Courses • Tools • Resources</p>
+                  <a href="#/tags" class="ad-pill-btn">
+                    <span>Learn More</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+                <div class="ad-sidebar-illu-growth">
+                  <div class="growth-illu-box">
+                    <div class="growth-bar growth-bar-1"></div>
+                    <div class="growth-bar growth-bar-2"></div>
+                    <div class="growth-bar growth-bar-3"></div>
+                    <div class="growth-bar growth-bar-4">
+                      <span class="growth-arrow">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         `}
-
-        ${hasMore ? `
-          <div class="load-more-wrap">
-            <button id="btn-load-more" class="btn-load-more">
-              <span>Load more articles</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-          </div>
-        ` : ''}
       `;
 
       // Bind filter pills
       feedInner.querySelectorAll('.filter-pill').forEach(btn => {
         btn.addEventListener('click', (e) => {
           state.selectedTag = e.currentTarget.getAttribute('data-tag');
-          state.displayedCount = 9;
+          state.displayedCount = 6;
           updateArticlesGrid();
         });
       });
@@ -361,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const loadMoreBtn = document.getElementById('btn-load-more');
       if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', () => {
-          state.displayedCount += 9;
+          state.displayedCount += 6;
           updateArticlesGrid();
         });
       }
@@ -386,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const heroSearchClear = document.getElementById('hero-search-clear');
       if (heroSearchClear) heroSearchClear.style.display = 'none';
-      state.displayedCount = 9;
+      state.displayedCount = 6;
       updateArticlesGrid();
     }
 
@@ -404,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroSearchClear) {
           heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
         }
-        state.displayedCount = 9;
+        state.displayedCount = 6;
         updateArticlesGrid();
       });
     }
