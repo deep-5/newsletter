@@ -378,37 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
                   </a>
                 `).join('')}
               </div>
-
-              <!-- 4. In-Article Banner (At the End of Article List) -->
-              <div class="ad-banner-mint" style="margin-top: 12px; margin-bottom: 24px;">
-                <div class="ad-banner-content-wrap">
-                  <div class="ad-badge-circle">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <span class="ad-tag-label">ADVERTISEMENT</span>
-                    <h3 class="ad-banner-title">Level Up Your AI Skills</h3>
-                    <p class="ad-banner-desc">Learn from top resources, build real projects and get future ready.</p>
-                  </div>
-                </div>
-                <a href="#/tags" class="ad-pill-btn">
-                  <span>Explore Courses</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-
-              <!-- Load More Button -->
-              ${hasMore ? `
-                <div class="load-more-wrap" style="margin-top: 24px;">
-                  <button id="btn-load-more" class="btn-load-more">
-                    <span>Load more articles</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                  </button>
-                </div>
-              ` : ''}
             </div>
 
             <!-- Right Column: Sidebar Ads & Popular Posts -->
@@ -478,6 +447,37 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
           </div>
+
+          <!-- 4. Full-Width Bottom Banner Ad (Exact Same Full Width as Top Banner Ad) -->
+          <div class="ad-banner-mint" style="margin-top: 32px; margin-bottom: 24px;">
+            <div class="ad-banner-content-wrap">
+              <div class="ad-badge-circle">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div>
+                <span class="ad-tag-label">ADVERTISEMENT</span>
+                <h3 class="ad-banner-title">Level Up Your AI Skills</h3>
+                <p class="ad-banner-desc">Learn from top resources, build real projects and get future ready.</p>
+              </div>
+            </div>
+            <a href="#/tags" class="ad-pill-btn">
+              <span>Explore Courses</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Load More Button -->
+          ${hasMore ? `
+            <div class="load-more-wrap" style="margin-top: 24px;">
+              <button id="btn-load-more" class="btn-load-more">
+                <span>Load more articles</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          ` : ''}
         `}
       `;
 
