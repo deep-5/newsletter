@@ -287,13 +287,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Initial count of 6 articles matches the 2x3 grid in mockup
-      if (!state.displayedCount || state.displayedCount < 6) {
-        state.displayedCount = 6;
+      // Pagination setup (6 articles per page matching 2x3 grid)
+      const articlesPerPage = 6;
+      const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
+
+      if (!state.homeCurrentPage || state.homeCurrentPage < 1) {
+        state.homeCurrentPage = 1;
+      }
+      if (state.homeCurrentPage > totalPages) {
+        state.homeCurrentPage = totalPages;
       }
 
-      const visibleArticles = filteredArticles.slice(0, state.displayedCount);
-      const hasMore = filteredArticles.length > state.displayedCount;
+      const startIndex = (state.homeCurrentPage - 1) * articlesPerPage;
+      const visibleArticles = filteredArticles.slice(startIndex, startIndex + articlesPerPage);
       const isSearching = query.length > 0;
 
       const parseViews = (v) => {
@@ -524,14 +530,36 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
           </div>
 
-          <!-- Load More Button -->
-          ${hasMore ? `
-            <div class="load-more-wrap" style="margin-top: 24px;">
-              <button id="btn-load-more" class="btn-load-more">
-                <span>Load more articles</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-            </div>
+          <!-- Modern Rounded Pagination Bar (Matching Exact Design in Mockup) -->
+          ${totalPages > 1 ? `
+            <nav class="pagination-container" aria-label="Articles Pagination">
+              <button class="pagination-btn pagination-pill" data-page="1" ${state.homeCurrentPage === 1 ? 'disabled' : ''}>First</button>
+              <button class="pagination-btn pagination-pill" data-page="${state.homeCurrentPage - 1}" ${state.homeCurrentPage === 1 ? 'disabled' : ''}>‹ Back</button>
+              ${(() => {
+                const maxButtons = 8;
+                let startP = 1;
+                let endP = Math.min(totalPages, maxButtons);
+                if (totalPages > maxButtons) {
+                  if (state.homeCurrentPage <= 4) {
+                    startP = 1;
+                    endP = maxButtons;
+                  } else if (state.homeCurrentPage + 3 >= totalPages) {
+                    startP = totalPages - maxButtons + 1;
+                    endP = totalPages;
+                  } else {
+                    startP = state.homeCurrentPage - 3;
+                    endP = state.homeCurrentPage + 4;
+                  }
+                }
+                let btns = '';
+                for (let p = startP; p <= endP; p++) {
+                  btns += `<button class="pagination-btn pagination-num ${p === state.homeCurrentPage ? 'active' : ''}" data-page="${p}">${p}</button>`;
+                }
+                return btns;
+              })()}
+              <button class="pagination-btn pagination-pill" data-page="${state.homeCurrentPage + 1}" ${state.homeCurrentPage === totalPages ? 'disabled' : ''}>Next ›</button>
+              <button class="pagination-btn pagination-pill" data-page="${totalPages}" ${state.homeCurrentPage === totalPages ? 'disabled' : ''}>Last</button>
+            </nav>
           ` : ''}
         `}
       `;
@@ -540,19 +568,25 @@ document.addEventListener('DOMContentLoaded', () => {
       feedInner.querySelectorAll('.filter-pill').forEach(btn => {
         btn.addEventListener('click', (e) => {
           state.selectedTag = e.currentTarget.getAttribute('data-tag');
-          state.displayedCount = 6;
+          state.homeCurrentPage = 1;
           updateArticlesGrid();
         });
       });
 
-      // Bind Load More button
-      const loadMoreBtn = document.getElementById('btn-load-more');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
-          state.displayedCount += 6;
-          updateArticlesGrid();
+      // Bind pagination buttons
+      feedInner.querySelectorAll('.pagination-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const targetPage = parseInt(e.currentTarget.getAttribute('data-page'), 10);
+          if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.homeCurrentPage) {
+            state.homeCurrentPage = targetPage;
+            updateArticlesGrid();
+            const feedElem = document.getElementById('main-articles-feed');
+            if (feedElem) {
+              feedElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
         });
-      }
+      });
 
       // Bind clear search buttons
       const clearQueryBtn = document.getElementById('btn-clear-search-query');
@@ -574,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const heroSearchClear = document.getElementById('hero-search-clear');
       if (heroSearchClear) heroSearchClear.style.display = 'none';
-      state.displayedCount = 6;
+      state.homeCurrentPage = 1;
       updateArticlesGrid();
     }
 
@@ -592,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroSearchClear) {
           heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
         }
-        state.displayedCount = 6;
+        state.homeCurrentPage = 1;
         updateArticlesGrid();
       });
     }
