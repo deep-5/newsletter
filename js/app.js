@@ -287,8 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Pagination setup (6 articles per page matching 2x3 grid)
-      const articlesPerPage = 6;
+      // Pagination setup (10 articles per page to perfectly balance 2-column grid with right sidebar)
+      const articlesPerPage = 10;
       const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
 
       if (!state.homeCurrentPage || state.homeCurrentPage < 1) {
