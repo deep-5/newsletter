@@ -287,8 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Pagination setup (10 articles per page to perfectly balance 2-column grid with right sidebar)
-      const articlesPerPage = 10;
+      // Pagination setup (8 articles per page = 4 rows of 2 cards)
+      const articlesPerPage = 8;
       const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
 
       if (!state.homeCurrentPage || state.homeCurrentPage < 1) {
