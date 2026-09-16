@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     homeCurrentPage: 1,
     archiveCurrentPage: 1,
     homeSearchQuery: '',
+    altCategoryFilter: 'all',
+    altSearchQuery: '',
     adminTab: 'subscribers',
     adminArticleSearch: '',
     adminArticleTag: 'All',
@@ -103,6 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (hashPath === '/archive') return { name: 'archive' };
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
+    if (hashPath === '/alternatives') {
+      const params = new URLSearchParams(hashQuery || '');
+      const category = params.get('category') || 'all';
+      return { name: 'alternatives', category };
+    }
+    if (hashPath.startsWith('/alternatives/')) {
+      const slug = hashPath.replace('/alternatives/', '');
+      return { name: 'alternative-detail', slug };
+    }
     if (hashPath === '/tags') {
       const params = new URLSearchParams(hashQuery || '');
       const category = params.get('category') || 'all';
@@ -125,7 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update active navbar link
     document.querySelectorAll('.nav-link').forEach(link => {
       const target = link.getAttribute('data-nav');
-      if (target === route.name || (route.name === 'gate' && target === 'home')) {
+      if (target === route.name || 
+         (route.name === 'gate' && target === 'home') ||
+         (route.name === 'alternative-detail' && target === 'alternatives')) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -142,6 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
       await renderPostPage(route.slug);
     } else if (route.name === 'archive') {
       renderArchivePage();
+    } else if (route.name === 'alternatives') {
+      if (route.category && route.category !== 'all') {
+        state.altCategoryFilter = route.category;
+      }
+      renderAlternativesPage();
+    } else if (route.name === 'alternative-detail') {
+      renderAlternativeDetailPage(route.slug);
     } else if (route.name === 'admin') {
       renderAdminPage();
     } else if (route.name === 'tags') {
@@ -1252,6 +1272,374 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render of cards
     updateView();
+  }
+
+  // =========================================================================
+  // 5. Open Source Alternatives Directory View (/#/alternatives)
+  // =========================================================================
+  function renderAlternativesPage() {
+    const data = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { categories: [], software: [] };
+    const allSoftware = data.software || [];
+    const categories = data.categories || [];
+
+    if (!state.altCategoryFilter) state.altCategoryFilter = 'all';
+    if (state.altSearchQuery === undefined) state.altSearchQuery = '';
+
+    function getCategoryName(catId) {
+      const found = categories.find(c => c.id === catId);
+      return found ? found.name : catId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    function getFilteredSoftware() {
+      return allSoftware.filter(item => {
+        if (state.altCategoryFilter !== 'all' && item.category !== state.altCategoryFilter) {
+          return false;
+        }
+        if (state.altSearchQuery.trim() !== '') {
+          const q = state.altSearchQuery.trim().toLowerCase();
+          const nameMatch = (item.name || '').toLowerCase().includes(q);
+          const descMatch = (item.description || '').toLowerCase().includes(q);
+          const tagMatch = (item.tagline || '').toLowerCase().includes(q);
+          const catMatch = (item.categoryName || '').toLowerCase().includes(q);
+          const altsMatch = item.alternatives && item.alternatives.some(a => 
+            (a.name || '').toLowerCase().includes(q) || 
+            (a.description || '').toLowerCase().includes(q) ||
+            (a.techStack && a.techStack.some(t => t.toLowerCase().includes(q)))
+          );
+          if (!nameMatch && !descMatch && !tagMatch && !catMatch && !altsMatch) return false;
+        }
+        return true;
+      });
+    }
+
+    appContainer.innerHTML = `
+      <section class="alternatives-directory-view">
+        <div class="container">
+          <!-- Hero Section -->
+          <div class="alt-hero-banner">
+            <div class="alt-hero-badge">
+              <span class="bolt">⚡</span>
+              <span>AIRA Alternatives • ${allSoftware.length} Proprietary Software • Open Source Replacements</span>
+            </div>
+            <h1 class="alt-hero-title">Open Source Software Alternatives</h1>
+            <p class="alt-hero-desc">
+              Discover top open source, self-hosted, and privacy-first alternatives to popular proprietary software and AI platforms.
+            </p>
+
+            <!-- Search Form -->
+            <form class="alt-search-form" id="alt-search-form" onsubmit="event.preventDefault();">
+              <svg class="alt-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search proprietary software or alternatives (e.g. Claude Code, Cursor, Notion, Figma)..." value="${state.altSearchQuery}" autocomplete="off" />
+              <button type="button" id="alt-search-clear" class="alt-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
+            </form>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="alt-categories-bar" id="alt-categories-bar">
+            ${categories.map(cat => `
+              <button type="button" class="alt-cat-pill ${state.altCategoryFilter === cat.id ? 'active' : ''}" data-cat-id="${cat.id}">
+                <span class="cat-icon">${cat.icon}</span>
+                <span>${cat.name}</span>
+              </button>
+            `).join('')}
+          </div>
+
+          <!-- Counter Bar -->
+          <div class="alt-count-bar" id="alt-count-bar"></div>
+
+          <!-- Software Cards Grid -->
+          <div class="alt-grid" id="alt-grid-container"></div>
+        </div>
+      </section>
+    `;
+
+    function updateGrid() {
+      const filtered = getFilteredSoftware();
+      const gridEl = document.getElementById('alt-grid-container');
+      const countEl = document.getElementById('alt-count-bar');
+
+      if (countEl) {
+        countEl.innerHTML = `
+          <span>Showing <strong>${filtered.length}</strong> ${filtered.length === 1 ? 'software collection' : 'software collections'} with curated open-source alternatives</span>
+        `;
+      }
+
+      if (!gridEl) return;
+
+      if (filtered.length === 0) {
+        gridEl.innerHTML = `
+          <div class="alt-no-results" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+            <p style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: var(--color-text-primary);">No software alternatives found</p>
+            <p style="color: var(--color-text-secondary); margin-bottom: 16px;">We couldn't find any software matching "${state.altSearchQuery}".</p>
+            <button type="button" class="btn-clear-search-link" id="btn-reset-alt-search" style="font-size: 0.95rem; font-weight: 600; cursor: pointer;">← View All Alternatives</button>
+          </div>
+        `;
+        const resetBtn = document.getElementById('btn-reset-alt-search');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            state.altSearchQuery = '';
+            state.altCategoryFilter = 'all';
+            renderAlternativesPage();
+          });
+        }
+        return;
+      }
+
+      gridEl.innerHTML = filtered.map(item => {
+        const altCount = item.alternatives ? item.alternatives.length : 0;
+        const cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
+        const logoUrl = item.logo || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+        const topAltNames = (item.alternatives || []).slice(0, 3).map(a => a.name).join(', ');
+
+        return `
+          <a href="#/alternatives/${item.slug}" class="alt-software-card">
+            <div class="alt-card-header">
+              <div class="alt-logo-box">
+                <img src="${logoUrl}" alt="${item.name}" class="alt-logo-img" loading="lazy" onerror="this.src='assets/logo.svg'" />
+              </div>
+              <div class="alt-card-title-wrap">
+                <span class="alt-cat-badge">${item.categoryName || 'Software'}</span>
+                <h3 class="alt-software-name">${item.name}</h3>
+              </div>
+            </div>
+
+            <p class="alt-software-tagline">${item.tagline || item.description}</p>
+
+            ${topAltNames ? `
+              <div class="alt-preview-row">
+                <span class="alt-preview-label">Top Alternatives:</span>
+                <span class="alt-preview-text">${topAltNames}</span>
+              </div>
+            ` : ''}
+
+            <div class="alt-card-footer">
+              <span class="alt-count-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7.5" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                ${altCount} ${altCount === 1 ? 'Alternative' : 'Alternatives'}
+              </span>
+              <span class="alt-view-link">
+                <span>View</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // Bind category clicks
+    appContainer.querySelectorAll('.alt-cat-pill').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const catId = e.currentTarget.getAttribute('data-cat-id');
+        state.altCategoryFilter = catId;
+        appContainer.querySelectorAll('.alt-cat-pill').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        updateGrid();
+      });
+    });
+
+    // Bind search input
+    const searchInput = document.getElementById('alt-search-input');
+    const searchClear = document.getElementById('alt-search-clear');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        state.altSearchQuery = e.target.value;
+        if (searchClear) searchClear.style.display = e.target.value ? 'flex' : 'none';
+        updateGrid();
+      });
+    }
+
+    if (searchClear) {
+      searchClear.addEventListener('click', () => {
+        state.altSearchQuery = '';
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        searchClear.style.display = 'none';
+        updateGrid();
+      });
+    }
+
+    // Initial render of grid
+    updateGrid();
+  }
+
+  // =========================================================================
+  // 5b. Single Alternative Detail Page (/#/alternatives/:slug)
+  // =========================================================================
+  function renderAlternativeDetailPage(slug) {
+    const data = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { categories: [], software: [] };
+    const allSoftware = data.software || [];
+    const item = allSoftware.find(s => s.slug === slug);
+
+    if (!item) {
+      appContainer.innerHTML = `
+        <div class="container" style="padding: 80px 20px; text-align: center;">
+          <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px; font-family: var(--font-header);">Software Not Found</h2>
+          <p style="color: var(--color-text-secondary); margin-bottom: 24px; font-size: 1.05rem;">The software collection you are looking for does not exist.</p>
+          <a href="#/alternatives" class="ad-pill-btn" style="display: inline-flex; padding: 10px 24px;">← Back to Alternatives Directory</a>
+        </div>
+      `;
+      return;
+    }
+
+    const cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
+    const logoUrl = item.logo || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+    const alternatives = item.alternatives || [];
+    const relatedSoftware = allSoftware.filter(s => s.slug !== item.slug && s.category === item.category).slice(0, 3);
+
+    appContainer.innerHTML = `
+      <section class="alt-detail-page-view">
+        <div class="container">
+          
+          <!-- Breadcrumb Navigation -->
+          <nav class="alt-breadcrumb-nav">
+            <a href="#/home">Home</a>
+            <span class="bc-sep">/</span>
+            <a href="#/alternatives">Alternatives</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-curr">${item.name}</span>
+          </nav>
+
+          <!-- Top Software Overview Hero Card -->
+          <div class="alt-detail-hero">
+            <div class="alt-detail-hero-content">
+              <div class="alt-detail-hero-top">
+                <div class="alt-detail-logo-box">
+                  <img src="${logoUrl}" alt="${item.name}" class="alt-detail-logo-img" onerror="this.src='assets/logo.svg'" />
+                </div>
+                <div class="alt-detail-title-col">
+                  <div class="alt-detail-badges">
+                    <span class="alt-cat-badge">${item.categoryName || 'Software'}</span>
+                    <span class="alt-count-pill">${alternatives.length} Open Source ${alternatives.length === 1 ? 'Alternative' : 'Alternatives'}</span>
+                  </div>
+                  <h1 class="alt-detail-title">Open Source ${item.name} Alternatives</h1>
+                </div>
+              </div>
+
+              <p class="alt-detail-desc">
+                ${item.description || item.tagline}
+              </p>
+
+              <div class="alt-detail-actions-row">
+                ${item.proprietaryUrl ? `
+                  <a href="${item.proprietaryUrl}" target="_blank" rel="noopener noreferrer" class="alt-btn-visit-prop">
+                    <span>Visit Official ${item.name}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  </a>
+                ` : ''}
+                <a href="#/alternatives" class="alt-btn-back-dir">
+                  <span>← All Alternatives</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ranked Open Source Alternatives List -->
+          <div class="alt-ranked-section">
+            <div class="alt-section-header">
+              <h2 class="alt-section-title">Top Ranked Open Source Alternatives to ${item.name}</h2>
+              <p class="alt-section-subtitle">A curated list of ${alternatives.length} community-trusted, self-hostable, and free open-source software replacements:</p>
+            </div>
+
+            <div class="alt-ranked-list">
+              ${alternatives.map((alt, idx) => {
+                const altCleanDomain = (alt.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
+                const altLogo = alt.logo || `https://www.google.com/s2/favicons?domain=${altCleanDomain}&sz=128`;
+                
+                return `
+                  <div class="alt-ranked-item" id="${alt.slug}">
+                    <!-- Card Top Bar -->
+                    <div class="alt-item-header">
+                      <div class="alt-item-left">
+                        <span class="alt-item-rank">#${idx + 1}</span>
+                        <div class="alt-item-logo-box">
+                          <img src="${altLogo}" alt="${alt.name}" class="alt-item-logo-img" onerror="this.src='assets/logo.svg'" />
+                        </div>
+                        <div>
+                          <h3 class="alt-item-name">${alt.name}</h3>
+                          <div class="alt-item-meta-badges">
+                            ${alt.stars ? `<span class="alt-meta-pill stars">⭐ ${alt.stars} stars</span>` : ''}
+                            ${alt.license ? `<span class="alt-meta-pill license">📜 ${alt.license}</span>` : ''}
+                            <span class="alt-meta-pill hosting">${alt.selfHosted ? '⚡ Self-Hosted' : '☁️ Local / Cloud'}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="alt-item-links">
+                        ${alt.website ? `
+                          <a href="${alt.website}" target="_blank" rel="noopener noreferrer" class="alt-btn-action primary">
+                            <span>Visit Website</span>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                          </a>
+                        ` : ''}
+                        ${alt.github ? `
+                          <a href="${alt.github}" target="_blank" rel="noopener noreferrer" class="alt-btn-action secondary">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>GitHub</span>
+                          </a>
+                        ` : ''}
+                      </div>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="alt-item-desc">${alt.description}</p>
+
+                    <!-- Highlights & Features -->
+                    ${alt.highlights && alt.highlights.length > 0 ? `
+                      <div class="alt-highlights-box">
+                        <span class="alt-hl-title">Key Highlights:</span>
+                        <div class="alt-hl-list">
+                          ${alt.highlights.map(h => `
+                            <span class="alt-hl-item">
+                              <span class="check">✓</span>
+                              <span>${h}</span>
+                            </span>
+                          `).join('')}
+                        </div>
+                      </div>
+                    ` : ''}
+
+                    <!-- Tech Stack Tags -->
+                    ${alt.techStack && alt.techStack.length > 0 ? `
+                      <div class="alt-tech-row">
+                        <span class="alt-tech-label">Tech Stack:</span>
+                        <div class="alt-tech-tags">
+                          ${alt.techStack.map(t => `<span class="alt-tech-tag">${t}</span>`).join('')}
+                        </div>
+                      </div>
+                    ` : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- Related Alternatives Section -->
+          ${relatedSoftware.length > 0 ? `
+            <div class="alt-related-section">
+              <h3 class="alt-related-title">More Open Source Alternatives in ${item.categoryName || 'This Category'}</h3>
+              <div class="alt-related-grid">
+                ${relatedSoftware.map(rel => `
+                  <a href="#/alternatives/${rel.slug}" class="alt-related-card">
+                    <img src="${rel.logo}" alt="${rel.name}" class="alt-related-logo" onerror="this.src='assets/logo.svg'" />
+                    <div>
+                      <h4>${rel.name}</h4>
+                      <p>${rel.alternatives ? rel.alternatives.length : 0} open source alternatives</p>
+                    </div>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+        </div>
+      </section>
+    `;
   }
 
   // =========================================================================
