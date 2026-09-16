@@ -2494,6 +2494,93 @@ body.aira-gate-active .site-footer {
   margin-bottom: 36px;
 }
 
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 22px;
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.timeline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #A1A1AA;
+}
+
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-content h4 {
+  font-family: var(--font-header);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #18181B;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.timeline-item:hover .timeline-content h4 {
+  color: #047857;
+}
+
+.timeline-content p {
+  font-size: 0.875rem;
+  color: #71717A;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  color: #71717A;
+  font-weight: 500;
+}
+
+.timeline-tag {
+  background: #F4F4F5;
+  color: #18181B;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #E4E4E7;
+}
+
+@media (max-width: 640px) {
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+  .timeline-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 /* ==========================================================================
    AI Tools Directory View (/#/tags) - 100% Fully Responsive & Clean Sizing
    ========================================================================== */
@@ -4273,3 +4360,112 @@ body.aira-gate-active .site-footer {
   color: #047857;
   transform: translateY(-1px);
 }
+
+/* =========================================================================
+   AIRA Numbered Pagination Bar (100% Matching Uploaded Mockup)
+   ========================================================================= */
+.aira-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 36px auto 16px auto;
+  padding: 12px 0;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.pagination-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  border: 1px solid #E4E4E7;
+  background: #FFFFFF;
+  color: #71717A;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+  user-select: none;
+}
+
+.pagination-pill-btn:hover:not(:disabled) {
+  border-color: #A1A1AA;
+  color: #18181B;
+  background: #F4F4F5;
+  transform: translateY(-1px);
+}
+
+.pagination-pill-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination-pill-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: #FAFAFA;
+  border-color: #F4F4F5;
+  color: #A1A1AA;
+}
+
+.pagination-numbers-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pagination-num-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #E4E4E7;
+  background: #FFFFFF;
+  color: #18181B;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+  user-select: none;
+}
+
+.pagination-num-btn:hover:not(.active) {
+  border-color: #A1A1AA;
+  background: #F4F4F5;
+  transform: translateY(-1px);
+}
+
+.pagination-num-btn.active {
+  background: #27272A;
+  color: #FFFFFF;
+  border-color: #27272A;
+  font-weight: 700;
+  cursor: default;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 640px) {
+  .aira-pagination-bar {
+    gap: 6px;
+  }
+  .pagination-pill-btn {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 0.8rem;
+  }
+  .pagination-num-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+}
+

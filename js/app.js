@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     articles: getArticles(),
     currentRoute: '',
     selectedTag: 'All',
-    displayedCount: 9,
+    homeCurrentPage: 1,
+    archiveCurrentPage: 1,
     homeSearchQuery: '',
     adminTab: 'subscribers',
     adminArticleSearch: '',
@@ -226,6 +227,56 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
+  // Helper: Numbered Pagination Component (100% Matching Uploaded Mockup)
+  // [First] [< Back] (1) (2) (3) (4) (5) (6) (7) (8) [Next >] [Last]
+  // =========================================================================
+  function renderPaginationHTML(currentPage, totalPages, type = 'home') {
+    if (totalPages <= 1) return '';
+
+    const maxVisible = 8;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = startPage + maxVisible - 1;
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    const isFirstDisabled = currentPage <= 1;
+    const isLastDisabled = currentPage >= totalPages;
+
+    let pageNumbersHTML = '';
+    for (let p = startPage; p <= endPage; p++) {
+      const isActive = p === currentPage;
+      pageNumbersHTML += `
+        <button type="button" class="pagination-num-btn ${isActive ? 'active' : ''}" data-page="${p}" data-type="${type}" ${isActive ? 'aria-current="page"' : ''}>
+          ${p}
+        </button>
+      `;
+    }
+
+    return `
+      <div class="aira-pagination-bar" data-type="${type}">
+        <button type="button" class="pagination-pill-btn btn-page-first" data-page="1" data-type="${type}" ${isFirstDisabled ? 'disabled' : ''}>
+          First
+        </button>
+        <button type="button" class="pagination-pill-btn btn-page-prev" data-page="${currentPage - 1}" data-type="${type}" ${isFirstDisabled ? 'disabled' : ''}>
+          ‹ Back
+        </button>
+        <div class="pagination-numbers-group">
+          ${pageNumbersHTML}
+        </div>
+        <button type="button" class="pagination-pill-btn btn-page-next" data-page="${currentPage + 1}" data-type="${type}" ${isLastDisabled ? 'disabled' : ''}>
+          Next ›
+        </button>
+        <button type="button" class="pagination-pill-btn btn-page-last" data-page="${totalPages}" data-type="${type}" ${isLastDisabled ? 'disabled' : ''}>
+          Last
+        </button>
+      </div>
+    `;
+  }
+
+  // =========================================================================
   // 1b. Homepage View (With Interactive Search Bar & Live Filtering)
   // =========================================================================
   function renderHomePage() {
@@ -273,6 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const feedInner = document.getElementById('feed-container-inner');
       if (!feedInner) return;
 
+      const ARTICLES_PER_PAGE = 8;
       const query = (state.homeSearchQuery || '').trim().toLowerCase();
       let filteredArticles = state.selectedTag === 'All' 
         ? state.articles 
@@ -287,13 +339,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Initial count of 6 articles matches the 2x3 grid in mockup
-      if (!state.displayedCount || state.displayedCount < 6) {
-        state.displayedCount = 6;
+      const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE) || 1;
+      if (!state.homeCurrentPage || state.homeCurrentPage > totalPages) {
+        state.homeCurrentPage = 1;
       }
 
-      const visibleArticles = filteredArticles.slice(0, state.displayedCount);
-      const hasMore = filteredArticles.length > state.displayedCount;
+      const startIndex = (state.homeCurrentPage - 1) * ARTICLES_PER_PAGE;
+      const visibleArticles = filteredArticles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
       const isSearching = query.length > 0;
 
       const parseViews = (v) => {
@@ -320,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
       feedInner.innerHTML = `
         <!-- Articles Header & Filter Pills -->
         <div class="feed-header">
-          <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : 'Articles'}</h2>
+          <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
           <div class="filter-pills">
             <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
             <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
@@ -364,10 +416,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
           </div>
         ` : `
-          <!-- 2-Column Main Layout (Left: Articles Grid | Right: Sidebar Ads & Popular Posts) -->
+          <!-- 2-Column Main Layout (Left: 8 Articles Grid | Right: Sidebar Ads & Popular Posts) -->
           <div class="home-main-layout">
             
-            <!-- Left Column: Articles Grid -->
+            <!-- Left Column: Articles Grid (Exact 8 Articles Per Page) -->
             <div class="home-articles-col">
               <!-- 2-Column Articles Grid -->
               <div class="articles-grid-2col" id="main-articles-grid">
@@ -394,6 +446,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   </a>
                 `).join('')}
               </div>
+
+              <!-- Numbered Pagination Bar (100% Matching Uploaded Mockup) -->
+              ${renderPaginationHTML(state.homeCurrentPage, totalPages, 'home')}
             </div>
 
             <!-- Right Column: Sidebar Ads & Popular Posts -->
@@ -523,16 +578,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
-
-          <!-- Load More Button -->
-          ${hasMore ? `
-            <div class="load-more-wrap" style="margin-top: 24px;">
-              <button id="btn-load-more" class="btn-load-more">
-                <span>Load more articles</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-            </div>
-          ` : ''}
         `}
       `;
 
@@ -540,19 +585,26 @@ document.addEventListener('DOMContentLoaded', () => {
       feedInner.querySelectorAll('.filter-pill').forEach(btn => {
         btn.addEventListener('click', (e) => {
           state.selectedTag = e.currentTarget.getAttribute('data-tag');
-          state.displayedCount = 6;
+          state.homeCurrentPage = 1;
           updateArticlesGrid();
         });
       });
 
-      // Bind Load More button
-      const loadMoreBtn = document.getElementById('btn-load-more');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
-          state.displayedCount += 6;
-          updateArticlesGrid();
+      // Bind Home Pagination Buttons
+      feedInner.querySelectorAll('.aira-pagination-bar[data-type="home"] button[data-page]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          if (btn.disabled) return;
+          const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+          if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.homeCurrentPage) {
+            state.homeCurrentPage = targetPage;
+            updateArticlesGrid();
+            const feedSection = document.getElementById('main-articles-feed');
+            if (feedSection) {
+              feedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
         });
-      }
+      });
 
       // Bind clear search buttons
       const clearQueryBtn = document.getElementById('btn-clear-search-query');
@@ -574,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const heroSearchClear = document.getElementById('hero-search-clear');
       if (heroSearchClear) heroSearchClear.style.display = 'none';
-      state.displayedCount = 6;
+      state.homeCurrentPage = 1;
       updateArticlesGrid();
     }
 
@@ -592,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroSearchClear) {
           heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
         }
-        state.displayedCount = 6;
+        state.homeCurrentPage = 1;
         updateArticlesGrid();
       });
     }
@@ -832,31 +884,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 3. Archive View (All 56 Articles Chronologically)
+  // 3. Archive View (8 Articles Per Page with Numbered Pagination)
   // =========================================================================
   function renderArchivePage() {
+    const ARTICLES_PER_PAGE = 8;
+    const totalArticles = state.articles.length;
+    const totalPages = Math.ceil(totalArticles / ARTICLES_PER_PAGE) || 1;
+
+    if (!state.archiveCurrentPage || state.archiveCurrentPage > totalPages) {
+      state.archiveCurrentPage = 1;
+    }
+
+    const startIndex = (state.archiveCurrentPage - 1) * ARTICLES_PER_PAGE;
+    const visibleArticles = state.articles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
+
     appContainer.innerHTML = `
       <section class="archive-page-view">
         <div class="article-container">
-          <h1 class="page-title">Archive</h1>
-          <p class="page-description">Complete chronological history of all ${state.articles.length} AIRA newsletter editions and guides.</p>
+          <div class="archive-header-wrap" style="text-align: center; margin-bottom: 32px;">
+            <h1 class="page-title">Archive</h1>
+            <p class="page-description">Complete chronological history of all ${totalArticles} AIRA newsletter editions (Page ${state.archiveCurrentPage} of ${totalPages}).</p>
+          </div>
 
           <div class="timeline-list">
-            ${state.articles.map(article => `
+            ${visibleArticles.map(article => `
               <div class="timeline-item" onclick="window.location.hash='#/p/${article.slug}'">
                 <div class="timeline-content">
                   <h4>${article.title}</h4>
                   <p>${article.subtitle}</p>
                 </div>
                 <div class="timeline-meta">
+                  <span class="timeline-tag">${article.tag || 'AI News'}</span>
                   <span>${article.date}</span>
                 </div>
               </div>
             `).join('')}
           </div>
+
+          <!-- Numbered Pagination Component -->
+          ${renderPaginationHTML(state.archiveCurrentPage, totalPages, 'archive')}
         </div>
       </section>
     `;
+
+    // Bind Archive Pagination Click Handlers
+    appContainer.querySelectorAll('.aira-pagination-bar[data-type="archive"] button[data-page]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (btn.disabled) return;
+        const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+        if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.archiveCurrentPage) {
+          state.archiveCurrentPage = targetPage;
+          renderArchivePage();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
   }
   // =========================================================================
   // 4. Tags / AI Tools Directory View
