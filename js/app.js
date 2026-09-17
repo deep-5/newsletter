@@ -541,21 +541,12 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
 
-        <!-- 1. Top Banner Ad (100% Matching Uploaded Mockup) -->
+        <!-- 1. Top Banner Ad -->
         <div class="ad-banner-mint">
           <div class="ad-banner-content-wrap">
-            <div class="ad-badge-circle">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m3 11 18-5v12L3 14v-3z"/>
-                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-                <path d="M15 15h.01"/>
-              </svg>
-            </div>
-            <div>
-              <span class="ad-tag-label">ADVERTISEMENT</span>
-              <h3 class="ad-banner-title">Your Ad Here</h3>
-              <p class="ad-banner-desc">Reach thousands of AI enthusiasts and professionals.</p>
-            </div>
+            <span class="ad-tag-label">ADVERTISEMENT</span>
+            <h3 class="ad-banner-title">Your Ad Here</h3>
+            <p class="ad-banner-desc">Reach thousands of AI enthusiasts and professionals.</p>
           </div>
           <a href="mailto:sponsor@aira.com?subject=Advertise%20with%20AIRA" class="ad-pill-btn" target="_blank" rel="noopener">
             <span>Get Started</span>
@@ -610,21 +601,13 @@ document.addEventListener('DOMContentLoaded', () => {
               
               <!-- Sidebar Ad 1: Build Smarter with AI -->
               <div class="ad-sidebar-card">
-                <div>
-                  <span class="ad-tag-label">ADVERTISEMENT</span>
-                  <h3 class="ad-sidebar-title">Build Smarter with AI</h3>
-                  <p class="ad-sidebar-desc">Discover tools, courses and resources to grow your skills and career.</p>
-                  <a href="#/tags" class="ad-pill-btn">
-                    <span>Explore Now</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-                <div class="ad-sidebar-illu-laptop">
-                  <div class="laptop-illu-card">
-                    <div class="laptop-illu-screen">[ AI ]</div>
-                    <div class="laptop-illu-base"></div>
-                  </div>
-                </div>
+                <span class="ad-tag-label">ADVERTISEMENT</span>
+                <h3 class="ad-sidebar-title">Build Smarter with AI</h3>
+                <p class="ad-sidebar-desc">Discover tools, courses and resources to grow your skills and career.</p>
+                <a href="#/tags" class="ad-pill-btn">
+                  <span>Explore Now</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
 
               <!-- Popular Posts Widget (Expanded to Top 7 with Ranked Badges) -->
@@ -649,63 +632,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <!-- Sidebar Ad 2: Grow Your Skills with AI -->
               <div class="ad-sidebar-card">
-                <div>
-                  <span class="ad-tag-label">FEATURED RESOURCE</span>
-                  <h3 class="ad-sidebar-title">Grow Your Skills with AI</h3>
-                  <p class="ad-sidebar-desc">Curated courses, practical prompt frameworks & AI engineering cheat sheets.</p>
-                  <a href="#/tags" class="ad-pill-btn">
-                    <span>Learn More</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-                <div class="ad-sidebar-illu-growth">
-                  <div class="growth-illu-box">
-                    <div class="growth-bar growth-bar-1"></div>
-                    <div class="growth-bar growth-bar-2"></div>
-                    <div class="growth-bar growth-bar-3"></div>
-                    <div class="growth-bar growth-bar-4">
-                      <span class="growth-arrow">↗</span>
-                    </div>
-                  </div>
-                </div>
+                <span class="ad-tag-label">FEATURED RESOURCE</span>
+                <h3 class="ad-sidebar-title">Grow Your Skills with AI</h3>
+                <p class="ad-sidebar-desc">Curated courses, practical prompt frameworks & AI engineering cheat sheets.</p>
+                <a href="#/tags" class="ad-pill-btn">
+                  <span>Learn More</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
 
               <!-- Sidebar Ad 3: Autonomous AI Agents -->
               <div class="ad-sidebar-card">
-                <div>
-                  <span class="ad-tag-label">AUTOMATION & AGENTS</span>
-                  <h3 class="ad-sidebar-title">Deploy Frontier AI Agents</h3>
-                  <p class="ad-sidebar-desc">Production-grade templates, MCP tool-use connectors & autonomous swarms.</p>
-                  <a href="#/tags?category=agents" class="ad-pill-btn">
-                    <span>Get Templates</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-                <div class="ad-sidebar-illu-agent">
-                  <div class="agent-illu-box">
-                    <span>🤖</span>
-                    <span>AGENT SWARMS</span>
-                  </div>
-                </div>
+                <span class="ad-tag-label">AUTOMATION & AGENTS</span>
+                <h3 class="ad-sidebar-title">Deploy Frontier AI Agents</h3>
+                <p class="ad-sidebar-desc">Production-grade templates, MCP tool-use connectors & autonomous swarms.</p>
+                <a href="#/tags?category=agents" class="ad-pill-btn">
+                  <span>Get Templates</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
 
               <!-- Sidebar Ad 4: Advertise with AIRA -->
               <div class="ad-sidebar-card" style="background: linear-gradient(145deg, #ECFDF5 0%, #D1FAE5 60%, #CCFBF1 100%);">
-                <div>
-                  <span class="ad-tag-label">SPONSORSHIP</span>
-                  <h3 class="ad-sidebar-title">Partner with AIRA</h3>
-                  <p class="ad-sidebar-desc">Put your brand in front of 50,000+ AI builders, founders, and engineers.</p>
-                  <a href="mailto:sponsor@aira.com?subject=Newsletter%20Sponsorship%20Inquiry" class="ad-pill-btn" target="_blank" rel="noopener">
-                    <span>Book Slot</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-                <div class="ad-sidebar-illu-agent">
-                  <div class="agent-illu-box" style="color: #065F46; border-color: #86EFAC;">
-                    <span>⚡</span>
-                    <span>50K+ REACH</span>
-                  </div>
-                </div>
+                <span class="ad-tag-label">SPONSORSHIP</span>
+                <h3 class="ad-sidebar-title">Partner with AIRA</h3>
+                <p class="ad-sidebar-desc">Put your brand in front of 50,000+ AI builders, founders, and engineers.</p>
+                <a href="mailto:sponsor@aira.com?subject=Newsletter%20Sponsorship%20Inquiry" class="ad-pill-btn" target="_blank" rel="noopener">
+                  <span>Book Slot</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
 
             </div>
@@ -715,17 +670,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- 4. Full-Width Bottom Banner Ad (Exact Same Full Width as Top Banner Ad) -->
           <div class="ad-banner-mint" style="margin-top: 32px; margin-bottom: 24px;">
             <div class="ad-banner-content-wrap">
-              <div class="ad-badge-circle">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                </svg>
-              </div>
-              <div>
-                <span class="ad-tag-label">ADVERTISEMENT</span>
-                <h3 class="ad-banner-title">Level Up Your AI Skills</h3>
-                <p class="ad-banner-desc">Learn from top resources, build real projects and get future ready.</p>
-              </div>
+              <span class="ad-tag-label">ADVERTISEMENT</span>
+              <h3 class="ad-banner-title">Level Up Your AI Skills</h3>
+              <p class="ad-banner-desc">Learn from top resources, build real projects and get future ready.</p>
             </div>
             <a href="#/tags" class="ad-pill-btn">
               <span>Explore Courses</span>
@@ -1950,25 +1897,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <!-- Sidebar Ad: Level Up with AIRA -->
               <div class="ad-sidebar-card">
-                <div>
-                  <span class="ad-tag-label">FREE NEWSLETTER</span>
-                  <h3 class="ad-sidebar-title">Discover the Best AI Tools Every Week</h3>
-                  <p class="ad-sidebar-desc">Get our weekly curated list of breakthrough AI tools, prompts, and tutorials delivered to your inbox.</p>
-                  <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
-                    <span>Subscribe Free</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </button>
-                </div>
-                <div class="ad-sidebar-illu-growth">
-                  <div class="growth-illu-box">
-                    <div class="growth-bar growth-bar-1"></div>
-                    <div class="growth-bar growth-bar-2"></div>
-                    <div class="growth-bar growth-bar-3"></div>
-                    <div class="growth-bar growth-bar-4">
-                      <span class="growth-arrow">↗</span>
-                    </div>
-                  </div>
-                </div>
+                <span class="ad-tag-label">FREE NEWSLETTER</span>
+                <h3 class="ad-sidebar-title">Discover the Best AI Tools Every Week</h3>
+                <p class="ad-sidebar-desc">Get our weekly curated list of breakthrough AI tools, prompts, and tutorials delivered to your inbox.</p>
+                <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
+                  <span>Subscribe Free</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
 
             </div>
@@ -2021,17 +1956,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Full-Width Bottom Banner -->
           <div class="ad-banner-mint" style="margin-top: 48px;">
             <div class="ad-banner-content-wrap">
-              <div class="ad-badge-circle">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                </svg>
-              </div>
-              <div>
-                <span class="ad-tag-label">AIRA DIRECTORY</span>
-                <h3 class="ad-banner-title">Stay Ahead with the Latest AI Tools & Breakthroughs</h3>
-                <p class="ad-banner-desc">Join 50,000+ engineers, creators, and founders getting our free weekly newsletter.</p>
-              </div>
+              <span class="ad-tag-label">AIRA DIRECTORY</span>
+              <h3 class="ad-banner-title">Stay Ahead with the Latest AI Tools & Breakthroughs</h3>
+              <p class="ad-banner-desc">Join 50,000+ engineers, creators, and founders getting our free weekly newsletter.</p>
             </div>
             <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
               <span>Subscribe Free</span>
