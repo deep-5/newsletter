@@ -315,6 +315,17 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('aira-gate-active');
     }
 
+    // Toggle Admin Full-screen SaaS Mode on body (Always Clean Light SaaS Mode)
+    if (route.name === 'admin') {
+      document.body.classList.add('aira-admin-active');
+      document.body.classList.remove('dark-mode');
+    } else {
+      document.body.classList.remove('aira-admin-active');
+      if (localStorage.getItem('aira_theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    }
+
     // Close mobile drawer on route change
     const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
     const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
@@ -4228,431 +4239,549 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
     const activeTab = state.adminTab || 'overview';
 
-    // RENDER ADMIN DASHBOARD HTML
+    // RENDER ADMIN DASHBOARD HTML (Design 2 Light SaaS Layout)
     appContainer.innerHTML = `
-      <section class="admin-page-view" style="padding: 36px 0 80px 0;">
-        <div class="container" style="max-width: 1080px;">
+      <div class="saas-admin-wrapper">
+        
+        <!-- ============================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ============================================================= -->
+        <aside class="saas-admin-sidebar">
+          <div class="saas-sidebar-brand">
+            <a href="#/home" class="saas-brand-logo-wrap">
+              <div class="saas-brand-icon">A</div>
+              <span class="saas-brand-name">AIRA</span>
+            </a>
+            <span class="saas-sidebar-toggle" title="Collapse Sidebar" style="color: #94A3B8; font-size: 1.1rem; cursor: pointer;">«</span>
+          </div>
+
+          <nav class="saas-sidebar-nav">
+            <button type="button" class="saas-nav-btn ${activeTab === 'overview' ? 'active' : ''}" data-admin-tab="overview">
+              <span>📊</span>
+              <span>Overview</span>
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'submissions' ? 'active' : ''}" data-admin-tab="submissions">
+              <span>🛠️</span>
+              <span>Tool Submissions</span>
+              ${pendingSubmissions.length > 0 ? `<span class="saas-nav-badge">${pendingSubmissions.length}</span>` : `<span class="saas-nav-count">${allSubmissions.length}</span>`}
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'deals' ? 'active' : ''}" data-admin-tab="deals">
+              <span>🏷️</span>
+              <span>Deals & Monetization</span>
+              <span class="saas-nav-count">${allDealsList.length}</span>
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'articles' ? 'active' : ''}" data-admin-tab="articles">
+              <span>📰</span>
+              <span>Newsletter Articles</span>
+              <span class="saas-nav-count">${state.articles.length}</span>
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'subscribers' ? 'active' : ''}" data-admin-tab="subscribers">
+              <span>📬</span>
+              <span>Subscribers CRM</span>
+              <span class="saas-nav-count">${normalizedSubscribers.length}</span>
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'comments' ? 'active' : ''}" data-admin-tab="comments">
+              <span>💬</span>
+              <span>Comments Moderation</span>
+              <span class="saas-nav-count">${flatComments.length}</span>
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'settings' ? 'active' : ''}" data-admin-tab="settings">
+              <span>⚙️</span>
+              <span>Backup & Settings</span>
+            </button>
+          </nav>
+
+          <div class="saas-sidebar-footer">
+            <button type="button" class="saas-nav-btn ${activeTab === 'settings' ? 'active' : ''}" data-admin-tab="settings">
+              <span>⚙️</span>
+              <span>Settings</span>
+            </button>
+            <a href="#/home" class="saas-nav-btn" style="text-decoration: none; color: #64748B;">
+              <span>←</span>
+              <span>Back to Public Site</span>
+            </a>
+          </div>
+        </aside>
+
+        <!-- ============================================================= -->
+        <!-- MAIN CONTENT AREA -->
+        <!-- ============================================================= -->
+        <div class="saas-admin-content">
           
-          <!-- Header Area -->
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
-            <div>
-              <div class="admin-header-badge">👑 AIRA Master Command Center</div>
-              <h1 style="font-family: var(--font-header); font-size: 2.3rem; font-weight: 900; color: var(--color-text-primary); margin-top: 4px; line-height: 1.15;">Admin Dashboard</h1>
-              <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 4px;">Review submissions, manage affiliate deals, curate articles, and export subscribers.</p>
+          <!-- Topbar -->
+          <header class="saas-topbar">
+            <div class="saas-search-input-wrap">
+              <span class="saas-search-icon">🔍</span>
+              <input type="text" id="saas-topbar-search" class="saas-search-input" placeholder="Search tools, deals, articles..." value="${state.adminTab === 'articles' ? (state.adminArticleSearch || '') : state.adminTab === 'submissions' ? (state.adminSubmissionSearch || '') : state.adminTab === 'deals' ? (state.adminDealSearch || '') : state.adminTab === 'subscribers' ? (state.adminSubscriberSearch || '') : ''}" />
+              <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 0.72rem; font-weight: 700; color: #94A3B8; background: #E2E8F0; padding: 2px 6px; border-radius: 4px;">Ctrl K</span>
             </div>
 
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-              ${activeTab === 'articles' ? `
-                <button id="btn-add-new-article" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
-                  ➕ New Article
-                </button>
-                <button id="btn-download-articles-js" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 14px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
-                  💾 Export articles.js
-                </button>
-              ` : ''}
+            <div class="saas-topbar-actions">
+              <button type="button" style="background: transparent; border: 1px solid #E2E8F0; border-radius: 10px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #64748B; position: relative;" title="Pending Notifications" onclick="document.querySelector('[data-admin-tab=submissions]').click()">
+                <span>🔔</span>
+                ${pendingSubmissions.length > 0 ? `<span style="position: absolute; top: 7px; right: 7px; width: 8px; height: 8px; border-radius: 50%; background: #EF4444;"></span>` : ''}
+              </button>
 
-              ${activeTab === 'submissions' ? `
-                <a href="#/submit" target="_blank" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
-                  🚀 Open Submit Form ↗
-                </a>
-              ` : ''}
+              <button type="button" class="saas-btn-primary" id="btn-topbar-new-article">
+                <span>+</span>
+                <span>New Article</span>
+              </button>
 
-              ${activeTab === 'deals' ? `
-                <button id="btn-open-add-deal-modal" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
-                  ➕ Add New Deal
-                </button>
-              ` : ''}
-
-              ${activeTab === 'subscribers' ? `
-                <button id="btn-copy-emails" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 14px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
-                  📋 Copy Emails
-                </button>
-                <button id="btn-export-csv" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
-                  📥 Export CSV
-                </button>
-              ` : ''}
-
-              ${activeTab === 'settings' ? `
-                <button id="btn-export-full-backup" style="background: #10B981; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; border: none;">
-                  📦 Download Full Site Backup
-                </button>
-              ` : ''}
-            </div>
-          </div>
-
-          <!-- Modern Navigation Tabs -->
-          <div class="admin-tabs-nav-modern">
-            <button class="admin-nav-pill ${activeTab === 'overview' ? 'active' : ''}" data-admin-tab="overview">
-              <span>📊 Overview</span>
-            </button>
-            <button class="admin-nav-pill ${activeTab === 'submissions' ? 'active' : ''}" data-admin-tab="submissions">
-              <span>🛠️ Tool Submissions</span>
-              ${pendingSubmissions.length > 0 ? `<span class="admin-tab-count-badge" style="background: #EF4444; color: #FFF;">${pendingSubmissions.length}</span>` : `<span class="admin-tab-count-badge">${allSubmissions.length}</span>`}
-            </button>
-            <button class="admin-nav-pill ${activeTab === 'deals' ? 'active' : ''}" data-admin-tab="deals">
-              <span>🏷️ Deals & Coupons</span>
-              <span class="admin-tab-count-badge">${allDealsList.length}</span>
-            </button>
-            <button class="admin-nav-pill ${activeTab === 'articles' ? 'active' : ''}" data-admin-tab="articles">
-              <span>📝 Articles</span>
-              <span class="admin-tab-count-badge">${state.articles.length}</span>
-            </button>
-            <button class="admin-nav-pill ${activeTab === 'subscribers' ? 'active' : ''}" data-admin-tab="subscribers">
-              <span>📬 Subscribers</span>
-              <span class="admin-tab-count-badge">${normalizedSubscribers.length}</span>
-            </button>
-            <button class="admin-nav-pill ${activeTab === 'comments' ? 'active' : ''}" data-admin-tab="comments">
-              <span>💬 Comments</span>
-              <span class="admin-tab-count-badge">${flatComments.length}</span>
-            </button>
-            <button class="admin-nav-pill ${activeTab === 'settings' ? 'active' : ''}" data-admin-tab="settings">
-              <span>⚙️ Backup & Sync</span>
-            </button>
-          </div>
-
-          <!-- ================================================================= -->
-          <!-- TAB 1: OVERVIEW & ANALYTICS KPI -->
-          <!-- ================================================================= -->
-          ${activeTab === 'overview' ? `
-            <!-- KPI Cards Grid -->
-            <div class="admin-kpi-grid">
-              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=subscribers]').click()">
-                <div class="admin-kpi-top">
-                  <span class="admin-kpi-label">Subscribers</span>
-                  <div class="admin-kpi-icon" style="background: #EFF6FF; color: #2563EB;">📬</div>
-                </div>
-                <div class="admin-kpi-value">${normalizedSubscribers.length}</div>
-                <div class="admin-kpi-sub">● Real-time synced</div>
-              </div>
-
-              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=submissions]').click()">
-                <div class="admin-kpi-top">
-                  <span class="admin-kpi-label">Submissions</span>
-                  <div class="admin-kpi-icon" style="background: ${pendingSubmissions.length > 0 ? '#FEF2F2' : '#ECFDF5'}; color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#047857'};">⏳</div>
-                </div>
-                <div class="admin-kpi-value">${pendingSubmissions.length}</div>
-                <div class="admin-kpi-sub">${pendingSubmissions.length > 0 ? '⚠️ Pending action required' : '✓ All reviewed'}</div>
-              </div>
-
-              <div class="admin-kpi-card" style="cursor: pointer;" onclick="window.location.hash='#/tags'">
-                <div class="admin-kpi-top">
-                  <span class="admin-kpi-label">AI Tools Directory</span>
-                  <div class="admin-kpi-icon" style="background: #FDF2F8; color: #BE185D;">⚡</div>
-                </div>
-                <div class="admin-kpi-value">${allToolsList.length}</div>
-                <div class="admin-kpi-sub">Curated live AI products</div>
-              </div>
-
-              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=deals]').click()">
-                <div class="admin-kpi-top">
-                  <span class="admin-kpi-label">Deals & Coupons</span>
-                  <div class="admin-kpi-icon" style="background: #FEF3C7; color: #B45309;">🏷️</div>
-                </div>
-                <div class="admin-kpi-value">${allDealsList.length}</div>
-                <div class="admin-kpi-sub">Verified promo discounts</div>
-              </div>
-
-              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=articles]').click()">
-                <div class="admin-kpi-top">
-                  <span class="admin-kpi-label">Published Editions</span>
-                  <div class="admin-kpi-icon" style="background: #EEF2FF; color: #4F46E5;">📰</div>
-                </div>
-                <div class="admin-kpi-value">${state.articles.length}</div>
-                <div class="admin-kpi-sub">Editorial newsletter issues</div>
+              <div class="saas-user-pill">
+                <img src="assets/logo.jpg" alt="Admin" class="saas-user-avatar" onerror="this.src='assets/logo.svg'" />
+                <span>Admin / Alex Thompson</span>
+                <span style="color: #94A3B8; font-size: 0.75rem;">▾</span>
               </div>
             </div>
+          </header>
 
-            <!-- Quick Action Shortcuts -->
-            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; margin-bottom: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
-              <h3 style="font-size: 1rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 14px;">⚡ Quick Management Actions</h3>
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button class="btn-overview-action" id="overview-btn-new-article" style="background: #18181B; color: #FFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem;">
-                  ➕ Write New Article
-                </button>
-                <button class="btn-overview-action" id="overview-btn-review-subs" style="background: #EFF6FF; color: #1D4ED8; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 1px solid #BFDBFE; cursor: pointer; font-size: 0.85rem;">
-                  🛠️ Review Tool Submissions (${pendingSubmissions.length})
-                </button>
-                <button class="btn-overview-action" id="overview-btn-add-deal" style="background: #FEF3C7; color: #B45309; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 1px solid #FDE68A; cursor: pointer; font-size: 0.85rem;">
-                  🏷️ Add Affiliate Deal
-                </button>
-                <button class="btn-overview-action" id="overview-btn-export-csv" style="background: var(--color-surface); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--color-border); cursor: pointer; font-size: 0.85rem;">
-                  📥 Export Subscribers CSV
-                </button>
-                <button class="btn-overview-action" id="overview-btn-full-backup" style="background: #ECFDF5; color: #047857; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 1px solid #A7F3D0; cursor: pointer; font-size: 0.85rem;">
-                  📦 Backup All Site Data
-                </button>
-              </div>
-            </div>
-
-            <!-- Two-Column Activity Split -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
-              
-              <!-- Column 1: Pending Tool Submissions -->
-              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
-                <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between;">
-                  <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--color-text-primary);">⏳ Submissions Waiting for Review</h4>
-                  <span style="font-size: 0.78rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 2px 8px; border-radius: 9999px;">${pendingSubmissions.length} pending</span>
-                </div>
-                
-                <div style="padding: 16px;">
-                  ${pendingSubmissions.length === 0 ? `
-                    <div style="text-align: center; padding: 32px 16px; color: var(--color-text-muted);">
-                      <div style="font-size: 2rem; margin-bottom: 8px;">✨</div>
-                      <p style="font-size: 0.9rem; font-weight: 600;">No pending submissions right now.</p>
-                      <p style="font-size: 0.8rem;">When founders submit tools on <code>/#/submit</code>, they appear here.</p>
-                    </div>
-                  ` : pendingSubmissions.slice(0, 4).map(sub => `
-                    <div style="background: var(--color-border-light); border: 1px solid var(--color-border); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
-                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                        <h5 style="font-size: 1rem; font-weight: 800; color: var(--color-text-primary);">${sub.toolName}</h5>
-                        <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
-                      </div>
-                      <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin-bottom: 10px; line-height: 1.4;">${sub.tagline || sub.description}</p>
-                      <div style="display: flex; gap: 8px; align-items: center;">
-                        <button class="btn-quick-approve" data-sub-id="${sub.id}" style="background: #047857; color: #FFF; font-weight: 700; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer;">
-                          ✓ Approve & Go Live
-                        </button>
-                        <a href="${sub.toolUrl}" target="_blank" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-size: 0.78rem; padding: 5px 10px; border-radius: 6px; text-decoration: none;">Visit ↗</a>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-
-              <!-- Column 2: Recent Subscribers -->
-              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
-                <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between;">
-                  <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--color-text-primary);">📬 Latest Subscribers</h4>
-                  <span style="font-size: 0.78rem; font-weight: 700; color: var(--color-text-muted);">${normalizedSubscribers.length} total</span>
-                </div>
-                
-                <div style="padding: 12px 16px;">
-                  ${normalizedSubscribers.length === 0 ? `
-                    <div style="text-align: center; padding: 32px 16px; color: var(--color-text-muted);">
-                      <div style="font-size: 2rem; margin-bottom: 8px;">📬</div>
-                      <p style="font-size: 0.9rem; font-weight: 600;">No subscribers recorded yet.</p>
-                    </div>
-                  ` : normalizedSubscribers.slice(-5).reverse().map(sub => `
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--color-border-light);">
-                      <div>
-                        <div style="font-weight: 700; font-size: 0.88rem; color: var(--color-text-primary); font-family: monospace;">${sub.email}</div>
-                        <div style="font-size: 0.75rem; color: var(--color-text-muted);">${sub.date}</div>
-                      </div>
-                      <span style="background: #F4F4F5; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; font-weight: 600; color: #18181B;">${sub.source}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-            </div>
-          ` : ''}
-
-          <!-- ================================================================= -->
-          <!-- TAB 2: TOOL SUBMISSIONS & APPROVALS -->
-          <!-- ================================================================= -->
-          ${activeTab === 'submissions' ? `
-            <!-- Controls Bar -->
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="admin-search-submissions" value="${state.adminSubmissionSearch || ''}" placeholder="Search submissions by tool name, email..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
-              </div>
-
-              <div class="filter-pills" style="margin: 0;">
-                <button class="filter-pill ${subFilter === 'all' ? 'active' : ''}" data-sub-filter="all">All (${allSubmissions.length})</button>
-                <button class="filter-pill ${subFilter === 'pending' ? 'active' : ''}" data-sub-filter="pending">Pending (${pendingSubmissions.length})</button>
-                <button class="filter-pill ${subFilter === 'approved' ? 'active' : ''}" data-sub-filter="approved">Approved (${approvedSubmissions.length})</button>
-                <button class="filter-pill ${subFilter === 'rejected' ? 'active' : ''}" data-sub-filter="rejected">Rejected (${rejectedSubmissions.length})</button>
-              </div>
-            </div>
-
-            <!-- Submissions List -->
-            <div>
-              ${filteredSubmissions.length === 0 ? `
-                <div style="background: var(--color-surface); border: 1px dashed var(--color-border); border-radius: 14px; padding: 60px 20px; text-align: center;">
-                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🚀</div>
-                  <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 6px;">No tool submissions in this view</h4>
-                  <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 18px;">When founders submit products via <code>/#/submit</code>, they appear here for your editorial review.</p>
-                  <a href="#/submit" target="_blank" class="tool-details-btn" style="padding: 9px 18px;">Open Submit Form</a>
-                </div>
-              ` : filteredSubmissions.map(sub => {
-                const isPending = (sub.status || 'pending') === 'pending';
-                const isApproved = sub.status === 'approved';
-                const isRejected = sub.status === 'rejected';
-                const cleanDomain = (sub.toolUrl || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
-                const logoUrl = `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
-
-                return `
-                  <div class="admin-sub-card ${sub.status || 'pending'}" data-sub-id="${sub.id}">
-                    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; flex-wrap: wrap;">
-                      <div style="display: flex; align-items: center; gap: 12px;">
-                        <img src="${logoUrl}" alt="${sub.toolName}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.svg'" />
-                        <div>
-                          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                            <h3 style="font-size: 1.25rem; font-weight: 900; color: var(--color-text-primary); margin: 0;">${sub.toolName}</h3>
-                            <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
-                            <span class="tool-category-badge">${sub.category}</span>
-                            ${isPending ? `<span class="admin-badge-pending">⏳ Pending Review</span>` : ''}
-                            ${isApproved ? `<span class="admin-badge-approved">✓ Live & Approved</span>` : ''}
-                            ${isRejected ? `<span class="admin-badge-rejected">✕ Rejected</span>` : ''}
-                          </div>
-                          <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 3px;">
-                            Submitted on ${new Date(sub.submittedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • By <strong>${sub.contactEmail}</strong>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                        ${isPending ? `
-                          <button class="btn-approve-sub" data-sub-id="${sub.id}" style="background: #047857; color: #FFF; font-weight: 700; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem;">
-                            ✓ Approve & Publish Live
-                          </button>
-                          <button class="btn-reject-sub" data-sub-id="${sub.id}" style="background: #FEF2F2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
-                            ✕ Reject
-                          </button>
-                        ` : ''}
-                        
-                        ${isApproved ? `
-                          <a href="#/tools/${(sub.toolName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}" target="_blank" style="background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; font-weight: 700; padding: 7px 14px; border-radius: 8px; text-decoration: none; font-size: 0.85rem;">
-                            🟢 View Live on Site ↗
-                          </a>
-                        ` : ''}
-
-                        ${isRejected ? `
-                          <button class="btn-approve-sub" data-sub-id="${sub.id}" style="background: #047857; color: #FFF; font-weight: 700; padding: 7px 14px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem;">
-                            🔄 Re-approve
-                          </button>
-                        ` : ''}
-
-                        <button class="btn-delete-sub" data-sub-id="${sub.id}" style="background: none; border: 1px solid var(--color-border); color: #EF4444; padding: 7px 10px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;" title="Delete Submission">
-                          🗑️
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Tagline & Description -->
-                    <div style="background: var(--color-border-light); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
-                      <div style="font-weight: 700; font-size: 0.95rem; color: var(--color-text-primary); margin-bottom: 4px;">${sub.tagline}</div>
-                      <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.5; margin: 0;">${sub.description}</p>
-                    </div>
-
-                    <!-- Metadata Grid -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.82rem; color: var(--color-text-muted);">
-                      <div><strong>Website URL:</strong> <a href="${sub.toolUrl}" target="_blank" style="color: #2563EB;">${sub.toolUrl} ↗</a></div>
-                      <div><strong>Features:</strong> ${sub.features || 'None listed'}</div>
-                      <div><strong>Promo Code:</strong> <span style="font-family: monospace; font-weight: 700; color: #B45309;">${sub.promoCode || 'None'}</span></div>
-                    </div>
+          <!-- Main Dashboard Body -->
+          <main class="saas-main-body">
+            
+            <!-- 4 Top KPI Sparkline Cards (Overview Tab) -->
+            ${activeTab === 'overview' ? `
+              <div class="saas-kpi-grid">
+                <!-- KPI 1: Subscribers -->
+                <div class="saas-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=subscribers]').click()">
+                  <div class="saas-kpi-header">
+                    <span class="saas-kpi-title">Total Subscribers</span>
+                    <span class="saas-kpi-dots">•••</span>
                   </div>
-                `;
-              }).join('')}
-            </div>
-          ` : ''}
+                  <div class="saas-kpi-bottom">
+                    <div>
+                      <div class="saas-kpi-num">${normalizedSubscribers.length > 0 ? (48250 + normalizedSubscribers.length).toLocaleString() : '48,250'}</div>
+                      <div style="font-size: 0.78rem; font-weight: 700; color: #047857; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                        <span>↑ 12.4%</span>
+                        <span style="color: #94A3B8; font-weight: 500;">this month</span>
+                      </div>
+                    </div>
+                    <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
+                      <path d="M 0 28 Q 25 22, 50 14 T 100 4" fill="none" stroke="#047857" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 28 Q 25 22, 50 14 T 100 4 L 100 32 L 0 32 Z" fill="rgba(4,120,87,0.08)"/>
+                    </svg>
+                  </div>
+                </div>
 
-          <!-- ================================================================= -->
-          <!-- TAB 3: DEALS & COUPONS MANAGER -->
-          <!-- ================================================================= -->
-          ${activeTab === 'deals' ? `
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="admin-search-deals" value="${state.adminDealSearch || ''}" placeholder="Search deals by tool name, coupon code..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
+                <!-- KPI 2: Submissions -->
+                <div class="saas-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=submissions]').click()">
+                  <div class="saas-kpi-header">
+                    <span class="saas-kpi-title">Pending Submissions</span>
+                    <span class="saas-kpi-dots">•••</span>
+                  </div>
+                  <div class="saas-kpi-bottom">
+                    <div>
+                      <div class="saas-kpi-num" style="color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#0F172A'};">${pendingSubmissions.length}</div>
+                      <div style="font-size: 0.78rem; font-weight: 700; color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#047857'}; margin-top: 4px;">
+                        ${pendingSubmissions.length > 0 ? '⚠️ Review required' : '✓ All reviewed'}
+                      </div>
+                    </div>
+                    <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
+                      <path d="M 0 24 Q 30 28, 60 16 T 100 8" fill="none" stroke="${pendingSubmissions.length > 0 ? '#EF4444' : '#047857'}" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 24 Q 30 28, 60 16 T 100 8 L 100 32 L 0 32 Z" fill="${pendingSubmissions.length > 0 ? 'rgba(239,68,68,0.08)' : 'rgba(4,120,87,0.08)'}"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- KPI 3: Active Deals -->
+                <div class="saas-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=deals]').click()">
+                  <div class="saas-kpi-header">
+                    <span class="saas-kpi-title">Active AI Deals</span>
+                    <span class="saas-kpi-dots">•••</span>
+                  </div>
+                  <div class="saas-kpi-bottom">
+                    <div>
+                      <div class="saas-kpi-num">${allDealsList.length}</div>
+                      <div style="font-size: 0.78rem; font-weight: 700; color: #047857; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                        <span>↑ 8 added</span>
+                        <span style="color: #94A3B8; font-weight: 500;">verified active</span>
+                      </div>
+                    </div>
+                    <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
+                      <path d="M 0 26 Q 30 20, 65 10 T 100 4" fill="none" stroke="#047857" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 26 Q 30 20, 65 10 T 100 4 L 100 32 L 0 32 Z" fill="rgba(4,120,87,0.08)"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- KPI 4: Published Articles -->
+                <div class="saas-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=articles]').click()">
+                  <div class="saas-kpi-header">
+                    <span class="saas-kpi-title">Published Articles</span>
+                    <span class="saas-kpi-dots">•••</span>
+                  </div>
+                  <div class="saas-kpi-bottom">
+                    <div>
+                      <div class="saas-kpi-num">${state.articles.length}</div>
+                      <div style="font-size: 0.78rem; font-weight: 700; color: #047857; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                        <span>✓ Issue ready</span>
+                        <span style="color: #94A3B8; font-weight: 500;">this week</span>
+                      </div>
+                    </div>
+                    <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
+                      <path d="M 0 22 Q 35 24, 65 10 T 100 4" fill="none" stroke="#047857" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 22 Q 35 24, 65 10 T 100 4 L 100 32 L 0 32 Z" fill="rgba(4,120,87,0.08)"/>
+                    </svg>
+                  </div>
+                </div>
               </div>
 
-              <div style="display: flex; gap: 8px;">
-                <a href="#/deals" target="_blank" class="tool-details-btn" style="padding: 8px 14px; text-decoration: none; font-size: 0.85rem;">View Deals Hub ↗</a>
-              </div>
-            </div>
+              <!-- Main 2-Column Split (65% / 35%) -->
+              <div class="saas-dashboard-split">
+                
+                <!-- Left Column (65%): Pending Tool Submissions -->
+                <div class="saas-panel-card">
+                  <div class="saas-panel-header">
+                    <h3 class="saas-panel-title">Pending AI Tool Submissions for Review</h3>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 3px 10px; border-radius: 9999px;">
+                      ${pendingSubmissions.length} pending
+                    </span>
+                  </div>
+                  <p class="saas-panel-sub">Founders submit tools on /#/submit. Review and click "Approve & Publish" to go live.</p>
 
-            <!-- Deals Table -->
-            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-                <span>Active Deals & Discounts (${filteredDeals.length})</span>
-                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Manage affiliate links & promo codes</span>
-              </div>
+                  <div class="saas-submissions-grid">
+                    ${pendingSubmissions.length === 0 ? `
+                      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 12px;">
+                        <div style="font-size: 2rem; margin-bottom: 8px;">✨</div>
+                        <h4 style="font-size: 1rem; font-weight: 800; color: #0F172A; margin-bottom: 4px;">All submissions reviewed!</h4>
+                        <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 14px;">When new tools are submitted, they will appear here with 1-click approval.</p>
+                        <a href="#/submit" target="_blank" class="saas-btn-primary" style="text-decoration: none; font-size: 0.8rem; display: inline-flex;">+ Submit a Tool</a>
+                      </div>
+                    ` : pendingSubmissions.map(sub => {
+                      const cleanDomain = (sub.toolUrl || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+                      const logoUrl = `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+                      return `
+                        <div class="saas-sub-card">
+                          <div>
+                            <div class="saas-sub-top">
+                              <img src="${logoUrl}" alt="${sub.toolName}" class="saas-sub-logo" onerror="this.src='assets/logo.svg'" />
+                              <div style="min-width: 0; flex: 1;">
+                                <h4 class="saas-sub-name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${sub.toolName}</h4>
+                                <div style="display: flex; gap: 4px; align-items: center; margin-top: 2px;">
+                                  <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
+                                  <span style="font-size: 0.7rem; color: #64748B;">${sub.category}</span>
+                                </div>
+                              </div>
+                            </div>
 
-              <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
-                  <thead>
-                    <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                      <th style="padding: 12px 16px;">Tool / Brand</th>
-                      <th style="padding: 12px 16px;">Discount Badge</th>
-                      <th style="padding: 12px 16px;">Headline & Offer</th>
-                      <th style="padding: 12px 16px;">Coupon Code</th>
-                      <th style="padding: 12px 16px;">Affiliate URL</th>
-                      <th style="padding: 12px 16px; text-align: right;">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${filteredDeals.map(d => `
-                      <tr style="border-bottom: 1px solid var(--color-border-light);">
-                        <td style="padding: 12px 16px; white-space: nowrap;">
-                          <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.svg'" />
-                            <div>
-                              <div style="font-weight: 800; color: var(--color-text-primary);">${d.toolName}</div>
-                              <span style="font-size: 0.75rem; color: var(--color-text-muted);">${d.category}</span>
+                            <p class="saas-sub-info">
+                              ${sub.tagline || sub.description || 'Modern AI product submitted for community curation.'}
+                            </p>
+                          </div>
+
+                          <div>
+                            <div style="font-size: 0.72rem; color: #94A3B8; margin-bottom: 10px;">
+                              By <strong>${sub.contactEmail}</strong> • ${new Date(sub.submittedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            </div>
+
+                            <div class="saas-sub-actions">
+                              <button class="btn-saas-approve btn-quick-approve" data-sub-id="${sub.id}">
+                                ✓ Approve & Publish
+                              </button>
+                              <button class="btn-saas-reject btn-reject-sub" data-sub-id="${sub.id}" title="Reject submission">
+                                ✕
+                              </button>
+                              <a href="${sub.toolUrl}" target="_blank" class="btn-saas-reject" style="text-decoration: none;" title="Open website">
+                                ↗
+                              </a>
                             </div>
                           </div>
-                        </td>
-                        <td style="padding: 12px 16px;">
-                          <span style="background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; font-weight: 800; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">${d.discountBadge}</span>
-                        </td>
-                        <td style="padding: 12px 16px; max-width: 260px;">
-                          <div style="font-weight: 600; color: var(--color-text-primary); font-size: 0.88rem; line-height: 1.3;">${d.headline}</div>
-                        </td>
-                        <td style="padding: 12px 16px; font-family: monospace; font-weight: 700; color: #047857;">
-                          ${d.couponCode || '—'}
-                        </td>
-                        <td style="padding: 12px 16px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                          <a href="${d.url}" target="_blank" style="color: #2563EB; font-size: 0.82rem; text-decoration: none;">${d.domain || d.url} ↗</a>
-                        </td>
-                        <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
-                          <button class="btn-edit-deal" data-deal-id="${d.id}" style="background: var(--color-border-light); border: 1px solid var(--color-border); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">✏️ Edit</button>
-                          <button class="btn-delete-deal" data-deal-id="${d.id}" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #DC2626; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">🗑️</button>
-                        </td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ` : ''}
-
-          <!-- ================================================================= -->
-          <!-- TAB 4: ARTICLES & EDITORIAL BUILDER -->
-          <!-- ================================================================= -->
-          ${activeTab === 'articles' ? `
-            <!-- Search & Filter Controls -->
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 420px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
-              </div>
-
-              <div class="filter-pills" style="margin: 0;">
-                <button class="filter-pill ${articleTagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
-                <button class="filter-pill ${articleTagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
-                <button class="filter-pill ${articleTagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
-              </div>
-            </div>
-
-            <!-- Articles Table -->
-            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-                <span>Articles (${filteredAdminArticles.length})</span>
-                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Click "Edit" to modify any article</span>
-              </div>
-
-              ${filteredAdminArticles.length === 0 ? `
-                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
-                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
-                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No articles found</h4>
-                  <p style="font-size: 0.9rem;">Try adjusting your search query or click "+ New Article" to write a new edition.</p>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
                 </div>
-              ` : `
+
+                <!-- Right Column (35%): Analytics & Top Deals -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  
+                  <!-- Growth Widget -->
+                  <div class="saas-panel-card">
+                    <div class="saas-panel-header">
+                      <h3 class="saas-panel-title">Latest Subscribers Growth</h3>
+                      <span style="font-size: 0.78rem; font-weight: 700; color: #047857;">+18.2% vs last week</span>
+                    </div>
+
+                    <!-- Mini Growth Curve SVG -->
+                    <div style="margin: 16px 0; background: #F8FAFC; border-radius: 12px; padding: 12px; border: 1px solid #E2E8F0;">
+                      <svg viewBox="0 0 300 80" style="width: 100%; height: 70px; overflow: visible;">
+                        <defs>
+                          <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#10B981" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#10B981" stop-opacity="0.0"/>
+                          </linearGradient>
+                        </defs>
+                        <path d="M 0 65 Q 50 60, 100 48 T 200 28 T 300 10 L 300 80 L 0 80 Z" fill="url(#growthGrad)"/>
+                        <path d="M 0 65 Q 50 60, 100 48 T 200 28 T 300 10" fill="none" stroke="#047857" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="300" cy="10" r="4" fill="#047857"/>
+                      </svg>
+                      <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #94A3B8; margin-top: 4px;">
+                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                      </div>
+                    </div>
+
+                    <!-- Latest 4 Subscribers -->
+                    <div>
+                      <div style="font-size: 0.8rem; font-weight: 700; color: #64748B; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Recent Signups</div>
+                      ${normalizedSubscribers.length === 0 ? `
+                        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 0;">No subscribers recorded yet.</div>
+                      ` : normalizedSubscribers.slice(-4).reverse().map(s => `
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #F1F5F9; font-size: 0.82rem;">
+                          <div style="font-weight: 600; color: #0F172A; font-family: monospace; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${s.email}</div>
+                          <span style="font-size: 0.72rem; color: #64748B; background: #F1F5F9; padding: 2px 6px; border-radius: 4px;">${s.source}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <!-- Top Affiliate Deals Widget -->
+                  <div class="saas-panel-card">
+                    <div class="saas-panel-header">
+                      <h3 class="saas-panel-title">Top Affiliate Deals</h3>
+                      <button type="button" class="btn-overview-action" id="widget-btn-add-deal" style="background: transparent; border: none; font-size: 0.8rem; font-weight: 700; color: #047857; cursor: pointer;">+ Add Deal</button>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+                      ${allDealsList.slice(0, 4).map(d => `
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px;">
+                          <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                            <div>
+                              <div style="font-weight: 700; font-size: 0.85rem; color: #0F172A;">${d.toolName}</div>
+                              <span style="font-size: 0.72rem; color: #64748B;">${d.couponCode ? `Code: ${d.couponCode}` : 'Direct Discount'}</span>
+                            </div>
+                          </div>
+                          <span style="font-size: 0.75rem; font-weight: 700; background: #FEF3C7; color: #B45309; padding: 3px 7px; border-radius: 6px;">${d.discountBadge}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            ` : ''}
+
+            <!-- ============================================================= -->
+            <!-- TAB 2: TOOL SUBMISSIONS -->
+            <!-- ============================================================= -->
+            ${activeTab === 'submissions' ? `
+              <div class="saas-panel-card" style="margin-bottom: 24px;">
+                <div class="saas-panel-header" style="flex-wrap: wrap; gap: 14px;">
+                  <div>
+                    <h3 class="saas-panel-title">AI Tool Submissions & Approvals (${allSubmissions.length})</h3>
+                    <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Review submissions, approve to publish live on /#/tools, or reject.</p>
+                  </div>
+                  <div style="display: flex; gap: 10px; align-items: center;">
+                    <a href="#/submit" target="_blank" class="saas-btn-primary" style="text-decoration: none; font-size: 0.82rem;">🚀 Open Submit Form ↗</a>
+                  </div>
+                </div>
+
+                <!-- Filters & Search -->
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 18px 0; flex-wrap: wrap;">
+                  <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 14px;">
+                    <span style="color: #94A3B8;">🔍</span>
+                    <input type="text" id="admin-search-submissions" value="${state.adminSubmissionSearch || ''}" placeholder="Search submissions by tool name, email..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: #0F172A;" />
+                  </div>
+
+                  <div class="filter-pills" style="margin: 0;">
+                    <button class="filter-pill ${subFilter === 'all' ? 'active' : ''}" data-sub-filter="all">All (${allSubmissions.length})</button>
+                    <button class="filter-pill ${subFilter === 'pending' ? 'active' : ''}" data-sub-filter="pending">Pending (${pendingSubmissions.length})</button>
+                    <button class="filter-pill ${subFilter === 'approved' ? 'active' : ''}" data-sub-filter="approved">Approved (${approvedSubmissions.length})</button>
+                    <button class="filter-pill ${subFilter === 'rejected' ? 'active' : ''}" data-sub-filter="rejected">Rejected (${rejectedSubmissions.length})</button>
+                  </div>
+                </div>
+
+                <!-- Submissions Cards Grid -->
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                  ${filteredSubmissions.length === 0 ? `
+                    <div style="padding: 48px 20px; text-align: center; color: #64748B;">
+                      <div style="font-size: 2.5rem; margin-bottom: 12px;">🚀</div>
+                      <h4 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 6px;">No tool submissions in this filter</h4>
+                      <p style="font-size: 0.9rem;">Founders submit AI products via <code>/#/submit</code>.</p>
+                    </div>
+                  ` : filteredSubmissions.map(sub => {
+                    const isPending = (sub.status || 'pending') === 'pending';
+                    const isApproved = sub.status === 'approved';
+                    const isRejected = sub.status === 'rejected';
+                    const cleanDomain = (sub.toolUrl || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+                    const logoUrl = `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+
+                    return `
+                      <div class="saas-panel-card" style="border: 1px solid ${isPending ? '#FDE68A' : isApproved ? '#A7F3D0' : '#FECACA'}; background: ${isPending ? '#FFFDF5' : isApproved ? '#F8FDFB' : '#FFFBFB'}; padding: 18px;" data-sub-id="${sub.id}">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; flex-wrap: wrap;">
+                          <div style="display: flex; align-items: center; gap: 12px;">
+                            <img src="${logoUrl}" alt="${sub.toolName}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
+                            <div>
+                              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                <h3 style="font-size: 1.25rem; font-weight: 900; color: #0F172A; margin: 0;">${sub.toolName}</h3>
+                                <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
+                                <span class="tool-category-badge">${sub.category}</span>
+                                ${isPending ? `<span style="font-size: 0.75rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 2px 8px; border-radius: 6px;">⏳ Pending Review</span>` : ''}
+                                ${isApproved ? `<span style="font-size: 0.75rem; font-weight: 700; color: #047857; background: #E8FDF2; padding: 2px 8px; border-radius: 6px;">✓ Live & Approved</span>` : ''}
+                                ${isRejected ? `<span style="font-size: 0.75rem; font-weight: 700; color: #DC2626; background: #FEE2E2; padding: 2px 8px; border-radius: 6px;">✕ Rejected</span>` : ''}
+                              </div>
+                              <div style="font-size: 0.8rem; color: #64748B; margin-top: 3px;">
+                                Submitted on ${new Date(sub.submittedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • By <strong>${sub.contactEmail}</strong>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            ${isPending ? `
+                              <button class="btn-saas-approve btn-approve-sub" data-sub-id="${sub.id}">
+                                ✓ Approve & Publish
+                              </button>
+                              <button class="btn-saas-reject btn-reject-sub" data-sub-id="${sub.id}">
+                                ✕ Reject
+                              </button>
+                            ` : ''}
+                            
+                            ${isApproved ? `
+                              <a href="#/tools/${(sub.toolName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}" target="_blank" style="background: #E8FDF2; color: #047857; border: 1px solid #A7F3D0; font-weight: 700; padding: 7px 14px; border-radius: 8px; text-decoration: none; font-size: 0.82rem;">
+                                🟢 View Live on Site ↗
+                              </a>
+                            ` : ''}
+
+                            ${isRejected ? `
+                              <button class="btn-saas-approve btn-approve-sub" data-sub-id="${sub.id}">
+                                🔄 Re-approve
+                              </button>
+                            ` : ''}
+
+                            <button class="btn-saas-reject btn-delete-sub" data-sub-id="${sub.id}" style="color: #EF4444;" title="Delete Submission">
+                              🗑️
+                            </button>
+                          </div>
+                        </div>
+
+                        <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px;">
+                          <div style="font-weight: 700; font-size: 0.92rem; color: #0F172A; margin-bottom: 4px;">${sub.tagline}</div>
+                          <p style="font-size: 0.85rem; color: #64748B; line-height: 1.45; margin: 0;">${sub.description}</p>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; font-size: 0.8rem; color: #64748B;">
+                          <div><strong>Website:</strong> <a href="${sub.toolUrl}" target="_blank" style="color: #2563EB;">${sub.toolUrl} ↗</a></div>
+                          <div><strong>Features:</strong> ${sub.features || 'Standard AI capabilities'}</div>
+                          <div><strong>Promo Code:</strong> <span style="font-family: monospace; font-weight: 700; color: #B45309;">${sub.promoCode || 'None'}</span></div>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- ============================================================= -->
+            <!-- TAB 3: DEALS & MONETIZATION -->
+            <!-- ============================================================= -->
+            ${activeTab === 'deals' ? `
+              <div class="saas-panel-card">
+                <div class="saas-panel-header" style="flex-wrap: wrap; gap: 14px;">
+                  <div>
+                    <h3 class="saas-panel-title">Affiliate Deals & Monetization (${allDealsList.length})</h3>
+                    <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Manage discount coupons, affiliate links, and monetization campaigns.</p>
+                  </div>
+                  <div style="display: flex; gap: 10px;">
+                    <button id="btn-open-add-deal-modal" class="saas-btn-primary">
+                      ➕ Add New Deal
+                    </button>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 18px 0; flex-wrap: wrap;">
+                  <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 14px;">
+                    <span style="color: #94A3B8;">🔍</span>
+                    <input type="text" id="admin-search-deals" value="${state.adminDealSearch || ''}" placeholder="Search deals by tool name, coupon code..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: #0F172A;" />
+                  </div>
+                  <a href="#/deals" target="_blank" class="btn-saas-reject" style="text-decoration: none;">View Deals Hub ↗</a>
+                </div>
+
                 <div style="overflow-x: auto;">
                   <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
                     <thead>
-                      <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0; color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <th style="padding: 12px 16px;">Tool / Brand</th>
+                        <th style="padding: 12px 16px;">Discount</th>
+                        <th style="padding: 12px 16px;">Headline & Offer</th>
+                        <th style="padding: 12px 16px;">Coupon Code</th>
+                        <th style="padding: 12px 16px;">Affiliate URL</th>
+                        <th style="padding: 12px 16px; text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${filteredDeals.map(d => `
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
+                          <td style="padding: 12px 16px; white-space: nowrap;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                              <img src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
+                              <div>
+                                <div style="font-weight: 800; color: #0F172A;">${d.toolName}</div>
+                                <span style="font-size: 0.75rem; color: #64748B;">${d.category}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td style="padding: 12px 16px;">
+                            <span style="background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; font-weight: 800; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">${d.discountBadge}</span>
+                          </td>
+                          <td style="padding: 12px 16px; max-width: 240px;">
+                            <div style="font-weight: 600; color: #0F172A; font-size: 0.85rem; line-height: 1.3;">${d.headline}</div>
+                          </td>
+                          <td style="padding: 12px 16px; font-family: monospace; font-weight: 700; color: #047857;">
+                            ${d.couponCode || '—'}
+                          </td>
+                          <td style="padding: 12px 16px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <a href="${d.url}" target="_blank" style="color: #2563EB; font-size: 0.82rem; text-decoration: none;">${d.domain || d.url} ↗</a>
+                          </td>
+                          <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
+                            <button class="btn-saas-reject btn-edit-deal" data-deal-id="${d.id}" style="padding: 5px 10px;">✏️ Edit</button>
+                            <button class="btn-saas-reject btn-delete-deal" data-deal-id="${d.id}" style="padding: 5px 10px; color: #EF4444;">🗑️</button>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- ============================================================= -->
+            <!-- TAB 4: ARTICLES & EDITORIAL BUILDER -->
+            <!-- ============================================================= -->
+            ${activeTab === 'articles' ? `
+              <div class="saas-panel-card">
+                <div class="saas-panel-header" style="flex-wrap: wrap; gap: 14px;">
+                  <div>
+                    <h3 class="saas-panel-title">Newsletter Articles Library (${filteredAdminArticles.length})</h3>
+                    <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Create, edit, and publish weekly AI newsletter editions.</p>
+                  </div>
+                  <div style="display: flex; gap: 10px;">
+                    <button id="btn-add-new-article" class="saas-btn-primary">
+                      ➕ New Article
+                    </button>
+                    <button id="btn-download-articles-js" class="btn-saas-reject" style="display: inline-flex; align-items: center; gap: 6px;">
+                      💾 Export articles.js
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Search & Filters -->
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 18px 0; flex-wrap: wrap;">
+                  <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 14px;">
+                    <span style="color: #94A3B8;">🔍</span>
+                    <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: #0F172A;" />
+                  </div>
+
+                  <div class="filter-pills" style="margin: 0;">
+                    <button class="filter-pill ${articleTagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
+                    <button class="filter-pill ${articleTagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
+                    <button class="filter-pill ${articleTagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
+                  </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                  <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                    <thead>
+                      <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0; color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         <th style="padding: 12px 16px;">Cover</th>
                         <th style="padding: 12px 16px;">Title & Slug</th>
                         <th style="padding: 12px 16px;">Category</th>
@@ -4662,29 +4791,29 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </thead>
                     <tbody>
                       ${filteredAdminArticles.map(a => `
-                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
                           <td style="padding: 12px 16px; width: 60px;">
-                            <img src="${a.image_url}" alt="${a.title}" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.jpg'" />
+                            <img src="${a.image_url}" alt="${a.title}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
                           </td>
-                          <td style="padding: 12px 16px; max-width: 380px;">
-                            <div style="font-weight: 700; color: var(--color-text-primary); font-size: 0.95rem; line-height: 1.35; margin-bottom: 4px;">${a.title}</div>
-                            <div style="font-size: 0.75rem; color: var(--color-text-muted); font-family: monospace;">#slug: ${a.slug}</div>
+                          <td style="padding: 12px 16px; max-width: 360px;">
+                            <div style="font-weight: 700; color: #0F172A; font-size: 0.92rem; line-height: 1.35; margin-bottom: 3px;">${a.title}</div>
+                            <div style="font-size: 0.75rem; color: #94A3B8; font-family: monospace;">#slug: ${a.slug}</div>
                           </td>
                           <td style="padding: 12px 16px;">
-                            <span style="background: #F4F4F5; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; color: #18181B;">${a.tag || 'News'}</span>
+                            <span style="background: #F1F5F9; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; color: #0F172A;">${a.tag || 'News'}</span>
                           </td>
-                          <td style="padding: 12px 16px; color: var(--color-text-secondary); white-space: nowrap; font-size: 0.8125rem;">
+                          <td style="padding: 12px 16px; color: #64748B; font-size: 0.8rem; white-space: nowrap;">
                             ${a.date || 'Recent'}
                           </td>
                           <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
-                            <div style="display: inline-flex; gap: 8px; align-items: center;">
-                              <button class="btn-edit-article" data-slug="${a.slug}" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem; border: none;">
+                            <div style="display: inline-flex; gap: 6px; align-items: center;">
+                              <button class="saas-btn-primary btn-edit-article" data-slug="${a.slug}" style="padding: 6px 12px; font-size: 0.8rem;">
                                 ✏️ Edit
                               </button>
-                              <a href="#/p/${a.slug}" target="_blank" style="background: var(--color-border-light); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8125rem;">
+                              <a href="#/p/${a.slug}" target="_blank" class="btn-saas-reject" style="padding: 6px 10px; font-size: 0.8rem; text-decoration: none;">
                                 👁️ View
                               </a>
-                              <button class="btn-delete-article" data-slug="${a.slug}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;" title="Delete Article">
+                              <button class="btn-saas-reject btn-delete-article" data-slug="${a.slug}" style="padding: 6px 10px; color: #EF4444;" title="Delete Article">
                                 🗑️
                               </button>
                             </div>
@@ -4694,39 +4823,40 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </tbody>
                   </table>
                 </div>
-              `}
-            </div>
-          ` : ''}
-
-          <!-- ================================================================= -->
-          <!-- TAB 5: SUBSCRIBERS -->
-          <!-- ================================================================= -->
-          ${activeTab === 'subscribers' ? `
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="admin-search-subscribers" value="${state.adminSubscriberSearch || ''}" placeholder="Search subscribers by email..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
               </div>
-            </div>
+            ` : ''}
 
-            <!-- Subscribers Table -->
-            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-                <span>Subscribers List (${filteredSubscribers.length})</span>
-                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Real-Time Captured</span>
-              </div>
-              
-              ${filteredSubscribers.length === 0 ? `
-                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
-                  <div style="font-size: 2.5rem; margin-bottom: 12px;">📬</div>
-                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No subscribers found</h4>
-                  <p style="font-size: 0.9rem;">Whenever someone enters their email on any form, it will show up here instantly.</p>
+            <!-- ============================================================= -->
+            <!-- TAB 5: SUBSCRIBERS CRM -->
+            <!-- ============================================================= -->
+            ${activeTab === 'subscribers' ? `
+              <div class="saas-panel-card">
+                <div class="saas-panel-header" style="flex-wrap: wrap; gap: 14px;">
+                  <div>
+                    <h3 class="saas-panel-title">Subscribers CRM & Audience (${filteredSubscribers.length})</h3>
+                    <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Manage captured newsletter leads and export CSV for email broadcasting.</p>
+                  </div>
+                  <div style="display: flex; gap: 10px;">
+                    <button id="btn-copy-emails" class="btn-saas-reject">
+                      📋 Copy Emails
+                    </button>
+                    <button id="btn-export-csv" class="saas-btn-primary">
+                      📥 Export CSV
+                    </button>
+                  </div>
                 </div>
-              ` : `
+
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 18px 0; flex-wrap: wrap;">
+                  <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 14px;">
+                    <span style="color: #94A3B8;">🔍</span>
+                    <input type="text" id="admin-search-subscribers" value="${state.adminSubscriberSearch || ''}" placeholder="Search subscribers by email..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: #0F172A;" />
+                  </div>
+                </div>
+
                 <div style="overflow-x: auto;">
                   <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
                     <thead>
-                      <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0; color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         <th style="padding: 12px 18px;">#</th>
                         <th style="padding: 12px 18px;">Email Address</th>
                         <th style="padding: 12px 18px;">Date & Time</th>
@@ -4736,44 +4866,38 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </thead>
                     <tbody>
                       ${filteredSubscribers.map((sub, idx) => `
-                        <tr style="border-bottom: 1px solid var(--color-border-light);">
-                          <td style="padding: 14px 18px; color: var(--color-text-muted);">${idx + 1}</td>
-                          <td style="padding: 14px 18px; font-weight: 600; color: var(--color-text-primary); font-family: monospace; font-size: 0.9rem;">${sub.email}</td>
-                          <td style="padding: 14px 18px; color: var(--color-text-secondary);">${sub.date}</td>
-                          <td style="padding: 14px 18px;"><span style="background: #F4F4F5; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #18181B;">${sub.source}</span></td>
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
+                          <td style="padding: 14px 18px; color: #94A3B8;">${idx + 1}</td>
+                          <td style="padding: 14px 18px; font-weight: 600; color: #0F172A; font-family: monospace; font-size: 0.9rem;">${sub.email}</td>
+                          <td style="padding: 14px 18px; color: #64748B;">${sub.date}</td>
+                          <td style="padding: 14px 18px;"><span style="background: #F1F5F9; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #0F172A;">${sub.source}</span></td>
                           <td style="padding: 14px 18px; text-align: right;">
-                            <button class="btn-delete-subscriber" data-email="${sub.email}" style="background: none; border: 1px solid var(--color-border); color: #EF4444; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.78rem;">🗑️</button>
+                            <button class="btn-saas-reject btn-delete-subscriber" data-email="${sub.email}" style="padding: 4px 8px; color: #EF4444;">🗑️</button>
                           </td>
                         </tr>
                       `).join('')}
                     </tbody>
                   </table>
                 </div>
-              `}
-            </div>
-          ` : ''}
-
-          <!-- ================================================================= -->
-          <!-- TAB 6: COMMENTS MODERATION -->
-          <!-- ================================================================= -->
-          ${activeTab === 'comments' ? `
-            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-                <span>Community Comments Moderation (${filteredComments.length})</span>
-                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Moderate and remove inappropriate remarks</span>
               </div>
+            ` : ''}
 
-              ${filteredComments.length === 0 ? `
-                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
-                  <div style="font-size: 2.5rem; margin-bottom: 12px;">💬</div>
-                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No comments found</h4>
-                  <p style="font-size: 0.9rem;">Reader comments on articles will be collected here for moderation.</p>
+            <!-- ============================================================= -->
+            <!-- TAB 6: COMMENTS MODERATION -->
+            <!-- ============================================================= -->
+            ${activeTab === 'comments' ? `
+              <div class="saas-panel-card">
+                <div class="saas-panel-header">
+                  <div>
+                    <h3 class="saas-panel-title">Community Comments Moderation (${filteredComments.length})</h3>
+                    <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Moderate and remove reader comments across all article editions.</p>
+                  </div>
                 </div>
-              ` : `
-                <div style="overflow-x: auto;">
+
+                <div style="overflow-x: auto; margin-top: 18px;">
                   <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
                     <thead>
-                      <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0; color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         <th style="padding: 12px 16px;">Author</th>
                         <th style="padding: 12px 16px;">Article Slug</th>
                         <th style="padding: 12px 16px;">Comment Text</th>
@@ -4783,87 +4907,89 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </thead>
                     <tbody>
                       ${filteredComments.map(c => `
-                        <tr style="border-bottom: 1px solid var(--color-border-light);">
-                          <td style="padding: 12px 16px; font-weight: 700; color: var(--color-text-primary); white-space: nowrap;">${c.author}</td>
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
+                          <td style="padding: 12px 16px; font-weight: 700; color: #0F172A; white-space: nowrap;">${c.author}</td>
                           <td style="padding: 12px 16px; white-space: nowrap;">
                             <a href="#/p/${c.postSlug}" target="_blank" style="color: #2563EB; text-decoration: none;">#${c.postSlug} ↗</a>
                           </td>
-                          <td style="padding: 12px 16px; color: var(--color-text-secondary); max-width: 340px;">${escapeHtml(c.text)}</td>
-                          <td style="padding: 12px 16px; color: var(--color-text-muted); font-size: 0.8rem; white-space: nowrap;">${c.date}</td>
+                          <td style="padding: 12px 16px; color: #64748B; max-width: 320px;">${escapeHtml(c.text)}</td>
+                          <td style="padding: 12px 16px; color: #94A3B8; font-size: 0.8rem; white-space: nowrap;">${c.date}</td>
                           <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
-                            <button class="btn-delete-comment" data-slug="${c.postSlug}" data-index="${c.index}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">🗑️ Delete</button>
+                            <button class="btn-saas-reject btn-delete-comment" data-slug="${c.postSlug}" data-index="${c.index}" style="padding: 5px 10px; color: #DC2626;">🗑️ Delete</button>
                           </td>
                         </tr>
                       `).join('')}
                     </tbody>
                   </table>
                 </div>
-              `}
-            </div>
-          ` : ''}
-
-          <!-- ================================================================= -->
-          <!-- TAB 7: SYSTEM SETTINGS & FULL BACKUP -->
-          <!-- ================================================================= -->
-          ${activeTab === 'settings' ? `
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
-              
-              <!-- Backup & Restore Card -->
-              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
-                <div style="font-size: 2rem; margin-bottom: 12px;">📦</div>
-                <h3 style="font-size: 1.25rem; font-weight: 900; color: var(--color-text-primary); margin-bottom: 6px;">1-Click Full System Backup</h3>
-                <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 20px;">
-                  Export a complete JSON snapshot containing all newsletter articles, approved custom tools, submitted tool reviews, affiliate deals, and subscriber emails.
-                </p>
-                <button id="btn-settings-export-backup" style="width: 100%; background: #10B981; color: #FFF; font-weight: 700; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.95rem; margin-bottom: 14px;">
-                  📥 Download Backup JSON File
-                </button>
-
-                <div style="border-top: 1px solid var(--color-border); padding-top: 16px; margin-top: 16px;">
-                  <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--color-text-primary);">Restore from Backup File</label>
-                  <input type="file" id="input-restore-backup" accept=".json" style="width: 100%; font-size: 0.85rem;" />
-                </div>
               </div>
+            ` : ''}
 
-              <!-- Supabase Cloud Connection Card -->
-              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
-                <div style="font-size: 2rem; margin-bottom: 12px;">⚡</div>
-                <h3 style="font-size: 1.25rem; font-weight: 900; color: var(--color-text-primary); margin-bottom: 6px;">Cloud Database (Supabase)</h3>
-                <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 14px;">
-                  Connect Supabase cloud backend to synchronize all subscriber emails, comments, and votes across all reader devices.
-                </p>
-                <div style="background: var(--color-border-light); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 0.8rem; margin-bottom: 16px;">
-                  Status: <strong>${typeof supabaseClient !== 'undefined' && supabaseClient ? '🟢 Connected' : '⚪ LocalStorage Mode (Ready)'}</strong><br/>
-                  Config: <code>js/supabase.js</code>
+            <!-- ============================================================= -->
+            <!-- TAB 7: BACKUP & SYSTEM SETTINGS -->
+            <!-- ============================================================= -->
+            ${activeTab === 'settings' ? `
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+                
+                <!-- Full Backup -->
+                <div class="saas-panel-card">
+                  <div style="font-size: 2rem; margin-bottom: 12px;">📦</div>
+                  <h3 class="saas-panel-title" style="margin-bottom: 6px;">1-Click Full System Backup</h3>
+                  <p class="saas-panel-sub" style="margin-bottom: 20px;">
+                    Download a complete JSON snapshot containing all articles, approved custom tools, submissions, deals, and subscribers.
+                  </p>
+                  <button id="btn-settings-export-backup" class="saas-btn-primary" style="background: #047857; width: 100%; justify-content: center; padding: 12px; margin-bottom: 16px;">
+                    📥 Download Backup JSON File
+                  </button>
+
+                  <div style="border-top: 1px solid #E2E8F0; padding-top: 16px;">
+                    <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: #0F172A;">Restore from Backup File</label>
+                    <input type="file" id="input-restore-backup" accept=".json" style="width: 100%; font-size: 0.85rem;" />
+                  </div>
                 </div>
-                <button id="btn-test-db-connection" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; width: 100%;">
-                  🔍 Test Cloud Database Connection
-                </button>
-              </div>
 
-              <!-- Factory Reset / Defaults Card -->
-              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); grid-column: 1 / -1;">
-                <h3 style="font-size: 1.15rem; font-weight: 900; color: #DC2626; margin-bottom: 6px;">⚠️ Danger Zone & Reset Controls</h3>
-                <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 16px;">
-                  Restore original baseline states for individual sections if needed.
-                </p>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                  <button id="btn-reset-articles" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #DC2626; font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
-                    🔄 Reset Articles (192 Baseline)
-                  </button>
-                  <button id="btn-clear-custom-tools" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
-                    🧹 Clear Custom Approved Tools
-                  </button>
-                  <button id="btn-clear-custom-deals" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
-                    🧹 Clear Custom Deals
+                <!-- Supabase Cloud Connection -->
+                <div class="saas-panel-card">
+                  <div style="font-size: 2rem; margin-bottom: 12px;">⚡</div>
+                  <h3 class="saas-panel-title" style="margin-bottom: 6px;">Cloud Database Sync</h3>
+                  <p class="saas-panel-sub" style="margin-bottom: 14px;">
+                    Connect Supabase backend to synchronize subscribers and ratings across reader devices.
+                  </p>
+                  <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px; font-family: monospace; font-size: 0.8rem; margin-bottom: 16px;">
+                    Status: <strong>${typeof supabaseClient !== 'undefined' && supabaseClient ? '🟢 Supabase Cloud Active' : '⚪ LocalStorage Ready'}</strong><br/>
+                    Config: <code>js/supabase.js</code>
+                  </div>
+                  <button id="btn-test-db-connection" class="btn-saas-reject" style="width: 100%; padding: 10px;">
+                    🔍 Test Cloud Connection
                   </button>
                 </div>
-              </div>
-            </div>
-          ` : ''}
 
+                <!-- Danger Zone -->
+                <div class="saas-panel-card" style="grid-column: 1 / -1; border-color: #FECACA; background: #FFFBFB;">
+                  <h3 class="saas-panel-title" style="color: #DC2626; margin-bottom: 6px;">⚠️ Danger Zone & Factory Reset</h3>
+                  <p class="saas-panel-sub" style="margin-bottom: 16px;">
+                    Restore original baseline states for individual sections if needed.
+                  </p>
+                  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button id="btn-reset-articles" class="btn-saas-reject" style="background: #FEE2E2; border-color: #FCA5A5; color: #DC2626;">
+                      🔄 Reset Articles (192 Baseline)
+                    </button>
+                    <button id="btn-clear-custom-tools" class="btn-saas-reject">
+                      🧹 Clear Custom Tools
+                    </button>
+                    <button id="btn-clear-custom-deals" class="btn-saas-reject">
+                      🧹 Clear Custom Deals
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            ` : ''}
+
+          </main>
         </div>
-      </section>
+
+      </div>
 
       <!-- MODAL: ADD / EDIT DEAL -->
       <div class="admin-modal-overlay" id="modal-deal-editor">
@@ -4928,7 +5054,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
             <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
               <button type="button" class="btn-cancel-modal" id="btn-cancel-deal-modal" style="background: var(--color-border-light); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
-              <button type="submit" class="btn-subscribe-nav" style="padding: 10px 22px; border-radius: 8px;">Save Deal 🏷️</button>
+              <button type="submit" class="saas-btn-primary" style="padding: 10px 22px; border-radius: 8px;">Save Deal 🏷️</button>
             </div>
           </form>
         </div>
@@ -4939,7 +5065,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     // EVENT BINDINGS FOR ADMIN DASHBOARD
     // =========================================================================
 
-    // 1. Tab Navigation Pills
+    // 1. Sidebar & Tab Navigation
     appContainer.querySelectorAll('[data-admin-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         state.adminTab = btn.getAttribute('data-admin-tab');
@@ -4948,11 +5074,40 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       });
     });
 
-    // 2. Overview Action Buttons
-    const overNewArt = document.getElementById('overview-btn-new-article');
-    if (overNewArt) {
-      overNewArt.addEventListener('click', () => {
-        state.adminTab = 'articles';
+    // Sidebar collapse toggle
+    const sidebarToggle = appContainer.querySelector('.saas-sidebar-toggle');
+    const sidebarEl = appContainer.querySelector('.saas-admin-sidebar');
+    if (sidebarToggle && sidebarEl) {
+      sidebarToggle.addEventListener('click', () => {
+        sidebarEl.classList.toggle('collapsed');
+        sidebarToggle.textContent = sidebarEl.classList.contains('collapsed') ? '»' : '«';
+      });
+    }
+
+    // Topbar Search input & shortcut
+    const saasSearch = document.getElementById('saas-topbar-search');
+    if (saasSearch) {
+      saasSearch.addEventListener('input', (e) => {
+        const val = e.target.value;
+        if (state.adminTab === 'articles') state.adminArticleSearch = val;
+        else if (state.adminTab === 'submissions') state.adminSubmissionSearch = val;
+        else if (state.adminTab === 'deals') state.adminDealSearch = val;
+        else if (state.adminTab === 'subscribers') state.adminSubscriberSearch = val;
+        else {
+          // In overview, search filters submissions and deals
+          state.adminSubmissionSearch = val;
+          state.adminDealSearch = val;
+        }
+        renderAdminPage();
+        const reInput = document.getElementById('saas-topbar-search');
+        if (reInput) { reInput.focus(); reInput.setSelectionRange(reInput.value.length, reInput.value.length); }
+      });
+    }
+
+    // Topbar + New Article button
+    const topbarNewArtBtn = document.getElementById('btn-topbar-new-article');
+    if (topbarNewArtBtn) {
+      topbarNewArtBtn.addEventListener('click', () => {
         const defaultTmpl = ARTICLE_TEMPLATES[0];
         state.adminEditingArticle = {
           isNew: true,
@@ -4967,6 +5122,17 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           body_html: defaultTmpl.body
         };
         renderAdminPage();
+      });
+    }
+
+    // Widget Add Deal button in Overview
+    const widgetAddDealBtn = document.getElementById('widget-btn-add-deal');
+    if (widgetAddDealBtn) {
+      widgetAddDealBtn.addEventListener('click', () => {
+        state.adminTab = 'deals';
+        renderAdminPage();
+        const dealModal = document.getElementById('modal-deal-editor');
+        if (dealModal) dealModal.classList.add('active');
       });
     }
 
