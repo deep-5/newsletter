@@ -1281,6 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { categories: [], software: [] };
     const allSoftware = data.software || [];
     const categories = data.categories || [];
+    const totalAltsCount = allSoftware.reduce((sum, s) => sum + (s.alternatives ? s.alternatives.length : 0), 0);
 
     if (!state.altCategoryFilter) state.altCategoryFilter = 'all';
     if (state.altSearchQuery === undefined) state.altSearchQuery = '';
@@ -1288,6 +1289,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCategoryName(catId) {
       const found = categories.find(c => c.id === catId);
       return found ? found.name : catId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    function getCategoryCount(catId) {
+      if (catId === 'all') return allSoftware.length;
+      return allSoftware.filter(s => s.category === catId).length;
     }
 
     function getFilteredSoftware() {
@@ -1319,11 +1325,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="alt-hero-banner">
             <div class="alt-hero-badge">
               <span class="bolt">⚡</span>
-              <span>AIRA Alternatives • ${allSoftware.length} Proprietary Software • Open Source Replacements</span>
+              <span>AIRA Directory • ${allSoftware.length} Software • ${totalAltsCount.toLocaleString()}+ Open-Source Alternatives</span>
             </div>
             <h1 class="alt-hero-title">Open Source Software Alternatives</h1>
             <p class="alt-hero-desc">
-              Discover top open source, self-hosted, and privacy-first alternatives to popular proprietary software and AI platforms.
+              Discover <strong>${totalAltsCount.toLocaleString()}+</strong> curated open-source, self-hosted, and privacy-first replacements for <strong>${allSoftware.length}</strong> popular proprietary software tools & AI platforms.
             </p>
 
             <!-- Search Form -->
@@ -1332,19 +1338,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search proprietary software or alternatives (e.g. Claude Code, Cursor, Notion, Figma)..." value="${state.altSearchQuery}" autocomplete="off" />
+              <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search 350+ software tools or 2,400+ alternatives (e.g. Claude Code, Cursor, Notion, Figma, 1Password)..." value="${state.altSearchQuery}" autocomplete="off" />
               <button type="button" id="alt-search-clear" class="alt-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
             </form>
-          </div>
 
-          <!-- Category Filter Pills -->
-          <div class="alt-categories-bar" id="alt-categories-bar">
-            ${categories.map(cat => `
-              <button type="button" class="alt-cat-pill ${state.altCategoryFilter === cat.id ? 'active' : ''}" data-cat-id="${cat.id}">
-                <span class="cat-icon">${cat.icon}</span>
-                <span>${cat.name}</span>
-              </button>
-            `).join('')}
+            <!-- Categories Filter Wrapper (Clean Wrapped Grid, Same as AI Tools) -->
+            <div class="categories-filter-wrapper" style="margin-top: 24px; border-top: 1px solid #F1F5F9; padding-top: 20px;">
+              <div class="categories-filter-grid" id="alt-categories-bar">
+                ${categories.map(cat => {
+                  const count = getCategoryCount(cat.id);
+                  const isActive = state.altCategoryFilter === cat.id;
+                  return `
+                    <button type="button" class="cat-filter-pill alt-cat-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
+                      <span class="cat-pill-icon">${cat.icon || '✨'}</span>
+                      <span class="cat-pill-name">${cat.name}</span>
+                      <span class="cat-pill-count">${count}</span>
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
           </div>
 
           <!-- Counter Bar -->
@@ -1358,12 +1371,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateGrid() {
       const filtered = getFilteredSoftware();
+      const filteredAltsCount = filtered.reduce((sum, s) => sum + (s.alternatives ? s.alternatives.length : 0), 0);
       const gridEl = document.getElementById('alt-grid-container');
       const countEl = document.getElementById('alt-count-bar');
 
       if (countEl) {
         countEl.innerHTML = `
-          <span>Showing <strong>${filtered.length}</strong> ${filtered.length === 1 ? 'software collection' : 'software collections'} with curated open-source alternatives</span>
+          <span>Showing <strong>${filtered.length}</strong> ${filtered.length === 1 ? 'software collection' : 'software collections'} with <strong>${filteredAltsCount.toLocaleString()}+</strong> curated open-source alternatives</span>
         `;
       }
 
