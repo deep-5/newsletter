@@ -45,6 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
     toolCategoryFilter: 'all',
     toolPricingFilter: 'all',
     toolSearchQuery: '',
+    promptCategoryFilter: 'all',
+    promptSearchQuery: '',
+    promptCurrentPage: 1,
+    compareTool1: 'cursor',
+    compareTool2: 'copilot',
+    dealCategoryFilter: 'all',
+    dealSearchQuery: '',
+    bookmarkTab: 'tools',
+    savedTools: JSON.parse(localStorage.getItem('aira_saved_tools') || '[]'),
+    savedArticles: JSON.parse(localStorage.getItem('aira_saved_articles') || '[]'),
+    savedAlternatives: JSON.parse(localStorage.getItem('aira_saved_alts') || '[]'),
     likedPosts: JSON.parse(localStorage.getItem('aira_likes') || '{}'),
     pollVotes: JSON.parse(localStorage.getItem('aira_polls') || '{}'),
     comments: JSON.parse(localStorage.getItem('aira_comments') || '{}'),
@@ -58,6 +69,73 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchResults = document.getElementById('search-results');
   const subscribeModal = document.getElementById('subscribe-modal');
   const toastContainer = document.getElementById('toast-container');
+
+  // =========================================================================
+  // Helper Utilities
+  // =========================================================================
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function updateBookmarksBadge() {
+    const badge = document.getElementById('bookmarks-nav-count');
+    if (!badge) return;
+    const count = (state.savedTools?.length || 0) + (state.savedArticles?.length || 0) + (state.savedAlternatives?.length || 0);
+    if (count > 0) {
+      badge.textContent = count;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
+  function toggleSaveTool(toolId) {
+    let saved = state.savedTools || [];
+    if (saved.includes(toolId)) {
+      saved = saved.filter(id => id !== toolId);
+      showToast('Removed tool from bookmarks 🔖');
+    } else {
+      saved.push(toolId);
+      showToast('Tool saved to bookmarks! 🔖');
+    }
+    state.savedTools = saved;
+    localStorage.setItem('aira_saved_tools', JSON.stringify(saved));
+    updateBookmarksBadge();
+  }
+
+  function toggleSaveArticle(slug) {
+    let saved = state.savedArticles || [];
+    if (saved.includes(slug)) {
+      saved = saved.filter(s => s !== slug);
+      showToast('Removed article from bookmarks 🔖');
+    } else {
+      saved.push(slug);
+      showToast('Article saved to bookmarks! 🔖');
+    }
+    state.savedArticles = saved;
+    localStorage.setItem('aira_saved_articles', JSON.stringify(saved));
+    updateBookmarksBadge();
+  }
+
+  function toggleSaveAlt(altSlug) {
+    let saved = state.savedAlternatives || [];
+    if (saved.includes(altSlug)) {
+      saved = saved.filter(s => s !== altSlug);
+      showToast('Removed alternative from bookmarks 🔖');
+    } else {
+      saved.push(altSlug);
+      showToast('Alternative saved to bookmarks! 🔖');
+    }
+    state.savedAlternatives = saved;
+    localStorage.setItem('aira_saved_alts', JSON.stringify(saved));
+    updateBookmarksBadge();
+  }
 
   // =========================================================================
   // Toast Notifications
@@ -107,6 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (hashPath === '/archive') return { name: 'archive' };
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
+    if (hashPath === '/prompts') return { name: 'prompts' };
+    if (hashPath === '/compare') return { name: 'compare' };
+    if (hashPath === '/bookmarks') return { name: 'bookmarks' };
+    if (hashPath === '/submit') return { name: 'submit' };
+    if (hashPath === '/deals') return { name: 'deals' };
+    if (hashPath === '/advertise') return { name: 'advertise' };
     if (hashPath === '/alternatives') {
       const params = new URLSearchParams(hashQuery || '');
       const category = params.get('category') || 'all';
@@ -137,6 +221,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function renderCurrentRoute() {
+    // Stop any ongoing TTS audio when switching routes
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+
     const route = getRoute();
     state.currentRoute = route.name;
     
@@ -170,6 +259,18 @@ document.addEventListener('DOMContentLoaded', () => {
       await renderPostPage(route.slug);
     } else if (route.name === 'archive') {
       renderArchivePage();
+    } else if (route.name === 'prompts') {
+      renderPromptsPage();
+    } else if (route.name === 'compare') {
+      renderComparePage();
+    } else if (route.name === 'bookmarks') {
+      renderBookmarksPage();
+    } else if (route.name === 'submit') {
+      renderSubmitPage();
+    } else if (route.name === 'deals') {
+      renderDealsPage();
+    } else if (route.name === 'advertise') {
+      renderAdvertisePage();
     } else if (route.name === 'alternatives') {
       if (route.category && route.category !== 'all') {
         state.altCategoryFilter = route.category;
@@ -718,6 +819,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const isLiked = !!state.likedPosts[article.slug];
+    const isBookmarked = (state.savedArticles || []).includes(article.slug);
     const currentLikes = article.likes + (isLiked ? 1 : 0);
     const postPoll = state.pollVotes[article.slug] || null;
     
@@ -743,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>${article.title}</span>
           </div>
 
-                    <!-- Header -->
+          <!-- Header -->
           <header class="article-header">
             <span class="article-header-tag">${article.tag}</span>
             <h1 class="article-header-title">${article.title}</h1>
@@ -763,6 +865,10 @@ document.addEventListener('DOMContentLoaded', () => {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="${isLiked ? '#EF4444' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                   <span id="like-count-display">${currentLikes}</span>
                 </button>
+                <button class="action-btn ${isBookmarked ? 'bookmarked' : ''}" id="btn-bookmark-post" data-slug="${article.slug}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="${isBookmarked ? '#10B981' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  <span>${isBookmarked ? 'Saved' : 'Save'}</span>
+                </button>
                 <button class="action-btn" id="btn-share-post" data-title="${encodeURIComponent(article.title)}">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
                   <span>Share</span>
@@ -774,6 +880,25 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Hero Cover Image -->
           <div class="article-hero-cover">
             <img src="${article.image_url}" alt="${article.title}" class="article-hero-img" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+
+          <!-- Text-to-Speech Audio Player Bar -->
+          <div class="article-tts-player" id="article-tts-bar">
+            <button type="button" class="tts-play-btn" id="btn-tts-play" title="Listen to this article">
+              <span id="tts-play-icon">▶</span>
+            </button>
+            <div class="tts-info-group">
+              <div class="tts-label">
+                <span>🎧</span>
+                <span id="tts-title-label">Listen to this edition</span>
+              </div>
+              <div class="tts-status-text" id="tts-status-text">${article.reading_time || '4 min read'} • AI Voice Narration</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <button type="button" class="tts-speed-btn active" data-rate="1">1x</button>
+              <button type="button" class="tts-speed-btn" data-rate="1.25">1.25x</button>
+              <button type="button" class="tts-speed-btn" data-rate="1.5">1.5x</button>
+            </div>
           </div>
 
           <!-- Body Content -->
@@ -860,6 +985,87 @@ document.addEventListener('DOMContentLoaded', () => {
       </article>
     `;
 
+    // Handle Text-to-Speech (TTS)
+    let currentUtterance = null;
+    let ttsRate = 1.0;
+    let isSpeaking = false;
+
+    const playBtn = document.getElementById('btn-tts-play');
+    const playIcon = document.getElementById('tts-play-icon');
+    const statusText = document.getElementById('tts-status-text');
+    const titleLabel = document.getElementById('tts-title-label');
+
+    function stopSpeech() {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        if (playIcon) playIcon.innerHTML = '▶';
+        if (statusText) statusText.innerHTML = `${article.reading_time || '4 min read'} • AI Voice Narration`;
+        if (titleLabel) titleLabel.innerHTML = 'Listen to this edition';
+      }
+    }
+
+    if (playBtn && window.speechSynthesis) {
+      playBtn.addEventListener('click', () => {
+        if (isSpeaking) {
+          if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();
+            if (playIcon) playIcon.innerHTML = '⏸';
+            if (titleLabel) titleLabel.innerHTML = 'Playing narration...';
+          } else {
+            window.speechSynthesis.pause();
+            if (playIcon) playIcon.innerHTML = '▶';
+            if (titleLabel) titleLabel.innerHTML = 'Paused narration';
+          }
+        } else {
+          stopSpeech();
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = article.body_html || '';
+          const cleanText = `${article.title}. ${article.subtitle}. ${tempDiv.textContent || tempDiv.innerText || ''}`;
+          
+          currentUtterance = new SpeechSynthesisUtterance(cleanText);
+          currentUtterance.rate = ttsRate;
+          currentUtterance.onend = () => {
+            isSpeaking = false;
+            if (playIcon) playIcon.innerHTML = '▶';
+            if (statusText) statusText.innerHTML = 'Completed listening ✓';
+            if (titleLabel) titleLabel.innerHTML = 'Listen to this edition';
+          };
+          currentUtterance.onerror = () => {
+            isSpeaking = false;
+            if (playIcon) playIcon.innerHTML = '▶';
+          };
+
+          window.speechSynthesis.speak(currentUtterance);
+          isSpeaking = true;
+          if (playIcon) playIcon.innerHTML = '⏸';
+          if (titleLabel) titleLabel.innerHTML = 'Playing AI Voice...';
+          if (statusText) statusText.innerHTML = 'Now playing narration';
+        }
+      });
+
+      // Speed buttons
+      appContainer.querySelectorAll('.tts-speed-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const rate = parseFloat(btn.getAttribute('data-rate'));
+          if (rate) {
+            ttsRate = rate;
+            appContainer.querySelectorAll('.tts-speed-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (isSpeaking && currentUtterance) {
+              window.speechSynthesis.cancel();
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = article.body_html || '';
+              const cleanText = `${article.title}. ${article.subtitle}. ${tempDiv.textContent || tempDiv.innerText || ''}`;
+              currentUtterance = new SpeechSynthesisUtterance(cleanText);
+              currentUtterance.rate = ttsRate;
+              window.speechSynthesis.speak(currentUtterance);
+            }
+          }
+        });
+      });
+    }
+
     // Bind Like Button
     const likeBtn = document.getElementById('btn-like-post');
     if (likeBtn) {
@@ -875,6 +1081,15 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast('Liked this edition! ❤️');
         }
         localStorage.setItem('aira_likes', JSON.stringify(state.likedPosts));
+        await renderPostPage(article.slug);
+      });
+    }
+
+    // Bind Bookmark Button
+    const bookmarkBtn = document.getElementById('btn-bookmark-post');
+    if (bookmarkBtn) {
+      bookmarkBtn.addEventListener('click', async () => {
+        toggleSaveArticle(article.slug);
         await renderPostPage(article.slug);
       });
     }
@@ -4271,7 +4486,1133 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   }
 
   // =========================================================================
-  // 5. Subscription Handler (Connected to Database)
+  // 5. AI Prompts Vault View (/#/prompts)
+  // =========================================================================
+  function renderPromptsPage() {
+    const promptsData = typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA : { categories: [], prompts: [] };
+    const allPrompts = promptsData.prompts || [];
+    const categories = promptsData.categories || [];
+    const PROMPTS_PER_PAGE = 9;
+
+    function getCategoryName(catId) {
+      const found = categories.find(c => c.id === catId);
+      return found ? found.name : catId;
+    }
+
+    function getFilteredPrompts() {
+      return allPrompts.filter(p => {
+        if (state.promptCategoryFilter !== 'all' && p.category !== state.promptCategoryFilter) {
+          return false;
+        }
+        if (state.promptSearchQuery.trim() !== '') {
+          const q = state.promptSearchQuery.trim().toLowerCase();
+          const titleMatch = (p.title || '').toLowerCase().includes(q);
+          const descMatch = (p.description || '').toLowerCase().includes(q);
+          const promptMatch = (p.prompt || '').toLowerCase().includes(q);
+          const tagMatch = p.tags ? p.tags.some(t => t.toLowerCase().includes(q)) : false;
+          const modelMatch = (p.targetModel || '').toLowerCase().includes(q);
+          if (!titleMatch && !descMatch && !promptMatch && !tagMatch && !modelMatch) return false;
+        }
+        return true;
+      });
+    }
+
+    function updateView() {
+      const filtered = getFilteredPrompts();
+      const totalPages = Math.ceil(filtered.length / PROMPTS_PER_PAGE) || 1;
+      if (state.promptCurrentPage > totalPages) state.promptCurrentPage = 1;
+      if (state.promptCurrentPage < 1) state.promptCurrentPage = 1;
+
+      const pagedPrompts = filtered.slice(
+        (state.promptCurrentPage - 1) * PROMPTS_PER_PAGE,
+        state.promptCurrentPage * PROMPTS_PER_PAGE
+      );
+
+      const container = document.getElementById('prompts-grid-container');
+      const countEl = document.getElementById('prompts-count-container');
+      const paginationEl = document.getElementById('prompts-pagination-container');
+
+      if (countEl) {
+        countEl.innerHTML = `Showing <strong>${filtered.length}</strong> copy-paste AI prompt templates ${state.promptCategoryFilter !== 'all' ? ` in <strong>${getCategoryName(state.promptCategoryFilter)}</strong>` : ''} ${state.promptSearchQuery ? ` matching "<em>${escapeHtml(state.promptSearchQuery)}</em>"` : ''}`;
+      }
+
+      if (container) {
+        if (pagedPrompts.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+              <p style="font-size: 1.2rem; font-weight: 700; color: #18181B; margin-bottom: 8px;">No prompts found</p>
+              <p style="color: #71717A; font-size: 0.95rem; margin-bottom: 16px;">Try adjusting your search keywords or switching category filters.</p>
+              <button type="button" class="btn-subscribe-nav" id="btn-reset-prompts-search">View All Prompts</button>
+            </div>
+          `;
+          const resetBtn = document.getElementById('btn-reset-prompts-search');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+              state.promptCategoryFilter = 'all';
+              state.promptSearchQuery = '';
+              state.promptCurrentPage = 1;
+              renderPromptsPage();
+            });
+          }
+        } else {
+          container.innerHTML = pagedPrompts.map(p => `
+            <div class="prompt-card" data-prompt-id="${p.id}">
+              <div class="prompt-card-header">
+                <span class="prompt-category-badge">
+                  <span>${categories.find(c => c.id === p.category)?.icon || '✨'}</span>
+                  <span>${getCategoryName(p.category)}</span>
+                </span>
+                <span class="prompt-model-pill">${p.targetModel || 'Universal AI'}</span>
+              </div>
+              <h3 class="prompt-card-title">${p.title}</h3>
+              <p class="prompt-card-desc">${p.description}</p>
+              
+              <div class="prompt-code-box" id="code-box-${p.id}">${escapeHtml(p.prompt)}</div>
+
+              <div class="prompt-card-actions">
+                <button type="button" class="btn-copy-prompt" data-prompt-id="${p.id}" title="Copy full prompt to clipboard">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy Prompt</span>
+                </button>
+                <a href="https://chatgpt.com/?q=${encodeURIComponent(p.prompt)}" target="_blank" rel="noopener noreferrer" class="btn-launch-prompt" title="Open in ChatGPT">
+                  <span>ChatGPT ↗</span>
+                </a>
+                <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="btn-launch-prompt" title="Open in Claude">
+                  <span>Claude ↗</span>
+                </a>
+              </div>
+            </div>
+          `).join('');
+
+          // Bind copy buttons
+          container.querySelectorAll('.btn-copy-prompt').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const pid = btn.getAttribute('data-prompt-id');
+              const targetPrompt = allPrompts.find(item => item.id === pid);
+              if (targetPrompt && navigator.clipboard) {
+                navigator.clipboard.writeText(targetPrompt.prompt).then(() => {
+                  const origText = btn.innerHTML;
+                  btn.innerHTML = `<span>Copied! ✓</span>`;
+                  btn.style.background = '#047857';
+                  showToast(`Copied "${targetPrompt.title}" prompt! 📋`);
+                  setTimeout(() => {
+                    btn.innerHTML = origText;
+                    btn.style.background = '';
+                  }, 2000);
+                });
+              }
+            });
+          });
+        }
+      }
+
+      // Render pagination
+      if (paginationEl) {
+        if (totalPages <= 1) {
+          paginationEl.innerHTML = '';
+        } else {
+          paginationEl.innerHTML = `
+            <div class="aira-pagination-bar" data-type="prompts">
+              <button type="button" class="aira-page-btn prev-btn" data-page="${state.promptCurrentPage - 1}" ${state.promptCurrentPage === 1 ? 'disabled' : ''}>← Prev</button>
+              <div class="aira-page-numbers">
+                ${Array.from({ length: totalPages }, (_, i) => i + 1).map(page => `
+                  <button type="button" class="aira-page-num ${page === state.promptCurrentPage ? 'active' : ''}" data-page="${page}">${page}</button>
+                `).join('')}
+              </div>
+              <button type="button" class="aira-page-btn next-btn" data-page="${state.promptCurrentPage + 1}" ${state.promptCurrentPage === totalPages ? 'disabled' : ''}>Next →</button>
+            </div>
+          `;
+
+          paginationEl.querySelectorAll('button[data-page]').forEach(btn => {
+            btn.addEventListener('click', () => {
+              if (btn.disabled) return;
+              const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+              if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.promptCurrentPage) {
+                state.promptCurrentPage = targetPage;
+                updateView();
+                window.scrollTo({ top: 250, behavior: 'smooth' });
+              }
+            });
+          });
+        }
+      }
+    }
+
+    appContainer.innerHTML = `
+      <div class="tools-directory-page">
+        <div class="container">
+          <!-- Hero Header -->
+          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
+            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #EEF2FF; color: #4F46E5; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
+              <span>✨</span> 100+ Production Prompts
+            </div>
+            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">AI Prompts Vault</h1>
+            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
+              Copy-paste production-grade mega-prompts for ChatGPT 4o, Claude 3.7, Midjourney, coding architecture, SEO, and business strategy.
+            </p>
+
+            <!-- Search Input -->
+            <div style="max-width: 580px; margin: 0 auto; position: relative;">
+              <input type="text" id="prompt-search-input" class="form-input" placeholder="Search prompts by keyword, model, or task (e.g., Code review, SEO, Midjourney)..." value="${escapeHtml(state.promptSearchQuery)}" style="width: 100%; padding: 14px 44px 14px 20px; border-radius: 9999px; font-size: 1rem; border: 1.5px solid #E4E4E7; box-shadow: 0 4px 20px rgba(0,0,0,0.04);" />
+              ${state.promptSearchQuery ? `<button type="button" id="btn-clear-prompt-search" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.1rem; color: #71717A; cursor: pointer;">✕</button>` : ''}
+            </div>
+          </div>
+
+          <!-- Categories Pill Bar -->
+          <div class="cat-filter-scroll-wrapper" style="margin-bottom: 24px;">
+            <div class="cat-filter-pills-row">
+              ${categories.map(cat => `
+                <button type="button" class="cat-filter-pill ${state.promptCategoryFilter === cat.id ? 'active' : ''}" data-cat="${cat.id}">
+                  <span class="cat-pill-icon">${cat.icon || '✨'}</span>
+                  <span class="cat-pill-name">${cat.name}</span>
+                  <span class="cat-pill-count">${cat.id === 'all' ? allPrompts.length : allPrompts.filter(p => p.category === cat.id).length}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Count & Status -->
+          <div id="prompts-count-container" style="font-size: 0.95rem; color: #71717A; margin-bottom: 20px;"></div>
+
+          <!-- Prompts Grid -->
+          <div class="prompts-grid-3col" id="prompts-grid-container"></div>
+
+          <!-- Pagination -->
+          <div id="prompts-pagination-container" style="margin: 40px 0 60px 0;"></div>
+        </div>
+      </div>
+    `;
+
+    // Bind category filters
+    appContainer.querySelectorAll('.cat-filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-cat');
+        state.promptCategoryFilter = cat;
+        state.promptCurrentPage = 1;
+        appContainer.querySelectorAll('.cat-filter-pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        updateView();
+      });
+    });
+
+    // Bind search input
+    const searchInput = document.getElementById('prompt-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        state.promptSearchQuery = e.target.value;
+        state.promptCurrentPage = 1;
+        updateView();
+      });
+    }
+
+    const clearBtn = document.getElementById('btn-clear-prompt-search');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        state.promptSearchQuery = '';
+        state.promptCurrentPage = 1;
+        renderPromptsPage();
+      });
+    }
+
+    updateView();
+  }
+
+  // =========================================================================
+  // 6. AI Tool Comparison / VS Mode (/#/compare)
+  // =========================================================================
+  function renderComparePage() {
+    const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { tools: [] };
+    const allTools = toolsData.tools || [];
+
+    // Default tools to compare if not set
+    if (!state.compareTool1 && allTools.length > 0) state.compareTool1 = allTools[0].id;
+    if (!state.compareTool2 && allTools.length > 1) state.compareTool2 = allTools[1].id;
+
+    const tool1 = allTools.find(t => t.id === state.compareTool1) || allTools[0];
+    const tool2 = allTools.find(t => t.id === state.compareTool2) || allTools[1] || allTools[0];
+
+    const presets = [
+      { label: 'Cursor vs Copilot', t1: 'cursor', t2: 'copilot' },
+      { label: 'Claude 3.7 vs ChatGPT', t1: 'claude-ai', t2: 'chatgpt' },
+      { label: 'Midjourney vs Flux', t1: 'midjourney', t2: 'flux-ai' },
+      { label: 'Perplexity vs Gemini', t1: 'perplexity-ai', t2: 'google-gemini' },
+      { label: 'ElevenLabs vs Suno', t1: 'elevenlabs', t2: 'suno-ai' },
+      { label: 'v0.dev vs Bolt.new', t1: 'v0-dev', t2: 'bolt-new' }
+    ];
+
+    function getToolDomain(t) {
+      if (!t) return 'ai.com';
+      return (t.domain || t.url || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+    }
+
+    function getLogo(t) {
+      if (!t) return 'assets/logo.svg';
+      return t.image || `https://www.google.com/s2/favicons?domain=${getToolDomain(t)}&sz=128`;
+    }
+
+    appContainer.innerHTML = `
+      <div class="tools-directory-page">
+        <div class="container">
+          <!-- Hero Header -->
+          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
+            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
+              <span>⚔️</span> Side-by-Side Comparison
+            </div>
+            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">AI Tool Comparison (VS Mode)</h1>
+            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
+              Compare specifications, pricing models, key capabilities, pros & cons side-by-side to make the smartest AI choice.
+            </p>
+          </div>
+
+          <!-- Selector Card -->
+          <div class="compare-selector-card">
+            <div class="compare-selectors-grid">
+              <div class="compare-select-col">
+                <label style="font-size: 0.85rem; font-weight: 800; color: #71717A; text-transform: uppercase; letter-spacing: 0.05em;">Tool 1</label>
+                <select class="compare-select-dropdown" id="select-compare-tool1">
+                  ${allTools.map(t => `
+                    <option value="${t.id}" ${tool1 && tool1.id === t.id ? 'selected' : ''}>${t.name} (${t.pricing})</option>
+                  `).join('')}
+                </select>
+              </div>
+
+              <div class="compare-vs-badge">VS</div>
+
+              <div class="compare-select-col">
+                <label style="font-size: 0.85rem; font-weight: 800; color: #71717A; text-transform: uppercase; letter-spacing: 0.05em;">Tool 2</label>
+                <select class="compare-select-dropdown" id="select-compare-tool2">
+                  ${allTools.map(t => `
+                    <option value="${t.id}" ${tool2 && tool2.id === t.id ? 'selected' : ''}>${t.name} (${t.pricing})</option>
+                  `).join('')}
+                </select>
+              </div>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="compare-preset-pills-row">
+              <span style="font-size: 0.82rem; font-weight: 700; color: #71717A;">Popular Comparisons:</span>
+              ${presets.map(p => `
+                <button type="button" class="compare-preset-btn" data-t1="${p.t1}" data-t2="${p.t2}">${p.label}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Matrix Table Comparison -->
+          <div style="overflow-x: auto; margin-bottom: 60px;">
+            <table class="compare-matrix-table">
+              <thead>
+                <tr>
+                  <th style="width: 22%;">Comparison Feature</th>
+                  <th style="width: 39%;">
+                    <div class="compare-col-header-wrap">
+                      <img src="${getLogo(tool1)}" alt="${tool1?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                      <div>
+                        <div style="font-size: 1.15rem; font-weight: 900; color: #18181B;">${tool1?.name || 'Tool 1'}</div>
+                        <span class="tool-badge-pricing pricing-${(tool1?.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool1?.pricing || 'Free'}</span>
+                      </div>
+                    </div>
+                  </th>
+                  <th style="width: 39%;">
+                    <div class="compare-col-header-wrap">
+                      <img src="${getLogo(tool2)}" alt="${tool2?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                      <div>
+                        <div style="font-size: 1.15rem; font-weight: 900; color: #18181B;">${tool2?.name || 'Tool 2'}</div>
+                        <span class="tool-badge-pricing pricing-${(tool2?.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool2?.pricing || 'Free'}</span>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="compare-feature-label">Description</td>
+                  <td><p style="color: #3F3F46; line-height: 1.5; font-size: 0.93rem;">${tool1?.description || 'N/A'}</p></td>
+                  <td><p style="color: #3F3F46; line-height: 1.5; font-size: 0.93rem;">${tool2?.description || 'N/A'}</p></td>
+                </tr>
+                <tr>
+                  <td class="compare-feature-label">Primary Categories</td>
+                  <td>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                      ${(tool1?.categories || [tool1?.category || 'AI']).map(c => `<span class="tool-category-badge">${c}</span>`).join('')}
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                      ${(tool2?.categories || [tool2?.category || 'AI']).map(c => `<span class="tool-category-badge">${c}</span>`).join('')}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="compare-feature-label">Pricing Model</td>
+                  <td><strong style="color: #047857; font-size: 1rem;">${tool1?.pricing || 'Free'}</strong></td>
+                  <td><strong style="color: #047857; font-size: 1rem;">${tool2?.pricing || 'Free'}</strong></td>
+                </tr>
+                <tr>
+                  <td class="compare-feature-label">Key Strengths</td>
+                  <td>
+                    <ul style="padding-left: 18px; color: #3F3F46; font-size: 0.9rem; line-height: 1.6;">
+                      <li>High-performance inference & intuitive modern UX</li>
+                      <li>Robust developer ecosystem and direct export workflows</li>
+                      <li>Regular weekly feature updates and active community</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul style="padding-left: 18px; color: #3F3F46; font-size: 0.9rem; line-height: 1.6;">
+                      <li>Deep ecosystem integration with enterprise security</li>
+                      <li>Comprehensive multi-modal reasoning capabilities</li>
+                      <li>Extensive API documentation and SDK support</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="compare-feature-label">Ideal For</td>
+                  <td><span style="font-size: 0.9rem; color: #18181B; font-weight: 600;">Engineers, power users & high-velocity teams</span></td>
+                  <td><span style="font-size: 0.9rem; color: #18181B; font-weight: 600;">Enterprises, researchers & multi-discipline workflows</span></td>
+                </tr>
+                <tr>
+                  <td class="compare-feature-label">AIRA Recommendation</td>
+                  <td>
+                    <div style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; font-weight: 800; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem;">
+                      ★ 9.4 / 10 • Editor's Choice
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: inline-flex; align-items: center; gap: 6px; background: #EEF2FF; color: #4F46E5; font-weight: 800; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem;">
+                      ★ 9.2 / 10 • Highly Recommended
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="compare-feature-label">Official Link</td>
+                  <td>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                      <a href="${tool1?.url || '#'}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" style="display: inline-flex; padding: 8px 16px; font-weight: 700;">
+                        <span>Visit ${tool1?.name}</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                      <a href="#/tools/${tool1?.id}" class="tool-details-btn" style="padding: 8px 14px;">Details</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                      <a href="${tool2?.url || '#'}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" style="display: inline-flex; padding: 8px 16px; font-weight: 700;">
+                        <span>Visit ${tool2?.name}</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                      <a href="#/tools/${tool2?.id}" class="tool-details-btn" style="padding: 8px 14px;">Details</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Bind dropdown change events
+    const sel1 = document.getElementById('select-compare-tool1');
+    const sel2 = document.getElementById('select-compare-tool2');
+
+    if (sel1) {
+      sel1.addEventListener('change', (e) => {
+        state.compareTool1 = e.target.value;
+        renderComparePage();
+      });
+    }
+
+    if (sel2) {
+      sel2.addEventListener('change', (e) => {
+        state.compareTool2 = e.target.value;
+        renderComparePage();
+      });
+    }
+
+    // Bind quick preset buttons
+    appContainer.querySelectorAll('.compare-preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t1 = btn.getAttribute('data-t1');
+        const t2 = btn.getAttribute('data-t2');
+        if (t1) state.compareTool1 = t1;
+        if (t2) state.compareTool2 = t2;
+        renderComparePage();
+      });
+    });
+  }
+
+  // =========================================================================
+  // 7. Bookmarks / Saved Library (/#/bookmarks)
+  // =========================================================================
+  function renderBookmarksPage() {
+    const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { tools: [] };
+    const allTools = toolsData.tools || [];
+    const altsData = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { alternatives: [] };
+    const allAlts = altsData.alternatives || [];
+
+    const savedToolIds = state.savedTools || [];
+    const savedArticleSlugs = state.savedArticles || [];
+    const savedAltSlugs = state.savedAlternatives || [];
+
+    const savedToolsList = allTools.filter(t => savedToolIds.includes(t.id));
+    const savedArticlesList = state.articles.filter(a => savedArticleSlugs.includes(a.slug));
+    const savedAltsList = allAlts.filter(a => savedAltSlugs.includes(a.slug));
+
+    const currentTab = state.bookmarkTab || 'tools';
+
+    function renderSavedToolsHTML(list) {
+      if (list.length === 0) {
+        return `
+          <div style="text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">🔖</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #18181B; margin-bottom: 8px;">No Saved AI Tools Yet</h3>
+            <p style="color: #71717A; font-size: 0.95rem; margin-bottom: 20px;">Explore the AI directory and bookmark your favorite tools for quick access.</p>
+            <a href="#/tags" class="btn-subscribe-nav">Explore AI Tools →</a>
+          </div>
+        `;
+      }
+      return `
+        <div class="tools-grid-3col">
+          ${list.map(tool => {
+            const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+            const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+            return `
+              <div class="tool-card" data-tool-id="${tool.id}">
+                <div class="tool-card-top">
+                  <a href="#/tools/${tool.id}" class="tool-icon-avatar">
+                    <img src="${logoUrl}" alt="${tool.name}" class="tool-logo-img" onerror="this.src='assets/logo.svg'" />
+                  </a>
+                  <div class="tool-title-group">
+                    <div class="tool-badges-row">
+                      <span class="tool-badge-pricing pricing-${(tool.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool.pricing}</span>
+                    </div>
+                    <h3 class="tool-card-name">
+                      <a href="#/tools/${tool.id}" class="tool-title-link">${tool.name}</a>
+                    </h3>
+                  </div>
+                </div>
+                <p class="tool-card-desc">${tool.description}</p>
+                <div class="tool-card-bottom">
+                  <button type="button" class="btn-remove-bookmark" data-tool-id="${tool.id}" style="background: none; border: 1px solid #E4E4E7; color: #EF4444; font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+                    Remove ✕
+                  </button>
+                  <div class="tool-card-actions">
+                    <a href="#/tools/${tool.id}" class="tool-details-btn">Details</a>
+                    <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn">Visit ↗</a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderSavedArticlesHTML(list) {
+      if (list.length === 0) {
+        return `
+          <div style="text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">📰</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #18181B; margin-bottom: 8px;">No Saved Articles Yet</h3>
+            <p style="color: #71717A; font-size: 0.95rem; margin-bottom: 20px;">Save must-read newsletter editions to build your personal knowledge vault.</p>
+            <a href="#/home" class="btn-subscribe-nav">Browse Editions →</a>
+          </div>
+        `;
+      }
+      return `
+        <div class="articles-grid-2col">
+          ${list.map(article => `
+            <div class="article-card">
+              <div class="card-image-wrap">
+                <img src="${article.image_url}" alt="${article.title}" class="card-thumbnail" loading="lazy" />
+                <span class="card-tag-badge">${article.tag}</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#/p/${article.slug}">${article.title}</a></h3>
+                <p class="card-subtitle">${article.subtitle}</p>
+                <div class="card-footer" style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+                  <span class="card-meta-date">${article.date} • ${article.reading_time}</span>
+                  <button type="button" class="btn-remove-art-bookmark" data-slug="${article.slug}" style="background: none; border: 1px solid #E4E4E7; color: #EF4444; font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer;">Remove ✕</button>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderSavedAltsHTML(list) {
+      if (list.length === 0) {
+        return `
+          <div style="text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">🔄</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #18181B; margin-bottom: 8px;">No Saved Alternatives Yet</h3>
+            <p style="color: #71717A; font-size: 0.95rem; margin-bottom: 20px;">Discover open-source alternatives to proprietary software and save them here.</p>
+            <a href="#/alternatives" class="btn-subscribe-nav">Explore Alternatives →</a>
+          </div>
+        `;
+      }
+      return `
+        <div class="tools-grid-3col">
+          ${list.map(alt => `
+            <div class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-icon-avatar"><span class="tool-emoji">🔄</span></div>
+                <div class="tool-title-group">
+                  <span class="tool-badge-neutral">${alt.category || 'Software'}</span>
+                  <h3 class="tool-card-name"><a href="#/alternatives/${alt.slug}" class="tool-title-link">${alt.proprietarySoftware} Alternatives</a></h3>
+                </div>
+              </div>
+              <p class="tool-card-desc">${alt.description || 'Open source replacements'}</p>
+              <div class="tool-card-bottom">
+                <button type="button" class="btn-remove-alt-bookmark" data-slug="${alt.slug}" style="background: none; border: 1px solid #E4E4E7; color: #EF4444; font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer;">Remove ✕</button>
+                <a href="#/alternatives/${alt.slug}" class="tool-details-btn">View Alternatives →</a>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    appContainer.innerHTML = `
+      <div class="tools-directory-page">
+        <div class="container">
+          <!-- Hero Header -->
+          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
+            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #FEF3C7; color: #B45309; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
+              <span>🔖</span> Your Saved Library
+            </div>
+            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">My Bookmarks</h1>
+            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
+              Quickly revisit your saved AI tools, newsletter editions, and open-source alternatives.
+            </p>
+          </div>
+
+          <!-- Bookmarks Tabs -->
+          <div class="bookmarks-tabs-bar">
+            <button type="button" class="bookmark-tab-btn ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
+              <span>⚡ Saved AI Tools (${savedToolsList.length})</span>
+            </button>
+            <button type="button" class="bookmark-tab-btn ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
+              <span>📰 Saved Articles (${savedArticlesList.length})</span>
+            </button>
+            <button type="button" class="bookmark-tab-btn ${currentTab === 'alternatives' ? 'active' : ''}" data-tab="alternatives">
+              <span>🔄 Saved Alternatives (${savedAltsList.length})</span>
+            </button>
+          </div>
+
+          <!-- Content Area -->
+          <div id="bookmarks-tab-content" style="margin-bottom: 60px;">
+            ${currentTab === 'tools' ? renderSavedToolsHTML(savedToolsList) : ''}
+            ${currentTab === 'articles' ? renderSavedArticlesHTML(savedArticlesList) : ''}
+            ${currentTab === 'alternatives' ? renderSavedAltsHTML(savedAltsList) : ''}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Bind Tab clicks
+    appContainer.querySelectorAll('.bookmark-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.bookmarkTab = btn.getAttribute('data-tab');
+        renderBookmarksPage();
+      });
+    });
+
+    // Bind Remove buttons
+    appContainer.querySelectorAll('.btn-remove-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const tid = btn.getAttribute('data-tool-id');
+        toggleSaveTool(tid);
+        renderBookmarksPage();
+      });
+    });
+
+    appContainer.querySelectorAll('.btn-remove-art-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const slug = btn.getAttribute('data-slug');
+        toggleSaveArticle(slug);
+        renderBookmarksPage();
+      });
+    });
+
+    appContainer.querySelectorAll('.btn-remove-alt-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const slug = btn.getAttribute('data-slug');
+        toggleSaveAlt(slug);
+        renderBookmarksPage();
+      });
+    });
+  }
+
+  // =========================================================================
+  // 8. Submit an AI Tool Page (/#/submit)
+  // =========================================================================
+  function renderSubmitPage() {
+    const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { categories: [] };
+    const categories = toolsData.categories || [];
+
+    appContainer.innerHTML = `
+      <div class="tools-directory-page">
+        <div class="container">
+          <!-- Hero Header -->
+          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
+            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
+              <span>🚀</span> Creator & Founder Submissions
+            </div>
+            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">Submit Your AI Tool</h1>
+            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
+              Get your product featured in front of 50,000+ AI enthusiasts, builders, investors, and engineers.
+            </p>
+          </div>
+
+          <!-- Form Card -->
+          <div class="submit-form-card" id="submit-form-container">
+            <form id="tool-submission-form">
+              <div class="form-group">
+                <label class="form-label">Tool / Product Name <span class="req">*</span></label>
+                <input type="text" name="toolName" class="form-input" placeholder="e.g., CodeWeaver AI" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Official Website URL <span class="req">*</span></label>
+                <input type="url" name="toolUrl" class="form-input" placeholder="https://yourdomain.com" required />
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label">Category <span class="req">*</span></label>
+                  <select name="category" class="form-select" required>
+                    ${categories.filter(c => c.id !== 'all').map(c => `
+                      <option value="${c.id}">${c.name}</option>
+                    `).join('')}
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Pricing Model <span class="req">*</span></label>
+                  <select name="pricing" class="form-select" required>
+                    <option value="Free">Free</option>
+                    <option value="Freemium" selected>Freemium</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Free Trial">Free Trial</option>
+                    <option value="Open Source">Open Source</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Short Tagline (1 sentence) <span class="req">*</span></label>
+                <input type="text" name="tagline" class="form-input" placeholder="e.g., The next-generation autonomous AI debugger for TypeScript" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Detailed Description <span class="req">*</span></label>
+                <textarea name="description" class="form-textarea" placeholder="Explain what problem your tool solves, how it works, and key features..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Key Features (comma-separated)</label>
+                <input type="text" name="features" class="form-input" placeholder="e.g., Multi-model support, Instant code fix, Zero-config CLI" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Founder / Contact Email <span class="req">*</span></label>
+                <input type="email" name="contactEmail" class="form-input" placeholder="founder@yourcompany.com" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Special Coupon / Promo Code for AIRA Readers (Optional)</label>
+                <input type="text" name="promoCode" class="form-input" placeholder="e.g., AIRA20 for 20% off" />
+              </div>
+
+              <div style="margin-top: 28px;">
+                <button type="submit" class="btn-subscribe-nav" style="width: 100%; padding: 14px; font-size: 1.05rem; border-radius: 10px;">
+                  Submit Tool for Review 🚀
+                </button>
+                <p style="font-size: 0.8rem; color: #71717A; text-align: center; margin-top: 10px;">
+                  All submissions are manually reviewed by our editorial team within 48 hours.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Bind submit handler
+    const form = document.getElementById('tool-submission-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const submission = {
+          toolName: formData.get('toolName'),
+          toolUrl: formData.get('toolUrl'),
+          category: formData.get('category'),
+          pricing: formData.get('pricing'),
+          tagline: formData.get('tagline'),
+          description: formData.get('description'),
+          features: formData.get('features'),
+          contactEmail: formData.get('contactEmail'),
+          promoCode: formData.get('promoCode'),
+          submittedAt: new Date().toISOString()
+        };
+
+        const existing = JSON.parse(localStorage.getItem('aira_tool_submissions') || '[]');
+        existing.push(submission);
+        localStorage.setItem('aira_tool_submissions', JSON.stringify(existing));
+
+        const card = document.getElementById('submit-form-container');
+        if (card) {
+          card.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px;">
+              <div style="width: 64px; height: 64px; border-radius: 50%; background: #ECFDF5; color: #047857; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+              <h2 style="font-size: 1.6rem; font-weight: 900; color: #18181B; margin-bottom: 12px;">Submission Received!</h2>
+              <p style="color: #52525B; font-size: 1rem; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.6;">
+                Thank you for submitting <strong>${submission.toolName}</strong>. Our editorial team will review your tool and notify you at <strong>${submission.contactEmail}</strong> once approved.
+              </p>
+              <div style="display: flex; gap: 12px; justify-content: center;">
+                <a href="#/tags" class="btn-subscribe-nav">Explore AI Tools</a>
+                <a href="#/submit" class="tool-details-btn" onclick="renderSubmitPage(); return false;">Submit Another Tool</a>
+              </div>
+            </div>
+          `;
+        }
+        showToast('🎉 Tool submitted successfully!');
+      });
+    }
+  }
+
+  // =========================================================================
+  // 9. AI Deals & Discounts Hub (/#/deals)
+  // =========================================================================
+  function renderDealsPage() {
+    const dealsData = typeof AI_DEALS_DATA !== 'undefined' ? AI_DEALS_DATA : { categories: [], deals: [] };
+    const allDeals = dealsData.deals || [];
+    const categories = dealsData.categories || [];
+
+    function getFilteredDeals() {
+      return allDeals.filter(d => {
+        if (state.dealCategoryFilter !== 'all' && d.category !== state.dealCategoryFilter) {
+          return false;
+        }
+        if (state.dealSearchQuery.trim() !== '') {
+          const q = state.dealSearchQuery.trim().toLowerCase();
+          const nameMatch = (d.toolName || '').toLowerCase().includes(q);
+          const headMatch = (d.headline || '').toLowerCase().includes(q);
+          const descMatch = (d.description || '').toLowerCase().includes(q);
+          const codeMatch = d.couponCode ? d.couponCode.toLowerCase().includes(q) : false;
+          if (!nameMatch && !headMatch && !descMatch && !codeMatch) return false;
+        }
+        return true;
+      });
+    }
+
+    const filteredDeals = getFilteredDeals();
+
+    appContainer.innerHTML = `
+      <div class="tools-directory-page">
+        <div class="container">
+          <!-- Hero Header -->
+          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
+            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #FEF3C7; color: #B45309; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
+              <span>🏷️</span> Exclusive Discounts & Perks
+            </div>
+            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">AI Deals & Discounts</h1>
+            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
+              Save big on top AI tools, developer platforms, and creator subscriptions with verified coupon codes and partnership deals.
+            </p>
+
+            <!-- Search Bar -->
+            <div style="max-width: 580px; margin: 0 auto; position: relative;">
+              <input type="text" id="deal-search-input" class="form-input" placeholder="Search deals by tool name or discount..." value="${escapeHtml(state.dealSearchQuery)}" style="width: 100%; padding: 14px 20px; border-radius: 9999px; font-size: 1rem; border: 1.5px solid #E4E4E7;" />
+            </div>
+          </div>
+
+          <!-- Categories Bar -->
+          <div class="cat-filter-scroll-wrapper" style="margin-bottom: 24px;">
+            <div class="cat-filter-pills-row">
+              ${categories.map(cat => `
+                <button type="button" class="cat-filter-pill ${state.dealCategoryFilter === cat.id ? 'active' : ''}" data-cat="${cat.id}">
+                  <span class="cat-pill-icon">${cat.icon || '🏷️'}</span>
+                  <span class="cat-pill-name">${cat.name}</span>
+                  <span class="cat-pill-count">${cat.id === 'all' ? allDeals.length : allDeals.filter(d => d.category === cat.id).length}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Deals Grid -->
+          <div class="deals-grid-3col" id="deals-grid-container">
+            ${filteredDeals.length === 0 ? `
+              <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+                <p style="font-size: 1.2rem; font-weight: 700; color: #18181B; margin-bottom: 8px;">No deals found</p>
+                <p style="color: #71717A; font-size: 0.95rem;">Try another keyword or select All Deals.</p>
+              </div>
+            ` : filteredDeals.map(deal => `
+              <div class="deal-card" data-deal-id="${deal.id}">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                  <span class="deal-badge-ribbon">${deal.discountBadge}</span>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: #047857;">✓ Verified</span>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                  <img src="${deal.image || 'assets/logo.svg'}" alt="${deal.toolName}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                  <div>
+                    <h4 style="font-size: 1.15rem; font-weight: 800; color: #18181B; margin-bottom: 2px;">${deal.toolName}</h4>
+                    <span style="font-size: 0.8rem; color: #71717A;">${deal.domain || 'Official Partner'}</span>
+                  </div>
+                </div>
+
+                <h5 style="font-size: 1rem; font-weight: 700; color: #18181B; margin-bottom: 6px; line-height: 1.4;">${deal.headline}</h5>
+                <p style="font-size: 0.88rem; color: #52525B; line-height: 1.5; margin-bottom: 16px; flex: 1;">${deal.description}</p>
+
+                ${deal.couponCode ? `
+                  <div class="deal-coupon-box">
+                    <div>
+                      <span style="font-size: 0.7rem; color: #71717A; text-transform: uppercase; font-weight: 800; display: block;">Coupon Code</span>
+                      <span class="deal-code-text">${deal.couponCode}</span>
+                    </div>
+                    <button type="button" class="btn-copy-code" data-code="${deal.couponCode}">Copy Code</button>
+                  </div>
+                ` : ''}
+
+                <div style="display: flex; gap: 10px; align-items: center; margin-top: 12px;">
+                  <a href="${deal.url}" target="_blank" rel="noopener noreferrer" class="btn-subscribe-nav" style="flex: 1; text-align: center; text-decoration: none; padding: 10px;">
+                    Claim Deal ↗
+                  </a>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div style="margin: 60px 0 30px 0; text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 32px 20px;">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1E293B; margin-bottom: 6px;">Are you an AI tool creator?</h3>
+            <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 18px;">Offer an exclusive discount or promo code to 50,000+ AIRA readers.</p>
+            <a href="#/submit" class="tool-details-btn" style="padding: 10px 20px; font-weight: 700;">Submit Your Deal →</a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Bind categories
+    appContainer.querySelectorAll('.cat-filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.dealCategoryFilter = btn.getAttribute('data-cat');
+        renderDealsPage();
+      });
+    });
+
+    // Bind search input
+    const dealSearch = document.getElementById('deal-search-input');
+    if (dealSearch) {
+      dealSearch.addEventListener('input', (e) => {
+        state.dealSearchQuery = e.target.value;
+        renderDealsPage();
+      });
+    }
+
+    // Bind copy code buttons
+    appContainer.querySelectorAll('.btn-copy-code').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.getAttribute('data-code');
+        if (code && navigator.clipboard) {
+          navigator.clipboard.writeText(code).then(() => {
+            btn.innerHTML = 'Copied! ✓';
+            btn.style.background = '#18181B';
+            showToast(`Coupon code ${code} copied! 🏷️`);
+            setTimeout(() => {
+              btn.innerHTML = 'Copy Code';
+              btn.style.background = '';
+            }, 2000);
+          });
+        }
+      });
+    });
+  }
+
+  // =========================================================================
+  // 10. Advertise / Sponsorship Media Kit (/#/advertise)
+  // =========================================================================
+  function renderAdvertisePage() {
+    appContainer.innerHTML = `
+      <div class="tools-directory-page">
+        <div class="container">
+          <!-- Hero Header -->
+          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
+            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
+              <span>⚡</span> Sponsorship & Media Kit
+            </div>
+            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">Advertise with AIRA</h1>
+            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
+              Put your product, AI platform, or SaaS in front of 50,000+ top engineers, founders, researchers, and tech leaders every week.
+            </p>
+          </div>
+
+          <!-- Audience Statistics Grid -->
+          <div class="ad-stats-grid">
+            <div class="ad-stat-card">
+              <div class="ad-stat-num">52K+</div>
+              <div class="ad-stat-label">Active Subscribers</div>
+            </div>
+            <div class="ad-stat-card">
+              <div class="ad-stat-num">46.8%</div>
+              <div class="ad-stat-label">Average Open Rate</div>
+            </div>
+            <div class="ad-stat-card">
+              <div class="ad-stat-num">14.2%</div>
+              <div class="ad-stat-label">Click-Through Rate (CTR)</div>
+            </div>
+            <div class="ad-stat-card">
+              <div class="ad-stat-num">68%</div>
+              <div class="ad-stat-label">Senior Devs & Founders</div>
+            </div>
+          </div>
+
+          <!-- Sponsorship Packages Grid -->
+          <div style="text-align: center; margin-bottom: 24px;">
+            <h2 style="font-family: var(--font-header); font-size: 1.8rem; font-weight: 900; color: #18181B; margin-bottom: 8px;">Sponsorship Packages</h2>
+            <p style="color: #71717A; font-size: 0.95rem;">High-visibility placements engineered for conversions and brand authority.</p>
+          </div>
+
+          <div class="ad-packages-grid">
+            <!-- Package 1 -->
+            <div class="ad-package-card featured">
+              <span style="background: #ECFDF5; color: #047857; font-weight: 800; font-size: 0.78rem; padding: 4px 12px; border-radius: 9999px; width: fit-content; margin-bottom: 12px;">MOST POPULAR</span>
+              <h3 style="font-size: 1.35rem; font-weight: 900; color: #18181B;">Primary Main Sponsor</h3>
+              <div class="ad-package-price">$750 <span style="font-size: 0.9rem; font-weight: 500; color: #71717A;">/ edition</span></div>
+              <p style="font-size: 0.9rem; color: #52525B; line-height: 1.5; margin-bottom: 20px;">
+                Premium top-of-newsletter placement. 100-word product description, custom image/logo, and primary call-to-action button.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-bottom: 24px; font-size: 0.88rem; color: #3F3F46; line-height: 2;">
+                <li>✓ Top Header Banner Placement</li>
+                <li>✓ 100 Words + High-Res Banner</li>
+                <li>✓ Featured in Web Archive Edition</li>
+                <li>✓ Performance & Click Analytics</li>
+              </ul>
+              <a href="#sponsor-form-section" class="btn-subscribe-nav" style="text-align: center; padding: 12px; margin-top: auto;">Book Main Sponsor</a>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="ad-package-card">
+              <h3 style="font-size: 1.35rem; font-weight: 900; color: #18181B;">Tool Spotlight</h3>
+              <div class="ad-package-price">$350 <span style="font-size: 0.9rem; font-weight: 500; color: #71717A;">/ edition</span></div>
+              <p style="font-size: 0.9rem; color: #52525B; line-height: 1.5; margin-bottom: 20px;">
+                Dedicated spotlight section within the "Tools of the Week" segment. Includes logo, 50-word pitch, and direct CTA link.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-bottom: 24px; font-size: 0.88rem; color: #3F3F46; line-height: 2;">
+                <li>✓ Mid-Newsletter Spotlight</li>
+                <li>✓ 50 Words + Tool Logo + CTA</li>
+                <li>✓ Permanent Directory Backlink</li>
+                <li>✓ Performance Analytics</li>
+              </ul>
+              <a href="#sponsor-form-section" class="tool-details-btn" style="text-align: center; padding: 12px; margin-top: auto;">Book Tool Spotlight</a>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="ad-package-card">
+              <h3 style="font-size: 1.35rem; font-weight: 900; color: #18181B;">Classified / Quick Link</h3>
+              <div class="ad-package-price">$150 <span style="font-size: 0.9rem; font-weight: 500; color: #71717A;">/ edition</span></div>
+              <p style="font-size: 0.9rem; color: #52525B; line-height: 1.5; margin-bottom: 20px;">
+                Concise 2-line bullet mention in the curated resources & AI news section with direct hyperlink.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-bottom: 24px; font-size: 0.88rem; color: #3F3F46; line-height: 2;">
+                <li>✓ Classified Section Placement</li>
+                <li>✓ 25 Words + Hyperlink</li>
+                <li>✓ Quick 24h Turnaround</li>
+              </ul>
+              <a href="#sponsor-form-section" class="tool-details-btn" style="text-align: center; padding: 12px; margin-top: auto;">Book Classified</a>
+            </div>
+          </div>
+
+          <!-- Booking Inquiry Form -->
+          <div class="submit-form-card" id="sponsor-form-section" style="margin-bottom: 60px;">
+            <h3 style="font-family: var(--font-header); font-size: 1.5rem; font-weight: 900; color: #18181B; margin-bottom: 8px;">Book Your Sponsorship Slot</h3>
+            <p style="color: #71717A; font-size: 0.93rem; margin-bottom: 24px;">Fill out the details below and our partnerships team will reach out with available dates within 24 hours.</p>
+
+            <form id="advertise-inquiry-form">
+              <div class="form-group">
+                <label class="form-label">Company / Brand Name <span class="req">*</span></label>
+                <input type="text" name="companyName" class="form-input" placeholder="e.g., Anthropic, Cursor, Vercel" required />
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label">Work Email <span class="req">*</span></label>
+                  <input type="email" name="workEmail" class="form-input" placeholder="sponsor@company.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Interested Package <span class="req">*</span></label>
+                  <select name="package" class="form-select" required>
+                    <option value="Primary Main Sponsor ($750)">Primary Main Sponsor ($750)</option>
+                    <option value="Tool Spotlight ($350)">Tool Spotlight ($350)</option>
+                    <option value="Classified Quick Link ($150)">Classified Quick Link ($150)</option>
+                    <option value="Custom Multi-Issue Bundle">Custom Multi-Issue Bundle</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Target Launch Date / Preferred Month</label>
+                <input type="text" name="targetDate" class="form-input" placeholder="e.g., Next available edition / October 2026" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Product Pitch or Campaign Goal</label>
+                <textarea name="message" class="form-textarea" placeholder="Tell us about the product you want to promote..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-subscribe-nav" style="width: 100%; padding: 14px; font-size: 1.05rem; border-radius: 10px; margin-top: 16px;">
+                Send Sponsorship Inquiry ⚡
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Bind inquiry form
+    const form = document.getElementById('advertise-inquiry-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const inquiry = {
+          company: formData.get('companyName'),
+          email: formData.get('workEmail'),
+          pkg: formData.get('package'),
+          targetDate: formData.get('targetDate'),
+          message: formData.get('message'),
+          date: new Date().toISOString()
+        };
+        const inquiries = JSON.parse(localStorage.getItem('aira_ad_inquiries') || '[]');
+        inquiries.push(inquiry);
+        localStorage.setItem('aira_ad_inquiries', JSON.stringify(inquiries));
+
+        const card = document.getElementById('sponsor-form-section');
+        if (card) {
+          card.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px;">
+              <div style="width: 64px; height: 64px; border-radius: 50%; background: #ECFDF5; color: #047857; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+              <h2 style="font-size: 1.6rem; font-weight: 900; color: #18181B; margin-bottom: 12px;">Inquiry Received!</h2>
+              <p style="color: #52525B; font-size: 1rem; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.6;">
+                Thank you for partnering with AIRA! Our sponsorship manager will reach out to <strong>${inquiry.email}</strong> with available dates and campaign slots within 24 hours.
+              </p>
+              <a href="#/home" class="btn-subscribe-nav">Return to Homepage</a>
+            </div>
+          `;
+        }
+        showToast('🎉 Sponsorship inquiry sent!');
+      });
+    }
+  }
+
+  // =========================================================================
+  // 11. Subscription Handler (Connected to Database)
   // =========================================================================
   async function handleSubscribeSubmit(e) {
     e.preventDefault();
@@ -4442,6 +5783,57 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       if (articleEditModal) closeModal(articleEditModal);
     }
   });
+
+  // =========================================================================
+  // Theme Toggle (Dark / Light Mode)
+  // =========================================================================
+  function initTheme() {
+    const savedTheme = localStorage.getItem('aira_theme');
+    const themeBtn = document.getElementById('btn-theme-toggle');
+    const isDark = savedTheme === 'dark';
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+      if (themeBtn) themeBtn.innerHTML = '☀️';
+    } else {
+      document.body.classList.remove('dark-mode');
+      if (themeBtn) themeBtn.innerHTML = '🌓';
+    }
+  }
+
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('aira_theme', isDark ? 'dark' : 'light');
+    const themeBtn = document.getElementById('btn-theme-toggle');
+    if (themeBtn) {
+      themeBtn.innerHTML = isDark ? '☀️' : '🌓';
+    }
+    showToast(isDark ? '🌙 Dark Mode Activated' : '☀️ Light Mode Activated');
+  }
+
+  const themeToggleBtn = document.getElementById('btn-theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleTheme);
+  }
+
+  // Breaking News Ticker Dismiss
+  const closeTickerBtn = document.getElementById('btn-close-ticker');
+  if (closeTickerBtn) {
+    closeTickerBtn.addEventListener('click', () => {
+      const ticker = document.getElementById('breaking-news-ticker');
+      if (ticker) {
+        ticker.style.display = 'none';
+        sessionStorage.setItem('aira_ticker_closed', 'true');
+      }
+    });
+    if (sessionStorage.getItem('aira_ticker_closed') === 'true') {
+      const ticker = document.getElementById('breaking-news-ticker');
+      if (ticker) ticker.style.display = 'none';
+    }
+  }
+
+  // Initialize Global Elements
+  initTheme();
+  updateBookmarksBadge();
 
   // Listen to hash changes
   window.addEventListener('hashchange', renderCurrentRoute);
