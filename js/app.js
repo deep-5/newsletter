@@ -26,7 +26,69 @@ document.addEventListener('DOMContentLoaded', () => {
     state.articles = list;
     localStorage.setItem('aira_custom_articles', JSON.stringify(list));
   }
-  
+
+  // Unified Custom Tools Helpers
+  function getCustomTools() {
+    try {
+      const raw = localStorage.getItem('aira_custom_tools');
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function saveCustomTools(tools) {
+    localStorage.setItem('aira_custom_tools', JSON.stringify(tools));
+  }
+  function getAllTools() {
+    const baseTools = typeof AI_TOOLS_DATA !== 'undefined' ? (AI_TOOLS_DATA.tools || []) : [];
+    const customTools = getCustomTools();
+    const customIds = new Set(customTools.map(t => t.id));
+    const filteredBase = baseTools.filter(t => !customIds.has(t.id));
+    return [...customTools, ...filteredBase];
+  }
+
+  // Unified Custom Deals Helpers
+  function getCustomDeals() {
+    try {
+      const raw = localStorage.getItem('aira_custom_deals');
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function saveCustomDeals(deals) {
+    localStorage.setItem('aira_custom_deals', JSON.stringify(deals));
+  }
+  function getAllDeals() {
+    const baseDeals = typeof AI_DEALS_DATA !== 'undefined' ? (AI_DEALS_DATA.deals || []) : [];
+    const customDeals = getCustomDeals();
+    const customIds = new Set(customDeals.map(d => d.id));
+    const filteredBase = baseDeals.filter(d => !customIds.has(d.id));
+    return [...customDeals, ...filteredBase];
+  }
+
+  // Tool Submissions Helpers
+  function getToolSubmissions() {
+    try {
+      const raw = localStorage.getItem('aira_tool_submissions');
+      const list = raw ? JSON.parse(raw) : [];
+      // Normalize submissions with IDs & default status
+      return list.map((s, idx) => ({
+        id: s.id || `sub_${idx + 1}_${(s.toolName || 'tool').toLowerCase().replace(/[^a-z0-9]/g, '')}`,
+        toolName: s.toolName || 'Unnamed Tool',
+        toolUrl: s.toolUrl || '',
+        category: s.category || 'productivity',
+        pricing: s.pricing || 'Freemium',
+        tagline: s.tagline || '',
+        description: s.description || '',
+        features: s.features || '',
+        contactEmail: s.contactEmail || '',
+        promoCode: s.promoCode || '',
+        submittedAt: s.submittedAt || new Date().toISOString(),
+        status: s.status || 'pending'
+      }));
+    } catch (e) { return []; }
+  }
+  function saveToolSubmissions(subs) {
+    localStorage.setItem('aira_tool_submissions', JSON.stringify(subs));
+  }
+
   // App state
   const state = {
     articles: getArticles(),
@@ -39,9 +101,16 @@ document.addEventListener('DOMContentLoaded', () => {
     homeSearchQuery: '',
     altCategoryFilter: 'all',
     altSearchQuery: '',
-    adminTab: 'subscribers',
+    adminTab: 'overview', // 'overview' | 'submissions' | 'deals' | 'articles' | 'subscribers' | 'comments' | 'settings'
     adminArticleSearch: '',
     adminArticleTag: 'All',
+    adminSubmissionFilter: 'all', // 'all' | 'pending' | 'approved' | 'rejected'
+    adminSubmissionSearch: '',
+    adminDealSearch: '',
+    adminSubscriberSearch: '',
+    adminCommentSearch: '',
+    adminEditingDeal: null,
+    adminEditingSubmission: null,
     toolCategoryFilter: 'all',
     toolPricingFilter: 'all',
     toolSearchQuery: '',
@@ -1162,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   function renderTagsPage() {
     const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { categories: [], tools: [] };
-    const allTools = toolsData.tools || [];
+    const allTools = getAllTools();
     const categories = toolsData.categories || [];
 
     // Helper to get category display name
@@ -1529,7 +1598,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   function renderToolDetailPage(toolId) {
     const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { categories: [], tools: [] };
-    const allTools = toolsData.tools || [];
+    const allTools = getAllTools();
     const categories = toolsData.categories || [];
     const normalizedId = String(toolId || '').toLowerCase().trim();
 
@@ -4075,84 +4144,499 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       return;
     }
 
-    // LIST VIEW: Filtered articles
-    const searchQ = (state.adminArticleSearch || '').toLowerCase().trim();
-    const tagFilter = state.adminArticleTag || 'All';
+    // =========================================================================
+    // ADMIN DASHBOARD DATA PREPARATION
+    // =========================================================================
+    const rawSubscribers = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+    const normalizedSubscribers = rawSubscribers.map((item, idx) => {
+      if (typeof item === 'string') {
+        return { id: idx + 1, email: item, date: 'Earlier', source: 'Website Form' };
+      }
+      return { id: idx + 1, email: item.email, date: item.date || 'Earlier', source: item.source || 'Website Form' };
+    });
+
+    const allSubmissions = getToolSubmissions();
+    const pendingSubmissions = allSubmissions.filter(s => (s.status || 'pending') === 'pending');
+    const approvedSubmissions = allSubmissions.filter(s => s.status === 'approved');
+    const rejectedSubmissions = allSubmissions.filter(s => s.status === 'rejected');
+
+    const allToolsList = getAllTools();
+    const allDealsList = getAllDeals();
+
+    const rawComments = JSON.parse(localStorage.getItem('aira_comments') || '{}');
+    const flatComments = [];
+    Object.keys(rawComments).forEach(slug => {
+      const postComments = rawComments[slug] || [];
+      postComments.forEach((c, cIdx) => {
+        flatComments.push({
+          postSlug: slug,
+          author: c.author || 'AI Enthusiast',
+          text: c.text || '',
+          date: c.date || 'Recent',
+          index: cIdx
+        });
+      });
+    });
+
+    // Filtered lists for active tabs
+    const articleSearchQ = (state.adminArticleSearch || '').toLowerCase().trim();
+    const articleTagFilter = state.adminArticleTag || 'All';
     const filteredAdminArticles = state.articles.filter(a => {
-      const matchTag = tagFilter === 'All' || (a.tag && a.tag.toLowerCase() === tagFilter.toLowerCase());
-      const matchSearch = searchQ === '' || 
-        (a.title && a.title.toLowerCase().includes(searchQ)) || 
-        (a.subtitle && a.subtitle.toLowerCase().includes(searchQ)) || 
-        (a.slug && a.slug.toLowerCase().includes(searchQ));
+      const matchTag = articleTagFilter === 'All' || (a.tag && a.tag.toLowerCase() === articleTagFilter.toLowerCase());
+      const matchSearch = articleSearchQ === '' || 
+        (a.title && a.title.toLowerCase().includes(articleSearchQ)) || 
+        (a.subtitle && a.subtitle.toLowerCase().includes(articleSearchQ)) || 
+        (a.slug && a.slug.toLowerCase().includes(articleSearchQ));
       return matchTag && matchSearch;
     });
 
+    const subFilter = state.adminSubmissionFilter || 'all';
+    const subSearchQ = (state.adminSubmissionSearch || '').toLowerCase().trim();
+    const filteredSubmissions = allSubmissions.filter(s => {
+      const matchStatus = subFilter === 'all' || (s.status || 'pending') === subFilter;
+      const matchSearch = subSearchQ === '' ||
+        (s.toolName && s.toolName.toLowerCase().includes(subSearchQ)) ||
+        (s.contactEmail && s.contactEmail.toLowerCase().includes(subSearchQ)) ||
+        (s.tagline && s.tagline.toLowerCase().includes(subSearchQ)) ||
+        (s.category && s.category.toLowerCase().includes(subSearchQ));
+      return matchStatus && matchSearch;
+    });
+
+    const dealSearchQ = (state.adminDealSearch || '').toLowerCase().trim();
+    const filteredDeals = allDealsList.filter(d => {
+      if (!dealSearchQ) return true;
+      return (d.toolName && d.toolName.toLowerCase().includes(dealSearchQ)) ||
+        (d.headline && d.headline.toLowerCase().includes(dealSearchQ)) ||
+        (d.couponCode && d.couponCode.toLowerCase().includes(dealSearchQ)) ||
+        (d.category && d.category.toLowerCase().includes(dealSearchQ));
+    });
+
+    const subSearchQuery = (state.adminSubscriberSearch || '').toLowerCase().trim();
+    const filteredSubscribers = normalizedSubscribers.filter(s => {
+      if (!subSearchQuery) return true;
+      return (s.email && s.email.toLowerCase().includes(subSearchQuery)) ||
+        (s.source && s.source.toLowerCase().includes(subSearchQuery));
+    });
+
+    const commentSearchQ = (state.adminCommentSearch || '').toLowerCase().trim();
+    const filteredComments = flatComments.filter(c => {
+      if (!commentSearchQ) return true;
+      return (c.author && c.author.toLowerCase().includes(commentSearchQ)) ||
+        (c.text && c.text.toLowerCase().includes(commentSearchQ)) ||
+        (c.postSlug && c.postSlug.toLowerCase().includes(commentSearchQ));
+    });
+
+    const activeTab = state.adminTab || 'overview';
+
+    // RENDER ADMIN DASHBOARD HTML
     appContainer.innerHTML = `
-      <section class="admin-page-view" style="padding: 40px 0 80px 0;">
-        <div class="container" style="max-width: 1040px;">
+      <section class="admin-page-view" style="padding: 36px 0 80px 0;">
+        <div class="container" style="max-width: 1080px;">
           
-          <!-- Admin Header -->
+          <!-- Header Area -->
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
             <div>
-              <span style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">AIRA Admin Control</span>
-              <h1 style="font-family: var(--font-header); font-size: 2.2rem; font-weight: 800; color: var(--color-text-primary); margin-top: 4px;">Admin Dashboard</h1>
-              <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 4px;">Manage subscribers and live newsletter articles catalog.</p>
+              <div class="admin-header-badge">👑 AIRA Master Command Center</div>
+              <h1 style="font-family: var(--font-header); font-size: 2.3rem; font-weight: 900; color: var(--color-text-primary); margin-top: 4px; line-height: 1.15;">Admin Dashboard</h1>
+              <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 4px;">Review submissions, manage affiliate deals, curate articles, and export subscribers.</p>
             </div>
 
-            ${state.adminTab === 'subscribers' ? `
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button id="btn-copy-emails" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
-                  📋 Copy All Emails
-                </button>
-                <button id="btn-export-csv" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
-                  📥 Export to CSV
-                </button>
-              </div>
-            ` : `
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button id="btn-add-new-article" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+              ${activeTab === 'articles' ? `
+                <button id="btn-add-new-article" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
                   ➕ New Article
                 </button>
-                <button id="btn-download-articles-js" style="background: #FFFFFF; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem;">
-                  💾 Download articles.js
+                <button id="btn-download-articles-js" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 14px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
+                  💾 Export articles.js
                 </button>
-                ${isCustomized ? `
-                  <button id="btn-reset-articles" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #DC2626; font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;" title="Reset to original 192 articles">
-                    🔄 Reset Defaults
-                  </button>
-                ` : ''}
+              ` : ''}
+
+              ${activeTab === 'submissions' ? `
+                <a href="#/submit" target="_blank" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
+                  🚀 Open Submit Form ↗
+                </a>
+              ` : ''}
+
+              ${activeTab === 'deals' ? `
+                <button id="btn-open-add-deal-modal" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
+                  ➕ Add New Deal
+                </button>
+              ` : ''}
+
+              ${activeTab === 'subscribers' ? `
+                <button id="btn-copy-emails" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 14px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
+                  📋 Copy Emails
+                </button>
+                <button id="btn-export-csv" style="background: #18181B; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem;">
+                  📥 Export CSV
+                </button>
+              ` : ''}
+
+              ${activeTab === 'settings' ? `
+                <button id="btn-export-full-backup" style="background: #10B981; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; border: none;">
+                  📦 Download Full Site Backup
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Modern Navigation Tabs -->
+          <div class="admin-tabs-nav-modern">
+            <button class="admin-nav-pill ${activeTab === 'overview' ? 'active' : ''}" data-admin-tab="overview">
+              <span>📊 Overview</span>
+            </button>
+            <button class="admin-nav-pill ${activeTab === 'submissions' ? 'active' : ''}" data-admin-tab="submissions">
+              <span>🛠️ Tool Submissions</span>
+              ${pendingSubmissions.length > 0 ? `<span class="admin-tab-count-badge" style="background: #EF4444; color: #FFF;">${pendingSubmissions.length}</span>` : `<span class="admin-tab-count-badge">${allSubmissions.length}</span>`}
+            </button>
+            <button class="admin-nav-pill ${activeTab === 'deals' ? 'active' : ''}" data-admin-tab="deals">
+              <span>🏷️ Deals & Coupons</span>
+              <span class="admin-tab-count-badge">${allDealsList.length}</span>
+            </button>
+            <button class="admin-nav-pill ${activeTab === 'articles' ? 'active' : ''}" data-admin-tab="articles">
+              <span>📝 Articles</span>
+              <span class="admin-tab-count-badge">${state.articles.length}</span>
+            </button>
+            <button class="admin-nav-pill ${activeTab === 'subscribers' ? 'active' : ''}" data-admin-tab="subscribers">
+              <span>📬 Subscribers</span>
+              <span class="admin-tab-count-badge">${normalizedSubscribers.length}</span>
+            </button>
+            <button class="admin-nav-pill ${activeTab === 'comments' ? 'active' : ''}" data-admin-tab="comments">
+              <span>💬 Comments</span>
+              <span class="admin-tab-count-badge">${flatComments.length}</span>
+            </button>
+            <button class="admin-nav-pill ${activeTab === 'settings' ? 'active' : ''}" data-admin-tab="settings">
+              <span>⚙️ Backup & Sync</span>
+            </button>
+          </div>
+
+          <!-- ================================================================= -->
+          <!-- TAB 1: OVERVIEW & ANALYTICS KPI -->
+          <!-- ================================================================= -->
+          ${activeTab === 'overview' ? `
+            <!-- KPI Cards Grid -->
+            <div class="admin-kpi-grid">
+              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=subscribers]').click()">
+                <div class="admin-kpi-top">
+                  <span class="admin-kpi-label">Subscribers</span>
+                  <div class="admin-kpi-icon" style="background: #EFF6FF; color: #2563EB;">📬</div>
+                </div>
+                <div class="admin-kpi-value">${normalizedSubscribers.length}</div>
+                <div class="admin-kpi-sub">● Real-time synced</div>
               </div>
-            `}
-          </div>
 
-          <!-- Navigation Tabs -->
-          <div class="admin-tabs-nav">
-            <button class="admin-tab-btn ${state.adminTab === 'articles' ? 'active' : ''}" id="tab-articles">
-              📝 Articles & Editor (${state.articles.length})
-            </button>
-            <button class="admin-tab-btn ${state.adminTab === 'subscribers' ? 'active' : ''}" id="tab-subscribers">
-              📬 Subscribers (${normalizedList.length})
-            </button>
-          </div>
+              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=submissions]').click()">
+                <div class="admin-kpi-top">
+                  <span class="admin-kpi-label">Submissions</span>
+                  <div class="admin-kpi-icon" style="background: ${pendingSubmissions.length > 0 ? '#FEF2F2' : '#ECFDF5'}; color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#047857'};">⏳</div>
+                </div>
+                <div class="admin-kpi-value">${pendingSubmissions.length}</div>
+                <div class="admin-kpi-sub">${pendingSubmissions.length > 0 ? '⚠️ Pending action required' : '✓ All reviewed'}</div>
+              </div>
 
-          <!-- TAB: ARTICLES EDITOR & MANAGEMENT -->
-          ${state.adminTab === 'articles' ? `
-            <!-- Search & Filter Controls -->
+              <div class="admin-kpi-card" style="cursor: pointer;" onclick="window.location.hash='#/tags'">
+                <div class="admin-kpi-top">
+                  <span class="admin-kpi-label">AI Tools Directory</span>
+                  <div class="admin-kpi-icon" style="background: #FDF2F8; color: #BE185D;">⚡</div>
+                </div>
+                <div class="admin-kpi-value">${allToolsList.length}</div>
+                <div class="admin-kpi-sub">Curated live AI products</div>
+              </div>
+
+              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=deals]').click()">
+                <div class="admin-kpi-top">
+                  <span class="admin-kpi-label">Deals & Coupons</span>
+                  <div class="admin-kpi-icon" style="background: #FEF3C7; color: #B45309;">🏷️</div>
+                </div>
+                <div class="admin-kpi-value">${allDealsList.length}</div>
+                <div class="admin-kpi-sub">Verified promo discounts</div>
+              </div>
+
+              <div class="admin-kpi-card" style="cursor: pointer;" onclick="document.querySelector('[data-admin-tab=articles]').click()">
+                <div class="admin-kpi-top">
+                  <span class="admin-kpi-label">Published Editions</span>
+                  <div class="admin-kpi-icon" style="background: #EEF2FF; color: #4F46E5;">📰</div>
+                </div>
+                <div class="admin-kpi-value">${state.articles.length}</div>
+                <div class="admin-kpi-sub">Editorial newsletter issues</div>
+              </div>
+            </div>
+
+            <!-- Quick Action Shortcuts -->
+            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; margin-bottom: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+              <h3 style="font-size: 1rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 14px;">⚡ Quick Management Actions</h3>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-overview-action" id="overview-btn-new-article" style="background: #18181B; color: #FFF; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem;">
+                  ➕ Write New Article
+                </button>
+                <button class="btn-overview-action" id="overview-btn-review-subs" style="background: #EFF6FF; color: #1D4ED8; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 1px solid #BFDBFE; cursor: pointer; font-size: 0.85rem;">
+                  🛠️ Review Tool Submissions (${pendingSubmissions.length})
+                </button>
+                <button class="btn-overview-action" id="overview-btn-add-deal" style="background: #FEF3C7; color: #B45309; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 1px solid #FDE68A; cursor: pointer; font-size: 0.85rem;">
+                  🏷️ Add Affiliate Deal
+                </button>
+                <button class="btn-overview-action" id="overview-btn-export-csv" style="background: var(--color-surface); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--color-border); cursor: pointer; font-size: 0.85rem;">
+                  📥 Export Subscribers CSV
+                </button>
+                <button class="btn-overview-action" id="overview-btn-full-backup" style="background: #ECFDF5; color: #047857; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 1px solid #A7F3D0; cursor: pointer; font-size: 0.85rem;">
+                  📦 Backup All Site Data
+                </button>
+              </div>
+            </div>
+
+            <!-- Two-Column Activity Split -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+              
+              <!-- Column 1: Pending Tool Submissions -->
+              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between;">
+                  <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--color-text-primary);">⏳ Submissions Waiting for Review</h4>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 2px 8px; border-radius: 9999px;">${pendingSubmissions.length} pending</span>
+                </div>
+                
+                <div style="padding: 16px;">
+                  ${pendingSubmissions.length === 0 ? `
+                    <div style="text-align: center; padding: 32px 16px; color: var(--color-text-muted);">
+                      <div style="font-size: 2rem; margin-bottom: 8px;">✨</div>
+                      <p style="font-size: 0.9rem; font-weight: 600;">No pending submissions right now.</p>
+                      <p style="font-size: 0.8rem;">When founders submit tools on <code>/#/submit</code>, they appear here.</p>
+                    </div>
+                  ` : pendingSubmissions.slice(0, 4).map(sub => `
+                    <div style="background: var(--color-border-light); border: 1px solid var(--color-border); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                        <h5 style="font-size: 1rem; font-weight: 800; color: var(--color-text-primary);">${sub.toolName}</h5>
+                        <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
+                      </div>
+                      <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin-bottom: 10px; line-height: 1.4;">${sub.tagline || sub.description}</p>
+                      <div style="display: flex; gap: 8px; align-items: center;">
+                        <button class="btn-quick-approve" data-sub-id="${sub.id}" style="background: #047857; color: #FFF; font-weight: 700; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer;">
+                          ✓ Approve & Go Live
+                        </button>
+                        <a href="${sub.toolUrl}" target="_blank" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-size: 0.78rem; padding: 5px 10px; border-radius: 6px; text-decoration: none;">Visit ↗</a>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Column 2: Recent Subscribers -->
+              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between;">
+                  <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--color-text-primary);">📬 Latest Subscribers</h4>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: var(--color-text-muted);">${normalizedSubscribers.length} total</span>
+                </div>
+                
+                <div style="padding: 12px 16px;">
+                  ${normalizedSubscribers.length === 0 ? `
+                    <div style="text-align: center; padding: 32px 16px; color: var(--color-text-muted);">
+                      <div style="font-size: 2rem; margin-bottom: 8px;">📬</div>
+                      <p style="font-size: 0.9rem; font-weight: 600;">No subscribers recorded yet.</p>
+                    </div>
+                  ` : normalizedSubscribers.slice(-5).reverse().map(sub => `
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--color-border-light);">
+                      <div>
+                        <div style="font-weight: 700; font-size: 0.88rem; color: var(--color-text-primary); font-family: monospace;">${sub.email}</div>
+                        <div style="font-size: 0.75rem; color: var(--color-text-muted);">${sub.date}</div>
+                      </div>
+                      <span style="background: #F4F4F5; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; font-weight: 600; color: #18181B;">${sub.source}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- ================================================================= -->
+          <!-- TAB 2: TOOL SUBMISSIONS & APPROVALS -->
+          <!-- ================================================================= -->
+          ${activeTab === 'submissions' ? `
+            <!-- Controls Bar -->
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 420px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
+              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem;" />
+                <input type="text" id="admin-search-submissions" value="${state.adminSubmissionSearch || ''}" placeholder="Search submissions by tool name, email..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
               </div>
 
               <div class="filter-pills" style="margin: 0;">
-                <button class="filter-pill ${tagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
-                <button class="filter-pill ${tagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
-                <button class="filter-pill ${tagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
+                <button class="filter-pill ${subFilter === 'all' ? 'active' : ''}" data-sub-filter="all">All (${allSubmissions.length})</button>
+                <button class="filter-pill ${subFilter === 'pending' ? 'active' : ''}" data-sub-filter="pending">Pending (${pendingSubmissions.length})</button>
+                <button class="filter-pill ${subFilter === 'approved' ? 'active' : ''}" data-sub-filter="approved">Approved (${approvedSubmissions.length})</button>
+                <button class="filter-pill ${subFilter === 'rejected' ? 'active' : ''}" data-sub-filter="rejected">Rejected (${rejectedSubmissions.length})</button>
+              </div>
+            </div>
+
+            <!-- Submissions List -->
+            <div>
+              ${filteredSubmissions.length === 0 ? `
+                <div style="background: var(--color-surface); border: 1px dashed var(--color-border); border-radius: 14px; padding: 60px 20px; text-align: center;">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🚀</div>
+                  <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 6px;">No tool submissions in this view</h4>
+                  <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 18px;">When founders submit products via <code>/#/submit</code>, they appear here for your editorial review.</p>
+                  <a href="#/submit" target="_blank" class="tool-details-btn" style="padding: 9px 18px;">Open Submit Form</a>
+                </div>
+              ` : filteredSubmissions.map(sub => {
+                const isPending = (sub.status || 'pending') === 'pending';
+                const isApproved = sub.status === 'approved';
+                const isRejected = sub.status === 'rejected';
+                const cleanDomain = (sub.toolUrl || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+                const logoUrl = `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+
+                return `
+                  <div class="admin-sub-card ${sub.status || 'pending'}" data-sub-id="${sub.id}">
+                    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; flex-wrap: wrap;">
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <img src="${logoUrl}" alt="${sub.toolName}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.svg'" />
+                        <div>
+                          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <h3 style="font-size: 1.25rem; font-weight: 900; color: var(--color-text-primary); margin: 0;">${sub.toolName}</h3>
+                            <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
+                            <span class="tool-category-badge">${sub.category}</span>
+                            ${isPending ? `<span class="admin-badge-pending">⏳ Pending Review</span>` : ''}
+                            ${isApproved ? `<span class="admin-badge-approved">✓ Live & Approved</span>` : ''}
+                            ${isRejected ? `<span class="admin-badge-rejected">✕ Rejected</span>` : ''}
+                          </div>
+                          <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 3px;">
+                            Submitted on ${new Date(sub.submittedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • By <strong>${sub.contactEmail}</strong>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                        ${isPending ? `
+                          <button class="btn-approve-sub" data-sub-id="${sub.id}" style="background: #047857; color: #FFF; font-weight: 700; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem;">
+                            ✓ Approve & Publish Live
+                          </button>
+                          <button class="btn-reject-sub" data-sub-id="${sub.id}" style="background: #FEF2F2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
+                            ✕ Reject
+                          </button>
+                        ` : ''}
+                        
+                        ${isApproved ? `
+                          <a href="#/tools/${(sub.toolName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}" target="_blank" style="background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; font-weight: 700; padding: 7px 14px; border-radius: 8px; text-decoration: none; font-size: 0.85rem;">
+                            🟢 View Live on Site ↗
+                          </a>
+                        ` : ''}
+
+                        ${isRejected ? `
+                          <button class="btn-approve-sub" data-sub-id="${sub.id}" style="background: #047857; color: #FFF; font-weight: 700; padding: 7px 14px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem;">
+                            🔄 Re-approve
+                          </button>
+                        ` : ''}
+
+                        <button class="btn-delete-sub" data-sub-id="${sub.id}" style="background: none; border: 1px solid var(--color-border); color: #EF4444; padding: 7px 10px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;" title="Delete Submission">
+                          🗑️
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Tagline & Description -->
+                    <div style="background: var(--color-border-light); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
+                      <div style="font-weight: 700; font-size: 0.95rem; color: var(--color-text-primary); margin-bottom: 4px;">${sub.tagline}</div>
+                      <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.5; margin: 0;">${sub.description}</p>
+                    </div>
+
+                    <!-- Metadata Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.82rem; color: var(--color-text-muted);">
+                      <div><strong>Website URL:</strong> <a href="${sub.toolUrl}" target="_blank" style="color: #2563EB;">${sub.toolUrl} ↗</a></div>
+                      <div><strong>Features:</strong> ${sub.features || 'None listed'}</div>
+                      <div><strong>Promo Code:</strong> <span style="font-family: monospace; font-weight: 700; color: #B45309;">${sub.promoCode || 'None'}</span></div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          ` : ''}
+
+          <!-- ================================================================= -->
+          <!-- TAB 3: DEALS & COUPONS MANAGER -->
+          <!-- ================================================================= -->
+          ${activeTab === 'deals' ? `
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="admin-search-deals" value="${state.adminDealSearch || ''}" placeholder="Search deals by tool name, coupon code..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
+              </div>
+
+              <div style="display: flex; gap: 8px;">
+                <a href="#/deals" target="_blank" class="tool-details-btn" style="padding: 8px 14px; text-decoration: none; font-size: 0.85rem;">View Deals Hub ↗</a>
+              </div>
+            </div>
+
+            <!-- Deals Table -->
+            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Active Deals & Discounts (${filteredDeals.length})</span>
+                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Manage affiliate links & promo codes</span>
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                  <thead>
+                    <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <th style="padding: 12px 16px;">Tool / Brand</th>
+                      <th style="padding: 12px 16px;">Discount Badge</th>
+                      <th style="padding: 12px 16px;">Headline & Offer</th>
+                      <th style="padding: 12px 16px;">Coupon Code</th>
+                      <th style="padding: 12px 16px;">Affiliate URL</th>
+                      <th style="padding: 12px 16px; text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${filteredDeals.map(d => `
+                      <tr style="border-bottom: 1px solid var(--color-border-light);">
+                        <td style="padding: 12px 16px; white-space: nowrap;">
+                          <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1px solid var(--color-border);" onerror="this.src='assets/logo.svg'" />
+                            <div>
+                              <div style="font-weight: 800; color: var(--color-text-primary);">${d.toolName}</div>
+                              <span style="font-size: 0.75rem; color: var(--color-text-muted);">${d.category}</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td style="padding: 12px 16px;">
+                          <span style="background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; font-weight: 800; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">${d.discountBadge}</span>
+                        </td>
+                        <td style="padding: 12px 16px; max-width: 260px;">
+                          <div style="font-weight: 600; color: var(--color-text-primary); font-size: 0.88rem; line-height: 1.3;">${d.headline}</div>
+                        </td>
+                        <td style="padding: 12px 16px; font-family: monospace; font-weight: 700; color: #047857;">
+                          ${d.couponCode || '—'}
+                        </td>
+                        <td style="padding: 12px 16px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                          <a href="${d.url}" target="_blank" style="color: #2563EB; font-size: 0.82rem; text-decoration: none;">${d.domain || d.url} ↗</a>
+                        </td>
+                        <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
+                          <button class="btn-edit-deal" data-deal-id="${d.id}" style="background: var(--color-border-light); border: 1px solid var(--color-border); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">✏️ Edit</button>
+                          <button class="btn-delete-deal" data-deal-id="${d.id}" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #DC2626; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">🗑️</button>
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- ================================================================= -->
+          <!-- TAB 4: ARTICLES & EDITORIAL BUILDER -->
+          <!-- ================================================================= -->
+          ${activeTab === 'articles' ? `
+            <!-- Search & Filter Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 420px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="admin-search-articles" value="${state.adminArticleSearch || ''}" placeholder="Search articles by title, slug..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
+              </div>
+
+              <div class="filter-pills" style="margin: 0;">
+                <button class="filter-pill ${articleTagFilter === 'All' ? 'active' : ''}" data-admin-tag="All">All (${state.articles.length})</button>
+                <button class="filter-pill ${articleTagFilter === 'News' ? 'active' : ''}" data-admin-tag="News">News</button>
+                <button class="filter-pill ${articleTagFilter === 'Prompts' ? 'active' : ''}" data-admin-tag="Prompts">Prompts</button>
               </div>
             </div>
 
             <!-- Articles Table -->
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
               <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
                 <span>Articles (${filteredAdminArticles.length})</span>
                 <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Click "Edit" to modify any article</span>
@@ -4168,7 +4652,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 <div style="overflow-x: auto;">
                   <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
                     <thead>
-                      <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         <th style="padding: 12px 16px;">Cover</th>
                         <th style="padding: 12px 16px;">Title & Slug</th>
                         <th style="padding: 12px 16px;">Category</th>
@@ -4194,10 +4678,10 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                           </td>
                           <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
                             <div style="display: inline-flex; gap: 8px; align-items: center;">
-                              <button class="btn-edit-article" data-slug="${a.slug}" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;">
+                              <button class="btn-edit-article" data-slug="${a.slug}" style="background: #18181B; color: #FFFFFF; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem; border: none;">
                                 ✏️ Edit
                               </button>
-                              <a href="#/p/${a.slug}" target="_blank" style="background: #F4F4F5; border: 1px solid #E4E4E7; color: var(--color-text-primary); font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8125rem;">
+                              <a href="#/p/${a.slug}" target="_blank" style="background: var(--color-border-light); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8125rem;">
                                 👁️ View
                               </a>
                               <button class="btn-delete-article" data-slug="${a.slug}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; font-weight: 600; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8125rem;" title="Delete Article">
@@ -4212,55 +4696,54 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 </div>
               `}
             </div>
-          ` : `
-            <!-- TAB: SUBSCRIBERS -->
-            <!-- Metric Cards -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px;">
-              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Total Subscribers</div>
-                <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${normalizedList.length}</div>
-              </div>
-              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Published Editions</div>
-                <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-header); color: var(--color-text-primary); margin-top: 6px;">${state.articles.length}</div>
-              </div>
-              <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                <div style="font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Storage Backend</div>
-                <div style="font-size: 1.15rem; font-weight: 700; color: #10B981; margin-top: 12px;">● Connected</div>
+          ` : ''}
+
+          <!-- ================================================================= -->
+          <!-- TAB 5: SUBSCRIBERS -->
+          <!-- ================================================================= -->
+          ${activeTab === 'subscribers' ? `
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+              <div style="display: flex; gap: 8px; align-items: center; flex: 1; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="admin-search-subscribers" value="${state.adminSubscriberSearch || ''}" placeholder="Search subscribers by email..." style="width: 100%; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--color-text-primary);" />
               </div>
             </div>
 
             <!-- Subscribers Table -->
-            <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
               <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
-                <span>Subscribers (${normalizedList.length})</span>
-                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Real-Time</span>
+                <span>Subscribers List (${filteredSubscribers.length})</span>
+                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Real-Time Captured</span>
               </div>
               
-              ${normalizedList.length === 0 ? `
+              ${filteredSubscribers.length === 0 ? `
                 <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
                   <div style="font-size: 2.5rem; margin-bottom: 12px;">📬</div>
-                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No subscribers yet</h4>
+                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No subscribers found</h4>
                   <p style="font-size: 0.9rem;">Whenever someone enters their email on any form, it will show up here instantly.</p>
                 </div>
               ` : `
                 <div style="overflow-x: auto;">
                   <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
                     <thead>
-                      <tr style="background: #FAFAFA; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                      <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         <th style="padding: 12px 18px;">#</th>
                         <th style="padding: 12px 18px;">Email Address</th>
                         <th style="padding: 12px 18px;">Date & Time</th>
                         <th style="padding: 12px 18px;">Form Source</th>
+                        <th style="padding: 12px 18px; text-align: right;">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      ${normalizedList.map(sub => `
+                      ${filteredSubscribers.map((sub, idx) => `
                         <tr style="border-bottom: 1px solid var(--color-border-light);">
-                          <td style="padding: 14px 18px; color: var(--color-text-muted);">${sub.id}</td>
+                          <td style="padding: 14px 18px; color: var(--color-text-muted);">${idx + 1}</td>
                           <td style="padding: 14px 18px; font-weight: 600; color: var(--color-text-primary); font-family: monospace; font-size: 0.9rem;">${sub.email}</td>
                           <td style="padding: 14px 18px; color: var(--color-text-secondary);">${sub.date}</td>
                           <td style="padding: 14px 18px;"><span style="background: #F4F4F5; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #18181B;">${sub.source}</span></td>
+                          <td style="padding: 14px 18px; text-align: right;">
+                            <button class="btn-delete-subscriber" data-email="${sub.email}" style="background: none; border: 1px solid var(--color-border); color: #EF4444; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.78rem;">🗑️</button>
+                          </td>
                         </tr>
                       `).join('')}
                     </tbody>
@@ -4268,94 +4751,208 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 </div>
               `}
             </div>
-          `}
+          ` : ''}
+
+          <!-- ================================================================= -->
+          <!-- TAB 6: COMMENTS MODERATION -->
+          <!-- ================================================================= -->
+          ${activeTab === 'comments' ? `
+            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+              <div style="padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Community Comments Moderation (${filteredComments.length})</span>
+                <span style="font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);">Moderate and remove inappropriate remarks</span>
+              </div>
+
+              ${filteredComments.length === 0 ? `
+                <div style="padding: 48px 20px; text-align: center; color: var(--color-text-muted);">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">💬</div>
+                  <h4 style="font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 6px;">No comments found</h4>
+                  <p style="font-size: 0.9rem;">Reader comments on articles will be collected here for moderation.</p>
+                </div>
+              ` : `
+                <div style="overflow-x: auto;">
+                  <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+                    <thead>
+                      <tr style="background: var(--color-border-light); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <th style="padding: 12px 16px;">Author</th>
+                        <th style="padding: 12px 16px;">Article Slug</th>
+                        <th style="padding: 12px 16px;">Comment Text</th>
+                        <th style="padding: 12px 16px;">Date</th>
+                        <th style="padding: 12px 16px; text-align: right;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${filteredComments.map(c => `
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                          <td style="padding: 12px 16px; font-weight: 700; color: var(--color-text-primary); white-space: nowrap;">${c.author}</td>
+                          <td style="padding: 12px 16px; white-space: nowrap;">
+                            <a href="#/p/${c.postSlug}" target="_blank" style="color: #2563EB; text-decoration: none;">#${c.postSlug} ↗</a>
+                          </td>
+                          <td style="padding: 12px 16px; color: var(--color-text-secondary); max-width: 340px;">${escapeHtml(c.text)}</td>
+                          <td style="padding: 12px 16px; color: var(--color-text-muted); font-size: 0.8rem; white-space: nowrap;">${c.date}</td>
+                          <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
+                            <button class="btn-delete-comment" data-slug="${c.postSlug}" data-index="${c.index}" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">🗑️ Delete</button>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              `}
+            </div>
+          ` : ''}
+
+          <!-- ================================================================= -->
+          <!-- TAB 7: SYSTEM SETTINGS & FULL BACKUP -->
+          <!-- ================================================================= -->
+          ${activeTab === 'settings' ? `
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+              
+              <!-- Backup & Restore Card -->
+              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <div style="font-size: 2rem; margin-bottom: 12px;">📦</div>
+                <h3 style="font-size: 1.25rem; font-weight: 900; color: var(--color-text-primary); margin-bottom: 6px;">1-Click Full System Backup</h3>
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                  Export a complete JSON snapshot containing all newsletter articles, approved custom tools, submitted tool reviews, affiliate deals, and subscriber emails.
+                </p>
+                <button id="btn-settings-export-backup" style="width: 100%; background: #10B981; color: #FFF; font-weight: 700; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.95rem; margin-bottom: 14px;">
+                  📥 Download Backup JSON File
+                </button>
+
+                <div style="border-top: 1px solid var(--color-border); padding-top: 16px; margin-top: 16px;">
+                  <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--color-text-primary);">Restore from Backup File</label>
+                  <input type="file" id="input-restore-backup" accept=".json" style="width: 100%; font-size: 0.85rem;" />
+                </div>
+              </div>
+
+              <!-- Supabase Cloud Connection Card -->
+              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <div style="font-size: 2rem; margin-bottom: 12px;">⚡</div>
+                <h3 style="font-size: 1.25rem; font-weight: 900; color: var(--color-text-primary); margin-bottom: 6px;">Cloud Database (Supabase)</h3>
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 14px;">
+                  Connect Supabase cloud backend to synchronize all subscriber emails, comments, and votes across all reader devices.
+                </p>
+                <div style="background: var(--color-border-light); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 0.8rem; margin-bottom: 16px;">
+                  Status: <strong>${typeof supabaseClient !== 'undefined' && supabaseClient ? '🟢 Connected' : '⚪ LocalStorage Mode (Ready)'}</strong><br/>
+                  Config: <code>js/supabase.js</code>
+                </div>
+                <button id="btn-test-db-connection" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; width: 100%;">
+                  🔍 Test Cloud Database Connection
+                </button>
+              </div>
+
+              <!-- Factory Reset / Defaults Card -->
+              <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); grid-column: 1 / -1;">
+                <h3 style="font-size: 1.15rem; font-weight: 900; color: #DC2626; margin-bottom: 6px;">⚠️ Danger Zone & Reset Controls</h3>
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                  Restore original baseline states for individual sections if needed.
+                </p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                  <button id="btn-reset-articles" style="background: #FEE2E2; border: 1px solid #FCA5A5; color: #DC2626; font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
+                    🔄 Reset Articles (192 Baseline)
+                  </button>
+                  <button id="btn-clear-custom-tools" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
+                    🧹 Clear Custom Approved Tools
+                  </button>
+                  <button id="btn-clear-custom-deals" style="background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;">
+                    🧹 Clear Custom Deals
+                  </button>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+
         </div>
       </section>
+
+      <!-- MODAL: ADD / EDIT DEAL -->
+      <div class="admin-modal-overlay" id="modal-deal-editor">
+        <div class="admin-modal-box">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <h3 style="font-size: 1.35rem; font-weight: 900; color: var(--color-text-primary); margin: 0;" id="modal-deal-title">Add Affiliate Deal</h3>
+            <button type="button" class="modal-close-btn" id="btn-close-deal-modal" style="background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--color-text-muted);">✕</button>
+          </div>
+          
+          <form id="form-deal-editor">
+            <input type="hidden" id="deal-edit-id" value="" />
+            
+            <div class="form-group">
+              <label class="form-label">Tool / Brand Name <span class="req">*</span></label>
+              <input type="text" id="deal-input-tool-name" class="form-input" placeholder="e.g., Cursor AI" required />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="deal-input-category" class="form-select">
+                  <option value="coding">Developer & Code</option>
+                  <option value="writing">Writing & Copy</option>
+                  <option value="video">Video & Media</option>
+                  <option value="marketing">Marketing & SEO</option>
+                  <option value="productivity">Productivity</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Discount Badge <span class="req">*</span></label>
+                <input type="text" id="deal-input-badge" class="form-input" placeholder="e.g., 20% OFF or FREE TRIAL" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Headline / Offer Title <span class="req">*</span></label>
+              <input type="text" id="deal-input-headline" class="form-input" placeholder="e.g., 20% Off Annual Subscription" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Short Description</label>
+              <textarea id="deal-input-desc" class="form-textarea" placeholder="Explain what the tool offers and how to claim the discount..."></textarea>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group">
+                <label class="form-label">Coupon Code (Optional)</label>
+                <input type="text" id="deal-input-code" class="form-input" placeholder="e.g., AIRA20" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Expiry / Status</label>
+                <input type="text" id="deal-input-expiry" class="form-input" placeholder="e.g., Limited Time / Verified Active" value="Verified Active" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Affiliate / Target URL <span class="req">*</span></label>
+              <input type="url" id="deal-input-url" class="form-input" placeholder="https://yourpartner.com/?ref=aira" required />
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+              <button type="button" class="btn-cancel-modal" id="btn-cancel-deal-modal" style="background: var(--color-border-light); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
+              <button type="submit" class="btn-subscribe-nav" style="padding: 10px 22px; border-radius: 8px;">Save Deal 🏷️</button>
+            </div>
+          </form>
+        </div>
+      </div>
     `;
 
-    // Bind Tabs
-    const tabSubscribers = document.getElementById('tab-subscribers');
-    if (tabSubscribers) {
-      tabSubscribers.addEventListener('click', () => {
-        state.adminTab = 'subscribers';
+    // =========================================================================
+    // EVENT BINDINGS FOR ADMIN DASHBOARD
+    // =========================================================================
+
+    // 1. Tab Navigation Pills
+    appContainer.querySelectorAll('[data-admin-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.adminTab = btn.getAttribute('data-admin-tab');
         state.adminEditingArticle = null;
-        renderAdminPage();
-      });
-    }
-
-    const tabArticles = document.getElementById('tab-articles');
-    if (tabArticles) {
-      tabArticles.addEventListener('click', () => {
-        state.adminTab = 'articles';
-        state.adminEditingArticle = null;
-        renderAdminPage();
-      });
-    }
-
-    // Bind Copy Emails
-    const copyBtn = document.getElementById('btn-copy-emails');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        if (normalizedList.length === 0) {
-          showToast('No emails to copy yet!');
-          return;
-        }
-        const emailString = normalizedList.map(s => s.email).join(', ');
-        navigator.clipboard.writeText(emailString).then(() => {
-          showToast('All emails copied to clipboard! 📋');
-        });
-      });
-    }
-
-    // Bind Export CSV
-    const exportBtn = document.getElementById('btn-export-csv');
-    if (exportBtn) {
-      exportBtn.addEventListener('click', () => {
-        if (normalizedList.length === 0) {
-          showToast('No subscribers to export yet!');
-          return;
-        }
-        const csvRows = ['ID,Email,Date,Source'];
-        normalizedList.forEach(s => {
-          csvRows.push(`"${s.id}","${s.email}","${s.date}","${s.source}"`);
-        });
-        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `AIRA_Subscribers_${new Date().toISOString().slice(0, 10)}.csv`;
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast('Subscribers exported to CSV! 📥');
-      });
-    }
-
-    // Bind Article Search
-    const searchInput = document.getElementById('admin-search-articles');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        state.adminArticleSearch = e.target.value;
-        renderAdminPage();
-        const inputNow = document.getElementById('admin-search-articles');
-        if (inputNow) {
-          inputNow.focus();
-          inputNow.setSelectionRange(inputNow.value.length, inputNow.value.length);
-        }
-      });
-    }
-
-    // Bind Tag Filter Pills
-    document.querySelectorAll('[data-admin-tag]').forEach(pill => {
-      pill.addEventListener('click', (e) => {
-        state.adminArticleTag = e.target.getAttribute('data-admin-tag');
         renderAdminPage();
       });
     });
 
-    // Bind Add New Article
-    const addNewBtn = document.getElementById('btn-add-new-article');
-    if (addNewBtn) {
-      addNewBtn.addEventListener('click', () => {
+    // 2. Overview Action Buttons
+    const overNewArt = document.getElementById('overview-btn-new-article');
+    if (overNewArt) {
+      overNewArt.addEventListener('click', () => {
+        state.adminTab = 'articles';
         const defaultTmpl = ARTICLE_TEMPLATES[0];
         state.adminEditingArticle = {
           isNew: true,
@@ -4373,8 +4970,317 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       });
     }
 
-    // Bind Edit Article Buttons
-    document.querySelectorAll('.btn-edit-article').forEach(btn => {
+    const overReviewSubs = document.getElementById('overview-btn-review-subs');
+    if (overReviewSubs) {
+      overReviewSubs.addEventListener('click', () => {
+        state.adminTab = 'submissions';
+        state.adminSubmissionFilter = 'pending';
+        renderAdminPage();
+      });
+    }
+
+    const overAddDeal = document.getElementById('overview-btn-add-deal');
+    if (overAddDeal) {
+      overAddDeal.addEventListener('click', () => {
+        state.adminTab = 'deals';
+        renderAdminPage();
+        const dealModal = document.getElementById('modal-deal-editor');
+        if (dealModal) dealModal.classList.add('active');
+      });
+    }
+
+    const overExportCsv = document.getElementById('overview-btn-export-csv');
+    if (overExportCsv) {
+      overExportCsv.addEventListener('click', () => {
+        state.adminTab = 'subscribers';
+        renderAdminPage();
+        const exportBtn = document.getElementById('btn-export-csv');
+        if (exportBtn) exportBtn.click();
+      });
+    }
+
+    const overFullBackup = document.getElementById('overview-btn-full-backup');
+    if (overFullBackup) {
+      overFullBackup.addEventListener('click', () => {
+        exportFullSiteBackup();
+      });
+    }
+
+    // 3. Submissions Approval & Actions
+    function handleApproveSubmission(subId) {
+      const subs = getToolSubmissions();
+      const sub = subs.find(s => s.id === subId);
+      if (!sub) return;
+
+      sub.status = 'approved';
+      sub.approvedAt = new Date().toISOString();
+      saveToolSubmissions(subs);
+
+      // Create live tool entry
+      const customTools = getCustomTools();
+      const toolSlug = (sub.toolName || 'tool').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const cleanDomain = (sub.toolUrl || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+
+      const newTool = {
+        id: toolSlug,
+        name: sub.toolName,
+        url: sub.toolUrl,
+        domain: cleanDomain,
+        category: sub.category || 'productivity',
+        categories: [sub.category || 'productivity'],
+        pricing: sub.pricing || 'Freemium',
+        description: sub.tagline || sub.description,
+        longDescription: sub.description,
+        features: sub.features ? sub.features.split(',').map(f => f.trim()).filter(Boolean) : [],
+        badge: 'Community Verified',
+        featured: true,
+        image: `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`,
+        submittedBy: sub.contactEmail,
+        promoCode: sub.promoCode
+      };
+
+      const existingIdx = customTools.findIndex(t => t.id === toolSlug);
+      if (existingIdx >= 0) customTools[existingIdx] = newTool;
+      else customTools.unshift(newTool);
+      saveCustomTools(customTools);
+
+      // If promo code provided, auto-create a deal
+      if (sub.promoCode) {
+        const customDeals = getCustomDeals();
+        const dealId = 'deal-' + toolSlug;
+        const newDeal = {
+          id: dealId,
+          toolName: sub.toolName,
+          toolId: toolSlug,
+          category: sub.category || 'productivity',
+          discountBadge: 'EXCLUSIVE',
+          discountType: 'Discount',
+          headline: `Exclusive Deal on ${sub.toolName}`,
+          description: sub.tagline || sub.description,
+          couponCode: sub.promoCode,
+          expiryDate: 'Verified Active',
+          verified: true,
+          url: sub.toolUrl,
+          domain: cleanDomain,
+          image: `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`
+        };
+        const dealIdx = customDeals.findIndex(d => d.id === dealId);
+        if (dealIdx >= 0) customDeals[dealIdx] = newDeal;
+        else customDeals.unshift(newDeal);
+        saveCustomDeals(customDeals);
+      }
+
+      showToast(`🎉 "${sub.toolName}" is approved & LIVE on /#/tools!`);
+      renderAdminPage();
+    }
+
+    appContainer.querySelectorAll('.btn-approve-sub, .btn-quick-approve').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const sid = e.currentTarget.getAttribute('data-sub-id');
+        handleApproveSubmission(sid);
+      });
+    });
+
+    appContainer.querySelectorAll('.btn-reject-sub').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const sid = e.currentTarget.getAttribute('data-sub-id');
+        const subs = getToolSubmissions();
+        const sub = subs.find(s => s.id === sid);
+        if (sub) {
+          sub.status = 'rejected';
+          saveToolSubmissions(subs);
+          showToast(`Marked "${sub.toolName}" as rejected.`);
+          renderAdminPage();
+        }
+      });
+    });
+
+    appContainer.querySelectorAll('.btn-delete-sub').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const sid = e.currentTarget.getAttribute('data-sub-id');
+        if (confirm('Delete this submission permanently?')) {
+          let subs = getToolSubmissions();
+          subs = subs.filter(s => s.id !== sid);
+          saveToolSubmissions(subs);
+          showToast('Submission deleted.');
+          renderAdminPage();
+        }
+      });
+    });
+
+    appContainer.querySelectorAll('[data-sub-filter]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        state.adminSubmissionFilter = e.currentTarget.getAttribute('data-sub-filter');
+        renderAdminPage();
+      });
+    });
+
+    const searchSubInput = document.getElementById('admin-search-submissions');
+    if (searchSubInput) {
+      searchSubInput.addEventListener('input', (e) => {
+        state.adminSubmissionSearch = e.target.value;
+        renderAdminPage();
+        const el = document.getElementById('admin-search-submissions');
+        if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+      });
+    }
+
+    // 4. Deals Manager Actions & Modal
+    const openAddDealBtn = document.getElementById('btn-open-add-deal-modal');
+    const dealModal = document.getElementById('modal-deal-editor');
+    const closeDealModalBtn = document.getElementById('btn-close-deal-modal');
+    const cancelDealModalBtn = document.getElementById('btn-cancel-deal-modal');
+    const formDealEditor = document.getElementById('form-deal-editor');
+
+    if (openAddDealBtn && dealModal) {
+      openAddDealBtn.addEventListener('click', () => {
+        document.getElementById('modal-deal-title').innerText = 'Add New Affiliate Deal';
+        document.getElementById('deal-edit-id').value = '';
+        document.getElementById('deal-input-tool-name').value = '';
+        document.getElementById('deal-input-badge').value = '20% OFF';
+        document.getElementById('deal-input-headline').value = '';
+        document.getElementById('deal-input-desc').value = '';
+        document.getElementById('deal-input-code').value = '';
+        document.getElementById('deal-input-expiry').value = 'Verified Active';
+        document.getElementById('deal-input-url').value = '';
+        dealModal.classList.add('active');
+      });
+    }
+
+    if (closeDealModalBtn && dealModal) {
+      closeDealModalBtn.addEventListener('click', () => dealModal.classList.remove('active'));
+    }
+    if (cancelDealModalBtn && dealModal) {
+      cancelDealModalBtn.addEventListener('click', () => dealModal.classList.remove('active'));
+    }
+
+    if (formDealEditor) {
+      formDealEditor.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const editId = document.getElementById('deal-edit-id').value;
+        const toolName = document.getElementById('deal-input-tool-name').value.trim();
+        const category = document.getElementById('deal-input-category').value;
+        const badge = document.getElementById('deal-input-badge').value.trim();
+        const headline = document.getElementById('deal-input-headline').value.trim();
+        const desc = document.getElementById('deal-input-desc').value.trim();
+        const code = document.getElementById('deal-input-code').value.trim();
+        const expiry = document.getElementById('deal-input-expiry').value.trim() || 'Verified Active';
+        const url = document.getElementById('deal-input-url').value.trim();
+        const cleanDomain = url.replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+
+        const customDeals = getCustomDeals();
+        const dealId = editId || `deal-${toolName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now().toString().slice(-4)}`;
+
+        const dealObj = {
+          id: dealId,
+          toolName,
+          toolId: toolName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          category,
+          discountBadge: badge,
+          discountType: 'Discount',
+          headline,
+          description: desc,
+          couponCode: code,
+          expiryDate: expiry,
+          verified: true,
+          url,
+          domain: cleanDomain,
+          image: `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`
+        };
+
+        const existingIdx = customDeals.findIndex(d => d.id === dealId);
+        if (existingIdx >= 0) customDeals[existingIdx] = dealObj;
+        else customDeals.unshift(dealObj);
+        saveCustomDeals(customDeals);
+
+        dealModal.classList.remove('active');
+        showToast(`Deal for "${toolName}" saved successfully! 🏷️`);
+        renderAdminPage();
+      });
+    }
+
+    appContainer.querySelectorAll('.btn-edit-deal').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const did = e.currentTarget.getAttribute('data-deal-id');
+        const found = allDealsList.find(d => d.id === did);
+        if (found && dealModal) {
+          document.getElementById('modal-deal-title').innerText = `Edit Deal: ${found.toolName}`;
+          document.getElementById('deal-edit-id').value = found.id;
+          document.getElementById('deal-input-tool-name').value = found.toolName;
+          document.getElementById('deal-input-category').value = found.category || 'productivity';
+          document.getElementById('deal-input-badge').value = found.discountBadge;
+          document.getElementById('deal-input-headline').value = found.headline;
+          document.getElementById('deal-input-desc').value = found.description || '';
+          document.getElementById('deal-input-code').value = found.couponCode || '';
+          document.getElementById('deal-input-expiry').value = found.expiryDate || 'Verified Active';
+          document.getElementById('deal-input-url').value = found.url;
+          dealModal.classList.add('active');
+        }
+      });
+    });
+
+    appContainer.querySelectorAll('.btn-delete-deal').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const did = e.currentTarget.getAttribute('data-deal-id');
+        if (confirm('Delete this deal?')) {
+          let customDeals = getCustomDeals();
+          customDeals = customDeals.filter(d => d.id !== did);
+          saveCustomDeals(customDeals);
+          showToast('Deal deleted.');
+          renderAdminPage();
+        }
+      });
+    });
+
+    const searchDealsInput = document.getElementById('admin-search-deals');
+    if (searchDealsInput) {
+      searchDealsInput.addEventListener('input', (e) => {
+        state.adminDealSearch = e.target.value;
+        renderAdminPage();
+        const el = document.getElementById('admin-search-deals');
+        if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+      });
+    }
+
+    // 5. Articles Management Event Handlers
+    const searchArtInput = document.getElementById('admin-search-articles');
+    if (searchArtInput) {
+      searchArtInput.addEventListener('input', (e) => {
+        state.adminArticleSearch = e.target.value;
+        renderAdminPage();
+        const el = document.getElementById('admin-search-articles');
+        if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+      });
+    }
+
+    appContainer.querySelectorAll('[data-admin-tag]').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        state.adminArticleTag = e.target.getAttribute('data-admin-tag');
+        renderAdminPage();
+      });
+    });
+
+    const addNewArtBtn = document.getElementById('btn-add-new-article');
+    if (addNewArtBtn) {
+      addNewArtBtn.addEventListener('click', () => {
+        const defaultTmpl = ARTICLE_TEMPLATES[0];
+        state.adminEditingArticle = {
+          isNew: true,
+          title: defaultTmpl.sampleTitle,
+          slug: defaultTmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+          subtitle: defaultTmpl.sampleSubtitle,
+          tag: defaultTmpl.tag,
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+          reading_time: defaultTmpl.readingTime,
+          image_url: 'assets/logo.jpg',
+          author: 'AIRA',
+          body_html: defaultTmpl.body
+        };
+        renderAdminPage();
+      });
+    }
+
+    appContainer.querySelectorAll('.btn-edit-article').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const slug = e.currentTarget.getAttribute('data-slug');
         const found = state.articles.find(a => a.slug === slug);
@@ -4385,8 +5291,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       });
     });
 
-    // Bind Delete Article Buttons
-    document.querySelectorAll('.btn-delete-article').forEach(btn => {
+    appContainer.querySelectorAll('.btn-delete-article').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const slug = e.currentTarget.getAttribute('data-slug');
         const found = state.articles.find(a => a.slug === slug);
@@ -4400,7 +5305,6 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       });
     });
 
-    // Bind Download articles.js
     const downloadJsBtn = document.getElementById('btn-download-articles-js');
     if (downloadJsBtn) {
       downloadJsBtn.addEventListener('click', () => {
@@ -4416,14 +5320,180 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       });
     }
 
-    // Bind Reset Articles to Defaults
-    const resetBtn = document.getElementById('btn-reset-articles');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
+    // 6. Subscribers Management Handlers
+    const copyEmailsBtn = document.getElementById('btn-copy-emails');
+    if (copyEmailsBtn) {
+      copyEmailsBtn.addEventListener('click', () => {
+        if (normalizedSubscribers.length === 0) {
+          showToast('No emails to copy yet!');
+          return;
+        }
+        const emailString = normalizedSubscribers.map(s => s.email).join(', ');
+        navigator.clipboard.writeText(emailString).then(() => {
+          showToast('All emails copied to clipboard! 📋');
+        });
+      });
+    }
+
+    const exportCsvBtn = document.getElementById('btn-export-csv');
+    if (exportCsvBtn) {
+      exportCsvBtn.addEventListener('click', () => {
+        if (normalizedSubscribers.length === 0) {
+          showToast('No subscribers to export yet!');
+          return;
+        }
+        const csvRows = ['ID,Email,Date,Source'];
+        normalizedSubscribers.forEach(s => {
+          csvRows.push(`"${s.id}","${s.email}","${s.date}","${s.source}"`);
+        });
+        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `AIRA_Subscribers_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Subscribers exported to CSV! 📥');
+      });
+    }
+
+    const searchSubscribersInput = document.getElementById('admin-search-subscribers');
+    if (searchSubscribersInput) {
+      searchSubscribersInput.addEventListener('input', (e) => {
+        state.adminSubscriberSearch = e.target.value;
+        renderAdminPage();
+        const el = document.getElementById('admin-search-subscribers');
+        if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+      });
+    }
+
+    appContainer.querySelectorAll('.btn-delete-subscriber').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const email = e.currentTarget.getAttribute('data-email');
+        if (confirm(`Remove subscriber "${email}"?`)) {
+          let list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+          list = list.filter(item => (typeof item === 'string' ? item : item.email) !== email);
+          localStorage.setItem('aira_subscribers', JSON.stringify(list));
+          state.subscribers = list;
+          showToast('Subscriber removed.');
+          renderAdminPage();
+        }
+      });
+    });
+
+    // 7. Comments Moderation Handlers
+    appContainer.querySelectorAll('.btn-delete-comment').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const slug = e.currentTarget.getAttribute('data-slug');
+        const cIdx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+        if (confirm('Delete this comment permanently?')) {
+          const comMap = JSON.parse(localStorage.getItem('aira_comments') || '{}');
+          if (comMap[slug] && comMap[slug][cIdx] !== undefined) {
+            comMap[slug].splice(cIdx, 1);
+            if (comMap[slug].length === 0) delete comMap[slug];
+            localStorage.setItem('aira_comments', JSON.stringify(comMap));
+            state.comments = comMap;
+            showToast('Comment deleted.');
+            renderAdminPage();
+          }
+        }
+      });
+    });
+
+    // 8. Full Site Backup & Restore
+    function exportFullSiteBackup() {
+      const backup = {
+        version: '26.0',
+        exportedAt: new Date().toISOString(),
+        articles: state.articles,
+        customTools: getCustomTools(),
+        customDeals: getCustomDeals(),
+        toolSubmissions: getToolSubmissions(),
+        subscribers: JSON.parse(localStorage.getItem('aira_subscribers') || '[]'),
+        comments: JSON.parse(localStorage.getItem('aira_comments') || '{}'),
+        likes: JSON.parse(localStorage.getItem('aira_likes') || '{}')
+      };
+      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `AIRA_Full_Backup_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('📦 Full site backup JSON downloaded!');
+    }
+
+    const exportBackupBtn = document.getElementById('btn-export-full-backup') || document.getElementById('btn-settings-export-backup');
+    if (exportBackupBtn) {
+      exportBackupBtn.addEventListener('click', exportFullSiteBackup);
+    }
+
+    const restoreBackupInput = document.getElementById('input-restore-backup');
+    if (restoreBackupInput) {
+      restoreBackupInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const data = JSON.parse(event.target.result);
+            if (data.articles) saveArticles(data.articles);
+            if (data.customTools) saveCustomTools(data.customTools);
+            if (data.customDeals) saveCustomDeals(data.customDeals);
+            if (data.toolSubmissions) saveToolSubmissions(data.toolSubmissions);
+            if (data.subscribers) localStorage.setItem('aira_subscribers', JSON.stringify(data.subscribers));
+            if (data.comments) localStorage.setItem('aira_comments', JSON.stringify(data.comments));
+            if (data.likes) localStorage.setItem('aira_likes', JSON.stringify(data.likes));
+            showToast('🎉 Backup restored successfully! Refreshing dashboard...');
+            setTimeout(() => renderAdminPage(), 1000);
+          } catch (err) {
+            alert('Invalid backup file format: ' + err.message);
+          }
+        };
+        reader.readAsText(file);
+      });
+    }
+
+    const testDbBtn = document.getElementById('btn-test-db-connection');
+    if (testDbBtn) {
+      testDbBtn.addEventListener('click', () => {
+        if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+          showToast('🟢 Supabase Cloud Database is Active & Connected!');
+        } else {
+          showToast('⚪ Running in Local Client Storage mode. Add Supabase keys in js/supabase.js for live cloud sync.');
+        }
+      });
+    }
+
+    const resetArticlesBtn = document.getElementById('btn-reset-articles');
+    if (resetArticlesBtn) {
+      resetArticlesBtn.addEventListener('click', () => {
         if (confirm('Reset articles to the original 192 editions? This will discard custom local edits.')) {
           localStorage.removeItem('aira_custom_articles');
           state.articles = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
           showToast('🔄 Restored default 192 articles!');
+          renderAdminPage();
+        }
+      });
+    }
+
+    const clearToolsBtn = document.getElementById('btn-clear-custom-tools');
+    if (clearToolsBtn) {
+      clearToolsBtn.addEventListener('click', () => {
+        if (confirm('Clear all custom approved AI tools from local storage?')) {
+          localStorage.removeItem('aira_custom_tools');
+          showToast('Custom tools cleared.');
+          renderAdminPage();
+        }
+      });
+    }
+
+    const clearDealsBtn = document.getElementById('btn-clear-custom-deals');
+    if (clearDealsBtn) {
+      clearDealsBtn.addEventListener('click', () => {
+        if (confirm('Clear all custom deals from local storage?')) {
+          localStorage.removeItem('aira_custom_deals');
+          showToast('Custom deals cleared.');
           renderAdminPage();
         }
       });
@@ -4667,7 +5737,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   // =========================================================================
   function renderComparePage() {
     const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { tools: [] };
-    const allTools = toolsData.tools || [];
+    const allTools = getAllTools();
 
     // Default tools to compare if not set
     if (!state.compareTool1 && allTools.length > 0) state.compareTool1 = allTools[0].id;
@@ -4890,7 +5960,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   // =========================================================================
   function renderBookmarksPage() {
     const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { tools: [] };
-    const allTools = toolsData.tools || [];
+    const allTools = getAllTools();
     const altsData = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { alternatives: [] };
     const allAlts = altsData.alternatives || [];
 
@@ -5193,8 +6263,10 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(form);
+        const toolName = formData.get('toolName') || '';
         const submission = {
-          toolName: formData.get('toolName'),
+          id: `sub_${Date.now()}_${toolName.toLowerCase().replace(/[^a-z0-9]/g, '')}`,
+          toolName: toolName,
           toolUrl: formData.get('toolUrl'),
           category: formData.get('category'),
           pricing: formData.get('pricing'),
@@ -5203,12 +6275,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           features: formData.get('features'),
           contactEmail: formData.get('contactEmail'),
           promoCode: formData.get('promoCode'),
-          submittedAt: new Date().toISOString()
+          submittedAt: new Date().toISOString(),
+          status: 'pending'
         };
 
-        const existing = JSON.parse(localStorage.getItem('aira_tool_submissions') || '[]');
-        existing.push(submission);
-        localStorage.setItem('aira_tool_submissions', JSON.stringify(existing));
+        const existing = getToolSubmissions();
+        existing.unshift(submission);
+        saveToolSubmissions(existing);
 
         const card = document.getElementById('submit-form-container');
         if (card) {
@@ -5236,7 +6309,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   // =========================================================================
   function renderDealsPage() {
     const dealsData = typeof AI_DEALS_DATA !== 'undefined' ? AI_DEALS_DATA : { categories: [], deals: [] };
-    const allDeals = dealsData.deals || [];
+    const allDeals = getAllDeals();
     const categories = dealsData.categories || [];
 
     function getFilteredDeals() {
