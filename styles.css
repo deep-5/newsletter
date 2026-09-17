@@ -8111,3 +8111,225 @@ body.dark-mode .mobile-drawer-sub-btn {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   AI Tools Rating & Community Upvoting System
+   ========================================================================== */
+.tool-rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #B45309;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.tool-upvote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #F4F4F5;
+  color: #52525B;
+  border: 1px solid #E4E4E7;
+  padding: 5px 9px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-upvote-btn:hover {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #A7F3D0;
+  transform: translateY(-1px);
+}
+
+.tool-upvote-btn.is-voted {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #059669;
+  box-shadow: 0 0 0 1px #059669;
+}
+
+.tool-upvote-btn .upvote-arrow {
+  color: #059669;
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.tool-upvote-btn.is-voted .upvote-arrow {
+  transform: translateY(-1px);
+}
+
+/* Tool Detail Page Upvote Pill */
+.tool-upvote-detail-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F8FAFC;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.tool-upvote-detail-btn:hover {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #6EE7B7;
+}
+
+.tool-upvote-detail-btn.is-voted {
+  background: #047857 !important;
+  color: #FFFFFF !important;
+  border-color: #047857 !important;
+}
+
+/* Reviews Breakdown Card */
+.tool-reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  background: #F8FAFC;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 20px;
+}
+
+.tool-rating-big-score {
+  text-align: center;
+  min-width: 110px;
+}
+
+.tool-rating-big-num {
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #0F172A;
+  font-family: var(--font-header);
+}
+
+.tool-rating-big-stars {
+  color: #F59E0B;
+  font-size: 1.1rem;
+  margin: 4px 0 2px 0;
+}
+
+.tool-rating-big-count {
+  font-size: 0.78rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.tool-rating-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.rating-bar-label {
+  width: 24px;
+  text-align: right;
+}
+
+.rating-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.rating-bar-fill {
+  height: 100%;
+  background: #F59E0B;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.rating-bar-pct {
+  width: 32px;
+  text-align: right;
+  font-size: 0.72rem;
+}
+
+/* Interactive Star Rating Selector */
+.interactive-stars-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed #E2E8F0;
+  flex-wrap: wrap;
+}
+
+.rate-star-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #CBD5E1;
+  transition: color 0.15s ease, transform 0.15s ease;
+  padding: 0 2px;
+}
+
+.rate-star-btn:hover,
+.rate-star-btn.active {
+  color: #F59E0B;
+  transform: scale(1.15);
+}
+
+/* Dark Mode Overrides */
+body.dark-mode .tool-rating-pill {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+body.dark-mode .tool-upvote-btn {
+  background: #27272A;
+  color: #A1A1AA;
+  border-color: #3F3F46;
+}
+
+body.dark-mode .tool-upvote-btn:hover,
+body.dark-mode .tool-upvote-btn.is-voted {
+  background: rgba(4, 120, 87, 0.2);
+  color: #34D399;
+  border-color: #059669;
+}
+
+body.dark-mode .tool-reviews-summary {
+  background: #18181B;
+  border-color: #27272A;
+}
+
+body.dark-mode .tool-rating-big-num {
+  color: #F4F4F5;
+}
+
+body.dark-mode .rating-bar-track {
+  background: #27272A;
+}
+
