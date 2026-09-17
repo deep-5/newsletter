@@ -4570,7 +4570,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
               <div class="saas-user-pill">
                 <img src="assets/logo.jpg" alt="Admin" class="saas-user-avatar" onerror="this.src='assets/logo.svg'" />
-                <span>Admin / Alex Thompson</span>
+                <span>AIRA Editorial Team</span>
                 <span style="color: #94A3B8; font-size: 0.75rem;">▾</span>
               </div>
             </div>
