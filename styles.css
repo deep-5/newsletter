@@ -6651,26 +6651,313 @@ body.dark-mode .btn-copy-code:hover {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+/* -------------------------------------------------------------------------
+   11. Mobile Navigation Hamburger & Slide-over Drawer
+   ------------------------------------------------------------------------- */
+.btn-hamburger-mobile {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F4F4F5;
+  border: 1px solid #E4E4E7;
+  cursor: pointer;
+  padding: 10px 9px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.18s ease;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.btn-hamburger-mobile span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #18181B;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.btn-hamburger-mobile:hover {
+  background: #E4E4E7;
+}
+
+body.dark-mode .btn-hamburger-mobile {
+  background: #27272A;
+  border-color: #3F3F46;
+}
+
+body.dark-mode .btn-hamburger-mobile span {
+  background: #FFFFFF;
+}
+
+.mobile-nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.mobile-nav-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 86vw;
+  background: #FFFFFF;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-drawer.active {
+  transform: translateX(0);
+}
+
+body.dark-mode .mobile-nav-drawer {
+  background: #121215;
+  border-left: 1px solid #27272A;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #F4F4F5;
+}
+
+body.dark-mode .mobile-drawer-header {
+  border-bottom-color: #27272A;
+}
+
+.mobile-drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-drawer-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #F4F4F5;
+  border: none;
+  color: #71717A;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mobile-drawer-close:hover {
+  background: #E4E4E7;
+  color: #18181B;
+}
+
+body.dark-mode .mobile-drawer-close {
+  background: #27272A;
+  color: #A1A1AA;
+}
+
+body.dark-mode .mobile-drawer-close:hover {
+  background: #3F3F46;
+  color: #FFFFFF;
+}
+
+.mobile-drawer-body {
+  padding: 14px 18px 32px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mobile-drawer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #27272A;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background: #F4F4F5;
+  color: #047857;
+}
+
+body.dark-mode .mobile-nav-link {
+  color: #E4E4E7;
+}
+
+body.dark-mode .mobile-nav-link:hover,
+body.dark-mode .mobile-nav-link.active {
+  background: #1E1E22;
+  color: #34D399;
+}
+
+.mobile-nav-icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+}
+
+.mobile-drawer-divider {
+  height: 1px;
+  background: #F4F4F5;
+  margin: 16px 0;
+}
+
+body.dark-mode .mobile-drawer-divider {
+  background: #27272A;
+}
+
+.mobile-drawer-quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.mobile-quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  background: #FAFAFA;
+  border: 1px solid #E4E4E7;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #18181B;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+body.dark-mode .mobile-quick-action-btn {
+  background: #18181B;
+  border-color: #27272A;
+  color: #FFFFFF;
+}
+
+.mobile-badge-count {
+  margin-left: auto;
+  background: #047857;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.mobile-drawer-sub-btn {
+  width: 100%;
+  padding: 13px;
+  background: #18181B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mobile-drawer-sub-btn:hover {
+  background: #047857;
+}
+
+body.dark-mode .mobile-drawer-sub-btn {
+  background: #047857;
+  color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------------------
+   12. Responsive Breakpoints (Desktop vs Tablet vs Mobile)
+   ------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .nav-center-links {
+    display: none !important;
+  }
+
+  .btn-hamburger-mobile {
+    display: flex !important;
+  }
+
+  .nav-right-actions .tool-details-btn {
+    display: none !important;
+  }
+
   .prompts-grid-3col,
   .deals-grid-3col,
   .ad-packages-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .ad-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .compare-selectors-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
+  .nav-right-actions .btn-icon-nav {
+    display: none !important;
+  }
+
+  .btn-subscribe-nav {
+    padding: 7px 14px;
+    font-size: 0.8125rem;
+  }
+
   .prompts-grid-3col,
   .deals-grid-3col,
   .ad-packages-grid {
     grid-template-columns: 1fr;
   }
+
   .ad-stats-grid {
     grid-template-columns: 1fr;
   }

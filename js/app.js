@@ -85,13 +85,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateBookmarksBadge() {
     const badge = document.getElementById('bookmarks-nav-count');
-    if (!badge) return;
+    const mobileBadge = document.getElementById('mobile-bookmarks-count');
     const count = (state.savedTools?.length || 0) + (state.savedArticles?.length || 0) + (state.savedAlternatives?.length || 0);
-    if (count > 0) {
-      badge.textContent = count;
-      badge.style.display = 'flex';
-    } else {
-      badge.style.display = 'none';
+    if (badge) {
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+    if (mobileBadge) {
+      if (count > 0) {
+        mobileBadge.textContent = count;
+        mobileBadge.style.display = 'inline-block';
+      } else {
+        mobileBadge.style.display = 'none';
+      }
     }
   }
 
@@ -236,8 +246,14 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('aira-gate-active');
     }
 
-    // Update active navbar link
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Close mobile drawer on route change
+    const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+    const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove('active');
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove('active');
+
+    // Update active navbar & mobile links
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
       const target = link.getAttribute('data-nav');
       if (target === route.name || 
          (route.name === 'gate' && target === 'home') ||
@@ -5790,13 +5806,19 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   function initTheme() {
     const savedTheme = localStorage.getItem('aira_theme');
     const themeBtn = document.getElementById('btn-theme-toggle');
+    const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+    const mobileThemeText = document.getElementById('mobile-theme-text');
     const isDark = savedTheme === 'dark';
     if (isDark) {
       document.body.classList.add('dark-mode');
       if (themeBtn) themeBtn.innerHTML = '☀️';
+      if (mobileThemeIcon) mobileThemeIcon.innerHTML = '☀️';
+      if (mobileThemeText) mobileThemeText.innerHTML = 'Light Mode';
     } else {
       document.body.classList.remove('dark-mode');
       if (themeBtn) themeBtn.innerHTML = '🌓';
+      if (mobileThemeIcon) mobileThemeIcon.innerHTML = '🌓';
+      if (mobileThemeText) mobileThemeText.innerHTML = 'Dark Mode';
     }
   }
 
@@ -5804,8 +5826,16 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     const isDark = document.body.classList.toggle('dark-mode');
     localStorage.setItem('aira_theme', isDark ? 'dark' : 'light');
     const themeBtn = document.getElementById('btn-theme-toggle');
+    const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+    const mobileThemeText = document.getElementById('mobile-theme-text');
     if (themeBtn) {
       themeBtn.innerHTML = isDark ? '☀️' : '🌓';
+    }
+    if (mobileThemeIcon) {
+      mobileThemeIcon.innerHTML = isDark ? '☀️' : '🌓';
+    }
+    if (mobileThemeText) {
+      mobileThemeText.innerHTML = isDark ? 'Light Mode' : 'Dark Mode';
     }
     showToast(isDark ? '🌙 Dark Mode Activated' : '☀️ Light Mode Activated');
   }
@@ -5814,6 +5844,57 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', toggleTheme);
   }
+
+  // Mobile Drawer Toggle & Actions
+  const mobileMenuToggleBtn = document.getElementById('btn-mobile-menu-toggle');
+  const mobileDrawerCloseBtn = document.getElementById('btn-mobile-drawer-close');
+  const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+  const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+  const mobileThemeToggleBtn = document.getElementById('mobile-btn-theme-toggle');
+  const mobileDrawerSubBtn = document.getElementById('btn-mobile-drawer-subscribe');
+
+  function openMobileDrawer() {
+    if (mobileNavDrawer) mobileNavDrawer.classList.add('active');
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileDrawer() {
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove('active');
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileMenuToggleBtn) {
+    mobileMenuToggleBtn.addEventListener('click', openMobileDrawer);
+  }
+
+  if (mobileDrawerCloseBtn) {
+    mobileDrawerCloseBtn.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (mobileNavBackdrop) {
+    mobileNavBackdrop.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (mobileThemeToggleBtn) {
+    mobileThemeToggleBtn.addEventListener('click', () => {
+      toggleTheme();
+    });
+  }
+
+  if (mobileDrawerSubBtn) {
+    mobileDrawerSubBtn.addEventListener('click', () => {
+      closeMobileDrawer();
+      openModal(subscribeModal);
+    });
+  }
+
+  document.querySelectorAll('.mobile-nav-link, #mobile-drawer-bookmarks').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileDrawer();
+    });
+  });
 
   // Breaking News Ticker Dismiss
   const closeTickerBtn = document.getElementById('btn-close-ticker');
