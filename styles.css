@@ -4373,6 +4373,17 @@ body.aira-gate-active .site-footer {
   padding: 12px 0;
   flex-wrap: wrap;
   width: 100%;
+  max-width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#tools-pagination-container,
+#alt-pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pagination-pill-btn {
@@ -4416,6 +4427,7 @@ body.aira-gate-active .site-footer {
 .pagination-numbers-group {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   flex-wrap: wrap;
 }

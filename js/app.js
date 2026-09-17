@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedTag: 'All',
     homeCurrentPage: 1,
     archiveCurrentPage: 1,
+    altCurrentPage: 1,
+    toolCurrentPage: 1,
     homeSearchQuery: '',
     altCategoryFilter: 'all',
     altSearchQuery: '',
@@ -1061,8 +1063,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentCatObj = categories.find(c => c.id === state.toolCategoryFilter);
       const currentCatName = currentCatObj ? currentCatObj.name : 'All Tools';
 
+      const TOOLS_PER_PAGE = 12;
+      const totalPages = Math.ceil(filtered.length / TOOLS_PER_PAGE);
+      if (state.toolCurrentPage > totalPages && totalPages > 0) state.toolCurrentPage = 1;
+      if (state.toolCurrentPage < 1) state.toolCurrentPage = 1;
+
+      const pagedTools = filtered.slice(
+        (state.toolCurrentPage - 1) * TOOLS_PER_PAGE,
+        state.toolCurrentPage * TOOLS_PER_PAGE
+      );
+
       const gridEl = document.getElementById('tools-grid-container');
       const countEl = document.getElementById('tools-count-container');
+      const paginationEl = document.getElementById('tools-pagination-container');
 
       if (countEl) {
         countEl.innerHTML = `
@@ -1071,6 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ${state.toolCategoryFilter !== 'all' ? ` in <span class="active-cat-name">${currentCatName}</span>` : ''}
             ${state.toolPricingFilter !== 'all' ? ` • <span class="active-pricing-name">${state.toolPricingFilter}</span>` : ''}
             ${state.toolSearchQuery ? ` • matching "<em>${state.toolSearchQuery}</em>"` : ''}
+            ${totalPages > 1 ? ` (Page ${state.toolCurrentPage} of ${totalPages})` : ''}
           </div>
           ${(state.toolCategoryFilter !== 'all' || state.toolPricingFilter !== 'all' || state.toolSearchQuery) ? `
             <button class="reset-filters-btn" id="btn-reset-tools-filters">
@@ -1086,6 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             state.toolCategoryFilter = 'all';
             state.toolPricingFilter = 'all';
             state.toolSearchQuery = '';
+            state.toolCurrentPage = 1;
             const searchInputEl = document.getElementById('tool-search-input');
             if (searchInputEl) searchInputEl.value = '';
             const clearBtnEl = document.getElementById('tool-search-clear');
@@ -1111,19 +1126,43 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="empty-reset-action-btn" id="btn-empty-reset">Show All AI Tools</button>
             </div>
           `;
+          if (paginationEl) paginationEl.innerHTML = '';
+
           const emptyResetBtn = document.getElementById('btn-empty-reset');
           if (emptyResetBtn) {
             emptyResetBtn.addEventListener('click', () => {
               state.toolCategoryFilter = 'all';
               state.toolPricingFilter = 'all';
               state.toolSearchQuery = '';
+              state.toolCurrentPage = 1;
               const searchInputEl = document.getElementById('tool-search-input');
               if (searchInputEl) searchInputEl.value = '';
               renderTagsPage();
             });
           }
         } else {
-          gridEl.innerHTML = filtered.map(renderToolCard).join('');
+          gridEl.innerHTML = pagedTools.map(renderToolCard).join('');
+          
+          if (paginationEl) {
+            paginationEl.innerHTML = renderPaginationHTML(state.toolCurrentPage, totalPages, 'tools');
+            
+            // Bind tools pagination buttons
+            paginationEl.querySelectorAll('.aira-pagination-bar[data-type="tools"] button[data-page]').forEach(btn => {
+              btn.addEventListener('click', (e) => {
+                if (btn.disabled) return;
+                const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+                if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.toolCurrentPage) {
+                  state.toolCurrentPage = targetPage;
+                  updateView();
+                  const countContainer = document.getElementById('tools-count-container') || document.querySelector('.tools-directory-view');
+                  if (countContainer) {
+                    countContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }
+              });
+            });
+          }
+
           // Bind card tag clicks
           gridEl.querySelectorAll('.tool-category-badge').forEach(badge => {
             badge.addEventListener('click', (e) => {
@@ -1132,6 +1171,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const cat = badge.getAttribute('data-category');
               if (cat) {
                 state.toolCategoryFilter = cat;
+                state.toolCurrentPage = 1;
                 const idx = categories.findIndex(c => c.id === cat);
                 if (idx >= initialVisibleCount) {
                   state.categoriesExpanded = true;
@@ -1211,6 +1251,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Grid of Tool Cards -->
           <div class="tools-directory-grid" id="tools-grid-container"></div>
+
+          <!-- Numbered Pagination Bar (Centered) -->
+          <div id="tools-pagination-container"></div>
         </div>
       </section>
     `;
@@ -1220,6 +1263,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.addEventListener('click', () => {
         const catId = pill.getAttribute('data-cat-id');
         state.toolCategoryFilter = catId;
+        state.toolCurrentPage = 1;
         document.querySelectorAll('.cat-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
         updateView();
       });
@@ -1230,6 +1274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggleCatsBtn) {
       toggleCatsBtn.addEventListener('click', () => {
         state.categoriesExpanded = !isExpanded;
+        state.toolCurrentPage = 1;
         renderTagsPage();
       });
     }
@@ -1239,6 +1284,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.addEventListener('click', () => {
         const pricing = pill.getAttribute('data-pricing');
         state.toolPricingFilter = pricing;
+        state.toolCurrentPage = 1;
         document.querySelectorAll('.pricing-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
         updateView();
       });
@@ -1251,6 +1297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         state.toolSearchQuery = e.target.value;
+        state.toolCurrentPage = 1;
         if (searchClear) {
           searchClear.style.display = e.target.value ? 'flex' : 'none';
         }
@@ -1261,6 +1308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchClear) {
       searchClear.addEventListener('click', () => {
         state.toolSearchQuery = '';
+        state.toolCurrentPage = 1;
         if (searchInput) {
           searchInput.value = '';
           searchInput.focus();
@@ -1365,6 +1413,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Software Cards Grid -->
           <div class="alt-grid" id="alt-grid-container"></div>
+
+          <!-- Numbered Pagination Bar (Centered) -->
+          <div id="alt-pagination-container"></div>
         </div>
       </section>
     `;
@@ -1374,10 +1425,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const filteredAltsCount = filtered.reduce((sum, s) => sum + (s.alternatives ? s.alternatives.length : 0), 0);
       const gridEl = document.getElementById('alt-grid-container');
       const countEl = document.getElementById('alt-count-bar');
+      const paginationEl = document.getElementById('alt-pagination-container');
+
+      const ALT_PER_PAGE = 18;
+      const totalPages = Math.ceil(filtered.length / ALT_PER_PAGE) || 1;
+      if (state.altCurrentPage > totalPages && totalPages > 0) state.altCurrentPage = 1;
+      if (state.altCurrentPage < 1) state.altCurrentPage = 1;
+
+      const pagedSoftware = filtered.slice(
+        (state.altCurrentPage - 1) * ALT_PER_PAGE,
+        state.altCurrentPage * ALT_PER_PAGE
+      );
 
       if (countEl) {
         countEl.innerHTML = `
-          <span>Showing <strong>${filtered.length}</strong> ${filtered.length === 1 ? 'software collection' : 'software collections'} with <strong>${filteredAltsCount.toLocaleString()}+</strong> curated open-source alternatives</span>
+          <span>Showing <strong>${filtered.length}</strong> ${filtered.length === 1 ? 'software collection' : 'software collections'} with <strong>${filteredAltsCount.toLocaleString()}+</strong> curated open-source alternatives${totalPages > 1 ? ` (Page ${state.altCurrentPage} of ${totalPages})` : ''}</span>
         `;
       }
 
@@ -1391,18 +1453,20 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="btn-clear-search-link" id="btn-reset-alt-search" style="font-size: 0.95rem; font-weight: 600; cursor: pointer;">← View All Alternatives</button>
           </div>
         `;
+        if (paginationEl) paginationEl.innerHTML = '';
         const resetBtn = document.getElementById('btn-reset-alt-search');
         if (resetBtn) {
           resetBtn.addEventListener('click', () => {
             state.altSearchQuery = '';
             state.altCategoryFilter = 'all';
+            state.altCurrentPage = 1;
             renderAlternativesPage();
           });
         }
         return;
       }
 
-      gridEl.innerHTML = filtered.map(item => {
+      gridEl.innerHTML = pagedSoftware.map(item => {
         const altCount = item.alternatives ? item.alternatives.length : 0;
         const cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
         const logoUrl = item.logo || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
@@ -1442,6 +1506,25 @@ document.addEventListener('DOMContentLoaded', () => {
           </a>
         `;
       }).join('');
+
+      if (paginationEl) {
+        paginationEl.innerHTML = renderPaginationHTML(state.altCurrentPage, totalPages, 'alternatives');
+
+        paginationEl.querySelectorAll('.aira-pagination-bar[data-type="alternatives"] button[data-page]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            if (btn.disabled) return;
+            const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+            if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.altCurrentPage) {
+              state.altCurrentPage = targetPage;
+              updateGrid();
+              const targetScroll = document.getElementById('alt-count-bar') || document.querySelector('.alternatives-directory-view');
+              if (targetScroll) {
+                targetScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        });
+      }
     }
 
     // Bind category clicks
@@ -1449,6 +1532,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', (e) => {
         const catId = e.currentTarget.getAttribute('data-cat-id');
         state.altCategoryFilter = catId;
+        state.altCurrentPage = 1;
         appContainer.querySelectorAll('.alt-cat-pill').forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         updateGrid();
@@ -1461,6 +1545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         state.altSearchQuery = e.target.value;
+        state.altCurrentPage = 1;
         if (searchClear) searchClear.style.display = e.target.value ? 'flex' : 'none';
         updateGrid();
       });
@@ -1469,6 +1554,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchClear) {
       searchClear.addEventListener('click', () => {
         state.altSearchQuery = '';
+        state.altCurrentPage = 1;
         if (searchInput) {
           searchInput.value = '';
           searchInput.focus();
