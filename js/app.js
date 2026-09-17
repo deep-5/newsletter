@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hashPath === '/compare') return { name: 'compare' };
     if (hashPath === '/bookmarks') return { name: 'bookmarks' };
     if (hashPath === '/submit') return { name: 'submit' };
-    if (hashPath === '/deals') return { name: 'deals' };
+    if (hashPath === '/deals') return { name: 'home' }; // Temporarily hidden as requested
     if (hashPath === '/advertise') return { name: 'advertise' };
     if (hashPath === '/alternatives') {
       const params = new URLSearchParams(hashQuery || '');
@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (route.name === 'submit') {
       renderSubmitPage();
     } else if (route.name === 'deals') {
-      renderDealsPage();
+      renderHomePage();
     } else if (route.name === 'advertise') {
       renderAdvertisePage();
     } else if (route.name === 'alternatives') {
