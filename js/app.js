@@ -116,10 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const slug = hashPath.replace('/alternatives/', '');
       return { name: 'alternative-detail', slug };
     }
-    if (hashPath === '/tags') {
+    if (hashPath === '/tags' || hashPath === '/tools') {
       const params = new URLSearchParams(hashQuery || '');
       const category = params.get('category') || 'all';
       return { name: 'tags', category };
+    }
+    if (hashPath.startsWith('/tags/')) {
+      const id = hashPath.replace('/tags/', '');
+      return { name: 'tool-detail', id };
+    }
+    if (hashPath.startsWith('/tools/')) {
+      const id = hashPath.replace('/tools/', '');
+      return { name: 'tool-detail', id };
+    }
+    if (hashPath.startsWith('/tool/')) {
+      const id = hashPath.replace('/tool/', '');
+      return { name: 'tool-detail', id };
     }
     return { name: 'home' };
   }
@@ -140,7 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = link.getAttribute('data-nav');
       if (target === route.name || 
          (route.name === 'gate' && target === 'home') ||
-         (route.name === 'alternative-detail' && target === 'alternatives')) {
+         (route.name === 'alternative-detail' && target === 'alternatives') ||
+         (route.name === 'tool-detail' && target === 'tags')) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -171,6 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
         state.toolCategoryFilter = route.category;
       }
       renderTagsPage();
+    } else if (route.name === 'tool-detail') {
+      renderToolDetailPage(route.id);
     }
   }
 
@@ -1024,17 +1039,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const fallbackIcon = tool.icon || '⚡';
 
       return `
-        <div class="tool-card ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}">
+        <div class="tool-card ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
           <div class="tool-card-top">
-            <div class="tool-icon-avatar">
+            <a href="#/tools/${tool.id}" class="tool-icon-avatar" title="View ${tool.name} details">
               <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
-            </div>
+            </a>
             <div class="tool-title-group">
               <div class="tool-badges-row">
                 ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
                 <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
               </div>
-              <h3 class="tool-card-name" title="${tool.name}">${tool.name}</h3>
+              <h3 class="tool-card-name" title="${tool.name}">
+                <a href="#/tools/${tool.id}" class="tool-title-link">${tool.name}</a>
+              </h3>
             </div>
           </div>
 
@@ -1049,10 +1066,15 @@ document.addEventListener('DOMContentLoaded', () => {
               `).join('')}
             </div>
 
-            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${tool.name}">
-              <span>Visit</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            </a>
+            <div class="tool-card-actions">
+              <a href="#/tools/${tool.id}" class="tool-details-btn" title="View details of ${tool.name}">
+                <span>Details</span>
+              </a>
+              <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${tool.name}">
+                <span>Visit</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
           </div>
         </div>
       `;
@@ -1320,6 +1342,520 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render of cards
     updateView();
+  }
+
+  // =========================================================================
+  // 4b. AI Tool Detail / Inner Page (/#/tools/:id or /#/tags/:id)
+  // =========================================================================
+  function renderToolDetailPage(toolId) {
+    const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { categories: [], tools: [] };
+    const allTools = toolsData.tools || [];
+    const categories = toolsData.categories || [];
+    const normalizedId = String(toolId || '').toLowerCase().trim();
+
+    // Find tool by ID or slug or domain
+    const tool = allTools.find(t => 
+      (t.id && t.id.toLowerCase() === normalizedId) ||
+      (t.name && t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') === normalizedId) ||
+      (t.domain && t.domain.toLowerCase().replace(/[^a-z0-9]+/g, '-') === normalizedId)
+    );
+
+    if (!tool) {
+      appContainer.innerHTML = `
+        <div class="container" style="padding: 80px 20px; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 16px;">⚡</div>
+          <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px; font-family: var(--font-header);">AI Tool Not Found</h2>
+          <p style="color: var(--color-text-secondary); margin-bottom: 24px; font-size: 1.05rem;">The AI tool you are looking for does not exist or has been moved.</p>
+          <a href="#/tags" class="ad-pill-btn" style="display: inline-flex; padding: 12px 28px;">← Back to AI Tools Directory</a>
+        </div>
+      `;
+      return;
+    }
+
+    // Helper to get category display name
+    function getCategoryName(catId) {
+      const found = categories.find(c => c.id === catId);
+      return found ? found.name : catId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+    const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+    const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
+    const fallbackIcon = tool.icon || '⚡';
+    const primaryCat = tool.category || (tool.categories && tool.categories[0]) || 'productivity';
+    const primaryCatName = getCategoryName(primaryCat);
+    const pricingClass = `pricing-${(tool.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}`;
+    const toolCategories = tool.categories || [primaryCat];
+
+    // Saved tools from localStorage
+    const savedTools = JSON.parse(localStorage.getItem('aira_saved_tools') || '[]');
+    const isSaved = savedTools.includes(tool.id);
+
+    // Check if open-source alternatives exist in ALTERNATIVES_DATA
+    const altData = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { software: [] };
+    const matchedAlt = (altData.software || []).find(s => 
+      s.slug === tool.id ||
+      s.name.toLowerCase() === tool.name.toLowerCase() ||
+      (tool.domain && s.domain && tool.domain.toLowerCase().includes(s.domain.toLowerCase()))
+    );
+
+    // Related tools in same category
+    const relatedTools = allTools.filter(t => 
+      t.id !== tool.id && 
+      ((t.category === tool.category) || (t.categories && tool.categories && t.categories.some(c => tool.categories.includes(c))))
+    ).slice(0, 3);
+
+    // Dynamic Feature Generator based on category & tool specifics
+    function getFeaturesForTool(t) {
+      const cat = (t.category || '').toLowerCase();
+      if (cat.includes('chat') || cat.includes('llm')) {
+        return [
+          { icon: '🧠', title: 'Frontier Neural Reasoning', desc: 'Powered by advanced transformer models capable of deep logical deduction and complex problem solving.' },
+          { icon: '💬', title: 'Multi-Turn Context Memory', desc: 'Maintains conversational state, previous queries, and nuanced instruction sets across long sessions.' },
+          { icon: '💻', title: 'Code & Technical Analysis', desc: 'Generates, analyzes, and debugs code across Python, JavaScript, Rust, SQL, and other languages.' },
+          { icon: '⚡', title: 'Low Latency Token Stream', desc: 'Real-time response streaming delivering instant answers and fast response turnaround.' },
+          { icon: '🌐', title: 'Knowledge Base Integration', desc: 'Connects with custom knowledge repositories, files, and live web search for verified facts.' },
+          { icon: '🔒', title: 'Enterprise Data Isolation', desc: 'Strict security protocols ensuring user interactions and queries remain confidential and private.' }
+        ];
+      }
+      if (cat.includes('image') || cat.includes('design') || cat.includes('art')) {
+        return [
+          { icon: '🎨', title: 'Photorealistic Image Synthesis', desc: 'Generates ultra-high resolution artwork, illustrations, product renders, and concept designs.' },
+          { icon: '📐', title: 'Precise Style & Prompt Controls', desc: 'Fine-tune lighting, camera lenses, aspect ratios, color palettes, and negative prompt filters.' },
+          { icon: '🖌️', title: 'Inpainting & Outpainting Canvas', desc: 'Modify specific regions, remove unwanted artifacts, and expand canvas borders seamlessly.' },
+          { icon: '⚡', title: 'Instant 4x Upscaling', desc: 'Enhance image fidelity and details with AI upscaling suitable for print and 4K displays.' },
+          { icon: '💼', title: 'Commercial Usage Ready', desc: 'Full commercial rights on generated assets for marketing campaigns, websites, and branding.' },
+          { icon: '📁', title: 'Cloud Asset Library', desc: 'Organize, tag, and export created assets in PNG, JPG, WebP, or SVG vector formats.' }
+        ];
+      }
+      if (cat.includes('video') || cat.includes('animation')) {
+        return [
+          { icon: '🎬', title: 'Text & Image to Video Engine', desc: 'Transform textual scripts and static images into fluid, cinematic video sequences in minutes.' },
+          { icon: '🎙️', title: 'Neural Voice & Lip Sync', desc: 'Lifelike AI voiceovers with natural human cadence, accents, and accurate facial lip-syncing.' },
+          { icon: '✂️', title: 'Automated Viral Clip Maker', desc: 'Extract high-engagement highlights from long-form footage with animated dynamic captions.' },
+          { icon: '📐', title: 'Multi-Platform Aspect Ratios', desc: 'Export instantly formatted for YouTube 16:9, Instagram Reels & TikTok 9:16, or Square 1:1.' },
+          { icon: '⏱️', title: 'Cloud GPU Accelerated Rendering', desc: 'Fast parallel video processing in the cloud without bogging down your local hardware.' },
+          { icon: '🎵', title: 'AI Soundtracks & Dynamic SFX', desc: 'Integrate royalty-free background music and contextual sound effects automatically.' }
+        ];
+      }
+      if (cat.includes('developer') || cat.includes('code')) {
+        return [
+          { icon: '⌨️', title: 'Context-Aware Autocomplete', desc: 'Predicts entire functions, algorithmic logic, and complex syntax inline as you type.' },
+          { icon: '🐞', title: 'Automated Bug Detection & Fixes', desc: 'Scans repositories for security vulnerabilities, race conditions, and runtime errors with fixes.' },
+          { icon: '🧪', title: 'Unit Test & Docstring Generator', desc: 'Produces comprehensive test suites, mocks, and type documentation automatically.' },
+          { icon: '🔄', title: 'Multi-Language & Framework Support', desc: 'Full support for React, TypeScript, Python, Go, Rust, C++, Next.js, and modern toolchains.' },
+          { icon: '🚀', title: 'Terminal & Git Workflow', desc: 'Execute CLI commands, resolve git merge conflicts, and manage branch changes via natural language.' },
+          { icon: '🔒', title: 'Local & Private Codebase Isolation', desc: 'Ensures your proprietary IP and code never leave your private security perimeter.' }
+        ];
+      }
+      if (cat.includes('writing') || cat.includes('copywriting') || cat.includes('paraphraser')) {
+        return [
+          { icon: '✍️', title: 'High-Converting Copy Engine', desc: 'Draft persuasive sales copy, blog posts, email newsletters, and ad headlines in seconds.' },
+          { icon: '🎯', title: 'Brand Tone Customization', desc: 'Train AI models on your unique brand voice, style guidelines, and vocabulary.' },
+          { icon: '🛡️', title: 'AI Humanizer & Natural Polish', desc: 'Refines machine-generated drafts into organic, human-sounding prose with zero robotic phrasing.' },
+          { icon: '🔍', title: 'Real-Time Readability & SEO', desc: 'Optimizes content structure, keyword density, and Flesch-Kincaid readability scores.' },
+          { icon: '📚', title: 'Multi-Document Summarizer', desc: 'Distill lengthy PDFs, whitepapers, and reports into actionable executive summaries.' },
+          { icon: '🌐', title: '50+ Language Localization', desc: 'Translate and localize content with native cultural idioms and natural fluency.' }
+        ];
+      }
+      if (cat.includes('audio') || cat.includes('speech') || cat.includes('music') || cat.includes('podcast')) {
+        return [
+          { icon: '🎙️', title: 'Studio Neural Voice Synthesis', desc: 'Ultra-realistic voice synthesis with human emotions, whispering, laughter, and pacing.' },
+          { icon: '🎧', title: 'Background Noise & Echo Removal', desc: 'One-click audio enhancement removing ambient hums, clicks, and background chatter.' },
+          { icon: '📻', title: 'Automated Show Notes & Timestamps', desc: 'Generates structured episode summaries, chapter markers, and quotable takeaways.' },
+          { icon: '🌍', title: 'Voice Cloning & Global Dubbing', desc: 'Clone voices in 10 seconds and translate podcasts into multiple languages seamlessly.' },
+          { icon: '🎵', title: 'Royalty-Free AI Music Generation', desc: 'Generate custom musical tracks, ambient soundscapes, and intros tailored to your mood.' },
+          { icon: '🎚️', title: 'Lossless Studio Export', desc: 'Export high-bitrate master files in WAV, FLAC, and MP3 with separated audio stems.' }
+        ];
+      }
+      return [
+        { icon: '⚡', title: 'Automated Workflow Acceleration', desc: 'Eliminates repetitive manual workflows and increases daily productivity by up to 10x.' },
+        { icon: '🎯', title: 'High-Precision Output', desc: 'Delivers reliable, production-ready AI outputs tailored to your specific requirements.' },
+        { icon: '🌐', title: 'Cloud-Based & Cross-Platform', desc: 'Access your projects anytime across web browsers, desktop apps, and mobile devices.' },
+        { icon: '🔒', title: 'Enterprise-Grade Security', desc: 'Protects user data with modern encryption, privacy controls, and compliance certifications.' },
+        { icon: '🔄', title: 'Continuously Updated Models', desc: 'Always powered by the newest frontier models and algorithmic improvements.' },
+        { icon: '🚀', title: 'One-Click Export & Integrations', desc: 'Connects seamlessly with your existing tools, APIs, and project management platforms.' }
+      ];
+    }
+
+    const toolFeatures = getFeaturesForTool(tool);
+
+    appContainer.innerHTML = `
+      <section class="tool-detail-page-view">
+        <div class="container">
+          
+          <!-- Breadcrumb Navigation -->
+          <nav class="tool-breadcrumb-nav">
+            <a href="#/home">Home</a>
+            <span class="bc-sep">/</span>
+            <a href="#/tags">AI Tools</a>
+            <span class="bc-sep">/</span>
+            <a href="#/tags?category=${primaryCat}">${primaryCatName}</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-curr">${tool.name}</span>
+          </nav>
+
+          <!-- Top Hero Card -->
+          <div class="tool-detail-hero">
+            <div class="tool-detail-hero-top">
+              <div class="tool-detail-logo-box">
+                <img src="${logoUrl}" alt="${tool.name} logo" class="tool-detail-logo-img" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:2rem;\\'>${fallbackIcon}</span>'; }" />
+              </div>
+              <div class="tool-detail-title-col">
+                <div class="tool-detail-badges">
+                  <span class="tool-badge-verified"><span class="bolt">⚡</span> AIRA Verified</span>
+                  ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
+                  <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
+                  <a href="#/tags?category=${primaryCat}" class="tool-category-badge" style="text-decoration: none;">${primaryCatName}</a>
+                </div>
+                <h1 class="tool-detail-title">${tool.name}</h1>
+                <p class="tool-detail-tagline">${tool.description}</p>
+              </div>
+            </div>
+
+            <!-- Action Buttons Row -->
+            <div class="tool-detail-actions-row">
+              <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit-primary" title="Open official ${tool.name}">
+                <span>Visit Official Website</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+
+              <button type="button" class="tool-btn-action-pill ${isSaved ? 'is-saved' : ''}" id="btn-save-tool" data-tool-id="${tool.id}">
+                <span>${isSaved ? '★ Saved to Bookmarks' : '☆ Bookmark Tool'}</span>
+              </button>
+
+              <button type="button" class="tool-btn-action-pill" id="btn-share-tool">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                <span>Share</span>
+              </button>
+
+              <a href="#/tags" class="tool-btn-action-pill" style="margin-left: auto;">
+                <span>← All AI Tools</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2-Column Main Layout (Left: In-Depth Overview & Features | Right: Specifications & Sidebar) -->
+          <div class="tool-detail-main-layout">
+            
+            <!-- Left Main Column -->
+            <div class="tool-detail-main-col">
+              
+              <!-- Section 1: Overview & What is It -->
+              <div class="tool-detail-card">
+                <h2 class="tool-detail-card-title">
+                  <span>⚡</span>
+                  <span>About ${tool.name}</span>
+                </h2>
+                <div class="tool-overview-body">
+                  <p>
+                    <strong>${tool.name}</strong> is a specialized AI application in the <strong>${primaryCatName}</strong> ecosystem designed to streamline workflows, enhance output quality, and automate complex tasks.
+                  </p>
+                  <p>
+                    ${tool.description}
+                  </p>
+                  <p>
+                    Whether you are an individual creator, a developer building production software, or an enterprise team looking to scale operations, ${tool.name} provides an intuitive interface and state-of-the-art AI capabilities to help you accomplish your goals faster.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Section 2: Key Features Grid (6 Cards) -->
+              <div class="tool-detail-card">
+                <h2 class="tool-detail-card-title">
+                  <span>✨</span>
+                  <span>Key Features & Capabilities</span>
+                </h2>
+                <div class="tool-features-grid">
+                  ${toolFeatures.map(f => `
+                    <div class="tool-feature-item">
+                      <span class="tool-feature-icon">${f.icon}</span>
+                      <div>
+                        <div class="tool-feature-title">${f.title}</div>
+                        <div class="tool-feature-desc">${f.desc}</div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Section 3: Who Is It For? (Target Audiences) -->
+              <div class="tool-detail-card">
+                <h2 class="tool-detail-card-title">
+                  <span>🎯</span>
+                  <span>Best For & Target Use Cases</span>
+                </h2>
+                <div class="tool-audiences-grid">
+                  <div class="tool-audience-item">
+                    <div class="tool-audience-name"><span>🎨</span> Content Creators & Solopreneurs</div>
+                    <div class="tool-audience-desc">Scale production speed, generate compelling assets, and maintain brand consistency without costly agency overhead.</div>
+                  </div>
+                  <div class="tool-audience-item">
+                    <div class="tool-audience-name"><span>💻</span> Developers & Tech Teams</div>
+                    <div class="tool-audience-desc">Integrate powerful AI models, automate tedious boilerplate tasks, and ship software features faster.</div>
+                  </div>
+                  <div class="tool-audience-item">
+                    <div class="tool-audience-name"><span>📈</span> Marketing & Growth Teams</div>
+                    <div class="tool-audience-desc">Produce high-converting ad copy, campaigns, and viral social content tailored to target audiences.</div>
+                  </div>
+                  <div class="tool-audience-item">
+                    <div class="tool-audience-name"><span>📚</span> Researchers & Knowledge Workers</div>
+                    <div class="tool-audience-desc">Synthesize large datasets, extract key insights, and draft structured reports in a fraction of the time.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 4: 3-Step Quickstart Guide -->
+              <div class="tool-detail-card">
+                <h2 class="tool-detail-card-title">
+                  <span>🚀</span>
+                  <span>How to Get Started with ${tool.name}</span>
+                </h2>
+                <div class="tool-steps-list">
+                  <div class="tool-step-item">
+                    <div class="tool-step-num">1</div>
+                    <div class="tool-step-body">
+                      <div class="tool-step-title">Visit Official Platform & Create Account</div>
+                      <div class="tool-step-desc">Head over to <a href="${tool.url}" target="_blank" rel="noopener noreferrer" style="color:#047857; font-weight:600;">${cleanDomain}</a> and sign up for a ${tool.pricing.toLowerCase()} tier account.</div>
+                    </div>
+                  </div>
+                  <div class="tool-step-item">
+                    <div class="tool-step-num">2</div>
+                    <div class="tool-step-body">
+                      <div class="tool-step-title">Configure Prompts or Upload Your Assets</div>
+                      <div class="tool-step-desc">Select your desired AI workflow template, input your creative prompts, or upload reference documents and files.</div>
+                    </div>
+                  </div>
+                  <div class="tool-step-item">
+                    <div class="tool-step-num">3</div>
+                    <div class="tool-step-body">
+                      <div class="tool-step-title">Generate, Fine-Tune & Export</div>
+                      <div class="tool-step-desc">Execute the AI model to produce results in seconds, adjust parameters to your liking, and download or publish directly.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 5: Open-Source Alternatives Callout (if available) -->
+              ${matchedAlt ? `
+                <div class="tool-alt-callout">
+                  <div class="tool-alt-callout-info">
+                    <div class="tool-alt-callout-title">Looking for Free & Open-Source Alternatives?</div>
+                    <div class="tool-alt-callout-desc">Discover curated, community-trusted, and self-hostable open-source replacements for <strong>${tool.name}</strong> on AIRA.</div>
+                  </div>
+                  <a href="#/alternatives/${matchedAlt.slug}" class="tool-alt-callout-btn">
+                    <span>View ${matchedAlt.alternatives ? matchedAlt.alternatives.length : ''} Open-Source Alternatives</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              ` : `
+                <div class="tool-alt-callout">
+                  <div class="tool-alt-callout-info">
+                    <div class="tool-alt-callout-title">Explore 2,400+ Open-Source Software Alternatives</div>
+                    <div class="tool-alt-callout-desc">Looking for privacy-friendly, self-hosted, or free software tools? Browse the complete AIRA Alternatives catalog.</div>
+                  </div>
+                  <a href="#/alternatives" class="tool-alt-callout-btn">
+                    <span>Browse Alternatives Directory</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              `}
+
+            </div>
+
+            <!-- Right Sidebar Column -->
+            <div class="tool-detail-sidebar-col">
+              
+              <!-- Specifications Card -->
+              <div class="tool-detail-card">
+                <h3 class="tool-detail-card-title" style="font-size: 1.1rem; margin-bottom: 14px;">
+                  <span>📋</span>
+                  <span>Tool Specifications</span>
+                </h3>
+                <div class="tool-specs-list">
+                  <div class="tool-spec-row">
+                    <span class="tool-spec-label">Pricing Plan</span>
+                    <span class="tool-spec-val"><span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span></span>
+                  </div>
+                  <div class="tool-spec-row">
+                    <span class="tool-spec-label">Primary Category</span>
+                    <span class="tool-spec-val"><a href="#/tags?category=${primaryCat}">${primaryCatName}</a></span>
+                  </div>
+                  <div class="tool-spec-row">
+                    <span class="tool-spec-label">Official Website</span>
+                    <span class="tool-spec-val"><a href="${tool.url}" target="_blank" rel="noopener noreferrer">${cleanDomain} ↗</a></span>
+                  </div>
+                  <div class="tool-spec-row">
+                    <span class="tool-spec-label">Supported Platforms</span>
+                    <span class="tool-spec-val">Web, Cloud API, Desktop</span>
+                  </div>
+                  <div class="tool-spec-row">
+                    <span class="tool-spec-label">AIRA Editorial Score</span>
+                    <span class="tool-spec-val" style="color: #059669; font-weight: 800;">4.9 / 5.0 ★★★★★</span>
+                  </div>
+                  <div class="tool-spec-row">
+                    <span class="tool-spec-label">Verification</span>
+                    <span class="tool-spec-val" style="color: #059669;">Verified ✓</span>
+                  </div>
+                </div>
+
+                <div style="margin-top: 20px; border-top: 1px solid #F4F4F5; padding-top: 16px;">
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #71717A; text-transform: uppercase; letter-spacing: 0.03em; display: block; margin-bottom: 10px;">Tags & Classifications</span>
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    ${toolCategories.map(c => `
+                      <a href="#/tags?category=${c}" class="tool-category-badge" style="text-decoration: none;">
+                        ${getCategoryName(c)}
+                      </a>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                  <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit-primary" style="width: 100%; justify-content: center;">
+                    <span>Visit ${tool.name} ↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Sidebar Ad: Level Up with AIRA -->
+              <div class="ad-sidebar-card">
+                <div>
+                  <span class="ad-tag-label">FREE NEWSLETTER</span>
+                  <h3 class="ad-sidebar-title">Discover the Best AI Tools Every Week</h3>
+                  <p class="ad-sidebar-desc">Get our weekly curated list of breakthrough AI tools, prompts, and tutorials delivered to your inbox.</p>
+                  <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
+                    <span>Subscribe Free</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+                <div class="ad-sidebar-illu-growth">
+                  <div class="growth-illu-box">
+                    <div class="growth-bar growth-bar-1"></div>
+                    <div class="growth-bar growth-bar-2"></div>
+                    <div class="growth-bar growth-bar-3"></div>
+                    <div class="growth-bar growth-bar-4">
+                      <span class="growth-arrow">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Related Tools Section (Bottom) -->
+          ${relatedTools.length > 0 ? `
+            <div class="tool-related-section">
+              <h2 class="tool-related-title">Related AI Tools in ${primaryCatName}</h2>
+              <div class="tool-related-grid">
+                ${relatedTools.map(rel => {
+                  const relCleanDomain = (rel.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+                  const relLogo = rel.image || `https://www.google.com/s2/favicons?domain=${relCleanDomain}&sz=128`;
+                  const relDuckLogo = `https://icons.duckduckgo.com/ip3/${relCleanDomain}.ico`;
+                  const relPricingClass = `pricing-${(rel.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}`;
+                  return `
+                    <div class="tool-card" data-tool-id="${rel.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${rel.id}'; }">
+                      <div class="tool-card-top">
+                        <a href="#/tools/${rel.id}" class="tool-icon-avatar" title="View ${rel.name}">
+                          <img src="${relLogo}" alt="${rel.name}" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${relDuckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span>${rel.icon || '⚡'}</span>'; }" />
+                        </a>
+                        <div class="tool-title-group">
+                          <div class="tool-badges-row">
+                            <span class="tool-badge-pricing ${relPricingClass}">${rel.pricing}</span>
+                          </div>
+                          <h3 class="tool-card-name">
+                            <a href="#/tools/${rel.id}" class="tool-title-link">${rel.name}</a>
+                          </h3>
+                        </div>
+                      </div>
+                      <p class="tool-card-desc">${rel.description}</p>
+                      <div class="tool-card-bottom">
+                        <span class="tool-category-badge">${getCategoryName(rel.category || primaryCat)}</span>
+                        <div class="tool-card-actions">
+                          <a href="#/tools/${rel.id}" class="tool-details-btn">Details</a>
+                          <a href="${rel.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${rel.name}">
+                            <span>Visit</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Full-Width Bottom Banner -->
+          <div class="ad-banner-mint" style="margin-top: 48px;">
+            <div class="ad-banner-content-wrap">
+              <div class="ad-badge-circle">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div>
+                <span class="ad-tag-label">AIRA DIRECTORY</span>
+                <h3 class="ad-banner-title">Stay Ahead with the Latest AI Tools & Breakthroughs</h3>
+                <p class="ad-banner-desc">Join 50,000+ engineers, creators, and founders getting our free weekly newsletter.</p>
+              </div>
+            </div>
+            <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
+              <span>Subscribe Free</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </section>
+    `;
+
+    // Bind Bookmark button
+    const saveBtn = document.getElementById('btn-save-tool');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        let currentSaved = JSON.parse(localStorage.getItem('aira_saved_tools') || '[]');
+        const idx = currentSaved.indexOf(tool.id);
+        if (idx > -1) {
+          currentSaved.splice(idx, 1);
+          saveBtn.classList.remove('is-saved');
+          saveBtn.querySelector('span').textContent = '☆ Bookmark Tool';
+          showToast(`Removed ${tool.name} from your bookmarks`);
+        } else {
+          currentSaved.push(tool.id);
+          saveBtn.classList.add('is-saved');
+          saveBtn.querySelector('span').textContent = '★ Saved to Bookmarks';
+          showToast(`Saved ${tool.name} to your AIRA bookmarks! 🔖`);
+        }
+        localStorage.setItem('aira_saved_tools', JSON.stringify(currentSaved));
+      });
+    }
+
+    // Bind Share button
+    const shareBtn = document.getElementById('btn-share-tool');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async () => {
+        const shareData = {
+          title: `${tool.name} - AI Tool on AIRA`,
+          text: tool.description,
+          url: window.location.href
+        };
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (err) {}
+        }
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast('🔗 Tool link copied to clipboard!');
+        } catch (e) {
+          showToast('🔗 Link: ' + window.location.href);
+        }
+      });
+    }
   }
 
   // =========================================================================
