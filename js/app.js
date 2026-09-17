@@ -591,9 +591,6 @@ document.addEventListener('DOMContentLoaded', () => {
                   </a>
                 `).join('')}
               </div>
-
-              <!-- Numbered Pagination Bar (100% Matching Uploaded Mockup) -->
-              ${renderPaginationHTML(state.homeCurrentPage, totalPages, 'home')}
             </div>
 
             <!-- Right Column: Sidebar Ads & Popular Posts -->
@@ -665,6 +662,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             </div>
 
+          </div>
+
+          <!-- Centered Numbered Pagination Bar Across Full Container Width -->
+          <div class="home-pagination-wrapper">
+            ${renderPaginationHTML(state.homeCurrentPage, totalPages, 'home')}
           </div>
 
           <!-- 4. Full-Width Bottom Banner Ad (Exact Same Full Width as Top Banner Ad) -->

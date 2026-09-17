@@ -4369,26 +4369,30 @@ body.aira-gate-active .site-footer {
 /* =========================================================================
    AIRA Numbered Pagination Bar (100% Matching Uploaded Mockup)
    ========================================================================= */
-.aira-pagination-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 36px auto 16px auto;
-  padding: 12px 0;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 100%;
-  text-align: center;
-  box-sizing: border-box;
-}
-
+.home-pagination-wrapper,
 #tools-pagination-container,
 #alt-pagination-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 32px 0 16px 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.aira-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 8px 0;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .pagination-pill-btn {
