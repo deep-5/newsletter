@@ -45,6 +45,49 @@ document.addEventListener('DOMContentLoaded', () => {
     return [...customTools, ...filteredBase];
   }
 
+  
+  // =========================================================================
+  // PWA (Progressive Web App) Service Worker & Install Prompt
+  // =========================================================================
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('AIRA PWA ServiceWorker active with scope:', reg.scope))
+        .catch(err => console.log('AIRA ServiceWorker registration failed:', err));
+    });
+  }
+
+  let deferredInstallPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    const pwaBtn = document.getElementById('btn-pwa-install');
+    if (pwaBtn) {
+      pwaBtn.style.display = 'flex';
+    }
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    console.log('AIRA PWA was installed');
+  });
+
+  const pwaBtn = document.getElementById('btn-pwa-install');
+  if (pwaBtn) {
+    pwaBtn.addEventListener('click', async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        const choiceResult = await deferredInstallPrompt.userChoice;
+        if (choiceResult.outcome === 'accepted') {
+          showToast('AIRA App installed successfully! 🎉');
+        }
+        deferredInstallPrompt = null;
+      } else {
+        showToast('To install AIRA App: Tap your browser menu (⋮ / Share) and select "Add to Home Screen" 📲');
+      }
+    });
+  }
+
   // =========================================================================
   // AI Tools Rating, Reviews & Upvote Engine
   // =========================================================================
