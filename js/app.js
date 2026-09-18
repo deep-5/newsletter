@@ -136,6 +136,166 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  
+  // =========================================================================
+  // Promoted Tools & Platform Enhancements Engine
+  // =========================================================================
+  const PROMOTED_TOOL_IDS = new Set([
+    'cursor', 'deepseek', 'claude', 'chatgpt', 'lovable', 'perplexity', 'elevenlabs',
+    'suno', 'runway', 'v0', 'flux', 'midjourney', 'kling', 'hume-ai', 'gamma', 'bolt-new'
+  ]);
+
+  function isToolPromoted(toolOrId) {
+    if (!toolOrId) return false;
+    if (typeof toolOrId === 'string') return PROMOTED_TOOL_IDS.has(toolOrId.toLowerCase().trim());
+    if (toolOrId.promoted || toolOrId.isPromoted || toolOrId.is_promoted) return true;
+    const cleanId = (toolOrId.id || toolOrId.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    return PROMOTED_TOOL_IDS.has(cleanId);
+  }
+
+  // Dynamic Social Meta Tags Updater for WhatsApp, Twitter, LinkedIn & Google
+  function updateSocialMetaTags(title, description, imageUrl, url) {
+    try {
+      const fullTitle = title && title.includes('AIRA') ? title : `${title || 'AIRA'} | AIRA Newsletter`;
+      const cleanDesc = description ? description.replace(/<[^>]+>/g, '').slice(0, 160) : 'The one and only AI newsletter. Join us and get the best AI news, tools, and tutorials completely FREE!';
+      const cleanImg = imageUrl || 'assets/logo.jpg';
+      const cleanUrl = url || window.location.href;
+
+      document.title = fullTitle;
+
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', cleanDesc);
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', fullTitle);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', cleanDesc);
+      const ogImg = document.querySelector('meta[property="og:image"]');
+      if (ogImg) ogImg.setAttribute('content', cleanImg);
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', cleanUrl);
+
+      const twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.setAttribute('content', fullTitle);
+      const twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc) twDesc.setAttribute('content', cleanDesc);
+      const twImg = document.querySelector('meta[name="twitter:image"]');
+      if (twImg) twImg.setAttribute('content', cleanImg);
+    } catch (e) {
+      console.warn('Meta tags update error:', e);
+    }
+  }
+
+  // Auto-link AI Tool Mentions in Article Body
+  function linkToolMentionsInArticle(bodyHtml) {
+    if (!bodyHtml) return '';
+    try {
+      const tools = getAllTools();
+      const priorityTools = tools.filter(t => t.name && t.name.length >= 3).slice(0, 45);
+      
+      const temp = document.createElement('div');
+      temp.innerHTML = bodyHtml;
+
+      const paragraphs = temp.querySelectorAll('p, li');
+      const linkedSet = new Set();
+
+      paragraphs.forEach(p => {
+        priorityTools.forEach(tool => {
+          if (linkedSet.size >= 4) return;
+          if (linkedSet.has(tool.id)) return;
+
+          const toolName = tool.name;
+          const regex = new RegExp(`\\b(${toolName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'i');
+          if (regex.test(p.innerHTML) && !p.querySelector(`a[href*="${tool.id}"]`)) {
+            p.innerHTML = p.innerHTML.replace(regex, `<a href="#/tools/${tool.id}" class="article-tool-pill" title="Explore ${toolName} on AIRA">⚡ $1</a>`);
+            linkedSet.add(tool.id);
+          }
+        });
+      });
+
+      return temp.innerHTML;
+    } catch (e) {
+      return bodyHtml;
+    }
+  }
+
+  // Reading Progress Bar Scroll Handler
+  function updateReadingProgress() {
+    const progressBar = document.getElementById('reading-progress-bar');
+    if (!progressBar) return;
+    if (state.currentRoute !== 'post') {
+      progressBar.style.display = 'none';
+      return;
+    }
+    progressBar.style.display = 'block';
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight <= 0) {
+      progressBar.style.width = '0%';
+      return;
+    }
+    const scrolled = (window.scrollY / totalHeight) * 100;
+    progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
+  }
+  window.addEventListener('scroll', updateReadingProgress, { passive: true });
+
+  // Download File Helper
+  function downloadTextFile(filename, text) {
+    const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('📥 Downloaded: ' + filename);
+  }
+
+  function getPromptsKitMarkdown() {
+    return `# AIRA 2026 AI Starter Kit: Top 100 Production AI Prompts
+Generated exclusively for AIRA VIP Newsletter Subscribers.
+Website: https://aira-newsletter.vercel.app/
+
+---
+
+## 1. Elite Code Generation & Architecture
+**Prompt:**
+"You are a Senior Principal Software Architect and Staff Engineer. Analyze the requirements below with first-principles reasoning. Design an optimal, scalable modular system. Provide clean, production-ready code with complete TypeScript types, exhaustive edge-case coverage, and performance benchmarks."
+
+## 2. Deep Analytical Reasoning & Problem Solving
+**Prompt:**
+"Deconstruct the following complex problem into its foundational components. Identify latent assumptions, synthesize contrasting perspectives, assess 2nd and 3rd order consequences, and propose a prioritized decision matrix with clear trade-offs."
+
+## 3. High-Converting Copywriting & Marketing
+**Prompt:**
+"You are a world-class direct-response copywriter. Craft 5 compelling hook variations, a high-converting headline, and a persuasive value proposition for the following product. Focus on pain points, transformation, and undeniable social proof."
+
+## 4. Autonomous Agent Task Execution
+**Prompt:**
+"Act as an autonomous task executor. Break down the user's objective into strict sequential steps: 1) Information Gathering, 2) Strategy Formation, 3) Tool/API Execution, 4) Self-Correction & Verification. Never skip verification before returning the final result."
+
+---
+*Stay ahead in AI with AIRA Newsletter — https://aira-newsletter.vercel.app/*
+`;
+  }
+
+  function getToolsDirectoryKitText() {
+    const tools = getAllTools();
+    let text = "AIRA 2026 AI Tools Directory — Curated 400+ Collection\n";
+    text += "Visit live directory: https://aira-newsletter.vercel.app/#/tags\n";
+    text += "Total Curated Tools: " + tools.length + "\n";
+    text += "====================================================\n\n";
+    tools.forEach((t, i) => {
+      text += (i + 1) + ". " + t.name + " (" + (t.pricing || 'Free') + ")\n";
+      text += "   Category: " + (t.category || (t.categories && t.categories[0]) || 'AI') + "\n";
+      text += "   Tagline: " + (t.description || '') + "\n";
+      text += "   Link: " + t.url + "\n\n";
+    });
+    return text;
+  }
+
+
   window.toggleToolVote = function(toolId) {
     if (!toolId) return;
     const cleanId = String(toolId).toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -305,6 +465,110 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // Helper Utilities
   // =========================================================================
+    // =========================================================================
+  // Lead Magnet & VIP Starter Kit Engine
+  // =========================================================================
+  window.openLeadMagnetModal = function() {
+    const lm = document.getElementById('lead-magnet-modal');
+    if (lm) {
+      lm.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeLeadMagnetModal = function() {
+    const lm = document.getElementById('lead-magnet-modal');
+    if (lm) {
+      lm.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  function downloadTextFile(filename, text) {
+    try {
+      const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('📥 Downloaded: ' + filename);
+    } catch (e) {
+      console.error('Download error:', e);
+      showToast('Download started!');
+    }
+  }
+
+  function getPromptsKitMarkdown() {
+    return `# AIRA 2026 AI Starter Kit: Top 100 Production AI Prompts
+Generated exclusively for AIRA VIP Newsletter Subscribers.
+Website: https://aira-newsletter.vercel.app/
+
+---
+
+## 1. Elite Code Generation & Architecture
+**Prompt:**
+"You are a Senior Principal Software Architect and Staff Engineer. Analyze the requirements below with first-principles reasoning. Design an optimal, scalable modular system. Provide clean, production-ready code with complete TypeScript types, exhaustive edge-case coverage, and performance benchmarks."
+
+## 2. Deep Analytical Reasoning & Problem Solving
+**Prompt:**
+"Deconstruct the following complex problem into its foundational components. Identify latent assumptions, synthesize contrasting perspectives, assess 2nd and 3rd order consequences, and propose a prioritized decision matrix with clear trade-offs."
+
+## 3. High-Converting Copywriting & Marketing
+**Prompt:**
+"You are a world-class direct-response copywriter. Craft 5 compelling hook variations, a high-converting headline, and a persuasive value proposition for the following product. Focus on pain points, transformation, and undeniable social proof."
+
+## 4. Autonomous Agent Task Execution
+**Prompt:**
+"Act as an autonomous task executor. Break down the user's objective into strict sequential steps: 1) Information Gathering, 2) Strategy Formation, 3) Tool/API Execution, 4) Self-Correction & Verification. Never skip verification before returning the final result."
+
+---
+*Stay ahead in AI with AIRA Newsletter — https://aira-newsletter.vercel.app/*
+`;
+  }
+
+  function getToolsDirectoryKitText() {
+    const tools = getAllTools();
+    let text = "AIRA 2026 AI Tools Directory — Curated 400+ Collection\n";
+    text += "Visit live directory: https://aira-newsletter.vercel.app/#/tags\n";
+    text += "Total Curated Tools: " + tools.length + "\n";
+    text += "====================================================\n\n";
+    tools.forEach((t, i) => {
+      text += (i + 1) + ". " + t.name + " (" + (t.pricing || 'Free') + ")\n";
+      text += "   Category: " + (t.category || (t.categories && t.categories[0]) || 'AI') + "\n";
+      text += "   Tagline: " + (t.description || '') + "\n";
+      text += "   Link: " + t.url + "\n\n";
+    });
+    return text;
+  }
+
+  window.downloadPromptsKit = function() {
+    downloadTextFile('AIRA-2026-Top-100-AI-Prompts-CheatSheet.md', getPromptsKitMarkdown());
+  };
+
+  window.downloadToolsKit = function() {
+    downloadTextFile('AIRA-2026-AI-Tools-Directory-Guide.txt', getToolsDirectoryKitText());
+  };
+
+  window.copyMasterBonusPrompt = function(btn) {
+    const promptText = document.getElementById('bonus-prompt-text');
+    const textToCopy = promptText ? promptText.innerText.trim() : 'You are an elite AI Architect and Senior Technical Advisor. Analyze this problem with first-principles reasoning, state your assumptions, outline optimal trade-offs, and generate concise, production-ready code with complete error handling.';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        if (btn) btn.innerHTML = 'Copied! ✓';
+        showToast('📋 AIRA Master Prompt copied to clipboard!');
+        setTimeout(() => { if (btn) btn.innerHTML = 'Copy Prompt 📋'; }, 2000);
+      }).catch(() => {
+        showToast('Prompt copied to clipboard!');
+      });
+    } else {
+      showToast('Prompt copied to clipboard!');
+    }
+  };
+
   function escapeHtml(str) {
     if (!str) return '';
     return String(str)
@@ -509,6 +773,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.scrollTo({ top: 0, behavior: 'instant' });
+    updateReadingProgress();
+
+    // Dynamic Route Meta Tags
+    if (route.name === 'home') {
+      updateSocialMetaTags('AIRA | The One and Only AI Newsletter', 'The one and only AI newsletter. Join us and get the best AI news, tools, prompts, and tutorials completely FREE!');
+    } else if (route.name === 'tags') {
+      updateSocialMetaTags('AI Tools Directory (400+ Curated Tools) | AIRA', 'Explore top curated AI tools, community ratings, alternatives, and verified links.');
+    } else if (route.name === 'alternatives') {
+      updateSocialMetaTags('AI Software Alternatives & Competitors | AIRA', 'Find the best open-source and proprietary alternatives for top AI tools.');
+    } else if (route.name === 'prompts') {
+      updateSocialMetaTags('AI Prompts Vault - 100+ Production Prompts | AIRA', 'Master frontier LLMs with battle-tested production prompts.');
+    } else if (route.name === 'compare') {
+      updateSocialMetaTags('Compare Top AI Tools Side-by-Side | AIRA', 'Compare AI models, pricing, speed, and features side-by-side.');
+    } else if (route.name === 'archive') {
+      updateSocialMetaTags('Newsletter Archive | AIRA', 'Browse all previous editions of the AIRA Newsletter.');
+    } else if (route.name === 'submit') {
+      updateSocialMetaTags('Submit Your AI Tool | AIRA', 'Get your AI product featured to 500+ subscribers.');
+    } else if (route.name === 'advertise') {
+      updateSocialMetaTags('Advertise with AIRA | AIRA', 'Partner with AIRA to sponsor newsletter editions and tool spotlights.');
+    }
 
     if (route.name === 'gate' || route.name === 'subscribe') {
       renderSubscribeGatePage();
@@ -676,6 +960,100 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 1b. Homepage View (With Interactive Search Bar & Live Filtering)
   // =========================================================================
+  
+  // =========================================================================
+  // Featured AI Tools of the Week Generator
+  // =========================================================================
+  function getFeaturedToolsHTML() {
+    const allTools = getAllTools();
+    const targetTools = [
+      {
+        id: 'cursor',
+        name: 'Cursor',
+        tagline: 'AI-first code editor built for lightning software engineering.',
+        pricing: 'Freemium',
+        rating: 4.9,
+        votes: 870,
+        domain: 'cursor.com',
+        url: 'https://www.cursor.com',
+        image: 'https://www.google.com/s2/favicons?domain=cursor.com&sz=128'
+      },
+      {
+        id: 'claude',
+        name: 'Claude 3.7 Sonnet',
+        tagline: 'Frontier AI model with hybrid extended thinking and reasoning.',
+        pricing: 'Freemium',
+        rating: 4.9,
+        votes: 1180,
+        domain: 'anthropic.com',
+        url: 'https://www.anthropic.com/claude',
+        image: 'https://www.google.com/s2/favicons?domain=anthropic.com&sz=128'
+      },
+      {
+        id: 'deepseek',
+        name: 'DeepSeek R1',
+        tagline: 'Open-weight frontier reasoning model matching top proprietary LLMs.',
+        pricing: 'Free',
+        rating: 4.9,
+        votes: 960,
+        domain: 'deepseek.com',
+        url: 'https://chat.deepseek.com',
+        image: 'https://www.google.com/s2/favicons?domain=deepseek.com&sz=128'
+      },
+      {
+        id: 'lovable',
+        name: 'Lovable AI',
+        tagline: 'Build and deploy fullstack production web apps with natural language.',
+        pricing: 'Freemium',
+        rating: 4.8,
+        votes: 440,
+        domain: 'lovable.dev',
+        url: 'https://lovable.dev',
+        image: 'https://www.google.com/s2/favicons?domain=lovable.dev&sz=128'
+      }
+    ];
+
+    return targetTools.map(tool => {
+      const cleanDomain = tool.domain;
+      const logoUrl = tool.image;
+      const duckLogo = 'https://icons.duckduckgo.com/ip3/' + cleanDomain + '.ico';
+      const stats = getToolRatingStats(tool.id) || { rating: tool.rating, votes: tool.votes };
+
+      return `
+        <div class="featured-tool-showcase-card" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
+          <div class="ft-card-top-row">
+            <div class="ft-tool-avatar">
+              <img src="${logoUrl}" alt="${tool.name}" class="ft-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.6rem;\\'>⚡</span>'; }" />
+            </div>
+            <div class="ft-badge-col">
+              <span class="tool-badge-promoted"><span class="star">⭐</span> Promoted</span>
+            </div>
+          </div>
+
+          <h3 class="ft-tool-name">
+            <a href="#/tools/${tool.id}" class="ft-title-link">${tool.name}</a>
+          </h3>
+
+          <p class="ft-tool-tagline">${tool.tagline}</p>
+
+          <div class="ft-rating-row">
+            <span class="ft-rating-star">★</span>
+            <span class="ft-rating-score">${stats.rating.toFixed(1)}</span>
+            <span class="ft-rating-count">(${stats.votes.toLocaleString()} votes)</span>
+          </div>
+
+          <div class="ft-actions-row">
+            <a href="#/tools/${tool.id}" class="ft-btn-details">Details</a>
+            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="ft-btn-visit">
+              <span>Visit</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
   function renderHomePage() {
     appContainer.innerHTML = `
       <!-- Clean AIRA Hero Section with Search Bar -->
@@ -707,6 +1085,23 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="https://www.linkedin.com/company/ai-tools-&-ai-news/?viewAsMember=true" target="_blank" rel="noopener" class="social-icon-btn" title="LinkedIn">
               <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.77v8.37H6.46v-8.37M7.85 6.44a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
             </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured AI Tools of the Week Showcase (Exact Design Mockup) -->
+      <section class="featured-tools-section">
+        <div class="container">
+          <div class="featured-tools-header-row">
+            <div class="featured-tools-title-wrap">
+              <span class="featured-tools-icon">⚡</span>
+              <h2 class="featured-tools-main-title">FEATURED AI TOOLS OF THE WEEK</h2>
+            </div>
+            <a href="#/tags" class="featured-tools-view-all-link">View all 400+ tools →</a>
+          </div>
+
+          <div class="featured-tools-grid">
+            ${getFeaturedToolsHTML()}
           </div>
         </div>
       </section>
@@ -1011,7 +1406,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 2. Full Article Reader View
+  // 2. Post / Article Detail View
   // =========================================================================
   async function renderPostPage(slug) {
     const article = state.articles.find(a => a.slug === slug);
@@ -1040,6 +1435,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const recommendedArticles = state.articles.filter(a => a.slug !== article.slug).slice(0, 2);
+    updateSocialMetaTags(article.title, article.subtitle || article.title, article.image_url);
+
+    const tldrBullets = [
+      `<strong>Core Breakthrough:</strong> ${article.subtitle || 'Frontier AI model updates and key architectural milestones.'}`,
+      `<strong>Workflow Impact:</strong> Substantial performance and inference acceleration for developers and teams.`,
+      `<strong>Actionable Takeaway:</strong> Practical prompting strategies and tools ready to test in your workflow today.`
+    ];
+
+    const tldrBoxHtml = `
+      <div class="article-tldr-box">
+        <div class="tldr-header">
+          <span class="tldr-badge">⚡ 30-SECOND EXECUTIVE SUMMARY</span>
+          <span class="tldr-time-badge">• Quick Takeaways</span>
+        </div>
+        <ul class="tldr-bullets">
+          ${tldrBullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+
+    const enrichedBodyHtml = linkToolMentionsInArticle(article.body_html);
 
     appContainer.innerHTML = `
       <article class="article-page-view">
@@ -1401,6 +1817,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   // =========================================================================
+    // =========================================================================
   // 4. Tags / AI Tools Directory View
   // =========================================================================
   function renderTagsPage() {
@@ -1471,6 +1888,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="tool-title-group">
               <div class="tool-badges-row">
                 ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
+                ${isToolPromoted(tool) ? '<span class="tool-badge-promoted"><span class="star">⭐</span> Promoted</span>' : ''}
                 <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
                 <span class="tool-rating-pill" title="AIRA Community Rating: ${stats.rating.toFixed(1)} / 5.0 (${stats.votes} votes)">★ ${stats.rating.toFixed(1)}</span>
               </div>
@@ -1592,7 +2010,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           }
         } else {
-          gridEl.innerHTML = pagedTools.map(renderToolCard).join('');
+          const renderedCards = pagedTools.map(renderToolCard);
+          if (state.toolCurrentPage === 1 && !state.toolSearchQuery) {
+            const sponsorCtaHtml = `
+              <div class="tool-sponsor-cta-card">
+                <div class="tool-sponsor-cta-text">
+                  <h4>🚀 AI Founder? Showcase Your Tool to 500+ Active Subscribers</h4>
+                  <p>Get featured in our newsletter, top directory spot, and dedicated product review.</p>
+                </div>
+                <a href="#/advertise" class="tool-sponsor-cta-btn">
+                  <span>Sponsor Spotlight</span>
+                  <span style="font-size: 1.1rem;">→</span>
+                </a>
+              </div>
+            `;
+            renderedCards.splice(Math.min(3, renderedCards.length), 0, sponsorCtaHtml);
+          }
+          gridEl.innerHTML = renderedCards.join('');
           
           if (paginationEl) {
             paginationEl.innerHTML = renderPaginationHTML(state.toolCurrentPage, totalPages, 'tools');
@@ -1703,78 +2137,84 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Grid of Tool Cards -->
           <div class="tools-directory-grid" id="tools-grid-container"></div>
 
-          <!-- Numbered Pagination Bar (Centered) -->
-          <div id="tools-pagination-container"></div>
+          <!-- Numbered Pagination Bar -->
+          <div class="tools-pagination-wrap" id="tools-pagination-container"></div>
         </div>
       </section>
     `;
 
-    // Bind Category Filter Buttons
-    document.querySelectorAll('.cat-filter-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        const catId = pill.getAttribute('data-cat-id');
-        state.toolCategoryFilter = catId;
-        state.toolCurrentPage = 1;
-        document.querySelectorAll('.cat-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
-        updateView();
-      });
-    });
-
-    // Bind Toggle All Categories Button
-    const toggleCatsBtn = document.getElementById('btn-toggle-all-cats');
-    if (toggleCatsBtn) {
-      toggleCatsBtn.addEventListener('click', () => {
-        state.categoriesExpanded = !isExpanded;
-        state.toolCurrentPage = 1;
-        renderTagsPage();
-      });
-    }
-
-    // Bind Pricing Filter Buttons
-    document.querySelectorAll('.pricing-filter-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        const pricing = pill.getAttribute('data-pricing');
-        state.toolPricingFilter = pricing;
-        state.toolCurrentPage = 1;
-        document.querySelectorAll('.pricing-filter-pill').forEach(p => p.classList.toggle('active', p === pill));
-        updateView();
-      });
-    });
-
     // Bind Search Input
     const searchInput = document.getElementById('tool-search-input');
-    const searchClear = document.getElementById('tool-search-clear');
+    const clearBtn = document.getElementById('tool-search-clear');
 
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         state.toolSearchQuery = e.target.value;
         state.toolCurrentPage = 1;
-        if (searchClear) {
-          searchClear.style.display = e.target.value ? 'flex' : 'none';
-        }
+        if (clearBtn) clearBtn.style.display = state.toolSearchQuery ? 'flex' : 'none';
         updateView();
       });
     }
 
-    if (searchClear) {
-      searchClear.addEventListener('click', () => {
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
         state.toolSearchQuery = '';
         state.toolCurrentPage = 1;
         if (searchInput) {
           searchInput.value = '';
           searchInput.focus();
         }
-        searchClear.style.display = 'none';
+        clearBtn.style.display = 'none';
         updateView();
       });
     }
 
-    // Initial render of cards
+    // Bind Category Pills Click
+    document.querySelectorAll('.cat-filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const catId = pill.getAttribute('data-cat-id');
+        if (catId) {
+          state.toolCategoryFilter = catId;
+          state.toolCurrentPage = 1;
+          document.querySelectorAll('.cat-filter-pill').forEach(p => {
+            p.classList.toggle('active', p.getAttribute('data-cat-id') === catId);
+          });
+          updateView();
+        }
+      });
+    });
+
+    // Bind Show All Categories Toggle
+    const toggleCatsBtn = document.getElementById('btn-toggle-all-cats');
+    if (toggleCatsBtn) {
+      toggleCatsBtn.addEventListener('click', () => {
+        state.categoriesExpanded = !state.categoriesExpanded;
+        renderTagsPage();
+      });
+    }
+
+    // Bind Pricing Pills Click
+    document.querySelectorAll('.pricing-filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const pricing = pill.getAttribute('data-pricing');
+        if (pricing) {
+          state.toolPricingFilter = pricing;
+          state.toolCurrentPage = 1;
+          document.querySelectorAll('.pricing-filter-pill').forEach(p => {
+            p.classList.toggle('active', p.getAttribute('data-pricing') === pricing);
+          });
+          updateView();
+        }
+      });
+    });
+
+    // Render Initial Grid
     updateView();
   }
 
+
   // =========================================================================
-  // 4b. AI Tool Detail / Inner Page (/#/tools/:id or /#/tags/:id)
+  // 5. Tool Detail Page
   // =========================================================================
   function renderToolDetailPage(toolId) {
     const toolsData = typeof AI_TOOLS_DATA !== 'undefined' ? AI_TOOLS_DATA : { categories: [], tools: [] };
@@ -7329,5 +7769,30 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   window.addEventListener('hashchange', renderCurrentRoute);
 
   // Initial render
+  
+  // Global click delegation for Lead Magnet and Modals
+  document.addEventListener('click', (e) => {
+    const claimBtn = e.target.closest('#btn-claim-lead-magnet, .lead-magnet-claim-btn');
+    if (claimBtn) {
+      window.openLeadMagnetModal();
+      return;
+    }
+    const dlPrompts = e.target.closest('#btn-download-prompts-kit');
+    if (dlPrompts) {
+      window.downloadPromptsKit();
+      return;
+    }
+    const dlTools = e.target.closest('#btn-download-tools-kit');
+    if (dlTools) {
+      window.downloadToolsKit();
+      return;
+    }
+    const copyPrompt = e.target.closest('#btn-copy-bonus-prompt');
+    if (copyPrompt) {
+      window.copyMasterBonusPrompt(copyPrompt);
+      return;
+    }
+  });
+
   renderCurrentRoute();
 });
