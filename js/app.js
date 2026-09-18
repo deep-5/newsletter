@@ -2131,6 +2131,20 @@ Website: https://aira-newsletter.vercel.app/
             </div>
           </div>
 
+          <!-- Featured AI Tools of the Week Showcase (Exact Same as Homepage) -->
+          <div class="featured-tools-section" style="margin-top: 36px; margin-bottom: 28px; padding: 0; background: transparent; border: none;">
+            <div class="featured-tools-header-row" style="margin-bottom: 16px;">
+              <div class="featured-tools-title-wrap">
+                <span class="featured-tools-icon">⚡</span>
+                <h2 class="featured-tools-main-title">FEATURED AI TOOLS OF THE WEEK</h2>
+              </div>
+            </div>
+
+            <div class="featured-tools-grid">
+              ${getFeaturedToolsHTML()}
+            </div>
+          </div>
+
           <!-- Status Bar -->
           <div class="tools-status-bar" id="tools-count-container"></div>
 
