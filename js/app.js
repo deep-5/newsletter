@@ -689,10 +689,10 @@ Website: https://aira-newsletter.vercel.app/
       const slug = hashPath.replace('/p/', '');
       return { name: 'post', slug };
     }
-    if (hashPath === '/archive') return { name: 'archive' };
+    if (hashPath === '/archive') return { name: 'home' }; // Redirected to home
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
     if (hashPath === '/prompts') return { name: 'prompts' };
-    if (hashPath === '/compare') return { name: 'compare' };
+    if (hashPath === '/compare') return { name: 'tags' }; // Redirected to AI tools
     if (hashPath === '/bookmarks') return { name: 'bookmarks' };
     if (hashPath === '/submit') return { name: 'submit' };
     if (hashPath === '/deals') return { name: 'home' }; // Temporarily hidden as requested
@@ -1464,7 +1464,7 @@ Website: https://aira-newsletter.vercel.app/
           <div class="breadcrumb-nav">
             <a href="#/" class="breadcrumb-link">Home</a>
             <span class="breadcrumb-separator">/</span>
-            <a href="#/archive" class="breadcrumb-link">Posts</a>
+            <a href="#/home" class="breadcrumb-link">Home</a>
             <span class="breadcrumb-separator">/</span>
             <span>${article.title}</span>
           </div>
@@ -1583,7 +1583,7 @@ Website: https://aira-newsletter.vercel.app/
                 <h3 class="recommended-title">Keep Reading</h3>
                 <p class="recommended-subtitle">More popular editions from AIRA</p>
               </div>
-              <a href="#/archive" class="btn-view-all-kr">View all →</a>
+              <a href="#/home" class="btn-view-all-kr">View all →</a>
             </div>
             
             <div class="keep-reading-grid">
