@@ -8856,6 +8856,16 @@ body.dark-mode .modal-close-btn:hover {
   color: #FFFFFF;
 }
 
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+  .modal-card {
+    padding: 24px 16px;
+    border-radius: 14px;
+  }
+}
+
 /* ==========================================================================
    FEATURED AI TOOLS OF THE WEEK (Homepage Premium Showcase)
    ========================================================================== */

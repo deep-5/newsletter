@@ -72,6 +72,9 @@
 
       <!-- Right Actions -->
       <div class="nav-right-actions">
+        <!-- Search Trigger Modal Button -->
+        <button type="button" class="btn-icon-nav" id="btn-search-trigger" title="Quick Search (Articles, Tools, News)">🔍</button>
+
         <!-- Dark Mode Toggle -->
         <button type="button" class="btn-icon-nav" id="btn-theme-toggle" title="Toggle Dark / Light Theme">🌓</button>
         
@@ -149,14 +152,27 @@
       </ul>
 
       <div class="mobile-drawer-divider"></div>
-      <div style="padding: 12px 18px 0 18px; display: flex; flex-direction: column; gap: 10px;">
-        <a href="#/bookmarks" class="mobile-nav-link" data-nav="bookmarks" style="background: var(--color-bg-secondary); border-radius: 10px; padding: 10px 14px;">
-          <span class="mobile-nav-icon">🔖</span>
-          <span class="mobile-nav-text">Saved Bookmarks</span>
+      <div class="mobile-drawer-quick-actions" style="padding: 0 18px; display: flex; flex-direction: column; gap: 8px;">
+        <a href="#/bookmarks" class="mobile-quick-action-btn" id="mobile-drawer-bookmarks">
+          <span class="icon">🔖</span>
+          <span>Saved Bookmarks</span>
+          <span class="mobile-badge-count" id="mobile-bookmarks-count" style="display: none;">0</span>
         </a>
-        <button type="button" id="btn-pwa-install" class="mobile-nav-link" style="background: rgba(4,120,87,0.1); color: #047857; border: 1px solid rgba(4,120,87,0.25); border-radius: 10px; padding: 10px 14px; width: 100%; text-align: left; cursor: pointer;">
-          <span class="mobile-nav-icon">📱</span>
-          <span class="mobile-nav-text" style="font-weight: 700;">Install AIRA App</span>
+
+        <button type="button" class="mobile-quick-action-btn" id="mobile-btn-theme-toggle">
+          <span class="icon" id="mobile-theme-icon">🌓</span>
+          <span id="mobile-theme-text">Dark Mode</span>
+        </button>
+
+        <button type="button" id="btn-pwa-install" class="mobile-quick-action-btn" style="color: #047857; border-color: rgba(4,120,87,0.3); background: rgba(4,120,87,0.08); font-weight: 700;">
+          <span class="icon">📱</span>
+          <span>Install AIRA App</span>
+        </button>
+      </div>
+
+      <div class="mobile-drawer-footer" style="padding: 16px 18px;">
+        <button type="button" class="mobile-drawer-sub-btn" id="btn-mobile-drawer-subscribe" style="width: 100%; padding: 12px; font-weight: 700; border-radius: 9999px; background: #047857; color: #FFFFFF; border: none; cursor: pointer;">
+          Subscribe Free ⚡
         </button>
       </div>
     </div>
