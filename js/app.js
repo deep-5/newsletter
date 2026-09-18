@@ -1652,85 +1652,164 @@ Website: https://aira-newsletter.vercel.app/
       </article>
     `;
 
-    // Handle Text-to-Speech (TTS)
-    let currentUtterance = null;
+        // =========================================================================
+    // Mobile-Optimized Text-to-Speech (TTS) Narration Engine
+    // Chunked sentence playback prevents Mobile Safari & Android Chrome freezes
+    // =========================================================================
+    let ttsChunks = [];
+    let currentChunkIdx = 0;
+    let isTtsPlaying = false;
+    let isTtsPaused = false;
     let ttsRate = 1.0;
-    let isSpeaking = false;
 
     const playBtn = document.getElementById('btn-tts-play');
     const playIcon = document.getElementById('tts-play-icon');
     const statusText = document.getElementById('tts-status-text');
     const titleLabel = document.getElementById('tts-title-label');
 
-    function stopSpeech() {
-      if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-        isSpeaking = false;
-        if (playIcon) playIcon.innerHTML = '▶';
-        if (statusText) statusText.innerHTML = `${article.reading_time || '4 min read'} • AI Voice Narration`;
-        if (titleLabel) titleLabel.innerHTML = 'Listen to this edition';
+    function cleanArticleTextForSpeech(articleObj) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = articleObj.body_html || '';
+      tempDiv.querySelectorAll('script, style, button, svg, .ad-banner-mint, .ad-sidebar-card').forEach(el => el.remove());
+      const rawBody = (tempDiv.textContent || tempDiv.innerText || '').replace(/\s+/g, ' ').trim();
+      const combined = `${articleObj.title}. ${articleObj.subtitle || ''}. ${rawBody}`;
+      
+      const rawSentences = combined.match(/[^.!?\n]+[.!?\n]+(\s+|$)|[^.!?\n]+$/g) || [combined];
+      const resultChunks = [];
+      let currentBuf = '';
+
+      for (let i = 0; i < rawSentences.length; i++) {
+        const sentence = rawSentences[i].trim();
+        if (!sentence) continue;
+        if ((currentBuf + ' ' + sentence).length > 160) {
+          if (currentBuf) resultChunks.push(currentBuf.trim());
+          currentBuf = sentence;
+        } else {
+          currentBuf = currentBuf ? (currentBuf + ' ' + sentence) : sentence;
+        }
       }
+      if (currentBuf) resultChunks.push(currentBuf.trim());
+      return resultChunks.length > 0 ? resultChunks : [combined];
     }
 
-    if (playBtn && window.speechSynthesis) {
-      playBtn.addEventListener('click', () => {
-        if (isSpeaking) {
-          if (window.speechSynthesis.paused) {
-            window.speechSynthesis.resume();
-            if (playIcon) playIcon.innerHTML = '⏸';
-            if (titleLabel) titleLabel.innerHTML = 'Playing narration...';
-          } else {
-            window.speechSynthesis.pause();
-            if (playIcon) playIcon.innerHTML = '▶';
-            if (titleLabel) titleLabel.innerHTML = 'Paused narration';
-          }
-        } else {
-          stopSpeech();
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = article.body_html || '';
-          const cleanText = `${article.title}. ${article.subtitle}. ${tempDiv.textContent || tempDiv.innerText || ''}`;
-          
-          currentUtterance = new SpeechSynthesisUtterance(cleanText);
-          currentUtterance.rate = ttsRate;
-          currentUtterance.onend = () => {
-            isSpeaking = false;
-            if (playIcon) playIcon.innerHTML = '▶';
-            if (statusText) statusText.innerHTML = 'Completed listening ✓';
-            if (titleLabel) titleLabel.innerHTML = 'Listen to this edition';
-          };
-          currentUtterance.onerror = () => {
-            isSpeaking = false;
-            if (playIcon) playIcon.innerHTML = '▶';
-          };
+    function getBestVoiceForSpeech() {
+      if (!window.speechSynthesis) return null;
+      const voices = window.speechSynthesis.getVoices() || [];
+      return voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Siri') || v.default)) ||
+             voices.find(v => v.lang.startsWith('en')) || null;
+    }
 
-          window.speechSynthesis.speak(currentUtterance);
-          isSpeaking = true;
-          if (playIcon) playIcon.innerHTML = '⏸';
-          if (titleLabel) titleLabel.innerHTML = 'Playing AI Voice...';
-          if (statusText) statusText.innerHTML = 'Now playing narration';
+    function speakNextChunk() {
+      if (!isTtsPlaying || isTtsPaused || !window.speechSynthesis) return;
+
+      if (currentChunkIdx >= ttsChunks.length) {
+        isTtsPlaying = false;
+        isTtsPaused = false;
+        currentChunkIdx = 0;
+        if (playIcon) playIcon.innerHTML = '▶';
+        if (titleLabel) titleLabel.innerHTML = 'Completed Narration';
+        if (statusText) statusText.innerHTML = 'Finished • Tap to replay ✓';
+        return;
+      }
+
+      const chunkText = ttsChunks[currentChunkIdx];
+      const utterance = new SpeechSynthesisUtterance(chunkText);
+      utterance.lang = 'en-US';
+      utterance.rate = ttsRate;
+      utterance.pitch = 1.0;
+
+      const voice = getBestVoiceForSpeech();
+      if (voice) utterance.voice = voice;
+
+      utterance.onend = () => {
+        if (isTtsPlaying && !isTtsPaused) {
+          currentChunkIdx++;
+          speakNextChunk();
         }
-      });
+      };
 
-      // Speed buttons
-      appContainer.querySelectorAll('.tts-speed-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const rate = parseFloat(btn.getAttribute('data-rate'));
-          if (rate) {
-            ttsRate = rate;
-            appContainer.querySelectorAll('.tts-speed-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (isSpeaking && currentUtterance) {
-              window.speechSynthesis.cancel();
-              const tempDiv = document.createElement('div');
-              tempDiv.innerHTML = article.body_html || '';
-              const cleanText = `${article.title}. ${article.subtitle}. ${tempDiv.textContent || tempDiv.innerText || ''}`;
-              currentUtterance = new SpeechSynthesisUtterance(cleanText);
-              currentUtterance.rate = ttsRate;
-              window.speechSynthesis.speak(currentUtterance);
-            }
+      utterance.onerror = (err) => {
+        console.warn('TTS Chunk error:', err);
+        if (err.error !== 'canceled' && err.error !== 'interrupted') {
+          if (isTtsPlaying && !isTtsPaused) {
+            currentChunkIdx++;
+            speakNextChunk();
+          }
+        }
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopAllSpeech() {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+      isTtsPlaying = false;
+      isTtsPaused = false;
+      currentChunkIdx = 0;
+      if (playIcon) playIcon.innerHTML = '▶';
+      if (titleLabel) titleLabel.innerHTML = 'Listen to this edition';
+      if (statusText) statusText.innerHTML = `${article.reading_time || '4 min read'} • AI Voice Narration`;
+    }
+
+    if (playBtn) {
+      if (!('speechSynthesis' in window)) {
+        if (statusText) statusText.innerHTML = 'Voice narration not supported in this browser';
+        playBtn.style.opacity = '0.5';
+        playBtn.style.pointerEvents = 'none';
+      } else {
+        playBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          if (isTtsPlaying && !isTtsPaused) {
+            // Currently playing -> PAUSE
+            isTtsPaused = true;
+            window.speechSynthesis.cancel();
+            if (playIcon) playIcon.innerHTML = '▶';
+            if (titleLabel) titleLabel.innerHTML = 'Paused Narration';
+            const progressPct = Math.round((currentChunkIdx / Math.max(1, ttsChunks.length)) * 100);
+            if (statusText) statusText.innerHTML = `Paused at ${progressPct}% • Tap to resume`;
+          } else if (isTtsPlaying && isTtsPaused) {
+            // Currently paused -> RESUME
+            isTtsPaused = false;
+            if (playIcon) playIcon.innerHTML = '⏸';
+            if (titleLabel) titleLabel.innerHTML = 'Playing AI Voice...';
+            if (statusText) statusText.innerHTML = 'Now playing narration';
+            speakNextChunk();
+          } else {
+            // Stopped -> START NEW PLAYBACK
+            window.speechSynthesis.cancel();
+            ttsChunks = cleanArticleTextForSpeech(article);
+            currentChunkIdx = 0;
+            isTtsPlaying = true;
+            isTtsPaused = false;
+
+            if (playIcon) playIcon.innerHTML = '⏸';
+            if (titleLabel) titleLabel.innerHTML = 'Playing AI Voice...';
+            if (statusText) statusText.innerHTML = 'Now playing narration';
+
+            speakNextChunk();
           }
         });
-      });
+
+        // Speed change buttons
+        appContainer.querySelectorAll('.tts-speed-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const rate = parseFloat(btn.getAttribute('data-rate'));
+            if (rate) {
+              ttsRate = rate;
+              appContainer.querySelectorAll('.tts-speed-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              if (isTtsPlaying && !isTtsPaused) {
+                window.speechSynthesis.cancel();
+                speakNextChunk();
+              }
+            }
+          });
+        });
+      }
     }
 
     // Bind Like Button
