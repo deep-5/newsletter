@@ -72,15 +72,18 @@
 
       <!-- Right Actions -->
       <div class="nav-right-actions">
-        <!-- Search Trigger Modal Button -->
-        <button type="button" class="btn-icon-nav" id="btn-search-trigger" title="Quick Search (Articles, Tools, News)">🔍</button>
-
         <!-- Dark Mode Toggle -->
-        <button type="button" class="btn-icon-nav" id="btn-theme-toggle" title="Toggle Dark / Light Theme">🌓</button>
+        <button type="button" class="btn-icon-nav" id="btn-theme-toggle" title="Toggle Dark / Light Theme" aria-label="Toggle Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         
         <!-- Bookmarks Saved Hub -->
-        <a href="#/bookmarks" class="btn-icon-nav" id="btn-bookmarks-nav" title="My Saved Bookmarks">
-          <span>🔖</span>
+        <a href="#/bookmarks" class="btn-icon-nav" id="btn-bookmarks-nav" title="My Saved Bookmarks" aria-label="Saved Bookmarks">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
           <span class="nav-badge-count" id="bookmarks-nav-count" style="display: none;">0</span>
         </a>
 
@@ -154,18 +157,27 @@
       <div class="mobile-drawer-divider"></div>
       <div class="mobile-drawer-quick-actions" style="padding: 0 18px; display: flex; flex-direction: column; gap: 8px;">
         <a href="#/bookmarks" class="mobile-quick-action-btn" id="mobile-drawer-bookmarks">
-          <span class="icon">🔖</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
           <span>Saved Bookmarks</span>
           <span class="mobile-badge-count" id="mobile-bookmarks-count" style="display: none;">0</span>
         </a>
 
         <button type="button" class="mobile-quick-action-btn" id="mobile-btn-theme-toggle">
-          <span class="icon" id="mobile-theme-icon">🌓</span>
+          <span id="mobile-theme-icon" style="display: flex; align-items: center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
           <span id="mobile-theme-text">Dark Mode</span>
         </button>
 
         <button type="button" id="btn-pwa-install" class="mobile-quick-action-btn" style="color: #047857; border-color: rgba(4,120,87,0.3); background: rgba(4,120,87,0.08); font-weight: 700;">
-          <span class="icon">📱</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          </svg>
           <span>Install AIRA App</span>
         </button>
       </div>

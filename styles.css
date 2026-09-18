@@ -6589,6 +6589,13 @@ body.dark-mode .btn-copy-code:hover {
   transform: translateY(-1px);
 }
 
+.btn-icon-nav svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  display: block;
+}
+
 .nav-badge-count {
   position: absolute;
   top: -3px;
