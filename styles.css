@@ -11745,6 +11745,40 @@ body.dark-mode .spotlight-item-desc {
   box-shadow: 0 2px 8px rgba(4, 120, 87, 0.25);
 }
 
+.btn-submit-tool-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #047857;
+  color: #FFFFFF;
+  border: 1px solid #047857;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(4, 120, 87, 0.25);
+  white-space: nowrap;
+}
+
+.btn-submit-tool-nav:hover {
+  background: #065F46;
+  border-color: #065F46;
+  transform: translateY(-1px);
+}
+
+body.dark-mode .btn-submit-tool-nav {
+  background: #059669;
+  border-color: #059669;
+  color: #FFFFFF;
+}
+
+body.dark-mode .btn-submit-tool-nav:hover {
+  background: #10B981;
+}
+
 body.dark-mode .tool-sort-dropdown {
   background: #27272A;
   border-color: #3F3F46;
