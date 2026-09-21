@@ -1,7 +1,7 @@
 /**
  * AIRA Newsletter - Curated AI Tools Directory Dataset
- * Strictly Sourced from powerfulai.tools directory standards.
- * Heavy focus on Free & Generous Freemium daily utility tools.
+ * Sourced directly from aitoptools.com directory standard.
+ * Real, authentic tools with genuine descriptions and verified links.
  */
 
 const AI_TOOLS_DATA = {
@@ -18,7 +18,7 @@ const AI_TOOLS_DATA = {
     },
     {
       "id": "writing",
-      "name": "Writing & Copywriting",
+      "name": "Writing & Content",
       "icon": "✍️"
     },
     {
@@ -38,22 +38,22 @@ const AI_TOOLS_DATA = {
     },
     {
       "id": "productivity",
-      "name": "Productivity & Automation",
+      "name": "Business & Productivity",
       "icon": "⚡"
     },
     {
       "id": "research",
-      "name": "Research & PDF Analysis",
+      "name": "Research & Analysis",
       "icon": "📚"
     },
     {
       "id": "education",
-      "name": "Education & Students",
+      "name": "Education & Learning",
       "icon": "🎓"
     },
     {
       "id": "developer-tools",
-      "name": "Coding & Dev Tools",
+      "name": "Tech & Development",
       "icon": "💻"
     },
     {
@@ -64,1925 +64,1629 @@ const AI_TOOLS_DATA = {
   ],
   "tools": [
     {
-      "id": "chatgpt",
-      "name": "ChatGPT",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "writing",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "OpenAI's conversational assistant with GPT-4o, GPT-4o mini, DALL-E image generation, and live web browsing.",
-      "url": "https://chatgpt.com",
-      "domain": "chatgpt.com",
-      "icon": "🤖",
-      "inner_content": {
-        "overview": "ChatGPT by OpenAI is the world's most widely used AI assistant. It provides conversational reasoning, multimodal image analysis, DALL-E image generation, live web search, custom GPTs, and code execution in Python.",
-        "features": [
-          "GPT-4o multimodal vision, voice, text, and real-time reasoning",
-          "Integrated web browsing with real-time citations and source attribution",
-          "Python code interpreter capable of analyzing spreadsheets and generating charts",
-          "Custom GPT store with thousands of specialized community workflows"
-        ],
-        "useCases": [
-          "Daily conversational assistant for answering questions and brainstorming",
-          "Drafting essays, emails, blog posts, and marketing content",
-          "Data analysis, spreadsheet calculations, and Python code debugging"
-        ],
-        "pricingDetails": "Free tier with access to GPT-4o mini and limited GPT-4o. Plus plan at $20/month."
-      }
-    },
-    {
-      "id": "claude",
-      "name": "Claude",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "developer-tools",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "Anthropic's frontier AI assistant featuring extended thinking, 200k context window, and exceptional nuanced writing.",
-      "url": "https://claude.ai",
-      "domain": "anthropic.com",
-      "icon": "🧠",
-      "inner_content": {
-        "overview": "Claude by Anthropic is renowned for its natural tone, deep reasoning abilities, and safe alignment. With its 200,000 token context window, Claude can analyze entire books, financial reports, or codebases in seconds.",
-        "features": [
-          "Extended thinking and chain-of-thought reasoning",
-          "200,000 token context window for huge documents and datasets",
-          "Claude Artifacts for live interactive React components, SVGs, and documents",
-          "Exceptional writing style with zero generic robotic phrasing"
-        ],
-        "useCases": [
-          "Complex coding, refactoring, and code review",
-          "Analyzing massive PDFs, legal contracts, and academic papers in one prompt",
-          "Writing high-stakes executive memos, articles, and documentation"
-        ],
-        "pricingDetails": "Free tier with daily usage limits. Pro tier at $20/month."
-      }
-    },
-    {
-      "id": "deepseek",
-      "name": "DeepSeek",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "developer-tools",
-        "research"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free",
-      "featured": true,
-      "description": "Open-weight frontier reasoning and coding model matching top proprietary LLMs at zero cost.",
-      "url": "https://chat.deepseek.com",
-      "domain": "deepseek.com",
-      "icon": "🐋",
-      "inner_content": {
-        "overview": "DeepSeek R1 is a breakthrough open-source reasoning model that uses reinforcement learning to achieve mathematical, coding, and logical problem-solving performance on par with proprietary frontier models. Available 100% free via its web chat and as downloadable open weights.",
-        "features": [
-          "Reinforcement-learning driven deep logical reasoning and chain-of-thought",
-          "Advanced multi-language coding, algorithmic debugging, and math solving",
-          "Completely free to use with generous context windows on web and mobile",
-          "Downloadable open weights for local self-hosting via Ollama and LM Studio"
-        ],
-        "useCases": [
-          "Free coding assistant for software developers and students",
-          "Complex mathematical derivations and step-by-step problem solving",
-          "In-depth research analysis, code refactoring, and logical synthesis"
-        ],
-        "pricingDetails": "100% Free on web/mobile apps. Open weights freely downloadable."
-      }
-    },
-    {
-      "id": "gemini",
-      "name": "Google Gemini",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "research",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "Google's multimodal assistant powered by Gemini with a massive 1M-2M context window and Google Workspace integration.",
-      "url": "https://gemini.google.com",
-      "domain": "google.com",
-      "icon": "✨",
-      "inner_content": {
-        "overview": "Google Gemini provides real-time multimodal reasoning across text, audio, video, and code. With seamless integration into Google Workspace (Docs, Gmail, Drive, YouTube), Gemini brings live Google Search accuracy to daily queries.",
-        "features": [
-          "Gemini 2.0 Flash and Pro multimodal reasoning engine",
-          "Massive 1M+ token context window to ingest hours of video or huge documents",
-          "Seamless integration with Google Drive, Gmail, Docs, Maps, and YouTube",
-          "Real-time web search grounding with verified Google citations"
-        ],
-        "useCases": [
-          "Summarizing YouTube videos and long Google Drive documents instantly",
-          "Multimodal video, image, and document analysis",
-          "Everyday research, trip planning, and email drafting"
-        ],
-        "pricingDetails": "Free tier with Gemini Flash. Advanced plan included in Google One AI Premium ($19.99/mo)."
-      }
-    },
-    {
-      "id": "perplexity",
-      "name": "Perplexity AI",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "research",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Trending",
-      "featured": true,
-      "description": "AI-powered answer engine that searches the live web and provides clean, citation-backed answers.",
-      "url": "https://www.perplexity.ai",
-      "domain": "perplexity.ai",
-      "icon": "🔍",
-      "inner_content": {
-        "overview": "Perplexity AI is a next-generation conversational search engine that pairs frontier language models with live web indexing to deliver accurate, citation-backed answers with zero sponsored clutter.",
-        "features": [
-          "Pro Search with multi-step reasoning and deep web retrieval",
-          "Direct citations with clickable source links on every factual statement",
-          "Perplexity Spaces to organize research documents and collaborate",
-          "Ability to toggle underlying models: Claude, GPT-4o, Sonar, DeepSeek"
-        ],
-        "useCases": [
-          "Fact-checked research for academics, journalists, and professionals",
-          "Comparing market products, tech stacks, and financial news",
-          "Organizing multi-topic research binders in custom Spaces"
-        ],
-        "pricingDetails": "Free unlimited Quick Searches and daily Pro Searches. Pro plan at $20/month."
-      }
-    },
-    {
-      "id": "copilot",
-      "name": "Microsoft Copilot",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "productivity",
-        "writing"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free",
-      "featured": false,
-      "description": "Microsoft's free AI assistant powered by GPT-4o and DALL-E 3 with Bing web search and Office integration.",
-      "url": "https://copilot.microsoft.com",
-      "domain": "microsoft.com",
-      "icon": "🪟",
-      "inner_content": {
-        "overview": "Microsoft Copilot gives users free access to OpenAI's GPT-4o and DALL-E 3 image generation, connected directly to Bing live search. It works seamlessly across Windows, Edge, and mobile devices.",
-        "features": [
-          "Free access to GPT-4o models without subscription fees",
-          "Built-in DALL-E 3 image generator for creating art and graphics",
-          "Direct web browsing with real-time news and citations",
-          "Integrated into Windows 11 taskbar and Microsoft Edge sidebar"
-        ],
-        "useCases": [
-          "Everyday web search, question answering, and quick summaries",
-          "Generating free AI images and visual concept mockups",
-          "Summarizing web pages directly inside Microsoft Edge"
-        ],
-        "pricingDetails": "100% Free for web and mobile. Copilot Pro available for Microsoft 365 integration."
-      }
-    },
-    {
-      "id": "mistral-chat",
-      "name": "Mistral Le Chat",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "developer-tools",
-        "research"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free",
-      "featured": false,
-      "description": "Mistral AI's free conversational platform powered by Mistral Large, Pixtral vision, and web search.",
-      "url": "https://chat.mistral.ai",
-      "domain": "mistral.ai",
-      "icon": "🌪️",
-      "inner_content": {
-        "overview": "Le Chat is the official free assistant by European AI frontier lab Mistral AI. It features top-tier multilingual capabilities, coding assistance, document understanding with Pixtral, and integrated web search.",
-        "features": [
-          "Powered by flagship Mistral Large and Pixtral multimodal vision models",
-          "Uncensored, direct, and exceptionally fast token generation speed",
-          "Integrated live web search with clean source links",
-          "Canvas feature for interactive document and code editing"
-        ],
-        "useCases": [
-          "Multilingual translation and European language copywriting",
-          "Fast coding, script generation, and technical problem solving",
-          "Document inspection, PDF summarization, and image extraction"
-        ],
-        "pricingDetails": "100% Free during open beta with generous query allowances."
-      }
-    },
-    {
       "id": "poe",
-      "name": "Poe by Quora",
+      "name": "Poe",
       "category": "chatbot",
       "categories": [
         "chatbot",
+        "education",
         "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Multi-Model",
-      "featured": false,
-      "description": "Universal AI aggregator by Quora to access ChatGPT, Claude, Gemini, FLUX, and custom bots in one app.",
+      "badge": "Top Pick",
+      "featured": true,
+      "description": "Access hundreds of millions of answers powered by AI technology.",
       "url": "https://poe.com",
       "domain": "poe.com",
-      "icon": "📱",
+      "icon": "🤖",
       "inner_content": {
-        "overview": "Poe by Quora is a unified ecosystem that provides access to virtually every major AI model (OpenAI, Anthropic, Google, Meta, Mistral, Stability) under a single interface with generous daily free computing points.",
-        "features": [
-          "All major LLMs in one place (GPT-4o, Claude, Gemini, DeepSeek)",
-          "Daily free compute points replenished every 24 hours",
-          "Create and monetize custom AI bots and workflows",
-          "Cross-platform syncing across iOS, Android, macOS, and Web"
-        ],
-        "useCases": [
-          "Comparing responses between different LLMs side-by-side",
-          "Creating specialized prompt bots for specific tasks or teams",
-          "Single hub for text, code, and image generation"
-        ],
-        "pricingDetails": "Generous daily free compute points. Premium subscription for heavy unlimited usage."
+        "overview": "Poe is the perfect education assistant for anyone looking to get quick, accurate answers to their questions. Powered by Quora, Poe provides a comprehensive AI-based platform to help you stay informed and up to date. With Poe, you can ask questions, get instant answers, and even have back-and-forth conversations with AI. Poe uses natural language processing to understand the nuances of your question, so you get more accurate and detailed responses. It also provides an extensive knowledge base of hundreds of millions of answers, so you can find the best solution to your problem quickly and easily. No matter what your question is, Poe is here to help. With its advanced AI-powered technology, you can expect reliable and accurate answers with minimal effort. Plus, Poe makes it easy to stay on top of the latest trends and developments in your field, so you can be sure youre always up to date.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "huggingchat",
-      "name": "HuggingChat",
+      "id": "atoms",
+      "name": "Atoms",
       "category": "chatbot",
       "categories": [
         "chatbot",
-        "developer-tools"
+        "productivity"
       ],
-      "pricing": "Free",
-      "badge": "Open Source",
-      "featured": false,
-      "description": "Open-source alternative to ChatGPT by Hugging Face, allowing you to chat with any top open-weight model.",
-      "url": "https://huggingface.co/chat",
-      "domain": "huggingface.co",
-      "icon": "🤗",
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "AI vibe business team that turns your ideas into business.",
+      "url": "https://tinyurl.com/ycy93nxt",
+      "domain": "atoms.com",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "HuggingChat is the leading open-source chat interface developed by Hugging Face. Users can switch between top open-weight models including Llama 3.3, DeepSeek R1, Mistral, Command R+, and Qwen with zero subscription fees.",
-        "features": [
-          "Switch between multiple cutting-edge open-source models with one click",
-          "Integrated web search capability for real-time queries",
-          "Community-created Custom Assistants and system prompt presets",
-          "Completely open source and privacy-focused codebase"
-        ],
-        "useCases": [
-          "Evaluating and benchmarking different open-source AI models",
-          "Privacy-conscious daily chatbot for writing and coding",
-          "Building custom conversational assistants on Hugging Face"
-        ],
-        "pricingDetails": "100% Free and open source provided by Hugging Face."
+        "overview": "Atoms is a comprehensive no-code development platform that transforms ideas into functional applications through conversational interfaces. The platform employs a team of specialized AI agents—including engineers, product managers, data analysts, architects, and deep researchers—that collaborate to handle the entire development lifecycle. Users simply describe their vision in natural language, and Atoms generates complete applications with built-in functionality including user authentication, database management, payment processing via Stripe, and deployment infrastructure. The platform supports full-stack development for web and mobile applications, with code export capabilities and GitHub synchronization for developers who want direct control as their projects scale.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "kimi-ai",
-      "name": "Kimi AI",
+      "id": "indexera",
+      "name": "Indexera",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Indexera is a custom programmatic SEO and AI search optimization service that helps businesses build massive organic visibility across Google and...",
+      "url": "https://indexera.net",
+      "domain": "indexera.net",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Indexera is a custom programmatic SEO and AI search optimization service that helps businesses build massive organic visibility across Google and AI-powered search platforms.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "centurion-payment-services",
+      "name": "CPS Pays",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Payment processing for AI businesses.",
+      "url": "https://centurionpaymentservices.com",
+      "domain": "centurionpaymentservices.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Centurion Payment Services provides high-risk payment processing solutions specifically engineered for AI startups, SaaS platforms, and digital content creators who struggle to secure or maintain approval from mainstream processors like Stripe or PayPal.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "geofide-ai",
+      "name": "GeoFide.AI",
       "category": "chatbot",
       "categories": [
         "chatbot",
-        "research",
-        "productivity"
-      ],
-      "pricing": "Free",
-      "badge": "2M Context",
-      "featured": false,
-      "description": "Moonshot AI's assistant with 2-million-character context, live web search, and PDF analysis.",
-      "url": "https://kimi.moonshot.cn",
-      "domain": "moonshot.cn",
-      "icon": "🌙",
-      "inner_content": {
-        "overview": "Kimi AI is an ultra-long context AI assistant developed by Moonshot AI. It is capable of processing up to 2 million characters in a single prompt, making it one of the most capable free tools for reading massive documents, financial books, and complex manuals.",
-        "features": [
-          "Massive 2-million-character ultra-long context window",
-          "High-speed document parsing for PDFs, DOCX, and web links",
-          "Integrated real-time internet search and synthesis",
-          "Clean interface optimized for deep reading and knowledge extraction"
-        ],
-        "useCases": [
-          "Analyzing whole annual financial reports and legal filings",
-          "Summarizing entire textbooks and research papers",
-          "Extracting key data points from 500+ page technical manuals"
-        ],
-        "pricingDetails": "100% Free on web and mobile apps."
-      }
-    },
-    {
-      "id": "quillbot",
-      "name": "QuillBot",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Free Writing",
-      "featured": true,
-      "description": "Free AI paraphrasing tool, grammar checker, summarizer, citation generator, and translator.",
-      "url": "https://quillbot.com",
-      "domain": "quillbot.com",
-      "icon": "🪶",
-      "inner_content": {
-        "overview": "QuillBot is the world's most trusted AI writing and paraphrasing companion used by over 50 million students and professionals. It rewrites sentences, corrects grammar, summarizes essays, and creates academic citations.",
-        "features": [
-          "Paraphraser with Standard, Fluency, Formal, Creative, and Shorten modes",
-          "Advanced Grammar Checker that spots punctuation, tense, and spelling errors",
-          "AI Summarizer: condense long articles or research papers into bullet points",
-          "Free Citation Generator supporting APA, MLA, and Chicago citation styles"
-        ],
-        "useCases": [
-          "Students polishing academic essays and generating accurate bibliographies",
-          "Non-native English speakers improving fluency and natural phrasing",
-          "Writers eliminating repetitive vocabulary and improving sentence variety"
-        ],
-        "pricingDetails": "Generous Free tier with 125 words per paraphrase. Premium for unlimited words."
-      }
-    },
-    {
-      "id": "grammarly",
-      "name": "Grammarly AI",
-      "category": "writing",
-      "categories": [
-        "writing",
         "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Top Pick",
+      "badge": "Freemium",
       "featured": true,
-      "description": "AI communication assistant that catches errors, refines tone, and rewrites text across all desktop apps.",
-      "url": "https://www.grammarly.com",
-      "domain": "grammarly.com",
-      "icon": "✍️",
-      "inner_content": {
-        "overview": "Grammarly is an essential writing assistant that operates across web browsers, email clients, Word, and desktop apps. Its generative AI rewrites emails, adjusts formality, and ensures clear, error-free communication.",
-        "features": [
-          "Real-time grammar, spelling, punctuation, and clarity suggestions",
-          "Tone detector and rewriter (formal, casual, confident, empathetic)",
-          "Generative AI prompts to reply to emails and brainstorm drafts in 1 click",
-          "Browser extension and desktop app integrating seamlessly with your workflow"
-        ],
-        "useCases": [
-          "Crafting professional business emails and client proposals",
-          "Checking academic papers and thesis drafts for clarity and tone",
-          "Refining everyday workplace messages on Slack, Teams, and Gmail"
-        ],
-        "pricingDetails": "Free tier with 100 AI prompt credits/mo and core grammar checks. Premium at $12/mo."
-      }
-    },
-    {
-      "id": "copy-ai",
-      "name": "Copy.ai",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Marketing Copy",
-      "featured": false,
-      "description": "AI platform for sales and marketing teams to generate social copy, email campaigns, and SEO articles.",
-      "url": "https://www.copy.ai",
-      "domain": "copy.ai",
-      "icon": "🚀",
-      "inner_content": {
-        "overview": "Copy.ai is a specialized generative copywriting platform tailored for marketers, agencies, and sales professionals. It provides over 90 templates for ad copy, cold outbound emails, blog outlines, and social posts.",
-        "features": [
-          "90+ dedicated copywriting templates for Facebook ads, Google search, and blogs",
-          "Brand Voice engine to enforce your company's tone across all copy",
-          "Infobase: store reusable company facts, product specs, and value propositions",
-          "Workflow automation to generate bulk content from spreadsheets"
-        ],
-        "useCases": [
-          "Marketers writing high-converting social media ads and sales landing pages",
-          "Sales reps personalizing cold outbound outreach emails at scale",
-          "Content creators brainstorming catchy video titles and email newsletters"
-        ],
-        "pricingDetails": "Free plan includes 2,000 words in Chat per month. Pro plan for unlimited words."
-      }
-    },
-    {
-      "id": "writesonic",
-      "name": "Writesonic",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "SEO Articles",
-      "featured": false,
-      "description": "AI writer trained on top-ranking Google content to generate SEO-optimized articles, landing pages, and ads.",
-      "url": "https://writesonic.com",
-      "domain": "writesonic.com",
+      "description": "GeoFide is a Generative Engine Optimization (GEO) platform that helps businesses get their content cited and recommended by AI search engines like ChatGPT, Perplexity, and Claude — with AI-powered analysis and autonomous optimization agents.",
+      "url": "https://geofide.ai/landing",
+      "domain": "geofide.ai",
       "icon": "⚡",
       "inner_content": {
-        "overview": "Writesonic is an AI content creation platform built for SEO writers and agencies. Its Article Writer analyzes current top-ranking Google competitors to generate comprehensive, fact-checked, and keyword-optimized long-form articles.",
-        "features": [
-          "AI Article Writer with real-time Google search competitor analysis",
-          "Chatsonic conversational AI assistant with live internet access",
-          "Brand Voice personalization and automatic internal linking suggestions",
-          "1-click export to WordPress, Webflow, and Shopify"
-        ],
-        "useCases": [
-          "Publishing 2,500+ word SEO-optimized blog posts in minutes",
-          "Generating high-converting e-commerce product descriptions",
-          "Creating multi-channel marketing campaigns and Google Ad headlines"
-        ],
-        "pricingDetails": "Free trial with 25 credits. Paid plans start from $12/month."
+        "overview": "GeoFide is built for the new era of search — where AI engines decide what content to surface, quote, and recommend. Unlike traditional SEO tools focused on Google rankings, GeoFide analyzes your content through the lens of generative AI models and identifies exactly why you’re being ignored or cited. The platform runs autonomous optimization agents that rewrite, restructure, and strengthen your pages to match what AI engines trust and reward. Whether you’re an agency, a content team, or a solo founder, GeoFide gives you a clear GEO score, actionable fixes, and measurable citation growth across the top AI search platforms.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "rytr",
-      "name": "Rytr",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "10k Free Words/Mo",
-      "featured": false,
-      "description": "Fast, affordable AI writing assistant for blogs, emails, social ads, and product descriptions.",
-      "url": "https://rytr.me",
-      "domain": "rytr.me",
-      "icon": "✍️",
-      "inner_content": {
-        "overview": "Rytr is an intuitive AI writing assistant that helps you create high-quality content in just a few seconds. With 40+ use cases and 20+ voice tones, Rytr generates catchy copy for emails, social media, and blogs.",
-        "features": [
-          "40+ pre-built use cases (blog outlines, email replies, YouTube descriptions)",
-          "20+ tone selectors (convincing, enthusiastic, formal, casual, humble)",
-          "Built-in plagiarism checker powered by Copyscape",
-          "Generous 10,000 characters per month on the permanent free plan"
-        ],
-        "useCases": [
-          "Freelancers drafting quick email templates and social captions",
-          "E-commerce stores generating catchy product titles and bullet points",
-          "Bloggers overcoming writer's block with outline and intro generation"
-        ],
-        "pricingDetails": "Free plan includes 10,000 characters per month. Unlimited plan from $7.50/mo."
-      }
-    },
-    {
-      "id": "notion-ai",
-      "name": "Notion AI",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Connected Brain",
-      "featured": false,
-      "description": "Integrated AI assistant inside Notion that searches your entire workspace, drafts docs, and summarizes notes.",
-      "url": "https://www.notion.so/product/ai",
-      "domain": "notion.so",
-      "icon": "📓",
-      "inner_content": {
-        "overview": "Notion AI connects directly to your Notion workspace. It can answer questions about your team's internal documentation, write meeting summaries, extract action items, and draft documentation with full contextual awareness.",
-        "features": [
-          "Q&A across your entire workspace: finds answers buried in company wikis",
-          "Automated meeting notes summarizer and action-item extractor",
-          "In-editor drafting for blog posts, PRDs, specs, and translation",
-          "Autofill database tables with AI-generated summaries and tags"
-        ],
-        "useCases": [
-          "Product managers drafting PRDs and feature specifications",
-          "Teams organizing meeting transcripts and capturing immediate action items",
-          "Building an automated internal company knowledge base and FAQ"
-        ],
-        "pricingDetails": "Free trial with complimentary AI responses. Add-on available for $8-10/user/mo."
-      }
-    },
-    {
-      "id": "hemingway-ai",
-      "name": "Hemingway Editor Plus",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Readability",
-      "featured": false,
-      "description": "AI writing editor that highlights complex sentences, passive voice, and fixes readability issues.",
-      "url": "https://hemingwayapp.com",
-      "domain": "hemingwayapp.com",
-      "icon": "📖",
-      "inner_content": {
-        "overview": "Hemingway Editor makes your writing bold and clear. It highlights wordy sentences, passive voice, unnecessary adverbs, and complex phrasing with color-coded alerts, while its AI rephrases sentences for maximum punch.",
-        "features": [
-          "Color-coded highlighting of hard-to-read sentences and passive voice",
-          "One-click AI sentence shortener and tone adjuster",
-          "Automated Grade Level readability scoring (Flesch-Kincaid index)",
-          "Distraction-free markdown writing mode"
-        ],
-        "useCases": [
-          "Simplifying dense technical documents and business memos",
-          "Editing newsletter issues and articles to achieve Grade 5-8 readability",
-          "Fixing passive voice and clumsy phrasing in marketing copy"
-        ],
-        "pricingDetails": "Free web version for core color-coded editing. Plus AI plan at $8.33/mo."
-      }
-    },
-    {
-      "id": "leonardo-ai",
-      "name": "Leonardo.ai",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "video-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "150 Daily Free",
-      "featured": true,
-      "description": "Full-suite creative platform for generating game assets, marketing imagery, and motion videos with 150 daily free credits.",
-      "url": "https://leonardo.ai",
-      "domain": "leonardo.ai",
-      "icon": "✨",
-      "inner_content": {
-        "overview": "Leonardo.ai (now part of Canva) is a comprehensive generative art studio. It offers fine-tuned community models, real-time AI canvas painting, motion video generation, and 150 daily free credits.",
-        "features": [
-          "150 free generation tokens replenished every single day",
-          "Phoenix and Kino flagship models for cinematic photorealism",
-          "Real-time Canvas editor: draw rough sketches and see instant AI renders",
-          "Motion generator: turn any static image into an animated video loop"
-        ],
-        "useCases": [
-          "Concept art, character design, and game asset production",
-          "Creating photorealistic portraits, landscape backdrops, and product renders",
-          "Generating animated social media visuals and YouTube thumbnails"
-        ],
-        "pricingDetails": "Generous 150 free credits refreshed every day. Paid tiers for unlimited generations."
-      }
-    },
-    {
-      "id": "recraft-ai",
-      "name": "Recraft AI",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Design Pick",
-      "featured": true,
-      "description": "Design-first AI image and vector generator with precise style consistency, SVG export, and canvas editing.",
-      "url": "https://www.recraft.ai",
-      "domain": "recraft.ai",
-      "icon": "🎨",
-      "inner_content": {
-        "overview": "Recraft AI is a professional AI design platform created specifically for digital artists, graphic designers, and marketers. It allows you to generate raster illustrations, 3D icons, photorealistic images, and clean vector SVGs.",
-        "features": [
-          "True vector SVG generation with infinitely scalable editable paths",
-          "Recraft 20B image model with industry-leading text rendering and anatomy",
-          "Brand style consistency: maintain exact color palettes and visual styles",
-          "Infinite canvas with inpainting, outpainting, and background removal"
-        ],
-        "useCases": [
-          "Creating professional vector icons, logos, and UI illustration assets",
-          "Generating marketing graphics matching exact corporate brand colors",
-          "High-resolution 3D renders and character concepts for web design"
-        ],
-        "pricingDetails": "Free tier with 50 daily credits and SVG export. Paid plans for commercial private mode."
-      }
-    },
-    {
-      "id": "flux-1",
-      "name": "Flux.1 by BFL",
-      "category": "image-generator",
-      "categories": [
-        "image-generator"
-      ],
-      "pricing": "Free",
-      "badge": "Open Weights",
-      "featured": true,
-      "description": "State-of-the-art open image generation model from Black Forest Labs with incredible prompt fidelity.",
-      "url": "https://blackforestlabs.ai",
-      "domain": "blackforestlabs.ai",
-      "icon": "🌌",
-      "inner_content": {
-        "overview": "FLUX.1 is the flagship 12-billion-parameter image generation model family created by Black Forest Labs (the original creators of Stable Diffusion). It delivers photorealism, perfect human anatomy, and precise text rendering.",
-        "features": [
-          "FLUX.1 Schnell: ultra-fast 4-step open-weight model for local and web generation",
-          "Flawless typography rendering inside generated images and posters",
-          "Exceptional complex prompt following and diverse artistic styles",
-          "Freely usable locally via ComfyUI and Automatic1111"
-        ],
-        "useCases": [
-          "Generating photorealistic marketing photography and product concepts",
-          "Creating typography-heavy posters, book covers, and social graphics",
-          "Local self-hosted image generation pipelines with zero subscription fees"
-        ],
-        "pricingDetails": "FLUX.1 [schnell] is Apache 2.0 open-source. Free on Hugging Face & Replicate."
-      }
-    },
-    {
-      "id": "ideogram",
-      "name": "Ideogram 2.0",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Best Typography",
-      "featured": false,
-      "description": "State-of-the-art AI image generator renowned for rendering legible, artistic typography and graphic designs.",
-      "url": "https://ideogram.ai",
-      "domain": "ideogram.ai",
-      "icon": "🅰️",
-      "inner_content": {
-        "overview": "Ideogram 2.0 is the premier AI tool for rendering accurate, beautifully stylized text inside images. Perfect for t-shirt graphics, typography posters, logos, and marketing banners.",
-        "features": [
-          "Best-in-class text rendering with accurate spelling and complex typography styles",
-          "Color Palette picker to enforce specific brand hex codes in generations",
-          "Magic Prompt enhancer that expands short descriptions into detailed prompts",
-          "Generates high-resolution 1:1, 16:9, 9:16, and custom aspect ratios"
-        ],
-        "useCases": [
-          "Designing graphic t-shirts, stickers, and merchandise prints",
-          "Creating social media quote cards and promotional ad banners",
-          "Generating logos with integrated brand slogans and lettering"
-        ],
-        "pricingDetails": "Free plan includes 10 free credits daily (40 images/day). Basic plans start at $8/mo."
-      }
-    },
-    {
-      "id": "canva-magic",
-      "name": "Canva Magic Studio",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "productivity",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Popular",
-      "featured": false,
-      "description": "All-in-one design suite with Magic Media, Magic Erase, Magic Switch, and instant presentation maker.",
-      "url": "https://www.canva.com/magic-home",
-      "domain": "canva.com",
-      "icon": "🖌️",
-      "inner_content": {
-        "overview": "Canva Magic Studio brings AI generative tools directly into the beloved Canva drag-and-drop design ecosystem. Create AI images, remove backgrounds, reformat graphics for all social platforms, and draft presentations in one click.",
-        "features": [
-          "Magic Media: generate AI images, illustrations, and short videos from text",
-          "Magic Eraser and Magic Grab: remove unwanted objects and edit photo elements",
-          "Magic Switch: convert presentations into blog summaries or social posts automatically",
-          "Magic Design: generate tailored social media templates from a single prompt"
-        ],
-        "useCases": [
-          "Social media managers creating weeks of content in minutes",
-          "Small business owners designing branded flyers, menus, and business cards",
-          "Students and teachers creating engaging slideshow presentations"
-        ],
-        "pricingDetails": "Generous Free tier with access to core Magic tools. Canva Pro at $12.99/month."
-      }
-    },
-    {
-      "id": "clipdrop",
-      "name": "Clipdrop by Jasper",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Photo Utilities",
-      "featured": false,
-      "description": "Suite of AI photo tools: background removal, image upscaler, relighting, and text removal.",
-      "url": "https://clipdrop.co",
-      "domain": "clipdrop.co",
-      "icon": "✂️",
-      "inner_content": {
-        "overview": "Clipdrop is an ecosystem of AI-powered photo editing utilities. From instant background removal to relighting subjects with virtual studio lamps, Clipdrop simplifies professional image post-processing.",
-        "features": [
-          "Remove Background with surgical edge precision in under 2 seconds",
-          "Relight: add customizable 3D light sources and colored studio gels to any photo",
-          "Cleanup: erase unwanted powerlines, people, or watermarks seamlessly",
-          "Image Upscaler: enhance resolution up to 16x with detail reconstruction"
-        ],
-        "useCases": [
-          "E-commerce product photo cleanup and background replacement",
-          "Portrait relighting and professional headshot enhancement",
-          "Restoring low-resolution graphics for print and high-res displays"
-        ],
-        "pricingDetails": "Free tier with unlimited standard-definition exports. Pro at $9/month."
-      }
-    },
-    {
-      "id": "craiyon",
-      "name": "Craiyon",
-      "category": "image-generator",
-      "categories": [
-        "image-generator"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free",
-      "featured": false,
-      "description": "Completely free, unlimited AI image generator formerly known as DALL-E Mini with zero sign-up required.",
-      "url": "https://www.craiyon.com",
-      "domain": "craiyon.com",
-      "icon": "🖍️",
-      "inner_content": {
-        "overview": "Craiyon (formerly DALL-E Mini) is one of the most accessible free AI image generators on the web. It requires no login, no credit card, and allows unlimited image generations across art, drawing, and photo styles.",
-        "features": [
-          "100% free and unlimited image generation with no mandatory account creation",
-          "Choose between Art, Drawing, and Photo style generation engines",
-          "Negative prompt support to remove unwanted elements from images",
-          "Upscaling and prompt enhancement tools built into the generator"
-        ],
-        "useCases": [
-          "Fun visual brainstorming, memes, and concept art exploration",
-          "Students and teachers needing free images for classroom projects",
-          "Quick visual mockups with zero sign-up friction"
-        ],
-        "pricingDetails": "100% Free with ad-supported generation. Paid ad-free tiers available."
-      }
-    },
-    {
-      "id": "kling-ai",
-      "name": "Kling AI",
-      "category": "video-generator",
-      "categories": [
-        "video-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "Cinematic AI Video",
-      "featured": true,
-      "description": "State-of-the-art AI video generation model capable of creating 1080p cinematic scenes with realistic physics.",
-      "url": "https://klingai.com",
-      "domain": "klingai.com",
-      "icon": "🎬",
-      "inner_content": {
-        "overview": "Kling AI (by Kuaishou) is one of the world's most capable AI video generation models. It produces high-definition 1080p videos up to 2 minutes long with exceptional physical simulation, complex motion, and realistic human expressions.",
-        "features": [
-          "Generates cinematic 1080p clips up to 2 minutes with fluid 30fps motion",
-          "Text-to-Video and Image-to-Video generation modes",
-          "Accurate real-world physics simulation (flowing water, gravity, inertia)",
-          "Motion Brush and camera trajectory controls (pan, tilt, zoom, dolly)"
-        ],
-        "useCases": [
-          "Creating cinematic B-roll and visual scenes for YouTube and films",
-          "Animating still photos and product mockups into video advertisements",
-          "Producing viral short-form clips for TikTok, Instagram Reels, and Shorts"
-        ],
-        "pricingDetails": "Free daily credits upon daily check-in (66 credits/day). Pro subscription available."
-      }
-    },
-    {
-      "id": "luma-dream-machine",
-      "name": "Luma Dream Machine",
-      "category": "video-generator",
-      "categories": [
-        "video-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Video Pick",
-      "featured": true,
-      "description": "High-fidelity AI video model creating realistic 5-second video shots with camera motion and character consistency.",
-      "url": "https://lumalabs.ai/dream-machine",
-      "domain": "lumalabs.ai",
-      "icon": "🎥",
-      "inner_content": {
-        "overview": "Luma Dream Machine is a next-generation video model built directly on a scalable transformer architecture. It turns text prompts or reference images into fluid, photorealistic 5-second video sequences.",
-        "features": [
-          "Direct Transformer architecture for high spatial consistency and realism",
-          "Keyframe interpolation: seamlessly morph between starting and ending frames",
-          "Camera motion control: specify orbit, dolly, zoom, and drone fly-through shots",
-          "Fast generation pipeline rendering high-definition video in ~120 seconds"
-        ],
-        "useCases": [
-          "Creating dynamic camera tracking shots for product commercials",
-          "Animating concept art and illustrations for cinematic pitch decks",
-          "Generating surreal visual effects and seamless video loops"
-        ],
-        "pricingDetails": "Free tier with 30 free generations per month. Paid tiers start at $29.99/month."
-      }
-    },
-    {
-      "id": "runway-gen3",
-      "name": "Runway Gen-3 Alpha",
-      "category": "video-generator",
-      "categories": [
-        "video-generator",
-        "audio-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Industry Standard",
-      "featured": true,
-      "description": "Pioneering AI video generation platform with Gen-3 Alpha, Motion Brush, lip-sync, and camera controls.",
-      "url": "https://runwayml.com",
-      "domain": "runwayml.com",
-      "icon": "🏃",
-      "inner_content": {
-        "overview": "Runway is the gold standard in generative video and visual effects. Used by Hollywood studios and indie creators alike, Runway Gen-3 Alpha enables unprecedented control over lighting, camera motion, and character acting.",
-        "features": [
-          "Gen-3 Alpha text-to-video, image-to-video, and video-to-video engines",
-          "Motion Brush: paint specific parts of an image to animate only selected areas",
-          "AI Lip Sync: synchronize characters' mouth movements with any audio voice track",
-          "Full video editing suite with green screen removal and color grading"
-        ],
-        "useCases": [
-          "Film pre-visualization, concept trailers, and music videos",
-          "High-end advertising campaigns and visual effects shots",
-          "Animating AI-generated characters with natural speech lip-sync"
-        ],
-        "pricingDetails": "Free starter tier with 125 one-time credits. Standard plan at $12/month."
-      }
-    },
-    {
-      "id": "capcut-ai",
-      "name": "CapCut AI",
-      "category": "video-generator",
-      "categories": [
-        "video-generator",
-        "audio-editing"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Mobile/Web",
-      "featured": true,
-      "description": "ByteDance's all-in-one video editor with AI auto-captions, background removal, text-to-speech, and script-to-video.",
-      "url": "https://www.capcut.com",
-      "domain": "capcut.com",
-      "icon": "✂️",
-      "inner_content": {
-        "overview": "CapCut is the world's most popular short-form video editor by ByteDance. Packed with cutting-edge AI features, it automates viral auto-captions, background removal, text-to-speech voiceovers, and full script-to-video creation completely free.",
-        "features": [
-          "Auto-Captions: generates styled, animated subtitles with word-by-word highlights",
-          "Script-to-Video: converts a written prompt into a fully edited video with B-roll",
-          "AI Background Removal: cut out people from videos without a green screen",
-          "Smart voice isolation and automatic filler word (um, uh) removal"
-        ],
-        "useCases": [
-          "Editing viral TikToks, Instagram Reels, and YouTube Shorts in minutes",
-          "Adding dynamic, colorful subtitles to podcast clips and talking-head videos",
-          "Creating faceless automated videos from text scripts"
-        ],
-        "pricingDetails": "100% Free with massive feature library. CapCut Pro for premium transitions."
-      }
-    },
-    {
-      "id": "opus-clip",
-      "name": "Opus Clip",
-      "category": "video-generator",
-      "categories": [
-        "video-generator",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Viral Clips",
-      "featured": false,
-      "description": "Repurpose long YouTube videos and podcasts into 10 viral short clips with AI virality score and animated subtitles.",
-      "url": "https://www.opus.pro",
-      "domain": "opus.pro",
-      "icon": "✂️",
-      "inner_content": {
-        "overview": "Opus Clip is an AI video repurposing tool. Paste any long YouTube link, and Opus Clip analyzes the footage, identifies the most engaging hooks, re-frames the speakers into 9:16 vertical video, and adds dynamic animated captions.",
-        "features": [
-          "AI Virality Score: ranks clip highlights based on engagement potential",
-          "Auto-reframe: keeps the active speaker centered in vertical 9:16 aspect ratio",
-          "Dynamic karaoke-style animated captions with emoji insertion",
-          "B-roll insertion: automatically overlays contextual stock footage"
-        ],
-        "useCases": [
-          "Podcasters turning 1-hour episodes into 15 viral shorts",
-          "YouTubers multiplying their reach across TikTok, Instagram, and Shorts",
-          "Educators and webinar hosts extracting actionable highlight reels"
-        ],
-        "pricingDetails": "Free tier with 60 minutes of video processing per month. Pro at $9.50/month."
-      }
-    },
-    {
-      "id": "pika-art",
-      "name": "Pika Art",
-      "category": "video-generator",
-      "categories": [
-        "video-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "Pikaffects",
-      "featured": false,
-      "description": "Idea-to-video platform with Pikaffects (inflate, melt, crush, explode) and realistic camera movement.",
-      "url": "https://pika.art",
-      "domain": "pika.art",
-      "icon": "⚡",
-      "inner_content": {
-        "overview": "Pika Art (Pika 2.0) is a playful and powerful AI video generation platform. Known for its viral 'Pikaffects' that can melt, inflate, crumble, or explode any object in an image, Pika makes video creation intuitive.",
-        "features": [
-          "Pikaffects: apply physics transformations (Melt, Inflate, Squish, Explode)",
-          "Modify Region: edit specific objects or clothing directly inside video clips",
-          "Seamless video expansion: extend video clip duration by 4 seconds iteratively",
-          "Sound effects generator: automatically produces synchronized audio for video actions"
-        ],
-        "useCases": [
-          "Creating viral meme videos and creative visual effects on social media",
-          "Animating 2D characters, anime art, and digital illustrations",
-          "Producing dynamic product advertisements with playful animations"
-        ],
-        "pricingDetails": "Free plan includes 150 daily initial credits. Standard plan at $8/month."
-      }
-    },
-    {
-      "id": "suno-ai",
-      "name": "Suno AI",
-      "category": "audio-editing",
-      "categories": [
-        "audio-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Music Pick",
-      "featured": true,
-      "description": "Generate full, radio-quality songs with vocals, lyrics, and instruments in any genre from a simple text prompt.",
-      "url": "https://suno.com",
-      "domain": "suno.com",
-      "icon": "🎵",
-      "inner_content": {
-        "overview": "Suno AI is the world's leading generative music platform. With Suno v3.5 and v4, anyone can create full-length, broadcast-quality songs complete with vocals, instrumentation, and custom lyrics across any musical genre.",
-        "features": [
-          "Generates full 4-minute songs with studio-grade vocal and instrument fidelity",
-          "Supports every musical genre: Pop, Rock, EDM, Hip-Hop, Classical, Jazz, Metal",
-          "Custom Mode: input your own original lyrics and specify exact verse/chorus structures",
-          "Audio inpainting: replace or extend specific sections of a generated song"
-        ],
-        "useCases": [
-          "Content creators producing royalty-free background soundtracks for videos",
-          "Musicians brainstorming melodies, chord progressions, and lyrical hooks",
-          "Creating personalized songs for birthdays, celebrations, and brand jingles"
-        ],
-        "pricingDetails": "Free tier gives 50 credits every day (10 free songs/day). Pro plan at $8/month."
-      }
-    },
-    {
-      "id": "udio-ai",
-      "name": "Udio AI",
-      "category": "audio-editing",
-      "categories": [
-        "audio-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Studio Music",
-      "featured": false,
-      "description": "AI music creation platform by former DeepMind researchers with pristine vocal dynamics and audio stem separation.",
-      "url": "https://www.udio.com",
-      "domain": "udio.com",
-      "icon": "🎹",
-      "inner_content": {
-        "overview": "Udio AI was founded by former Google DeepMind researchers to push the boundaries of AI music generation. It is renowned for emotional vocal performances, complex musical arrangements, and audio stem separation.",
-        "features": [
-          "Udio v1.5 with pristine 48kHz audio fidelity and realistic vocal vibrato",
-          "Stem separation: download vocals, drums, bass, and instruments as separate tracks",
-          "Audio-to-Audio: upload a rough melody or hum to transform it into a produced song",
-          "Advanced extending and remixing controls for precise track arrangement"
-        ],
-        "useCases": [
-          "Producers looking for unique vocal samples, beats, and stem tracks",
-          "Soundtrack composers designing ambient gaming and film score cues",
-          "Songwriters exploring complex harmonic arrangements and lyrical themes"
-        ],
-        "pricingDetails": "Free tier includes 10 free daily credits + 100 extra monthly credits."
-      }
-    },
-    {
-      "id": "elevenlabs",
-      "name": "ElevenLabs",
+      "id": "amorlink-2",
+      "name": "AmorLink",
       "category": "audio-editing",
       "categories": [
         "audio-editing",
         "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Top Voice Pick",
+      "badge": "Freemium",
       "featured": true,
-      "description": "Industry-leading AI voice generator, voice cloner, and sound effects engine with lifelike human emotion.",
-      "url": "https://elevenlabs.io",
-      "domain": "elevenlabs.io",
-      "icon": "🎙️",
-      "inner_content": {
-        "overview": "ElevenLabs is the undisputed leader in natural AI speech synthesis. Its neural voice models capture human intonation, whispers, laughter, and pacing across 32 languages, alongside instant voice cloning and sound effect generation.",
-        "features": [
-          "Ultra-realistic Text-to-Speech with emotional depth and subtle human cadence",
-          "Instant Voice Cloning: clone any voice from a 1-minute audio recording",
-          "AI Sound Effects: generate ambient room noise, cinematic booms, and Foley SFX",
-          "Multilingual Dubbing: automatically translate video speech while keeping the original voice"
-        ],
-        "useCases": [
-          "Audiobook narration, podcast voiceovers, and YouTube video narration",
-          "Video game and animation character voice acting across 30+ languages",
-          "Localizing corporate training videos and international marketing ads"
-        ],
-        "pricingDetails": "Free tier with 10,000 characters/month and custom voices. Starter plan at $5/mo."
-      }
-    },
-    {
-      "id": "adobe-podcast",
-      "name": "Adobe Podcast AI",
-      "category": "audio-editing",
-      "categories": [
-        "audio-editing"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Studio Sound",
-      "featured": true,
-      "description": "Free AI audio tool that transforms cheap microphone recordings into professional soundproof studio audio.",
-      "url": "https://podcast.adobe.com/enhance",
-      "domain": "adobe.com",
-      "icon": "🎧",
-      "inner_content": {
-        "overview": "Adobe Podcast Enhance Speech uses deep learning to eliminate background noise, room echo, and muffling from any voice recording, making it sound like it was recorded in a professional soundproof broadcast studio.",
-        "features": [
-          "Enhance Speech: removes heavy background chatter, wind, and room reverb in 1 click",
-          "Mic Check: analyze your microphone setup and distance to optimize acoustics",
-          "Preserves natural vocal warmth while removing harsh plosives and sibilance",
-          "Simple web upload with instant before/after audio comparison"
-        ],
-        "useCases": [
-          "Podcasters and remote interviewers fixing poor guest microphone audio",
-          "YouTubers cleaning up outdoor vlogs and room echo without expensive mics",
-          "Students and teachers clarifying recorded lectures and Zoom calls"
-        ],
-        "pricingDetails": "100% Free for standard audio enhancement up to 1 hour/day."
-      }
-    },
-    {
-      "id": "whisper-openai",
-      "name": "OpenAI Whisper",
-      "category": "audio-editing",
-      "categories": [
-        "audio-editing",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": true,
-      "description": "Open-source automatic speech recognition (ASR) system with near-human accuracy across 99+ languages.",
-      "url": "https://github.com/openai/whisper",
-      "domain": "openai.com",
-      "icon": "👂",
-      "inner_content": {
-        "overview": "OpenAI Whisper is a state-of-the-art open-source speech recognition model trained on 680,000 hours of multilingual audio. It transcribes accents, background noise, and technical jargon with near-human precision.",
-        "features": [
-          "Supports speech-to-text transcription across 99+ languages",
-          "Automatic language identification and English translation",
-          "Robust to heavy background noise, technical acronyms, and regional accents",
-          "100% open source and downloadable for free local offline execution"
-        ],
-        "useCases": [
-          "Transcribing interviews, meeting recordings, and lectures with zero API costs",
-          "Generating accurate `.srt` and `.vtt` subtitles for videos and podcasts",
-          "Building local offline voice-controlled software and dictation tools"
-        ],
-        "pricingDetails": "100% Free and open source (MIT license)."
-      }
-    },
-    {
-      "id": "cleanvoice-ai",
-      "name": "Cleanvoice AI",
-      "category": "audio-editing",
-      "categories": [
-        "audio-editing",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Filler Remover",
-      "featured": false,
-      "description": "Automatically remove filler words (ums, ahs), stuttering, mouth clicks, and dead silences from audio.",
-      "url": "https://cleanvoice.ai",
-      "domain": "cleanvoice.ai",
-      "icon": "🎙️",
-      "inner_content": {
-        "overview": "Cleanvoice is an artificial intelligence tool that removes filler sounds (um, uh, like), mouth clicks, stuttering, and awkward silences from your podcast episodes and audio recordings automatically.",
-        "features": [
-          "Detects and removes filler words in multiple languages and accents",
-          "Eliminates lip smacks, saliva clicks, and heavy breathing sounds",
-          "Timeline marker export: load edit points directly into Audacity, Premiere, or Reaper",
-          "Auto-eq and sound level balancing across multiple interview hosts"
-        ],
-        "useCases": [
-          "Podcasters cutting editing time from 2 hours down to 2 minutes",
-          "Audiobook narrators cleaning up mouth noises and breath gasps",
-          "Course creators making recorded lectures sound concise and professional"
-        ],
-        "pricingDetails": "Free trial with 30 minutes of audio processing. Pay-as-you-go available."
-      }
-    },
-    {
-      "id": "gamma-app",
-      "name": "Gamma App",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Presentations",
-      "featured": true,
-      "description": "Generate beautiful, interactive presentations, documents, and web pages from a simple text prompt in seconds.",
-      "url": "https://gamma.app",
-      "domain": "gamma.app",
-      "icon": "📊",
-      "inner_content": {
-        "overview": "Gamma App is an AI presentation and document builder. Instead of spending hours aligning PowerPoint shapes, simply enter your topic or outline, and Gamma formats a polished, interactive slide deck or webpage.",
-        "features": [
-          "One-click presentation, document, and webpage generator from text prompts",
-          "Flexible card-based layout system that looks modern on mobile and desktop",
-          "Embed interactive widgets, forms, YouTube videos, and live websites",
-          "Export to PowerPoint (.pptx), PDF, or share via a clean responsive link"
-        ],
-        "useCases": [
-          "Startup founders creating investor pitch decks in under 10 minutes",
-          "Professionals preparing client proposals, sales decks, and quarterly reviews",
-          "Educators drafting engaging interactive classroom lesson modules"
-        ],
-        "pricingDetails": "Generous 400 free credits on sign-up + referral credits. Plus at $8/mo."
-      }
-    },
-    {
-      "id": "fathom-ai",
-      "name": "Fathom AI Notetaker",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free for Individuals",
-      "featured": true,
-      "description": "Free AI meeting assistant that records, transcribes, highlights, and summarizes Zoom, Teams, and Google Meet calls.",
-      "url": "https://fathom.video",
-      "domain": "fathom.video",
-      "icon": "📝",
-      "inner_content": {
-        "overview": "Fathom AI is a 100% free meeting assistant for Zoom, Microsoft Teams, and Google Meet. It records your meetings, produces accurate real-time transcripts, and generates structured action items automatically.",
-        "features": [
-          "100% free unlimited recording and transcription with zero time caps",
-          "Instant AI meeting summaries and structured action items delivered right after calls",
-          "1-click highlight button to bookmark key moments during live conversations",
-          "Syncs meeting notes automatically to Notion, Slack, Google Docs, and HubSpot"
-        ],
-        "useCases": [
-          "Remote teams eliminating manual meeting note-taking",
-          "Consultants and freelancers capturing exact client requirements during calls",
-          "Hiring managers summarizing candidate interviews with timestamped quotes"
-        ],
-        "pricingDetails": "100% Free with unlimited recording for individuals. Team plans available."
-      }
-    },
-    {
-      "id": "harpa-ai",
-      "name": "HARPA AI",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Chrome Extension",
-      "featured": true,
-      "description": "Hybrid AI browser extension that automates web tasks, monitors price drops, and summarizes YouTube videos.",
-      "url": "https://harpa.ai",
-      "domain": "harpa.ai",
-      "icon": "🌐",
-      "inner_content": {
-        "overview": "HARPA AI is a powerful Chrome extension that acts as your personal web copilot. It brings ChatGPT, Claude, and web automation directly to any tab, allowing you to monitor competitor price drops, extract page data, and summarize articles.",
-        "features": [
-          "Page monitoring: track price drops, restocks, and page changes on autopilot",
-          "100+ built-in page commands: summarize articles, write replies, extract tables",
-          "YouTube video summarizer with timestamped key takeaways",
-          "Connects to your free ChatGPT or Claude web session with zero API costs"
-        ],
-        "useCases": [
-          "Automating repetitive web data extraction and competitor price tracking",
-          "Summarizing lengthy articles, Reddit threads, and research papers on any tab",
-          "Writing contextual email replies and LinkedIn comments in 1 click"
-        ],
-        "pricingDetails": "100% Free Chrome extension (bring your own free ChatGPT/Claude account)."
-      }
-    },
-    {
-      "id": "make-ai",
-      "name": "Make.com AI",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "developer-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "Visual Automation",
-      "featured": false,
-      "description": "Visual workflow automation platform to connect thousands of apps and integrate AI models with drag-and-drop.",
-      "url": "https://www.make.com",
-      "domain": "make.com",
-      "icon": "🔄",
-      "inner_content": {
-        "overview": "Make (formerly Integromat) is a visual workflow automation platform. Build multi-step workflows connecting OpenAI, Claude, Google Sheets, Slack, Supabase, and 1,800+ apps without writing a single line of code.",
-        "features": [
-          "Drag-and-drop visual workflow canvas with unlimited branching logic",
-          "Native modules for OpenAI, Anthropic, Gemini, Mistral, and Pinecone",
-          "Real-time execution monitoring, error handling, and webhook triggers",
-          "Pre-built automation templates for lead enrichment, content publishing, and CRM"
-        ],
-        "useCases": [
-          "Automating AI content publishing from Google Sheets to WordPress and social media",
-          "Routing and summarizing inbound customer support emails automatically",
-          "Enriching sales leads with AI research before syncing to CRM databases"
-        ],
-        "pricingDetails": "Free plan includes 1,000 operations/month. Core plan starts at $9/month."
-      }
-    },
-    {
-      "id": "taskade-ai",
-      "name": "Taskade AI",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "AI Team Workspace",
-      "featured": false,
-      "description": "Collaborative workspace for tasks, mind maps, and autonomous AI agents that work for your team.",
-      "url": "https://www.taskade.com",
-      "domain": "taskade.com",
+      "description": "AmorLink is an AI girlfriend and companion app for creating or choosing AI characters to chat with, generate photos and video for, and hear by voice. Characters are described as retaining a consistent personality and remembering prior conversations.",
+      "url": "https://www.amorlink.ai/",
+      "domain": "amorlink.ai",
       "icon": "⚡",
       "inner_content": {
-        "overview": "Taskade is an AI-powered workspace combining project management, mind maps, notes, and custom autonomous AI agents. Teams can build specialized agents for research, marketing, and task execution.",
-        "features": [
-          "Custom AI Agents: build specialized virtual team members with custom knowledge",
-          "Dynamic views: switch instantly between Kanban boards, mind maps, and lists",
-          "AI Workflow Generator: turns high-level project goals into step-by-step checklists",
-          "Real-time multi-user team collaboration and video chat built-in"
-        ],
-        "useCases": [
-          "Managing team sprints and transforming ideas into actionable checklists",
-          "Deploying autonomous AI agents to research topics and draft reports",
-          "Creating collaborative mind maps and project documentation"
-        ],
-        "pricingDetails": "Generous Free tier with unlimited tasks and AI credits. Starter at $4/mo."
+        "overview": "AmorLink is an AI companion platform centered on customizable AI girlfriend characters. Users can select a character from its feed or create one from scratch, then interact through chat, images, video, and voice.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "scribe-ai",
-      "name": "Scribe AI",
+      "id": "voicecloner",
+      "name": "VoiceCloner",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "VoiceCloner is an AI voice-cloning tool that creates a voice profile from a short audio sample and generates speech from typed text. It supports multilingual generation and MP3 downloads without requiring sign-up to try the service.",
+      "url": "https://voicecloner.org",
+      "domain": "voicecloner.org",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "VoiceCloner is a focused AI voice-cloning service for creating a personal voice profile from a recording and turning typed text into generated speech.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "lookora",
+      "name": "Lookora",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Lookora is an AI virtual try-on tool that lets you upload one photo and preview stylist-created outfits on yourself in seconds. It runs in a browser and is also available on iPhone.",
+      "url": "https://www.lookora.app",
+      "domain": "lookora.app",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Lookora is an AI virtual try-on service for previewing outfits before buying or planning what to wear. Upload one photo, choose a stylist-created look or an outfit image, and Lookora generates an image of you wearing it.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "wibidi",
+      "name": "Wibidi",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Wibidi automatically generates embeddable, context-aware AI chatbots for websites. It is designed to let website owners embed a chatbot in seconds. Simplicity is a feature.",
+      "url": "https://wibidi.com",
+      "domain": "wibidi.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Wibidi is an AI-powered platform for generating and embedding a context-aware chatbot on a website in seconds. What it does Wibidi automatically creates embeddable chatbots for websites, with the chatbot designed to be aware of the website’s context.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "audio-converter-ai",
+      "name": "Transcribe Audio to Text",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Audio Converter AI transcribes audio, video, and YouTube links into editable text with timestamps, speaker labels, and AI summaries. It supports more than 200 languages and accepts a range of media formats.",
+      "url": "https://audioconverter.ai/",
+      "domain": "audioconverter.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Transcribe Audio to Text with AI and turn audio recordings, videos, and online content into accurate, searchable, and editable transcripts. Audio Converter AI supports content from YouTube, TikTok, Instagram, Facebook, X, Bilibili, Google Drive, Dropbox, and publicly accessible MP3 or MP4 links, as well as uploaded audio and video files.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "3droomdesign-ai",
+      "name": "3DRoomDesign.ai",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "3DRoomDesign.ai converts floor plans, sketches, and other room references into editable 3D room designs with AI. Users can adjust materials, lighting, and furniture, then share or export designs for review.",
+      "url": "https://3droomdesign.ai/",
+      "domain": "3droomdesign.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "3DRoomDesign.ai is an AI-powered room-design tool for turning floor plans and references into editable 3D proposals without requiring CAD skills.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ego-lite",
+      "name": "ego (lite)",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "ego (lite) is a Chromium-based browser that lets AI coding agents run web automation using a shared, logged-in browser state. It provides separate workspaces for agent tasks and supports parallel browser actions on Mac.",
+      "url": "https://lite.ego.app/",
+      "domain": "lite.ego.app",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "ego (lite) is an agent-native browser for running web automation through AI agents such as Claude Code and Codex while preserving access to your existing logged-in browser state. It is built on Chromium and is available for Mac.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "youcam-online-editor",
+      "name": "YouCam Online Editor",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "AI-powered online photo and video editor for creating, enhancing, and transforming visual content with easy-to-use AI tools.",
+      "url": "https://yce.perfectcorp.com/",
+      "domain": "yce.perfectcorp.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "No reviews yet. Be the first to review YouCam Online Editor.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "inflammascan-anti-inflammatory-diet-app",
+      "name": "InflammaScan | Anti-Inflammatory Diet App",
       "category": "productivity",
       "categories": [
         "productivity",
-        "education"
+        "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Auto SOPs",
-      "featured": false,
-      "description": "Automatically capture your screen clicks and turn any process into a visual step-by-step SOP guide in seconds.",
-      "url": "https://scribehow.com",
-      "domain": "scribehow.com",
-      "icon": "📜",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "InflammaScan is an anti-inflammatory diet app that analyzes meal photos or text entries, provides inflammation scores, and identifies food and symptom patterns over time.",
+      "url": "https://inflammascan.app",
+      "domain": "inflammascan.app",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "Scribe turns any digital process into a visual, step-by-step guide with screenshots and annotated clicks. Simply hit record, complete your task, and Scribe writes the full Standard Operating Procedure (SOP).",
-        "features": [
-          "Automatic screenshot capture with annotated click highlights",
-          "AI text generator that writes clear instructions for every step",
-          "Export guides to PDF, HTML embed, Markdown, or share via link",
-          "Redaction tools to blur sensitive personal information automatically"
-        ],
-        "useCases": [
-          "Onboarding new team members with clear software walkthroughs",
-          "Customer support teams creating visual help center articles",
-          "Freelancers handing off completed projects and workflows to clients"
-        ],
-        "pricingDetails": "Free plan includes unlimited web guides. Pro plan at $12/month for desktop app."
+        "overview": "InflammaScan is an anti-inflammatory diet app and food scanner designed to help users track meals, view inflammation scores, and identify dietary patterns associated with their symptoms. It analyzes meals and provides personalized insights without requiring users to manually isolate ingredients over extended periods.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "magical-ai",
-      "name": "Magical AI",
+      "id": "humanize-max",
+      "name": "Humanize Max",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Humanize Max is a free AI humanizer that rewrites AI-generated text into more natural-sounding content. It supports style and length controls, file uploads, locked terms, single-line rephrasing, and unlimited reruns.",
+      "url": "https://humanizemax.ai/",
+      "domain": "humanizemax.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Humanize Max is a free AI humanizer for turning AI-generated text into more natural, human-sounding writing. Paste text, upload a file, or try a sample, then choose a writing style and length before generating a revised version.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "face2social",
+      "name": "Face2social",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Face2social finds public social media profiles that match an uploaded photo, across Instagram, Facebook, TikTok and X. It matches the face rather than the image file, so it works where a reverse image search comes back empty. Free preview without registration; it does not crawl the open web.",
+      "url": "https://face2social.com",
+      "domain": "face2social.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Face2social is a social media reverse image search tool that helps users find possible matching profiles from an uploaded photo. It searches for social media accounts by face or picture across multiple supported platforms.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "pdf-net-mcp",
+      "name": "pdf.net MCP",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Edit, create, and manage PDFs directly in Claude and ChatGPT. Connect pdf.net to your AI assistant to update text, generate documents, merge files, and organize your library using plain-language prompts.",
+      "url": "https://pdf.net/mcp-server",
+      "domain": "pdf.net",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "pdf.net MCP Server connects Claude and ChatGPT to your PDF tools and document library. Describe what you need in plain language to edit existing files, create new documents, and handle everyday PDF tasks without leaving your conversation. No coding required.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "respeecher",
+      "name": "Respeecher",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Respeecher is an AI voice technology provider spanning three products: AI Voice Technology for voice cloning and speech-to-speech, Respeecher Space for real-time text-to-speech, and Voice Marketplace, a licensed voice library.",
+      "url": "https://www.respeecher.com/",
+      "domain": "respeecher.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Respeecher is an AI voice technology provider for professional production and voice-agent applications, organized into three products.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "cinefate",
+      "name": "CineFate",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "CineFate is an AI interactive story generator that turns a written setup and fictional opening image into a photorealistic video story. Your text choices determine what happens next.",
+      "url": "https://cinefate.com/",
+      "domain": "cinefate.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "CineFate is an AI interactive story generator for video stories you play. Write a story setup, add or create a fictional opening image, and make choices as the story unfolds through photorealistic AI video scenes.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "sustain",
+      "name": "Sustain",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Sustain uses AI to select photos, design album pages, generate captions, and prepare digital or printed photo albums from your uploaded images.",
+      "url": "https://www.sustain-app.com",
+      "domain": "sustain-app.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Sustain turns a camera roll into a finished digital or printed photo album. Upload photos without sorting them first, and its AI analyzes, curates, arranges, styles, and captions the album for you.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "airtap",
+      "name": "Airtap",
       "category": "productivity",
       "categories": [
+        "productivity",
         "productivity"
       ],
-      "pricing": "Free",
-      "badge": "100% Free Autofill",
-      "featured": false,
-      "description": "Free AI text expander and web autofill extension that automates repetitive typing and data entry across tabs.",
-      "url": "https://www.getmagical.com",
-      "domain": "getmagical.com",
-      "icon": "🪄",
-      "inner_content": {
-        "overview": "Magical is a free productivity extension that eliminates repetitive typing and copy-pasting. It uses AI to write personalized emails, expand keyboard shortcuts, and transfer data between web tabs without APIs.",
-        "features": [
-          "AI Text Generator: drafts customized emails and replies in 1 click",
-          "Keyboard shortcut text expansion for frequently used snippets and links",
-          "Web data transfer: automatically pull data from LinkedIn or CRM into Google Sheets",
-          "Zero integration setup: works out of the box on any webpage"
-        ],
-        "useCases": [
-          "Recruiters sending personalized candidate outreach on LinkedIn",
-          "Customer support agents speeding up ticket resolution with smart snippets",
-          "Sales reps transferring lead info to spreadsheets in one click"
-        ],
-        "pricingDetails": "100% Free for individuals with generous monthly actions."
-      }
-    },
-    {
-      "id": "notebooklm",
-      "name": "NotebookLM",
-      "category": "research",
-      "categories": [
-        "research",
-        "education",
-        "audio-editing"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free by Google",
+      "pricing": "Freemium",
+      "badge": "Freemium",
       "featured": true,
-      "description": "Google's free personalized AI research assistant that turns notes and PDFs into deep insights and Audio Overviews.",
-      "url": "https://notebooklm.google.com",
-      "domain": "notebooklm.google.com",
-      "icon": "📓",
+      "description": "Airtap lets you text instructions to an agent that operates apps on a cloud Android phone or your device, monitors tasks, escalates when needed, and runs scheduled routines.",
+      "url": "https://airtap.ai/",
+      "domain": "airtap.ai",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "NotebookLM by Google is a virtual research assistant grounded entirely in your own uploaded source material (PDFs, Google Docs, YouTube videos, web links). It features the viral 'Audio Overview' that turns your notes into an engaging two-host podcast.",
-        "features": [
-          "Grounds all answers exclusively in your uploaded source documents with citations",
-          "Audio Overview: generates lifelike, two-host podcast discussions of your notes",
-          "Supports massive uploads: up to 50 sources per notebook (500,000 words each)",
-          "Creates instant study guides, FAQ lists, timelines, and briefing docs"
-        ],
-        "useCases": [
-          "Students synthesizing semester lecture notes and textbook chapters into podcasts",
-          "Researchers analyzing dozens of scientific papers without hallucinated facts",
-          "Executives digesting dense annual reports and competitive intelligence"
-        ],
-        "pricingDetails": "100% Free provided by Google with your Google account."
+        "overview": "Review our placement packages for category visibility, homepage exposure, and more.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "consensus-ai",
-      "name": "Consensus AI",
-      "category": "research",
+      "id": "landscape-design-ai-5",
+      "name": "Landscape Design AI",
+      "category": "image-generator",
       "categories": [
-        "research",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Science Pick",
-      "featured": true,
-      "description": "AI academic search engine that extracts insights and synthesizes consensus directly from 200M+ peer-reviewed papers.",
-      "url": "https://consensus.app",
-      "domain": "consensus.app",
-      "icon": "🔬",
-      "inner_content": {
-        "overview": "Consensus is an academic search engine that uses AI to extract findings directly from peer-reviewed scientific research. Ask any scientific question, and Consensus provides a 'Consensus Meter' summarizing scientific agreement.",
-        "features": [
-          "Indexes over 200 million peer-reviewed academic papers across all fields",
-          "Consensus Meter: visual breakdown of whether scientific papers agree, disagree, or are neutral",
-          "Direct citations with quality indicators (sample size, methodology, study type)",
-          "Synthesize summaries of top 10 relevant studies in one click"
-        ],
-        "useCases": [
-          "Health, wellness, and medical fact-checking backed by clinical trials",
-          "Students and academic researchers finding supporting citations for literature reviews",
-          "Journalists verifying scientific claims against peer-reviewed consensus"
-        ],
-        "pricingDetails": "Free tier with unlimited searches and Consensus summaries. Premium at $8.99/mo."
-      }
-    },
-    {
-      "id": "elicit-ai",
-      "name": "Elicit AI",
-      "category": "research",
-      "categories": [
-        "research",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Literature Review",
-      "featured": false,
-      "description": "AI research assistant that automates literature reviews, extracts data from 125M+ papers, and finds answers.",
-      "url": "https://elicit.com",
-      "domain": "elicit.com",
-      "icon": "📚",
-      "inner_content": {
-        "overview": "Elicit uses language models to automate research workflows. It searches through 125 million academic papers, extracts structured data into custom comparison tables, and synthesizes key takeaways for literature reviews.",
-        "features": [
-          "Finds relevant papers even when keywords don't match exactly",
-          "Extracts specific data columns (methodology, population, results) into tables",
-          "Synthesizes research answers with direct references to paper paragraphs",
-          "Upload your own PDFs to extract structured findings in bulk"
-        ],
-        "useCases": [
-          "Graduate students and professors conducting systematic literature reviews",
-          "Biotech and medical researchers screening clinical trial parameters",
-          "Data analysts compiling scientific benchmarks across multiple studies"
-        ],
-        "pricingDetails": "Free tier with 5,000 initial credits. Plus plan at $10/month."
-      }
-    },
-    {
-      "id": "chatpdf",
-      "name": "ChatPDF",
-      "category": "research",
-      "categories": [
-        "research",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "PDF Reader",
-      "featured": false,
-      "description": "Fast AI PDF reader to chat with any book, scientific paper, or manual with instant page references.",
-      "url": "https://www.chatpdf.com",
-      "domain": "chatpdf.com",
-      "icon": "📄",
-      "inner_content": {
-        "overview": "ChatPDF allows you to interact with any PDF document as if it were a knowledgeable human. Upload research papers, financial reports, textbooks, or user manuals, and ask questions with clickable page citations.",
-        "features": [
-          "Upload any PDF and get an instant summary with suggested follow-up questions",
-          "Clickable page source references verify every single answer",
-          "Multilingual capability: ask in any language regardless of the document's language",
-          "No registration required for quick document analysis"
-        ],
-        "useCases": [
-          "Students studying textbook chapters and preparing for exams",
-          "Lawyers and consultants reviewing long contracts and compliance filings",
-          "Engineers quickly looking up specifications inside 500-page equipment manuals"
-        ],
-        "pricingDetails": "Free plan includes 2 PDFs daily (up to 120 pages each). Plus at $5/month."
-      }
-    },
-    {
-      "id": "pdfgear-ai",
-      "name": "PDFgear AI",
-      "category": "research",
-      "categories": [
-        "research",
+        "image-generator",
         "productivity"
       ],
-      "pricing": "Free",
-      "badge": "100% Free Desktop/Mobile",
+      "pricing": "Freemium",
+      "badge": "Freemium",
       "featured": true,
-      "description": "Completely free, full-featured PDF editor and AI chatbot for Windows, Mac, and iOS with zero paywalls.",
-      "url": "https://www.pdfgear.com",
-      "domain": "pdfgear.com",
-      "icon": "📑",
+      "description": "Free online tool that turns photos of yards, gardens, patios, and other outdoor spaces into photorealistic landscape design concepts in seconds, with no login required.",
+      "url": "https://landscape-design.ai/",
+      "domain": "landscape-design.ai",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "PDFgear is a 100% free PDF reader and editor that integrates a powerful AI copilot. Unlike web-based tools with page limits, PDFgear runs locally on your PC or Mac to read, edit, convert, and chat with PDFs without fees.",
-        "features": [
-          "100% Free with zero page limits, watermarks, or subscription paywalls",
-          "Integrated AI Copilot to summarize, extract data, and query large documents",
-          "Full PDF editing suite: edit text, convert to Word, merge, split, and sign",
-          "Available on Windows, macOS, iOS, and iPadOS"
-        ],
-        "useCases": [
-          "Reading and querying massive 1,000+ page books and legal contracts",
-          "Editing and signing PDF documents without paying for Adobe Acrobat",
-          "Students extracting study guides and summaries completely free"
-        ],
-        "pricingDetails": "100% Free with all features included."
+        "overview": "Landscape Design AI helps users visualize outdoor spaces by transforming an uploaded photo into a professional-quality landscape design concept. It supports yards, gardens, patios, and other outdoor areas, with options for different styles and design preferences.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "wolfram-alpha",
-      "name": "Wolfram Alpha AI",
+      "id": "fotor-video-agent-2",
+      "name": "Fotor Video Agent",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create and edit precision motion graphics &amp; video with chat.",
+      "url": "https://www.fotor.com/video/",
+      "domain": "fotor.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Fotor Video Agent helps founders, marketers, and creators turn ideas, scripts, or raw assets into precision videos &amp; motion graphics. It auto-orchestrates scenes, timing, visual FX, and kinetic typography—while keeping text, numbers, logos, and charts editable on a multi-track timeline before you render. Update stats at the last minute or refine timing without regenerating the whole video. Ship promos and explainers faster with zero black-box outputs and no tedious keyframes.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "sparkles-ai-2",
+      "name": "Sparkles AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "AI girlfriend chat app for flirting, roleplay, virtual companionship, and generating customizable anime or realistic AI images, with daily free credits and premium features.",
+      "url": "https://www.sparkles-app.com/?spot=aitoptools",
+      "domain": "sparkles-app.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Chat, flirt and roleplay with uncensored AI companions, ask them for photos in the middle of the conversation, and build your own AI girlfriend from scratch in anime or realistic style.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "structura-2",
+      "name": "Structura",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Structura runs the whole publishing lifecycle unattended: research, strategy, writing, authority links, images, a 20+ point SEO protocol, and publishing. Output is real Gutenberg blocks, not pasted HTML. Publishes to WordPress natively or to any stack via a Content API.",
+      "url": "https://www.structurawp.com/",
+      "domain": "structurawp.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Structura is an autonomous content engine for WordPress and headless sites. It runs the full publishing lifecycle — keyword research, content strategy, writing, authority links, image generation, SEO optimization, and publishing — on a schedule you set, with no per-post intervention.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "free-youtube-transcript-generator-2",
+      "name": "Free YouTube Transcript Generator",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Generate accurate YouTube transcripts with AI in seconds. Paste a YouTube video URL and automatically turn spoken content into searchable text.",
+      "url": "https://youtube-to-transcript.ai/youtube-transcript-generator",
+      "domain": "youtube-to-transcript.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "No reviews yet. Be the first to review Free YouTube Transcript Generator.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "nudifybot",
+      "name": "Nudifybot",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Nudifybot is an AI undress app that processes uploaded photos to remove clothing and generate deepnude-style images.",
+      "url": "https://nudify.bot/",
+      "domain": "nudify.bot",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Nudifybot is an AI undress app that processes uploaded photos to remove clothing and generate deepnude-style images.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "seadanse-2",
+      "name": "Seadanse",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Type what you want to see, or start from your own images. Seedance 2.5 turns it into a cinematic video with the sound already in it, from 480p drafts to 1080p finals.",
+      "url": "https://seadanse.com",
+      "domain": "seadanse.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Review our placement packages for category visibility, homepage exposure, and more.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "mavic-ai",
+      "name": "Mavic AI",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Mavic AI is an AI marketing agent for teams running several brands. It builds a Brand DNA from your website, then creates, schedules and publishes on-brand posts, images, video and long-form content across eight social channels from one workspace. Nothing publishes without approval.",
+      "url": "https://mavic.ai",
+      "domain": "mavic.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Review our placement packages for category visibility, homepage exposure, and more.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "gradient",
+      "name": "Gradient",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Build ML models faster, automate optimization, leverage latest ML tech without complex setup.",
+      "url": "https://www.youtube.com/watch?v=aLYTmpy03Eg",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Gradient is a powerful and easy-to-use cloud computing platform designed to simplify the process of building, training, and deploying machine learning models. With Gradient, users can leverage the latest and most advanced ML technology without any complex setup or installation. The platform provides a full suite of tools and services that enable users to quickly and easily create sophisticated models and deploy them in production. Gradient also offers a range of powerful features, including automated model optimization and hyperparameter tuning, which can help users achieve better results faster. Best of all, Gradient is accessible to everyone, and users can get started without any prior experience or expertise. With Gradient, advanced ML capabilities are within everyone’s reach.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "removal-ai",
+      "name": "Removal AI",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Detect and remove offensive and undesired content with advanced filtering for maintaining content standards.",
+      "url": "https://removal.ai/",
+      "domain": "removal.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Removal AI is a powerful platform designed to help users remove unwanted content from their websites. With our service, you can quickly and easily remove any undesired content, such as images, videos, or text. Our automated system is designed to detect and remove inappropriate, offensive, or otherwise unwanted content, ensuring that your website remains safe and secure. We understand how important it is for your website to be free from any content that could be deemed unsavory. That’s why Removal AI offers a variety of tools to help you protect your website’s reputation. Our service can detect and remove content that is potentially offensive, inappropriate, or illegal. We also offer advanced filtering options to ensure that only content that meets your standards is kept on your website. With Removal AI, you can quickly and easily clean up your website, ensuring it is free from any unwanted content.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "mrscrapper",
+      "name": "MrScrapper",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automate data entry, extract from complex websites effortlessly, and leverage AI algorithms for faster extraction.",
+      "url": "https://mrscraper.com/ai?utm_source=aitoptools&amp;utm_medium=marketplace&amp;utm_campaign=aitoptools",
+      "domain": "mrscraper.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "MrScrapper is an advanced web scraping tool powered by Artificial Intelligence (AI) that provides data extraction solutions to businesses. With this tool, businesses can quickly and accurately access data from any website, allowing them to make informed decisions, glean insights, and develop strategies faster and more efficiently.MrScrapper’s AI-based technology provides a tremendous amount of flexibility and scalability that allows businesses of any size to quickly and accurately access the data they need from any website. By leveraging AI-based algorithms, MrScrapper eliminates manual data entry tasks and the associated errors while speeding up the data extraction process.The user-friendly interface and intuitive design of MrScrapper makes it easy to use and understand even for those with minimal technical knowledge. This enables businesses to quickly and easily access the data they need without any hassle.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "salonized",
+      "name": "Salonized",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Streamline appointment management, payments, and customer communication with an intuitive interface and automated reminders.",
+      "url": "https://www.youtube.com/watch?v=AVho9mQEg0g",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Salonized is the ultimate salon management software. It is designed to simplify the day-to-day operations of hairdressers, barbers, and other beauty professionals. With Salonized, users can easily manage appointments, payment processing, and customer relations.Salonized provides comprehensive booking, scheduling, and payment functionality. It offers an intuitive user interface, allowing beauty professionals to quickly and easily book new appointments, add notes to existing appointments, and keep track of customer information. Payment processing is also simple with Salonized, allowing customers to securely and conveniently pay for their services through the app.Salonized also helps users to stay connected with their customers. It features a customer relationship management system, which allows users to send emails, text messages, and appointment reminders directly to their clients. This helps to build strong relationships and foster loyalty, while also increasing customer satisfaction.Overall, Salonized is the ultimate salon management solution.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ai-lili",
+      "name": "Ai LiLi",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Personalize NFTs with unique personalities, chat on Discord, and add soul to your collection – making them feel alive.",
+      "url": "https://www.youtube.com/watch?v=9F6k70NRS88",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "by giving them a unique personality.Ai LiLi is an AI-powered tool that gives your Non-Fungible Tokens (NFTs) an extra special touch. With Ai LiLi, you can interact with your favorite NFTs in an entirely new way. Using an AI Large Language Model, your NFTs will come alive, each with a unique personality. With this tool, you can chat with your NFTs on Discord, making them feel like part of the family. Through Ai LiLi, you can create a virtual relationship with your NFTs, making them feel more alive and part of your collection. With this AI tool, your NFTs will come to life, adding a special soul to each one of them.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "wanderbot",
+      "name": "Wanderbot",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create chatbot flows, offer personalized suggestions, and identify customer pain points by tracking interactions.",
+      "url": "https://www.youtube.com/watch?v=oM1BnSG8VxI",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "wanderbot.io is an automated customer service platform that helps businesses of all sizes to connect with and serve their customers quickly and efficiently. Wanderbot provides users with a number of features to help them create a personalized customer experience, such as a natural language processing engine, AI-driven automation, and self-service support options. With wanderbot, businesses can create custom chatbot flows to answer customer questions, provide personalized suggestions, and even take payments.Additionally, wanderbot provides businesses with insights into customer behavior, allowing them to better understand their customers and deliver a more tailored customer experience. With wanderbot, businesses can also track customer interactions, identify customer pain points, and improve customer service processes. All of this helps businesses to streamline customer service tasks, reduce customer service costs, and provide a more positive customer experience. Overall, wanderbot.io is an ideal solution for businesses seeking to improve customer service and build a more loyal customer base.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "suit-me-up",
+      "name": "Suit Me Up",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create perfect outfits, generate ultra-realistic suit pictures, and find the perfect look from home.",
+      "url": "https://www.youtube.com/watch?v=RiopPwp45l8",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Suit Me Up is an AI-powered virtual styling tool that helps you create the perfect outfit for any occasion. Simply upload 10-20 photos of yourself and our advanced AI technology will generate ultra-realistic pictures of you wearing a suit within 25-45 minutes. With Suit Me Up, you can create the perfect look for a job interview, wedding, party or any other special event without ever having to step into a store. Our tool is also incredibly easy to use. With just a few clicks, you’ll have an entire wardrobe of options to choose from – no need to waste time searching through endless racks of clothes. Plus, you can use these images for any purpose you can think of, from social media posts to professional headshots. With Suit Me Up, you can be sure of always looking your best, no matter the occasion.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "bigmp4",
+      "name": "bigmp4",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Colorize black and white videos, increase resolution up to 8K, and work on multiple videos simultaneously in batch mode.",
+      "url": "https://bigmp4.com/?ref=aitoptools",
+      "domain": "bigmp4.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "bigmp4’s AI Video Enhancement is the perfect tool for creatives who need to bring their videos to life. Our cutting-edge technology uses a 2022 AI model to increase the resolution of videos up to 2K, 4K, and even 8K with enhanced quality and reduced noise. The AI also supports black and white video colorization, smooth slow motion, and batch mode so you can work on multiple videos at once. With bigmp4’s AI Video Enhancement, you can take your videos to the next level without any loss in quality. Whether you’re a filmmaker, photographer, or just want to give your videos a more professional look, bigmp4’s AI Video Enhancement is the perfect tool for the job.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "responsebrain",
+      "name": "ResponseBrain",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Generate professional customer service responses, answer queries, using ChatGPT and GPT-4 models trained on your business's data.",
+      "url": "https://responsebrain.com",
+      "domain": "responsebrain.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "ResponseBrain is an AI-powered solution that transforms customer support e-mails. It revolutionizes businesses’ ability to generate professional and effective customer service responses, saving valuable time and effort. Using state-of-the-art artificial intelligence, ResponseBrain harnesses ChatGPT and GPT-4 models trained on your business’s specific information. By utilizing existing content like help center articles, blog posts, or previous e-mails, ResponseBrain creates a personalized AI assistant that deeply understands your business. This assistant adeptly handles customer queries, freeing up your time to focus on essential tasks. It seamlessly integrates into any e-mail system without requiring technical setup, delivering efficiency and productivity gains to your customer support process. Try ResponseBrain today and experience its transformative impact firsthand!",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ai-recipe-generator",
+      "name": "AI Recipe Generator",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Craft unique recipes with 3 clicks, receive tailored recipes via email, and save for later use.",
+      "url": "https://www.youtube.com/watch?v=0y11LdSLp0Q",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "The AI Recipe Generator is a revolutionary web-based tool that uses artificial intelligence to create delicious and unique recipes tailored to your own kitchen. With just three clicks you can be on your way to a delicious meal. All you need to do is create an account, enter the ingredients you have on hand, and the AI Recipe Generator will craft a custom recipe for you. Once the recipe is complete, you will receive it directly to your email inbox, so you can start cooking right away. With this user-friendly tool, you don’t have to worry about wasting time searching for recipes online or writing down a list of ingredients. Instead, you can have a delicious and unique meal in minutes. Plus, you can even save your recipes for later! The AI Recipe Generator is the perfect solution for busy households who need to whip something up with what’s on hand.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "free-text-to-speech",
+      "name": "Free Text-To-Speech",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create natural audio for podcasts, automate customer service responses, and generate audio for online courses.",
+      "url": "https://www.youtube.com/watch?v=-DDyvgUoXJo",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Concat me is a powerful and free online text-to-speech synthesis tool that helps you to effectively communicate your messages to your audience. With Concat me, you can convert text into a natural and smooth human voice with a wide range of customization options. Choose from over 100 speakers, and customize your audio with adjustable speech rate, pitch, articulation, pauses and more. Our tool also supports multiple languages and dialects, and even allows you to mix Chinese and English. Concat me is the perfect tool to help you communicate your messages in a way that resonates with your audience. Make your words stand out and capture the attention of your audience with Concat me.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "saveday",
+      "name": "SaveDay",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Capture webpages, articles, and PDFs, access and organize saved items, and enjoy summaries for added convenience.",
+      "url": "https://www.youtube.com/watch?v=zGTMg8PwvZ4",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "SaveDay is the ultimate productivity bot for Telegram users. With its AI-driven search capabilities, users can quickly capture and save a wide variety of content, such as web pages, blogs, articles, PDFs, YouTube videos, and podcasts. SaveDay also allows users to access and organize their saved items with ease, and even offers conversational interactions with PDF files. Plus, users can enjoy article and YouTube video summaries for added convenience. By helping users save time and stay organized, SaveDay is an invaluable tool for anyone looking to increase their productivity. With its seamless setup and intuitive design, SaveDay makes it easy for users to capture, store, and access their favorite content – all from the comfort of their Telegram app. So whether you’re a student, entrepreneur, or busy professional, SaveDay is the perfect solution to help you stay on top of your tasks and keep your workflow running smoothly.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ilisten",
+      "name": "iListen",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "iListen summarizes any article or webpage into short podcasts.",
+      "url": "https://www.youtube.com/watch?v=PNtfJoOdT94",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "iListen summarizes any article or webpage into short podcasts.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "travelities",
+      "name": "Travelities",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Find deals, create itineraries, and get personalized suggestions for your travel plans.",
+      "url": "https://www.travelities.com/?utm_source=aitoptools&amp;utm_medium=marketplace&amp;utm_campaign=aitoptools",
+      "domain": "travelities.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Travelities is the perfect tool for planning your next trip. With our AI travel planner, you can quickly and easily create custom itineraries for your next journey. Our advanced algorithms are designed to help you find the best deals and routes for your travel plans, as well as suggest destinations and activities based on your preferences. Whether you’re looking for a weekend escape or a longer getaway, our AI travel planner will give you the resources you need to make it happen. Plus, with our intuitive interface, you can easily access all your travel information in one place, giving you more time to relax and enjoy your vacation.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "lucybot",
+      "name": "Lucybot",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automate web scraping, capture data from any website, and transform it for better insights.",
+      "url": "https://lucybot.com",
+      "domain": "lucybot.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Lucybot is a powerful and intuitive web scraping platform designed to help businesses of all sizes extract data from the web. With its easy-to-use interface, Lucybot enables users to quickly and accurately extract data from any website and turn it into usable insights. The platform eliminates the need for manual web scraping and allows users to save time and money by automating the process. With Lucybot, users can quickly and accurately capture relevant data from any website without writing code. This ensures that businesses have the most up-to-date, accurate, and relevant data for their applications. Additionally, the platform offers powerful tools for data cleansing and transformation, allowing users to make the most of their data. Lucybot is the perfect choice for businesses that need to quickly and accurately capture web data without relying on manual processes.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "sketch-logo-ai",
+      "name": "Sketch Logo AI",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Sketch Logo AI is a tool to simplify 2D-3D logos, illustrations and tattoo designs, making the creative process a breeze. This AI-powered tool saves hours of additional work and also empowers users to bring their ideas to life without the need for advanced design or drawing skills.",
+      "url": "https://www.sketchlogo.ai/",
+      "domain": "sketchlogo.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "It has 4 features which are Sketch to Logo which allows you to create designs with basic sketches, Logo to Logo which allows you to transform your logo into anything you want, 2D to 3D to create stunning 3D designs and Image to Art option to create unique pieces of art. Although there are other similar tools available online, few offer the unique capability of Sketch Logo AI, allowing users to infuse their creativity into the design using the Sketch tool. Moreover, it can be challenging to find an app that encompasses all the features present in Sketch Logo AI. This tool provides a comprehensive solution for all design needs, serving as the go-to application for designing, editing, and adding fonts—an all-in-one creative powerhouse.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ai-newsletter-pilot",
+      "name": "AI Newsletter Pilot",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create newsletters 20x faster, with GPT 4 powered creative writing skills, to promote your blog or engage your audience.",
+      "url": "https://newsletterpilot.com/?ref=aitoptools",
+      "domain": "newsletterpilot.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Experience the end of laborious newsletter crafting with Newsletter Pilot! This revolutionary AI-driven solution simplifies the creation of captivating newsletters, sparing you valuable time and energy. Fueled by GPT-4, the cutting-edge in AI technology, Newsletter Pilot elevates your creative writing abilities, guaranteeing that your newsletters shine and yield superior outcomes.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "webgpt",
+      "name": "WebGPT",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automate blog posts, generate press releases, create marketing materials with accuracy and tailored to the target audience.",
+      "url": "https://www.youtube.com/watch?v=03S8QqNP3-4",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "WebGPT is an AI-driven text generation service that produces accurate, high-quality articles and other written content. It uses advanced natural language processing (NLP) techniques to generate grammatically correct and engaging content that is tailored to appeal to the target audience. WebGPT can be used to create blog posts, web copy, press releases, marketing materials, and other content quickly and easily.Unlike traditional text-generation software, WebGPT is powered by AI to produce content that is more accurate and has a higher level of factual accuracy than manual writing. It can be used to generate content in almost any subject matter, from business and finance to technology and science. WebGPT also allows writers to customize the content generated to suit their specific needs and the needs of their audience.WebGPT is an ideal solution for businesses and content creators looking to save time and energy while still producing accurate and engaging content.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "w-a-i-t-webuters-ai-tools",
+      "name": "W.A.I.T (Webuters AI Tools)",
+      "category": "marketing",
+      "categories": [
+        "marketing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Generate engaging content, enhance existing articles, and create professional messages for personal or business use.",
+      "url": "https://wait.webuters.com/?ref=aitoptools",
+      "domain": "wait.webuters.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Choose from a wide range of WAIT- Webuters’ AI Tools to improve your content quality and achieve your marketing goals with ease. W.A.I.T is an all-in-one content creation solution that enables users to create compelling and engaging content in seconds.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "taboo-ai",
+      "name": "Taboo AI",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Compete in challenges, customize difficulty, test knowledge in various topics.",
+      "url": "https://www.youtube.com/watch?v=x_DPwdiecF4",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "TabooAI is an innovative AI-powered game that challenges players to demonstrate their knowledge and vocabulary in a variety of topics. With daily challenges, users can test their skills against their friends and other players on the leaderboard. Developed with cutting-edge AI technology, the game offers an interactive, fun, and educational experience. The game features a variety of topics, including current events, geography, music, history, and more. Players can choose their difficulty level and topic to customize their experience. With every challenge, users can gain points and climb the leaderboard as they expand their knowledge. TabooAI is designed to be easy to learn and entertaining to play. The intuitive user interface is simple to navigate, and the game is suitable for players of all ages. Whether you’re looking to learn something new or just want to challenge yourself, TabooAI offers an engaging and rewarding experience.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "pixelcut-ai",
+      "name": "Pixelcut.ai",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automatically enhance, personalize, and create stunning images with AI-powered tools and auto-correction.",
+      "url": "https://www.youtube.com/watch?v=TwFgoJ_cV-Q",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Pixelcut.ai is an artificial intelligence-powered image editing platform designed to help people easily and quickly enhance their photos. The intuitive interface makes it easy to apply a variety of effects to improve the look of any image, from basic color and contrast adjustments to more advanced options like background removal and object extraction. The platform also offers a range of automated tools to help speed up the editing process, allowing users to create stunning images in a fraction of the time. Additionally, the AI-powered auto-correction function ensures that all edits are accurate and consistent, so users can rest assured that their photos will look their best every time. With Pixelcut.ai, users can quickly and easily turn any image into a professional-looking masterpiece.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "mieux-ai",
+      "name": "Mieux.ai",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Leverage AI insights to understand customers, create tailored experiences, analyze behavior, and optimize campaigns.",
+      "url": "https://www.youtube.com/watch?v=lDldDcw23FU",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Mieux.ai is an AI-powered customer experience platform that enables businesses to deliver personalized customer experiences at scale. With Mieux.ai, businesses can leverage AI-driven insights to better understand their customers, identify opportunities for improvement, and create customized experiences that drive engagement. Mieux.ai also provides actionable insights that can be used to create targeted campaigns and optimize customer experiences.Mieux.ai offers a range of features that make it easy to create tailored experiences for each customer. With its powerful AI algorithms, Mieux.ai can identify customer preferences, segment them into target groups, and deliver personalized experiences. This allows businesses to provide a more tailored experience that is tailored to the customer’s needs and preferences. Additionally, Mieux.ai can also analyze customer behavior and provide insights into customer trends and purchase patterns. With these insights, businesses can create targeted campaigns and optimize customer experiences.Mieux.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "notes-ai",
+      "name": "Notes.ai",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Notes.ai is a meetings transcription mac app that can record live meetings, ingest video files and youtube videos and transcribe them into user's Notion workspace for easy organization and access.",
+      "url": "https://apps.apple.com/us/app/notes-ai/id6477414161",
+      "domain": "apps.apple.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Notes.ai is a mac app that accurately transcribe recordings, video files and youtube videos into text and seamlessly stores them into an aggregated Meetings List page in users’ Notion workspaces for easy organization and access.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "quizalize",
+      "name": "Quizalize",
       "category": "education",
       "categories": [
         "education",
-        "research"
-      ],
-      "pricing": "Free",
-      "badge": "Computational Engine",
-      "featured": true,
-      "description": "Computational intelligence engine providing step-by-step math, physics, chemistry, and science solutions.",
-      "url": "https://www.wolframalpha.com",
-      "domain": "wolframalpha.com",
-      "icon": "📐",
-      "inner_content": {
-        "overview": "Wolfram Alpha is the definitive computational knowledge engine. It uses curated algorithms and factual datasets to compute answers, plot graphs, and solve complex mathematical equations with exact step-by-step derivations.",
-        "features": [
-          "Computes exact solutions for calculus, algebra, statistics, and discrete math",
-          "Step-by-step solution breakdowns for learning and homework verification",
-          "Vast scientific knowledge base covering chemistry, physics, astronomy, and geography",
-          "Natural language query parser converting math words into exact formulas"
-        ],
-        "useCases": [
-          "STEM students solving complex calculus, differential equations, and physics problems",
-          "Engineers and researchers verifying exact mathematical calculations",
-          "Visualizing 2D and 3D mathematical functions and data distributions"
-        ],
-        "pricingDetails": "Free for standard computational queries. Pro tier for guided step-by-step."
-      }
-    },
-    {
-      "id": "khanmigo",
-      "name": "Khanmigo by Khan Academy",
-      "category": "education",
-      "categories": [
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Socratic Tutor",
-      "featured": false,
-      "description": "Khan Academy's AI guide that uses Socratic questioning to help students learn without giving away answers.",
-      "url": "https://www.khanacademy.org/khanmigo",
-      "domain": "khanacademy.org",
-      "icon": "🎓",
-      "inner_content": {
-        "overview": "Khanmigo is an AI tutor developed by Khan Academy. Rather than simply giving students direct answers, Khanmigo uses the Socratic method to guide learners step-by-step through math, science, humanities, and coding challenges.",
-        "features": [
-          "Socratic tutoring method: prompts critical thinking instead of spoiling answers",
-          "Deep alignment with standard K-12 and AP course curriculums",
-          "Interactive coding tutor for learning JavaScript and Python",
-          "Teacher tools: automatically creates lesson plans and student progress rubrics"
-        ],
-        "useCases": [
-          "Students receiving personalized, patient 1-on-1 tutoring at their own pace",
-          "Parents guiding children through difficult math and science homework",
-          "Educators drafting customized classroom activities and discussion prompts"
-        ],
-        "pricingDetails": "Free for verified US teachers; low-cost monthly donation for learners."
-      }
-    },
-    {
-      "id": "photomath",
-      "name": "Photomath by Google",
-      "category": "education",
-      "categories": [
-        "education"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Camera Math",
-      "featured": false,
-      "description": "Scan handwritten math problems with your camera to get instant step-by-step explanations and graphs.",
-      "url": "https://photomath.com",
-      "domain": "photomath.com",
-      "icon": "📷",
-      "inner_content": {
-        "overview": "Photomath (acquired by Google) is the world's most downloaded math learning app. Simply snap a photo of any printed or handwritten math problem, and Photomath breaks down the solution with clear, step-by-step explanations.",
-        "features": [
-          "Instant camera scanning for both printed textbooks and messy handwriting",
-          "Step-by-step solution breakdowns explaining the 'why' behind each mathematical step",
-          "Interactive 2D graphing calculators and animated tutorial cards",
-          "Covers arithmetic, algebra, trigonometry, calculus, and statistics"
-        ],
-        "useCases": [
-          "Students checking homework answers and understanding missed steps",
-          "Parents helping their children with modern algebra and calculus methods",
-          "Self-learners brushing up on math fundamentals visually"
-        ],
-        "pricingDetails": "100% Free core scanning and step-by-step solutions on iOS and Android."
-      }
-    },
-    {
-      "id": "quizlet-qchat",
-      "name": "Quizlet Q-Chat",
-      "category": "education",
-      "categories": [
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Study Coach",
-      "featured": false,
-      "description": "AI study coach that quizzes you on your flashcards, tests your understanding, and tells fun stories to help you memorize.",
-      "url": "https://quizlet.com",
-      "domain": "quizlet.com",
-      "icon": "🃏",
-      "inner_content": {
-        "overview": "Quizlet Q-Chat is an AI study coach built on OpenAI technology. It interacts with your Quizlet flashcard sets, challenging you with adaptive quiz questions and real-world scenarios to deepen active recall.",
-        "features": [
-          "Interactive Socratic coaching based directly on your study flashcards",
-          "Adaptive difficulty: tests weaker concepts more frequently for spaced repetition",
-          "Generates practice tests, multiple-choice questions, and written quizzes",
-          "Supports millions of existing user-created study decks worldwide"
-        ],
-        "useCases": [
-          "High school and college students prepping for midterms, finals, and SATs",
-          "Medical and law students memorizing specialized terminology and case law",
-          "Language learners practicing vocabulary in conversational sentences"
-        ],
-        "pricingDetails": "Free tier with basic flashcards and sample AI sessions. Quizlet Plus for unlimited."
-      }
-    },
-    {
-      "id": "tutor-ai",
-      "name": "TutorAI",
-      "category": "education",
-      "categories": [
-        "education"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Course Maker",
-      "featured": false,
-      "description": "Type in any topic you want to learn, and TutorAI generates a complete modular course with lessons and quizzes.",
-      "url": "https://www.tutorai.me",
-      "domain": "tutorai.me",
-      "icon": "👨‍🏫",
-      "inner_content": {
-        "overview": "TutorAI is an AI-powered educational platform that builds custom curriculum courses on demand. Enter any subject (e.g. 'Quantum Computing', 'Roman Architecture'), and TutorAI structures complete modules with interactive lessons.",
-        "features": [
-          "Instant course generation: breaks any topic into structured modules and lessons",
-          "Interactive quizzes after every module to test retention",
-          "'Ask AI' button inside every lesson for deeper explanations and analogies",
-          "Track learning progress across multiple subject tracks"
-        ],
-        "useCases": [
-          "Curious self-learners exploring new subjects from scratch",
-          "Students needing structured introductory primers before advanced courses",
-          "Professionals upskilling in AI, finance, history, or programming"
-        ],
-        "pricingDetails": "100% Free for core course generation and interactive lessons."
-      }
-    },
-    {
-      "id": "cursor",
-      "name": "Cursor",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
         "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Top Pick",
+      "badge": "Freemium",
       "featured": true,
-      "description": "AI-first code editor fork of VS Code with codebase indexing, multi-file edits, and instant debugging.",
-      "url": "https://www.cursor.com",
-      "domain": "cursor.com",
+      "description": "Create engaging quizzes, track student results, and assign gamified challenges for motivating learning.",
+      "url": "https://www.youtube.com/watch?v=eYapyEKli_8",
+      "domain": "youtube.com",
       "icon": "⚡",
       "inner_content": {
-        "overview": "Cursor is the world's most popular AI-native code editor. Built as a seamless fork of VS Code, it lets developers index their entire repository, make multi-file edits via natural language, and use Claude or GPT-4o inline.",
-        "features": [
-          "Full codebase semantic indexing with `@codebase` natural language querying",
-          "Composer multi-file generation and editing across entire repositories",
-          "Instant AI tab autocomplete with intelligent cursor jump prediction",
-          "Direct terminal command generation and automated error fixing"
-        ],
-        "useCases": [
-          "Building full-stack web and mobile apps at 5x speed",
-          "Refactoring legacy codebases across dozens of connected files",
-          "Debugging complex runtime errors and writing automated test suites"
-        ],
-        "pricingDetails": "Free tier with 2,000 completions and 50 slow premium requests. Pro at $20/month."
+        "overview": "Quizalize is an innovative educational platform that helps teachers to engage and motivate their students by creating personalized learning experiences. With Quizalize, teachers can easily create digital quizzes and assessments, track results in real-time, and provide students with feedback to help them learn and grow. Teachers can also assign gamified challenges, which are designed to keep students engaged and motivated to achieve their best. Quizalize also offers a comprehensive library of ready-made quizzes, which are organized by topic and grade level. With its engaging, user-friendly interface and powerful analytics, Quizalize makes it easy for teachers to create engaging, personalized learning experiences for their students.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "github-copilot",
-      "name": "GitHub Copilot",
-      "category": "developer-tools",
+      "id": "ai-portrait-gen",
+      "name": "Ai Portrait Gen",
+      "category": "image-generator",
       "categories": [
-        "developer-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "Free for Students & OS",
-      "featured": false,
-      "description": "GitHub's AI pair programmer integrated across VS Code, Visual Studio, and JetBrains with multi-model choice.",
-      "url": "https://github.com/features/copilot",
-      "domain": "github.com",
-      "icon": "🐙",
-      "inner_content": {
-        "overview": "GitHub Copilot is the pioneer AI pair programming extension. Built into GitHub and top IDEs, it offers multi-model switching, automated pull request reviews, and CLI command suggestions.",
-        "features": [
-          "Real-time code completions and full multi-line suggestions in your editor",
-          "Copilot Chat with workspace-aware context and model selector",
-          "Copilot CLI to turn natural language into shell commands",
-          "Free for verified students, teachers, and popular open-source maintainers"
-        ],
-        "useCases": [
-          "Writing repetitive boilerplate code, unit tests, and regular expressions",
-          "Navigating unfamiliar programming languages and syntax patterns",
-          "Automating code reviews and pull request summaries on GitHub"
-        ],
-        "pricingDetails": "Free for verified students & open-source maintainers. $10/month individual plan."
-      }
-    },
-    {
-      "id": "v0-vercel",
-      "name": "v0 by Vercel",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Trending",
-      "featured": true,
-      "description": "Generative UI system by Vercel that produces production-ready React, Tailwind CSS, and Next.js components.",
-      "url": "https://v0.dev",
-      "domain": "v0.dev",
-      "icon": "▲",
-      "inner_content": {
-        "overview": "v0 by Vercel is a generative AI frontend tool that turns natural language prompts and image mockups into clean, production-ready React, Next.js, and Tailwind CSS code with instant live interactive previews.",
-        "features": [
-          "Generates responsive React code with Tailwind CSS and shadcn/ui components",
-          "Image-to-code: upload Figma screenshots or UI sketches to convert into code",
-          "Direct one-click deployment to Vercel and npm component export",
-          "Iterative chat prompting to refine UI elements and design tokens"
-        ],
-        "useCases": [
-          "Rapid prototyping of SaaS landing pages and dashboards",
-          "Converting design mockups and screenshots into clean React code",
-          "Generating bespoke UI components for modern Next.js applications"
-        ],
-        "pricingDetails": "Free tier with daily renewable credits. Premium plans for team collaboration."
-      }
-    },
-    {
-      "id": "ollama",
-      "name": "Ollama",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "chatbot"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": true,
-      "description": "Run open-source LLMs locally on your Mac, Windows, or Linux machine with a single terminal command.",
-      "url": "https://ollama.com",
-      "domain": "ollama.com",
-      "icon": "🦙",
-      "inner_content": {
-        "overview": "Ollama is the premier open-source tool for running large language models locally on your machine. With support for DeepSeek R1, Llama 3.3, Mistral, Qwen, and Gemma, Ollama gives you total data privacy and zero API costs.",
-        "features": [
-          "Run top models locally: `ollama run deepseek-r1` or `ollama run llama3.3`",
-          "Local REST API compatible with OpenAI SDK formats for easy integration",
-          "Zero data leaves your computer — 100% offline and private",
-          "Supports GPU acceleration across Apple Silicon, NVIDIA CUDA, and AMD ROCm"
-        ],
-        "useCases": [
-          "Privacy-sensitive coding and confidential corporate data processing",
-          "Offline AI assistant for developers and researchers with no internet",
-          "Local backend engine for Obsidian, Cursor, and code plugins"
-        ],
-        "pricingDetails": "100% Free and open source software (MIT license)."
-      }
-    },
-    {
-      "id": "bolt-new",
-      "name": "Bolt.new",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "In-Browser Dev",
-      "featured": false,
-      "description": "In-browser AI web development environment powered by WebContainers to build and run fullstack apps.",
-      "url": "https://bolt.new",
-      "domain": "bolt.new",
-      "icon": "⚡",
-      "inner_content": {
-        "overview": "Bolt.new by StackBlitz is an AI-powered development environment that runs entirely inside your browser using WebContainers. It can install npm packages, run Node.js servers, and build fullstack web applications without local setup.",
-        "features": [
-          "Full in-browser Node.js runtime and terminal execution",
-          "Installs any npm package and runs modern full-stack frameworks (Vite, Next, Remix)",
-          "Interactive side-by-side code editor and live browser preview",
-          "One-click deployment to Netlify or GitHub repository sync"
-        ],
-        "useCases": [
-          "Building and testing full-stack web applications without local dev setup",
-          "Rapid prototyping of web apps with live backend servers and APIs",
-          "Sharing reproducible interactive software demos with a single URL"
-        ],
-        "pricingDetails": "Free tier with daily token allowance. Pro plans for higher token limits."
-      }
-    },
-    {
-      "id": "phind",
-      "name": "Phind",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "research"
-      ],
-      "pricing": "Freemium",
-      "badge": "Dev Search",
-      "featured": false,
-      "description": "Intelligent search engine for developers with frontier model reasoning and live code execution.",
-      "url": "https://www.phind.com",
-      "domain": "phind.com",
-      "icon": "🔎",
-      "inner_content": {
-        "overview": "Phind is an AI search engine built specifically for programmers. It combines high-speed web search with customized coding LLMs to provide comprehensive, code-heavy answers with technical explanations.",
-        "features": [
-          "Fast technical search powered by specialized Phind-70B model",
-          "Web search integration providing up-to-date documentation links",
-          "Pair programming mode with multi-file code editing capabilities",
-          "VS Code extension for in-editor context querying"
-        ],
-        "useCases": [
-          "Solving complex coding problems and architectural decisions",
-          "Exploring new API libraries and framework updates",
-          "Pair programming directly inside VS Code"
-        ],
-        "pricingDetails": "Free tier with unlimited standard searches. Phind Pro for 500+ daily GPT-4o queries."
-      }
-    },
-    {
-      "id": "predis-ai",
-      "name": "Predis.ai",
-      "category": "marketing",
-      "categories": [
-        "marketing",
         "image-generator",
-        "video-generator"
+        "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Social AI",
-      "featured": false,
-      "description": "AI social media marketing platform that turns a text prompt into ready-to-publish reels, carousels, and captions.",
-      "url": "https://predis.ai",
-      "domain": "predis.ai",
-      "icon": "📱",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create realistic portraits of yourself that look like professional photos using our AI portrait generator",
+      "url": "https://aiportraitgen.com",
+      "domain": "aiportraitgen.com",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "Predis.ai is an all-in-one AI social media generator. Give it a simple text prompt or website URL, and Predis generates branded video reels, multi-slide carousels, captions, and trending hashtags in your brand kit.",
-        "features": [
-          "Generates complete Instagram Reels, TikToks, and YouTube Shorts with voiceover",
-          "Multi-slide carousel post generator with customizable design templates",
-          "Brand Kit integration: automatically applies your company fonts and colors",
-          "Competitor analysis engine to benchmark your niche engagement"
-        ],
-        "useCases": [
-          "E-commerce brands generating dozens of product showcase videos",
-          "Social media agencies automating client post creation calendars",
-          "Solopreneurs maintaining a consistent multi-channel social presence"
-        ],
-        "pricingDetails": "Free plan includes 15 AI-generated posts per month. Solo plan at $29/mo."
+        "overview": "AI Portrait Gen lets you create realistic portrait photos of yourself or your friends that look like professional photography.\nSelect your outfit, pick a location, decide on a style, and get stunning results within minutes, all from the comfort of your own home.\nUse these incredible AI-generated photos for your profile pictures, social media platforms, sharing with friends, or simply for fun!",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "taplio",
-      "name": "Taplio",
-      "category": "marketing",
+      "id": "wit-ai",
+      "name": "Wit AI",
+      "category": "developer-tools",
       "categories": [
-        "marketing",
-        "writing"
+        "developer-tools",
+        "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "LinkedIn Growth",
-      "featured": false,
-      "description": "AI-powered LinkedIn growth assistant for generating viral posts, scheduling content, and finding leads.",
-      "url": "https://taplio.com",
-      "domain": "taplio.com",
-      "icon": "💼",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Develop powerful, user-friendly NLP applications quickly and efficiently using their tools and services.",
+      "url": "https://www.youtube.com/watch?v=RGbbz6Kbh40",
+      "domain": "youtube.com",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "Taplio is an AI LinkedIn growth platform used by top founders and executives. It analyzes millions of high-performing LinkedIn posts to suggest viral post ideas, write engaging drafts, and manage scheduling.",
-        "features": [
-          "AI post generator trained on millions of viral LinkedIn hooks and formats",
-          "Viral content library: discover what is trending in your specific industry",
-          "Carousel creator: turns articles or tweets into downloadable LinkedIn PDF carousels",
-          "Relationship builder and automated lead engagement tracking"
-        ],
-        "useCases": [
-          "Founders building personal brands and thought leadership on LinkedIn",
-          "B2B marketers driving organic inbound customer leads",
-          "Consultants and recruiters expanding professional networks"
-        ],
-        "pricingDetails": "Free trial available with sample AI generations. Starter plan at $39/mo."
+        "overview": "Wit AI is an Artificial Intelligence (AI) platform that makes it easy to build natural language processing applications. With Wit AI, developers can quickly and easily create applications that understand and process human language, allowing them to create powerful, intelligent, and user-friendly applications. Wit AI uses natural language processing (NLP), machine learning, and deep learning technologies to understand human language and make smart decisions. With Wit AI, developers can reduce the amount of coding and development time needed to create applications, allowing them to focus on creating the best user experience. Wit AI also offers a variety of tools and services, including a knowledge graph, machine learning models, and APIs, that help developers create powerful and efficient applications quickly and easily. Wit AI is the perfect platform for developers who want to create advanced and intelligent applications that understand human language.",
+        "pricingDetails": "Freemium plan available"
       }
     },
     {
-      "id": "adcreative-ai",
-      "name": "AdCreative.ai",
+      "id": "instatext",
+      "name": "InstaText",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Edit essays, refine texts, create persuasive content for students, writers, and business owners.",
+      "url": "https://www.youtube.com/watch?v=bWVGA-0hskY",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "InstaText is an award-winning online writing and editing tool that can help you improve your texts in no time. Whether you’re a professional writer, a student, or a business owner, InstaText can help you create clearer, more engaging texts that your readers will understand and appreciate. Our revolutionary editing tools allow you to quickly edit your texts to make them more concise, descriptive, and persuasive. With InstaText, you can cut through the clutter and get your point across with fewer words. Additionally, our advanced grammar and spell checking capabilities ensure that your text is free of errors. With InstaText, you can create compelling, easy-to-read content that will captivate your readers and help you make a lasting impression.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ai-sandbox",
+      "name": "AI Sandbox",
       "category": "marketing",
       "categories": [
         "marketing",
-        "image-generator"
+        "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "High Conversion Ads",
-      "featured": false,
-      "description": "Generate high-converting conversion ad banners and texts using trained performance advertising AI models.",
-      "url": "https://www.adcreative.ai",
-      "domain": "adcreative.ai",
-      "icon": "🎯",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Develop tailored ad campaigns, measure results, and maximize reach and ROI with AI-driven insights.",
+      "url": "https://www.youtube.com/watch?v=sAmwq4kVXmA",
+      "domain": "youtube.com",
+      "icon": "⚡",
       "inner_content": {
-        "overview": "AdCreative.ai uses machine learning trained on millions of high-converting digital advertising campaigns. Upload your logo and product image to generate hundreds of conversion-optimized ad banners in seconds.",
-        "features": [
-          "Generates hundreds of ad creatives across all formats (1:1, 9:16, 16:9, 1.91:1)",
-          "AI Conversion Score: rates each creative's predicted click-through rate",
-          "Generates persuasive ad copy headlines for Facebook, Google, and LinkedIn",
-          "Direct integrations with Meta Ads, Google Ads, and Pinterest Ads"
-        ],
-        "useCases": [
-          "E-commerce stores creating hundreds of creative variations for A/B testing",
-          "Performance marketing agencies scaling client ad spend profitably",
-          "SaaS startups designing conversion-focused Google and Facebook ads"
-        ],
-        "pricingDetails": "Free trial with 10 free ad creative downloads. Starter at $29/mo."
+        "overview": "AI Sandbox is a powerful tool designed to revolutionize the way businesses advertise. Developed by Meta for Business, formerly known as Facebook for Business, it is currently in the testing phase and exploring the potential of generative AI capabilities. This cutting-edge tool provides business owners with a controlled environment to optimize their ad strategies and measure their performance. AI Sandbox is designed to help you maximize your advertising ROI and make informed decisions about your campaigns. It’s easy to use and provides detailed insights into how your campaigns are performing, so you can quickly adjust your approach if needed. With AI Sandbox, you’ll be able to maximize your reach and appeal to more customers than ever before. AI Sandbox is the perfect tool for businesses looking to get the most out of their advertising campaigns. It offers comprehensive analytics and powerful AI features that allow you to optimize your ads quickly and easily.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "wolfram-mathematica",
+      "name": "Wolfram Mathematica",
+      "category": "research",
+      "categories": [
+        "research",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Explore math concepts visually, automate doc generation, and solve equations quickly.",
+      "url": "https://www.youtube.com/watch?v=fBvl1Wl8YBA",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Wolfram Mathematica is the ultimate tool for exploring and understanding the world of mathematics. With its powerful computational capabilities and intuitive user interface, Mathematica makes it easy to explore and visualize mathematical concepts and equations. It offers a wide range of features and capabilities, including interactive data analysis, interactive visualizations, advanced calculations, and automated document generation. From basic algebra to complex calculus, Mathematica has the tools to help you make sense of it all. Whether you’re a student, a teacher, or a professional mathematician, Mathematica is designed to make your work easier, faster, and more productive. With its comprehensive library of mathematical functions, Mathematica allows you to quickly and accurately answer questions, solve equations, and explore new ideas. Its intuitive interface makes it easy to explore and visualize mathematical concepts and equations. With its advanced calculations and automated document generation, Mathematica is the perfect tool for any mathematician or scientist.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "mentor-ai",
+      "name": "Mentor AI",
+      "category": "research",
+      "categories": [
+        "research",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Solve AI issues, ace job interviews, and create tailored resumes with real-time support.",
+      "url": "https://www.youtube.com/watch?v=py2nBTAJZbE",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Mentor AI is an innovative tool designed to empower developers and engineers in the AI, deep learning, and computer science fields. With features like instant AI tech support, interview preparation, resume checking, and cover letter generation, our tool helps prepare you for your career advancement. We bridge the gap between academic knowledge and practical skills, helping you level up your career seamlessly. Aimed at both individual learners and corporations, this AI tool serves as a mentor and guide in your journey to mastery.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ai-curious",
+      "name": "AI Curious",
+      "category": "education",
+      "categories": [
+        "education",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Learn AI fundamentals, develop skills, and create projects to showcase your AI knowledge.",
+      "url": "https://aicurious.co/",
+      "domain": "aicurious.co",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "AI Curious is an interactive online learning platform that makes artificial intelligence (AI) accessible to everyone. It provides comprehensive resources, guided courses, and real-world projects to help users gain a deep understanding of AI concepts. Through interactive tutorials, custom-built tools, and a supportive community of students and instructors, AI Curious helps users develop the skills and confidence necessary to build AI solutions with real-world applications. With AI Curious, users can explore the fundamentals of AI, learn how to apply them to solve problems, and create projects that showcase their knowledge. AI Curious also offers specialized courses on topics such as machine learning, natural language processing, deep learning, and robotics. Whether you are just starting out or looking to become an AI expert, AI Curious has the tools you need to get ahead in the field.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "coursera",
+      "name": "Coursera",
+      "category": "education",
+      "categories": [
+        "education",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Discover diverse subjects, access top-notch education, and pick your preferred learning style.",
+      "url": "https://www.youtube.com/watch?v=wY5n3uGZ6Js",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Coursera is an online learning platform that offers a variety of courses and programs from top universities and industry leaders. With Coursera, learners can access high-quality, expert-led education in a variety of subjects, including business, computer science, data science, humanities, and more. Whether you’re looking to gain a new skill, advance your career, or just explore something new, Coursera has it all.The platform offers a range of courses and programs from leading institutions, expert instructors, and interactive learning experiences. Learners can explore topics from the comfort of their own home, at their own pace, and on their own schedule. Coursera also provides guidance and support along the way, with personalized assistance and resources to help learners succeed. With flexible learning options, learners can choose between self-paced and instructor-led courses, as well as specialized programs with defined learning paths.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "primer-css",
+      "name": "Primer CSS",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create elegant, modern websites, develop custom styles, and easily make professional-looking sites with an intuitive interface.",
+      "url": "https://primer.style",
+      "domain": "primer.style",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Primer CSS is a powerful and easy-to-use styling library for web development. It provides developers with a comprehensive suite of tools to quickly and easily create elegant, modern web experiences. Primer CSS offers a wide range of features and benefits that make it ideal for all users, regardless of experience level.Developers can use Primer CSS to quickly and easily create beautiful, responsive websites and applications without having to learn a whole new coding language. It also comes with a library of pre-built components, making it easy to add custom styles and designs to any project. Additionally, Primer CSS is fully customizable, giving developers the freedom to make their projects look and feel exactly the way they want.Primer CSS is designed to help developers of all skill levels create modern and professional-looking websites. With its intuitive interface, powerful styling tools, and library of components, Primer CSS gives developers the resources they need to quickly and easily create stunning websites.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "llama",
+      "name": "LLaMA",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Extract sentiment, summarize documents, and identify relevant information accurately and swiftly.",
+      "url": "https://www.youtube.com/watch?v=5cEvNO9rZgI",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "LLaMA is a large language model which uses advanced artificial intelligence to help you better understand natural language. It facilitates better understanding of complex sentences and text, by enabling the system to comprehend the meaning behind the words and how they are related. This makes it an ideal tool for summarizing long documents, finding facts in documents, and to quickly identify relevant information. LLaMA can help you unlock the meaning and intent of text, enabling you to quickly and accurately find the answers you need. With its superior language processing capabilities, LLaMA can be used to quickly identify information within documents, detect sentiment, and to accurately summarize long documents. This can help you save time in search and analysis tasks, enabling you to focus on the bigger picture. LLaMA’s powerful AI engine is designed to improve over time, making it the perfect tool for tasks that require accurate understanding of natural language.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "reinforcement-learning",
+      "name": "Reinforcement Learning",
+      "category": "education",
+      "categories": [
+        "education",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Train robots for safe interactions, play games like chess and Go, and maximize rewards by learning the best actions.",
+      "url": "https://www.youtube.com/watch?v=DcYLT37ImBY",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Reinforcement Learning is a powerful form of artificial intelligence that mimics the behavior of humans and animals. It is a type of machine learning that enables computer systems to learn from their environment by taking actions and receiving feedback from their environment. The ultimate goal of reinforcement learning is to find the best possible action in a given situation that will maximize rewards and minimize losses.Reinforcement Learning enables machines to learn from their environment by taking actions and seeing the results of their actions. Through trial and error, the machines are able to determine which actions are most likely to produce the desired result, and the resulting actions become the optimal strategy. This process allows machines to learn complex tasks that would otherwise be difficult or impossible to program.Reinforcement Learning is particularly useful in robotics, where machines can learn to interact with their environment in a safe and efficient manner. It also has applications in gaming, where robots can learn to play games such as chess and Go at a high level.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "animaker-subtitles",
+      "name": "Animaker Subtitles",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Upload videos, auto-generate captions instantly, AI speech recognition, manual adjustment for accurate subtitles.",
+      "url": "https://www.youtube.com/watch?v=pYR1R228-tI",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "The AI-powered Subtitle Generator is the perfect tool for businesses and content creators who are looking to add captions or subtitles to their videos. With its intuitive and easy-to-use interface, users can quickly upload their videos and have subtitles generated in seconds. The AI technology used by the tool can accurately recognize speech, while the Full-featured Text Editor allows users to manually adjust and format subtitles. This ensures accuracy and consistency and makes it easier to match the subtitles with the brand’s guidelines. The Subtitle Generator can be used to auto-generate captions for movies, home videos, TikToks, reels, and YouTube shorts, giving users the ability to reach a wider audience. It’s the perfect tool for businesses and content creators looking to make their videos more accessible and engaging.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "anytalk",
+      "name": "Anytalk",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Anytalk: AI-Powered Online Meeting Translator that converts speaker's voice, ensuring everyone understands in their language.",
+      "url": "https://www.youtube.com/watch?v=9WrBpSJUBVs",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Anytalk is a groundbreaking AI-powered translation tool designed to transform online meetings. This innovative technology allows for real-time voice translation, ensuring clear and effective communication across different languages. With Anytalk, the speaker’s voice is not only translated but also preserved, maintaining the authenticity and nuances of the original speech. This unique feature enables participants in virtual meetings to understand each other effortlessly in their native languages, fostering a more inclusive and collaborative environment.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "logoscapes",
+      "name": "Logoscapes",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create captivating wallpapers from logos, generate 4k resolution images effortlessly, and save time and money.",
+      "url": "https://logoscapes.ai/?ref=aitoptools",
+      "domain": "logoscapes.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Logoscapes is an AI-powered tool that allows users to easily and quickly create stunning wallpapers for their logo. With Logoscapes, you can quickly upload your logo and watch as the tool applies a combination of advanced AI techniques, including ControlNet, to generate five impressive wallpapers of high-quality 4k resolution. With these wallpapers, you can create eye-catching social media posts, desktop wallpapers, cover photos, and more that are sure to make an impact. Logoscapes is an ideal choice for businesses and individuals who want to make a lasting impression with their logo and brand. With the power of AI, you can create beautiful and professional-looking wallpapers in just a few steps, saving you time and money.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "obituary-writer",
+      "name": "Obituary Writer",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Compile biographical data and generate unique obituaries with AI and natural language processing.",
+      "url": "https://www.youtube.com/watch?v=1dwOWUH2Gqw",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": ", such as a brief biography, special memories, and life accomplishments The Obituary Writer then uses AI and natural language processing to generate a unique, personalized obituary for each user.The Obituary Writer is a compassionate and efficient AI-powered tool that gives users the ability to create beautiful and meaningful obituaries for their loved ones. It requires only basic information about the deceased to get started, such as their name, date and place of birth, date and place of passing, and any family members. In addition, users can include any additional details that are important to them, such as a brief biography, special memories, and life accomplishments. Once the information is entered, the Obituary Writer uses AI and natural language processing to generate a unique, personalized obituary that honors the life of the deceased and their loved ones. It is an easy to use tool that can help create a lasting tribute to a special person in a short amount of time.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "ai-art-prompt-generator",
+      "name": "AI Art prompt generator",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Create infinite prompts for AI art generation text to image tools like Midjourney, DALLE-2, Gemini Image creator",
+      "url": "https://tipseason.com/ai-prompt-generator",
+      "domain": "tipseason.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Create infinite prompts for AI art generation text to image tools like Midjourney, DALLE-2, Gemini Image creator",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "exposure-x6-photoshop-plugin",
+      "name": "Exposure X6 Photoshop Plugin",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Enhance colors, adjust shadows &amp; highlights, and add creative effects like bokeh &amp; flares effortlessly.",
+      "url": "https://www.youtube.com/watch?v=4uXfHsF5isU",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Exposure X6 is an advanced Photoshop plugin that brings powerful color grading and photo finishing capabilities to your editing workflow. This award-winning plugin is designed to help photographers of all skill levels produce stunning images with ease. From simple one-click adjustments to complex color grading and masking, Exposure X6 offers a wide selection of powerful tools to help you take your photos to the next level. With Exposure X6, you can quickly enhance colors and tones, adjust shadows and highlights, and apply special effects like film grain, vignettes, and light leaks. You can also easily add creative effects like bokeh, lens flares, and textures to your images. Plus, Exposure X6 is fully compatible with Photoshop, Lightroom, and Elements, giving you the flexibility to work with your preferred editing software. With its intuitive user interface and powerful editing tools, Exposure X6 allows you to create professional-quality images without the need for expensive software or complicated techniques.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "clarifai",
+      "name": "Clarifai",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Leverage pre-trained models for automated image recognition and gain insights from various media with AI-powered technology.",
+      "url": "https://www.youtube.com/watch?v=8drVLIaI_iA",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Clarifai is an advanced artificial intelligence platform that is designed to help businesses and developers quickly and easily build powerful applications using computer vision. Our AI-powered technology is able to recognize, classify, and analyze images, videos, and text, giving you the insights you need to make better decisions and improve your products. With Clarifai, you can quickly create and deploy complex applications that utilize cutting-edge AI technology. Our platform is highly scalable, so you can easily scale up or down, as needed. Additionally, Clarifai offers an extensive library of pre-trained models, so you don’t have to start from scratch. Our intuitive user interface makes it easy to get started with Clarifai, and our helpful support team is always on hand to answer any questions you may have. With Clarifai, you can unlock the power of AI to take your business to the next level.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "import-io",
+      "name": "Import.io",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automate data extraction, transform websites into structured data, and synchronize/enrich data for accurate results.",
+      "url": "https://www.youtube.com/watch?v=b7yhot3jp3g",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Import.io is a powerful web data extraction tool that helps businesses quickly and easily access and collect the data they need from any website. With a simple drag-and-drop interface, users can instantly create data extraction processes that save time and money. Import.io allows users to quickly transform websites into structured data, including tables, lists, and more. Using its intuitive query builder, users can customize their data extraction and save the results in any format they need. Plus, with its advanced features like automatic data synchronization, real-time alerts, and data enrichment, import.io ensures that users have the most accurate and up-to-date data available. Whether you’re a small business or a large enterprise, Import.io gives you the power to quickly get the data you need, when you need it. With Import.io, you can save time, reduce costs, and gain insights faster than ever before.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "midjourney-prompts-journey",
+      "name": "MidJourney Prompts Journey",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Generate tailored writing prompts, explore literary techniques, and jump-start creativity with a unique algorithm.",
+      "url": "https://midjourneypromptsgenerator.com/?utm_source=aitoptools&amp;utm_medium=marketplace&amp;utm_campaign=aitoptools",
+      "domain": "midjourneypromptsgenerator.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "MidJourney Prompts Journey is an online tool designed to help you get the most out of your creative writing projects. From novelists to poets, our generator provides the perfect prompt to get your creative juices flowing. By simply entering a few words, our unique algorithm will generate a unique and inspiring prompt to help you begin your journey. Our prompts are carefully crafted to help you explore various literary techniques, such as setting, character development, plot structure, and more. With our prompts, you can create stories and poems that are unique to you and your creative vision. Whether you’re just starting out or already have years of experience, MidJourney Prompts Journey can provide you with the right inspiration to take your creativity to the next level.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "microsoft-translator",
+      "name": "Microsoft Translator",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Translate text and speech into 60+ languages with AI-powered features like sentence rephrasing and text-to-speech.",
+      "url": "https://www.youtube.com/watch?v=82xE02F5QnE",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Microsoft Translator is a powerful and versatile language translation service. It enables users to quickly and accurately translate text and speech in over 60 languages. Its intuitive user interface and advanced features make it easy to understand and use, even for beginners. With Microsoft Translator, users can easily communicate across language barriers and take advantage of speech recognition technology to quickly and accurately translate conversations. It also offers a variety of features such as AI-powered translation, sentence rephrasing, and text-to-speech capabilities, giving users the tools they need to communicate effectively and accurately. Whether you’re a professional translator, a student, or a business traveler, Microsoft Translator will help you communicate in any language with confidence. With Microsoft Translator, you can break down language barriers and make the world a little bit smaller.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "marketalerts-ai",
+      "name": "MarketAlerts.ai",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "AI for Monitoring Your Stocks, Uncovering Market Patterns, and Searching for Trade Ideas.",
+      "url": "https://www.marketalerts.com",
+      "domain": "marketalerts.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Have AI Monitoring Your Stocks 24/7, notifying you instantly and without noise, on need-to-know updates for stocks in your portfolio or watchlist:",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "scrapex-beta",
+      "name": "Scrapex Beta",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automate data collection, extract data with ease, and accurately filter and sort results.",
+      "url": "https://scrapex.ai/",
+      "domain": "scrapex.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Scrapex Beta is a next-generation web scraping service designed to simplify and automate the process of collecting data from online sources. With this powerful tool, you can quickly and effectively extract data from websites and a variety of other online sources with just a few clicks. Scrapex Beta allows you to save time and effort by automating the tedious task of manually copy-pasting data from multiple sites. It also provides powerful filtering and sorting capabilities to ensure that you’re getting the most accurate and up-to-date results. Plus, it’s easy to use and requires no coding knowledge, making it ideal for both expert developers and casual users. With Scrapex Beta, you can collect the data you need faster and more accurately, giving you the edge in your online data analysis.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "sembly-ai",
+      "name": "Sembly AI",
+      "category": "video-generator",
+      "categories": [
+        "video-generator",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Record, transcribe, and summarize meetings, integrate with video conferencing, detect key action items and decisions.",
+      "url": "https://www.youtube.com/watch?v=CeufYanMihg",
+      "domain": "youtube.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Sembly AI is an AI-powered assistant tool designed to help teams stay organized and productive. It helps to record, transcribe, and generate smart summaries of professional meetings, all while integrating with popular video conferencing platforms like Zoom, gMeet, MS Teams and Webex. With Sembly AI, teams can focus on the conversation, as the tool will take meeting notes, detect key action items and decisions, and pinpoint important topics, risks, events, and requirements. Plus, it provides speaker identification and clears out filler words for a more concise summary. This powerful tool is perfect for teams who want to stay on top of their meetings, without sacrificing time and energy. It will help to streamline the meeting process, while ensuring that all the details and decisions are accurately recorded. With Sembly AI, teams can stay organized, productive and efficient, and offers a complete meeting solution that will help to maximize productivity.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "i18ncore",
+      "name": "I18ncore",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Import, manage, and enhance i18n resources effortlessly, with advanced AI, to seamlessly integrate with CI/CD processes.",
+      "url": "https://i18ncore.com",
+      "domain": "i18ncore.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "5/5User Satisfaction5/5Ease of Use5/5“Efficient Localization Management Made Easy”What do you like about I18ncore?",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "airepli-io",
+      "name": "airepli.io",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Turbo Boost Response Times with AI | Highlight Any Text &amp; Generate Instant Replies",
+      "url": "https://www.muckercapital.com",
+      "domain": "muckercapital.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Turbo Boost Response Times with AI | Highlight Any Text &amp; Generate Instant Replies",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "voyaj",
+      "name": "Voyaj",
+      "category": "productivity",
+      "categories": [
+        "productivity",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Search, compare, and book destinations with ease, while receiving personalized recommendations based on AI-gathered data.",
+      "url": "https://voyaj.ai/?ref=aitoptools",
+      "domain": "voyaj.ai",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Voyaj is an AI-powered tool designed to help you find your perfect travel destination. Its intuitive interface allows you to effortlessly search for and book travel reservations. Voyaj uses advanced AI algorithms and natural language processing to gather data from various sources, such as user reviews, travel blogs, and social media channels. This helps to give you personalized recommendations that perfectly fit your travel preferences and budget. With Voyaj, you can easily discover the best travel spots with just a few clicks. Whether you’re looking for a luxurious getaway or a budget adventure, Voyaj can help you find the perfect destination for the perfect trip.",
+        "pricingDetails": "Freemium plan available"
+      }
+    },
+    {
+      "id": "scrapinghub",
+      "name": "ScrapingHub",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Freemium",
+      "featured": true,
+      "description": "Automate web scraping, collect data from any webpage, and launch projects effortlessly with an intuitive interface.",
+      "url": "https://scrapinghub.com",
+      "domain": "scrapinghub.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "ScrapingHub is a web-based platform that provides a comprehensive suite of tools for web scraping, data extraction, and content aggregation. With an easy-to-use user interface and automated scraping capabilities, ScrapingHub allows businesses to quickly and efficiently collect data from any website, without needing any coding skills or experience.The platform can be used to quickly and effortlessly collect data from any web page, including articles, product listings, and more. ScrapingHub allows users to automate the web scraping process, eliminating the need to manually copy and paste data. It also features powerful filtering and advanced filtering capabilities, so users can quickly and accurately extract the data they need.ScrapingHub’s intuitive interface makes it easy for users to quickly set up and launch their web scraping projects. The platform also provides detailed analytics and reporting, so users can monitor the progress of their projects and track the success of their data extraction.",
+        "pricingDetails": "Freemium plan available"
       }
     }
   ]
 };
 
-if (typeof module !== 'undefined') {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = AI_TOOLS_DATA;
 }

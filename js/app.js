@@ -2387,91 +2387,6 @@ Website: https://aira-newsletter.vercel.app/
       ((t.category === tool.category) || (t.categories && tool.categories && t.categories.some(c => tool.categories.includes(c))))
     ).slice(0, 3);
 
-    // Dynamic Feature Generator based on category & tool specifics
-    function getFeaturesForTool(t) {
-      const cat = (t.category || '').toLowerCase();
-      if (cat.includes('chat') || cat.includes('llm')) {
-        return [
-          { icon: '🧠', title: 'Frontier Neural Reasoning', desc: 'Powered by advanced transformer models capable of deep logical deduction and complex problem solving.' },
-          { icon: '💬', title: 'Multi-Turn Context Memory', desc: 'Maintains conversational state, previous queries, and nuanced instruction sets across long sessions.' },
-          { icon: '💻', title: 'Code & Technical Analysis', desc: 'Generates, analyzes, and debugs code across Python, JavaScript, Rust, SQL, and other languages.' },
-          { icon: '⚡', title: 'Low Latency Token Stream', desc: 'Real-time response streaming delivering instant answers and fast response turnaround.' },
-          { icon: '🌐', title: 'Knowledge Base Integration', desc: 'Connects with custom knowledge repositories, files, and live web search for verified facts.' },
-          { icon: '🔒', title: 'Enterprise Data Isolation', desc: 'Strict security protocols ensuring user interactions and queries remain confidential and private.' }
-        ];
-      }
-      if (cat.includes('image') || cat.includes('design') || cat.includes('art')) {
-        return [
-          { icon: '🎨', title: 'Photorealistic Image Synthesis', desc: 'Generates ultra-high resolution artwork, illustrations, product renders, and concept designs.' },
-          { icon: '📐', title: 'Precise Style & Prompt Controls', desc: 'Fine-tune lighting, camera lenses, aspect ratios, color palettes, and negative prompt filters.' },
-          { icon: '🖌️', title: 'Inpainting & Outpainting Canvas', desc: 'Modify specific regions, remove unwanted artifacts, and expand canvas borders seamlessly.' },
-          { icon: '⚡', title: 'Instant 4x Upscaling', desc: 'Enhance image fidelity and details with AI upscaling suitable for print and 4K displays.' },
-          { icon: '💼', title: 'Commercial Usage Ready', desc: 'Full commercial rights on generated assets for marketing campaigns, websites, and branding.' },
-          { icon: '📁', title: 'Cloud Asset Library', desc: 'Organize, tag, and export created assets in PNG, JPG, WebP, or SVG vector formats.' }
-        ];
-      }
-      if (cat.includes('video') || cat.includes('animation')) {
-        return [
-          { icon: '🎬', title: 'Text & Image to Video Engine', desc: 'Transform textual scripts and static images into fluid, cinematic video sequences in minutes.' },
-          { icon: '🎙️', title: 'Neural Voice & Lip Sync', desc: 'Lifelike AI voiceovers with natural human cadence, accents, and accurate facial lip-syncing.' },
-          { icon: '✂️', title: 'Automated Viral Clip Maker', desc: 'Extract high-engagement highlights from long-form footage with animated dynamic captions.' },
-          { icon: '📐', title: 'Multi-Platform Aspect Ratios', desc: 'Export instantly formatted for YouTube 16:9, Instagram Reels & TikTok 9:16, or Square 1:1.' },
-          { icon: '⏱️', title: 'Cloud GPU Accelerated Rendering', desc: 'Fast parallel video processing in the cloud without bogging down your local hardware.' },
-          { icon: '🎵', title: 'AI Soundtracks & Dynamic SFX', desc: 'Integrate royalty-free background music and contextual sound effects automatically.' }
-        ];
-      }
-      if (cat.includes('developer') || cat.includes('code')) {
-        return [
-          { icon: '⌨️', title: 'Context-Aware Autocomplete', desc: 'Predicts entire functions, algorithmic logic, and complex syntax inline as you type.' },
-          { icon: '🐞', title: 'Automated Bug Detection & Fixes', desc: 'Scans repositories for security vulnerabilities, race conditions, and runtime errors with fixes.' },
-          { icon: '🧪', title: 'Unit Test & Docstring Generator', desc: 'Produces comprehensive test suites, mocks, and type documentation automatically.' },
-          { icon: '🔄', title: 'Multi-Language & Framework Support', desc: 'Full support for React, TypeScript, Python, Go, Rust, C++, Next.js, and modern toolchains.' },
-          { icon: '🚀', title: 'Terminal & Git Workflow', desc: 'Execute CLI commands, resolve git merge conflicts, and manage branch changes via natural language.' },
-          { icon: '🔒', title: 'Local & Private Codebase Isolation', desc: 'Ensures your proprietary IP and code never leave your private security perimeter.' }
-        ];
-      }
-      if (cat.includes('writing') || cat.includes('copywriting') || cat.includes('paraphraser')) {
-        return [
-          { icon: '✍️', title: 'High-Converting Copy Engine', desc: 'Draft persuasive sales copy, blog posts, email newsletters, and ad headlines in seconds.' },
-          { icon: '🎯', title: 'Brand Tone Customization', desc: 'Train AI models on your unique brand voice, style guidelines, and vocabulary.' },
-          { icon: '🛡️', title: 'AI Humanizer & Natural Polish', desc: 'Refines machine-generated drafts into organic, human-sounding prose with zero robotic phrasing.' },
-          { icon: '🔍', title: 'Real-Time Readability & SEO', desc: 'Optimizes content structure, keyword density, and Flesch-Kincaid readability scores.' },
-          { icon: '📚', title: 'Multi-Document Summarizer', desc: 'Distill lengthy PDFs, whitepapers, and reports into actionable executive summaries.' },
-          { icon: '🌐', title: '50+ Language Localization', desc: 'Translate and localize content with native cultural idioms and natural fluency.' }
-        ];
-      }
-      if (cat.includes('audio') || cat.includes('speech') || cat.includes('music') || cat.includes('podcast')) {
-        return [
-          { icon: '🎙️', title: 'Studio Neural Voice Synthesis', desc: 'Ultra-realistic voice synthesis with human emotions, whispering, laughter, and pacing.' },
-          { icon: '🎧', title: 'Background Noise & Echo Removal', desc: 'One-click audio enhancement removing ambient hums, clicks, and background chatter.' },
-          { icon: '📻', title: 'Automated Show Notes & Timestamps', desc: 'Generates structured episode summaries, chapter markers, and quotable takeaways.' },
-          { icon: '🌍', title: 'Voice Cloning & Global Dubbing', desc: 'Clone voices in 10 seconds and translate podcasts into multiple languages seamlessly.' },
-          { icon: '🎵', title: 'Royalty-Free AI Music Generation', desc: 'Generate custom musical tracks, ambient soundscapes, and intros tailored to your mood.' },
-          { icon: '🎚️', title: 'Lossless Studio Export', desc: 'Export high-bitrate master files in WAV, FLAC, and MP3 with separated audio stems.' }
-        ];
-      }
-      return [
-        { icon: '⚡', title: 'Automated Workflow Acceleration', desc: 'Eliminates repetitive manual workflows and increases daily productivity by up to 10x.' },
-        { icon: '🎯', title: 'High-Precision Output', desc: 'Delivers reliable, production-ready AI outputs tailored to your specific requirements.' },
-        { icon: '🌐', title: 'Cloud-Based & Cross-Platform', desc: 'Access your projects anytime across web browsers, desktop apps, and mobile devices.' },
-        { icon: '🔒', title: 'Enterprise-Grade Security', desc: 'Protects user data with modern encryption, privacy controls, and compliance certifications.' },
-        { icon: '🔄', title: 'Continuously Updated Models', desc: 'Always powered by the newest frontier models and algorithmic improvements.' },
-        { icon: '🚀', title: 'One-Click Export & Integrations', desc: 'Connects seamlessly with your existing tools, APIs, and project management platforms.' }
-      ];
-    }
-
-    const toolFeatures = (tool.inner_content && tool.inner_content.features && tool.inner_content.features.length > 0)
-      ? tool.inner_content.features.map((feat, idx) => {
-          const icons = ['✨', '⚡', '🧠', '🛠️', '🔒', '🚀', '💡', '🎯'];
-          const parts = feat.split(':');
-          return {
-            icon: icons[idx % icons.length],
-            title: parts[0].trim(),
-            desc: parts.length > 1 ? parts.slice(1).join(':').trim() : parts[0].trim()
-          };
-        })
-      : getFeaturesForTool(tool);
-
     appContainer.innerHTML = `
       <section class="tool-detail-page-view">
         <div class="container">
@@ -2532,211 +2447,28 @@ Website: https://aira-newsletter.vercel.app/
             </div>
           </div>
 
-          <!-- 2-Column Main Layout (Left: In-Depth Overview & Features | Right: Specifications & Sidebar) -->
+          <!-- 2-Column Main Layout (Left: About Tool | Right: Specifications & Sidebar) -->
           <div class="tool-detail-main-layout">
             
-            <!-- Left Main Column -->
+            <!-- Left Main Column: Clean About Tool -->
             <div class="tool-detail-main-col">
               
-              <!-- Section 1: Overview & What is It -->
+              <!-- Section 1: About Tool -->
               <div class="tool-detail-card">
                 <h2 class="tool-detail-card-title">
                   <span>⚡</span>
                   <span>About ${tool.name}</span>
                 </h2>
                 <div class="tool-overview-body">
-                  ${(tool.inner_content && tool.inner_content.overview) ? `
-                    <p>${tool.inner_content.overview}</p>
-                    <p>${tool.description}</p>
-                  ` : `
-                    <p>
-                      <strong>${tool.name}</strong> is a specialized AI application in the <strong>${primaryCatName}</strong> ecosystem designed to streamline workflows, enhance output quality, and automate complex tasks.
-                    </p>
-                    <p>
-                      ${tool.description}
-                    </p>
-                    <p>
-                      Whether you are an individual creator, a developer building production software, or an enterprise team looking to scale operations, ${tool.name} provides an intuitive interface and state-of-the-art AI capabilities to help you accomplish your goals faster.
-                    </p>
-                  `}
+                  <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-primary, #18181B);">
+                    ${(tool.inner_content && tool.inner_content.overview) ? tool.inner_content.overview : tool.description}
+                  </p>
                 </div>
               </div>
-
-              <!-- Section: Community Ratings & Verified Reader Reviews Breakdown -->
-              <div class="tool-detail-card">
-                <h2 class="tool-detail-card-title">
-                  <span>⭐</span>
-                  <span>Community Rating & Editorial Evaluation</span>
-                </h2>
-                
-                <div class="tool-reviews-summary">
-                  <div class="tool-rating-big-score">
-                    <div class="tool-rating-big-num">${stats.rating.toFixed(1)}</div>
-                    <div class="tool-rating-big-stars">★★★★★</div>
-                    <div class="tool-rating-big-count">Based on ${stats.votes.toLocaleString()} verified ratings</div>
-                  </div>
-                  <div class="tool-rating-bars">
-                    <div class="rating-bar-row">
-                      <span class="rating-bar-label">5★</span>
-                      <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 82%;"></div></div>
-                      <span class="rating-bar-pct">82%</span>
-                    </div>
-                    <div class="rating-bar-row">
-                      <span class="rating-bar-label">4★</span>
-                      <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 14%;"></div></div>
-                      <span class="rating-bar-pct">14%</span>
-                    </div>
-                    <div class="rating-bar-row">
-                      <span class="rating-bar-label">3★</span>
-                      <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 3%;"></div></div>
-                      <span class="rating-bar-pct">3%</span>
-                    </div>
-                    <div class="rating-bar-row">
-                      <span class="rating-bar-label">2★</span>
-                      <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 1%;"></div></div>
-                      <span class="rating-bar-pct">1%</span>
-                    </div>
-                    <div class="rating-bar-row">
-                      <span class="rating-bar-label">1★</span>
-                      <div class="rating-bar-track"><div class="rating-bar-fill" style="width: 0%;"></div></div>
-                      <span class="rating-bar-pct">0%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Interactive Rating Selector -->
-                <div class="interactive-stars-box">
-                  <div>
-                    <span style="font-size: 0.88rem; font-weight: 700; color: #0F172A; display: block;">Rate ${tool.name}:</span>
-                    <span style="font-size: 0.75rem; color: #64748B;">Click a star to submit your verified community review</span>
-                  </div>
-                  <div style="display: flex; gap: 4px;">
-                    ${[1, 2, 3, 4, 5].map(s => `
-                      <button type="button" class="rate-star-btn ${(stats.userRating && stats.userRating >= s) ? 'active' : ''}" data-star="${s}" onclick="window.rateTool('${stats.id}', ${s});" title="Rate ${s} star${s > 1 ? 's' : ''}">★</button>
-                    `).join('')}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Section 2: Key Features Grid (6 Cards) -->
-              <div class="tool-detail-card">
-                <h2 class="tool-detail-card-title">
-                  <span>✨</span>
-                  <span>Key Features & Capabilities</span>
-                </h2>
-                <div class="tool-features-grid">
-                  ${toolFeatures.map(f => `
-                    <div class="tool-feature-item">
-                      <span class="tool-feature-icon">${f.icon}</span>
-                      <div>
-                        <div class="tool-feature-title">${f.title}</div>
-                        <div class="tool-feature-desc">${f.desc}</div>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-
-              <!-- Section 3: Who Is It For? (Target Audiences & Use Cases) -->
-              <div class="tool-detail-card">
-                <h2 class="tool-detail-card-title">
-                  <span>🎯</span>
-                  <span>Best For & Target Use Cases</span>
-                </h2>
-                <div class="tool-audiences-grid">
-                  ${(tool.inner_content && tool.inner_content.useCases && tool.inner_content.useCases.length > 0) ? 
-                    tool.inner_content.useCases.map((uc, i) => {
-                      const icons = ['🎨', '💻', '📈', '📚', '⚡', '🎓'];
-                      const parts = uc.split(':');
-                      const title = parts[0].trim();
-                      const desc = parts.length > 1 ? parts.slice(1).join(':').trim() : parts[0].trim();
-                      return `
-                        <div class="tool-audience-item">
-                          <div class="tool-audience-name"><span>${icons[i % icons.length]}</span> ${title}</div>
-                          <div class="tool-audience-desc">${desc}</div>
-                        </div>
-                      `;
-                    }).join('')
-                  : `
-                    <div class="tool-audience-item">
-                      <div class="tool-audience-name"><span>🎨</span> Content Creators & Solopreneurs</div>
-                      <div class="tool-audience-desc">Scale production speed, generate compelling assets, and maintain brand consistency without costly agency overhead.</div>
-                    </div>
-                    <div class="tool-audience-item">
-                      <div class="tool-audience-name"><span>💻</span> Developers & Tech Teams</div>
-                      <div class="tool-audience-desc">Integrate powerful AI models, automate tedious boilerplate tasks, and ship software features faster.</div>
-                    </div>
-                    <div class="tool-audience-item">
-                      <div class="tool-audience-name"><span>📈</span> Marketing & Growth Teams</div>
-                      <div class="tool-audience-desc">Produce high-converting ad copy, campaigns, and viral social content tailored to target audiences.</div>
-                    </div>
-                    <div class="tool-audience-item">
-                      <div class="tool-audience-name"><span>📚</span> Researchers & Knowledge Workers</div>
-                      <div class="tool-audience-desc">Synthesize large datasets, extract key insights, and draft structured reports in a fraction of the time.</div>
-                    </div>
-                  `}
-                </div>
-              </div>
-
-              <!-- Section 4: 3-Step Quickstart Guide -->
-              <div class="tool-detail-card">
-                <h2 class="tool-detail-card-title">
-                  <span>🚀</span>
-                  <span>How to Get Started with ${tool.name}</span>
-                </h2>
-                <div class="tool-steps-list">
-                  <div class="tool-step-item">
-                    <div class="tool-step-num">1</div>
-                    <div class="tool-step-body">
-                      <div class="tool-step-title">Visit Official Platform & Create Account</div>
-                      <div class="tool-step-desc">Head over to <a href="${tool.url}" target="_blank" rel="noopener noreferrer" style="color:#047857; font-weight:600;">${cleanDomain}</a> and sign up for a ${tool.pricing.toLowerCase()} tier account.</div>
-                    </div>
-                  </div>
-                  <div class="tool-step-item">
-                    <div class="tool-step-num">2</div>
-                    <div class="tool-step-body">
-                      <div class="tool-step-title">Configure Prompts or Upload Your Assets</div>
-                      <div class="tool-step-desc">Select your desired AI workflow template, input your creative prompts, or upload reference documents and files.</div>
-                    </div>
-                  </div>
-                  <div class="tool-step-item">
-                    <div class="tool-step-num">3</div>
-                    <div class="tool-step-body">
-                      <div class="tool-step-title">Generate, Fine-Tune & Export</div>
-                      <div class="tool-step-desc">Execute the AI model to produce results in seconds, adjust parameters to your liking, and download or publish directly.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Section 5: Open-Source Alternatives Callout (if available) -->
-              ${matchedAlt ? `
-                <div class="tool-alt-callout">
-                  <div class="tool-alt-callout-info">
-                    <div class="tool-alt-callout-title">Looking for Free & Open-Source Alternatives?</div>
-                    <div class="tool-alt-callout-desc">Discover curated, community-trusted, and self-hostable open-source replacements for <strong>${tool.name}</strong> on AIRA.</div>
-                  </div>
-                  <a href="#/alternatives/${matchedAlt.slug}" class="tool-alt-callout-btn">
-                    <span>View ${matchedAlt.alternatives ? matchedAlt.alternatives.length : ''} Open-Source Alternatives</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-              ` : `
-                <div class="tool-alt-callout">
-                  <div class="tool-alt-callout-info">
-                    <div class="tool-alt-callout-title">Explore 2,400+ Open-Source Software Alternatives</div>
-                    <div class="tool-alt-callout-desc">Looking for privacy-friendly, self-hosted, or free software tools? Browse the complete AIRA Alternatives catalog.</div>
-                  </div>
-                  <a href="#/alternatives" class="tool-alt-callout-btn">
-                    <span>Browse Alternatives Directory</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-              `}
 
             </div>
 
-            <!-- Right Sidebar Column -->
+            <!-- Right Sidebar Column: Clean Specifications -->
             <div class="tool-detail-sidebar-col">
               
               <!-- Specifications Card -->
@@ -2752,8 +2484,8 @@ Website: https://aira-newsletter.vercel.app/
                   </div>
                   ${(tool.inner_content && tool.inner_content.pricingDetails) ? `
                     <div class="tool-spec-row">
-                      <span class="tool-spec-label">Free Tier Details</span>
-                      <span class="tool-spec-val" style="font-size: 0.82rem; font-weight: 600; color: #047857; text-align: right; max-width: 170px;">${tool.inner_content.pricingDetails}</span>
+                      <span class="tool-spec-label">Pricing Details</span>
+                      <span class="tool-spec-val" style="font-size: 0.85rem; font-weight: 600; color: #047857; text-align: right; max-width: 170px;">${tool.inner_content.pricingDetails}</span>
                     </div>
                   ` : ''}
                   <div class="tool-spec-row">
@@ -2765,20 +2497,8 @@ Website: https://aira-newsletter.vercel.app/
                     <span class="tool-spec-val"><a href="${tool.url}" target="_blank" rel="noopener noreferrer">${cleanDomain} ↗</a></span>
                   </div>
                   <div class="tool-spec-row">
-                    <span class="tool-spec-label">Supported Platforms</span>
-                    <span class="tool-spec-val">Web, Cloud API, Desktop</span>
-                  </div>
-                  <div class="tool-spec-row">
-                    <span class="tool-spec-label">Community Rating</span>
-                    <span class="tool-spec-val" style="color: #059669; font-weight: 800;">★ ${stats.rating.toFixed(1)} / 5.0 (${stats.votes.toLocaleString()} verified votes)</span>
-                  </div>
-                  <div class="tool-spec-row">
-                    <span class="tool-spec-label">AIRA Editorial Score</span>
-                    <span class="tool-spec-val" style="color: #059669; font-weight: 800;">4.9 / 5.0 ★★★★★</span>
-                  </div>
-                  <div class="tool-spec-row">
                     <span class="tool-spec-label">Verification</span>
-                    <span class="tool-spec-val" style="color: #059669;">Verified ✓</span>
+                    <span class="tool-spec-val" style="color: #059669; font-weight: 700;">Verified ✓</span>
                   </div>
                 </div>
 
