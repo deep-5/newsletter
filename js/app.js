@@ -2226,6 +2226,14 @@ Website: https://aira-newsletter.vercel.app/
             <p class="tools-hero-subtitle">
               Discover, compare, and explore the most powerful AI tools, models, and apps across every workflow.
             </p>
+            <div style="margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="btn-submit-tool-trigger btn-open-submit-modal-any" style="padding: 9px 18px; font-size: 0.9rem;">
+                <span>➕ Submit Your AI Tool</span>
+              </button>
+              <a href="#/prompts" class="btn-cancel-modal" style="padding: 9px 16px; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
+                <span>✨ AI Prompts Vault</span>
+              </a>
+            </div>
 
             <!-- Search & Pricing Control Bar -->
             <div class="tools-controls-row">
@@ -2356,7 +2364,15 @@ Website: https://aira-newsletter.vercel.app/
       </section>
     `;
 
-    // Bind Close Submit Modal
+    // Bind Open & Close Submit Modal
+    function openSubmitModal() {
+      const modal = document.getElementById('submit-tool-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
     function closeSubmitModal() {
       const modal = document.getElementById('submit-tool-modal');
       if (modal) {
@@ -2364,6 +2380,10 @@ Website: https://aira-newsletter.vercel.app/
         document.body.style.overflow = '';
       }
     }
+
+    document.querySelectorAll('.btn-open-submit-modal-any, #btn-open-submit-modal').forEach(btn => {
+      btn.addEventListener('click', openSubmitModal);
+    });
 
     const closeSubmitBtn = document.getElementById('btn-close-submit-modal');
     if (closeSubmitBtn) closeSubmitBtn.addEventListener('click', closeSubmitModal);
