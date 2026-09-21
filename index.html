@@ -65,9 +65,8 @@
       <!-- Center Nav Links -->
       <ul class="nav-center-links">
         <li><a href="#/home" class="nav-link" data-nav="home">Home</a></li>
-        <li><a href="#/tags" class="nav-link" data-nav="tags">AI Tools</a></li>
-        <li><a href="#/alternatives" class="nav-link" data-nav="alternatives">Alternatives</a></li>
-        <li><a href="#/prompts" class="nav-link" data-nav="prompts">Prompts</a></li>
+        <li><a href="#/prompts" class="nav-link" data-nav="prompts">Prompts Vault</a></li>
+        <li><a href="#/bookmarks" class="nav-link" data-nav="bookmarks">Bookmarks</a></li>
       </ul>
 
       <!-- Right Actions -->
@@ -86,9 +85,6 @@
           </svg>
           <span class="nav-badge-count" id="bookmarks-nav-count" style="display: none;">0</span>
         </a>
-
-        <!-- Submit Tool Button -->
-        <a href="#/submit" class="tool-details-btn" style="padding: 7px 14px; font-weight: 700; text-decoration: none; display: inline-flex;">+ Submit Tool</a>
 
         <!-- Subscribe Button -->
         <button type="button" class="btn-subscribe-nav" id="btn-subscribe-header">Subscribe</button>
@@ -123,27 +119,15 @@
           </a>
         </li>
         <li>
-          <a href="#/tags" class="mobile-nav-link" data-nav="tags">
-            <span class="mobile-nav-icon">⚡</span>
-            <span class="mobile-nav-text">AI Tools Directory</span>
-          </a>
-        </li>
-        <li>
-          <a href="#/alternatives" class="mobile-nav-link" data-nav="alternatives">
-            <span class="mobile-nav-icon">🔄</span>
-            <span class="mobile-nav-text">Software Alternatives</span>
-          </a>
-        </li>
-        <li>
           <a href="#/prompts" class="mobile-nav-link" data-nav="prompts">
             <span class="mobile-nav-icon">✨</span>
             <span class="mobile-nav-text">AI Prompts Vault</span>
           </a>
         </li>
         <li>
-          <a href="#/submit" class="mobile-nav-link" data-nav="submit">
-            <span class="mobile-nav-icon">🚀</span>
-            <span class="mobile-nav-text">Submit an AI Tool</span>
+          <a href="#/bookmarks" class="mobile-nav-link" data-nav="bookmarks">
+            <span class="mobile-nav-icon">🔖</span>
+            <span class="mobile-nav-text">Saved Bookmarks</span>
           </a>
         </li>
         <li>
@@ -246,10 +230,9 @@
         <div class="footer-col">
           <h4 class="footer-col-title">Explore AI</h4>
           <ul class="footer-nav-list">
-            <li><a href="#/home" class="footer-nav-link">AI News Editions</a></li>
+            <li><a href="#/home" class="footer-nav-link">Daily AI Editions</a></li>
             <li><a href="#/prompts" class="footer-nav-link">AI Prompts Hub</a></li>
-            <li><a href="#/tags" class="footer-nav-link">400+ AI Directory</a></li>
-            <li><a href="#/alternatives" class="footer-nav-link">Top Alternatives</a></li>
+            <li><a href="#/bookmarks" class="footer-nav-link">Saved Bookmarks</a></li>
             <li><a href="#/deals" class="footer-nav-link">Featured Deals <span class="footer-nav-badge">PRO</span></a></li>
           </ul>
         </div>
@@ -258,11 +241,10 @@
         <div class="footer-col">
           <h4 class="footer-col-title">Ecosystem</h4>
           <ul class="footer-nav-list">
-            <li><a href="#/submit" class="footer-nav-link">Submit AI Tool</a></li>
             <li><a href="#/advertise" class="footer-nav-link footer-nav-highlight">Advertise with AIRA</a></li>
             <li><a href="#/bookmarks" class="footer-nav-link">Saved Bookmarks</a></li>
-            <li><a href="#/tags" class="footer-nav-link">Tools Leaderboard</a></li>
             <li><a href="mailto:editorial@aira.news" class="footer-nav-link">Editorial & Contact</a></li>
+            <li><a href="#/home" class="footer-nav-link">Privacy Policy</a></li>
           </ul>
         </div>
 
@@ -271,7 +253,7 @@
           <div class="footer-kit-card">
             <div class="footer-kit-ribbon">🎁 FREE 2026 AI STARTER KIT</div>
             <h4 class="footer-kit-title">Instant Starter Kit</h4>
-            <p class="footer-kit-desc">Get the 400+ AI directory, master system prompt, and 2026 playbook sent to your inbox.</p>
+            <p class="footer-kit-desc">Get our master system prompt, daily frontier AI editions, and 2026 playbook sent to your inbox.</p>
             
             <form class="footer-kit-form" id="footer-sub-form">
               <input type="email" class="footer-kit-input" placeholder="Your email address..." required />
@@ -322,10 +304,10 @@
   <div class="modal-overlay" id="subscribe-modal">
     <div class="modal-card" style="text-align: center;">
       <button type="button" class="modal-close-btn" aria-label="Close" onclick="this.closest('.modal-overlay').classList.remove('active'); document.body.style.overflow='';">✕</button>
-      <img src="assets/logo.png?v=47.0" alt="AIRA" style="width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 12px auto; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+      <img src="assets/logo.png?v=50.0" alt="AIRA" style="width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 12px auto; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
       <span style="display: inline-block; font-size: 0.72rem; font-weight: 800; background: #ECFDF5; color: #047857; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">🎁 FREE 2026 AI STARTER KIT</span>
       <h3 style="font-family: var(--font-header); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Join AIRA Newsletter</h3>
-      <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Get top AI news, breakthroughs + instant access to the <strong>Top 100 Prompts & 400+ Tools Guide</strong>.</p>
+      <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Get top AI news, breakthroughs + instant access to the <strong>Top 100 Production AI Prompts</strong>.</p>
       
       <form id="modal-sub-form" style="display: flex; flex-direction: column; gap: 12px;">
         <input type="email" placeholder="Enter your email address" required style="padding: 12px 16px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 1rem;" />
@@ -346,12 +328,12 @@
         </div>
       </div>
       <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 18px; line-height: 1.45;">
-        Welcome to AIRA! Here is your instant kit download containing the <strong>Top 100 Production AI Prompts</strong> and our <strong>400+ AI Tools Directory Guide</strong>.
+        Welcome to AIRA! Here is your instant kit download containing the <strong>Top 100 Production AI Prompts</strong> and our <strong>Master Reasoning Prompt</strong>.
       </p>
 
       <div class="bonus-kit-grid">
         <!-- Kit 1: Prompts Cheat Sheet -->
-        <div class="bonus-kit-card">
+        <div class="bonus-kit-card" style="grid-column: 1 / -1;">
           <div>
             <div class="bonus-kit-card-icon">⚡</div>
             <h4>100+ Master AI Prompts</h4>
@@ -359,18 +341,6 @@
           </div>
           <button type="button" class="bonus-download-action-btn" id="btn-download-prompts-kit" onclick="window.downloadPromptsKit();">
             <span>📥 Download Prompts (.MD)</span>
-          </button>
-        </div>
-
-        <!-- Kit 2: Tools Directory Guide -->
-        <div class="bonus-kit-card">
-          <div>
-            <div class="bonus-kit-card-icon">📚</div>
-            <h4>400+ AI Tools Index</h4>
-            <p>Categorized directory dataset with official pricing, alternatives, and links.</p>
-          </div>
-          <button type="button" class="bonus-download-action-btn" id="btn-download-tools-kit" onclick="window.downloadToolsKit();">
-            <span>📥 Download Tools Guide</span>
           </button>
         </div>
       </div>
@@ -385,7 +355,7 @@
       </div>
 
       <div style="margin-top: 20px; text-align: center;">
-        <a href="#/tags" class="tool-details-btn" style="padding: 10px 20px; font-weight: 700; text-decoration: none; display: inline-flex;" onclick="document.getElementById('lead-magnet-modal').classList.remove('active'); document.body.style.overflow='';">Explore 400+ AI Tools Online →</a>
+        <a href="#/home" class="tool-details-btn" style="padding: 10px 20px; font-weight: 700; text-decoration: none; display: inline-flex;" onclick="document.getElementById('lead-magnet-modal').classList.remove('active'); document.body.style.overflow='';">Explore Frontier AI Editions →</a>
       </div>
     </div>
   </div>
@@ -401,11 +371,11 @@
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   <!-- Data and Application Script -->
-  <script src="data/articles.js?v=50.0"></script>
-  <script src="data/tools.js?v=50.0"></script>
-  <script src="data/alternatives.js?v=50.0"></script>
-  <script src="data/prompts.js?v=50.0"></script>
-  <script src="data/deals.js?v=50.0"></script>
-  <script src="js/app.js?v=50.0"></script>
+  <script src="data/articles.js?v=51.0"></script>
+  <script src="data/tools.js?v=51.0"></script>
+  <script src="data/alternatives.js?v=51.0"></script>
+  <script src="data/prompts.js?v=51.0"></script>
+  <script src="data/deals.js?v=51.0"></script>
+  <script src="js/app.js?v=51.0"></script>
 </body>
 </html>

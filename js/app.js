@@ -855,32 +855,14 @@ Website: https://aira-newsletter.vercel.app/
       renderArchivePage();
     } else if (route.name === 'prompts') {
       renderPromptsPage();
-    } else if (route.name === 'compare') {
-      renderComparePage();
     } else if (route.name === 'bookmarks') {
       renderBookmarksPage();
-    } else if (route.name === 'submit') {
-      renderSubmitPage();
-    } else if (route.name === 'deals') {
-      renderHomePage();
     } else if (route.name === 'advertise') {
       renderAdvertisePage();
-    } else if (route.name === 'alternatives') {
-      if (route.category && route.category !== 'all') {
-        state.altCategoryFilter = route.category;
-      }
-      renderAlternativesPage();
-    } else if (route.name === 'alternative-detail') {
-      renderAlternativeDetailPage(route.slug);
     } else if (route.name === 'admin') {
       renderAdminPage();
-    } else if (route.name === 'tags') {
-      if (route.category && route.category !== 'all') {
-        state.toolCategoryFilter = route.category;
-      }
-      renderTagsPage();
-    } else if (route.name === 'tool-detail') {
-      renderToolDetailPage(route.id);
+    } else {
+      renderHomePage();
     }
   }
 
@@ -1140,23 +1122,6 @@ Website: https://aira-newsletter.vercel.app/
         </div>
       </section>
 
-      <!-- Featured AI Tools of the Week Showcase (Exact Design Mockup) -->
-      <section class="featured-tools-section">
-        <div class="container">
-          <div class="featured-tools-header-row">
-            <div class="featured-tools-title-wrap">
-              <span class="featured-tools-icon">⚡</span>
-              <h2 class="featured-tools-main-title">FEATURED AI TOOLS OF THE WEEK</h2>
-            </div>
-            <a href="#/tags" class="featured-tools-view-all-link">View all 400+ tools →</a>
-          </div>
-
-          <div class="featured-tools-grid">
-            ${getFeaturedToolsHTML()}
-          </div>
-        </div>
-      </section>
-
       <!-- Articles Feed Section -->
       <section class="feed-section" id="main-articles-feed">
         <div class="container" id="feed-container-inner"></div>
@@ -1285,13 +1250,13 @@ Website: https://aira-newsletter.vercel.app/
             <!-- Right Column: Sidebar Ads & Popular Posts -->
             <div class="home-sidebar-col">
               
-              <!-- Sidebar Ad 1: Build Smarter with AI -->
+              <!-- Sidebar Ad 1: Master AI Prompts Vault -->
               <div class="ad-sidebar-card">
-                <span class="ad-tag-label">ADVERTISEMENT</span>
-                <h3 class="ad-sidebar-title">Build Smarter with AI</h3>
-                <p class="ad-sidebar-desc">Discover tools, courses and resources to grow your skills and career.</p>
-                <a href="#/tags" class="ad-pill-btn">
-                  <span>Explore Now</span>
+                <span class="ad-tag-label">FEATURED RESOURCE</span>
+                <h3 class="ad-sidebar-title">Master AI Prompts Vault</h3>
+                <p class="ad-sidebar-desc">100+ battle-tested prompts for reasoning, coding, writing & automation.</p>
+                <a href="#/prompts" class="ad-pill-btn">
+                  <span>Open Prompts Vault</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
@@ -1316,35 +1281,24 @@ Website: https://aira-newsletter.vercel.app/
                 </div>
               </div>
 
-              <!-- Sidebar Ad 2: Grow Your Skills with AI -->
+              <!-- Sidebar Ad 2: Join VIP Newsletter -->
               <div class="ad-sidebar-card">
-                <span class="ad-tag-label">FEATURED RESOURCE</span>
-                <h3 class="ad-sidebar-title">Grow Your Skills with AI</h3>
-                <p class="ad-sidebar-desc">Curated courses, practical prompt frameworks & AI engineering cheat sheets.</p>
-                <a href="#/tags" class="ad-pill-btn">
-                  <span>Learn More</span>
+                <span class="ad-tag-label">VIP COMMUNITY</span>
+                <h3 class="ad-sidebar-title">Join 500+ AI Builders</h3>
+                <p class="ad-sidebar-desc">Get the daily frontier AI breakdown, tutorials, and reasoning models decoded.</p>
+                <button type="button" class="ad-pill-btn" onclick="document.getElementById('subscribe-modal').classList.add('active'); document.body.style.overflow='hidden';">
+                  <span>Join VIP Free</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                </button>
               </div>
 
-              <!-- Sidebar Ad 3: Autonomous AI Agents -->
-              <div class="ad-sidebar-card">
-                <span class="ad-tag-label">AUTOMATION & AGENTS</span>
-                <h3 class="ad-sidebar-title">Deploy Frontier AI Agents</h3>
-                <p class="ad-sidebar-desc">Production-grade templates, MCP tool-use connectors & autonomous swarms.</p>
-                <a href="#/tags?category=agents" class="ad-pill-btn">
-                  <span>Get Templates</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-
-              <!-- Sidebar Ad 4: Advertise with AIRA -->
+              <!-- Sidebar Ad 3: Advertise with AIRA -->
               <div class="ad-sidebar-card" style="background: linear-gradient(145deg, #ECFDF5 0%, #D1FAE5 60%, #CCFBF1 100%);">
                 <span class="ad-tag-label">SPONSORSHIP</span>
                 <h3 class="ad-sidebar-title">Partner with AIRA</h3>
                 <p class="ad-sidebar-desc">Put your brand in front of 500+ AI builders, founders, and engineers.</p>
-                <a href="mailto:sponsor@aira.com?subject=Newsletter%20Sponsorship%20Inquiry" class="ad-pill-btn" target="_blank" rel="noopener">
-                  <span>Book Slot</span>
+                <a href="#/advertise" class="ad-pill-btn">
+                  <span>View Media Kit</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
@@ -1358,17 +1312,17 @@ Website: https://aira-newsletter.vercel.app/
             ${renderPaginationHTML(state.homeCurrentPage, totalPages, 'home')}
           </div>
 
-          <!-- 4. Full-Width Bottom Banner Ad (Exact Same Full Width as Top Banner Ad) -->
+          <!-- 4. Full-Width Bottom Banner Ad -->
           <div class="ad-banner-mint" style="margin-top: 32px; margin-bottom: 24px;">
             <div class="ad-banner-content-wrap">
-              <span class="ad-tag-label">ADVERTISEMENT</span>
-              <h3 class="ad-banner-title">Level Up Your AI Skills</h3>
-              <p class="ad-banner-desc">Learn from top resources, build real projects and get future ready.</p>
+              <span class="ad-tag-label">FREE VIP ACCESS</span>
+              <h3 class="ad-banner-title">Never Miss a Frontier AI Breakthrough</h3>
+              <p class="ad-banner-desc">Daily frontier research, step-by-step tutorials and reasoning models delivered free.</p>
             </div>
-            <a href="#/tags" class="ad-pill-btn">
-              <span>Explore Courses</span>
+            <button type="button" class="ad-pill-btn" onclick="document.getElementById('subscribe-modal').classList.add('active'); document.body.style.overflow='hidden';">
+              <span>Subscribe Free ⚡</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            </button>
           </div>
         `}
       `;
