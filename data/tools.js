@@ -1,6 +1,6 @@
 /**
  * AIRA Newsletter - Curated AI Tools Directory Dataset
- * Sourced from leading verified AI platforms & powerfulai.tools
+ * Strictly Sourced from powerfulai.tools directory standards.
  * Heavy focus on Free & Generous Freemium daily utility tools.
  */
 
@@ -15,11 +15,6 @@ const AI_TOOLS_DATA = {
       "id": "chatbot",
       "name": "Chatbots & LLMs",
       "icon": "💬"
-    },
-    {
-      "id": "developer-tools",
-      "name": "Coding & Dev Tools",
-      "icon": "💻"
     },
     {
       "id": "writing",
@@ -57,20 +52,84 @@ const AI_TOOLS_DATA = {
       "icon": "🎓"
     },
     {
+      "id": "developer-tools",
+      "name": "Coding & Dev Tools",
+      "icon": "💻"
+    },
+    {
       "id": "marketing",
       "name": "Marketing & SEO",
       "icon": "📈"
-    },
-    {
-      "id": "agents",
-      "name": "Autonomous AI Agents",
-      "icon": "🤖"
     }
   ],
   "tools": [
     {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "writing",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Top Pick",
+      "featured": true,
+      "description": "OpenAI's conversational assistant with GPT-4o, GPT-4o mini, DALL-E image generation, and live web browsing.",
+      "url": "https://chatgpt.com",
+      "domain": "chatgpt.com",
+      "icon": "🤖",
+      "inner_content": {
+        "overview": "ChatGPT by OpenAI is the world's most widely used AI assistant. It provides conversational reasoning, multimodal image analysis, DALL-E image generation, live web search, custom GPTs, and code execution in Python.",
+        "features": [
+          "GPT-4o multimodal vision, voice, text, and real-time reasoning",
+          "Integrated web browsing with real-time citations and source attribution",
+          "Python code interpreter capable of analyzing spreadsheets and generating charts",
+          "Custom GPT store with thousands of specialized community workflows"
+        ],
+        "useCases": [
+          "Daily conversational assistant for answering questions and brainstorming",
+          "Drafting essays, emails, blog posts, and marketing content",
+          "Data analysis, spreadsheet calculations, and Python code debugging"
+        ],
+        "pricingDetails": "Free tier with access to GPT-4o mini and limited GPT-4o. Plus plan at $20/month."
+      }
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "developer-tools",
+        "writing"
+      ],
+      "pricing": "Freemium",
+      "badge": "Top Pick",
+      "featured": true,
+      "description": "Anthropic's frontier AI assistant featuring extended thinking, 200k context window, and exceptional nuanced writing.",
+      "url": "https://claude.ai",
+      "domain": "anthropic.com",
+      "icon": "🧠",
+      "inner_content": {
+        "overview": "Claude by Anthropic is renowned for its natural tone, deep reasoning abilities, and safe alignment. With its 200,000 token context window, Claude can analyze entire books, financial reports, or codebases in seconds.",
+        "features": [
+          "Extended thinking and chain-of-thought reasoning",
+          "200,000 token context window for huge documents and datasets",
+          "Claude Artifacts for live interactive React components, SVGs, and documents",
+          "Exceptional writing style with zero generic robotic phrasing"
+        ],
+        "useCases": [
+          "Complex coding, refactoring, and code review",
+          "Analyzing massive PDFs, legal contracts, and academic papers in one prompt",
+          "Writing high-stakes executive memos, articles, and documentation"
+        ],
+        "pricingDetails": "Free tier with daily usage limits. Pro tier at $20/month."
+      }
+    },
+    {
       "id": "deepseek",
-      "name": "DeepSeek R1 & V3",
+      "name": "DeepSeek",
       "category": "chatbot",
       "categories": [
         "chatbot",
@@ -101,70 +160,6 @@ const AI_TOOLS_DATA = {
       }
     },
     {
-      "id": "chatgpt",
-      "name": "ChatGPT",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "writing",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "OpenAI's flagship conversational assistant with GPT-4o, GPT-4o mini, image generation, and web browsing.",
-      "url": "https://chatgpt.com",
-      "domain": "chatgpt.com",
-      "icon": "🤖",
-      "inner_content": {
-        "overview": "ChatGPT by OpenAI is the world's most widely used AI assistant. It provides conversational reasoning, multimodal image analysis, DALL-E image generation, live web search, custom GPTs, and code execution in Python.",
-        "features": [
-          "GPT-4o multimodal vision, voice, text, and real-time reasoning",
-          "Integrated web browsing with real-time citations and source attribution",
-          "Python code interpreter capable of analyzing spreadsheets and generating charts",
-          "Custom GPT store with thousands of specialized community workflows"
-        ],
-        "useCases": [
-          "Daily conversational assistant for answering questions and brainstorming",
-          "Drafting essays, emails, blog posts, and marketing content",
-          "Data analysis, spreadsheet calculations, and Python code debugging"
-        ],
-        "pricingDetails": "Free tier with access to GPT-4o mini and limited GPT-4o. Plus plan at $20/month."
-      }
-    },
-    {
-      "id": "claude",
-      "name": "Claude 3.7 Sonnet",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "developer-tools",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "Anthropic's hybrid reasoning model featuring extended thinking, 200k context, and unmatched coding.",
-      "url": "https://claude.ai",
-      "domain": "anthropic.com",
-      "icon": "🧠",
-      "inner_content": {
-        "overview": "Claude 3.7 Sonnet from Anthropic is the industry's first hybrid reasoning model, capable of instant answering or dynamically toggling extended step-by-step thinking for complex engineering and analytical challenges.",
-        "features": [
-          "Hybrid extended thinking for complex software architecture and reasoning",
-          "200,000 token context window capable of reading entire books or codebases",
-          "Claude Artifacts for live interactive React components, SVGs, and documents",
-          "Exceptional nuanced writing tone with zero robotic jargon"
-        ],
-        "useCases": [
-          "Complex full-stack coding, refactoring, and code review",
-          "Analyzing massive PDFs, legal contracts, and academic papers in one prompt",
-          "Writing high-stakes executive memos, articles, and documentation"
-        ],
-        "pricingDetails": "Free tier with daily usage limits. Pro tier at $20/month for 5x more capacity."
-      }
-    },
-    {
       "id": "gemini",
       "name": "Google Gemini",
       "category": "chatbot",
@@ -176,7 +171,7 @@ const AI_TOOLS_DATA = {
       "pricing": "Freemium",
       "badge": "Top Pick",
       "featured": true,
-      "description": "Google's multimodal assistant powered by Gemini 2.0 with a massive 1M-2M context window and Google Workspace integration.",
+      "description": "Google's multimodal assistant powered by Gemini with a massive 1M-2M context window and Google Workspace integration.",
       "url": "https://gemini.google.com",
       "domain": "google.com",
       "icon": "✨",
@@ -193,7 +188,7 @@ const AI_TOOLS_DATA = {
           "Multimodal video, image, and document analysis",
           "Everyday research, trip planning, and email drafting"
         ],
-        "pricingDetails": "Free tier with Gemini 2.0 Flash. Advanced plan included in Google One AI Premium ($19.99/mo)."
+        "pricingDetails": "Free tier with Gemini Flash. Advanced plan included in Google One AI Premium ($19.99/mo)."
       }
     },
     {
@@ -218,7 +213,7 @@ const AI_TOOLS_DATA = {
           "Pro Search with multi-step reasoning and deep web retrieval",
           "Direct citations with clickable source links on every factual statement",
           "Perplexity Spaces to organize research documents and collaborate",
-          "Ability to toggle underlying models: Claude 3.7, GPT-4o, Sonar, DeepSeek"
+          "Ability to toggle underlying models: Claude, GPT-4o, Sonar, DeepSeek"
         ],
         "useCases": [
           "Fact-checked research for academics, journalists, and professionals",
@@ -293,6 +288,37 @@ const AI_TOOLS_DATA = {
       }
     },
     {
+      "id": "poe",
+      "name": "Poe by Quora",
+      "category": "chatbot",
+      "categories": [
+        "chatbot",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Multi-Model",
+      "featured": false,
+      "description": "Universal AI aggregator by Quora to access ChatGPT, Claude, Gemini, FLUX, and custom bots in one app.",
+      "url": "https://poe.com",
+      "domain": "poe.com",
+      "icon": "📱",
+      "inner_content": {
+        "overview": "Poe by Quora is a unified ecosystem that provides access to virtually every major AI model (OpenAI, Anthropic, Google, Meta, Mistral, Stability) under a single interface with generous daily free computing points.",
+        "features": [
+          "All major LLMs in one place (GPT-4o, Claude, Gemini, DeepSeek)",
+          "Daily free compute points replenished every 24 hours",
+          "Create and monetize custom AI bots and workflows",
+          "Cross-platform syncing across iOS, Android, macOS, and Web"
+        ],
+        "useCases": [
+          "Comparing responses between different LLMs side-by-side",
+          "Creating specialized prompt bots for specific tasks or teams",
+          "Single hub for text, code, and image generation"
+        ],
+        "pricingDetails": "Generous daily free compute points. Premium subscription for heavy unlimited usage."
+      }
+    },
+    {
       "id": "huggingchat",
       "name": "HuggingChat",
       "category": "chatbot",
@@ -321,68 +347,6 @@ const AI_TOOLS_DATA = {
           "Building custom conversational assistants on Hugging Face"
         ],
         "pricingDetails": "100% Free and open source provided by Hugging Face."
-      }
-    },
-    {
-      "id": "poe",
-      "name": "Poe by Quora",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Multi-Model",
-      "featured": false,
-      "description": "Universal AI aggregator by Quora to access ChatGPT, Claude, Gemini, FLUX, and custom bots in one app.",
-      "url": "https://poe.com",
-      "domain": "poe.com",
-      "icon": "📱",
-      "inner_content": {
-        "overview": "Poe by Quora is a unified ecosystem that provides access to virtually every major AI model (OpenAI, Anthropic, Google, Meta, Mistral, Stability) under a single interface with generous daily free computing points.",
-        "features": [
-          "All major LLMs in one place (GPT-4o, Claude 3.7, Gemini 2.0, DeepSeek)",
-          "Daily free compute points replenished every 24 hours",
-          "Create and monetize custom AI bots and workflows",
-          "Cross-platform syncing across iOS, Android, macOS, and Web"
-        ],
-        "useCases": [
-          "Comparing responses between different LLMs side-by-side",
-          "Creating specialized prompt bots for specific tasks or teams",
-          "Single hub for text, code, and image generation"
-        ],
-        "pricingDetails": "Generous daily free compute points. Premium subscription for heavy unlimited usage."
-      }
-    },
-    {
-      "id": "duckduckgo-ai",
-      "name": "DuckDuckGo AI Chat",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "productivity"
-      ],
-      "pricing": "Free",
-      "badge": "100% Anonymous",
-      "featured": false,
-      "description": "Completely anonymous and private AI chat with GPT-4o mini, Claude 3 Haiku, and Llama 3.",
-      "url": "https://duckduckgo.com/chat",
-      "domain": "duckduckgo.com",
-      "icon": "🦆",
-      "inner_content": {
-        "overview": "DuckDuckGo AI Chat allows users to interact with leading AI models including GPT-4o mini, Claude 3 Haiku, and Llama 3 with complete anonymity. Queries are stripped of personal data and never used for model training.",
-        "features": [
-          "100% anonymous chat with zero account creation required",
-          "Choose between GPT-4o mini, Claude 3 Haiku, Llama 3, and Mixtral",
-          "Strict privacy guarantee: chats are never saved or used to train models",
-          "Clean, distraction-free interface with instant load times"
-        ],
-        "useCases": [
-          "Confidential research and private question asking",
-          "Quick text drafting without leaving a digital footprint",
-          "Fast AI lookups without needing to sign in with email"
-        ],
-        "pricingDetails": "100% Free with standard daily message allowances."
       }
     },
     {
@@ -418,435 +382,251 @@ const AI_TOOLS_DATA = {
       }
     },
     {
-      "id": "qwen-chat",
-      "name": "Qwen Chat",
-      "category": "chatbot",
+      "id": "quillbot",
+      "name": "QuillBot",
+      "category": "writing",
       "categories": [
-        "chatbot",
-        "developer-tools",
-        "research"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Multilingual",
-      "featured": false,
-      "description": "Alibaba's premier open-weight model family with state-of-the-art coding, math, and multilingual abilities.",
-      "url": "https://chat.qwenlm.ai",
-      "domain": "qwenlm.ai",
-      "icon": "🌏",
-      "inner_content": {
-        "overview": "Qwen 2.5 by Alibaba Cloud is one of the world's most powerful open-weight language model suites. It excels at coding, competitive mathematics, multi-step logical deduction, and native multilingual fluency.",
-        "features": [
-          "World-class coding and math performance competitive with GPT-4o",
-          "Long-context support up to 128k tokens with high retrieval accuracy",
-          "Native multilingual support across 29+ languages",
-          "Built-in code artifact execution and web search capabilities"
-        ],
-        "useCases": [
-          "Solving complex algorithms, LeetCode problems, and system architectures",
-          "Translating and localizing technical documentation across Asian and European languages",
-          "Free alternative to commercial frontier models"
-        ],
-        "pricingDetails": "100% Free web access and open-weight downloads on Hugging Face."
-      }
-    },
-    {
-      "id": "grok",
-      "name": "xAI Grok",
-      "category": "chatbot",
-      "categories": [
-        "chatbot",
-        "research"
+        "writing",
+        "education"
       ],
       "pricing": "Freemium",
-      "badge": "Real-Time X News",
-      "featured": false,
-      "description": "xAI's conversational model with direct real-time access to the global firehose of news and discussions on X.",
-      "url": "https://x.ai",
-      "domain": "x.ai",
-      "icon": "🌌",
+      "badge": "Top Free Writing",
+      "featured": true,
+      "description": "Free AI paraphrasing tool, grammar checker, summarizer, citation generator, and translator.",
+      "url": "https://quillbot.com",
+      "domain": "quillbot.com",
+      "icon": "🪶",
       "inner_content": {
-        "overview": "Grok by xAI is an AI assistant designed to answer questions with real-time knowledge of world events as they happen on X (Twitter). Powered by Grok 2 and Grok 3 with integrated FLUX image generation.",
+        "overview": "QuillBot is the world's most trusted AI writing and paraphrasing companion used by over 50 million students and professionals. It rewrites sentences, corrects grammar, summarizes essays, and creates academic citations.",
         "features": [
-          "Real-time news ingestion from breaking global reports on X",
-          "Integrated FLUX-powered photorealistic image generation",
-          "Fun Mode and Regular Mode for customizable conversational wit",
-          "Advanced mathematical reasoning and code debugging"
+          "Paraphraser with Standard, Fluency, Formal, Creative, and Shorten modes",
+          "Advanced Grammar Checker that spots punctuation, tense, and spelling errors",
+          "AI Summarizer: condense long articles or research papers into bullet points",
+          "Free Citation Generator supporting APA, MLA, and Chicago citation styles"
         ],
         "useCases": [
-          "Tracking breaking news, market movements, and viral tech updates in real-time",
-          "Generating high-speed image concepts with minimal censorship constraints",
-          "Analyzing public sentiment on trending events"
+          "Students polishing academic essays and generating accurate bibliographies",
+          "Non-native English speakers improving fluency and natural phrasing",
+          "Writers eliminating repetitive vocabulary and improving sentence variety"
         ],
-        "pricingDetails": "Free access tier on X/web with daily query allowances. Premium on X."
+        "pricingDetails": "Generous Free tier with 125 words per paraphrase. Premium for unlimited words."
       }
     },
     {
-      "id": "cursor",
-      "name": "Cursor",
-      "category": "developer-tools",
+      "id": "grammarly",
+      "name": "Grammarly AI",
+      "category": "writing",
       "categories": [
-        "developer-tools",
+        "writing",
         "productivity"
       ],
       "pricing": "Freemium",
       "badge": "Top Pick",
       "featured": true,
-      "description": "AI-first code editor fork of VS Code with codebase indexing, multi-file edits, and instant debugging.",
-      "url": "https://www.cursor.com",
-      "domain": "cursor.com",
+      "description": "AI communication assistant that catches errors, refines tone, and rewrites text across all desktop apps.",
+      "url": "https://www.grammarly.com",
+      "domain": "grammarly.com",
+      "icon": "✍️",
+      "inner_content": {
+        "overview": "Grammarly is an essential writing assistant that operates across web browsers, email clients, Word, and desktop apps. Its generative AI rewrites emails, adjusts formality, and ensures clear, error-free communication.",
+        "features": [
+          "Real-time grammar, spelling, punctuation, and clarity suggestions",
+          "Tone detector and rewriter (formal, casual, confident, empathetic)",
+          "Generative AI prompts to reply to emails and brainstorm drafts in 1 click",
+          "Browser extension and desktop app integrating seamlessly with your workflow"
+        ],
+        "useCases": [
+          "Crafting professional business emails and client proposals",
+          "Checking academic papers and thesis drafts for clarity and tone",
+          "Refining everyday workplace messages on Slack, Teams, and Gmail"
+        ],
+        "pricingDetails": "Free tier with 100 AI prompt credits/mo and core grammar checks. Premium at $12/mo."
+      }
+    },
+    {
+      "id": "copy-ai",
+      "name": "Copy.ai",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "marketing"
+      ],
+      "pricing": "Freemium",
+      "badge": "Marketing Copy",
+      "featured": false,
+      "description": "AI platform for sales and marketing teams to generate social copy, email campaigns, and SEO articles.",
+      "url": "https://www.copy.ai",
+      "domain": "copy.ai",
+      "icon": "🚀",
+      "inner_content": {
+        "overview": "Copy.ai is a specialized generative copywriting platform tailored for marketers, agencies, and sales professionals. It provides over 90 templates for ad copy, cold outbound emails, blog outlines, and social posts.",
+        "features": [
+          "90+ dedicated copywriting templates for Facebook ads, Google search, and blogs",
+          "Brand Voice engine to enforce your company's tone across all copy",
+          "Infobase: store reusable company facts, product specs, and value propositions",
+          "Workflow automation to generate bulk content from spreadsheets"
+        ],
+        "useCases": [
+          "Marketers writing high-converting social media ads and sales landing pages",
+          "Sales reps personalizing cold outbound outreach emails at scale",
+          "Content creators brainstorming catchy video titles and email newsletters"
+        ],
+        "pricingDetails": "Free plan includes 2,000 words in Chat per month. Pro plan for unlimited words."
+      }
+    },
+    {
+      "id": "writesonic",
+      "name": "Writesonic",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "marketing"
+      ],
+      "pricing": "Freemium",
+      "badge": "SEO Articles",
+      "featured": false,
+      "description": "AI writer trained on top-ranking Google content to generate SEO-optimized articles, landing pages, and ads.",
+      "url": "https://writesonic.com",
+      "domain": "writesonic.com",
       "icon": "⚡",
       "inner_content": {
-        "overview": "Cursor is the world's most popular AI-native code editor. Built as a seamless fork of VS Code, it lets developers index their entire repository, make multi-file edits via natural language, and use Claude 3.7 or GPT-4o inline.",
+        "overview": "Writesonic is an AI content creation platform built for SEO writers and agencies. Its Article Writer analyzes current top-ranking Google competitors to generate comprehensive, fact-checked, and keyword-optimized long-form articles.",
         "features": [
-          "Full codebase semantic indexing with `@codebase` natural language querying",
-          "Composer multi-file generation and editing across entire repositories",
-          "Instant AI tab autocomplete with intelligent cursor jump prediction",
-          "Direct terminal command generation and automated error fixing"
+          "AI Article Writer with real-time Google search competitor analysis",
+          "Chatsonic conversational AI assistant with live internet access",
+          "Brand Voice personalization and automatic internal linking suggestions",
+          "1-click export to WordPress, Webflow, and Shopify"
         ],
         "useCases": [
-          "Building full-stack web and mobile apps at 5x speed",
-          "Refactoring legacy codebases across dozens of connected files",
-          "Debugging complex runtime errors and writing automated test suites"
+          "Publishing 2,500+ word SEO-optimized blog posts in minutes",
+          "Generating high-converting e-commerce product descriptions",
+          "Creating multi-channel marketing campaigns and Google Ad headlines"
         ],
-        "pricingDetails": "Free tier with 2,000 completions and 50 slow premium requests. Pro at $20/month."
+        "pricingDetails": "Free trial with 25 credits. Paid plans start from $12/month."
       }
     },
     {
-      "id": "v0-vercel",
-      "name": "v0 by Vercel",
-      "category": "developer-tools",
+      "id": "rytr",
+      "name": "Rytr",
+      "category": "writing",
       "categories": [
-        "developer-tools",
+        "writing",
+        "marketing"
+      ],
+      "pricing": "Freemium",
+      "badge": "10k Free Words/Mo",
+      "featured": false,
+      "description": "Fast, affordable AI writing assistant for blogs, emails, social ads, and product descriptions.",
+      "url": "https://rytr.me",
+      "domain": "rytr.me",
+      "icon": "✍️",
+      "inner_content": {
+        "overview": "Rytr is an intuitive AI writing assistant that helps you create high-quality content in just a few seconds. With 40+ use cases and 20+ voice tones, Rytr generates catchy copy for emails, social media, and blogs.",
+        "features": [
+          "40+ pre-built use cases (blog outlines, email replies, YouTube descriptions)",
+          "20+ tone selectors (convincing, enthusiastic, formal, casual, humble)",
+          "Built-in plagiarism checker powered by Copyscape",
+          "Generous 10,000 characters per month on the permanent free plan"
+        ],
+        "useCases": [
+          "Freelancers drafting quick email templates and social captions",
+          "E-commerce stores generating catchy product titles and bullet points",
+          "Bloggers overcoming writer's block with outline and intro generation"
+        ],
+        "pricingDetails": "Free plan includes 10,000 characters per month. Unlimited plan from $7.50/mo."
+      }
+    },
+    {
+      "id": "notion-ai",
+      "name": "Notion AI",
+      "category": "writing",
+      "categories": [
+        "writing",
         "productivity"
       ],
       "pricing": "Freemium",
-      "badge": "Trending",
+      "badge": "Connected Brain",
+      "featured": false,
+      "description": "Integrated AI assistant inside Notion that searches your entire workspace, drafts docs, and summarizes notes.",
+      "url": "https://www.notion.so/product/ai",
+      "domain": "notion.so",
+      "icon": "📓",
+      "inner_content": {
+        "overview": "Notion AI connects directly to your Notion workspace. It can answer questions about your team's internal documentation, write meeting summaries, extract action items, and draft documentation with full contextual awareness.",
+        "features": [
+          "Q&A across your entire workspace: finds answers buried in company wikis",
+          "Automated meeting notes summarizer and action-item extractor",
+          "In-editor drafting for blog posts, PRDs, specs, and translation",
+          "Autofill database tables with AI-generated summaries and tags"
+        ],
+        "useCases": [
+          "Product managers drafting PRDs and feature specifications",
+          "Teams organizing meeting transcripts and capturing immediate action items",
+          "Building an automated internal company knowledge base and FAQ"
+        ],
+        "pricingDetails": "Free trial with complimentary AI responses. Add-on available for $8-10/user/mo."
+      }
+    },
+    {
+      "id": "hemingway-ai",
+      "name": "Hemingway Editor Plus",
+      "category": "writing",
+      "categories": [
+        "writing",
+        "education"
+      ],
+      "pricing": "Freemium",
+      "badge": "Readability",
+      "featured": false,
+      "description": "AI writing editor that highlights complex sentences, passive voice, and fixes readability issues.",
+      "url": "https://hemingwayapp.com",
+      "domain": "hemingwayapp.com",
+      "icon": "📖",
+      "inner_content": {
+        "overview": "Hemingway Editor makes your writing bold and clear. It highlights wordy sentences, passive voice, unnecessary adverbs, and complex phrasing with color-coded alerts, while its AI rephrases sentences for maximum punch.",
+        "features": [
+          "Color-coded highlighting of hard-to-read sentences and passive voice",
+          "One-click AI sentence shortener and tone adjuster",
+          "Automated Grade Level readability scoring (Flesch-Kincaid index)",
+          "Distraction-free markdown writing mode"
+        ],
+        "useCases": [
+          "Simplifying dense technical documents and business memos",
+          "Editing newsletter issues and articles to achieve Grade 5-8 readability",
+          "Fixing passive voice and clumsy phrasing in marketing copy"
+        ],
+        "pricingDetails": "Free web version for core color-coded editing. Plus AI plan at $8.33/mo."
+      }
+    },
+    {
+      "id": "leonardo-ai",
+      "name": "Leonardo.ai",
+      "category": "image-generator",
+      "categories": [
+        "image-generator",
+        "video-generator"
+      ],
+      "pricing": "Freemium",
+      "badge": "150 Daily Free",
       "featured": true,
-      "description": "Generative UI system by Vercel that produces production-ready React, Tailwind CSS, and Next.js components.",
-      "url": "https://v0.dev",
-      "domain": "v0.dev",
-      "icon": "▲",
+      "description": "Full-suite creative platform for generating game assets, marketing imagery, and motion videos with 150 daily free credits.",
+      "url": "https://leonardo.ai",
+      "domain": "leonardo.ai",
+      "icon": "✨",
       "inner_content": {
-        "overview": "v0 by Vercel is a generative AI frontend tool that turns natural language prompts and image mockups into clean, production-ready React, Next.js, and Tailwind CSS code with instant live interactive previews.",
+        "overview": "Leonardo.ai (now part of Canva) is a comprehensive generative art studio. It offers fine-tuned community models, real-time AI canvas painting, motion video generation, and 150 daily free credits.",
         "features": [
-          "Generates responsive React code with Tailwind CSS and shadcn/ui components",
-          "Image-to-code: upload Figma screenshots or UI sketches to convert into code",
-          "Direct one-click deployment to Vercel and npm component export",
-          "Iterative chat prompting to refine UI elements and design tokens"
+          "150 free generation tokens replenished every single day",
+          "Phoenix and Kino flagship models for cinematic photorealism",
+          "Real-time Canvas editor: draw rough sketches and see instant AI renders",
+          "Motion generator: turn any static image into an animated video loop"
         ],
         "useCases": [
-          "Rapid prototyping of SaaS landing pages and dashboards",
-          "Converting design mockups and screenshots into clean React code",
-          "Generating bespoke UI components for modern Next.js applications"
+          "Concept art, character design, and game asset production",
+          "Creating photorealistic portraits, landscape backdrops, and product renders",
+          "Generating animated social media visuals and YouTube thumbnails"
         ],
-        "pricingDetails": "Free tier with daily renewable credits. Premium plans for team collaboration."
-      }
-    },
-    {
-      "id": "lovable",
-      "name": "Lovable AI",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "Natural language full-stack software engineer that builds, debugs, and deploys entire web apps.",
-      "url": "https://lovable.dev",
-      "domain": "lovable.dev",
-      "icon": "❤️",
-      "inner_content": {
-        "overview": "Lovable AI is a full-stack AI software engineer that enables anyone to build production-grade web applications from scratch. It handles frontend UI, Supabase database integration, authentication, and live cloud deployment.",
-        "features": [
-          "Builds full-stack applications with React, Tailwind, and Supabase backend",
-          "Automatic database schema generation and authentication setup",
-          "Live GitHub sync with two-way code editing and automated commits",
-          "Instant production hosting and custom domain connection"
-        ],
-        "useCases": [
-          "Launching MVPs, internal SaaS tools, and client portals in hours",
-          "Non-technical founders creating complete interactive software products",
-          "Rapid enterprise prototyping and interactive user testing"
-        ],
-        "pricingDetails": "Free tier with daily project credits. Scale plans for unlimited app builds."
-      }
-    },
-    {
-      "id": "bolt-new",
-      "name": "Bolt.new",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "In-Browser Dev",
-      "featured": false,
-      "description": "In-browser AI web development environment powered by WebContainers to build and run fullstack apps.",
-      "url": "https://bolt.new",
-      "domain": "bolt.new",
-      "icon": "⚡",
-      "inner_content": {
-        "overview": "Bolt.new by StackBlitz is an AI-powered development environment that runs entirely inside your browser using WebContainers. It can install npm packages, run Node.js servers, and build fullstack web applications without local setup.",
-        "features": [
-          "Full in-browser Node.js runtime and terminal execution",
-          "Installs any npm package and runs modern full-stack frameworks (Vite, Next, Remix)",
-          "Interactive side-by-side code editor and live browser preview",
-          "One-click deployment to Netlify or GitHub repository sync"
-        ],
-        "useCases": [
-          "Building and testing full-stack web applications without local dev setup",
-          "Rapid prototyping of web apps with live backend servers and APIs",
-          "Sharing reproducible interactive software demos with a single URL"
-        ],
-        "pricingDetails": "Free tier with daily token allowance. Pro plans for higher token limits."
-      }
-    },
-    {
-      "id": "ollama",
-      "name": "Ollama",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "chatbot"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": true,
-      "description": "Run open-source LLMs locally on your Mac, Windows, or Linux machine with a single terminal command.",
-      "url": "https://ollama.com",
-      "domain": "ollama.com",
-      "icon": "🦙",
-      "inner_content": {
-        "overview": "Ollama is the premier open-source tool for running large language models locally on your machine. With support for DeepSeek R1, Llama 3.3, Mistral, Qwen, and Gemma, Ollama gives you total data privacy and zero API costs.",
-        "features": [
-          "Run top models locally: `ollama run deepseek-r1` or `ollama run llama3.3`",
-          "Local REST API compatible with OpenAI SDK formats for easy integration",
-          "Zero data leaves your computer — 100% offline and private",
-          "Supports GPU acceleration across Apple Silicon, NVIDIA CUDA, and AMD ROCm"
-        ],
-        "useCases": [
-          "Privacy-sensitive coding and confidential corporate data processing",
-          "Offline AI assistant for developers and researchers with no internet",
-          "Local backend engine for Obsidian, Cursor, and Continue.dev plugins"
-        ],
-        "pricingDetails": "100% Free and open source software (MIT license)."
-      }
-    },
-    {
-      "id": "devv-ai",
-      "name": "Devv AI",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "research"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free for Devs",
-      "featured": false,
-      "description": "AI search engine specifically designed for developers with documentation indexing and GitHub repo search.",
-      "url": "https://devv.ai",
-      "domain": "devv.ai",
-      "icon": "💻",
-      "inner_content": {
-        "overview": "Devv AI is an intelligent search engine tailored exclusively for software engineers. It indexes official documentation across thousands of libraries, GitHub repositories, and StackOverflow solutions to deliver concise, working code snippets.",
-        "features": [
-          "Accurate, up-to-date documentation search across React, Python, Rust, Docker, etc.",
-          "Direct GitHub repository indexing and code reference citations",
-          "Interactive code sandbox to test generated scripts immediately",
-          "Clean syntax highlighting with zero generic fluff or SEO bloat"
-        ],
-        "useCases": [
-          "Looking up syntax, library APIs, and framework migration guides",
-          "Troubleshooting obscure compiler errors and framework stack traces",
-          "Finding open-source code examples and architectural patterns"
-        ],
-        "pricingDetails": "100% Free for developers with generous high-speed query limits."
-      }
-    },
-    {
-      "id": "aider",
-      "name": "Aider AI",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "Open Source CLI",
-      "featured": false,
-      "description": "AI pair programming tool in your terminal that edits code in your local git repo with automatic commits.",
-      "url": "https://aider.chat",
-      "domain": "aider.chat",
-      "icon": "🤖",
-      "inner_content": {
-        "overview": "Aider is an open-source command-line AI pair programmer. It works directly inside your local git repository, allowing you to ask for changes in natural language. Aider intelligently edits files and creates clean git commits automatically.",
-        "features": [
-          "Edits multiple files directly in your local git workspace",
-          "Automatically crafts descriptive git commit messages for each change",
-          "Integrates with any model: Claude 3.7, DeepSeek R1, GPT-4o, or local Ollama",
-          "Git repo-map architecture providing deep semantic context to LLMs"
-        ],
-        "useCases": [
-          "Rapid feature implementation and refactoring from the command line",
-          "Automated test generation and bug fixing within existing git branches",
-          "Pair programming with local open-source models for total privacy"
-        ],
-        "pricingDetails": "100% Free and open source CLI (use your own API key or free Ollama)."
-      }
-    },
-    {
-      "id": "lm-studio",
-      "name": "LM Studio",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "chatbot"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Desktop",
-      "featured": false,
-      "description": "Desktop GUI app to discover, download, and run local LLMs offline on your Windows or Mac PC.",
-      "url": "https://lmstudio.ai",
-      "domain": "lmstudio.ai",
-      "icon": "🖥️",
-      "inner_content": {
-        "overview": "LM Studio is a beautiful, easy-to-use desktop application for running local AI models completely offline. Browse Hugging Face models, download GGUF weights, and chat with them using hardware GPU acceleration.",
-        "features": [
-          "One-click download of thousands of GGUF models from Hugging Face",
-          "Built-in local inference server with OpenAI-compatible API endpoints",
-          "Hardware acceleration on Apple Silicon Metal, NVIDIA GPUs, and AMD GPUs",
-          "Rich chat UI with system prompt configuration and token speed telemetry"
-        ],
-        "useCases": [
-          "Running local AI models with zero command-line setup",
-          "Powering third-party apps with a free, local OpenAI-compatible API",
-          "Experimenting with open weights safely in a sandbox"
-        ],
-        "pricingDetails": "100% Free for personal offline use on Windows, Mac, and Linux."
-      }
-    },
-    {
-      "id": "phind",
-      "name": "Phind",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "research"
-      ],
-      "pricing": "Freemium",
-      "badge": "Dev Search",
-      "featured": false,
-      "description": "Intelligent search engine for developers with frontier model reasoning and live code execution.",
-      "url": "https://www.phind.com",
-      "domain": "phind.com",
-      "icon": "🔎",
-      "inner_content": {
-        "overview": "Phind is an AI search engine built specifically for programmers. It combines high-speed web search with customized coding LLMs to provide comprehensive, code-heavy answers with technical explanations.",
-        "features": [
-          "Fast technical search powered by specialized Phind-70B model",
-          "Web search integration providing up-to-date documentation links",
-          "Pair programming mode with multi-file code editing capabilities",
-          "VS Code extension for in-editor context querying"
-        ],
-        "useCases": [
-          "Solving complex coding problems and architectural decisions",
-          "Exploring new API libraries and framework updates",
-          "Pair programming directly inside VS Code"
-        ],
-        "pricingDetails": "Free tier with unlimited standard searches. Phind Pro for 500+ daily GPT-4o queries."
-      }
-    },
-    {
-      "id": "windsurf",
-      "name": "Windsurf Editor",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "AI IDE",
-      "featured": false,
-      "description": "Codeium's agentic IDE featuring Flows that collaborate with you across files and terminals.",
-      "url": "https://codeium.com/windsurf",
-      "domain": "codeium.com",
-      "icon": "🏄",
-      "inner_content": {
-        "overview": "Windsurf is the next-generation AI IDE built by Codeium. It introduces 'Flows', allowing developers to work in a collaborative state where the AI acts as an autonomous pair programmer that understands code intent.",
-        "features": [
-          "Flows: simultaneous human-AI collaboration without losing context",
-          "Cascade: smart multi-file agent capable of executing terminal commands",
-          "Supercomplete: multi-line in-line code predictions that anticipate next actions",
-          "Full VS Code extension and plugin ecosystem compatibility"
-        ],
-        "useCases": [
-          "Autonomous bug fixing and feature scaffolding across large projects",
-          "Rapid code editing with contextual tab completions",
-          "Automated terminal debugging and dependency installation"
-        ],
-        "pricingDetails": "Generous Free tier with unlimited fast autocomplete. Pro tier available."
-      }
-    },
-    {
-      "id": "continue-dev",
-      "name": "Continue.dev",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": false,
-      "description": "Leading open-source AI code assistant extension for VS Code and JetBrains to connect any local or cloud LLM.",
-      "url": "https://continue.dev",
-      "domain": "continue.dev",
-      "icon": "⏩",
-      "inner_content": {
-        "overview": "Continue is the leading open-source autopilot for VS Code and JetBrains. It lets you bring any LLM (Ollama, Claude, DeepSeek, GPT-4o) directly into your editor with custom slash commands, tab autocomplete, and codebase indexing.",
-        "features": [
-          "100% open-source extension for VS Code and JetBrains IDEs",
-          "Connect to local models via Ollama or cloud models via API keys",
-          "Context providers: `@codebase`, `@docs`, `@terminal`, `@diff`",
-          "Custom slash commands for instant refactoring, test generation, and documentation"
-        ],
-        "useCases": [
-          "Developers wanting an unconstrained, open-source alternative to GitHub Copilot",
-          "Running 100% private, offline coding assistants connected to Ollama",
-          "Customizing team prompts and internal documentation context"
-        ],
-        "pricingDetails": "100% Free and open source (Apache 2.0 license)."
-      }
-    },
-    {
-      "id": "github-copilot",
-      "name": "GitHub Copilot",
-      "category": "developer-tools",
-      "categories": [
-        "developer-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "Free for Students & OS",
-      "featured": false,
-      "description": "GitHub's AI pair programmer integrated across VS Code, Visual Studio, and JetBrains with multi-model choice.",
-      "url": "https://github.com/features/copilot",
-      "domain": "github.com",
-      "icon": "🐙",
-      "inner_content": {
-        "overview": "GitHub Copilot is the pioneer AI pair programming extension. Built into GitHub and top IDEs, it offers multi-model switching (Claude 3.7, GPT-4o, Gemini 2.0), automated pull request reviews, and CLI command suggestions.",
-        "features": [
-          "Real-time code completions and full multi-line suggestions in your editor",
-          "Copilot Chat with workspace-aware context and model selector",
-          "Copilot CLI to turn natural language into shell commands",
-          "Free for verified students, teachers, and popular open-source maintainers"
-        ],
-        "useCases": [
-          "Writing repetitive boilerplate code, unit tests, and regular expressions",
-          "Navigating unfamiliar programming languages and syntax patterns",
-          "Automating code reviews and pull request summaries on GitHub"
-        ],
-        "pricingDetails": "Free for verified students & open-source maintainers. $10/month individual plan."
+        "pricingDetails": "Generous 150 free credits refreshed every day. Paid tiers for unlimited generations."
       }
     },
     {
@@ -911,37 +691,6 @@ const AI_TOOLS_DATA = {
       }
     },
     {
-      "id": "leonardo-ai",
-      "name": "Leonardo.ai",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "video-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "150 Daily Free",
-      "featured": true,
-      "description": "Full-suite creative platform for generating game assets, marketing imagery, and motion videos.",
-      "url": "https://leonardo.ai",
-      "domain": "leonardo.ai",
-      "icon": "✨",
-      "inner_content": {
-        "overview": "Leonardo.ai (now part of Canva) is a comprehensive generative art studio. It offers fine-tuned community models, real-time AI canvas painting, motion video generation, and 150 daily free credits.",
-        "features": [
-          "150 free generation tokens replenished every single day",
-          "Phoenix and Kino flagship models for cinematic photorealism",
-          "Real-time Canvas editor: draw rough sketches and see instant AI renders",
-          "Motion generator: turn any static image into an animated video loop"
-        ],
-        "useCases": [
-          "Concept art, character design, and game asset production",
-          "Creating photorealistic portraits, landscape backdrops, and product renders",
-          "Generating animated social media visuals and YouTube thumbnails"
-        ],
-        "pricingDetails": "Generous 150 free credits refreshed every day. Paid tiers for unlimited generations."
-      }
-    },
-    {
       "id": "ideogram",
       "name": "Ideogram 2.0",
       "category": "image-generator",
@@ -970,37 +719,6 @@ const AI_TOOLS_DATA = {
           "Generating logos with integrated brand slogans and lettering"
         ],
         "pricingDetails": "Free plan includes 10 free credits daily (40 images/day). Basic plans start at $8/mo."
-      }
-    },
-    {
-      "id": "krea-ai",
-      "name": "Krea AI",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "video-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "Real-time AI",
-      "featured": false,
-      "description": "Real-time generative canvas that generates AI artwork instantly as you move shapes, plus 4K upscaling.",
-      "url": "https://www.krea.ai",
-      "domain": "krea.ai",
-      "icon": "⚡",
-      "inner_content": {
-        "overview": "Krea AI is a real-time creative suite that renders AI visuals at 30 frames per second as you draw on the canvas. It also features one of the most powerful AI upscalers and video motion tools in the industry.",
-        "features": [
-          "Real-time visual generation: updates instantly as you sketch and add primitives",
-          "AI Enhancer & Upscaler: transforms blurry photos into crystal-clear 4K renders",
-          "Camera feed integration: apply live AI stylized filters to webcams",
-          "Video generation engine with keyframing and camera trajectory control"
-        ],
-        "useCases": [
-          "Live visual brainstorming and concept sketching for designers",
-          "Enhancing and upscaling client photos, mockups, and low-res graphics",
-          "Creating viral generative video transitions and stylized animations"
-        ],
-        "pricingDetails": "Free tier with daily generation credits. Pro plans for commercial speed."
       }
     },
     {
@@ -1094,254 +812,6 @@ const AI_TOOLS_DATA = {
           "Quick visual mockups with zero sign-up friction"
         ],
         "pricingDetails": "100% Free with ad-supported generation. Paid ad-free tiers available."
-      }
-    },
-    {
-      "id": "comfyui",
-      "name": "ComfyUI",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": false,
-      "description": "Modular node-based graphical interface for running Stable Diffusion, FLUX, and ControlNet pipelines locally.",
-      "url": "https://github.com/comfyanonymous/ComfyUI",
-      "domain": "comfy.org",
-      "icon": "🧩",
-      "inner_content": {
-        "overview": "ComfyUI is the most powerful and modular visual node-based GUI for running Stable Diffusion, FLUX, and video models on your local machine. Wire together custom nodes for precision image generation pipelines.",
-        "features": [
-          "Visual node graph architecture allowing complete pipeline customization",
-          "Native support for FLUX.1, SDXL, SD 1.5, ControlNet, and IP-Adapter",
-          "Lightweight and memory-efficient execution caching model weights in VRAM",
-          "100% free and open-source software with a massive ecosystem of custom nodes"
-        ],
-        "useCases": [
-          "Professional AI artists building repeatable image generation pipelines",
-          "Automating multi-pass image upscaling, face restoration, and inpainting",
-          "Running complex ControlNet pose, depth, and edge guidance networks"
-        ],
-        "pricingDetails": "100% Free and open source (GPL-3.0 license)."
-      }
-    },
-    {
-      "id": "quillbot",
-      "name": "QuillBot",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Free Writing",
-      "featured": true,
-      "description": "Free AI paraphrasing tool, grammar checker, summarizer, citation generator, and translator.",
-      "url": "https://quillbot.com",
-      "domain": "quillbot.com",
-      "icon": "🪶",
-      "inner_content": {
-        "overview": "QuillBot is the world's most trusted AI writing and paraphrasing companion used by over 50 million students and professionals. It rewrites sentences, corrects grammar, summarizes essays, and creates academic citations.",
-        "features": [
-          "Paraphraser with Standard, Fluency, Formal, Creative, and Shorten modes",
-          "Advanced Grammar Checker that spots punctuation, tense, and spelling errors",
-          "AI Summarizer: condense long articles or research papers into bullet points",
-          "Free Citation Generator supporting APA, MLA, and Chicago citation styles"
-        ],
-        "useCases": [
-          "Students polishing academic essays and generating accurate bibliographies",
-          "Non-native English speakers improving fluency and natural phrasing",
-          "Writers eliminating repetitive vocabulary and improving sentence variety"
-        ],
-        "pricingDetails": "Generous Free tier with 125 words per paraphrase. Premium for unlimited words."
-      }
-    },
-    {
-      "id": "grammarly",
-      "name": "Grammarly AI",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Top Pick",
-      "featured": true,
-      "description": "AI communication assistant that catches errors, refines tone, and rewrites text across all desktop apps.",
-      "url": "https://www.grammarly.com",
-      "domain": "grammarly.com",
-      "icon": "✍️",
-      "inner_content": {
-        "overview": "Grammarly is an essential writing assistant that operates across web browsers, email clients, Word, and desktop apps. Its generative AI rewrites emails, adjusts formality, and ensures clear, error-free communication.",
-        "features": [
-          "Real-time grammar, spelling, punctuation, and clarity suggestions",
-          "Tone detector and rewriter (formal, casual, confident, empathetic)",
-          "Generative AI prompts to reply to emails and brainstorm drafts in 1 click",
-          "Browser extension and desktop app integrating seamlessly with your workflow"
-        ],
-        "useCases": [
-          "Crafting professional business emails and client proposals",
-          "Checking academic papers and thesis drafts for clarity and tone",
-          "Refining everyday workplace messages on Slack, Teams, and Gmail"
-        ],
-        "pricingDetails": "Free tier with 100 AI prompt credits/mo and core grammar checks. Premium at $12/mo."
-      }
-    },
-    {
-      "id": "notion-ai",
-      "name": "Notion AI",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "Connected Brain",
-      "featured": false,
-      "description": "Integrated AI assistant inside Notion that searches your entire workspace, drafts docs, and summarizes notes.",
-      "url": "https://www.notion.so/product/ai",
-      "domain": "notion.so",
-      "icon": "📓",
-      "inner_content": {
-        "overview": "Notion AI connects directly to your Notion workspace. It can answer questions about your team's internal documentation, write meeting summaries, extract action items, and draft documentation with full contextual awareness.",
-        "features": [
-          "Q&A across your entire workspace: finds answers buried in company wikis",
-          "Automated meeting notes summarizer and action-item extractor",
-          "In-editor drafting for blog posts, PRDs, specs, and translation",
-          "Autofill database tables with AI-generated summaries and tags"
-        ],
-        "useCases": [
-          "Product managers drafting PRDs and feature specifications",
-          "Teams organizing meeting transcripts and capturing immediate action items",
-          "Building an automated internal company knowledge base and FAQ"
-        ],
-        "pricingDetails": "Free trial with complimentary AI responses. Add-on available for $8-10/user/mo."
-      }
-    },
-    {
-      "id": "copy-ai",
-      "name": "Copy.ai",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "Marketing Copy",
-      "featured": false,
-      "description": "AI platform for sales and marketing teams to generate social copy, email campaigns, and SEO articles.",
-      "url": "https://www.copy.ai",
-      "domain": "copy.ai",
-      "icon": "🚀",
-      "inner_content": {
-        "overview": "Copy.ai is a specialized generative copywriting platform tailored for marketers, agencies, and sales professionals. It provides over 90 templates for ad copy, cold outbound emails, blog outlines, and social posts.",
-        "features": [
-          "90+ dedicated copywriting templates for Facebook ads, Google search, and blogs",
-          "Brand Voice engine to enforce your company's tone across all copy",
-          "Infobase: store reusable company facts, product specs, and value propositions",
-          "Workflow automation to generate bulk content from spreadsheets"
-        ],
-        "useCases": [
-          "Marketers writing high-converting social media ads and sales landing pages",
-          "Sales reps personalizing cold outbound outreach emails at scale",
-          "Content creators brainstorming catchy video titles and email newsletters"
-        ],
-        "pricingDetails": "Free plan includes 2,000 words in Chat per month. Pro plan for unlimited words."
-      }
-    },
-    {
-      "id": "writesonic",
-      "name": "Writesonic",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "SEO Articles",
-      "featured": false,
-      "description": "AI writer trained on top-ranking Google content to generate SEO-optimized articles, landing pages, and ads.",
-      "url": "https://writesonic.com",
-      "domain": "writesonic.com",
-      "icon": "⚡",
-      "inner_content": {
-        "overview": "Writesonic is an AI content creation platform built for SEO writers and agencies. Its Article Writer analyzes current top-ranking Google competitors to generate comprehensive, fact-checked, and keyword-optimized long-form articles.",
-        "features": [
-          "AI Article Writer with real-time Google search competitor analysis",
-          "Chatsonic conversational AI assistant with live internet access",
-          "Brand Voice personalization and automatic internal linking suggestions",
-          "1-click export to WordPress, Webflow, and Shopify"
-        ],
-        "useCases": [
-          "Publishing 2,500+ word SEO-optimized blog posts in minutes",
-          "Generating high-converting e-commerce product descriptions",
-          "Creating multi-channel marketing campaigns and Google Ad headlines"
-        ],
-        "pricingDetails": "Free trial with 25 credits. Paid plans start from $12/month."
-      }
-    },
-    {
-      "id": "hemingway-ai",
-      "name": "Hemingway Editor Plus",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Readability",
-      "featured": false,
-      "description": "AI writing editor that highlights complex sentences, passive voice, and fixes readability issues.",
-      "url": "https://hemingwayapp.com",
-      "domain": "hemingwayapp.com",
-      "icon": "📖",
-      "inner_content": {
-        "overview": "Hemingway Editor makes your writing bold and clear. It highlights wordy sentences, passive voice, unnecessary adverbs, and complex phrasing with color-coded alerts, while its AI rephrases sentences for maximum punch.",
-        "features": [
-          "Color-coded highlighting of hard-to-read sentences and passive voice",
-          "One-click AI sentence shortener and tone adjuster",
-          "Automated Grade Level readability scoring (Flesch-Kincaid index)",
-          "Distraction-free markdown writing mode"
-        ],
-        "useCases": [
-          "Simplifying dense technical documents and business memos",
-          "Editing newsletter issues and articles to achieve Grade 5-8 readability",
-          "Fixing passive voice and clumsy phrasing in marketing copy"
-        ],
-        "pricingDetails": "Free web version for core color-coded editing. Plus AI plan at $8.33/mo."
-      }
-    },
-    {
-      "id": "rytr",
-      "name": "Rytr",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "marketing"
-      ],
-      "pricing": "Freemium",
-      "badge": "10k Free Words/Mo",
-      "featured": false,
-      "description": "Fast, affordable AI writing assistant for blogs, emails, social ads, and product descriptions.",
-      "url": "https://rytr.me",
-      "domain": "rytr.me",
-      "icon": "✍️",
-      "inner_content": {
-        "overview": "Rytr is an intuitive AI writing assistant that helps you create high-quality content in just a few seconds. With 40+ use cases and 20+ voice tones, Rytr generates catchy copy for emails, social media, and blogs.",
-        "features": [
-          "40+ pre-built use cases (blog outlines, email replies, YouTube descriptions)",
-          "20+ tone selectors (convincing, enthusiastic, formal, casual, humble)",
-          "Built-in plagiarism checker powered by Copyscape",
-          "Generous 10,000 characters per month on the permanent free plan"
-        ],
-        "useCases": [
-          "Freelancers drafting quick email templates and social captions",
-          "E-commerce stores generating catchy product titles and bullet points",
-          "Bloggers overcoming writer's block with outline and intro generation"
-        ],
-        "pricingDetails": "Free plan includes 10,000 characters per month. Unlimited plan from $7.50/mo."
       }
     },
     {
@@ -1528,67 +998,6 @@ const AI_TOOLS_DATA = {
       }
     },
     {
-      "id": "viggle-ai",
-      "name": "Viggle AI",
-      "category": "video-generator",
-      "categories": [
-        "video-generator"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Animation",
-      "featured": false,
-      "description": "Character animation platform that lets you replace any person in a video with any character or photo.",
-      "url": "https://viggle.ai",
-      "domain": "viggle.ai",
-      "icon": "🕺",
-      "inner_content": {
-        "overview": "Viggle AI is a character animation platform powered by JST-1 physics foundation model. It allows creators to upload any character image and make it dance, fight, or perform any motion from a reference video.",
-        "features": [
-          "Mix: replace any person in an existing video with your own 2D/3D character",
-          "Animate: make any static character perform complex dances or action moves",
-          "Ideate: generate character animations entirely from text descriptions",
-          "Realistic clothing physics and body proportion consistency"
-        ],
-        "useCases": [
-          "Creating viral meme videos with famous memes and cartoon characters",
-          "Game developers animating 2D character concept art quickly",
-          "Music video creators producing stylized dance sequences"
-        ],
-        "pricingDetails": "100% Free on Discord and Web with generous daily generation limits."
-      }
-    },
-    {
-      "id": "hedra-ai",
-      "name": "Hedra Character-1",
-      "category": "video-generator",
-      "categories": [
-        "video-generator",
-        "audio-editing"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Talking Heads",
-      "featured": false,
-      "description": "Generate expressive, dynamic AI talking avatars synced to any voice or song with realistic head motion.",
-      "url": "https://www.hedra.com",
-      "domain": "hedra.com",
-      "icon": "🗣️",
-      "inner_content": {
-        "overview": "Hedra Character-1 is an AI video model that turns a single character portrait and an audio file into an expressive, lifelike talking or singing video with expressive facial acting and head movement.",
-        "features": [
-          "Instant lip-sync and expressive facial animation from a single static image",
-          "Handles singing, rap, whispering, and multi-language speech flawlessly",
-          "Generate unlimited length character videos in 16:9, 9:16, and 1:1 aspect ratios",
-          "Integrated audio recorder and text-to-speech engine"
-        ],
-        "useCases": [
-          "Creating animated storytelling characters and educational explainers",
-          "Producing AI music videos with singing avatars",
-          "Building virtual digital influencers and video podcast hosts"
-        ],
-        "pricingDetails": "100% Free during beta with generous generation allowances."
-      }
-    },
-    {
       "id": "suno-ai",
       "name": "Suno AI",
       "category": "audio-editing",
@@ -1680,6 +1089,36 @@ const AI_TOOLS_DATA = {
       }
     },
     {
+      "id": "adobe-podcast",
+      "name": "Adobe Podcast AI",
+      "category": "audio-editing",
+      "categories": [
+        "audio-editing"
+      ],
+      "pricing": "Free",
+      "badge": "100% Free Studio Sound",
+      "featured": true,
+      "description": "Free AI audio tool that transforms cheap microphone recordings into professional soundproof studio audio.",
+      "url": "https://podcast.adobe.com/enhance",
+      "domain": "adobe.com",
+      "icon": "🎧",
+      "inner_content": {
+        "overview": "Adobe Podcast Enhance Speech uses deep learning to eliminate background noise, room echo, and muffling from any voice recording, making it sound like it was recorded in a professional soundproof broadcast studio.",
+        "features": [
+          "Enhance Speech: removes heavy background chatter, wind, and room reverb in 1 click",
+          "Mic Check: analyze your microphone setup and distance to optimize acoustics",
+          "Preserves natural vocal warmth while removing harsh plosives and sibilance",
+          "Simple web upload with instant before/after audio comparison"
+        ],
+        "useCases": [
+          "Podcasters and remote interviewers fixing poor guest microphone audio",
+          "YouTubers cleaning up outdoor vlogs and room echo without expensive mics",
+          "Students and teachers clarifying recorded lectures and Zoom calls"
+        ],
+        "pricingDetails": "100% Free for standard audio enhancement up to 1 hour/day."
+      }
+    },
+    {
       "id": "whisper-openai",
       "name": "OpenAI Whisper",
       "category": "audio-editing",
@@ -1708,36 +1147,6 @@ const AI_TOOLS_DATA = {
           "Building local offline voice-controlled software and dictation tools"
         ],
         "pricingDetails": "100% Free and open source (MIT license)."
-      }
-    },
-    {
-      "id": "adobe-podcast",
-      "name": "Adobe Podcast AI",
-      "category": "audio-editing",
-      "categories": [
-        "audio-editing"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free Studio Sound",
-      "featured": true,
-      "description": "Free AI audio tool that transforms cheap microphone recordings into professional soundproof studio audio.",
-      "url": "https://podcast.adobe.com/enhance",
-      "domain": "adobe.com",
-      "icon": "🎧",
-      "inner_content": {
-        "overview": "Adobe Podcast Enhance Speech uses deep learning to eliminate background noise, room echo, and muffling from any voice recording, making it sound like it was recorded in a professional soundproof broadcast studio.",
-        "features": [
-          "Enhance Speech: removes heavy background chatter, wind, and room reverb in 1 click",
-          "Mic Check: analyze your microphone setup and distance to optimize acoustics",
-          "Preserves natural vocal warmth while removing harsh plosives and sibilance",
-          "Simple web upload with instant before/after audio comparison"
-        ],
-        "useCases": [
-          "Podcasters and remote interviewers fixing poor guest microphone audio",
-          "YouTubers cleaning up outdoor vlogs and room echo without expensive mics",
-          "Students and teachers clarifying recorded lectures and Zoom calls"
-        ],
-        "pricingDetails": "100% Free for standard audio enhancement up to 1 hour/day."
       }
     },
     {
@@ -1899,8 +1308,7 @@ const AI_TOOLS_DATA = {
       "name": "Taskade AI",
       "category": "productivity",
       "categories": [
-        "productivity",
-        "agents"
+        "productivity"
       ],
       "pricing": "Freemium",
       "badge": "AI Team Workspace",
@@ -2143,37 +1551,6 @@ const AI_TOOLS_DATA = {
       }
     },
     {
-      "id": "scispace",
-      "name": "SciSpace",
-      "category": "research",
-      "categories": [
-        "research",
-        "education"
-      ],
-      "pricing": "Freemium",
-      "badge": "Paper Explainer",
-      "featured": false,
-      "description": "AI platform to understand complex research papers, explain math formulas, and search 280M+ publications.",
-      "url": "https://scispace.com",
-      "domain": "scispace.com",
-      "icon": "🧪",
-      "inner_content": {
-        "overview": "SciSpace (formerly Typeset) makes scientific literature simple to comprehend. Highlight dense jargon, complex charts, or mathematical equations, and SciSpace explains them in clear, plain language.",
-        "features": [
-          "Highlight math formulas or charts to receive instant step-by-step explanations",
-          "Copilot Q&A on over 280 million indexed research papers",
-          "Literature review matrix: compare findings, methodologies, and limitations across papers",
-          "Instant multi-language translation of complex academic terminology"
-        ],
-        "useCases": [
-          "Undergraduate and graduate students deciphering complex research papers",
-          "Interdisciplinary scientists reading outside their primary domain",
-          "Systematic literature reviews and academic paper comparison"
-        ],
-        "pricingDetails": "Free tier with unlimited basic queries. Premium plan at $12/month."
-      }
-    },
-    {
       "id": "wolfram-alpha",
       "name": "Wolfram Alpha AI",
       "category": "education",
@@ -2325,6 +1702,191 @@ const AI_TOOLS_DATA = {
       }
     },
     {
+      "id": "cursor",
+      "name": "Cursor",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Top Pick",
+      "featured": true,
+      "description": "AI-first code editor fork of VS Code with codebase indexing, multi-file edits, and instant debugging.",
+      "url": "https://www.cursor.com",
+      "domain": "cursor.com",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Cursor is the world's most popular AI-native code editor. Built as a seamless fork of VS Code, it lets developers index their entire repository, make multi-file edits via natural language, and use Claude or GPT-4o inline.",
+        "features": [
+          "Full codebase semantic indexing with `@codebase` natural language querying",
+          "Composer multi-file generation and editing across entire repositories",
+          "Instant AI tab autocomplete with intelligent cursor jump prediction",
+          "Direct terminal command generation and automated error fixing"
+        ],
+        "useCases": [
+          "Building full-stack web and mobile apps at 5x speed",
+          "Refactoring legacy codebases across dozens of connected files",
+          "Debugging complex runtime errors and writing automated test suites"
+        ],
+        "pricingDetails": "Free tier with 2,000 completions and 50 slow premium requests. Pro at $20/month."
+      }
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools"
+      ],
+      "pricing": "Freemium",
+      "badge": "Free for Students & OS",
+      "featured": false,
+      "description": "GitHub's AI pair programmer integrated across VS Code, Visual Studio, and JetBrains with multi-model choice.",
+      "url": "https://github.com/features/copilot",
+      "domain": "github.com",
+      "icon": "🐙",
+      "inner_content": {
+        "overview": "GitHub Copilot is the pioneer AI pair programming extension. Built into GitHub and top IDEs, it offers multi-model switching, automated pull request reviews, and CLI command suggestions.",
+        "features": [
+          "Real-time code completions and full multi-line suggestions in your editor",
+          "Copilot Chat with workspace-aware context and model selector",
+          "Copilot CLI to turn natural language into shell commands",
+          "Free for verified students, teachers, and popular open-source maintainers"
+        ],
+        "useCases": [
+          "Writing repetitive boilerplate code, unit tests, and regular expressions",
+          "Navigating unfamiliar programming languages and syntax patterns",
+          "Automating code reviews and pull request summaries on GitHub"
+        ],
+        "pricingDetails": "Free for verified students & open-source maintainers. $10/month individual plan."
+      }
+    },
+    {
+      "id": "v0-vercel",
+      "name": "v0 by Vercel",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "Trending",
+      "featured": true,
+      "description": "Generative UI system by Vercel that produces production-ready React, Tailwind CSS, and Next.js components.",
+      "url": "https://v0.dev",
+      "domain": "v0.dev",
+      "icon": "▲",
+      "inner_content": {
+        "overview": "v0 by Vercel is a generative AI frontend tool that turns natural language prompts and image mockups into clean, production-ready React, Next.js, and Tailwind CSS code with instant live interactive previews.",
+        "features": [
+          "Generates responsive React code with Tailwind CSS and shadcn/ui components",
+          "Image-to-code: upload Figma screenshots or UI sketches to convert into code",
+          "Direct one-click deployment to Vercel and npm component export",
+          "Iterative chat prompting to refine UI elements and design tokens"
+        ],
+        "useCases": [
+          "Rapid prototyping of SaaS landing pages and dashboards",
+          "Converting design mockups and screenshots into clean React code",
+          "Generating bespoke UI components for modern Next.js applications"
+        ],
+        "pricingDetails": "Free tier with daily renewable credits. Premium plans for team collaboration."
+      }
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "chatbot"
+      ],
+      "pricing": "Free",
+      "badge": "100% Free / Open Source",
+      "featured": true,
+      "description": "Run open-source LLMs locally on your Mac, Windows, or Linux machine with a single terminal command.",
+      "url": "https://ollama.com",
+      "domain": "ollama.com",
+      "icon": "🦙",
+      "inner_content": {
+        "overview": "Ollama is the premier open-source tool for running large language models locally on your machine. With support for DeepSeek R1, Llama 3.3, Mistral, Qwen, and Gemma, Ollama gives you total data privacy and zero API costs.",
+        "features": [
+          "Run top models locally: `ollama run deepseek-r1` or `ollama run llama3.3`",
+          "Local REST API compatible with OpenAI SDK formats for easy integration",
+          "Zero data leaves your computer — 100% offline and private",
+          "Supports GPU acceleration across Apple Silicon, NVIDIA CUDA, and AMD ROCm"
+        ],
+        "useCases": [
+          "Privacy-sensitive coding and confidential corporate data processing",
+          "Offline AI assistant for developers and researchers with no internet",
+          "Local backend engine for Obsidian, Cursor, and code plugins"
+        ],
+        "pricingDetails": "100% Free and open source software (MIT license)."
+      }
+    },
+    {
+      "id": "bolt-new",
+      "name": "Bolt.new",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "productivity"
+      ],
+      "pricing": "Freemium",
+      "badge": "In-Browser Dev",
+      "featured": false,
+      "description": "In-browser AI web development environment powered by WebContainers to build and run fullstack apps.",
+      "url": "https://bolt.new",
+      "domain": "bolt.new",
+      "icon": "⚡",
+      "inner_content": {
+        "overview": "Bolt.new by StackBlitz is an AI-powered development environment that runs entirely inside your browser using WebContainers. It can install npm packages, run Node.js servers, and build fullstack web applications without local setup.",
+        "features": [
+          "Full in-browser Node.js runtime and terminal execution",
+          "Installs any npm package and runs modern full-stack frameworks (Vite, Next, Remix)",
+          "Interactive side-by-side code editor and live browser preview",
+          "One-click deployment to Netlify or GitHub repository sync"
+        ],
+        "useCases": [
+          "Building and testing full-stack web applications without local dev setup",
+          "Rapid prototyping of web apps with live backend servers and APIs",
+          "Sharing reproducible interactive software demos with a single URL"
+        ],
+        "pricingDetails": "Free tier with daily token allowance. Pro plans for higher token limits."
+      }
+    },
+    {
+      "id": "phind",
+      "name": "Phind",
+      "category": "developer-tools",
+      "categories": [
+        "developer-tools",
+        "research"
+      ],
+      "pricing": "Freemium",
+      "badge": "Dev Search",
+      "featured": false,
+      "description": "Intelligent search engine for developers with frontier model reasoning and live code execution.",
+      "url": "https://www.phind.com",
+      "domain": "phind.com",
+      "icon": "🔎",
+      "inner_content": {
+        "overview": "Phind is an AI search engine built specifically for programmers. It combines high-speed web search with customized coding LLMs to provide comprehensive, code-heavy answers with technical explanations.",
+        "features": [
+          "Fast technical search powered by specialized Phind-70B model",
+          "Web search integration providing up-to-date documentation links",
+          "Pair programming mode with multi-file code editing capabilities",
+          "VS Code extension for in-editor context querying"
+        ],
+        "useCases": [
+          "Solving complex coding problems and architectural decisions",
+          "Exploring new API libraries and framework updates",
+          "Pair programming directly inside VS Code"
+        ],
+        "pricingDetails": "Free tier with unlimited standard searches. Phind Pro for 500+ daily GPT-4o queries."
+      }
+    },
+    {
       "id": "predis-ai",
       "name": "Predis.ai",
       "category": "marketing",
@@ -2416,130 +1978,6 @@ const AI_TOOLS_DATA = {
           "SaaS startups designing conversion-focused Google and Facebook ads"
         ],
         "pricingDetails": "Free trial with 10 free ad creative downloads. Starter at $29/mo."
-      }
-    },
-    {
-      "id": "crewai",
-      "name": "CrewAI",
-      "category": "agents",
-      "categories": [
-        "agents",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": true,
-      "description": "Open-source framework for orchestrating role-playing autonomous AI agents that collaborate on complex tasks.",
-      "url": "https://www.crewai.com",
-      "domain": "crewai.com",
-      "icon": "👥",
-      "inner_content": {
-        "overview": "CrewAI is the most popular open-source framework for building multi-agent AI systems. It lets developers assign specific roles, tools, and goals to AI agents (e.g. Researcher, Writer, Editor) and have them collaborate seamlessly.",
-        "features": [
-          "Role-based agent design: assign distinct personas, goals, and backstories",
-          "Sequential and hierarchical task delegation among multiple agents",
-          "Integrates with any LLM (local Ollama, Claude, OpenAI, DeepSeek)",
-          "Extensible tool ecosystem: give agents web search, Python execution, and scrapers"
-        ],
-        "useCases": [
-          "Automated end-to-end market research and newsletter drafting pipelines",
-          "Multi-agent code review, unit test writing, and pull request generation",
-          "Complex competitive intelligence and financial data gathering"
-        ],
-        "pricingDetails": "100% Free and open source Python framework. CrewAI Enterprise available."
-      }
-    },
-    {
-      "id": "browser-use",
-      "name": "Browser Use",
-      "category": "agents",
-      "categories": [
-        "agents",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Open Source",
-      "featured": true,
-      "description": "Open-source AI agent that controls your web browser to perform automated clicks, form fills, and web workflows.",
-      "url": "https://browser-use.com",
-      "domain": "browser-use.com",
-      "icon": "🌐",
-      "inner_content": {
-        "overview": "Browser Use is a groundbreaking open-source project that makes websites accessible for AI agents. It connects LLMs (like Claude 3.7 or GPT-4o) directly to a headless Chrome browser to click, type, and complete workflows.",
-        "features": [
-          "Natural language browser control: clicks buttons, fills forms, navigates pages",
-          "Vision-based DOM element detection with robust error handling",
-          "Handles complex multi-tab navigation, logins, and CAPTCHAs",
-          "100% open source Python library compatible with Playwright"
-        ],
-        "useCases": [
-          "Automating tedious web-based data entry and invoice downloads",
-          "E2E automated web testing and user journey verification",
-          "Extracting data from complex JavaScript-heavy web portals"
-        ],
-        "pricingDetails": "100% Free and open source Python library."
-      }
-    },
-    {
-      "id": "autogpt",
-      "name": "AutoGPT",
-      "category": "agents",
-      "categories": [
-        "agents",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "Open Source",
-      "featured": false,
-      "description": "Pioneering open-source autonomous agent platform that breaks down complex goals and executes them independently.",
-      "url": "https://agpt.co",
-      "domain": "agpt.co",
-      "icon": "🤖",
-      "inner_content": {
-        "overview": "AutoGPT is an open-source autonomous agent system. Give it a high-level goal (e.g. 'Research top 5 competitors and create a spreadsheet'), and AutoGPT autonomously breaks it into subtasks, browses the web, and writes files.",
-        "features": [
-          "Autonomous multi-step execution with self-reflection and error recovery",
-          "Internet browsing and data scraping capabilities",
-          "File storage and local workspace execution",
-          "Visual workflow builder on the web platform"
-        ],
-        "useCases": [
-          "Automated web research and data gathering experiments",
-          "Prototyping self-directed agent workflows and tool calling",
-          "Exploring autonomous goal execution algorithms"
-        ],
-        "pricingDetails": "100% Free open source project on GitHub."
-      }
-    },
-    {
-      "id": "meta-gpt",
-      "name": "MetaGPT",
-      "category": "agents",
-      "categories": [
-        "agents",
-        "developer-tools"
-      ],
-      "pricing": "Free",
-      "badge": "100% Free / Multi-Agent",
-      "featured": false,
-      "description": "Multi-agent framework that assigns standard operating procedures (SOPs) to simulated software teams.",
-      "url": "https://github.com/geekan/MetaGPT",
-      "domain": "github.com",
-      "icon": "🏢",
-      "inner_content": {
-        "overview": "MetaGPT is a multi-agent collaborative framework that simulates an entire software company. Give it a one-line requirement, and simulated Product Managers, Architects, Project Managers, and Engineers produce user stories, architecture diagrams, and complete code.",
-        "features": [
-          "Assigns distinct roles: Product Manager, Architect, Project Manager, Engineer, QA",
-          "Standard Operating Procedures (SOPs) structure agent communication",
-          "Outputs complete PRDs, data API designs, file structures, and code",
-          "100% free and open-source Python framework"
-        ],
-        "useCases": [
-          "Rapid generation of technical design specs and software prototypes",
-          "Exploring multi-agent collaboration with structured communication schemas",
-          "Automating boilerplate software development"
-        ],
-        "pricingDetails": "100% Free open-source framework (MIT license)."
       }
     }
   ]

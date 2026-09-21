@@ -1039,15 +1039,15 @@ Website: https://aira-newsletter.vercel.app/
         image: 'https://www.google.com/s2/favicons?domain=deepseek.com&sz=128'
       },
       {
-        id: 'lovable',
-        name: 'Lovable AI',
-        tagline: 'Build and deploy fullstack production web apps with natural language.',
+        id: 'perplexity',
+        name: 'Perplexity AI',
+        tagline: 'AI-powered conversational search engine with live citations and research.',
         pricing: 'Freemium',
-        rating: 4.8,
-        votes: 440,
-        domain: 'lovable.dev',
-        url: 'https://lovable.dev',
-        image: 'https://www.google.com/s2/favicons?domain=lovable.dev&sz=128'
+        rating: 4.9,
+        votes: 1120,
+        domain: 'perplexity.ai',
+        url: 'https://www.perplexity.ai',
+        image: 'https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128'
       }
     ];
 
