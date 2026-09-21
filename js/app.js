@@ -851,6 +851,11 @@ Website: https://aira-newsletter.vercel.app/
       renderHomePage();
     } else if (route.name === 'post') {
       await renderPostPage(route.slug);
+    } else if (route.name === 'tags' || route.name === 'tools') {
+      if (route.category) state.toolCategoryFilter = route.category;
+      renderTagsPage();
+    } else if (route.name === 'tool-detail') {
+      renderToolDetailPage(route.id);
     } else if (route.name === 'archive') {
       renderArchivePage();
     } else if (route.name === 'prompts') {
@@ -2455,7 +2460,17 @@ Website: https://aira-newsletter.vercel.app/
       ];
     }
 
-    const toolFeatures = getFeaturesForTool(tool);
+    const toolFeatures = (tool.inner_content && tool.inner_content.features && tool.inner_content.features.length > 0)
+      ? tool.inner_content.features.map((feat, idx) => {
+          const icons = ['✨', '⚡', '🧠', '🛠️', '🔒', '🚀', '💡', '🎯'];
+          const parts = feat.split(':');
+          return {
+            icon: icons[idx % icons.length],
+            title: parts[0].trim(),
+            desc: parts.length > 1 ? parts.slice(1).join(':').trim() : parts[0].trim()
+          };
+        })
+      : getFeaturesForTool(tool);
 
     appContainer.innerHTML = `
       <section class="tool-detail-page-view">
@@ -2530,15 +2545,20 @@ Website: https://aira-newsletter.vercel.app/
                   <span>About ${tool.name}</span>
                 </h2>
                 <div class="tool-overview-body">
-                  <p>
-                    <strong>${tool.name}</strong> is a specialized AI application in the <strong>${primaryCatName}</strong> ecosystem designed to streamline workflows, enhance output quality, and automate complex tasks.
-                  </p>
-                  <p>
-                    ${tool.description}
-                  </p>
-                  <p>
-                    Whether you are an individual creator, a developer building production software, or an enterprise team looking to scale operations, ${tool.name} provides an intuitive interface and state-of-the-art AI capabilities to help you accomplish your goals faster.
-                  </p>
+                  ${(tool.inner_content && tool.inner_content.overview) ? `
+                    <p>${tool.inner_content.overview}</p>
+                    <p>${tool.description}</p>
+                  ` : `
+                    <p>
+                      <strong>${tool.name}</strong> is a specialized AI application in the <strong>${primaryCatName}</strong> ecosystem designed to streamline workflows, enhance output quality, and automate complex tasks.
+                    </p>
+                    <p>
+                      ${tool.description}
+                    </p>
+                    <p>
+                      Whether you are an individual creator, a developer building production software, or an enterprise team looking to scale operations, ${tool.name} provides an intuitive interface and state-of-the-art AI capabilities to help you accomplish your goals faster.
+                    </p>
+                  `}
                 </div>
               </div>
 
@@ -2617,29 +2637,44 @@ Website: https://aira-newsletter.vercel.app/
                 </div>
               </div>
 
-              <!-- Section 3: Who Is It For? (Target Audiences) -->
+              <!-- Section 3: Who Is It For? (Target Audiences & Use Cases) -->
               <div class="tool-detail-card">
                 <h2 class="tool-detail-card-title">
                   <span>🎯</span>
                   <span>Best For & Target Use Cases</span>
                 </h2>
                 <div class="tool-audiences-grid">
-                  <div class="tool-audience-item">
-                    <div class="tool-audience-name"><span>🎨</span> Content Creators & Solopreneurs</div>
-                    <div class="tool-audience-desc">Scale production speed, generate compelling assets, and maintain brand consistency without costly agency overhead.</div>
-                  </div>
-                  <div class="tool-audience-item">
-                    <div class="tool-audience-name"><span>💻</span> Developers & Tech Teams</div>
-                    <div class="tool-audience-desc">Integrate powerful AI models, automate tedious boilerplate tasks, and ship software features faster.</div>
-                  </div>
-                  <div class="tool-audience-item">
-                    <div class="tool-audience-name"><span>📈</span> Marketing & Growth Teams</div>
-                    <div class="tool-audience-desc">Produce high-converting ad copy, campaigns, and viral social content tailored to target audiences.</div>
-                  </div>
-                  <div class="tool-audience-item">
-                    <div class="tool-audience-name"><span>📚</span> Researchers & Knowledge Workers</div>
-                    <div class="tool-audience-desc">Synthesize large datasets, extract key insights, and draft structured reports in a fraction of the time.</div>
-                  </div>
+                  ${(tool.inner_content && tool.inner_content.useCases && tool.inner_content.useCases.length > 0) ? 
+                    tool.inner_content.useCases.map((uc, i) => {
+                      const icons = ['🎨', '💻', '📈', '📚', '⚡', '🎓'];
+                      const parts = uc.split(':');
+                      const title = parts[0].trim();
+                      const desc = parts.length > 1 ? parts.slice(1).join(':').trim() : parts[0].trim();
+                      return `
+                        <div class="tool-audience-item">
+                          <div class="tool-audience-name"><span>${icons[i % icons.length]}</span> ${title}</div>
+                          <div class="tool-audience-desc">${desc}</div>
+                        </div>
+                      `;
+                    }).join('')
+                  : `
+                    <div class="tool-audience-item">
+                      <div class="tool-audience-name"><span>🎨</span> Content Creators & Solopreneurs</div>
+                      <div class="tool-audience-desc">Scale production speed, generate compelling assets, and maintain brand consistency without costly agency overhead.</div>
+                    </div>
+                    <div class="tool-audience-item">
+                      <div class="tool-audience-name"><span>💻</span> Developers & Tech Teams</div>
+                      <div class="tool-audience-desc">Integrate powerful AI models, automate tedious boilerplate tasks, and ship software features faster.</div>
+                    </div>
+                    <div class="tool-audience-item">
+                      <div class="tool-audience-name"><span>📈</span> Marketing & Growth Teams</div>
+                      <div class="tool-audience-desc">Produce high-converting ad copy, campaigns, and viral social content tailored to target audiences.</div>
+                    </div>
+                    <div class="tool-audience-item">
+                      <div class="tool-audience-name"><span>📚</span> Researchers & Knowledge Workers</div>
+                      <div class="tool-audience-desc">Synthesize large datasets, extract key insights, and draft structured reports in a fraction of the time.</div>
+                    </div>
+                  `}
                 </div>
               </div>
 
@@ -2715,6 +2750,12 @@ Website: https://aira-newsletter.vercel.app/
                     <span class="tool-spec-label">Pricing Plan</span>
                     <span class="tool-spec-val"><span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span></span>
                   </div>
+                  ${(tool.inner_content && tool.inner_content.pricingDetails) ? `
+                    <div class="tool-spec-row">
+                      <span class="tool-spec-label">Free Tier Details</span>
+                      <span class="tool-spec-val" style="font-size: 0.82rem; font-weight: 600; color: #047857; text-align: right; max-width: 170px;">${tool.inner_content.pricingDetails}</span>
+                    </div>
+                  ` : ''}
                   <div class="tool-spec-row">
                     <span class="tool-spec-label">Primary Category</span>
                     <span class="tool-spec-val"><a href="#/tags?category=${primaryCat}">${primaryCatName}</a></span>
