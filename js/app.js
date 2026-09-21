@@ -1999,25 +1999,17 @@ Website: https://aira-newsletter.vercel.app/
           <p class="tool-card-desc">${tool.description}</p>
 
           <div class="tool-card-bottom">
-            <div class="tool-pill-tags">
-              ${firstCats.map(c => `
-                <button type="button" class="tool-category-badge" data-category="${c}">
-                  ${getCategoryName(c)}
-                </button>
-              `).join('')}
-            </div>
-
+            <button type="button" class="tool-upvote-btn ${stats.hasVoted ? 'is-voted' : ''}" data-tool-id="${stats.id}" title="${stats.hasVoted ? 'Remove upvote' : 'Upvote tool'}" onclick="event.stopPropagation(); window.toggleToolVote('${stats.id}');">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">${stats.votes}</span>
+            </button>
             <div class="tool-card-actions">
-              <button type="button" class="tool-upvote-btn ${stats.hasVoted ? 'is-voted' : ''}" data-tool-id="${stats.id}" title="${stats.hasVoted ? 'Remove upvote' : 'Upvote tool'}" onclick="event.stopPropagation(); window.toggleToolVote('${stats.id}');">
-                <span class="upvote-arrow">▲</span>
-                <span class="upvote-count">${stats.votes}</span>
-              </button>
               <a href="#/tools/${tool.id}" class="tool-details-btn" title="View details of ${tool.name}">
                 <span>Details</span>
               </a>
               <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${tool.name}">
                 <span>Visit</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               </a>
             </div>
           </div>
@@ -2564,12 +2556,11 @@ Website: https://aira-newsletter.vercel.app/
                       </div>
                       <p class="tool-card-desc">${rel.description}</p>
                       <div class="tool-card-bottom">
-                        <span class="tool-category-badge">${getCategoryName(rel.category || primaryCat)}</span>
+                        <button type="button" class="tool-upvote-btn ${relStats.hasVoted ? 'is-voted' : ''}" data-tool-id="${relStats.id}" title="${relStats.hasVoted ? 'Remove upvote' : 'Upvote tool'}" onclick="event.stopPropagation(); window.toggleToolVote('${relStats.id}');">
+                          <span class="upvote-arrow">▲</span>
+                          <span class="upvote-count">${relStats.votes}</span>
+                        </button>
                         <div class="tool-card-actions">
-                          <button type="button" class="tool-upvote-btn ${relStats.hasVoted ? 'is-voted' : ''}" data-tool-id="${relStats.id}" title="${relStats.hasVoted ? 'Remove upvote' : 'Upvote tool'}" onclick="event.stopPropagation(); window.toggleToolVote('${relStats.id}');">
-                            <span class="upvote-arrow">▲</span>
-                            <span class="upvote-count">${relStats.votes}</span>
-                          </button>
                           <a href="#/tools/${rel.id}" class="tool-details-btn">Details</a>
                           <a href="${rel.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${rel.name}">
                             <span>Visit</span>

@@ -3323,25 +3323,26 @@ body.aira-admin-active strong {
 .tools-directory-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
 
 .tool-card {
   background: #FFFFFF;
   border: 1px solid #E4E4E7;
-  border-radius: 14px;
-  padding: 18px;
+  border-radius: 12px;
+  padding: 13px 15px;
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
 }
 
 .tool-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: #A1A1AA;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 .tool-card.is-featured {
@@ -3352,15 +3353,15 @@ body.aira-admin-active strong {
 .tool-card-top {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .tool-icon-avatar {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
   background: #F4F4F5;
   border: 1px solid #E4E4E7;
   display: flex;
@@ -3372,15 +3373,15 @@ body.aira-admin-active strong {
 }
 
 .tool-logo-img {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: 4px;
   image-rendering: -webkit-optimize-contrast;
 }
 
 .tool-emoji {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -3395,24 +3396,24 @@ body.aira-admin-active strong {
 .tool-badges-row {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 4px;
+  gap: 4px;
+  margin-bottom: 2px;
   flex-wrap: wrap;
 }
 
 .tool-badge-featured {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  font-size: 0.65rem;
+  gap: 2px;
+  font-size: 0.6rem;
   font-weight: 800;
   color: #B45309;
   background: #FEF3C7;
   border: 1px solid #FDE68A;
-  padding: 2px 6px;
+  padding: 1px 5px;
   border-radius: 4px;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 .tool-badge-featured .bolt {
@@ -3420,20 +3421,20 @@ body.aira-admin-active strong {
 }
 
 .tool-badge-neutral {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   color: #4B5563;
   background: #F3F4F6;
   border: 1px solid #E5E7EB;
-  padding: 2px 5px;
+  padding: 1px 5px;
   border-radius: 4px;
   text-transform: uppercase;
 }
 
 .tool-badge-pricing {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 1px 5px;
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -3463,9 +3464,22 @@ body.aira-admin-active strong {
   border: 1px solid #FDE68A;
 }
 
+.tool-rating-pill {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #92400E;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  padding: 1px 5px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .tool-card-name {
   font-family: var(--font-header);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #09090B;
   line-height: 1.25;
@@ -3475,13 +3489,21 @@ body.aira-admin-active strong {
   text-overflow: ellipsis;
 }
 
+.tool-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+.tool-title-link:hover {
+  color: var(--color-primary, #047857);
+}
+
 .tool-card-desc {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #52525B;
-  line-height: 1.45;
-  margin: 0 0 14px 0;
+  line-height: 1.38;
+  margin: 0 0 8px 0;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex: 1;
@@ -3493,46 +3515,71 @@ body.aira-admin-active strong {
   justify-content: space-between;
   gap: 8px;
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 8px;
   border-top: 1px solid #F4F4F5;
 }
 
-.tool-pill-tags {
+.tool-card-actions {
   display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  flex: 1;
-  min-width: 0;
+  align-items: center;
+  gap: 6px;
 }
 
-.tool-category-badge {
-  font-size: 0.7rem;
-  font-weight: 600;
+.tool-upvote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   background: #F4F4F5;
-  color: #52525B;
   border: 1px solid #E4E4E7;
-  padding: 2px 7px;
+  color: #52525B;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 7px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.15s ease;
-  white-space: nowrap;
 }
 
-.tool-category-badge:hover {
+.tool-upvote-btn:hover {
   background: #E4E4E7;
   color: #18181B;
+}
+
+.tool-upvote-btn.is-voted {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #A7F3D0;
+}
+
+.tool-details-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #F4F4F5;
+  color: #3F3F46 !important;
+  border: 1px solid #E4E4E7;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 5px;
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+}
+
+.tool-details-btn:hover {
+  background: #E4E4E7;
+  color: #18181B !important;
 }
 
 .tool-direct-visit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   background: #18181B;
   color: #FFFFFF !important;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 6px;
+  padding: 3px 9px;
+  border-radius: 5px;
   text-decoration: none !important;
   transition: all 0.15s ease;
   flex-shrink: 0;
@@ -3707,11 +3754,12 @@ body.aira-admin-active strong {
 
   .tools-directory-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .tool-card {
-    padding: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
   }
 
   .tools-status-bar {
