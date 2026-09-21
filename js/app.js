@@ -1941,8 +1941,10 @@ Website: https://aira-newsletter.vercel.app/
     const visibleCategories = isExpanded ? categories : categories.slice(0, initialVisibleCount);
     const hasMore = categories.length > initialVisibleCount;
 
+    state.toolSortOrder = state.toolSortOrder || 'popular';
+
     function getFilteredTools() {
-      return allTools.filter(tool => {
+      let filtered = allTools.filter(tool => {
         // Category filter
         if (state.toolCategoryFilter !== 'all') {
           const matchCat = (tool.categories && tool.categories.includes(state.toolCategoryFilter)) || tool.category === state.toolCategoryFilter;
@@ -1966,6 +1968,20 @@ Website: https://aira-newsletter.vercel.app/
 
         return true;
       });
+
+      // Sort
+      const sortOrder = state.toolSortOrder || 'popular';
+      if (sortOrder === 'popular') {
+        filtered.sort((a, b) => (getToolRatingStats(b).votes || 0) - (getToolRatingStats(a).votes || 0));
+      } else if (sortOrder === 'rating') {
+        filtered.sort((a, b) => (getToolRatingStats(b).rating || 0) - (getToolRatingStats(a).rating || 0));
+      } else if (sortOrder === 'free') {
+        filtered.sort((a, b) => (a.pricing === 'Free' ? -1 : (b.pricing === 'Free' ? 1 : 0)));
+      } else if (sortOrder === 'name') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      return filtered;
     }
 
     function renderToolCard(tool) {
@@ -2045,13 +2061,45 @@ Website: https://aira-newsletter.vercel.app/
             ${state.toolSearchQuery ? ` • matching "<em>${state.toolSearchQuery}</em>"` : ''}
             ${totalPages > 1 ? ` (Page ${state.toolCurrentPage} of ${totalPages})` : ''}
           </div>
-          ${(state.toolCategoryFilter !== 'all' || state.toolPricingFilter !== 'all' || state.toolSearchQuery) ? `
-            <button class="reset-filters-btn" id="btn-reset-tools-filters">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              <span>Reset filters</span>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <select id="tool-sort-select" class="tool-sort-dropdown" title="Sort AI tools">
+              <option value="popular" ${state.toolSortOrder === 'popular' ? 'selected' : ''}>🔥 Most Upvoted</option>
+              <option value="rating" ${state.toolSortOrder === 'rating' ? 'selected' : ''}>⭐ Highest Rated</option>
+              <option value="free" ${state.toolSortOrder === 'free' ? 'selected' : ''}>⚡ 100% Free First</option>
+              <option value="name" ${state.toolSortOrder === 'name' ? 'selected' : ''}>🔤 Name (A - Z)</option>
+            </select>
+            <button type="button" class="btn-submit-tool-trigger" id="btn-open-submit-modal">
+              <span>+ Submit Tool</span>
             </button>
-          ` : ''}
+            ${(state.toolCategoryFilter !== 'all' || state.toolPricingFilter !== 'all' || state.toolSearchQuery) ? `
+              <button class="reset-filters-btn" id="btn-reset-tools-filters">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <span>Reset</span>
+              </button>
+            ` : ''}
+          </div>
         `;
+
+        // Bind Sort Change
+        const sortSelect = document.getElementById('tool-sort-select');
+        if (sortSelect) {
+          sortSelect.addEventListener('change', (e) => {
+            state.toolSortOrder = e.target.value;
+            updateView();
+          });
+        }
+
+        // Bind Open Submit Tool Modal
+        const openSubmitBtn = document.getElementById('btn-open-submit-modal');
+        if (openSubmitBtn) {
+          openSubmitBtn.addEventListener('click', () => {
+            const modal = document.getElementById('submit-tool-modal');
+            if (modal) {
+              modal.style.display = 'flex';
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        }
 
         const resetBtn = document.getElementById('btn-reset-tools-filters');
         if (resetBtn) {
@@ -2244,8 +2292,132 @@ Website: https://aira-newsletter.vercel.app/
           <!-- Numbered Pagination Bar -->
           <div class="tools-pagination-wrap" id="tools-pagination-container"></div>
         </div>
+
+        <!-- Submit Tool Modal -->
+        <div class="submit-tool-modal-backdrop" id="submit-tool-modal" style="display: none;">
+          <div class="submit-tool-modal-card">
+            <div class="submit-modal-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.3rem;">🚀</span>
+                <h3 class="submit-modal-title">Submit Your AI Tool</h3>
+              </div>
+              <button type="button" class="submit-modal-close" id="btn-close-submit-modal">✕</button>
+            </div>
+            <p class="submit-modal-desc">Add your tool to the AIRA Directory for instant exposure to 500+ daily tech creators.</p>
+            
+            <form id="submit-tool-form" class="submit-modal-form">
+              <div class="form-row-2">
+                <div class="form-field-wrap">
+                  <label>Tool Name *</label>
+                  <input type="text" id="sub-tool-name" placeholder="e.g. DreamWeaver AI" required />
+                </div>
+                <div class="form-field-wrap">
+                  <label>Official Website URL *</label>
+                  <input type="url" id="sub-tool-url" placeholder="https://example.com" required />
+                </div>
+              </div>
+              
+              <div class="form-row-2">
+                <div class="form-field-wrap">
+                  <label>Category *</label>
+                  <select id="sub-tool-cat" required>
+                    ${categories.filter(c => c.id !== 'all').map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+                  </select>
+                </div>
+                <div class="form-field-wrap">
+                  <label>Pricing Model *</label>
+                  <select id="sub-tool-pricing" required>
+                    <option value="Free">100% Free</option>
+                    <option value="Freemium" selected>Freemium</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Free Trial">Free Trial</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field-wrap">
+                <label>Short Tagline / Summary *</label>
+                <input type="text" id="sub-tool-desc" placeholder="One sentence describing what the tool does" required />
+              </div>
+
+              <div class="form-field-wrap">
+                <label>About / Full Description</label>
+                <textarea id="sub-tool-overview" rows="3" placeholder="Explain the key capabilities and benefits..."></textarea>
+              </div>
+
+              <div class="submit-modal-actions">
+                <button type="button" class="btn-cancel-modal" id="btn-cancel-submit-modal">Cancel</button>
+                <button type="submit" class="btn-submit-modal-primary">Submit AI Tool ⚡</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </section>
     `;
+
+    // Bind Close Submit Modal
+    function closeSubmitModal() {
+      const modal = document.getElementById('submit-tool-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    const closeSubmitBtn = document.getElementById('btn-close-submit-modal');
+    if (closeSubmitBtn) closeSubmitBtn.addEventListener('click', closeSubmitModal);
+    const cancelSubmitBtn = document.getElementById('btn-cancel-submit-modal');
+    if (cancelSubmitBtn) cancelSubmitBtn.addEventListener('click', closeSubmitModal);
+
+    // Bind Submit Tool Form
+    const submitForm = document.getElementById('submit-tool-form');
+    if (submitForm) {
+      submitForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('sub-tool-name')?.value.trim();
+        const url = document.getElementById('sub-tool-url')?.value.trim();
+        const cat = document.getElementById('sub-tool-cat')?.value;
+        const pricing = document.getElementById('sub-tool-pricing')?.value;
+        const desc = document.getElementById('sub-tool-desc')?.value.trim();
+        const overview = document.getElementById('sub-tool-overview')?.value.trim();
+
+        if (!name || !url || !desc) {
+          showToast('Please fill all required fields');
+          return;
+        }
+
+        let domain = '';
+        try { domain = new URL(url).hostname.replace(/^www\./, ''); } catch (err) { domain = name.toLowerCase().replace(/[^a-z0-9]+/g, '') + '.com'; }
+
+        const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const newTool = {
+          id: slug,
+          name: name,
+          category: cat || 'productivity',
+          categories: [cat || 'productivity', 'productivity'],
+          pricing: pricing || 'Freemium',
+          badge: 'Community Submitted',
+          featured: false,
+          description: desc,
+          url: url,
+          domain: domain,
+          icon: '⚡',
+          inner_content: {
+            overview: overview || desc,
+            pricingDetails: `${pricing} plan available`
+          }
+        };
+
+        const existingCustom = getCustomTools();
+        existingCustom.unshift(newTool);
+        saveCustomTools(existingCustom);
+
+        closeSubmitModal();
+        showToast('Tool submitted successfully! 🎉 It is now live.');
+        renderTagsPage();
+      });
+    }
 
     // Bind Search Input
     const searchInput = document.getElementById('tool-search-input');
@@ -7627,9 +7799,279 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     }
   }
 
+  // =========================================================================
+  // Reading Progress Bar (Article Pages)
+  // =========================================================================
+  function initReadingProgressBar() {
+    const bar = document.getElementById('reading-progress-bar');
+    if (!bar) return;
+
+    function updateProgress() {
+      const isArticlePage = window.location.hash.startsWith('#/p/') || !!document.querySelector('.article-single-main, .post-page-content');
+      if (!isArticlePage) {
+        bar.style.width = '0%';
+        return;
+      }
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('hashchange', () => {
+      setTimeout(updateProgress, 100);
+    });
+  }
+
+  // =========================================================================
+  // Global Spotlight Instant Search (Ctrl + K / Meta + K)
+  // =========================================================================
+  function initSpotlightSearch() {
+    const overlay = document.getElementById('spotlight-modal-overlay');
+    const input = document.getElementById('spotlight-search-input');
+    const resultsWrap = document.getElementById('spotlight-results-wrap');
+    const closeBtn = document.getElementById('btn-close-spotlight');
+    const openBtn = document.getElementById('btn-spotlight-search');
+
+    if (!overlay || !input || !resultsWrap) return;
+
+    let selectedIndex = -1;
+
+    function openSpotlight() {
+      overlay.style.display = 'flex';
+      input.value = '';
+      selectedIndex = -1;
+      renderSpotlightResults('');
+      setTimeout(() => input.focus(), 50);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSpotlight() {
+      overlay.style.display = 'none';
+      input.value = '';
+      selectedIndex = -1;
+      document.body.style.overflow = '';
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSpotlight();
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeSpotlight);
+    }
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeSpotlight();
+      }
+    });
+
+    // Keyboard global listener (Ctrl+K or Cmd+K)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (overlay.style.display === 'flex') {
+          closeSpotlight();
+        } else {
+          openSpotlight();
+        }
+        return;
+      }
+
+      if (overlay.style.display === 'flex') {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeSpotlight();
+          return;
+        }
+
+        const items = resultsWrap.querySelectorAll('.spotlight-item-row');
+        if (items.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedIndex = (selectedIndex + 1) % items.length;
+          updateHighlight(items);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+          updateHighlight(items);
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (selectedIndex >= 0 && selectedIndex < items.length) {
+            items[selectedIndex].click();
+          } else if (items.length > 0) {
+            items[0].click();
+          }
+        }
+      }
+    });
+
+    function updateHighlight(items) {
+      items.forEach((it, idx) => {
+        if (idx === selectedIndex) {
+          it.classList.add('is-selected');
+          it.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else {
+          it.classList.remove('is-selected');
+        }
+      });
+    }
+
+    // Input search query
+    input.addEventListener('input', () => {
+      const q = input.value.trim();
+      selectedIndex = -1;
+      renderSpotlightResults(q);
+    });
+
+    function renderSpotlightResults(query) {
+      if (!query) {
+        resultsWrap.innerHTML = `
+          <div class="spotlight-hint-state">
+            <p>💡 Type keywords to search across <strong>AI Tools</strong>, <strong>Newsletters</strong>, <strong>Prompts</strong>, and <strong>Deals</strong>...</p>
+          </div>
+        `;
+        return;
+      }
+
+      const q = query.toLowerCase();
+      const allArticles = getArticles();
+      const allToolsList = getAllTools();
+      const allPrompts = (typeof AI_PROMPTS_DATA !== 'undefined' && AI_PROMPTS_DATA.prompts) ? AI_PROMPTS_DATA.prompts : [];
+      const allDeals = (typeof AI_DEALS_DATA !== 'undefined' && AI_DEALS_DATA.deals) ? AI_DEALS_DATA.deals : [];
+
+      // Match tools
+      const matchedTools = allToolsList.filter(t => 
+        (t.name && t.name.toLowerCase().includes(q)) ||
+        (t.description && t.description.toLowerCase().includes(q)) ||
+        (t.pricing && t.pricing.toLowerCase().includes(q)) ||
+        (t.categories && t.categories.some(c => c.toLowerCase().includes(q)))
+      ).slice(0, 5);
+
+      // Match articles
+      const matchedArticles = allArticles.filter(a =>
+        (a.title && a.title.toLowerCase().includes(q)) ||
+        (a.subtitle && a.subtitle.toLowerCase().includes(q)) ||
+        (a.excerpt && a.excerpt.toLowerCase().includes(q)) ||
+        (a.category && a.category.toLowerCase().includes(q))
+      ).slice(0, 4);
+
+      // Match prompts
+      const matchedPrompts = allPrompts.filter(p =>
+        (p.title && p.title.toLowerCase().includes(q)) ||
+        (p.description && p.description.toLowerCase().includes(q)) ||
+        (p.category && p.category.toLowerCase().includes(q)) ||
+        (p.tags && p.tags.some(t => t.toLowerCase().includes(q)))
+      ).slice(0, 3);
+
+      // Match deals
+      const matchedDeals = allDeals.filter(d =>
+        (d.toolName && d.toolName.toLowerCase().includes(q)) ||
+        (d.headline && d.headline.toLowerCase().includes(q)) ||
+        (d.description && d.description.toLowerCase().includes(q))
+      ).slice(0, 3);
+
+      const totalMatches = matchedTools.length + matchedArticles.length + matchedPrompts.length + matchedDeals.length;
+
+      if (totalMatches === 0) {
+        resultsWrap.innerHTML = `
+          <div class="spotlight-hint-state">
+            <p>🔍 No results found for "<strong>${escapeHtml(query)}</strong>"</p>
+            <p style="font-size: 0.8rem; margin-top: 6px;">Try searching for Claude, ChatGPT, Agents, Cursor, Python, etc.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+
+      // Render AI Tools
+      if (matchedTools.length > 0) {
+        html += `<div class="spotlight-group-title">⚡ AI Tools (${matchedTools.length})</div>`;
+        matchedTools.forEach(t => {
+          const domain = (t.domain || '').replace(/^https?:\/\//, '').split('/')[0] || 'ai.com';
+          const iconSrc = t.image || `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+          html += `
+            <a href="#/tools/${t.id}" class="spotlight-item-row" onclick="document.getElementById('spotlight-modal-overlay').style.display='none'; document.body.style.overflow='';">
+              <div class="spotlight-item-icon">
+                <img src="${iconSrc}" alt="${escapeHtml(t.name)}" onerror="this.parentElement.innerHTML='⚡'" />
+              </div>
+              <div class="spotlight-item-info">
+                <div class="spotlight-item-title">${escapeHtml(t.name)}</div>
+                <div class="spotlight-item-desc">${escapeHtml(t.description || '')}</div>
+              </div>
+              <span class="spotlight-item-tag">${escapeHtml(t.pricing || 'Tool')}</span>
+            </a>
+          `;
+        });
+      }
+
+      // Render Articles
+      if (matchedArticles.length > 0) {
+        html += `<div class="spotlight-group-title">📰 Newsletter Editions (${matchedArticles.length})</div>`;
+        matchedArticles.forEach(a => {
+          html += `
+            <a href="#/p/${a.slug}" class="spotlight-item-row" onclick="document.getElementById('spotlight-modal-overlay').style.display='none'; document.body.style.overflow='';">
+              <div class="spotlight-item-icon">📖</div>
+              <div class="spotlight-item-info">
+                <div class="spotlight-item-title">${escapeHtml(a.title)}</div>
+                <div class="spotlight-item-desc">${escapeHtml(a.excerpt || a.subtitle || '')}</div>
+              </div>
+              <span class="spotlight-item-tag">${escapeHtml(a.category || 'Article')}</span>
+            </a>
+          `;
+        });
+      }
+
+      // Render Prompts
+      if (matchedPrompts.length > 0) {
+        html += `<div class="spotlight-group-title">✨ Prompts Vault (${matchedPrompts.length})</div>`;
+        matchedPrompts.forEach(p => {
+          html += `
+            <a href="#/prompts" class="spotlight-item-row" onclick="document.getElementById('spotlight-modal-overlay').style.display='none'; document.body.style.overflow='';">
+              <div class="spotlight-item-icon">💬</div>
+              <div class="spotlight-item-info">
+                <div class="spotlight-item-title">${escapeHtml(p.title)}</div>
+                <div class="spotlight-item-desc">${escapeHtml(p.description || '')}</div>
+              </div>
+              <span class="spotlight-item-tag">${escapeHtml(p.targetModel || 'Prompt')}</span>
+            </a>
+          `;
+        });
+      }
+
+      // Render Deals
+      if (matchedDeals.length > 0) {
+        html += `<div class="spotlight-group-title">🏷️ Exclusive Deals (${matchedDeals.length})</div>`;
+        matchedDeals.forEach(d => {
+          html += `
+            <a href="#/deals" class="spotlight-item-row" onclick="document.getElementById('spotlight-modal-overlay').style.display='none'; document.body.style.overflow='';">
+              <div class="spotlight-item-icon">🎁</div>
+              <div class="spotlight-item-info">
+                <div class="spotlight-item-title">${escapeHtml(d.toolName)} - ${escapeHtml(d.headline)}</div>
+                <div class="spotlight-item-desc">Code: <strong>${escapeHtml(d.couponCode || 'PROMO')}</strong></div>
+              </div>
+              <span class="spotlight-item-tag" style="background:#DCFCE7; color:#166534;">${escapeHtml(d.discountBadge || 'DEAL')}</span>
+            </a>
+          `;
+        });
+      }
+
+      resultsWrap.innerHTML = html;
+    }
+  }
+
   // Initialize Global Elements
   initTheme();
   updateBookmarksBadge();
+  initReadingProgressBar();
+  initSpotlightSearch();
 
   // Listen to hash changes
   window.addEventListener('hashchange', renderCurrentRoute);
