@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          // If stored articles have stale logo banners, missing author/reading_time, old avatars, or count differs, sync with ARTICLES
+          if (typeof ARTICLES !== 'undefined' && ARTICLES.length > 0) {
+            const hasStaleData = parsed.some(p => p.image_url === 'assets/logo.jpg' || !p.image_url || !p.author || !p.reading_time || p.author_avatar === 'assets/logo.svg');
+            if (hasStaleData || parsed.length !== ARTICLES.length) {
+              localStorage.setItem('aira_custom_articles', JSON.stringify(ARTICLES));
+              return ARTICLES;
+            }
+          }
           return parsed;
         }
       }
@@ -1252,19 +1260,19 @@ Website: https://aira-newsletter.vercel.app/
                 ${visibleArticles.map(article => `
                   <a href="#/p/${article.slug}" class="article-card">
                     <div class="card-image-wrap">
-                      <img src="${article.image_url}" alt="${article.title}" class="card-thumbnail" loading="lazy" />
-                      <span class="card-tag-badge">${article.tag}</span>
+                      <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
+                      <span class="card-tag-badge">${article.tag || 'Frontier AI'}</span>
                     </div>
                     <div class="card-body">
-                      <h3 class="card-title">${article.title}</h3>
-                      <p class="card-subtitle">${article.subtitle}</p>
+                      <h3 class="card-title">${article.title || ''}</h3>
+                      <p class="card-subtitle">${article.subtitle || ''}</p>
                       <div class="card-footer">
                         <div class="card-author-info">
-                          <img src="${article.author_avatar}" alt="${article.author}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
-                          <span class="card-author-name">${article.author}</span>
+                          <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA Editorial Team'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
+                          <span class="card-author-name">${article.author || 'AIRA Editorial Team'}</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px;">
-                          <span class="card-meta-date">${article.date} • ${article.reading_time}</span>
+                          <span class="card-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</span>
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted); flex-shrink: 0;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
                         </div>
                       </div>
@@ -1514,16 +1522,16 @@ Website: https://aira-newsletter.vercel.app/
 
           <!-- Header -->
           <header class="article-header">
-            <span class="article-header-tag">${article.tag}</span>
-            <h1 class="article-header-title">${article.title}</h1>
-            <p class="article-header-subtitle">${article.subtitle}</p>
+            <span class="article-header-tag">${article.tag || 'Frontier AI'}</span>
+            <h1 class="article-header-title">${article.title || ''}</h1>
+            ${article.subtitle ? `<p class="article-header-subtitle">${article.subtitle}</p>` : ''}
 
             <div class="article-header-meta">
               <div class="article-author-block">
-                <img src="${article.author_avatar}" alt="${article.author}" class="article-author-img" onerror="this.src='assets/logo.svg'" />
+                <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA Editorial Team'}" class="article-author-img" onerror="this.src='assets/logo.svg'" />
                 <div>
-                  <div class="article-author-meta-name">${article.author}</div>
-                  <div class="article-author-meta-date">${article.date} • ${article.reading_time}</div>
+                  <div class="article-author-meta-name">${article.author || 'AIRA Editorial Team'}</div>
+                  <div class="article-author-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</div>
                 </div>
               </div>
 
@@ -1633,14 +1641,14 @@ Website: https://aira-newsletter.vercel.app/
               ${recommendedArticles.map(rec => `
                 <a href="#/p/${rec.slug}" class="kr-card">
                   <div class="kr-card-image-wrap">
-                    <img src="${rec.image_url}" alt="${rec.title}" class="kr-card-img" loading="lazy" />
-                    <span class="kr-card-badge">${(rec.tag || 'News').toUpperCase()}</span>
+                    <img src="${rec.image_url || 'assets/logo.jpg'}" alt="${rec.title || 'AIRA Article'}" class="kr-card-img" loading="lazy" />
+                    <span class="kr-card-badge">${(rec.tag || 'Frontier AI').toUpperCase()}</span>
                   </div>
                   <div class="kr-card-body">
-                    <h4 class="kr-card-title">${rec.title}</h4>
+                    <h4 class="kr-card-title">${rec.title || ''}</h4>
                     <p class="kr-card-subtitle">${rec.subtitle || ''}</p>
                     <div class="kr-card-footer">
-                      <span class="kr-card-date">${rec.date} • ${rec.reading_time}</span>
+                      <span class="kr-card-date">${rec.date || 'Sep 2026'} • ${rec.reading_time || rec.read_time || '4 min read'}</span>
                       <span class="kr-card-read-more">Read →</span>
                     </div>
                   </div>
@@ -1879,6 +1887,15 @@ Website: https://aira-newsletter.vercel.app/
         await renderPostPage(article.slug);
       });
     }
+
+    // Refresh Twitter embedded widgets if present
+    try {
+      if (window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load(appContainer);
+      }
+    } catch (e) {
+      console.warn('Twitter widgets load error:', e);
+    }
   }
 
   // =========================================================================
@@ -1908,12 +1925,12 @@ Website: https://aira-newsletter.vercel.app/
             ${visibleArticles.map(article => `
               <div class="timeline-item" onclick="window.location.hash='#/p/${article.slug}'">
                 <div class="timeline-content">
-                  <h4>${article.title}</h4>
-                  <p>${article.subtitle}</p>
+                  <h4>${article.title || ''}</h4>
+                  <p>${article.subtitle || ''}</p>
                 </div>
                 <div class="timeline-meta">
-                  <span class="timeline-tag">${article.tag || 'AI News'}</span>
-                  <span>${article.date}</span>
+                  <span class="timeline-tag">${article.tag || 'Frontier AI'}</span>
+                  <span>${article.date || 'Sep 2026'}</span>
                 </div>
               </div>
             `).join('')}
@@ -7021,14 +7038,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           ${list.map(article => `
             <div class="article-card">
               <div class="card-image-wrap">
-                <img src="${article.image_url}" alt="${article.title}" class="card-thumbnail" loading="lazy" />
-                <span class="card-tag-badge">${article.tag}</span>
+                <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Article'}" class="card-thumbnail" loading="lazy" />
+                <span class="card-tag-badge">${article.tag || 'Frontier AI'}</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title"><a href="#/p/${article.slug}">${article.title}</a></h3>
-                <p class="card-subtitle">${article.subtitle}</p>
+                <h3 class="card-title"><a href="#/p/${article.slug}">${article.title || ''}</a></h3>
+                <p class="card-subtitle">${article.subtitle || ''}</p>
                 <div class="card-footer" style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
-                  <span class="card-meta-date">${article.date} • ${article.reading_time}</span>
+                  <span class="card-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</span>
                   <button type="button" class="btn-remove-art-bookmark" data-slug="${article.slug}" style="background: none; border: 1px solid #E4E4E7; color: #EF4444; font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer;">Remove ✕</button>
                 </div>
               </div>
@@ -7680,10 +7697,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     }
   }
 
-  // Bind footer form
+  // Bind footer forms
   const footerForm = document.getElementById('footer-sub-form');
   if (footerForm) {
     footerForm.addEventListener('submit', handleSubscribeSubmit);
+  }
+  const footerTopForm = document.getElementById('footer-top-sub-form');
+  if (footerTopForm) {
+    footerTopForm.addEventListener('submit', handleSubscribeSubmit);
   }
 
   // Bind modal form
@@ -7752,9 +7773,9 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     const matches = q === '' 
       ? state.articles.slice(0, 6) 
       : state.articles.filter(a => 
-          a.title.toLowerCase().includes(q) || 
-          a.subtitle.toLowerCase().includes(q) ||
-          a.slug.toLowerCase().includes(q)
+          (a.title || '').toLowerCase().includes(q) || 
+          (a.subtitle || '').toLowerCase().includes(q) ||
+          (a.slug || '').toLowerCase().includes(q)
         ).slice(0, 10);
 
     if (matches.length === 0) {
