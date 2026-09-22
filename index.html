@@ -32,10 +32,10 @@
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=61.0" />
+  <link rel="stylesheet" href="styles.css?v=69.0" />
 </head>
 <body>
 
@@ -66,6 +66,7 @@
       <ul class="nav-center-links">
         <li><a href="#/home" class="nav-link" data-nav="home">Home</a></li>
         <li><a href="#/tags" class="nav-link" data-nav="tags">AI Tools</a></li>
+        <li><a href="#/alternatives" class="nav-link" data-nav="alternatives">Alternatives</a></li>
         <li><a href="#/prompts" class="nav-link" data-nav="prompts">Prompts Vault</a></li>
         <li><a href="#/bookmarks" class="nav-link" data-nav="bookmarks">Bookmarks</a></li>
       </ul>
@@ -129,6 +130,12 @@
           <a href="#/tags" class="mobile-nav-link" data-nav="tags">
             <span class="mobile-nav-icon">⚡</span>
             <span class="mobile-nav-text">AI Tools Directory</span>
+          </a>
+        </li>
+        <li>
+          <a href="#/alternatives" class="mobile-nav-link" data-nav="alternatives">
+            <span class="mobile-nav-icon">🔄</span>
+            <span class="mobile-nav-text">Software Alternatives</span>
           </a>
         </li>
         <li>
@@ -245,6 +252,7 @@
           <ul class="footer-nav-list">
             <li><a href="#/home" class="footer-nav-link">Daily AI Editions</a></li>
             <li><a href="#/tags" class="footer-nav-link">AI Tools Directory</a></li>
+            <li><a href="#/alternatives" class="footer-nav-link">Software Alternatives</a></li>
             <li><a href="#/prompts" class="footer-nav-link">AI Prompts Hub</a></li>
             <li><a href="#/bookmarks" class="footer-nav-link">Saved Bookmarks</a></li>
           </ul>
@@ -264,13 +272,13 @@
         <!-- Col 4: Instant Starter Kit Card -->
         <div class="footer-col footer-col-kit">
           <div class="footer-kit-card">
-            <div class="footer-kit-ribbon">🎁 FREE 2026 AI STARTER KIT</div>
-            <h4 class="footer-kit-title">Instant Starter Kit</h4>
-            <p class="footer-kit-desc">Get our master system prompt, daily frontier AI editions, and 2026 playbook sent to your inbox.</p>
+            <div class="footer-kit-ribbon">🎁 FREE 50 TEMPLATES</div>
+            <h4 class="footer-kit-title">n8n Templates</h4>
+            <p class="footer-kit-desc">Get top AI news, tools + instant access to <strong>AI Automation | 50 n8n Templates</strong>.</p>
             
             <form class="footer-kit-form" id="footer-sub-form">
               <input type="email" class="footer-kit-input" placeholder="Your email address..." required />
-              <button type="submit" class="footer-kit-btn">Join VIP Newsletter ⚡</button>
+              <button type="submit" class="footer-kit-btn">Get 50 Templates ⚡</button>
             </form>
           </div>
         </div>
@@ -315,60 +323,46 @@
 
   <!-- Subscribe Modal -->
   <div class="modal-overlay" id="subscribe-modal">
-    <div class="modal-card" style="text-align: center;">
+    <div class="modal-card" style="text-align: center; max-width: 440px;">
       <button type="button" class="modal-close-btn" aria-label="Close" onclick="this.closest('.modal-overlay').classList.remove('active'); document.body.style.overflow='';">✕</button>
-      <img src="assets/logo.png?v=50.0" alt="AIRA" style="width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 12px auto; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
-      <span style="display: inline-block; font-size: 0.72rem; font-weight: 800; background: #ECFDF5; color: #047857; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">🎁 FREE 2026 AI STARTER KIT</span>
-      <h3 style="font-family: var(--font-header); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Join AIRA Newsletter</h3>
-      <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Get top AI news, breakthroughs + instant access to the <strong>Top 100 Production AI Prompts</strong>.</p>
+      <img src="assets/logo.png?v=50.0" alt="AIRA" style="width: 52px; height: 52px; border-radius: 12px; margin: 0 auto 12px auto; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+      <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; background: #ECFDF5; color: #047857; padding: 4px 10px; border-radius: 999px; margin-bottom: 8px;">FREE SUBSCRIBER BONUS</span>
+      <h3 style="font-family: var(--font-header); font-size: 1.45rem; font-weight: 800; margin-bottom: 6px; color: var(--color-text-primary);">Join AIRA Newsletter</h3>
+      <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">Get top AI news, breakthroughs + instant access to <strong>AI Automation | 50 n8n Templates</strong>.</p>
       
       <form id="modal-sub-form" style="display: flex; flex-direction: column; gap: 12px;">
-        <input type="email" placeholder="Enter your email address" required style="padding: 12px 16px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 1rem;" />
-        <button type="submit" style="background: #047857; color: #FFFFFF; font-weight: 700; padding: 12px; border-radius: var(--radius-sm); cursor: pointer; font-size: 1rem; border: none;">Subscribe & Get Free Kit 🎁</button>
+        <input type="email" placeholder="Enter your email address" required style="padding: 12px 16px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.95rem; outline: none;" />
+        <button type="submit" style="background: #047857; color: #FFFFFF; font-weight: 700; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; border: none;">Subscribe & Get 50 n8n Templates 🎁</button>
       </form>
     </div>
   </div>
 
-  <!-- Lead Magnet Instant Bonus Modal -->
+  <!-- Lead Magnet Instant Access Modal (Clean Original Design) -->
   <div class="modal-overlay" id="lead-magnet-modal">
-    <div class="modal-card lead-magnet-modal-card">
+    <div class="modal-card" style="max-width: 480px; text-align: center; padding: 32px 28px;">
       <button type="button" class="modal-close-btn" aria-label="Close" onclick="this.closest('.modal-overlay').classList.remove('active'); document.body.style.overflow='';">✕</button>
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-        <span style="font-size: 2rem;">🎁</span>
-        <div>
-          <span style="font-size: 0.75rem; font-weight: 800; color: #047857; text-transform: uppercase; letter-spacing: 0.05em;">VIP Community Bonus</span>
-          <h3 style="font-family: var(--font-header); font-size: 1.4rem; font-weight: 800; margin: 0; color: var(--color-text-primary);">Your Free 2026 AI Starter Kit</h3>
-        </div>
+      
+      <div style="width: 56px; height: 56px; border-radius: 50%; background: #ECFDF5; color: #047857; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+        ⚡
       </div>
-      <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 18px; line-height: 1.45;">
-        Welcome to AIRA! Here is your instant kit download containing the <strong>Top 100 Production AI Prompts</strong> and our <strong>Master Reasoning Prompt</strong>.
+      
+      <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; background: #ECFDF5; color: #047857; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Subscriber Gift</span>
+      
+      <h3 style="font-family: var(--font-header); font-size: 1.45rem; font-weight: 800; margin: 0 0 10px 0; color: var(--color-text-primary);">AI Automation | n8n Templates</h3>
+      
+      <p style="color: var(--color-text-secondary); font-size: 0.92rem; margin: 0 auto 24px auto; line-height: 1.55; max-width: 380px;">
+        Thank you for subscribing to AIRA! Here is your instant access to our <strong>50 AI Automation & n8n Templates</strong> spreadsheet.
       </p>
 
-      <div class="bonus-kit-grid">
-        <!-- Kit 1: Prompts Cheat Sheet -->
-        <div class="bonus-kit-card" style="grid-column: 1 / -1;">
-          <div>
-            <div class="bonus-kit-card-icon">⚡</div>
-            <h4>100+ Master AI Prompts</h4>
-            <p>Production prompts for Coding, Copywriting, Marketing, Research & Reasoning.</p>
-          </div>
-          <button type="button" class="bonus-download-action-btn" id="btn-download-prompts-kit" onclick="window.downloadPromptsKit();">
-            <span>📥 Download Prompts (.MD)</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Instant Prompt Copier -->
-      <div class="bonus-copy-prompt-box">
-        <div class="bonus-copy-header">
-          <span>✨ QUICK COPY: AIRA MASTER SYSTEM PROMPT</span>
-          <button type="button" class="bonus-copy-btn" id="btn-copy-bonus-prompt" onclick="window.copyMasterBonusPrompt(this);">Copy Prompt 📋</button>
-        </div>
-        <div class="bonus-prompt-preview" id="bonus-prompt-text">You are an elite AI Architect and Senior Technical Advisor. Analyze this problem with first-principles reasoning, state your assumptions, outline optimal trade-offs, and generate concise, production-ready code with complete error handling.</div>
-      </div>
-
-      <div style="margin-top: 20px; text-align: center;">
-        <a href="#/home" class="tool-details-btn" style="padding: 10px 20px; font-weight: 700; text-decoration: none; display: inline-flex;" onclick="document.getElementById('lead-magnet-modal').classList.remove('active'); document.body.style.overflow='';">Explore Frontier AI Editions →</a>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a href="https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style="background: #047857; color: #FFFFFF; font-weight: 700; padding: 13px 20px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span>Open 50 n8n Templates (Google Sheet)</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+        
+        <button type="button" onclick="document.getElementById('lead-magnet-modal').classList.remove('active'); document.body.style.overflow='';" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary); font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 0.88rem;">
+          Continue Reading
+        </button>
       </div>
     </div>
   </div>
@@ -451,10 +445,10 @@
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   <!-- Data and Application Script -->
-  <script src="data/articles.js?v=61.0"></script>
-  <script src="data/tools.js?v=61.0"></script>
-  <script src="data/alternatives.js?v=61.0"></script>
-  <script src="data/prompts.js?v=61.0"></script>
-  <script src="js/app.js?v=61.0"></script>
+  <script src="data/articles.js?v=69.0"></script>
+  <script src="data/tools.js?v=69.0"></script>
+  <script src="data/alternatives.js?v=69.0"></script>
+  <script src="data/prompts.js?v=69.0"></script>
+  <script src="js/app.js?v=69.0"></script>
 </body>
 </html>

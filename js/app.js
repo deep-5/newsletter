@@ -307,6 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return `# AIRA 2026 AI Starter Kit: Top 100 Production AI Prompts
 Generated exclusively for AIRA VIP Newsletter Subscribers.
 Website: https://aira-newsletter.vercel.app/
+Live Google Sheet: https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing
+
+---
+
+## 📊 Live Google Spreadsheet Access
+Access the full interactive database of 100+ Production Prompts:
+👉 https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing
 
 ---
 
@@ -488,6 +495,7 @@ Website: https://aira-newsletter.vercel.app/
     toolCategoryFilter: 'all',
     toolPricingFilter: 'all',
     toolSearchQuery: '',
+    promptToolFilter: 'all',
     promptCategoryFilter: 'all',
     promptSearchQuery: '',
     promptCurrentPage: 1,
@@ -851,6 +859,11 @@ Website: https://aira-newsletter.vercel.app/
       renderHomePage();
     } else if (route.name === 'post') {
       await renderPostPage(route.slug);
+    } else if (route.name === 'alternatives') {
+      if (route.category) state.altCategoryFilter = route.category;
+      renderAlternativesPage();
+    } else if (route.name === 'alternative-detail') {
+      renderAlternativeDetailPage(route.slug);
     } else if (route.name === 'tags' || route.name === 'tools') {
       if (route.category) state.toolCategoryFilter = route.category;
       renderTagsPage();
@@ -1334,7 +1347,7 @@ Website: https://aira-newsletter.vercel.app/
             <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
           </div>
         ` : `
-          <!-- 2-Column Main Layout (Left: 8 Articles Grid | Right: Sidebar Ads & Popular Posts) -->
+          <!-- 2-Column Main Layout (Left: Articles Grid | Right: Sidebar Widgets & Resources) -->
           <div class="home-main-layout">
             
             <!-- Left Column: Articles Grid (Exact 8 Articles Per Page) -->
@@ -1366,7 +1379,7 @@ Website: https://aira-newsletter.vercel.app/
               </div>
             </div>
 
-            <!-- Right Column: Sidebar Ads & Popular Posts -->
+            <!-- Right Column: Sidebar Widgets & Resources -->
             <div class="home-sidebar-col">
               
               <!-- 1. Top 5 Trending AI Tools Leaderboard -->
@@ -1386,33 +1399,13 @@ Website: https://aira-newsletter.vercel.app/
                 </a>
               </div>
 
-              <!-- Popular Posts Widget (Expanded to Top 7 with Ranked Badges) -->
-              <div class="sidebar-widget-popular">
-                <div class="sidebar-popular-header">
-                  <span>🔥</span>
-                  <h4>Popular Posts</h4>
-                </div>
-                <div class="sidebar-popular-list">
-                  ${popularArticles.map((p, pIdx) => `
-                    <a href="#/p/${p.slug}" class="popular-post-item">
-                      <span class="popular-post-rank">${pIdx + 1}</span>
-                      <img src="${p.image_url}" alt="${p.title}" class="popular-post-thumb" loading="lazy" />
-                      <div class="popular-post-info">
-                        <h5 class="popular-post-title">${p.title}</h5>
-                        <span class="popular-post-views">${formatViews(p.views, pIdx)}</span>
-                      </div>
-                    </a>
-                  `).join('')}
-                </div>
-              </div>
-
-              <!-- Sidebar Ad 2: Join VIP Newsletter -->
+              <!-- Sidebar Ad 2: 50 n8n Templates -->
               <div class="ad-sidebar-card">
-                <span class="ad-tag-label">VIP COMMUNITY</span>
-                <h3 class="ad-sidebar-title">Join 500+ AI Builders</h3>
-                <p class="ad-sidebar-desc">Get the daily frontier AI breakdown, tutorials, and reasoning models decoded.</p>
+                <span class="ad-tag-label">FREE BONUS</span>
+                <h3 class="ad-sidebar-title">50 n8n Templates</h3>
+                <p class="ad-sidebar-desc">Get top AI news, breakthroughs + instant access to AI Automation | 50 n8n Templates.</p>
                 <button type="button" class="ad-pill-btn" onclick="document.getElementById('subscribe-modal').classList.add('active'); document.body.style.overflow='hidden';">
-                  <span>Join VIP Free</span>
+                  <span>Get 50 Templates</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
               </div>
@@ -1429,8 +1422,9 @@ Website: https://aira-newsletter.vercel.app/
               </div>
 
             </div>
-
           </div>
+
+              
 
           <!-- Centered Numbered Pagination Bar Across Full Container Width -->
           <div class="home-pagination-wrapper">
@@ -1669,12 +1663,12 @@ Website: https://aira-newsletter.vercel.app/
               <span class="sub-bolt-icon">⚡</span>
             </div>
             <h3 class="article-sub-title">Stay Ahead in AI with AIRA</h3>
-            <p class="article-sub-desc">Get the latest breakthroughs, model benchmarks, tools, and tutorials delivered straight to your inbox.</p>
+            <p class="article-sub-desc">Get top AI news, breakthroughs + instant access to AI Automation | 50 n8n Templates.</p>
             
             <form class="article-sub-form-dark" id="article-sub-form">
               <div class="sub-dark-input-wrap">
                 <input type="email" class="sub-dark-input" placeholder="Your email address" required />
-                <button type="submit" class="sub-dark-btn">Subscribe</button>
+                <button type="submit" class="sub-dark-btn">Subscribe & Get 50 Templates 🎁</button>
               </div>
             </form>
           </div>
@@ -2976,9 +2970,9 @@ Website: https://aira-newsletter.vercel.app/
               <span class="bolt">⚡</span>
               <span>AIRA Directory • ${allSoftware.length} Software • ${totalAltsCount.toLocaleString()}+ Open-Source Alternatives</span>
             </div>
-            <h1 class="alt-hero-title">Open Source Software Alternatives</h1>
+            <h1 class="alt-hero-title">Alternatives to Popular Software</h1>
             <p class="alt-hero-desc">
-              Discover <strong>${totalAltsCount.toLocaleString()}+</strong> curated open-source, self-hosted, and privacy-first replacements for <strong>${allSoftware.length}</strong> popular proprietary software tools & AI platforms.
+              Discover <strong>${totalAltsCount.toLocaleString()}+</strong> curated top software alternatives, open-source tools, and competitor comparisons for <strong>${allSoftware.length}</strong> popular software platforms & AI services.
             </p>
 
             <!-- Search Form -->
@@ -2992,7 +2986,7 @@ Website: https://aira-newsletter.vercel.app/
             </form>
 
             <!-- Categories Filter Wrapper (Clean Wrapped Grid, Same as AI Tools) -->
-            <div class="categories-filter-wrapper" style="margin-top: 24px; border-top: 1px solid #F1F5F9; padding-top: 20px;">
+            <div class="categories-filter-wrapper" style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
               <div class="categories-filter-grid" id="alt-categories-bar">
                 ${categories.map(cat => {
                   const count = getCategoryCount(cat.id);
@@ -6491,237 +6485,958 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     }
   }
 
-  // =========================================================================
-  // 5. AI Prompts Vault View (/#/prompts)
+// =========================================================================
+  // 4. Prompts Library (100+ Agentic Coding Prompts - Top Horizontal Filters)
   // =========================================================================
   function renderPromptsPage() {
-    const promptsData = typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA : { categories: [], prompts: [] };
-    const allPrompts = promptsData.prompts || [];
-    const categories = promptsData.categories || [];
-    const PROMPTS_PER_PAGE = 9;
+    const SOURCES = window.PROMPT_SOURCES || (typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA.sources : {}) || {};
+    const ALL = window.ALL_PROMPTS || (typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA.prompts : []) || [];
 
-    function getCategoryName(catId) {
-      const found = categories.find(c => c.id === catId);
-      return found ? found.name : catId;
-    }
+    const REQUIRES_LABEL = {
+      "plan-mode": "Plan mode",
+      "image-attached": "Attach an image",
+      "second-session": "Fresh session",
+      "prior-turn": "Follows a previous turn",
+      "shell": "Run in a shell",
+      "mcp-server": "Needs an MCP server",
+      "subagent": "Uses subagents",
+      "slash-command": "Slash command",
+      "save-to-file": "Save to a file",
+      "selection": "Select code first"
+    };
 
-    function getFilteredPrompts() {
-      return allPrompts.filter(p => {
-        if (state.promptCategoryFilter !== 'all' && p.category !== state.promptCategoryFilter) {
-          return false;
-        }
-        if (state.promptSearchQuery.trim() !== '') {
-          const q = state.promptSearchQuery.trim().toLowerCase();
-          const titleMatch = (p.title || '').toLowerCase().includes(q);
-          const descMatch = (p.description || '').toLowerCase().includes(q);
-          const promptMatch = (p.prompt || '').toLowerCase().includes(q);
-          const tagMatch = p.tags ? p.tags.some(t => t.toLowerCase().includes(q)) : false;
-          const modelMatch = (p.targetModel || '').toLowerCase().includes(q);
-          if (!titleMatch && !descMatch && !promptMatch && !tagMatch && !modelMatch) return false;
-        }
-        return true;
+    const SEQUENCES = {
+      "explore-plan-code":   "Explore \u2192 plan \u2192 code",
+      "find-code":           "Find the code",
+      "bugfix":              "Fix a bug",
+      "refactor":            "Refactor",
+      "tests":               "Add tests",
+      "docs":                "Document",
+      "pull-request":        "Open a PR",
+      "writer-reviewer":     "Writer / reviewer",
+      "fan-out":             "Fan out across files",
+      "cx-bugfix":           "Fix a bug",
+      "cx-design-iteration": "Iterate on a design",
+      "cx-refactor-plan":    "Plan a refactor",
+      "cx-prototype":        "Prototype from an image"
+    };
+
+    const TOOL_MARK = {
+      "claude-code":
+        '<svg viewBox="0 0 248 248" fill="none"><path d="M52.4285 162.873L98.7844 136.879L99.5485 134.602L98.7844 133.334H96.4921L88.7237 132.862L62.2346 132.153L39.3113 131.207L17.0249 130.026L11.4214 128.844L6.2 121.873L6.7094 118.447L11.4214 115.257L18.171 115.847L33.0711 116.911L55.485 118.447L71.6586 119.392L95.728 121.873H99.5485L100.058 120.337L98.7844 119.392L97.7656 118.447L74.5877 102.732L49.4995 86.1905L36.3823 76.62L29.3779 71.7757L25.8121 67.2858L24.2839 57.3608L30.6515 50.2716L39.3113 50.8623L41.4763 51.4531L50.2636 58.1879L68.9842 72.7209L93.4357 90.6804L97.0015 93.6343L98.4374 92.6652L98.6571 91.9801L97.0015 89.2625L83.757 65.2772L69.621 40.8192L63.2534 30.6579L61.5978 24.632C60.9565 22.1032 60.579 20.0111 60.579 17.4246L67.8381 7.49965L71.9133 6.19995L81.7193 7.49965L85.7946 11.0443L91.9074 24.9865L101.714 46.8451L116.996 76.62L121.453 85.4816L123.873 93.6343L124.764 96.1155H126.292V94.6976L127.566 77.9197L129.858 57.3608L132.15 30.8942L132.915 23.4505L136.608 14.4708L143.994 9.62643L149.725 12.344L154.437 19.0788L153.8 23.4505L150.998 41.6463L145.522 70.1215L141.957 89.2625H143.994L146.414 86.7813L156.093 74.0206L172.266 53.698L179.398 45.6635L187.803 36.802L193.152 32.5484H203.34L210.726 43.6549L207.415 55.1159L196.972 68.3492L188.312 79.5739L175.896 96.2095L168.191 109.585L168.882 110.689L170.738 110.53L198.755 104.504L213.91 101.787L231.994 98.7149L240.144 102.496L241.036 106.395L237.852 114.311L218.495 119.037L195.826 123.645L162.07 131.592L161.696 131.893L162.137 132.547L177.36 133.925L183.855 134.279H199.774L229.447 136.524L237.215 141.605L241.8 147.867L241.036 152.711L229.065 158.737L213.019 154.956L175.45 145.977L162.587 142.787H160.805V143.85L171.502 154.366L191.242 172.089L215.82 195.011L217.094 200.682L213.91 205.172L210.599 204.699L188.949 188.394L180.544 181.069L161.696 165.118H160.422V166.772L164.752 173.152L187.803 207.771L188.949 218.405L187.294 221.832L181.308 223.959L174.813 222.777L161.187 203.754L147.305 182.486L136.098 163.345L134.745 164.2L128.075 235.42L125.019 239.082L117.887 241.8L111.902 237.31L108.718 229.984L111.902 215.452L115.722 196.547L118.779 181.541L121.58 162.873L123.291 156.636L123.14 156.219L121.773 156.449L107.699 175.752L86.304 204.699L69.3663 222.777L65.291 224.431L58.2867 220.768L58.9235 214.27L62.8713 208.48L86.304 178.705L100.44 160.155L109.551 149.507L109.462 147.967L108.959 147.924L46.6977 188.512L35.6182 189.93L30.7788 185.44L31.4156 178.115L33.7079 175.752L52.4285 162.873Z" fill="#D97757"/></svg>',
+      "codex":
+        '<svg viewBox="3.4 3.4 17.2 17.2"><path fill="#000000" d="M9.94494 9.59163V8.13227C9.94494 8.00935 9.99105 7.91713 10.0985 7.85575L13.0327 6.16599C13.4321 5.93558 13.9083 5.8281 14.3998 5.8281C16.2432 5.8281 17.4108 7.25677 17.4108 8.77751C17.4108 8.885 17.4108 9.00792 17.3953 9.13083L14.3537 7.34884C14.1694 7.24135 13.985 7.24135 13.8007 7.34884L9.94494 9.59163ZM16.7963 15.2755V11.7883C16.7963 11.5732 16.704 11.4196 16.5197 11.3121L12.664 9.0693L13.9236 8.34725C14.0311 8.28587 14.1234 8.28587 14.2308 8.34725L17.165 10.037C18.0099 10.5287 18.5782 11.5732 18.5782 12.587C18.5782 13.7544 17.887 14.8298 16.7963 15.2753V15.2755ZM9.03861 12.2031L7.77896 11.4658C7.67146 11.4045 7.62535 11.3122 7.62535 11.1893V7.8098C7.62535 6.16613 8.88501 4.92176 10.5902 4.92176C11.2354 4.92176 11.8344 5.13689 12.3415 5.52089L9.31526 7.27218C9.13097 7.37968 9.03875 7.53328 9.03875 7.74841V12.2033L9.03861 12.2031ZM11.75 13.77L9.94494 12.7562V10.6056L11.75 9.59178L13.5549 10.6056V12.7562L11.75 13.77ZM12.9098 18.44C12.2645 18.44 11.6655 18.2249 11.1585 17.8409L14.1847 16.0896C14.369 15.9821 14.4612 15.8285 14.4612 15.6134V11.1585L15.7363 11.8958C15.8438 11.9572 15.8899 12.0494 15.8899 12.1723V15.5519C15.8899 17.1955 14.6148 18.44 12.9098 18.44ZM9.26901 15.0144L6.33486 13.3246C5.4899 12.833 4.92161 11.7885 4.92161 10.7746C4.92161 9.59177 5.62824 8.53183 6.71886 8.0863V11.5887C6.71886 11.8039 6.81109 11.9575 6.99538 12.065L10.8359 14.2923L9.57621 15.0144C9.46872 15.0758 9.37649 15.0758 9.26901 15.0144ZM9.10013 17.5337C7.36426 17.5337 6.08919 16.2279 6.08919 14.6149C6.08919 14.492 6.1046 14.3691 6.11988 14.2462L9.1461 15.9975C9.33039 16.105 9.51483 16.105 9.69912 15.9975L13.5549 13.7702V15.2295C13.5549 15.3524 13.5088 15.4446 13.4013 15.506L10.4671 17.1958C10.0677 17.4262 9.59148 17.5337 9.09999 17.5337H9.10013ZM12.9098 19.3616C14.7685 19.3616 16.32 18.0406 16.6735 16.2893C18.3939 15.8438 19.5 14.2308 19.5 12.5872C19.5 11.5118 19.0391 10.4673 18.2096 9.71454C18.2864 9.39192 18.3326 9.0693 18.3326 8.74682C18.3326 6.55014 16.5505 4.90634 14.4921 4.90634C14.0774 4.90634 13.6779 4.96772 13.2785 5.10605C12.5872 4.43011 11.6347 4 10.5902 4C8.7314 4 7.17996 5.32103 6.8265 7.07232C5.10605 7.51786 4 9.13083 4 10.7745C4 11.8498 4.4608 12.8944 5.29035 13.6471C5.21354 13.9697 5.16743 14.2923 5.16743 14.6148C5.16743 16.8114 6.94941 18.4552 9.00792 18.4552C9.42261 18.4552 9.82204 18.3939 10.2215 18.2556C10.9127 18.9315 11.8651 19.3616 12.9098 19.3616Z"/></svg>',
+      "cursor":
+        '<svg viewBox="0 0 466.73 532.09"><path fill="#26251e" d="M457.43,125.94L244.42,2.96c-6.84-3.95-15.28-3.95-22.12,0L9.3,125.94c-5.75,3.32-9.3,9.46-9.3,16.11v247.99c0,6.65,3.55,12.79,9.3,16.11l213.01,122.98c6.84,3.95,15.28,3.95,22.12,0l213.01-122.98c5.75-3.32,9.3-9.46,9.3-16.11v-247.99c0-6.65-3.55-12.79-9.3-16.11h-.01ZM444.05,151.99l-205.63,356.16c-1.39,2.4-5.06,1.42-5.06-1.36v-233.21c0-4.66-2.49-8.97-6.53-11.31L24.87,145.67c-2.4-1.39-1.42-5.06,1.36-5.06h411.26c5.84,0,9.49,6.33,6.57,11.39h-.01Z"/></svg>'
+    };
+
+    const TOOLS = [
+      { id: "claude-code", label: "Claude Code", icon: "🟣" },
+      { id: "codex", label: "OpenAI Codex", icon: "🟢" },
+      { id: "cursor", label: "Cursor IDE", icon: "🔵" }
+    ];
+
+    const GROUPS = [
+      { id: "understand", label: "Understand a codebase", icon: "🚀", cats: ["onboarding", "search", "context-refs"] },
+      { id: "plan",       label: "Plan before you build",  icon: "🗺️", cats: ["planning"] },
+      { id: "debug",      label: "Fix bugs",               icon: "🐛", cats: ["debugging"] },
+      { id: "test",       label: "Test and verify",        icon: "🧪", cats: ["testing", "verification"] },
+      { id: "refactor",   label: "Refactor and document",  icon: "♻️", cats: ["refactoring", "documentation"] },
+      { id: "review",     label: "Review code",            icon: "🔍", cats: ["review"] },
+      { id: "images",     label: "Work from images",       icon: "🖼️", cats: ["images"] },
+      { id: "configure",  label: "Configure the agent",    icon: "⚙️", cats: ["config"] },
+      { id: "automate",   label: "Automate and scale",     icon: "⚡", cats: ["automation", "subagents", "scale", "context-management", "capabilities", "pr-git"] }
+    ];
+
+    const catToGroup = {};
+    GROUPS.forEach(g => { g.cats.forEach(c => { catToGroup[c] = g.id; }); });
+
+    let stateFilter = { q: "", tool: [], group: [] };
+    let tasksShown = 2;
+    function resetLimits() { tasksShown = 2; }
+
+    function esc(s) {
+      return String(s || '').replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
       });
     }
 
-    function updateView() {
-      const filtered = getFilteredPrompts();
-      const totalPages = Math.ceil(filtered.length / PROMPTS_PER_PAGE) || 1;
-      if (state.promptCurrentPage > totalPages) state.promptCurrentPage = 1;
-      if (state.promptCurrentPage < 1) state.promptCurrentPage = 1;
-
-      const pagedPrompts = filtered.slice(
-        (state.promptCurrentPage - 1) * PROMPTS_PER_PAGE,
-        state.promptCurrentPage * PROMPTS_PER_PAGE
-      );
-
-      const container = document.getElementById('prompts-grid-container');
-      const countEl = document.getElementById('prompts-count-container');
-      const paginationEl = document.getElementById('prompts-pagination-container');
-
-      if (countEl) {
-        countEl.innerHTML = `Showing <strong>${filtered.length}</strong> copy-paste AI prompt templates ${state.promptCategoryFilter !== 'all' ? ` in <strong>${getCategoryName(state.promptCategoryFilter)}</strong>` : ''} ${state.promptSearchQuery ? ` matching "<em>${escapeHtml(state.promptSearchQuery)}</em>"` : ''}`;
+    function slots(text) {
+      var out = "", last = 0, re = /<([^<>]*)>/g, m;
+      while ((m = re.exec(text)) !== null) {
+        out += esc(text.slice(last, m.index));
+        out += '<span class="slot">' + esc(m[0]) + "</span>";
+        last = m.index + m[0].length;
       }
-
-      if (container) {
-        if (pagedPrompts.length === 0) {
-          container.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
-              <p style="font-size: 1.2rem; font-weight: 700; color: #18181B; margin-bottom: 8px;">No prompts found</p>
-              <p style="color: #71717A; font-size: 0.95rem; margin-bottom: 16px;">Try adjusting your search keywords or switching category filters.</p>
-              <button type="button" class="btn-subscribe-nav" id="btn-reset-prompts-search">View All Prompts</button>
-            </div>
-          `;
-          const resetBtn = document.getElementById('btn-reset-prompts-search');
-          if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-              state.promptCategoryFilter = 'all';
-              state.promptSearchQuery = '';
-              state.promptCurrentPage = 1;
-              renderPromptsPage();
-            });
-          }
-        } else {
-          container.innerHTML = pagedPrompts.map(p => `
-            <div class="prompt-card" data-prompt-id="${p.id}">
-              <div class="prompt-card-header">
-                <span class="prompt-category-badge">
-                  <span>${categories.find(c => c.id === p.category)?.icon || '✨'}</span>
-                  <span>${getCategoryName(p.category)}</span>
-                </span>
-                <span class="prompt-model-pill">${p.targetModel || 'Universal AI'}</span>
-              </div>
-              <h3 class="prompt-card-title">${p.title}</h3>
-              <p class="prompt-card-desc">${p.description}</p>
-              
-              <div class="prompt-code-box" id="code-box-${p.id}">${escapeHtml(p.prompt)}</div>
-
-              <div class="prompt-card-actions">
-                <button type="button" class="btn-copy-prompt" data-prompt-id="${p.id}" title="Copy full prompt to clipboard">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy Prompt</span>
-                </button>
-                <a href="https://chatgpt.com/?q=${encodeURIComponent(p.prompt)}" target="_blank" rel="noopener noreferrer" class="btn-launch-prompt" title="Open in ChatGPT">
-                  <span>ChatGPT ↗</span>
-                </a>
-                <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="btn-launch-prompt" title="Open in Claude">
-                  <span>Claude ↗</span>
-                </a>
-              </div>
-            </div>
-          `).join('');
-
-          // Bind copy buttons
-          container.querySelectorAll('.btn-copy-prompt').forEach(btn => {
-            btn.addEventListener('click', () => {
-              const pid = btn.getAttribute('data-prompt-id');
-              const targetPrompt = allPrompts.find(item => item.id === pid);
-              if (targetPrompt && navigator.clipboard) {
-                navigator.clipboard.writeText(targetPrompt.prompt).then(() => {
-                  const origText = btn.innerHTML;
-                  btn.innerHTML = `<span>Copied! ✓</span>`;
-                  btn.style.background = '#047857';
-                  showToast(`Copied "${targetPrompt.title}" prompt! 📋`);
-                  setTimeout(() => {
-                    btn.innerHTML = origText;
-                    btn.style.background = '';
-                  }, 2000);
-                });
-              }
-            });
-          });
-        }
-      }
-
-      // Render pagination
-      if (paginationEl) {
-        if (totalPages <= 1) {
-          paginationEl.innerHTML = '';
-        } else {
-          paginationEl.innerHTML = `
-            <div class="aira-pagination-bar" data-type="prompts">
-              <button type="button" class="aira-page-btn prev-btn" data-page="${state.promptCurrentPage - 1}" ${state.promptCurrentPage === 1 ? 'disabled' : ''}>← Prev</button>
-              <div class="aira-page-numbers">
-                ${Array.from({ length: totalPages }, (_, i) => i + 1).map(page => `
-                  <button type="button" class="aira-page-num ${page === state.promptCurrentPage ? 'active' : ''}" data-page="${page}">${page}</button>
-                `).join('')}
-              </div>
-              <button type="button" class="aira-page-btn next-btn" data-page="${state.promptCurrentPage + 1}" ${state.promptCurrentPage === totalPages ? 'disabled' : ''}>Next →</button>
-            </div>
-          `;
-
-          paginationEl.querySelectorAll('button[data-page]').forEach(btn => {
-            btn.addEventListener('click', () => {
-              if (btn.disabled) return;
-              const targetPage = parseInt(btn.getAttribute('data-page'), 10);
-              if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.promptCurrentPage) {
-                state.promptCurrentPage = targetPage;
-                updateView();
-                window.scrollTo({ top: 250, behavior: 'smooth' });
-              }
-            });
-          });
-        }
-      }
+      return out + esc(text.slice(last));
     }
 
+    var COPY_ICON =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+    var DONE_ICON =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M4 12.5l5 5L20 6.5"/></svg>';
+    var OUT_ICON =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M14 5h5v5M19 5l-8 8M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>';
+
+    var toastTimer;
+    function toast(msg) {
+      const toastEl = document.getElementById("toast");
+      if (!toastEl) return;
+      toastEl.textContent = msg;
+      toastEl.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toastEl.classList.remove("is-visible"); }, 1600);
+    }
+
+    function copyText(text, btn) {
+      function done() {
+        var slotMatches = (text.match(/<[^<>]{2,}>/g) || []).length;
+        toast(slotMatches
+          ? "Copied \u00b7 " + slotMatches + (slotMatches === 1 ? " slot" : " slots") + " to fill in"
+          : "Copied");
+        if (!btn) return;
+        if (!btn.getAttribute("data-rest")) btn.setAttribute("data-rest", btn.innerHTML);
+        clearTimeout(btn._restore);
+        btn.innerHTML = DONE_ICON;
+        btn.classList.add("is-done");
+        btn._restore = setTimeout(function () {
+          btn.innerHTML = btn.getAttribute("data-rest");
+          btn.classList.remove("is-done");
+        }, 1200);
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+      } else { fallback(text, done); }
+    }
+
+    function fallback(text, done) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:0;left:-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        if (document.execCommand("copy")) { done(); } else { toast("Press ⌘C to copy"); }
+      } catch (e) { toast("Press ⌘C to copy"); }
+      document.body.removeChild(ta);
+    }
+
+    function groupLabel(id) {
+      for (var i = 0; i < GROUPS.length; i++) if (GROUPS[i].id === id) return GROUPS[i].label;
+      return id;
+    }
+
+    function toolLabel(id) {
+      for (var i = 0; i < TOOLS.length; i++) if (TOOLS[i].id === id) return TOOLS[i].label;
+      return id;
+    }
+
+    function marks(list) {
+      if (!list || !list.length) return "";
+      return '<span class="marks">' +
+        list.map(function (t) {
+          return '<span class="mark" title="' + esc(toolLabel(t)) + '" aria-label="' + esc(toolLabel(t)) + '">' + (TOOL_MARK[t] || '') + "</span>";
+        }).join("") + "</span>";
+    }
+
+    function srcMark(tool) {
+      return '<button class="src-mark" type="button" data-kind="tool" data-val="' + esc(tool) +
+        '" title="Show only ' + esc(toolLabel(tool)) + ' prompts" aria-label="Filter to ' + esc(toolLabel(tool)) + '">' +
+        (TOOL_MARK[tool] || '') + "</button>";
+    }
+
+    function copyBtn(text, label) {
+      return '<button class="copy" type="button" data-copy="' + esc(text) + '" aria-label="' + esc(label) + '">' + COPY_ICON + "</button>";
+    }
+
+    function badges(p) {
+      var out = "";
+      if (p.sequence) {
+        out += '<span class="tag tag--seq">' + esc(SEQUENCES[p.sequence] || p.sequence) +
+               " \u00b7 step " + p.step + "</span>";
+      }
+      (p.requires || []).forEach(function (r) {
+        out += '<span class="tag tag--req">' + esc(REQUIRES_LABEL[r] || r) + "</span>";
+      });
+      return out ? '<div class="pl__tags">' + out + "</div>" : "";
+    }
+
+    function promptBody(p) {
+      var body = "";
+      if (p.weak) {
+        body +=
+          '<div class="pl__weak"><span class="pl__weak-tag">Docs\u2019 weak example</span>' +
+          '<span class="pl__weak-text">' + esc(p.weak) + "</span></div>";
+      }
+      if (p.kind === "config") {
+        body +=
+          '<div class="pl__code-wrap">' +
+          (p.cap ? '<span class="cap">' + esc(p.cap) + "</span>" : "") +
+          '<pre class="codeblock"><code>' + slots(p.template || p.prompt) + "</code>" +
+          copyBtn(p.template || p.prompt, "Copy template") + "</pre></div>";
+      } else {
+        body +=
+          '<div class="pl__prompt pl__prompt--template">' +
+          '<p class="pl__prompt-text">' + slots(p.template || p.prompt) + "</p>" +
+          copyBtn(p.template || p.prompt, "Copy template") + "</div>";
+      }
+      if (p.shell) {
+        body +=
+          '<div class="pl__shell"><span class="cap">Run it</span>' +
+          '<pre class="codeblock codeblock--sm"><code>' + esc(p.shell) + "</code>" +
+          copyBtn(p.shell, "Copy command") + "</pre></div>";
+      }
+      return body;
+    }
+
+    function slotCount(p) {
+      return ((p.template || p.prompt || '').match(/<[^<>]{2,}>/g) || []).length;
+    }
+
+    function renderCard(p) {
+      var src = SOURCES[p.page] || {};
+      return (
+        '<article class="pl" id="' + esc(p.id) + '" data-tool="' + esc(p.tool) +
+          '" data-group="' + esc(catToGroup[p.category]) + '">' +
+          '<button class="pl__toggle" type="button" data-open="' + esc(p.id) + '">' +
+            '<span class="pl__head">' +
+              '<span class="pl__title">' + esc(p.title) + "</span>" +
+              marks(p.worksIn && p.worksIn.length ? p.worksIn : [p.tool]) +
+            "</span>" +
+            (p.why ? '<span class="pl__why">' + esc(p.why) + "</span>" : "") +
+          "</button>" +
+          '<div class="pl__srcrow">' + srcMark(p.tool) +
+            '<a class="pl__src" href="' + esc(src.url || "#") + '" target="_blank" rel="noopener">' +
+              esc(src.short || src.label || "Source") + OUT_ICON +
+            "</a>" +
+          "</div>" +
+        "</article>"
+      );
+    }
+
+    var BY_ID = {};
+    ALL.forEach(function (p) { BY_ID[p.id] = p; });
+    var lastFocus = null;
+
+    function openDialog(id) {
+      var p = BY_ID[id];
+      if (!p) return;
+      var src = SOURCES[p.page] || {};
+      var n = slotCount(p);
+
+      const dialogEl = document.getElementById("dialog");
+      const dialogBodyEl = document.getElementById("dialog-body");
+      const dialogCloseEl = document.getElementById("dialog-close");
+
+      if (!dialogEl || !dialogBodyEl) return;
+
+      dialogBodyEl.innerHTML =
+        '<div class="dlg__head">' +
+          '<div class="dlg__headline">' +
+            '<h2 class="dlg__title" id="dlg-title">' + esc(p.title) + "</h2>" +
+            marks(p.worksIn && p.worksIn.length ? p.worksIn : [p.tool]) +
+          "</div>" +
+          (p.why ? '<p class="dlg__why">' + esc(p.why) + "</p>" : "") +
+          badges(p) +
+        "</div>" +
+        promptBody(p) +
+        '<div class="dlg__foot">' + srcMark(p.tool) +
+          '<a class="pl__src" href="' + esc(src.url || "#") + '" target="_blank" rel="noopener">' +
+            esc(src.short || src.label || "Source") +
+            (src.publisher ? ' <span class="pl__src-pub">from ' + esc(src.publisher) + "</span>" : "") +
+            OUT_ICON +
+          "</a>" +
+          '<span class="pl__slots">' + (n ? n + (n === 1 ? " slot to fill in" : " slots to fill in") : "ready to use") + "</span>" +
+        "</div>";
+
+      lastFocus = document.activeElement;
+      dialogEl.hidden = false;
+      document.body.classList.add("has-dialog");
+      if (dialogCloseEl) dialogCloseEl.focus();
+    }
+
+    function closeDialog() {
+      const dialogEl = document.getElementById("dialog");
+      const dialogBodyEl = document.getElementById("dialog-body");
+      if (!dialogEl || dialogEl.hidden) return;
+      dialogEl.hidden = true;
+      document.body.classList.remove("has-dialog");
+      if (dialogBodyEl) dialogBodyEl.innerHTML = "";
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function haystack(p) {
+      return [p.title, p.prompt, p.code, p.template, p.why, p.weak, p.section, p.shell, toolLabel(p.tool)]
+        .filter(Boolean).join(" ").toLowerCase();
+    }
+
+    var hay = {};
+    ALL.forEach(function (p) { hay[p.id] = haystack(p); });
+
+    function matches(p, terms, tools, groups) {
+      return (!tools.length || tools.indexOf(p.tool) > -1) &&
+        (!groups.length || groups.indexOf(catToGroup[p.category]) > -1) &&
+        (!terms.length || terms.every(function (t) { return hay[p.id].indexOf(t) !== -1; }));
+    }
+
+    function applyFilters() {
+      const listEl = document.getElementById("list");
+      const countEl = document.getElementById("count");
+      const emptyEl = document.getElementById("empty");
+      const emptyMsgEl = document.getElementById("empty-msg");
+      const moreEl = document.getElementById("more");
+      const clearBtn = document.getElementById("clear");
+
+      if (!listEl) return;
+
+      var terms = stateFilter.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      var shown = 0;
+
+      ALL.forEach(function (p) {
+        var el = document.getElementById(p.id);
+        if (!el) return;
+        var ok = matches(p, terms, stateFilter.tool, stateFilter.group);
+        el.hidden = !ok;
+        if (ok) shown++;
+      });
+
+      var live = [];
+      Array.prototype.forEach.call(listEl.querySelectorAll(".pl-group"), function (sec) {
+        var matching = sec.querySelectorAll(".pl:not([hidden])").length;
+        sec.setAttribute("data-matching", matching);
+        var cnt = sec.querySelector("[data-count]");
+        if (cnt) cnt.textContent = matching;
+        if (matching) live.push(sec);
+        sec.hidden = true;
+      });
+
+      if (tasksShown > live.length) tasksShown = live.length || 1;
+      live.forEach(function (sec, i) { sec.hidden = i >= tasksShown; });
+
+      if (moreEl) moreEl.hidden = tasksShown >= live.length;
+
+      var groupsShown = live.length;
+      if (countEl) {
+        countEl.innerHTML =
+          "Showing <b>" + shown + "</b> " + (shown === 1 ? "prompt" : "prompts") +
+          " across <b>" + groupsShown + "</b> " + (groupsShown === 1 ? "task" : "tasks");
+      }
+
+      if (emptyEl) {
+        emptyEl.hidden = shown !== 0;
+        if (!shown && emptyMsgEl) {
+          var bits = [];
+          if (stateFilter.tool.length) bits.push(stateFilter.tool.map(toolLabel).join(" or "));
+          if (stateFilter.group.length) bits.push(stateFilter.group.map(groupLabel).join(" or "));
+          emptyMsgEl.textContent = stateFilter.q && !bits.length
+            ? "Nothing matches \u201c" + stateFilter.q.trim() + "\u201d."
+            : "No prompts are both " + bits.join(" and ") + (stateFilter.q ? ", matching \u201c" + stateFilter.q.trim() + "\u201d" : "") + ".";
+        }
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll(".nav__item"), function (c) {
+        var kind = c.dataset.kind, val = c.dataset.val;
+        var sel = stateFilter[kind];
+
+        if (val === "all") {
+          c.classList.toggle("is-on", sel.length === 0);
+          var allCount = ALL.filter(function (p) { return matches(p, terms, stateFilter.tool, stateFilter.group); }).length;
+          var chip = c.querySelector(".chip__n");
+          if (chip) chip.textContent = allCount;
+          return;
+        }
+
+        var on = sel.indexOf(val) > -1;
+        c.classList.toggle("is-on", on);
+
+        var probeTools = kind === "tool" ? [val] : stateFilter.tool;
+        var probeGroups = kind === "group" ? [val] : stateFilter.group;
+        var count = ALL.filter(function (p) { return matches(p, terms, probeTools, probeGroups); }).length;
+        var chip = c.querySelector(".chip__n");
+        if (chip) chip.textContent = count;
+      });
+
+      var active = stateFilter.q || stateFilter.tool.length || stateFilter.group.length;
+      if (clearBtn) clearBtn.hidden = !active;
+    }
+
+    function navItem(kind, val, label, n, icon) {
+      return (
+        '<button class="nav__item" type="button" data-kind="' + kind + '" data-val="' + esc(val) + '">' +
+          (icon ? '<span class="nav__icon">' + icon + '</span>' : '') +
+          '<span class="nav__text">' + esc(label) + '</span>' +
+          '<span class="chip__n">' + n + '</span>' +
+        '</button>'
+      );
+    }
+
+    // Full-width modern top-filter layout
     appContainer.innerHTML = `
-      <div class="tools-directory-page">
-        <div class="container">
-          <!-- Hero Header -->
-          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
-            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #EEF2FF; color: #4F46E5; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
-              <span>✨</span> 100+ Production Prompts
-            </div>
-            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">AI Prompts Vault</h1>
-            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
-              Copy-paste production-grade mega-prompts for ChatGPT 4o, Claude 3.7, Midjourney, coding architecture, SEO, and business strategy.
+      <main id="top" class="prompt-library-main">
+        <div class="prompt-vault-container">
+          
+          <!-- Hero Section (Centered & Polished) -->
+          <section class="lib-hero-top">
+            <div class="lib-hero__badge">⚡ AIRA Prompts Vault</div>
+            <h1 class="lib-hero__title">Agentic Coding Prompts Library</h1>
+            <p class="lib-hero__lede">
+              Curated collection of <span id="hero-count">${ALL.length}</span> battle-tested prompts for frontier coding agents, built for
+              <span class="inline-tool" data-mark="claude-code"><span class="inline-tool__mark">${TOOL_MARK['claude-code']}</span>Claude&nbsp;Code</span>,
+              <span class="inline-tool" data-mark="codex"><span class="inline-tool__mark">${TOOL_MARK['codex']}</span>OpenAI&nbsp;Codex</span>, and
+              <span class="inline-tool" data-mark="cursor"><span class="inline-tool__mark">${TOOL_MARK['cursor']}</span>Cursor&nbsp;IDE</span>.
+              Select a task, customize the highlighted tokens, and copy in one click.
             </p>
 
-            <!-- Search Input -->
-            <div style="max-width: 580px; margin: 0 auto; position: relative;">
-              <input type="text" id="prompt-search-input" class="form-input" placeholder="Search prompts by keyword, model, or task (e.g., Code review, SEO, Midjourney)..." value="${escapeHtml(state.promptSearchQuery)}" style="width: 100%; padding: 14px 44px 14px 20px; border-radius: 9999px; font-size: 1rem; border: 1.5px solid #E4E4E7; box-shadow: 0 4px 20px rgba(0,0,0,0.04);" />
-              ${state.promptSearchQuery ? `<button type="button" id="btn-clear-prompt-search" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.1rem; color: #71717A; cursor: pointer;">✕</button>` : ''}
+            <!-- Center Search Bar -->
+            <div class="hero-search-center">
+              <svg class="hero-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+              </svg>
+              <input id="search" type="search" placeholder="Search prompts by task, tool, keyword (e.g. Bug fix, Onboarding, Refactor, Plan)..." autocomplete="off" spellcheck="false" aria-label="Search prompts" />
+              <button class="hero-search__clear" id="search-clear" type="button" aria-label="Clear search" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+              </button>
+              <kbd class="hero-search__kbd" id="search-kbd">/</kbd>
+            </div>
+          </section>
+
+          <!-- Top Horizontal Filter Hub (Directly Below Hero) -->
+          <div class="prompts-filter-hub">
+            <!-- Row 1: AI Agent Selector -->
+            <div class="filter-row-group">
+              <span class="filter-row-label">AI Agent:</span>
+              <div class="filter-pills-wrap" id="tool-nav"></div>
+            </div>
+
+            <!-- Row 2: Task Selector -->
+            <div class="filter-row-group">
+              <span class="filter-row-label">Task:</span>
+              <div class="filter-pills-wrap" id="group-nav"></div>
+            </div>
+
+            <!-- Row 3: Status Count & Reset -->
+            <div class="filter-status-row">
+              <span class="content__count" id="count"></span>
+              <button class="clear" id="clear" type="button" hidden>✕ Clear filters</button>
             </div>
           </div>
 
-          <!-- Categories Pill Bar -->
-          <div class="cat-filter-scroll-wrapper" style="margin-bottom: 24px;">
-            <div class="cat-filter-pills-row">
-              ${categories.map(cat => `
-                <button type="button" class="cat-filter-pill ${state.promptCategoryFilter === cat.id ? 'active' : ''}" data-cat="${cat.id}">
-                  <span class="cat-pill-icon">${cat.icon || '✨'}</span>
-                  <span class="cat-pill-name">${cat.name}</span>
-                  <span class="cat-pill-count">${cat.id === 'all' ? allPrompts.length : allPrompts.filter(p => p.category === cat.id).length}</span>
-                </button>
-              `).join('')}
-            </div>
+          <!-- Prompts Group List Grid -->
+          <div class="lib-list" id="list"></div>
+
+          <!-- Show More Button -->
+          <div class="more" id="more" hidden>
+            <button class="more__btn" type="button" data-more>Show more prompts</button>
           </div>
 
-          <!-- Count & Status -->
-          <div id="prompts-count-container" style="font-size: 0.95rem; color: #71717A; margin-bottom: 20px;"></div>
+          <!-- Empty State -->
+          <div class="empty" id="empty" hidden>
+            <p class="empty__msg" id="empty-msg">Nothing matches.</p>
+            <button class="empty__reset" type="button" id="empty-reset">Clear filters</button>
+          </div>
 
-          <!-- Prompts Grid -->
-          <div class="prompts-grid-3col" id="prompts-grid-container"></div>
+        </div>
+      </main>
 
-          <!-- Pagination -->
-          <div id="prompts-pagination-container" style="margin: 40px 0 60px 0;"></div>
+      <!-- Modal Dialog Popup -->
+      <div class="dlg" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title" hidden>
+        <div class="dlg__scrim" data-close></div>
+        <div class="dlg__panel">
+          <button class="dlg__close" id="dialog-close" type="button" data-close aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+          <div class="dlg__body" id="dialog-body"></div>
         </div>
       </div>
+
+      <!-- Floating Toast -->
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
     `;
 
-    // Bind category filters
-    appContainer.querySelectorAll('.cat-filter-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cat = btn.getAttribute('data-cat');
-        state.promptCategoryFilter = cat;
-        state.promptCurrentPage = 1;
-        appContainer.querySelectorAll('.cat-filter-pill').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        updateView();
-      });
+    // Render list groups
+    const listEl = document.getElementById("list");
+    let groupsHtml = "";
+    GROUPS.forEach(function (g) {
+      var items = ALL.filter(function (p) { return catToGroup[p.category] === g.id; });
+      if (!items.length) return;
+      groupsHtml +=
+        '<section class="pl-group" data-group="' + esc(g.id) + '" id="group-' + esc(g.id) + '">' +
+          '<div class="pl-group__head">' +
+            '<h2 class="pl-group__title">' + esc(g.label) + "</h2>" +
+            '<span class="pl-group__count" data-count>' + items.length + "</span>" +
+          "</div>" +
+          '<div class="pl-group__items">' + items.map(renderCard).join("") + "</div>" +
+        "</section>";
     });
+    if (listEl) listEl.innerHTML = groupsHtml;
 
-    // Bind search input
-    const searchInput = document.getElementById('prompt-search-input');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        state.promptSearchQuery = e.target.value;
-        state.promptCurrentPage = 1;
-        updateView();
+    // Render tool nav pills
+    const toolNavEl = document.getElementById("tool-nav");
+    if (toolNavEl) {
+      toolNavEl.innerHTML =
+        navItem("tool", "all", "All Agents", ALL.length, "⚡") +
+        TOOLS.map(function (t) {
+          return navItem("tool", t.id, t.label, ALL.filter(function (p) { return p.tool === t.id; }).length, t.icon);
+        }).join("");
+    }
+
+    // Render group nav pills
+    const groupNavEl = document.getElementById("group-nav");
+    if (groupNavEl) {
+      groupNavEl.innerHTML =
+        navItem("group", "all", "Everything", ALL.length, "✨") +
+        GROUPS.map(function (g) {
+          return navItem("group", g.id, g.label, ALL.filter(function (p) { return catToGroup[p.category] === g.id; }).length, g.icon);
+        }).join("");
+    }
+
+    // Search input wiring
+    const searchEl = document.getElementById("search");
+    const searchClearEl = document.getElementById("search-clear");
+    const searchKbdEl = document.getElementById("search-kbd");
+
+    if (searchKbdEl) {
+      searchKbdEl.textContent =
+        /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? "\u2318K" : "Ctrl K";
+    }
+
+    function syncSearchChrome() {
+      if (!searchEl) return;
+      var has = searchEl.value.length > 0;
+      if (searchClearEl) searchClearEl.hidden = !has;
+      if (searchKbdEl) searchKbdEl.hidden = has || document.activeElement === searchEl;
+    }
+
+    if (searchEl) {
+      searchEl.addEventListener("input", function () {
+        stateFilter.q = searchEl.value;
+        resetLimits();
+        applyFilters();
+        syncSearchChrome();
+      });
+      searchEl.addEventListener("focus", syncSearchChrome);
+      searchEl.addEventListener("blur", syncSearchChrome);
+      searchEl.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          stateFilter.q = "";
+          searchEl.value = "";
+          resetLimits();
+          applyFilters();
+          syncSearchChrome();
+        }
       });
     }
 
-    const clearBtn = document.getElementById('btn-clear-prompt-search');
+    if (searchClearEl) {
+      searchClearEl.addEventListener("click", function () {
+        if (searchEl) {
+          searchEl.value = "";
+          stateFilter.q = "";
+          resetLimits();
+          applyFilters();
+          syncSearchChrome();
+          searchEl.focus();
+        }
+      });
+    }
+
+    const clearBtn = document.getElementById("clear");
     if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        state.promptSearchQuery = '';
-        state.promptCurrentPage = 1;
-        renderPromptsPage();
+      clearBtn.addEventListener("click", function () {
+        stateFilter = { q: "", tool: [], group: [] };
+        if (searchEl) searchEl.value = "";
+        resetLimits();
+        applyFilters();
+        syncSearchChrome();
       });
     }
 
-    updateView();
+    const emptyResetBtn = document.getElementById("empty-reset");
+    if (emptyResetBtn) {
+      emptyResetBtn.addEventListener("click", function () {
+        if (clearBtn) clearBtn.click();
+      });
+    }
+
+    // Initial filter apply
+    applyFilters();
   }
+
+  // Global document click handler for prompt cards and dialogs
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-more]")) {
+      const listEl = document.getElementById("list");
+      if (!listEl) return;
+      // Show more task groups
+      const hiddenGroups = listEl.querySelectorAll(".pl-group[data-matching]:not([data-matching='0'])");
+      let currentVisible = 0;
+      hiddenGroups.forEach(g => { if (!g.hidden) currentVisible++; });
+      if (currentVisible < hiddenGroups.length) {
+        if (hiddenGroups[currentVisible]) hiddenGroups[currentVisible].hidden = false;
+        currentVisible++;
+      }
+      const moreEl = document.getElementById("more");
+      if (moreEl) moreEl.hidden = currentVisible >= hiddenGroups.length;
+      return;
+    }
+    const toggle = e.target.closest("[data-open]");
+    if (toggle) {
+      const id = toggle.getAttribute("data-open");
+      const ALL = window.ALL_PROMPTS || (typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA.prompts : []) || [];
+      const SOURCES = window.PROMPT_SOURCES || (typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA.sources : {}) || {};
+      const p = ALL.find(item => item.id === id);
+      if (!p) return;
+
+      const dialogEl = document.getElementById("dialog");
+      const dialogBodyEl = document.getElementById("dialog-body");
+      const dialogCloseEl = document.getElementById("dialog-close");
+      if (!dialogEl || !dialogBodyEl) return;
+
+      const REQUIRES_LABEL = {
+        "plan-mode": "Plan mode",
+        "image-attached": "Attach an image",
+        "second-session": "Fresh session",
+        "prior-turn": "Follows a previous turn",
+        "shell": "Run in a shell",
+        "mcp-server": "Needs an MCP server",
+        "subagent": "Uses subagents",
+        "slash-command": "Slash command",
+        "save-to-file": "Save to a file",
+        "selection": "Select code first"
+      };
+
+      const SEQUENCES = {
+        "explore-plan-code":   "Explore \u2192 plan \u2192 code",
+        "find-code":           "Find the code",
+        "bugfix":              "Fix a bug",
+        "refactor":            "Refactor",
+        "tests":               "Add tests",
+        "docs":                "Document",
+        "pull-request":        "Open a PR",
+        "writer-reviewer":     "Writer / reviewer",
+        "fan-out":             "Fan out across files",
+        "cx-bugfix":           "Fix a bug",
+        "cx-design-iteration": "Iterate on a design",
+        "cx-refactor-plan":    "Plan a refactor",
+        "cx-prototype":        "Prototype from an image"
+      };
+
+      const TOOL_MARK = {
+        "claude-code": '<svg viewBox="0 0 248 248" fill="none"><path d="M52.4285 162.873L98.7844 136.879L99.5485 134.602L98.7844 133.334H96.4921L88.7237 132.862L62.2346 132.153L39.3113 131.207L17.0249 130.026L11.4214 128.844L6.2 121.873L6.7094 118.447L11.4214 115.257L18.171 115.847L33.0711 116.911L55.485 118.447L71.6586 119.392L95.728 121.873H99.5485L100.058 120.337L98.7844 119.392L97.7656 118.447L74.5877 102.732L49.4995 86.1905L36.3823 76.62L29.3779 71.7757L25.8121 67.2858L24.2839 57.3608L30.6515 50.2716L39.3113 50.8623L41.4763 51.4531L50.2636 58.1879L68.9842 72.7209L93.4357 90.6804L97.0015 93.6343L98.4374 92.6652L98.6571 91.9801L97.0015 89.2625L83.757 65.2772L69.621 40.8192L63.2534 30.6579L61.5978 24.632C60.9565 22.1032 60.579 20.0111 60.579 17.4246L67.8381 7.49965L71.9133 6.19995L81.7193 7.49965L85.7946 11.0443L91.9074 24.9865L101.714 46.8451L116.996 76.62L121.453 85.4816L123.873 93.6343L124.764 96.1155H126.292V94.6976L127.566 77.9197L129.858 57.3608L132.15 30.8942L132.915 23.4505L136.608 14.4708L143.994 9.62643L149.725 12.344L154.437 19.0788L153.8 23.4505L150.998 41.6463L145.522 70.1215L141.957 89.2625H143.994L146.414 86.7813L156.093 74.0206L172.266 53.698L179.398 45.6635L187.803 36.802L193.152 32.5484H203.34L210.726 43.6549L207.415 55.1159L196.972 68.3492L188.312 79.5739L175.896 96.2095L168.191 109.585L168.882 110.689L170.738 110.53L198.755 104.504L213.91 101.787L231.994 98.7149L240.144 102.496L241.036 106.395L237.852 114.311L218.495 119.037L195.826 123.645L162.07 131.592L161.696 131.893L162.137 132.547L177.36 133.925L183.855 134.279H199.774L229.447 136.524L237.215 141.605L241.8 147.867L241.036 152.711L229.065 158.737L213.019 154.956L175.45 145.977L162.587 142.787H160.805V143.85L171.502 154.366L191.242 172.089L215.82 195.011L217.094 200.682L213.91 205.172L210.599 204.699L188.949 188.394L180.544 181.069L161.696 165.118H160.422V166.772L164.752 173.152L187.803 207.771L188.949 218.405L187.294 221.832L181.308 223.959L174.813 222.777L161.187 203.754L147.305 182.486L136.098 163.345L134.745 164.2L128.075 235.42L125.019 239.082L117.887 241.8L111.902 237.31L108.718 229.984L111.902 215.452L115.722 196.547L118.779 181.541L121.58 162.873L123.291 156.636L123.14 156.219L121.773 156.449L107.699 175.752L86.304 204.699L69.3663 222.777L65.291 224.431L58.2867 220.768L58.9235 214.27L62.8713 208.48L86.304 178.705L100.44 160.155L109.551 149.507L109.462 147.967L108.959 147.924L46.6977 188.512L35.6182 189.93L30.7788 185.44L31.4156 178.115L33.7079 175.752L52.4285 162.873Z" fill="#D97757"/></svg>',
+        "codex": '<svg viewBox="3.4 3.4 17.2 17.2"><path fill="#000000" d="M9.94494 9.59163V8.13227C9.94494 8.00935 9.99105 7.91713 10.0985 7.85575L13.0327 6.16599C13.4321 5.93558 13.9083 5.8281 14.3998 5.8281C16.2432 5.8281 17.4108 7.25677 17.4108 8.77751C17.4108 8.885 17.4108 9.00792 17.3953 9.13083L14.3537 7.34884C14.1694 7.24135 13.985 7.24135 13.8007 7.34884L9.94494 9.59163ZM16.7963 15.2755V11.7883C16.7963 11.5732 16.704 11.4196 16.5197 11.3121L12.664 9.0693L13.9236 8.34725C14.0311 8.28587 14.1234 8.28587 14.2308 8.34725L17.165 10.037C18.0099 10.5287 18.5782 11.5732 18.5782 12.587C18.5782 13.7544 17.887 14.8298 16.7963 15.2753V15.2755ZM9.03861 12.2031L7.77896 11.4658C7.67146 11.4045 7.62535 11.3122 7.62535 11.1893V7.8098C7.62535 6.16613 8.88501 4.92176 10.5902 4.92176C11.2354 4.92176 11.8344 5.13689 12.3415 5.52089L9.31526 7.27218C9.13097 7.37968 9.03875 7.53328 9.03875 7.74841V12.2033L9.03861 12.2031ZM11.75 13.77L9.94494 12.7562V10.6056L11.75 9.59178L13.5549 10.6056V12.7562L11.75 13.77ZM12.9098 18.44C12.2645 18.44 11.6655 18.2249 11.1585 17.8409L14.1847 16.0896C14.369 15.9821 14.4612 15.8285 14.4612 15.6134V11.1585L15.7363 11.8958C15.8438 11.9572 15.8899 12.0494 15.8899 12.1723V15.5519C15.8899 17.1955 14.6148 18.44 12.9098 18.44ZM9.26901 15.0144L6.33486 13.3246C5.4899 12.833 4.92161 11.7885 4.92161 10.7746C4.92161 9.59177 5.62824 8.53183 6.71886 8.0863V11.5887C6.71886 11.8039 6.81109 11.9575 6.99538 12.065L10.8359 14.2923L9.57621 15.0144C9.46872 15.0758 9.37649 15.0758 9.26901 15.0144ZM9.10013 17.5337C7.36426 17.5337 6.08919 16.2279 6.08919 14.6149C6.08919 14.492 6.1046 14.3691 6.11988 14.2462L9.1461 15.9975C9.33039 16.105 9.51483 16.105 9.69912 15.9975L13.5549 13.7702V15.2295C13.5549 15.3524 13.5088 15.4446 13.4013 15.506L10.4671 17.1958C10.0677 17.4262 9.59148 17.5337 9.09999 17.5337H9.10013ZM12.9098 19.3616C14.7685 19.3616 16.32 18.0406 16.6735 16.2893C18.3939 15.8438 19.5 14.2308 19.5 12.5872C19.5 11.5118 19.0391 10.4673 18.2096 9.71454C18.2864 9.39192 18.3326 9.0693 18.3326 8.74682C18.3326 6.55014 16.5505 4.90634 14.4921 4.90634C14.0774 4.90634 13.6779 4.96772 13.2785 5.10605C12.5872 4.43011 11.6347 4 10.5902 4C8.7314 4 7.17996 5.32103 6.8265 7.07232C5.10605 7.51786 4 9.13083 4 10.7745C4 11.8498 4.4608 12.8944 5.29035 13.6471C5.21354 13.9697 5.16743 14.2923 5.16743 14.6148C5.16743 16.8114 6.94941 18.4552 9.00792 18.4552C9.42261 18.4552 9.82204 18.3939 10.2215 18.2556C10.9127 18.9315 11.8651 19.3616 12.9098 19.3616Z"/></svg>',
+        "cursor": '<svg viewBox="0 0 466.73 532.09"><path fill="#26251e" d="M457.43,125.94L244.42,2.96c-6.84-3.95-15.28-3.95-22.12,0L9.3,125.94c-5.75,3.32-9.3,9.46-9.3,16.11v247.99c0,6.65,3.55,12.79,9.3,16.11l213.01,122.98c6.84,3.95,15.28,3.95,22.12,0l213.01-122.98c5.75-3.32,9.3-9.46,9.3-16.11v-247.99c0-6.65-3.55-12.79-9.3-16.11h-.01ZM444.05,151.99l-205.63,356.16c-1.39,2.4-5.06,1.42-5.06-1.36v-233.21c0-4.66-2.49-8.97-6.53-11.31L24.87,145.67c-2.4-1.39-1.42-5.06,1.36-5.06h411.26c5.84,0,9.49,6.33,6.57,11.39h-.01Z"/></svg>'
+      };
+
+      function esc(s) {
+        return String(s || '').replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+
+      function toolLabel(id) {
+        var TOOLS_MAP = { "claude-code": "Claude Code", "codex": "Codex", "cursor": "Cursor" };
+        return TOOLS_MAP[id] || id;
+      }
+
+      function marks(list) {
+        if (!list || !list.length) return "";
+        return '<span class="marks">' +
+          list.map(function (t) {
+            return '<span class="mark" title="' + esc(toolLabel(t)) + '" aria-label="' + esc(toolLabel(t)) + '">' + (TOOL_MARK[t] || '') + "</span>";
+          }).join("") + "</span>";
+      }
+
+      function srcMark(tool) {
+        return '<button class="src-mark" type="button" data-kind="tool" data-val="' + esc(tool) +
+          '" title="Show only ' + esc(toolLabel(tool)) + ' prompts" aria-label="Filter to ' + esc(toolLabel(tool)) + '">' +
+          (TOOL_MARK[tool] || '') + "</button>";
+      }
+
+      function slots(text) {
+        var out = "", last = 0, re = /<([^<>]*)>/g, m;
+        while ((m = re.exec(text)) !== null) {
+          out += esc(text.slice(last, m.index));
+          out += '<span class="slot">' + esc(m[0]) + "</span>";
+          last = m.index + m[0].length;
+        }
+        return out + esc(text.slice(last));
+      }
+
+      var COPY_ICON =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+      var OUT_ICON =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="M14 5h5v5M19 5l-8 8M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>';
+
+      function copyBtn(text, label) {
+        return '<button class="copy" type="button" data-copy="' + esc(text) + '" aria-label="' + esc(label) + '">' + COPY_ICON + "</button>";
+      }
+
+      function badges(p) {
+        var out = "";
+        if (p.sequence) {
+          out += '<span class="tag tag--seq">' + esc(SEQUENCES[p.sequence] || p.sequence) +
+                 " \u00b7 step " + p.step + "</span>";
+        }
+        (p.requires || []).forEach(function (r) {
+          out += '<span class="tag tag--req">' + esc(REQUIRES_LABEL[r] || r) + "</span>";
+        });
+        return out ? '<div class="pl__tags">' + out + "</div>" : "";
+      }
+
+      function promptBody(p) {
+        var body = "";
+        if (p.weak) {
+          body +=
+            '<div class="pl__weak"><span class="pl__weak-tag">Docs\u2019 weak example</span>' +
+            '<span class="pl__weak-text">' + esc(p.weak) + "</span></div>";
+        }
+        if (p.kind === "config") {
+          body +=
+            '<div class="pl__code-wrap">' +
+            (p.cap ? '<span class="cap">' + esc(p.cap) + "</span>" : "") +
+            '<pre class="codeblock"><code>' + slots(p.template || p.prompt) + "</code>" +
+            copyBtn(p.template || p.prompt, "Copy template") + "</pre></div>";
+        } else {
+          body +=
+            '<div class="pl__prompt pl__prompt--template">' +
+            '<p class="pl__prompt-text">' + slots(p.template || p.prompt) + "</p>" +
+            copyBtn(p.template || p.prompt, "Copy template") + "</div>";
+        }
+        if (p.shell) {
+          body +=
+            '<div class="pl__shell"><span class="cap">Run it</span>' +
+            '<pre class="codeblock codeblock--sm"><code>' + esc(p.shell) + "</code>" +
+            copyBtn(p.shell, "Copy command") + "</pre></div>";
+        }
+        return body;
+      }
+
+      var src = SOURCES[p.page] || {};
+      var n = ((p.template || p.prompt || '').match(/<[^<>]{2,}>/g) || []).length;
+
+      dialogBodyEl.innerHTML =
+        '<div class="dlg__head">' +
+          '<div class="dlg__headline">' +
+            '<h2 class="dlg__title" id="dlg-title">' + esc(p.title) + "</h2>" +
+            marks(p.worksIn && p.worksIn.length ? p.worksIn : [p.tool]) +
+          "</div>" +
+          (p.why ? '<p class="dlg__why">' + esc(p.why) + "</p>" : "") +
+          badges(p) +
+        "</div>" +
+        promptBody(p) +
+        '<div class="dlg__foot">' + srcMark(p.tool) +
+          '<a class="pl__src" href="' + esc(src.url || "#") + '" target="_blank" rel="noopener">' +
+            esc(src.short || src.label || "Source") +
+            (src.publisher ? ' <span class="pl__src-pub">from ' + esc(src.publisher) + "</span>" : "") +
+            OUT_ICON +
+          "</a>" +
+          '<span class="pl__slots">' + (n ? n + (n === 1 ? " slot to fill in" : " slots to fill in") : "ready to use") + "</span>" +
+        "</div>";
+
+      dialogEl.hidden = false;
+      document.body.classList.add("has-dialog");
+      if (dialogCloseEl) dialogCloseEl.focus();
+      return;
+    }
+
+    if (e.target.closest("[data-close]")) {
+      const dialogEl = document.getElementById("dialog");
+      const dialogBodyEl = document.getElementById("dialog-body");
+      if (dialogEl && !dialogEl.hidden) {
+        dialogEl.hidden = true;
+        document.body.classList.remove("has-dialog");
+        if (dialogBodyEl) dialogBodyEl.innerHTML = "";
+      }
+      return;
+    }
+
+    const copyEl = e.target.closest("[data-copy]");
+    if (copyEl) {
+      const textToCopy = copyEl.getAttribute("data-copy") || "";
+      const toastEl = document.getElementById("toast");
+      const DONE_ICON =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="M4 12.5l5 5L20 6.5"/></svg>';
+
+      function showToastMsg() {
+        var slots = (textToCopy.match(/<[^<>]{2,}>/g) || []).length;
+        if (toastEl) {
+          toastEl.textContent = slots ? ("Copied \u00b7 " + slots + (slots === 1 ? " slot" : " slots") + " to fill in") : "Copied";
+          toastEl.classList.add("is-visible");
+          setTimeout(() => { toastEl.classList.remove("is-visible"); }, 1600);
+        }
+        if (!copyEl.getAttribute("data-rest")) copyEl.setAttribute("data-rest", copyEl.innerHTML);
+        copyEl.innerHTML = DONE_ICON;
+        copyEl.classList.add("is-done");
+        setTimeout(() => {
+          copyEl.innerHTML = copyEl.getAttribute("data-rest");
+          copyEl.classList.remove("is-done");
+        }, 1200);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(showToastMsg).catch(() => {
+          var ta = document.createElement("textarea");
+          ta.value = textToCopy;
+          ta.style.cssText = "position:fixed;top:0;left:-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          showToastMsg();
+        });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = textToCopy;
+        ta.style.cssText = "position:fixed;top:0;left:-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showToastMsg();
+      }
+      return;
+    }
+
+    const chipEl = e.target.closest(".nav__item, .src-mark");
+    if (chipEl) {
+      const kind = chipEl.dataset.kind;
+      const val = chipEl.dataset.val;
+      if (kind === "tool" || kind === "group") {
+        const clearBtn = document.getElementById("clear");
+        if (chipEl.classList.contains("src-mark")) {
+          // Select single tool
+          document.querySelectorAll(".nav__item[data-kind='tool']").forEach(btn => {
+            if (btn.dataset.val === val) btn.click();
+          });
+          return;
+        }
+
+        // Toggle nav item
+        const isAll = (val === "all");
+        if (isAll) {
+          document.querySelectorAll(`.nav__item[data-kind='${kind}']`).forEach(b => b.classList.remove("is-on"));
+          chipEl.classList.add("is-on");
+        } else {
+          document.querySelectorAll(`.nav__item[data-kind='${kind}'][data-val='all']`).forEach(b => b.classList.remove("is-on"));
+          chipEl.classList.toggle("is-on");
+          const anyActive = document.querySelectorAll(`.nav__item[data-kind='${kind}'].is-on`).length > 0;
+          if (!anyActive) {
+            const allBtn = document.querySelector(`.nav__item[data-kind='${kind}'][data-val='all']`);
+            if (allBtn) allBtn.classList.add("is-on");
+          }
+        }
+
+        // Filter list items
+        const activeTools = Array.from(document.querySelectorAll(".nav__item[data-kind='tool'].is-on:not([data-val='all'])")).map(b => b.dataset.val);
+        const activeGroups = Array.from(document.querySelectorAll(".nav__item[data-kind='group'].is-on:not([data-val='all'])")).map(b => b.dataset.val);
+        const searchInput = document.getElementById("search");
+        const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
+        const terms = query.split(/\s+/).filter(Boolean);
+
+        const listEl = document.getElementById("list");
+        const countEl = document.getElementById("count");
+        const emptyEl = document.getElementById("empty");
+        const emptyMsgEl = document.getElementById("empty-msg");
+        const filterBtnN = document.getElementById("filterbtn-n");
+        const filterBtn = document.getElementById("filterbtn");
+
+        if (listEl) {
+          const ALL = window.ALL_PROMPTS || (typeof AI_PROMPTS_DATA !== 'undefined' ? AI_PROMPTS_DATA.prompts : []) || [];
+          const GROUPS_MAP = {
+            "understand": ["onboarding", "search", "context-refs"],
+            "plan": ["planning"],
+            "debug": ["debugging"],
+            "test": ["testing", "verification"],
+            "refactor": ["refactoring", "documentation"],
+            "review": ["review"],
+            "images": ["images"],
+            "configure": ["config"],
+            "automate": ["automation", "subagents", "scale", "context-management", "capabilities", "pr-git"]
+          };
+          const catToGroupMap = {};
+          Object.keys(GROUPS_MAP).forEach(gid => { GROUPS_MAP[gid].forEach(c => { catToGroupMap[c] = gid; }); });
+
+          let shown = 0;
+          ALL.forEach(p => {
+            const cardEl = document.getElementById(p.id);
+            if (!cardEl) return;
+            const toolMatch = !activeTools.length || activeTools.includes(p.tool);
+            const groupMatch = !activeGroups.length || activeGroups.includes(catToGroupMap[p.category]);
+            const hay = [p.title, p.prompt, p.code, p.template, p.why, p.weak, p.section, p.shell, p.tool].filter(Boolean).join(" ").toLowerCase();
+            const termMatch = !terms.length || terms.every(t => hay.indexOf(t) !== -1);
+            const ok = toolMatch && groupMatch && termMatch;
+            cardEl.hidden = !ok;
+            if (ok) shown++;
+          });
+
+          let liveGroups = 0;
+          listEl.querySelectorAll(".pl-group").forEach(sec => {
+            const matching = sec.querySelectorAll(".pl:not([hidden])").length;
+            const cnt = sec.querySelector("[data-count]");
+            if (cnt) cnt.textContent = matching;
+            sec.hidden = (matching === 0);
+            if (matching > 0) liveGroups++;
+          });
+
+          if (countEl) {
+            countEl.innerHTML = "<b>" + shown + "</b> " + (shown === 1 ? "prompt" : "prompts") + " across <b>" + liveGroups + "</b> " + (liveGroups === 1 ? "task" : "tasks");
+          }
+          if (emptyEl) {
+            emptyEl.hidden = (shown !== 0);
+          }
+          if (clearBtn) {
+            const isFilterActive = (activeTools.length > 0 || activeGroups.length > 0 || query.length > 0);
+            clearBtn.hidden = !isFilterActive;
+          }
+          const totalActiveCount = activeTools.length + activeGroups.length;
+          if (filterBtnN) {
+            filterBtnN.hidden = totalActiveCount === 0;
+            filterBtnN.textContent = totalActiveCount;
+          }
+          if (filterBtn) {
+            filterBtn.classList.toggle("is-active", totalActiveCount > 0);
+          }
+        }
+      }
+    }
+  });
+
+  // Global Keydown Handler for Search Shortcut and Esc
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      const dialogEl = document.getElementById("dialog");
+      if (dialogEl && !dialogEl.hidden) {
+        dialogEl.hidden = true;
+        document.body.classList.remove("has-dialog");
+        const dialogBodyEl = document.getElementById("dialog-body");
+        if (dialogBodyEl) dialogBodyEl.innerHTML = "";
+        return;
+      }
+      const sideEl = document.getElementById("side");
+      if (sideEl && sideEl.classList.contains("is-open")) {
+        sideEl.classList.remove("is-open");
+        const scrim = document.getElementById("side-scrim");
+        if (scrim) scrim.hidden = true;
+        document.body.classList.remove("has-sheet");
+        return;
+      }
+    }
+    if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+      const searchEl = document.getElementById("search");
+      if (searchEl) {
+        e.preventDefault();
+        searchEl.focus();
+        searchEl.select();
+      }
+    }
+  });
 
   // =========================================================================
   // 6. AI Tool Comparison / VS Mode (/#/compare)
@@ -7663,7 +8378,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         submitBtn.innerHTML = 'Subscribed! ✓';
       }
 
-      showToast('🎉 Welcome to AIRA! Your email has been saved.');
+      showToast('🎉 Welcome to AIRA! Opening 50 n8n Templates...');
       input.value = '';
 
       setTimeout(() => {
@@ -7672,7 +8387,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           submitBtn.innerHTML = originalBtnText;
         }
         closeModal(subscribeModal);
-      }, 1500);
+        if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
+      }, 800);
     } catch (err) {
       console.error('Subscription error:', err);
       sessionStorage.setItem('aira_unlocked', 'true');
@@ -7685,6 +8401,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       showToast('Subscription saved! 🚀');
       input.value = '';
       closeModal(subscribeModal);
+      if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
     }
   }
 
