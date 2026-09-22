@@ -965,7 +965,8 @@ Website: https://aira-newsletter.vercel.app/
   function renderPaginationHTML(currentPage, totalPages, type = 'home') {
     if (totalPages <= 1) return '';
 
-    const maxVisible = 8;
+    const isMobile = (typeof window !== 'undefined' && window.innerWidth < 640);
+    const maxVisible = isMobile ? 4 : 8;
     let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
     let endPage = startPage + maxVisible - 1;
 
