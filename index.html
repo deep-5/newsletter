@@ -35,7 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=73.0" />
+  <link rel="stylesheet" href="styles.css?v=74.0" />
 </head>
 <body>
 
@@ -240,9 +240,6 @@
             <a href="https://www.linkedin.com/company/ai-tools-&-ai-news/?viewAsMember=true" target="_blank" rel="noopener" class="footer-social-btn social-li" title="Follow on LinkedIn">
               <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.77v8.37H6.46v-8.37M7.85 6.44a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-social-btn social-x" title="Follow on X">
-              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
           </div>
         </div>
 
@@ -263,9 +260,8 @@
           <h4 class="footer-col-title">Ecosystem</h4>
           <ul class="footer-nav-list">
             <li><a href="#/advertise" class="footer-nav-link footer-nav-highlight">Advertise with AIRA</a></li>
-            <li><a href="#/bookmarks" class="footer-nav-link">Saved Bookmarks</a></li>
-            <li><a href="mailto:editorial@aira.news" class="footer-nav-link">Editorial & Contact</a></li>
-            <li><a href="#/home" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('submit-tool-modal') && document.getElementById('submit-tool-modal').classList.add('active'); document.body.style.overflow='hidden';" class="footer-nav-link">Submit AI Tool ⚡</a></li>
+            <li><a href="mailto:sponsor@aira.com" class="footer-nav-link">Contact & Sponsorship</a></li>
           </ul>
         </div>
 
@@ -284,18 +280,10 @@
         </div>
       </div>
 
-      <!-- Bottom Legal, Privacy & Live Status Bar -->
+      <!-- Bottom Legal & Live Status Bar -->
       <div class="footer-bottom-bar">
         <div class="footer-bottom-left">
           <span class="footer-copyright-text">© 2026 AIRA. All rights reserved.</span>
-        </div>
-        
-        <div class="footer-bottom-center">
-          <a href="#/home" class="footer-bottom-link">Privacy Policy</a>
-          <span class="footer-bottom-sep">•</span>
-          <a href="#/home" class="footer-bottom-link">Terms of Service</a>
-          <span class="footer-bottom-sep">•</span>
-          <a href="#/home" class="footer-bottom-link">RSS Feed</a>
         </div>
 
         <div class="footer-bottom-right">
@@ -438,18 +426,18 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Supabase CDN Client & Email Automation Engine -->
-  <script src="js/email-service.js?v=73.0"></script>
+  <script src="js/email-service.js?v=74.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js?v=73.0"></script>
+  <script src="js/supabase.js?v=74.0"></script>
 
   <!-- Twitter Widgets Script -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   <!-- Data and Application Script -->
-  <script src="data/articles.js?v=73.0"></script>
-  <script src="data/tools.js?v=73.0"></script>
-  <script src="data/alternatives.js?v=73.0"></script>
-  <script src="data/prompts.js?v=73.0"></script>
-  <script src="js/app.js?v=73.0"></script>
+  <script src="data/articles.js?v=74.0"></script>
+  <script src="data/tools.js?v=74.0"></script>
+  <script src="data/alternatives.js?v=74.0"></script>
+  <script src="data/prompts.js?v=74.0"></script>
+  <script src="js/app.js?v=74.0"></script>
 </body>
 </html>
