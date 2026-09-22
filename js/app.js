@@ -13,14 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // If stored articles have stale logo banners, missing author/reading_time, old avatars, or count differs, sync with ARTICLES
-          if (typeof ARTICLES !== 'undefined' && ARTICLES.length > 0) {
-            const hasStaleData = parsed.some(p => p.image_url === 'assets/logo.jpg' || !p.image_url || !p.author || !p.reading_time || p.author_avatar === 'assets/logo.svg');
-            if (hasStaleData || parsed.length !== ARTICLES.length) {
-              localStorage.setItem('aira_custom_articles', JSON.stringify(ARTICLES));
-              return ARTICLES;
-            }
-          }
           return parsed;
         }
       }
@@ -32,7 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveArticles(list) {
     state.articles = list;
-    localStorage.setItem('aira_custom_articles', JSON.stringify(list));
+    try {
+      localStorage.setItem('aira_custom_articles', JSON.stringify(list));
+    } catch (e) {
+      console.warn('LocalStorage quota limit reached while saving articles:', e);
+      showToast('⚠️ Local storage full, changes active in session.');
+    }
   }
 
   // Unified Custom Tools Helpers
@@ -4960,6 +4957,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 }
               }
             } else {
+              const idx = state.articles.findIndex(a => a.slug === origSlug);
               if (idx !== -1) {
                 state.articles[idx] = {
                   ...state.articles[idx],
@@ -4975,6 +4973,25 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 };
                 saveArticles([...state.articles]);
                 showToast('💾 Article changes saved successfully!');
+              } else {
+                saveArticles([{
+                  id: 'post-' + Date.now(),
+                  slug,
+                  title,
+                  subtitle,
+                  image_url,
+                  author,
+                  author_avatar: 'assets/logo.jpg',
+                  date,
+                  iso_date: new Date().toISOString(),
+                  reading_time,
+                  tag,
+                  likes: 0,
+                  views: '1.0k',
+                  featured: false,
+                  body_html
+                }, ...state.articles]);
+                showToast('💾 Article saved successfully!');
               }
             }
 
