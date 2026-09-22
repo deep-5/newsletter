@@ -1,5 +1,5 @@
-// AIRA Service Worker - v60
-const CACHE_NAME = 'aira-cache-v60';
+// AIRA Service Worker - v61
+const CACHE_NAME = 'aira-cache-v61';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -12,8 +12,7 @@ const STATIC_ASSETS = [
   '/data/articles.js',
   '/data/tools.js',
   '/data/alternatives.js',
-  '/data/prompts.js',
-  '/data/deals.js'
+  '/data/prompts.js'
 ];
 
 self.addEventListener('install', event => {
