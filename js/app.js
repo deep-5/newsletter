@@ -1004,58 +1004,14 @@ Website: https://aira-newsletter.vercel.app/
   // =========================================================================
   function getFeaturedToolsHTML() {
     const allTools = getAllTools();
-    const targetTools = [
-      {
-        id: 'cursor',
-        name: 'Cursor',
-        tagline: 'AI-first code editor built for lightning software engineering.',
-        pricing: 'Freemium',
-        rating: 4.9,
-        votes: 870,
-        domain: 'cursor.com',
-        url: 'https://www.cursor.com',
-        image: 'https://www.google.com/s2/favicons?domain=cursor.com&sz=128'
-      },
-      {
-        id: 'claude',
-        name: 'Claude 3.7 Sonnet',
-        tagline: 'Frontier AI model with hybrid extended thinking and reasoning.',
-        pricing: 'Freemium',
-        rating: 4.9,
-        votes: 1180,
-        domain: 'anthropic.com',
-        url: 'https://www.anthropic.com/claude',
-        image: 'https://www.google.com/s2/favicons?domain=anthropic.com&sz=128'
-      },
-      {
-        id: 'deepseek',
-        name: 'DeepSeek R1',
-        tagline: 'Open-weight frontier reasoning model matching top proprietary LLMs.',
-        pricing: 'Free',
-        rating: 4.9,
-        votes: 960,
-        domain: 'deepseek.com',
-        url: 'https://chat.deepseek.com',
-        image: 'https://www.google.com/s2/favicons?domain=deepseek.com&sz=128'
-      },
-      {
-        id: 'perplexity',
-        name: 'Perplexity AI',
-        tagline: 'AI-powered conversational search engine with live citations and research.',
-        pricing: 'Freemium',
-        rating: 4.9,
-        votes: 1120,
-        domain: 'perplexity.ai',
-        url: 'https://www.perplexity.ai',
-        image: 'https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128'
-      }
-    ];
+    const featured = allTools.filter(t => t.featured || t.badge === 'Featured').slice(0, 4);
+    const targetTools = featured.length >= 4 ? featured : allTools.slice(0, 4);
 
     return targetTools.map(tool => {
-      const cleanDomain = tool.domain;
-      const logoUrl = tool.image;
+      const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0] || 'ai.com';
+      const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
       const duckLogo = 'https://icons.duckduckgo.com/ip3/' + cleanDomain + '.ico';
-      const stats = getToolRatingStats(tool.id) || { rating: tool.rating, votes: tool.votes };
+      const stats = getToolRatingStats(tool);
 
       return `
         <div class="featured-tool-showcase-card" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
@@ -1072,7 +1028,7 @@ Website: https://aira-newsletter.vercel.app/
             <a href="#/tools/${tool.id}" class="ft-title-link">${tool.name}</a>
           </h3>
 
-          <p class="ft-tool-tagline">${tool.tagline}</p>
+          <p class="ft-tool-tagline">${tool.description || ''}</p>
 
           <div class="ft-rating-row">
             <span class="ft-rating-star">★</span>
@@ -1091,6 +1047,164 @@ Website: https://aira-newsletter.vercel.app/
       `;
     }).join('');
   }
+
+  // =========================================================================
+  // Today's Top 5 Trending AI Tools Leaderboard
+  // =========================================================================
+  function getTrendingToolsHTML() {
+    const allTools = getAllTools();
+    const top5 = [...allTools].sort((a, b) => {
+      const statsA = getToolRatingStats(a);
+      const statsB = getToolRatingStats(b);
+      return (statsB.votes || 0) - (statsA.votes || 0);
+    }).slice(0, 5);
+
+    return `
+      <div class="sidebar-trending-tools-widget">
+        <div class="sidebar-trending-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="trending-fire-icon">🔥</span>
+            <h4>Top 5 Trending Tools</h4>
+          </div>
+          <a href="#/tags" class="trending-view-all-link">View 80+ →</a>
+        </div>
+        <div class="sidebar-trending-list">
+          ${top5.map((t, idx) => {
+            const cleanDomain = (t.domain || '').replace(/^https?:\/\//, '').split('/')[0] || 'ai.com';
+            const iconSrc = t.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=64`;
+            const stats = getToolRatingStats(t);
+            return `
+              <div class="trending-tool-row" onclick="window.location.hash='#/tools/${t.id}';">
+                <span class="trending-rank-num ${idx === 0 ? 'is-gold' : (idx === 1 ? 'is-silver' : (idx === 2 ? 'is-bronze' : ''))}">#${idx + 1}</span>
+                <div class="trending-tool-icon">
+                  <img src="${iconSrc}" alt="${escapeHtml(t.name)}" onerror="this.parentElement.innerHTML='⚡'" loading="lazy" />
+                </div>
+                <div class="trending-tool-details">
+                  <div class="trending-tool-name-line">
+                    <span class="trending-tool-name">${escapeHtml(t.name)}</span>
+                    <span class="trending-tool-pricing-tag">${escapeHtml(t.pricing || 'Free')}</span>
+                  </div>
+                  <span class="trending-tool-desc-short">${escapeHtml(t.description || '')}</span>
+                </div>
+                <button type="button" class="trending-upvote-mini-btn ${stats.hasVoted ? 'is-voted' : ''}" onclick="event.stopPropagation(); window.toggleToolVote('${stats.id}'); if(typeof renderHomePage==='function') renderHomePage();" title="Upvote tool">
+                  <span>▲</span>
+                  <span>${stats.votes}</span>
+                </button>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // AIRA Pulse: Community Live Weekly AI Poll
+  // =========================================================================
+  const DEFAULT_POLL_DATA = {
+    id: 'poll-2026-week-1',
+    question: 'Which AI model or tool is your primary driver in 2026?',
+    options: [
+      { id: 'claude', text: 'Claude 3.7 Sonnet (Thinking)', votes: 148 },
+      { id: 'gpt4o', text: 'ChatGPT (GPT-4o / Canvas)', votes: 122 },
+      { id: 'deepseek', text: 'DeepSeek V3 / R1 (Reasoning)', votes: 94 },
+      { id: 'cursor', text: 'Cursor AI / Windsurf Code', votes: 165 }
+    ]
+  };
+
+  function getPollStats() {
+    try {
+      const stored = localStorage.getItem('aira_poll_votes_counts');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    return DEFAULT_POLL_DATA;
+  }
+
+  function savePollStats(data) {
+    localStorage.setItem('aira_poll_votes_counts', JSON.stringify(data));
+  }
+
+  function getCommunityPollHTML() {
+    const poll = getPollStats();
+    const userVote = localStorage.getItem('aira_user_poll_vote');
+    const totalVotes = poll.options.reduce((sum, opt) => sum + opt.votes, 0);
+
+    return `
+      <div class="sidebar-poll-widget">
+        <div class="poll-widget-header">
+          <span class="poll-live-badge"><span class="ticker-pulse-dot"></span> LIVE POLL</span>
+          <span class="poll-total-count">${totalVotes} votes</span>
+        </div>
+        <h4 class="poll-question-text">${poll.question}</h4>
+
+        <div class="poll-options-list">
+          ${poll.options.map(opt => {
+            const isSelected = userVote === opt.id;
+            const percentage = totalVotes > 0 ? Math.round((opt.votes / totalVotes) * 100) : 0;
+            return `
+              <div class="poll-option-row ${isSelected ? 'is-selected' : ''} ${userVote ? 'has-voted' : ''}" onclick="window.castPollVote('${opt.id}');">
+                <div class="poll-progress-fill" style="width: ${userVote ? percentage : 0}%;"></div>
+                <div class="poll-option-content">
+                  <div class="poll-option-left">
+                    <span class="poll-radio-dot ${isSelected ? 'active' : ''}"></span>
+                    <span class="poll-option-title">${escapeHtml(opt.text)}</span>
+                  </div>
+                  ${userVote ? `<span class="poll-percent-tag"><strong>${percentage}%</strong> (${opt.votes})</span>` : ''}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
+        ${userVote ? `
+          <div class="poll-footer-row">
+            <span class="poll-thanks-msg">✓ Thanks for voting!</span>
+            <button type="button" class="btn-change-poll-vote" onclick="window.resetPollVote();">Change Vote</button>
+          </div>
+        ` : `
+          <p class="poll-hint-msg">👉 Tap an option to cast your vote.</p>
+        `}
+      </div>
+    `;
+  }
+
+  window.castPollVote = function(optId) {
+    const currentVote = localStorage.getItem('aira_user_poll_vote');
+    if (currentVote === optId) return;
+
+    const poll = getPollStats();
+    if (currentVote) {
+      const prevOpt = poll.options.find(o => o.id === currentVote);
+      if (prevOpt && prevOpt.votes > 0) prevOpt.votes--;
+    }
+
+    const newOpt = poll.options.find(o => o.id === optId);
+    if (newOpt) newOpt.votes++;
+
+    savePollStats(poll);
+    localStorage.setItem('aira_user_poll_vote', optId);
+    showToast('Your vote was recorded! 📊');
+    
+    const pollEl = document.querySelector('.sidebar-poll-widget');
+    if (pollEl) {
+      pollEl.outerHTML = getCommunityPollHTML();
+    }
+  };
+
+  window.resetPollVote = function() {
+    const currentVote = localStorage.getItem('aira_user_poll_vote');
+    if (currentVote) {
+      const poll = getPollStats();
+      const prevOpt = poll.options.find(o => o.id === currentVote);
+      if (prevOpt && prevOpt.votes > 0) prevOpt.votes--;
+      savePollStats(poll);
+      localStorage.removeItem('aira_user_poll_vote');
+    }
+    const pollEl = document.querySelector('.sidebar-poll-widget');
+    if (pollEl) {
+      pollEl.outerHTML = getCommunityPollHTML();
+    }
+  };
 
   function renderHomePage() {
     appContainer.innerHTML = `
@@ -1255,6 +1369,12 @@ Website: https://aira-newsletter.vercel.app/
             <!-- Right Column: Sidebar Ads & Popular Posts -->
             <div class="home-sidebar-col">
               
+              <!-- 1. Top 5 Trending AI Tools Leaderboard -->
+              ${getTrendingToolsHTML()}
+
+              <!-- 2. AIRA Pulse: Community Live Weekly AI Poll -->
+              ${getCommunityPollHTML()}
+
               <!-- Sidebar Ad 1: Master AI Prompts Vault -->
               <div class="ad-sidebar-card">
                 <span class="ad-tag-label">FEATURED RESOURCE</span>
@@ -1535,9 +1655,12 @@ Website: https://aira-newsletter.vercel.app/
             </div>
           </div>
 
+          <!-- Executive TL;DR Summary Box -->
+          ${tldrBoxHtml}
+
           <!-- Body Content -->
           <div class="article-rich-body">
-            ${article.body_html}
+            ${enrichedBodyHtml || article.body_html}
           </div>
 
           <!-- Inline Subscribe Card (Exact Dark UI) -->
@@ -2407,6 +2530,113 @@ Website: https://aira-newsletter.vercel.app/
       return found ? found.name : catId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     }
 
+    // Helper to format raw tool overview into clean paragraphs and structured Use Cases cards
+    function formatToolOverviewHTML(rawText, toolName) {
+      if (!rawText) return '';
+      
+      const cleanText = rawText.trim();
+      const ucMatch = cleanText.match(/\bUse\s+Cases?\s*:?/i);
+      
+      let introText = cleanText;
+      let useCasesRaw = '';
+      
+      if (ucMatch) {
+        introText = cleanText.substring(0, ucMatch.index).trim();
+        useCasesRaw = cleanText.substring(ucMatch.index + ucMatch[0].length).trim();
+      }
+      
+      function esc(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+      
+      let introHTML = '';
+      if (introText) {
+        if (introText.includes('\n\n')) {
+          introHTML = introText
+            .split(/\n\s*\n/)
+            .map(p => `<p class="tool-intro-paragraph">${esc(p.trim())}</p>`)
+            .join('');
+        } else {
+          const sentences = introText.match(/[^.!?]+[.!?]+(\s+|$)/g) || [introText];
+          if (sentences.length > 3) {
+            const mid = Math.ceil(sentences.length / 2);
+            const p1 = sentences.slice(0, mid).join('').trim();
+            const p2 = sentences.slice(mid).join('').trim();
+            introHTML = `
+              <p class="tool-intro-paragraph">${esc(p1)}</p>
+              <p class="tool-intro-paragraph">${esc(p2)}</p>
+            `;
+          } else {
+            introHTML = `<p class="tool-intro-paragraph">${esc(introText)}</p>`;
+          }
+        }
+      }
+      
+      let useCasesHTML = '';
+      if (useCasesRaw) {
+        const items = [];
+        const itemRegex = /([A-Z][A-Za-z0-9\s/&'-]{2,50}):\s*([^:]+?)(?=(?:[A-Z][A-Za-z0-9\s/&'-]{2,50}:\s*)|$)/g;
+        let m;
+        while ((m = itemRegex.exec(useCasesRaw)) !== null) {
+          const title = m[1].trim();
+          const desc = m[2].trim();
+          if (title && desc) {
+            items.push({ title, desc });
+          }
+        }
+        
+        if (items.length > 0) {
+          useCasesHTML = `
+            <div class="tool-usecases-wrapper">
+              <div class="tool-usecases-header">
+                <div class="tool-usecases-badge">⚡ KEY APPLICATIONS</div>
+                <h3 class="tool-usecases-title">Use Cases & Capabilities</h3>
+                <p class="tool-usecases-subtitle">Explore the primary scenarios and workflows where ${esc(toolName || 'this tool')} excels.</p>
+              </div>
+              <div class="tool-usecases-grid">
+                ${items.map(item => `
+                  <div class="tool-usecase-card">
+                    <div class="tool-usecase-card-header">
+                      <div class="tool-usecase-icon-badge">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <h4 class="tool-usecase-heading">${esc(item.title)}</h4>
+                    </div>
+                    <p class="tool-usecase-desc">${esc(item.desc)}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        } else {
+          useCasesHTML = `
+            <div class="tool-usecases-wrapper">
+              <div class="tool-usecases-header">
+                <div class="tool-usecases-badge">⚡ KEY APPLICATIONS</div>
+                <h3 class="tool-usecases-title">Use Cases & Capabilities</h3>
+              </div>
+              <p class="tool-intro-paragraph">${esc(useCasesRaw)}</p>
+            </div>
+          `;
+        }
+      }
+      
+      return `
+        <div class="tool-overview-structured">
+          <div class="tool-intro-section">
+            ${introHTML}
+          </div>
+          ${useCasesHTML}
+        </div>
+      `;
+    }
+
     const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
     const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
     const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
@@ -2508,9 +2738,7 @@ Website: https://aira-newsletter.vercel.app/
                   <span>About ${tool.name}</span>
                 </h2>
                 <div class="tool-overview-body">
-                  <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-primary, #18181B);">
-                    ${(tool.inner_content && tool.inner_content.overview) ? tool.inner_content.overview : tool.description}
-                  </p>
+                  ${formatToolOverviewHTML((tool.inner_content && tool.inner_content.overview) ? tool.inner_content.overview : (tool.overview || tool.description), tool.name)}
                 </div>
               </div>
 

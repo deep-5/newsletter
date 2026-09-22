@@ -6351,6 +6351,130 @@ body.dark-mode .footer-status-pill {
   margin-bottom: 0;
 }
 
+/* Structured Tool Overview & Use Cases Grid */
+.tool-overview-structured {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tool-intro-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tool-intro-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #18181B;
+  margin: 0;
+}
+
+.tool-usecases-wrapper {
+  margin-top: 6px;
+  padding-top: 24px;
+  border-top: 1px solid #F4F4F5;
+}
+
+.tool-usecases-header {
+  margin-bottom: 18px;
+}
+
+.tool-usecases-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #047857;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-bottom: 10px;
+}
+
+.tool-usecases-title {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #09090B;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tool-usecases-subtitle {
+  font-size: 0.9rem;
+  color: #71717A;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tool-usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.tool-usecase-card {
+  background: #FAFAFA;
+  border: 1px solid #E4E4E7;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.tool-usecase-card:hover {
+  background: #FFFFFF;
+  border-color: #10B981;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+}
+
+.tool-usecase-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-usecase-icon-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #ECFDF5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tool-usecase-heading {
+  font-family: var(--font-header);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #18181B;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.tool-usecase-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #52525B;
+  margin: 0;
+}
+
 /* Features Grid */
 .tool-features-grid {
   display: grid;
@@ -7292,6 +7416,42 @@ body.dark-mode .alternatives-directory-view {
   color: #E4E4E7 !important;
 }
 
+body.dark-mode .tool-intro-paragraph {
+  color: #E4E4E7 !important;
+}
+body.dark-mode .tool-usecases-wrapper {
+  border-top-color: #27272A !important;
+}
+body.dark-mode .tool-usecases-badge {
+  color: #34D399 !important;
+  background: rgba(5, 150, 105, 0.15) !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+body.dark-mode .tool-usecases-title {
+  color: #FFFFFF !important;
+}
+body.dark-mode .tool-usecases-subtitle {
+  color: #A1A1AA !important;
+}
+body.dark-mode .tool-usecase-card {
+  background: #18181B !important;
+  border-color: #27272A !important;
+}
+body.dark-mode .tool-usecase-card:hover {
+  background: #202024 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+body.dark-mode .tool-usecase-icon-badge {
+  background: rgba(5, 150, 105, 0.2) !important;
+  color: #34D399 !important;
+}
+body.dark-mode .tool-usecase-heading {
+  color: #FAFAFA !important;
+}
+body.dark-mode .tool-usecase-desc {
+  color: #A1A1AA !important;
+}
 body.dark-mode .tool-step-item {
   border-color: #27272A !important;
 }
@@ -12236,6 +12396,449 @@ body.dark-mode .spotlight-footer {
 
 body.dark-mode .spotlight-footer strong {
   color: #FFFFFF;
+}
+
+/* =========================================================================
+   6. Trending AI Tools Sidebar Leaderboard
+   ========================================================================= */
+.sidebar-trending-tools-widget {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-trending-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #F4F4F5;
+}
+
+.sidebar-trending-header h4 {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #18181B;
+  font-family: var(--font-header);
+}
+
+.trending-fire-icon {
+  font-size: 1.1rem;
+}
+
+.trending-view-all-link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #047857;
+  text-decoration: none;
+}
+
+.trending-view-all-link:hover {
+  text-decoration: underline;
+}
+
+.sidebar-trending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trending-tool-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #FAFAFA;
+  border: 1px solid #F4F4F5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trending-tool-row:hover {
+  background: #F4F4F5;
+  border-color: #E4E4E7;
+  transform: translateX(2px);
+}
+
+.trending-rank-num {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #71717A;
+  min-width: 20px;
+}
+
+.trending-rank-num.is-gold {
+  color: #D97706;
+}
+
+.trending-rank-num.is-silver {
+  color: #64748B;
+}
+
+.trending-rank-num.is-bronze {
+  color: #B45309;
+}
+
+.trending-tool-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #E4E4E7;
+  overflow: hidden;
+}
+
+.trending-tool-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trending-tool-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.trending-tool-name-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trending-tool-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #18181B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trending-tool-pricing-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #DCFCE7;
+  color: #15803D;
+  flex-shrink: 0;
+}
+
+.trending-tool-desc-short {
+  display: block;
+  font-size: 0.73rem;
+  color: #71717A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.trending-upvote-mini-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 1px solid #D4D4D8;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #3F3F46;
+  cursor: pointer;
+  line-height: 1.1;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.trending-upvote-mini-btn:hover {
+  border-color: #047857;
+  color: #047857;
+}
+
+.trending-upvote-mini-btn.is-voted {
+  background: #047857;
+  color: #FFFFFF;
+  border-color: #047857;
+}
+
+/* =========================================================================
+   7. Live Community Poll Widget
+   ========================================================================= */
+.sidebar-poll-widget {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.poll-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.poll-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #FEF2F2;
+  color: #DC2626;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.poll-total-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #71717A;
+}
+
+.poll-question-text {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #18181B;
+  margin-bottom: 12px;
+  line-height: 1.35;
+  font-family: var(--font-header);
+}
+
+.poll-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.poll-option-row {
+  position: relative;
+  background: #FAFAFA;
+  border: 1px solid #E4E4E7;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.poll-option-row:hover {
+  border-color: #047857;
+  background: #F4FDF8;
+}
+
+.poll-option-row.is-selected {
+  border-color: #047857;
+  box-shadow: 0 0 0 1px #047857;
+}
+
+.poll-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(4, 120, 87, 0.12);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.poll-option-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  gap: 8px;
+  z-index: 1;
+}
+
+.poll-option-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.poll-radio-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #A1A1AA;
+  flex-shrink: 0;
+}
+
+.poll-radio-dot.active {
+  border-color: #047857;
+  background: #047857;
+}
+
+.poll-option-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #27272A;
+}
+
+.poll-percent-tag {
+  font-size: 0.75rem;
+  color: #047857;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.poll-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #F4F4F5;
+}
+
+.poll-thanks-msg {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #047857;
+}
+
+.btn-change-poll-vote {
+  background: none;
+  border: none;
+  color: #71717A;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.poll-hint-msg {
+  font-size: 0.72rem;
+  color: #71717A;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* =========================================================================
+   8. Executive TL;DR Summary Box
+   ========================================================================= */
+.article-tldr-box {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-left: 4px solid #047857;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0 24px 0;
+}
+
+.tldr-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.tldr-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: #047857;
+  color: #FFFFFF;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.tldr-time-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #065F46;
+}
+
+.tldr-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tldr-bullets li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  color: #1F2937;
+  line-height: 1.5;
+}
+
+.tldr-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #047857;
+  font-weight: 900;
+  font-size: 1.1rem;
+  top: -1px;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode .sidebar-trending-tools-widget,
+body.dark-mode .sidebar-poll-widget {
+  background: #18181B;
+  border-color: #27272A;
+}
+
+body.dark-mode .sidebar-trending-header,
+body.dark-mode .poll-footer-row {
+  border-color: #27272A;
+}
+
+body.dark-mode .sidebar-trending-header h4,
+body.dark-mode .poll-question-text {
+  color: #FFFFFF;
+}
+
+body.dark-mode .trending-tool-row,
+body.dark-mode .poll-option-row {
+  background: #27272A;
+  border-color: #3F3F46;
+}
+
+body.dark-mode .trending-tool-name,
+body.dark-mode .poll-option-title {
+  color: #FFFFFF;
+}
+
+body.dark-mode .trending-tool-desc-short {
+  color: #A1A1AA;
+}
+
+body.dark-mode .trending-upvote-mini-btn {
+  background: #27272A;
+  border-color: #3F3F46;
+  color: #D4D4D8;
+}
+
+body.dark-mode .article-tldr-box {
+  background: #064E3B22;
+  border-color: #047857;
+}
+
+body.dark-mode .tldr-bullets li {
+  color: #E4E4E7;
 }
 
 
