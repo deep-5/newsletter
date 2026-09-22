@@ -229,37 +229,75 @@ img, video, iframe, embed, object {
     border-top: 1px solid #F1F5F9 !important;
   }
 
-  /* Mint Ad Banners */
+  /* Mint Ad Banners & Promotional Cards */
   .ad-banner-mint {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
+    justify-content: flex-start !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 18px 16px !important;
+    padding: 20px 16px !important;
     gap: 14px !important;
     border-radius: 14px !important;
     text-align: left !important;
+    box-sizing: border-box !important;
   }
 
   .ad-banner-content-wrap {
-    gap: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .ad-tag-label {
+    display: inline-block !important;
+    font-size: 0.6875rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: #047857 !important;
+    margin-bottom: 2px !important;
   }
 
   .ad-banner-title {
     font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    color: #0F172A !important;
+    margin: 0 0 4px 0 !important;
   }
 
   .ad-banner-desc {
     font-size: 0.85rem !important;
+    font-weight: 450 !important;
+    line-height: 1.4 !important;
+    color: #064E3B !important;
+    margin: 0 !important;
   }
 
   .ad-pill-btn {
+    display: inline-flex !important;
     width: 100% !important;
     justify-content: center !important;
-    padding: 11px 18px !important;
+    align-items: center !important;
+    padding: 12px 18px !important;
     font-size: 0.9rem !important;
     text-align: center !important;
+    border-radius: 9999px !important;
+    box-sizing: border-box !important;
+  }
+
+  .ad-sidebar-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px 16px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
   }
 
   /* Filter Pills Horizontal Scroll */
