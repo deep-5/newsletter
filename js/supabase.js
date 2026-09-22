@@ -64,6 +64,13 @@ const DatabaseService = {
       localStorage.setItem('aira_subscribers', JSON.stringify(list));
     }
 
+    // 3. Trigger Automated Welcome Email with 50 n8n Templates link
+    if (typeof window !== 'undefined' && window.EmailService) {
+      window.EmailService.sendWelcomeEmail(cleanEmail, source).catch(err => {
+        console.warn('Automated welcome email notice:', err);
+      });
+    }
+
     return { success: true };
   },
 

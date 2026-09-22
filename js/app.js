@@ -4944,8 +4944,17 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               };
               saveArticles([newArt, ...state.articles]);
               showToast('🎉 New article published successfully!');
+
+              // Automatically trigger newsletter broadcast to subscribers
+              if (typeof window !== 'undefined' && window.EmailService) {
+                const subList = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+                if (subList.length > 0 && confirm(`🚀 Broadcast newsletter email for "${newArt.title}" to all ${subList.length} subscribers now?`)) {
+                  window.EmailService.broadcastArticle(newArt).then(res => {
+                    showToast(`🚀 Dispatched newsletter email to ${res.sent} subscribers!`);
+                  });
+                }
+              }
             } else {
-              const idx = state.articles.findIndex(a => a.slug === origSlug);
               if (idx !== -1) {
                 state.articles[idx] = {
                   ...state.articles[idx],
@@ -5098,6 +5107,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <span>📬</span>
               <span>Subscribers CRM</span>
               <span class="saas-nav-count">${normalizedSubscribers.length}</span>
+            </button>
+            <button type="button" class="saas-nav-btn ${activeTab === 'emails' ? 'active' : ''}" data-admin-tab="emails">
+              <span>📧</span>
+              <span>Email Automation</span>
+              <span class="saas-nav-badge" style="background: #047857; color: white;">⚡ Auto</span>
             </button>
             <button type="button" class="saas-nav-btn ${activeTab === 'comments' ? 'active' : ''}" data-admin-tab="comments">
               <span>💬</span>
@@ -5629,6 +5643,9 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                               <button class="saas-btn-primary btn-edit-article" data-slug="${a.slug}" style="padding: 6px 12px; font-size: 0.8rem;">
                                 ✏️ Edit
                               </button>
+                              <button class="btn-broadcast-single-article" data-slug="${a.slug}" style="padding: 6px 10px; font-size: 0.8rem; background: #047857; color: #FFFFFF; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;" title="Send this edition to all subscribers">
+                                📧 Broadcast
+                              </button>
                               <a href="#/p/${a.slug}" target="_blank" class="btn-saas-reject" style="padding: 6px 10px; font-size: 0.8rem; text-decoration: none;">
                                 👁️ View
                               </a>
@@ -5805,6 +5822,206 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               </div>
             ` : ''}
 
+            <!-- ============================================================= -->
+            <!-- TAB 8: EMAIL AUTOMATION & NEWSLETTER BROADCASTS -->
+            <!-- ============================================================= -->
+            ${activeTab === 'emails' ? (() => {
+              const emailLogs = typeof EmailService !== 'undefined' ? EmailService.getLogs() : [];
+              const emailSettings = typeof EmailService !== 'undefined' ? EmailService.getSettings() : {};
+              const welcomeCount = emailLogs.filter(l => l.type === 'welcome').length;
+              const broadcastCount = emailLogs.filter(l => l.type === 'article_broadcast').length;
+              
+              return `
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                
+                <!-- Top 4 Metrics -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                  <div class="saas-kpi-card">
+                    <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Active Subscribers</div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: #0F172A; margin: 4px 0;">${normalizedSubscribers.length}</div>
+                    <div style="font-size: 0.8rem; color: #047857; font-weight: 700;">🟢 Live in Audience CRM</div>
+                  </div>
+                  <div class="saas-kpi-card">
+                    <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Welcome Emails Sent</div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: #047857; margin: 4px 0;">${welcomeCount}</div>
+                    <div style="font-size: 0.8rem; color: #64748B;">🎁 50 n8n Templates Included</div>
+                  </div>
+                  <div class="saas-kpi-card">
+                    <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Broadcast Editions Sent</div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: #2563EB; margin: 4px 0;">${broadcastCount}</div>
+                    <div style="font-size: 0.8rem; color: #64748B;">⚡ Newsletter Alerts</div>
+                  </div>
+                  <div class="saas-kpi-card">
+                    <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Delivery Engine</div>
+                    <div style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 8px 0;">
+                      ${emailSettings.resendApiKey ? 'Resend API 🚀' : emailSettings.webhookUrl ? 'n8n Webhook ⚡' : 'Auto Serverless 🟢'}
+                    </div>
+                    <div style="font-size: 0.8rem; color: #047857; font-weight: 600;">Automated Triggers Ready</div>
+                  </div>
+                </div>
+
+                <!-- 1. Send / Broadcast Article Section -->
+                <div class="saas-panel-card">
+                  <div class="saas-panel-header" style="flex-wrap: wrap; gap: 12px;">
+                    <div>
+                      <h3 class="saas-panel-title">🚀 Broadcast Article Edition to All Subscribers</h3>
+                      <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Instantly send any published article as a responsive HTML newsletter email to all ${normalizedSubscribers.length} subscribers.</p>
+                    </div>
+                  </div>
+
+                  <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; margin-top: 18px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: flex-end; margin-bottom: 16px;">
+                      <div>
+                        <label style="display: block; font-weight: 700; font-size: 0.875rem; color: #0F172A; margin-bottom: 6px;">Select Article to Broadcast *</label>
+                        <select id="email-broadcast-article-select" class="form-select" style="width: 100%; padding: 10px 14px; border: 1px solid #CBD5E1; border-radius: 8px; font-weight: 600; font-size: 0.9rem; background: #FFFFFF;">
+                          ${state.articles.map((art, idx) => `
+                            <option value="${art.slug}" ${idx === 0 ? 'selected' : ''}>
+                              ${art.title} (${art.date || 'Recent'}) - [${art.tag || 'News'}]
+                            </option>
+                          `).join('')}
+                        </select>
+                      </div>
+
+                      <div style="display: flex; gap: 10px;">
+                        <button type="button" id="btn-preview-email-html" class="btn-saas-reject" style="flex: 1; padding: 10px; font-weight: 700;">
+                          👁️ Preview HTML Email
+                        </button>
+                        <button type="button" id="btn-start-broadcast-send" class="saas-btn-primary" style="flex: 1; padding: 10px 18px; font-weight: 800; background: #047857;">
+                          🚀 Send to All (${normalizedSubscribers.length})
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Live Progress Bar (Hidden until broadcasting) -->
+                    <div id="broadcast-progress-wrap" style="display: none; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px; margin-top: 14px;">
+                      <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px;">
+                        <span id="broadcast-progress-label">Dispatching newsletter emails...</span>
+                        <span id="broadcast-progress-percent">0%</span>
+                      </div>
+                      <div style="width: 100%; height: 10px; background: #F1F5F9; border-radius: 999px; overflow: hidden;">
+                        <div id="broadcast-progress-bar" style="width: 0%; height: 100%; background: #047857; transition: width 0.2s ease;"></div>
+                      </div>
+                      <div style="font-size: 0.75rem; color: #64748B; margin-top: 6px;" id="broadcast-progress-detail">Preparing subscriber queue...</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Email Settings & Provider Configuration -->
+                <div class="saas-panel-card">
+                  <div class="saas-panel-header">
+                    <div>
+                      <h3 class="saas-panel-title">⚙️ Email Provider & Automation Settings</h3>
+                      <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Configure your preferred email delivery service (Resend API, n8n webhook, or Serverless SMTP).</p>
+                    </div>
+                  </div>
+
+                  <form id="form-email-settings" style="margin-top: 18px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                      <div class="form-group">
+                        <label class="form-label">Resend API Key (Recommended - 3,000 Free/Mo)</label>
+                        <input type="password" id="input-resend-key" class="form-input" placeholder="re_1234567890abcdef..." value="${emailSettings.resendApiKey || ''}" />
+                        <span style="font-size: 0.75rem; color: #64748B; margin-top: 3px; display: block;">Get your free API key at <a href="https://resend.com" target="_blank" style="color: #047857;">resend.com</a></span>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">n8n / Make / Webhook URL (Optional)</label>
+                        <input type="url" id="input-email-webhook" class="form-input" placeholder="https://your-n8n-instance.com/webhook/aira-email" value="${emailSettings.webhookUrl || ''}" />
+                        <span style="font-size: 0.75rem; color: #64748B; margin-top: 3px; display: block;">Triggers n8n / Make workflow on every signup & article release.</span>
+                      </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                      <div class="form-group">
+                        <label class="form-label">Sender Email Address</label>
+                        <input type="text" id="input-sender-email" class="form-input" placeholder="AIRA Newsletter <onboarding@resend.dev>" value="${emailSettings.senderEmail || 'AIRA Newsletter <onboarding@resend.dev>'}" />
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">Reply-To Email</label>
+                        <input type="email" id="input-reply-to" class="form-input" placeholder="editorial@aira.news" value="${emailSettings.replyTo || 'editorial@aira.news'}" />
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">Lead Magnet Link (50 Templates)</label>
+                        <input type="url" id="input-lead-magnet" class="form-input" placeholder="https://docs.google.com/spreadsheets/..." value="${emailSettings.leadMagnetUrl || 'https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing'}" />
+                      </div>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 16px; flex-wrap: wrap;">
+                      <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="email" id="input-test-recipient" class="form-input" placeholder="Enter your email to test..." style="max-width: 260px;" />
+                        <button type="button" id="btn-send-test-welcome" class="btn-saas-reject" style="padding: 8px 14px; font-weight: 600;">
+                          📨 Send Test Welcome Email
+                        </button>
+                      </div>
+
+                      <button type="submit" class="saas-btn-primary" style="padding: 9px 24px;">
+                        💾 Save Email Settings
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- 3. Real-Time Email Delivery Audit Logs Table -->
+                <div class="saas-panel-card">
+                  <div class="saas-panel-header" style="flex-wrap: wrap; gap: 12px;">
+                    <div>
+                      <h3 class="saas-panel-title">📜 Email Delivery Activity & Audit Logs (${emailLogs.length})</h3>
+                      <p class="saas-panel-sub" style="margin: 4px 0 0 0;">Real-time history of welcome emails, broadcasts, and test dispatches.</p>
+                    </div>
+                    ${emailLogs.length > 0 ? `
+                      <button type="button" id="btn-clear-email-logs" class="btn-saas-reject" style="padding: 6px 12px; font-size: 0.8rem; color: #DC2626;">
+                        🗑️ Clear Logs
+                      </button>
+                    ` : ''}
+                  </div>
+
+                  <div style="overflow-x: auto; margin-top: 16px;">
+                    ${emailLogs.length === 0 ? `
+                      <div style="text-align: center; padding: 32px 16px; color: #94A3B8; background: #F8FAFC; border-radius: 8px;">
+                        No email dispatches recorded yet. Subscribe on the site or send a test email above to see live delivery logs!
+                      </div>
+                    ` : `
+                      <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
+                        <thead>
+                          <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0; color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            <th style="padding: 10px 14px;">Status</th>
+                            <th style="padding: 10px 14px;">Recipient Email</th>
+                            <th style="padding: 10px 14px;">Type</th>
+                            <th style="padding: 10px 14px;">Subject</th>
+                            <th style="padding: 10px 14px;">Transport</th>
+                            <th style="padding: 10px 14px;">Date & Time</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          ${emailLogs.map(log => `
+                            <tr style="border-bottom: 1px solid #F1F5F9;">
+                              <td style="padding: 10px 14px;">
+                                <span style="display: inline-flex; align-items: center; gap: 4px; background: ${log.status === 'delivered' ? '#ECFDF5' : '#FEF2F2'}; color: ${log.status === 'delivered' ? '#047857' : '#DC2626'}; border: 1px solid ${log.status === 'delivered' ? '#A7F3D0' : '#FECACA'}; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700;">
+                                  ${log.status === 'delivered' ? '✓ Delivered' : '✕ Failed'}
+                                </span>
+                              </td>
+                              <td style="padding: 10px 14px; font-weight: 600; font-family: monospace; color: #0F172A;">${log.recipient}</td>
+                              <td style="padding: 10px 14px;">
+                                <span style="background: #F1F5F9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">
+                                  ${log.type === 'welcome' ? '🎁 Welcome' : log.type === 'article_broadcast' ? '📰 Broadcast' : '🧪 Test'}
+                                </span>
+                              </td>
+                              <td style="padding: 10px 14px; color: #334155; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${log.subject}</td>
+                              <td style="padding: 10px 14px; color: #64748B; font-size: 0.78rem;">${log.transport || 'API'}</td>
+                              <td style="padding: 10px 14px; color: #94A3B8; font-size: 0.78rem; white-space: nowrap;">${log.dateFormatted || 'Just now'}</td>
+                            </tr>
+                          `).join('')}
+                        </tbody>
+                      </table>
+                    `}
+                  </div>
+                </div>
+
+              </div>
+              `;
+            })() : ''}
+
           </main>
         </div>
 
@@ -5876,6 +6093,22 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <button type="submit" class="saas-btn-primary" style="padding: 10px 22px; border-radius: 8px;">Save Deal 🏷️</button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <!-- MODAL: LIVE HTML EMAIL PREVIEW -->
+      <div class="admin-modal-overlay" id="modal-email-preview">
+        <div class="admin-modal-box" style="max-width: 680px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 20px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <div>
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin: 0;">👁️ Live HTML Email Preview</h3>
+              <p style="font-size: 0.78rem; color: #64748B; margin: 2px 0 0 0;">This is exactly how the email newsletter renders in subscriber inboxes.</p>
+            </div>
+            <button type="button" class="modal-close-btn" id="btn-close-email-preview" style="background: none; border: none; font-size: 1.3rem; cursor: pointer; color: #64748B;">✕</button>
+          </div>
+          <div style="flex: 1; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC; min-height: 480px;">
+            <iframe id="email-preview-iframe" style="width: 100%; height: 500px; border: none; background: #FFFFFF;"></iframe>
+          </div>
         </div>
       </div>
     `;
@@ -6479,6 +6712,144 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         if (confirm('Clear all custom deals from local storage?')) {
           localStorage.removeItem('aira_custom_deals');
           showToast('Custom deals cleared.');
+          renderAdminPage();
+        }
+      });
+    }
+
+    // 8. Email Automation & Broadcast Event Handlers
+    appContainer.querySelectorAll('.btn-broadcast-single-article').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const slug = e.currentTarget.getAttribute('data-slug');
+        const art = state.articles.find(a => a.slug === slug);
+        if (!art) return;
+        state.adminTab = 'emails';
+        renderAdminPage();
+        const selectEl = document.getElementById('email-broadcast-article-select');
+        if (selectEl) selectEl.value = slug;
+        showToast(`Selected "${art.title.slice(0, 24)}..." for newsletter broadcast!`);
+      });
+    });
+
+    const previewEmailBtn = document.getElementById('btn-preview-email-html');
+    const emailPreviewModal = document.getElementById('modal-email-preview');
+    const closeEmailPreviewBtn = document.getElementById('btn-close-email-preview');
+    if (previewEmailBtn && emailPreviewModal) {
+      previewEmailBtn.addEventListener('click', () => {
+        const selectEl = document.getElementById('email-broadcast-article-select');
+        const slug = selectEl ? selectEl.value : (state.articles[0] ? state.articles[0].slug : '');
+        const art = state.articles.find(a => a.slug === slug) || state.articles[0];
+        if (!art) return;
+        if (typeof window.EmailService !== 'undefined') {
+          const html = window.EmailService.buildArticleBroadcastEmailHTML(art, 'subscriber@example.com');
+          const iframe = document.getElementById('email-preview-iframe');
+          if (iframe) {
+            iframe.srcdoc = html;
+          }
+          emailPreviewModal.classList.add('active');
+        }
+      });
+    }
+
+    if (closeEmailPreviewBtn && emailPreviewModal) {
+      closeEmailPreviewBtn.addEventListener('click', () => emailPreviewModal.classList.remove('active'));
+    }
+
+    const startBroadcastBtn = document.getElementById('btn-start-broadcast-send');
+    if (startBroadcastBtn) {
+      startBroadcastBtn.addEventListener('click', async () => {
+        const selectEl = document.getElementById('email-broadcast-article-select');
+        const slug = selectEl ? selectEl.value : '';
+        const art = state.articles.find(a => a.slug === slug);
+        if (!art) {
+          showToast('Please select an article to broadcast!');
+          return;
+        }
+        const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+        const subCount = list.length;
+        if (subCount === 0) {
+          showToast('No subscribers found in database yet! Add a subscriber to test.');
+          return;
+        }
+        if (!confirm(`🚀 Broadcast newsletter edition "${art.title}" to all ${subCount} subscribers now?`)) {
+          return;
+        }
+
+        const progressWrap = document.getElementById('broadcast-progress-wrap');
+        const progressBar = document.getElementById('broadcast-progress-bar');
+        const progressLabel = document.getElementById('broadcast-progress-label');
+        const progressPercent = document.getElementById('broadcast-progress-percent');
+        const progressDetail = document.getElementById('broadcast-progress-detail');
+
+        if (progressWrap) progressWrap.style.display = 'block';
+        startBroadcastBtn.disabled = true;
+        startBroadcastBtn.textContent = 'Sending... ⏳';
+
+        if (typeof window.EmailService !== 'undefined') {
+          const res = await window.EmailService.broadcastArticle(art, null, (p) => {
+            if (progressBar) progressBar.style.width = p.percent + '%';
+            if (progressPercent) progressPercent.textContent = p.percent + '%';
+            if (progressDetail) progressDetail.textContent = `Sent ${p.current} of ${p.total} (${p.lastEmail})`;
+          });
+
+          startBroadcastBtn.disabled = false;
+          startBroadcastBtn.textContent = `🚀 Send to All (${subCount})`;
+          if (res.success) {
+            showToast(`🎉 Broadcasted "${art.title.slice(0, 24)}..." to ${res.sent} subscribers!`);
+            setTimeout(() => renderAdminPage(), 1200);
+          } else {
+            showToast(`Broadcast completed with notices: ${res.error || 'Check logs'}`);
+            setTimeout(() => renderAdminPage(), 1200);
+          }
+        }
+      });
+    }
+
+    const emailSettingsForm = document.getElementById('form-email-settings');
+    if (emailSettingsForm && typeof window.EmailService !== 'undefined') {
+      emailSettingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const resendApiKey = document.getElementById('input-resend-key')?.value.trim() || '';
+        const webhookUrl = document.getElementById('input-email-webhook')?.value.trim() || '';
+        const senderEmail = document.getElementById('input-sender-email')?.value.trim() || '';
+        const replyTo = document.getElementById('input-reply-to')?.value.trim() || '';
+        const leadMagnetUrl = document.getElementById('input-lead-magnet')?.value.trim() || '';
+        window.EmailService.saveSettings({ resendApiKey, webhookUrl, senderEmail, replyTo, leadMagnetUrl });
+        showToast('Email settings saved successfully! 💾');
+        renderAdminPage();
+      });
+    }
+
+    const testWelcomeBtn = document.getElementById('btn-send-test-welcome');
+    if (testWelcomeBtn && typeof window.EmailService !== 'undefined') {
+      testWelcomeBtn.addEventListener('click', async () => {
+        const input = document.getElementById('input-test-recipient');
+        const email = input ? input.value.trim() : '';
+        if (!email || !email.includes('@')) {
+          showToast('Please enter a valid test recipient email address!');
+          return;
+        }
+        testWelcomeBtn.disabled = true;
+        testWelcomeBtn.textContent = 'Sending... ⏳';
+        const res = await window.EmailService.sendTestEmail(email, 'welcome');
+        testWelcomeBtn.disabled = false;
+        testWelcomeBtn.textContent = '📨 Send Test Welcome Email';
+        if (res.success) {
+          showToast(`✨ Test Welcome Email sent to ${email}! Check logs below.`);
+          renderAdminPage();
+        } else {
+          showToast(`Test send notice: ${res.error || 'Simulated delivery logged'}`);
+          renderAdminPage();
+        }
+      });
+    }
+
+    const clearEmailLogsBtn = document.getElementById('btn-clear-email-logs');
+    if (clearEmailLogsBtn) {
+      clearEmailLogsBtn.addEventListener('click', () => {
+        if (confirm('Clear all email audit logs?')) {
+          localStorage.removeItem('aira_email_logs');
+          showToast('Email logs cleared.');
           renderAdminPage();
         }
       });
