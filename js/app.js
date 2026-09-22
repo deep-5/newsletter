@@ -1370,8 +1370,11 @@ Website: https://aira-newsletter.vercel.app/
                           <span class="card-author-name">${article.author || 'AIRA Editorial Team'}</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px;">
+                          <button type="button" class="card-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
+                            <span class="listen-btn-icon">🎧</span>
+                            <span class="listen-btn-text">Listen</span>
+                          </button>
                           <span class="card-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</span>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-text-muted); flex-shrink: 0;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
                         </div>
                       </div>
                     </div>
@@ -1448,6 +1451,7 @@ Website: https://aira-newsletter.vercel.app/
       `;
 
       // Bind filter pills
+      if (window.airaAudioEngine) window.airaAudioEngine.syncCardButtons();
       feedInner.querySelectorAll('.filter-pill').forEach(btn => {
         btn.addEventListener('click', (e) => {
           state.selectedTag = e.currentTarget.getAttribute('data-tag');
