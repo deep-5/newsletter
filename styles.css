@@ -3431,6 +3431,21 @@ body.aira-admin-active strong {
   text-transform: uppercase;
 }
 
+.tool-badge-purpose {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #0F766E;
+  background: #F0FDFA;
+  border: 1px solid #CCFBF1;
+  padding: 1.5px 7px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
 .tool-badge-pricing {
   font-size: 0.6rem;
   font-weight: 700;
@@ -7002,6 +7017,11 @@ body.dark-mode .tool-badge-neutral {
   background: #18181B !important;
   color: #A1A1AA !important;
   border-color: #27272A !important;
+}
+body.dark-mode .tool-badge-purpose {
+  background: rgba(15, 118, 110, 0.2) !important;
+  color: #5EEAD4 !important;
+  border-color: rgba(94, 234, 212, 0.3) !important;
 }
 
 body.dark-mode .filter-pill,

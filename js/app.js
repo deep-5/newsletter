@@ -2124,7 +2124,7 @@ Website: https://aira-newsletter.vercel.app/
             </a>
             <div class="tool-title-group">
               <div class="tool-badges-row">
-                ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
+                ${tool.badge ? `<span class="tool-badge-purpose">${tool.badge}</span>` : ''}
                 ${isToolPromoted(tool) ? '<span class="tool-badge-promoted"><span class="star">⭐</span> Promoted</span>' : ''}
                 <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
                 <span class="tool-rating-pill" title="AIRA Community Rating: ${stats.rating.toFixed(1)} / 5.0 (${stats.votes} votes)">★ ${stats.rating.toFixed(1)}</span>
@@ -2689,7 +2689,7 @@ Website: https://aira-newsletter.vercel.app/
               <div class="tool-detail-title-col">
                 <div class="tool-detail-badges">
                   <span class="tool-badge-verified"><span class="bolt">⚡</span> AIRA Verified</span>
-                  ${tool.featured ? `<span class="tool-badge-featured"><span class="bolt">⚡</span> ${tool.badge || 'Featured'}</span>` : (tool.badge ? `<span class="tool-badge-neutral">${tool.badge}</span>` : '')}
+                  ${tool.badge ? `<span class="tool-badge-purpose">${tool.badge}</span>` : ''}
                   <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
                   <span class="tool-rating-pill" style="font-weight: 700; background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A;">★ ${stats.rating.toFixed(1)} / 5.0 (${stats.votes.toLocaleString()} reviews)</span>
                   <a href="#/tags?category=${primaryCat}" class="tool-category-badge" style="text-decoration: none;">${primaryCatName}</a>
@@ -2830,6 +2830,7 @@ Website: https://aira-newsletter.vercel.app/
                         </a>
                         <div class="tool-title-group">
                           <div class="tool-badges-row">
+                            ${rel.badge ? `<span class="tool-badge-purpose">${rel.badge}</span>` : ''}
                             <span class="tool-badge-pricing ${relPricingClass}">${rel.pricing}</span>
                             <span class="tool-rating-pill" title="★ ${relStats.rating.toFixed(1)} (${relStats.votes} votes)">★ ${relStats.rating.toFixed(1)}</span>
                           </div>
