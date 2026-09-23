@@ -802,6 +802,10 @@ Website: https://aira-newsletter.vercel.app/
       const slug = hashPath.replace('/p/', '');
       return { name: 'post', slug };
     }
+    if (hashPath.startsWith('/post/')) {
+      const slug = hashPath.replace('/post/', '');
+      return { name: 'post', slug };
+    }
     if (hashPath === '/archive') return { name: 'home' }; // Redirected to home
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
     if (hashPath === '/prompts') return { name: 'prompts' };

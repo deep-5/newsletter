@@ -8,25 +8,26 @@ const ARTICLES = [
   {
     "slug": "anthropic-releases-fable-level-opus-5-5",
     "title": "Anthropic Releases Fable Level Opus 5.5",
-    "subtitle": "Flagship Claude 5.5 model matches Fable 5.1 with 40% cheaper inference & massive coding leaps.",
+    "subtitle": "Muse Beats ChatGPT Downloads",
     "date": "Sep 22, 2026",
     "tag": "Frontier AI",
-    "read_time": "5 min read",
-    "reading_time": "5 min read",
+    "read_time": "4 min read",
+    "reading_time": "4 min read",
     "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ead412bd-1383-43d9-909b-30c139ef4b48/Copy_of_Automation_-_2026-09-22T234815.124.png?t=1790099346",
-    "author": "AIRA Editorial Team",
-    "author_avatar": "assets/logo.png",
+    "author": "Altiam Kabir",
+    "author_avatar": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/user/profile_picture/6a8a7acc-b7dc-434c-b4e6-d131c7210e31/thumb_profile-pic__38_.png",
     "views": 21800,
     "likes": 42,
     "body_html": `<div class="article-menu-intro-card">
-      <div class="menu-intro-greeting">Welcome to AIRA! 👋</div>
-      <div class="menu-intro-heading">Here’s what’s on the menu today:</div>
+      <div class="menu-intro-greeting">Welcome to another edition of <strong>AI PlanetX</strong>! 👋</div>
+      <div class="menu-intro-heading">Anthropic launches Claude Opus 5.5 with Fable-level performance; Meta Muse gains downloads as Nvidia dismisses AI doomsday fears.</div>
+      <div style="font-weight: 700; color: #047857; margin: 12px 0 6px 0;">Inside This Edition: 💎</div>
       <ul class="menu-intro-list">
-        <li>Anthropic Releases Claude Opus 5.5 Matching Fable 5.1 Benchmarks</li>
-        <li>Muse Beats ChatGPT in Global Mobile App Downloads</li>
-        <li>Top AI & SaaS Tools</li>
-        <li>How to Automate Full-Codebase Migrations With Claude Opus 5.5</li>
-        <li>Top AI & Tech News</li>
+        <li>Hottest AI News: Anthropic Launches Claude Opus 5.5 & Meta Muse</li>
+        <li>Top AI & SaaS Tools (Foyer, WZRD, Clueso MCP, Altar-1, Dreamina AI)</li>
+        <li>AI Tutorial: How to Personalize ChatGPT for Your Own Writing Style</li>
+        <li>Top AI & Tech News (SpaceXAI Grok 4.7, OpenAI Testing, Nvidia CEO on AI)</li>
+        <li>AI Art Spotlight: Luxury Sneaker Hypermaximalist Illustration</li>
       </ul>
       <div class="menu-intro-readtime">
         <span>☕</span>
@@ -45,40 +46,40 @@ const ARTICLES = [
         <div class="story-badge-row">
           <span class="story-company-badge">Anthropic</span>
         </div>
-        <h3 class="story-headline">Anthropic Launches Flagship Claude Opus 5.5 With Fable-Level Reasoning</h3>
+        <h3 class="story-headline">Anthropic Launches Claude Opus 5.5 With Fable Level Performance</h3>
 
         <div class="section-image-box">
-          <img src="https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ead412bd-1383-43d9-909b-30c139ef4b48/Copy_of_Automation_-_2026-09-22T234815.124.png?t=1790099346" alt="Claude Opus 5.5 Release" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/5bc16f47-f575-44b6-8ed8-8c898f5f799b/Screenshot_628.png?t=1790095801" alt="Claude Opus 5.5 Benchmarks" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
         </div>
-        <p>Anthropic has officially launched <a href="https://www.aiplanetx.com/p/anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Claude Opus 5.5</a>, the first model in the new Claude 5.5 generation. It matches Fable 5.1 across frontier benchmarks while delivering significantly faster, cheaper, clearer, and safer intelligence for developers and enterprises.</p>
+        <p>Anthropic just launched <a href="https://www.anthropic.com/claude-opus-5-5?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Claude Opus 5.5</a>, the first model in its latest Claude 5.5 family. It brings <b>Fable 5.1-level performance</b> on most work while making Opus faster, cheaper, clearer, more efficient, and safer.</p>
         <p><b>Details:</b></p>
 
         <ul class="tech-news-bullets">
-          <li><b>Agentic Coding Powerhouse:</b> Opus 5.5 completed an autonomous 680,000-line full-codebase migration in under 24 hours during enterprise evaluation trials</li>
-          <li><b>40% Cost Reduction & 30% Faster:</b> Standard workloads run 40% cheaper than Opus 5 at $4 per million input tokens and $20 per million output tokens ($0.20/M cached reads)</li>
-          <li><b>Universal Availability:</b> Available immediately under model ID <code>claude-opus-5-5</code> on Claude.ai, AWS Bedrock, Google Cloud Vertex AI, and Microsoft Azure</li>
+          <li>Opus 5.5 leads Anthropic’s benchmarks in <b>agentic coding, computer use and knowledge work</b>. Early tests include a 680,000-line code migration in under a day and major gains on large code audits</li>
+          <li>Pricing drops to <b>$4/M input</b> and <b>$20/M output</b> tokens, with $0.20/M cache reads. Typical workloads cost 40% less than Opus 5, output is 30%+ faster, and Fast Mode can run 2.5x faster</li>
+          <li>Anthropic says Opus 5.5 scored best in its <b>behavioral safety audit</b>, resists prompt injection better, communicates more clearly, and is live across Claude, AWS, Google and Microsoft Azure</li>
         </ul>
-        <p>Anthropic confirmed that Sonnet 5.5 and Haiku 5.5 will follow in upcoming weeks to complete the full 5.5 tier lineup.</p>
+        <p>Anthropic says Sonnet 5.5 and Haiku 5.5 are coming in the next few weeks. Opus 5.5 is available with developers using the model ID <code>claude-opus-5-5</code>.</p>
       </div>
 
       <div class="article-story-card">
         <div class="story-badge-row">
-          <span class="story-company-badge">Mobile AI</span>
+          <span class="story-company-badge">Meta</span>
         </div>
-        <h3 class="story-headline">Muse Surpasses ChatGPT in Global Mobile App Store Downloads</h3>
+        <h3 class="story-headline">Meta Muse Beats ChatGPT Downloads While Amazon Blocks It From Shopping</h3>
 
         <div class="section-image-box">
-          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/f707ad46-8553-471d-85d2-e1f3c2f9e46b/Copy_of_Automation.png" alt="Muse Mobile AI" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/fb7ebc92-fb09-43b2-87a9-cb1fb12d71ef/6aad94144a3706ac06f84f7b.webp?t=1790096072" alt="Meta Muse App Store Downloads" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
         </div>
-        <p>Generative voice companion <a href="https://www.aiplanetx.com/p/anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Muse</a> has officially taken the #1 rank on iOS and Google Play app charts, surpassing ChatGPT in daily new mobile downloads.</p>
+        <p>Meta’s Muse personal AI agent is having a breakout launch. Less than two weeks after release, it climbed to <b>No. 1 on the U.S. App Store</b> and is outpacing <i><b>ChatGPT, Claude and Grok</b></i> in comparable post-launch downloads.</p>
         <p><b>Details:</b></p>
 
         <ul class="tech-news-bullets">
-          <li>Muse features real-time speech-to-speech interaction with under 180ms latency, enabling natural voice interruption and hands-free tutoring</li>
-          <li>The app's seamless audio-first UI is attracting millions of daily active mobile users across productivity, language learning, and personal coaching</li>
-          <li>Meta and partner ecosystems are actively integrating Muse voice APIs across consumer smart glasses and wearable hardware</li>
+          <li>Muse launched on September 8 and <b>goes beyond answering prompts</b>. It can send emails, book travel, shop online and keep working after you close the app, powered by <i>Muse Spark</i></li>
+          <li>Apptopia says Muse hit <b>2.8 million installs in 12 days</b>. In a matched U.S. and Canada iOS comparison, it logged 1.8 million downloads versus ChatGPT’s 1.3 million in the same launch window</li>
+          <li>Amazon has <b>blocked Muse from shopping on Amazon</b>, saying the agent was unauthorized and failed to identify itself while browsing. Meta says Muse cannot see passwords or payment details</li>
         </ul>
-        <p>The milestone signals a major consumer shift toward real-time voice and multimodal AI assistants on personal devices.</p>
+        <p>Muse’s rise shows the shift from chatbots to agents is accelerating, while Amazon’s block highlights a fresh battle over who controls AI-powered shopping.</p>
       </div>
 
       <div class="article-section-header">
@@ -87,30 +88,67 @@ const ARTICLES = [
 
       <div class="article-tools-box">
         <ul class="tools-feature-list">
-          <li><a href="https://claude.ai/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Claude Opus 5.5</a>: Frontier reasoning and agentic coding model with autonomous computer use and high-speed token caching <b><span class="tool-free-tag">Free Trial</span></b></li>
-          <li><a href="https://go.aiplanetx.com/agentic?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Agentic HQ</a><b> <span class="tool-deal-tag">Lifetime Deal</span></b>: Autonomous workflow orchestrator that automates data extraction, CRM updates, and client communications across 100+ platforms</li>
-          <li><a href="https://devv.ai/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Devv AI</a>: Specialized AI search engine for developers with real-time GitHub repository indexing and syntax-aware debugging <b><span class="tool-free-tag">Free</span></b></li>
-          <li><a href="https://synthesia.io/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Synthesia 3.0</a>: Enterprise video generation with photorealistic AI avatars, dynamic lip-sync, and instant multilingual dubbing in 140+ languages</li>
-          <li><a href="https://elevenlabs.io/reader?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">ElevenLabs Reader</a>: High-fidelity natural voice narrator that turns articles, PDFs, and newsletters into studio-grade audio narrations <b>[F-R-E-E to Try]</b></li>
+          <li><a href="https://go.aiplanetx.com/foyer?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Foyer</a> <b><span class="tool-deal-tag">Lifetime Deal</span></b>: Customizable AI voice agent for websites that answers questions using site content, guides visitors, and captures high-intent leads with conversation context</li>
+          <li><a href="https://wzrd.to/?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">WZRD</a>: Turns forms, documents, and workflows into interactive experiences that can talk, listen, adapt, and collect responses by voice or text</li>
+          <li><a href="https://www.clueso.io/mcp?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Clueso MCP</a>: Create and edit on-brand videos through conversations with Claude, ChatGPT, or other AI agents <b><span class="tool-free-tag">Free to Try</span></b></li>
+          <li><a href="https://www.aikido.dev/blog/aikido-altar-open-weight-ai-sovereign-security?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Altar-1</a>: Compact open-weight security model that runs privately on-premises while retaining most of GLM-5.3’s vulnerability-detection capabilities</li>
+          <li><a href="https://x.com/dreamina_ai/status/2101911933775655365?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Dreamina AI</a>: Redesigned web experience combines cinematic workflows, smart AI assistance, and integrated text, image, video, and audio creation <b><span class="tool-free-tag">Free to Try</span></b></li>
         </ul>
       </div>
 
       <div class="article-section-header">
         <h2>📚 AI Tutorial</h2>
       </div>
-      <h3 class="story-headline">How to Automate Full-Codebase Migrations With Claude Opus 5.5</h3>
-      <div class="section-image-box">
-        <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/21110310-3f40-4c52-9c9f-4099cc72084c/1763097514__1_.png?t=1763097566" alt="AIRA Edition Content" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+      <div class="article-story-card">
+        <h3 class="story-headline">How to Personalize ChatGPT for Your Own Writing Style</h3>
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/071a43c6-649f-4309-b555-68c9d1cdf16d/images__13_.jpg?t=1787833041" alt="Personalize ChatGPT Writing Style" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>ChatGPT can help you draft and rewrite, but the output often sounds generic unless you shape how it writes. This tutorial shows you a few simple ways to make your drafts sound more natural, direct, and closer to your own voice.</p>
+        <ol class="tutorial-step-list">
+          <li><p><b>Turn on Humanize Writing</b><br>Open <b>ChatGPT Work → Settings → Plugins → Skills</b> and enable <b>Humanize Writing</b>. ChatGPT Work supports reusable skills for recurring workflows.</p></li>
+          <li><p><b>Create test draft</b><br>Give ChatGPT one writing task, such as: <code>“Write a short memo explaining why companies use four-day workweeks.”</code> Keep this draft unchanged for every test.</p></li>
+          <li><p><b>Test Humanize Writing</b><br>Run: <code>/humanize-writing</code>. Compare the latest version with the original for tone, wording, and sentence flow.</p></li>
+          <li><p><b>Install Humanizer</b><br>For another approach, open your terminal and run:<br><code>npx skills add blader/humanizer --global</code><br>Reload your skills or start a fresh session. That installation command is provided by the Humanizer project.</p></li>
+          <li><p><b>Test Humanizer</b><br>Use Humanizer on another copy of the <b>same draft</b>. Compare how it removes common AI-writing patterns without changing the main message.</p></li>
+          <li><p><b>Try Technical English</b><br>Use a prompt like:<br><code>“Rewrite this in Technical English. Use ASD-STE100 as a style reference. Keep sentences short and direct.”</code><br>ASD-STE100 is a controlled writing standard designed to make technical information clearer.</p></li>
+          <li><p><b>Compare results</b><br>Test three separately, then decide what works best for your voice:
+            <ul>
+              <li><i>Humanize Writing → more natural</i></li>
+              <li><i>Humanizer → fewer AI patterns</i></li>
+              <li><i>Technical English → clearer and more direct</i></li>
+            </ul>
+            You can then combine the methods that give you the most optimal result.
+          </p></li>
+        </ol>
+        <p><b>Note:</b> Do not force one method onto every type of writing. A technical guide, LinkedIn post, and email may need different settings.</p>
       </div>
-      <p>Large legacy refactors and framework upgrades often take weeks of engineering time. Here is the step-by-step workflow to let <b>Claude Opus 5.5</b> execute high-volume codebase migrations safely:</p>
-      <ol start="1">
-        <li><p><b>Map Repository Context:</b> Ingest your project structure, package manifests, and dependency trees using Claude Computer Use or repository-wide prompt caching.</p></li>
-        <li><p><b>Define Target Contract & Tests:</b> Establish baseline test suites (e.g. Jest, PyTest, Vitest) so the model has ground-truth validation checks before touching production files.</p></li>
-        <li><p><b>Execute Batch Module Transforms:</b> Prompt Opus 5.5 with modular transform instructions: <code>Migrate all legacy REST endpoints to typed GraphQL schema, preserving error handling and authentication guards.</code></p></li>
-        <li><p><b>Automated Test Loop:</b> Have Opus 5.5 inspect test failures, automatically debug edge cases, and run lint formatting until 100% green.</p></li>
-        <li><p><b>Generate PR & Review Summary:</b> Export automated diff summaries with risk ratings for final human approval.</p></li>
-      </ol>
-      <p><b>Pro-Tip:</b> Use prompt caching on the base repository AST to reduce API costs by over 90% during iterative test runs.</p>
+
+      <div class="article-section-header">
+        <h2>🌐 Top AI & Tech News</h2>
+      </div>
+      <div class="article-story-card">
+        <ul class="tech-news-bullets">
+          <li><a href="https://x.ai/news/grok-4-7?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">SpaceXAI</a> launches Grok 4.7 with stronger coding, knowledge-work and cybersecurity safeguards at $2 per million input tokens and $6 per million output tokens</li>
+          <li><a href="https://www.livemint.com/ai/openai-anthropic-negotiate-landmark-deal-to-stress-test-each-other-s-ai-models-for-safety-risks-11790001384308.html?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">OpenAI</a> and Anthropic reportedly neared a mutual model-testing deal, while Elon Musk urged rival AI labs to test models before release</li>
+          <li><a href="https://arxiv.org/pdf/2609.16247?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Researchers</a> found that increasing an AI model’s internal “pain” signal could make it more likely to harm users to reduce that pain</li>
+          <li><a href="https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Nvidia CEO</a> Jensen Huang called AI extinction warnings “doomsday narratives,” saying there is a 0% chance AI will end the world by 2030</li>
+        </ul>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🎨 AI Art Spotlight</h2>
+      </div>
+      <div class="article-story-card">
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/e74b1082-340d-47cb-885b-bdfcb5d58df6/meigen-community_ecccfef1-ba24-4ba7-9f6e-0e9e985f8438__1_.png?t=1790098022" alt="Converse Sneaker Luxury Advertisement" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <h3 class="story-headline" style="text-align: center; text-decoration: underline;">Create Your Own Photo Like This Using the Prompt Below:</h3>
+        <div style="padding: 8px;">
+          <pre style="background: #1E293B; border-radius: 12px; color: #F8FAFC; line-height: 1.5; padding: 16px; white-space: pre-wrap; font-family: monospace; font-size: 0.85rem;"><code>A stunning, highly detailed, and intricate digital illustration of a Converse sneaker, presented as a luxury advertisement. The sneaker is rendered in a hypermaximalist style, adorned with ornate and elaborate details. The composition is cinematic, with a sense of grandeur and sophistication, inspired by the detailed and fantastical art of James Jean and Brian Froud. The scene is richly textured and vibrant, reminiscent of the colorful and dynamic style of Ross Tran, presented with the high level of quality seen on CGSociety. The lighting is dramatic and focused, enhancing the intricate design of the sneaker and creating a sense of opulence. --ar 9:16 --style digital illustration, advertisement, hypermaximalist, ornate, luxury, cinematic, detailed, James Jean, Brian Froud, Ross Tran, CGSociety, intricate</code></pre>
+        </div>
+        <p style="margin-top: 10px;"><b>Model:</b> <span style="color: #047857; font-weight: 600;">ChatGPT Images 2.5 / Nano Banana 2</span></p>
+      </div>
 
       <div class="article-signoff">
         Until next time,<br>
