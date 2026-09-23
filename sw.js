@@ -1,5 +1,5 @@
-// AIRA Service Worker - v87
-const CACHE_NAME = 'aira-cache-v87';
+// AIRA Service Worker - v88
+const CACHE_NAME = 'aira-cache-v88';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
