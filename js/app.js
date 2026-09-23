@@ -11,19 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const base = Array.isArray(baseList) ? baseList : (typeof ARTICLES !== 'undefined' ? ARTICLES : []);
     if (!Array.isArray(customList) || customList.length === 0) return base;
 
-    const customBySlug = new Map();
-    customList.forEach(a => {
-      if (a && a.slug) customBySlug.set(a.slug, a);
-    });
+    const baseSlugs = new Set(base.map(a => a && a.slug));
 
-    const baseSlugs = new Set(base.map(a => a.slug));
-
-    // 1. Keep purely user-created articles (whose slugs are not in base dataset) at the top
+    // 1. Keep purely user-created articles (whose slugs are NOT in base dataset) at the top
     const customOnlyArticles = customList.filter(a => a && a.slug && !baseSlugs.has(a.slug));
 
-    // 2. Base articles (with any local user edits merged in by slug)
+    // 2. Base articles: ALWAYS use the latest official base article from data/articles.js
+    // to prevent stale mobile browser storage snapshots from overriding updated images/text.
     const mergedBaseArticles = base.map(baseArt => {
-      return customBySlug.get(baseArt.slug) || baseArt;
+      const customMatch = customList.find(a => a && a.slug === baseArt.slug);
+      if (customMatch && customMatch._is_admin_draft) {
+        return { ...baseArt, ...customMatch };
+      }
+      return baseArt;
     });
 
     return [...customOnlyArticles, ...mergedBaseArticles];
