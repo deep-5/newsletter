@@ -1271,7 +1271,7 @@ Website: https://aira-newsletter.vercel.app/
       const query = (state.homeSearchQuery || '').trim().toLowerCase();
       let filteredArticles = state.selectedTag === 'All' 
         ? state.articles 
-        : state.articles.filter(a => a.tag.toLowerCase() === state.selectedTag.toLowerCase());
+        : state.articles.filter(a => ((a && a.tag) || 'News').toLowerCase() === state.selectedTag.toLowerCase());
 
       if (query !== '') {
         filteredArticles = filteredArticles.filter(a => {
@@ -1554,7 +1554,7 @@ Website: https://aira-newsletter.vercel.app/
 
     const isLiked = !!state.likedPosts[article.slug];
     const isBookmarked = (state.savedArticles || []).includes(article.slug);
-    const currentLikes = article.likes + (isLiked ? 1 : 0);
+    const currentLikes = (parseInt(article.likes, 10) || 0) + (isLiked ? 1 : 0);
     const postPoll = state.pollVotes[article.slug] || null;
     
     // Fetch comments from Supabase with fallback
