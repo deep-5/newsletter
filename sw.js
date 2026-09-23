@@ -1,5 +1,5 @@
-// AIRA Service Worker - v79
-const CACHE_NAME = 'aira-cache-v79';
+// AIRA Service Worker - v80
+const CACHE_NAME = 'aira-cache-v80';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -7,6 +7,7 @@ const STATIC_ASSETS = [
   '/manifest.json',
   '/assets/logo.jpg',
   '/assets/logo.svg',
+  '/js/storage.js',
   '/js/email-service.js',
   '/js/audio-player.js',
   '/js/app.js',

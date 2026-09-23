@@ -6,9 +6,15 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Helper to load articles from localStorage or default dataset
+  // Helper to load articles from IndexedDB / localStorage / default dataset
   function getArticles() {
     try {
+      if (window.AiraStorage) {
+        const syncVal = window.AiraStorage.getSync('aira_custom_articles');
+        if (syncVal && Array.isArray(syncVal) && syncVal.length > 0) {
+          return syncVal;
+        }
+      }
       const stored = localStorage.getItem('aira_custom_articles');
       if (stored) {
         const parsed = JSON.parse(stored);
@@ -24,15 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveArticles(list) {
     state.articles = list;
-    try {
-      localStorage.setItem('aira_custom_articles', JSON.stringify(list));
-    } catch (e) {
-      console.warn('LocalStorage quota limit reached while saving articles:', e);
+    if (window.AiraStorage) {
+      window.AiraStorage.set('aira_custom_articles', list);
+    } else {
       try {
-        localStorage.removeItem('aira_saved_alts');
         localStorage.setItem('aira_custom_articles', JSON.stringify(list));
-      } catch (err2) {
-        showToast('⚠️ Storage limit reached. Changes active in session.');
+      } catch (e) {
+        console.warn('LocalStorage save error:', e);
       }
     }
   }
@@ -40,12 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Unified Custom Tools Helpers
   function getCustomTools() {
     try {
+      if (window.AiraStorage) {
+        const syncTools = window.AiraStorage.getSync('aira_custom_tools');
+        if (syncTools && Array.isArray(syncTools)) return syncTools;
+      }
       const raw = localStorage.getItem('aira_custom_tools');
       return raw ? JSON.parse(raw) : [];
     } catch (e) { return []; }
   }
   function saveCustomTools(tools) {
-    localStorage.setItem('aira_custom_tools', JSON.stringify(tools));
+    if (window.AiraStorage) {
+      window.AiraStorage.set('aira_custom_tools', tools);
+    } else {
+      try { localStorage.setItem('aira_custom_tools', JSON.stringify(tools)); } catch (e) {}
+    }
   }
   function getAllTools() {
     const baseTools = typeof AI_TOOLS_DATA !== 'undefined' ? (AI_TOOLS_DATA.tools || []) : [];
@@ -431,12 +443,20 @@ Access the full interactive database of 100+ Production Prompts:
   // Unified Custom Deals Helpers
   function getCustomDeals() {
     try {
+      if (window.AiraStorage) {
+        const syncDeals = window.AiraStorage.getSync('aira_custom_deals');
+        if (syncDeals && Array.isArray(syncDeals)) return syncDeals;
+      }
       const raw = localStorage.getItem('aira_custom_deals');
       return raw ? JSON.parse(raw) : [];
     } catch (e) { return []; }
   }
   function saveCustomDeals(deals) {
-    localStorage.setItem('aira_custom_deals', JSON.stringify(deals));
+    if (window.AiraStorage) {
+      window.AiraStorage.set('aira_custom_deals', deals);
+    } else {
+      try { localStorage.setItem('aira_custom_deals', JSON.stringify(deals)); } catch (e) {}
+    }
   }
   function getAllDeals() {
     const baseDeals = typeof AI_DEALS_DATA !== 'undefined' ? (AI_DEALS_DATA.deals || []) : [];
@@ -449,6 +469,10 @@ Access the full interactive database of 100+ Production Prompts:
   // Tool Submissions Helpers
   function getToolSubmissions() {
     try {
+      if (window.AiraStorage) {
+        const syncSubs = window.AiraStorage.getSync('aira_tool_submissions');
+        if (syncSubs && Array.isArray(syncSubs)) return syncSubs;
+      }
       const raw = localStorage.getItem('aira_tool_submissions');
       const list = raw ? JSON.parse(raw) : [];
       // Normalize submissions with IDs & default status
@@ -469,7 +493,11 @@ Access the full interactive database of 100+ Production Prompts:
     } catch (e) { return []; }
   }
   function saveToolSubmissions(subs) {
-    localStorage.setItem('aira_tool_submissions', JSON.stringify(subs));
+    if (window.AiraStorage) {
+      window.AiraStorage.set('aira_tool_submissions', subs);
+    } else {
+      try { localStorage.setItem('aira_tool_submissions', JSON.stringify(subs)); } catch (e) {}
+    }
   }
 
   // App state
@@ -6758,6 +6786,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     if (resetArticlesBtn) {
       resetArticlesBtn.addEventListener('click', () => {
         if (confirm('Reset articles to the original 192 editions? This will discard custom local edits.')) {
+          if (window.AiraStorage) window.AiraStorage.remove('aira_custom_articles');
           localStorage.removeItem('aira_custom_articles');
           state.articles = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
           showToast('🔄 Restored default 192 articles!');
@@ -6770,6 +6799,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     if (clearToolsBtn) {
       clearToolsBtn.addEventListener('click', () => {
         if (confirm('Clear all custom approved AI tools from local storage?')) {
+          if (window.AiraStorage) window.AiraStorage.remove('aira_custom_tools');
           localStorage.removeItem('aira_custom_tools');
           showToast('Custom tools cleared.');
           renderAdminPage();
@@ -9234,4 +9264,17 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   });
 
   renderCurrentRoute();
+
+  // Asynchronously hydrate and sync large datasets from IndexedDB
+  if (typeof window !== 'undefined' && window.AiraStorage) {
+    window.AiraStorage.get('aira_custom_articles').then((dbArticles) => {
+      if (dbArticles && Array.isArray(dbArticles) && dbArticles.length > 0) {
+        state.articles = dbArticles;
+        // If user is already on a route, gently refresh to show all saved articles
+        renderCurrentRoute();
+      }
+    }).catch(err => {
+      console.warn('AiraStorage articles hydration notice:', err);
+    });
+  }
 });
