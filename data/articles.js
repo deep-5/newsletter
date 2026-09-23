@@ -6,6 +6,194 @@
 
 const ARTICLES = [
   {
+    "slug": "anthropic-releases-fable-level-opus-5-5",
+    "title": "Anthropic Releases Fable Level Opus 5.5",
+    "subtitle": "Flagship Claude 5.5 model matches Fable 5.1 with 40% cheaper inference & massive coding leaps.",
+    "date": "Sep 22, 2026",
+    "tag": "Frontier AI",
+    "read_time": "5 min read",
+    "reading_time": "5 min read",
+    "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ead412bd-1383-43d9-909b-30c139ef4b48/Copy_of_Automation_-_2026-09-22T234815.124.png?t=1790099346",
+    "author": "AIRA Editorial Team",
+    "author_avatar": "assets/logo.png",
+    "views": 21800,
+    "likes": 42,
+    "body_html": `<div class="article-menu-intro-card">
+      <div class="menu-intro-greeting">Welcome to AIRA! 👋</div>
+      <div class="menu-intro-heading">Here’s what’s on the menu today:</div>
+      <ul class="menu-intro-list">
+        <li>Anthropic Releases Claude Opus 5.5 Matching Fable 5.1 Benchmarks</li>
+        <li>Muse Beats ChatGPT in Global Mobile App Downloads</li>
+        <li>Top AI & SaaS Tools</li>
+        <li>How to Automate Full-Codebase Migrations With Claude Opus 5.5</li>
+        <li>Top AI & Tech News</li>
+      </ul>
+      <div class="menu-intro-readtime">
+        <span>☕</span>
+        <span>Total read time: About 4 minutes, perfect for a quick coffee break.</span>
+      </div>
+    </div>
+
+    <!-- Main Clean Content Body -->
+    <div class="article-main-body">
+
+      <div class="article-section-header">
+        <h2>🔥 Hottest AI News</h2>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">Anthropic</span>
+        </div>
+        <h3 class="story-headline">Anthropic Launches Flagship Claude Opus 5.5 With Fable-Level Reasoning</h3>
+
+        <div class="section-image-box">
+          <img src="https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ead412bd-1383-43d9-909b-30c139ef4b48/Copy_of_Automation_-_2026-09-22T234815.124.png?t=1790099346" alt="Claude Opus 5.5 Release" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>Anthropic has officially launched <a href="https://www.aiplanetx.com/p/anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Claude Opus 5.5</a>, the first model in the new Claude 5.5 generation. It matches Fable 5.1 across frontier benchmarks while delivering significantly faster, cheaper, clearer, and safer intelligence for developers and enterprises.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li><b>Agentic Coding Powerhouse:</b> Opus 5.5 completed an autonomous 680,000-line full-codebase migration in under 24 hours during enterprise evaluation trials</li>
+          <li><b>40% Cost Reduction & 30% Faster:</b> Standard workloads run 40% cheaper than Opus 5 at $4 per million input tokens and $20 per million output tokens ($0.20/M cached reads)</li>
+          <li><b>Universal Availability:</b> Available immediately under model ID <code>claude-opus-5-5</code> on Claude.ai, AWS Bedrock, Google Cloud Vertex AI, and Microsoft Azure</li>
+        </ul>
+        <p>Anthropic confirmed that Sonnet 5.5 and Haiku 5.5 will follow in upcoming weeks to complete the full 5.5 tier lineup.</p>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">Mobile AI</span>
+        </div>
+        <h3 class="story-headline">Muse Surpasses ChatGPT in Global Mobile App Store Downloads</h3>
+
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/f707ad46-8553-471d-85d2-e1f3c2f9e46b/Copy_of_Automation.png" alt="Muse Mobile AI" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>Generative voice companion <a href="https://www.aiplanetx.com/p/anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Muse</a> has officially taken the #1 rank on iOS and Google Play app charts, surpassing ChatGPT in daily new mobile downloads.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li>Muse features real-time speech-to-speech interaction with under 180ms latency, enabling natural voice interruption and hands-free tutoring</li>
+          <li>The app's seamless audio-first UI is attracting millions of daily active mobile users across productivity, language learning, and personal coaching</li>
+          <li>Meta and partner ecosystems are actively integrating Muse voice APIs across consumer smart glasses and wearable hardware</li>
+        </ul>
+        <p>The milestone signals a major consumer shift toward real-time voice and multimodal AI assistants on personal devices.</p>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🛠️ Top AI & SaaS Tools</h2>
+      </div>
+
+      <div class="article-tools-box">
+        <ul class="tools-feature-list">
+          <li><a href="https://claude.ai/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Claude Opus 5.5</a>: Frontier reasoning and agentic coding model with autonomous computer use and high-speed token caching <b><span class="tool-free-tag">Free Trial</span></b></li>
+          <li><a href="https://go.aiplanetx.com/agentic?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Agentic HQ</a><b> <span class="tool-deal-tag">Lifetime Deal</span></b>: Autonomous workflow orchestrator that automates data extraction, CRM updates, and client communications across 100+ platforms</li>
+          <li><a href="https://devv.ai/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Devv AI</a>: Specialized AI search engine for developers with real-time GitHub repository indexing and syntax-aware debugging <b><span class="tool-free-tag">Free</span></b></li>
+          <li><a href="https://synthesia.io/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Synthesia 3.0</a>: Enterprise video generation with photorealistic AI avatars, dynamic lip-sync, and instant multilingual dubbing in 140+ languages</li>
+          <li><a href="https://elevenlabs.io/reader?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">ElevenLabs Reader</a>: High-fidelity natural voice narrator that turns articles, PDFs, and newsletters into studio-grade audio narrations <b>[F-R-E-E to Try]</b></li>
+        </ul>
+      </div>
+
+      <div class="article-section-header">
+        <h2>📚 AI Tutorial</h2>
+      </div>
+      <h3 class="story-headline">How to Automate Full-Codebase Migrations With Claude Opus 5.5</h3>
+      <div class="section-image-box">
+        <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/21110310-3f40-4c52-9c9f-4099cc72084c/1763097514__1_.png?t=1763097566" alt="AIRA Edition Content" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+      </div>
+      <p>Large legacy refactors and framework upgrades often take weeks of engineering time. Here is the step-by-step workflow to let <b>Claude Opus 5.5</b> execute high-volume codebase migrations safely:</p>
+      <ol start="1">
+        <li><p><b>Map Repository Context:</b> Ingest your project structure, package manifests, and dependency trees using Claude Computer Use or repository-wide prompt caching.</p></li>
+        <li><p><b>Define Target Contract & Tests:</b> Establish baseline test suites (e.g. Jest, PyTest, Vitest) so the model has ground-truth validation checks before touching production files.</p></li>
+        <li><p><b>Execute Batch Module Transforms:</b> Prompt Opus 5.5 with modular transform instructions: <code>Migrate all legacy REST endpoints to typed GraphQL schema, preserving error handling and authentication guards.</code></p></li>
+        <li><p><b>Automated Test Loop:</b> Have Opus 5.5 inspect test failures, automatically debug edge cases, and run lint formatting until 100% green.</p></li>
+        <li><p><b>Generate PR & Review Summary:</b> Export automated diff summaries with risk ratings for final human approval.</p></li>
+      </ol>
+      <p><b>Pro-Tip:</b> Use prompt caching on the base repository AST to reduce API costs by over 90% during iterative test runs.</p>
+
+      <div class="article-signoff">
+        Until next time,<br>
+        <strong>AIRA Editorial Team</strong>
+      </div>
+    </div>`
+  },
+  {
+    "slug": "softbank-backs-openai-with-11b",
+    "title": "SoftBank Backs OpenAI With 11B",
+    "subtitle": "Massive $11.15 billion debt offering funds OpenAI third tranche expansion.",
+    "date": "Sep 21, 2026",
+    "tag": "Venture AI",
+    "read_time": "5 min read",
+    "reading_time": "5 min read",
+    "image_url": "https://media.beehiiv.com/cdn-cgi/image/format=auto,width=800,height=421,fit=scale-down,onerror=redirect/uploads/asset/file/f707ad46-8553-471d-85d2-e1f3c2f9e46b/Copy_of_Automation.png",
+    "author": "AIRA Editorial Team",
+    "author_avatar": "assets/logo.png",
+    "views": 18200,
+    "likes": 29,
+    "body_html": `<div class="article-menu-intro-card">
+      <div class="menu-intro-greeting">Welcome to AIRA! 👋</div>
+      <div class="menu-intro-heading">Here’s what’s on the menu today:</div>
+      <ul class="menu-intro-list">
+        <li>SoftBank Launches Historic $11.15B Bond Sale to Power OpenAI</li>
+        <li>Googlebook Launches Featuring Native Gemini Intelligence</li>
+        <li>Top AI & SaaS Tools</li>
+        <li>How to Build Autonomous Research Agents</li>
+        <li>Top AI & Tech News</li>
+      </ul>
+      <div class="menu-intro-readtime">
+        <span>☕</span>
+        <span>Total read time: About 4 minutes, perfect for a quick coffee break.</span>
+      </div>
+    </div>
+
+    <!-- Main Clean Content Body -->
+    <div class="article-main-body">
+
+      <div class="article-section-header">
+        <h2>🔥 Hottest AI News</h2>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">SoftBank</span>
+        </div>
+        <h3 class="story-headline">SoftBank Launches Record $11.15 Billion Debt Deal to Fund OpenAI</h3>
+
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/format=auto,width=800,height=421,fit=scale-down,onerror=redirect/uploads/asset/file/f707ad46-8553-471d-85d2-e1f3c2f9e46b/Copy_of_Automation.png" alt="SoftBank OpenAI Investment" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>SoftBank has launched an unprecedented <a href="https://www.aiplanetx.com/p/softbank-backs-openai-with-11b" target="_blank" rel="noopener noreferrer">$11.15 billion bond offering</a> ($10B in dollar notes and €1B in euro notes) to finance its landmark direct investment in OpenAI.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li><b>Direct OpenAI Tranche:</b> The capital directly finances the $10 billion third tranche scheduled for OpenAI expansion on October 1, 2026</li>
+          <li><b>Historic Corporate Debt Record:</b> Marks the largest corporate bond offering in APAC history, surpassing 7-Eleven's previous $10.93B benchmark</li>
+          <li><b>Multi-Year Horizon:</b> Dollar notes carry 3.5, 5.5, and 7.5-year maturities, signaling long-term institutional backing for frontier artificial intelligence compute scaling</li>
+        </ul>
+        <p>The deal positions SoftBank as one of the primary sovereign-scale financial partners fueling next-generation supercomputing clusters.</p>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🛠️ Top AI & SaaS Tools</h2>
+      </div>
+
+      <div class="article-tools-box">
+        <ul class="tools-feature-list">
+          <li><a href="https://go.aiplanetx.com/honeylog?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">HoneyLog</a><b> <span class="tool-deal-tag">Lifetime Deal</span></b>: Real-time server log intelligence tracking AI crawlers, LLM scraper bots, and bot traffic</li>
+          <li><a href="https://sider.ai/lab/sider-omni?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Sider Omni Sidebar</a>: AI copilot that lives alongside any desktop app with direct on-screen document editing</li>
+          <li><a href="https://voicecap.ai/?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">VoiceCap</a>: Multilingual AI meeting notetaker that transcribes and creates action items in 100+ languages <b><span class="tool-free-tag">Free</span></b></li>
+          <li><a href="https://bolt.new/blog/what-is-bolt-forge?utm_source=www.aiplanetx.com" target="_blank" rel="noopener noreferrer">Bolt Forge</a>: Full-stack instant web app generator with open-source agentic models and zero usage caps</li>
+        </ul>
+      </div>
+
+      <div class="article-signoff">
+        Until next time,<br>
+        <strong>AIRA Editorial Team</strong>
+      </div>
+    </div>`
+  },
+  {
     "slug": "gpt-6-astra-decodes-wwi-message",
     "title": "GPT-6 Astra Decodes WWI Message",
     "subtitle": "Breakthrough reasoning model cracks 108-year-old German military radio cipher.",
