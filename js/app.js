@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('aira_custom_articles', JSON.stringify(list));
     } catch (e) {
       console.warn('LocalStorage quota limit reached while saving articles:', e);
-      showToast('⚠️ Local storage full, changes active in session.');
+      try {
+        localStorage.removeItem('aira_saved_alts');
+        localStorage.setItem('aira_custom_articles', JSON.stringify(list));
+      } catch (err2) {
+        showToast('⚠️ Storage limit reached. Changes active in session.');
+      }
     }
   }
 
@@ -3825,18 +3830,21 @@ Website: https://aira-newsletter.vercel.app/
     return html;
   }
 
-  // Image Optimizer Helper (Converts file to clean compressed Data URL)
-  function readAndOptimizeImage(file, maxWidth = 1200, maxHeight = 900, quality = 0.85) {
+  // Image Optimizer Helper (Converts file to clean compressed Data URL ~30-50KB)
+  function readAndOptimizeImage(file, maxWidth = 1000, maxHeight = 650, quality = 0.78) {
     return new Promise((resolve, reject) => {
-      if (!file || !file.type.startsWith('image/')) {
+      if (!file) {
+        return reject(new Error('Please select an image file.'));
+      }
+      if (!file.type || !file.type.startsWith('image/')) {
         return reject(new Error('Please select a valid image file.'));
       }
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
-          let width = img.width;
-          let height = img.height;
+          let width = img.width || 800;
+          let height = img.height || 500;
           if (width > maxWidth || height > maxHeight) {
             if (width / height > maxWidth / maxHeight) {
               height = Math.round((height * maxWidth) / width);
@@ -3847,11 +3855,14 @@ Website: https://aira-newsletter.vercel.app/
             }
           }
           const canvas = document.createElement('canvas');
-          canvas.width = width;
-          canvas.height = height;
+          canvas.width = Math.max(1, width);
+          canvas.height = Math.max(1, height);
           const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          resolve(canvas.toDataURL(file.type === 'image/png' ? 'image/png' : 'image/jpeg', quality));
+          // Fill background with white in case of transparent PNG
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', quality));
         };
         img.onerror = () => resolve(e.target.result);
         img.src = e.target.result;
@@ -3950,7 +3961,7 @@ Website: https://aira-newsletter.vercel.app/
                 </div>
 
                 <!-- FORM -->
-                <form id="inline-article-form" class="article-edit-form">
+                <form id="inline-article-form" class="article-edit-form" novalidate>
                   <input type="hidden" id="edit-orig-slug" value="${art.slug || ''}" />
                   <input type="hidden" id="edit-is-new-val" value="${isNew ? 'true' : 'false'}" />
 
@@ -3968,11 +3979,11 @@ Website: https://aira-newsletter.vercel.app/
                       <div class="form-grid-row">
                         <div class="form-group">
                           <label class="form-label">Article Title *</label>
-                          <input type="text" id="editor-title" class="form-control-input" value="${(art.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. Practical AI Plays, Shipped Fast" required />
+                          <input type="text" id="editor-title" class="form-control-input" value="${(art.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. Practical AI Plays, Shipped Fast" />
                         </div>
                         <div class="form-group">
                           <label class="form-label">URL Slug *</label>
-                          <input type="text" id="editor-slug" class="form-control-input" value="${art.slug || ''}" placeholder="e.g. practical-ai-plays" required />
+                          <input type="text" id="editor-slug" class="form-control-input" value="${art.slug || ''}" placeholder="e.g. practical-ai-plays" />
                         </div>
                       </div>
 
@@ -4023,7 +4034,7 @@ Website: https://aira-newsletter.vercel.app/
                                 🌐 Advanced Image Tool
                               </button>
                             </div>
-                            <input type="url" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" placeholder="https://... or uploaded photo" />
+                            <input type="text" id="editor-image" class="form-control-input" value="${art.image_url || 'assets/logo.jpg'}" placeholder="https://... or uploaded photo" />
                           </div>
                         </div>
                       </div>
@@ -4182,7 +4193,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <!-- Web URL Zone -->
               <div id="section-img-url" style="display: none; margin-bottom: 16px;">
                 <label class="form-label" style="font-size: 0.8125rem;">Image Direct URL *</label>
-                <input type="url" id="modal-img-url-input" class="form-control-input" placeholder="https://example.com/image.jpg" />
+                <input type="text" id="modal-img-url-input" class="form-control-input" placeholder="https://example.com/image.jpg" />
               </div>
 
               <!-- Caption / Source Credit -->
@@ -4194,7 +4205,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <!-- Destination Link on Image -->
               <div style="margin-bottom: 14px;">
                 <label class="form-label" style="font-size: 0.8125rem;">Clickable Link on Image (Optional)</label>
-                <input type="url" id="modal-img-link-input" class="form-control-input" placeholder="https://... (When reader clicks photo)" />
+                <input type="text" id="modal-img-link-input" class="form-control-input" placeholder="https://... (When reader clicks photo)" />
               </div>
 
               <!-- Live Preview Card inside Modal -->
@@ -4246,7 +4257,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <!-- Story Title -->
             <div class="form-group" style="margin-bottom: 14px;">
               <label class="form-label" style="font-size: 0.8125rem; font-weight: 700;">Story Headline / Title *</label>
-              <input type="text" class="form-control-input story-inp-title" value="${(story.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. AI Models Are Passing Real-World Benchmarks" required style="font-weight: 700; font-size: 1.05rem;" />
+              <input type="text" class="form-control-input story-inp-title" value="${(story.title || '').replace(/"/g, '&quot;')}" placeholder="e.g. AI Models Are Passing Real-World Benchmarks" style="font-weight: 700; font-size: 1.05rem;" />
             </div>
 
             <!-- Story Picture Card with 1-Click Upload & Live Preview -->
@@ -4270,7 +4281,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       🌐 Replace / Link Photo
                     </button>
                   </div>
-                  <input type="url" class="form-control-input story-inp-image" value="${story.image || ''}" data-idx="${idx}" placeholder="https://... or uploaded image" style="font-size: 0.8125rem; margin-bottom: 6px;" />
+                  <input type="text" class="form-control-input story-inp-image" value="${story.image || ''}" data-idx="${idx}" placeholder="https://... or uploaded image" style="font-size: 0.8125rem; margin-bottom: 6px;" />
                   <input type="text" class="form-control-input story-inp-caption" value="${(story.imageCaption || '').replace(/"/g, '&quot;')}" placeholder="Caption & Credit (e.g. Image Source: OpenAI / AIRA)" style="font-size: 0.8125rem;" />
                 </div>
               </div>
@@ -4624,6 +4635,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           currentLink = s.imageLink || '';
         }
 
+        tempModalImageSrc = currentImg;
         if (urlInput) urlInput.value = currentImg;
         if (captionInput) captionInput.value = currentCaption;
         if (linkInput) linkInput.value = currentLink;
@@ -4874,6 +4886,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
         if (btnConfirmImg) {
           btnConfirmImg.addEventListener('click', () => {
+            syncFormDataToCardData();
             const finalImg = tempModalImageSrc || (modalUrlInput ? modalUrlInput.value.trim() : '');
             const finalCaption = modalCaptionInput ? modalCaptionInput.value.trim() : '';
             const finalLink = modalLinkInput ? modalLinkInput.value.trim() : '';
@@ -4904,20 +4917,29 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             e.preventDefault();
             syncFormDataToCardData();
 
-            const origSlug = document.getElementById('edit-orig-slug').value;
-            const isNewVal = document.getElementById('edit-is-new-val').value === 'true';
-            const title = document.getElementById('editor-title').value.trim();
-            let slug = document.getElementById('editor-slug').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            const subtitle = document.getElementById('editor-subtitle').value.trim();
-            const tag = document.getElementById('editor-tag').value;
-            const date = document.getElementById('editor-date').value.trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-            const reading_time = document.getElementById('editor-reading-time').value.trim() || '4 minutes';
-            const image_url = document.getElementById('editor-image').value.trim() || 'assets/logo.jpg';
-            const author = document.getElementById('editor-author').value.trim() || 'AIRA';
+            const origSlug = document.getElementById('edit-orig-slug')?.value || '';
+            const isNewVal = document.getElementById('edit-is-new-val')?.value === 'true';
+            const title = (document.getElementById('editor-title')?.value || '').trim();
+            let slug = (document.getElementById('editor-slug')?.value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            const subtitle = (document.getElementById('editor-subtitle')?.value || '').trim();
+            const tag = document.getElementById('editor-tag')?.value || 'News';
+            const date = (document.getElementById('editor-date')?.value || '').trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            const reading_time = (document.getElementById('editor-reading-time')?.value || '').trim() || '4 minutes';
+            const image_url = (document.getElementById('editor-image')?.value || '').trim() || 'assets/logo.jpg';
+            const author = (document.getElementById('editor-author')?.value || '').trim() || 'AIRA';
 
-            if (!title || !slug) {
-              showToast('Please fill in article title and slug!');
+            if (!title) {
+              showToast('⚠️ Please enter an article title!');
+              if (activeTab !== 'cards') setViewTab('cards');
+              document.getElementById('editor-title')?.focus();
               return;
+            }
+
+            if (!slug) {
+              slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            }
+            if (!slug) {
+              slug = 'post-' + Date.now();
             }
 
             // Compile clean HTML from cardData behind the scenes
@@ -4945,7 +4967,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 body_html
               };
               saveArticles([newArt, ...state.articles]);
-              showToast('🎉 New article published successfully!');
+              showToast('🎉 New newsletter edition published successfully!');
 
               // Automatically trigger newsletter broadcast to subscribers
               if (typeof window !== 'undefined' && window.EmailService) {
@@ -4996,6 +5018,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             }
 
             state.adminEditingArticle = null;
+            state.adminTab = 'articles';
             renderAdminPage();
           });
         }
@@ -6178,25 +6201,28 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       });
     }
 
+    
+    function openNewArticleEditor() {
+      const defaultTmpl = typeof ARTICLE_TEMPLATES !== 'undefined' && ARTICLE_TEMPLATES[0] ? ARTICLE_TEMPLATES[0] : null;
+      state.adminEditingArticle = {
+        isNew: true,
+        title: defaultTmpl ? defaultTmpl.sampleTitle : 'New Article Edition',
+        slug: defaultTmpl ? defaultTmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') : 'new-article-' + Date.now().toString().slice(-4),
+        subtitle: defaultTmpl ? defaultTmpl.sampleSubtitle : '',
+        tag: defaultTmpl ? defaultTmpl.tag : 'News',
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+        reading_time: defaultTmpl ? defaultTmpl.readingTime : '4 minutes',
+        image_url: 'assets/logo.jpg',
+        author: 'AIRA',
+        body_html: defaultTmpl ? defaultTmpl.body : ''
+      };
+      renderAdminPage();
+    }
+
     // Topbar + New Article button
     const topbarNewArtBtn = document.getElementById('btn-topbar-new-article');
     if (topbarNewArtBtn) {
-      topbarNewArtBtn.addEventListener('click', () => {
-        const defaultTmpl = ARTICLE_TEMPLATES[0];
-        state.adminEditingArticle = {
-          isNew: true,
-          title: defaultTmpl.sampleTitle,
-          slug: defaultTmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
-          subtitle: defaultTmpl.sampleSubtitle,
-          tag: defaultTmpl.tag,
-          date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-          reading_time: defaultTmpl.readingTime,
-          image_url: 'assets/logo.jpg',
-          author: 'AIRA',
-          body_html: defaultTmpl.body
-        };
-        renderAdminPage();
-      });
+      topbarNewArtBtn.addEventListener('click', openNewArticleEditor);
     }
 
     // Widget Add Deal button in Overview
@@ -6502,22 +6528,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
     const addNewArtBtn = document.getElementById('btn-add-new-article');
     if (addNewArtBtn) {
-      addNewArtBtn.addEventListener('click', () => {
-        const defaultTmpl = ARTICLE_TEMPLATES[0];
-        state.adminEditingArticle = {
-          isNew: true,
-          title: defaultTmpl.sampleTitle,
-          slug: defaultTmpl.sampleTitle.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
-          subtitle: defaultTmpl.sampleSubtitle,
-          tag: defaultTmpl.tag,
-          date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-          reading_time: defaultTmpl.readingTime,
-          image_url: 'assets/logo.jpg',
-          author: 'AIRA',
-          body_html: defaultTmpl.body
-        };
-        renderAdminPage();
-      });
+      addNewArtBtn.addEventListener('click', openNewArticleEditor);
     }
 
     appContainer.querySelectorAll('.btn-edit-article').forEach(btn => {
