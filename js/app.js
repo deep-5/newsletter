@@ -3920,7 +3920,7 @@ Website: https://aira-newsletter.vercel.app/
                       👁️ View Live ↗
                     </a>
                   ` : ''}
-                  <button type="submit" form="inline-article-form" style="background: #00BA66; color: #FFFFFF; font-weight: 700; padding: 9px 24px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; border: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0,186,102,0.25);">
+                  <button type="button" id="btn-save-publish-top" style="background: #00BA66; color: #FFFFFF; font-weight: 700; padding: 9px 24px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; border: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0,186,102,0.25);">
                     💾 Save & Publish
                   </button>
                 </div>
@@ -4152,7 +4152,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       <button type="button" id="btn-switch-preview-bottom" style="background: #F4F4F5; border: 1px solid #D4D4D8; color: #18181B; font-weight: 600; padding: 11px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
                         ${activeTab === 'cards' ? '👁️ Preview Live Newsletter' : '🎴 Edit Cards'}
                       </button>
-                      <button type="submit" class="btn-save-modal" style="font-size: 0.95rem; padding: 11px 32px; background: #00BA66; border: none; font-weight: 700; box-shadow: 0 2px 10px rgba(0,186,102,0.25);">
+                      <button type="button" id="btn-save-publish-bottom" class="btn-save-modal" style="font-size: 0.95rem; padding: 11px 32px; background: #00BA66; border: none; font-weight: 700; box-shadow: 0 2px 10px rgba(0,186,102,0.25);">
                         💾 Save & Publish Article
                       </button>
                     </div>
@@ -4482,7 +4482,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             if (file) {
               try {
                 showToast('Optimizing picture... ⏳');
-                const dataUrl = await readAndOptimizeImage(file, 1200, 800, 0.85);
+                const dataUrl = await readAndOptimizeImage(file, 1000, 650, 0.78);
                 syncFormDataToCardData();
                 if (cardData.stories[idx]) {
                   cardData.stories[idx].image = dataUrl;
@@ -4725,7 +4725,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             if (file) {
               try {
                 showToast('Optimizing cover image... ⏳');
-                const dataUrl = await readAndOptimizeImage(file, 1400, 900, 0.85);
+                const dataUrl = await readAndOptimizeImage(file, 1000, 650, 0.78);
                 coverUrlInput.value = dataUrl;
                 if (coverPreviewImg) coverPreviewImg.src = dataUrl;
                 showToast('Cover image ready! 🖼️');
@@ -4851,13 +4851,47 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
         let tempModalImageSrc = '';
 
+        if (modalDropzone) {
+          modalDropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modalDropzone.style.borderColor = '#00BA66';
+            modalDropzone.style.background = '#F0FDF4';
+          });
+          modalDropzone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modalDropzone.style.borderColor = '#CBD5E1';
+            modalDropzone.style.background = '#FFFFFF';
+          });
+          modalDropzone.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modalDropzone.style.borderColor = '#CBD5E1';
+            modalDropzone.style.background = '#FFFFFF';
+            const file = e.dataTransfer?.files?.[0];
+            if (file) {
+              try {
+                showToast('Optimizing dropped picture... ⏳');
+                tempModalImageSrc = await readAndOptimizeImage(file, 1000, 650, 0.78);
+                if (modalPreviewImg) modalPreviewImg.src = tempModalImageSrc;
+                if (modalPreviewCaption && modalCaptionInput) modalPreviewCaption.textContent = modalCaptionInput.value.trim();
+                if (modalPreviewCard) modalPreviewCard.style.display = 'block';
+                showToast('Image ready to apply! 🖼️');
+              } catch (err) {
+                showToast('Could not load dropped image file.');
+              }
+            }
+          });
+        }
+
         if (modalFileInput) {
           modalFileInput.addEventListener('change', async (e) => {
             const file = e.target.files?.[0];
             if (file) {
               try {
                 showToast('Optimizing picture... ⏳');
-                tempModalImageSrc = await readAndOptimizeImage(file, 1200, 800, 0.85);
+                tempModalImageSrc = await readAndOptimizeImage(file, 1000, 650, 0.78);
                 if (modalPreviewImg) modalPreviewImg.src = tempModalImageSrc;
                 if (modalPreviewCaption && modalCaptionInput) modalPreviewCaption.textContent = modalCaptionInput.value.trim();
                 if (modalPreviewCard) modalPreviewCard.style.display = 'block';
@@ -4910,46 +4944,91 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           });
         }
 
-        // Form Submit Handler
-        const form = document.getElementById('inline-article-form');
-        if (form) {
-          form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            syncFormDataToCardData();
+        // Universal Save & Publish Handler
+        function executeSaveAndPublish(e) {
+          if (e && e.preventDefault) e.preventDefault();
+          syncFormDataToCardData();
 
-            const origSlug = document.getElementById('edit-orig-slug')?.value || '';
-            const isNewVal = document.getElementById('edit-is-new-val')?.value === 'true';
-            const title = (document.getElementById('editor-title')?.value || '').trim();
-            let slug = (document.getElementById('editor-slug')?.value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            const subtitle = (document.getElementById('editor-subtitle')?.value || '').trim();
-            const tag = document.getElementById('editor-tag')?.value || 'News';
-            const date = (document.getElementById('editor-date')?.value || '').trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-            const reading_time = (document.getElementById('editor-reading-time')?.value || '').trim() || '4 minutes';
-            const image_url = (document.getElementById('editor-image')?.value || '').trim() || 'assets/logo.jpg';
-            const author = (document.getElementById('editor-author')?.value || '').trim() || 'AIRA';
+          const origSlug = document.getElementById('edit-orig-slug')?.value || '';
+          const isNewVal = document.getElementById('edit-is-new-val')?.value === 'true';
+          const title = (document.getElementById('editor-title')?.value || '').trim();
+          let slug = (document.getElementById('editor-slug')?.value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          const subtitle = (document.getElementById('editor-subtitle')?.value || '').trim();
+          const tag = document.getElementById('editor-tag')?.value || 'News';
+          const date = (document.getElementById('editor-date')?.value || '').trim() || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+          const reading_time = (document.getElementById('editor-reading-time')?.value || '').trim() || '4 minutes';
+          const image_url = (document.getElementById('editor-image')?.value || '').trim() || 'assets/logo.jpg';
+          const author = (document.getElementById('editor-author')?.value || '').trim() || 'AIRA';
 
-            if (!title) {
-              showToast('⚠️ Please enter an article title!');
-              if (activeTab !== 'cards') setViewTab('cards');
-              document.getElementById('editor-title')?.focus();
-              return;
+          if (!title) {
+            showToast('⚠️ Please enter an article title!');
+            if (activeTab !== 'cards') setViewTab('cards');
+            document.getElementById('editor-title')?.focus();
+            return;
+          }
+
+          if (!slug) {
+            slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          }
+          if (!slug) {
+            slug = 'post-' + Date.now();
+          }
+
+          // Compile clean HTML from cardData behind the scenes
+          const body_html = compileCardDataToHtml(cardData);
+
+          if (isNewVal) {
+            if (state.articles.some(a => a.slug === slug)) {
+              slug = slug + '-' + Date.now().toString().slice(-4);
             }
+            const newArt = {
+              id: 'post-' + Date.now(),
+              slug,
+              title,
+              subtitle,
+              image_url,
+              author,
+              author_avatar: 'assets/logo.jpg',
+              date,
+              iso_date: new Date().toISOString(),
+              reading_time,
+              tag,
+              likes: 0,
+              views: '1.0k',
+              featured: false,
+              body_html
+            };
+            saveArticles([newArt, ...state.articles]);
+            showToast('🎉 New newsletter edition published successfully!');
 
-            if (!slug) {
-              slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            }
-            if (!slug) {
-              slug = 'post-' + Date.now();
-            }
-
-            // Compile clean HTML from cardData behind the scenes
-            const body_html = compileCardDataToHtml(cardData);
-
-            if (isNewVal) {
-              if (state.articles.some(a => a.slug === slug)) {
-                slug = slug + '-' + Date.now().toString().slice(-4);
+            // Automatically trigger newsletter broadcast to subscribers
+            if (typeof window !== 'undefined' && window.EmailService) {
+              const subList = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+              if (subList.length > 0 && confirm(`🚀 Broadcast newsletter email for "${newArt.title}" to all ${subList.length} subscribers now?`)) {
+                window.EmailService.broadcastArticle(newArt).then(res => {
+                  showToast(`🚀 Dispatched newsletter email to ${res.sent} subscribers!`);
+                });
               }
-              const newArt = {
+            }
+          } else {
+            const idx = state.articles.findIndex(a => a.slug === origSlug);
+            if (idx !== -1) {
+              state.articles[idx] = {
+                ...state.articles[idx],
+                slug,
+                title,
+                subtitle,
+                image_url,
+                author,
+                date,
+                reading_time,
+                tag,
+                body_html
+              };
+              saveArticles([...state.articles]);
+              showToast('💾 Article changes saved successfully!');
+            } else {
+              saveArticles([{
                 id: 'post-' + Date.now(),
                 slug,
                 title,
@@ -4965,63 +5044,22 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 views: '1.0k',
                 featured: false,
                 body_html
-              };
-              saveArticles([newArt, ...state.articles]);
-              showToast('🎉 New newsletter edition published successfully!');
-
-              // Automatically trigger newsletter broadcast to subscribers
-              if (typeof window !== 'undefined' && window.EmailService) {
-                const subList = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
-                if (subList.length > 0 && confirm(`🚀 Broadcast newsletter email for "${newArt.title}" to all ${subList.length} subscribers now?`)) {
-                  window.EmailService.broadcastArticle(newArt).then(res => {
-                    showToast(`🚀 Dispatched newsletter email to ${res.sent} subscribers!`);
-                  });
-                }
-              }
-            } else {
-              const idx = state.articles.findIndex(a => a.slug === origSlug);
-              if (idx !== -1) {
-                state.articles[idx] = {
-                  ...state.articles[idx],
-                  slug,
-                  title,
-                  subtitle,
-                  image_url,
-                  author,
-                  date,
-                  reading_time,
-                  tag,
-                  body_html
-                };
-                saveArticles([...state.articles]);
-                showToast('💾 Article changes saved successfully!');
-              } else {
-                saveArticles([{
-                  id: 'post-' + Date.now(),
-                  slug,
-                  title,
-                  subtitle,
-                  image_url,
-                  author,
-                  author_avatar: 'assets/logo.jpg',
-                  date,
-                  iso_date: new Date().toISOString(),
-                  reading_time,
-                  tag,
-                  likes: 0,
-                  views: '1.0k',
-                  featured: false,
-                  body_html
-                }, ...state.articles]);
-                showToast('💾 Article saved successfully!');
-              }
+              }, ...state.articles]);
+              showToast('💾 Article saved successfully!');
             }
+          }
 
-            state.adminEditingArticle = null;
-            state.adminTab = 'articles';
-            renderAdminPage();
-          });
+          state.adminEditingArticle = null;
+          state.adminTab = 'articles';
+          renderAdminPage();
         }
+
+        const form = document.getElementById('inline-article-form');
+        if (form) {
+          form.addEventListener('submit', executeSaveAndPublish);
+        }
+        document.getElementById('btn-save-publish-top')?.addEventListener('click', executeSaveAndPublish);
+        document.getElementById('btn-save-publish-bottom')?.addEventListener('click', executeSaveAndPublish);
       }
 
       renderEditorUi();
