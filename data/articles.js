@@ -14,19 +14,19 @@ const ARTICLES = [
     "read_time": "4 min read",
     "reading_time": "4 min read",
     "image_url": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ead412bd-1383-43d9-909b-30c139ef4b48/Copy_of_Automation_-_2026-09-22T234815.124.png?t=1790099346",
-    "author": "Altiam Kabir",
-    "author_avatar": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/user/profile_picture/6a8a7acc-b7dc-434c-b4e6-d131c7210e31/thumb_profile-pic__38_.png",
+    "author": "AIRA Editorial Team",
+    "author_avatar": "assets/logo.svg",
     "views": 21800,
     "likes": 42,
     "body_html": `<div class="article-menu-intro-card">
-      <div class="menu-intro-greeting">Welcome to another edition of <strong>AI PlanetX</strong>! 👋</div>
-      <div class="menu-intro-heading">Anthropic launches Claude Opus 5.5 with Fable-level performance; Meta Muse gains downloads as Nvidia dismisses AI doomsday fears.</div>
-      <div style="font-weight: 700; color: #047857; margin: 12px 0 6px 0;">Inside This Edition: 💎</div>
+      <div class="menu-intro-greeting">Welcome to AIRA! 👋</div>
+      <div class="menu-intro-heading">Here’s what’s on the menu today:</div>
       <ul class="menu-intro-list">
-        <li>Hottest AI News: Anthropic Launches Claude Opus 5.5 & Meta Muse</li>
+        <li>Anthropic Launches Claude Opus 5.5 With Fable-Level Performance</li>
+        <li>Meta Muse Beats ChatGPT Downloads While Amazon Blocks It</li>
         <li>Top AI & SaaS Tools (Foyer, WZRD, Clueso MCP, Altar-1, Dreamina AI)</li>
-        <li>AI Tutorial: How to Personalize ChatGPT for Your Own Writing Style</li>
-        <li>Top AI & Tech News (SpaceXAI Grok 4.7, OpenAI Testing, Nvidia CEO on AI)</li>
+        <li>How to Personalize ChatGPT for Your Own Writing Style</li>
+        <li>Top AI & Tech News (SpaceX Grok 4.7, OpenAI Safety Testing, Nvidia CEO on AI)</li>
       </ul>
       <div class="menu-intro-readtime">
         <span>☕</span>

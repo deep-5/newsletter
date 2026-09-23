@@ -1624,24 +1624,6 @@ Website: https://aira-newsletter.vercel.app/
     const recommendedArticles = state.articles.filter(a => a.slug !== article.slug).slice(0, 2);
     updateSocialMetaTags(article.title, article.subtitle || article.title, article.image_url);
 
-    const tldrBullets = [
-      `<strong>Core Breakthrough:</strong> ${article.subtitle || 'Frontier AI model updates and key architectural milestones.'}`,
-      `<strong>Workflow Impact:</strong> Substantial performance and inference acceleration for developers and teams.`,
-      `<strong>Actionable Takeaway:</strong> Practical prompting strategies and tools ready to test in your workflow today.`
-    ];
-
-    const tldrBoxHtml = `
-      <div class="article-tldr-box">
-        <div class="tldr-header">
-          <span class="tldr-badge">⚡ 30-SECOND EXECUTIVE SUMMARY</span>
-          <span class="tldr-time-badge">• Quick Takeaways</span>
-        </div>
-        <ul class="tldr-bullets">
-          ${tldrBullets.map(b => `<li>${b}</li>`).join('')}
-        </ul>
-      </div>
-    `;
-
     const enrichedBodyHtml = linkToolMentionsInArticle(article.body_html);
 
     appContainer.innerHTML = `
@@ -1711,9 +1693,6 @@ Website: https://aira-newsletter.vercel.app/
               <button type="button" class="tts-speed-btn" data-rate="1.5">1.5x</button>
             </div>
           </div>
-
-          <!-- Executive TL;DR Summary Box -->
-          ${tldrBoxHtml}
 
           <!-- Body Content -->
           <div class="article-rich-body">
