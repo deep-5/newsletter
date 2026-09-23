@@ -6,26 +6,50 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Helper to intelligently merge base articles with custom creations/edits
+  function mergeArticlesWithBase(customList, baseList) {
+    const base = Array.isArray(baseList) ? baseList : (typeof ARTICLES !== 'undefined' ? ARTICLES : []);
+    if (!Array.isArray(customList) || customList.length === 0) return base;
+
+    const customBySlug = new Map();
+    customList.forEach(a => {
+      if (a && a.slug) customBySlug.set(a.slug, a);
+    });
+
+    const baseSlugs = new Set(base.map(a => a.slug));
+
+    // 1. Keep purely user-created articles (whose slugs are not in base dataset) at the top
+    const customOnlyArticles = customList.filter(a => a && a.slug && !baseSlugs.has(a.slug));
+
+    // 2. Base articles (with any local user edits merged in by slug)
+    const mergedBaseArticles = base.map(baseArt => {
+      return customBySlug.get(baseArt.slug) || baseArt;
+    });
+
+    return [...customOnlyArticles, ...mergedBaseArticles];
+  }
+
   // Helper to load articles from IndexedDB / localStorage / default dataset
   function getArticles() {
+    const base = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
     try {
+      let custom = null;
       if (window.AiraStorage) {
-        const syncVal = window.AiraStorage.getSync('aira_custom_articles');
-        if (syncVal && Array.isArray(syncVal) && syncVal.length > 0) {
-          return syncVal;
+        custom = window.AiraStorage.getSync('aira_custom_articles');
+      }
+      if (!custom) {
+        const stored = localStorage.getItem('aira_custom_articles');
+        if (stored) {
+          custom = JSON.parse(stored);
         }
       }
-      const stored = localStorage.getItem('aira_custom_articles');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
+      if (Array.isArray(custom) && custom.length > 0) {
+        return mergeArticlesWithBase(custom, base);
       }
     } catch (e) {
       console.error('Error loading custom articles from storage:', e);
     }
-    return typeof ARTICLES !== 'undefined' ? ARTICLES : [];
+    return base;
   }
 
   function saveArticles(list) {
@@ -9269,9 +9293,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   if (typeof window !== 'undefined' && window.AiraStorage) {
     window.AiraStorage.get('aira_custom_articles').then((dbArticles) => {
       if (dbArticles && Array.isArray(dbArticles) && dbArticles.length > 0) {
-        state.articles = dbArticles;
-        // If user is already on a route, gently refresh to show all saved articles
-        renderCurrentRoute();
+        const base = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
+        const merged = mergeArticlesWithBase(dbArticles, base);
+        if (JSON.stringify(merged) !== JSON.stringify(state.articles)) {
+          state.articles = merged;
+          // If user is already on a route, gently refresh to show all saved articles
+          renderCurrentRoute();
+        }
       }
     }).catch(err => {
       console.warn('AiraStorage articles hydration notice:', err);
