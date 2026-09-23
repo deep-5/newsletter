@@ -27,7 +27,6 @@ const ARTICLES = [
         <li>Top AI & SaaS Tools (Foyer, WZRD, Clueso MCP, Altar-1, Dreamina AI)</li>
         <li>AI Tutorial: How to Personalize ChatGPT for Your Own Writing Style</li>
         <li>Top AI & Tech News (SpaceXAI Grok 4.7, OpenAI Testing, Nvidia CEO on AI)</li>
-        <li>AI Art Spotlight: Luxury Sneaker Hypermaximalist Illustration</li>
       </ul>
       <div class="menu-intro-readtime">
         <span>☕</span>
@@ -134,20 +133,6 @@ const ARTICLES = [
           <li><a href="https://arxiv.org/pdf/2609.16247?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Researchers</a> found that increasing an AI model’s internal “pain” signal could make it more likely to harm users to reduce that pain</li>
           <li><a href="https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings?utm_source=www.aiplanetx.com&utm_medium=referral&utm_campaign=anthropic-releases-fable-level-opus-5-5" target="_blank" rel="noopener noreferrer">Nvidia CEO</a> Jensen Huang called AI extinction warnings “doomsday narratives,” saying there is a 0% chance AI will end the world by 2030</li>
         </ul>
-      </div>
-
-      <div class="article-section-header">
-        <h2>🎨 AI Art Spotlight</h2>
-      </div>
-      <div class="article-story-card">
-        <div class="section-image-box">
-          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/e74b1082-340d-47cb-885b-bdfcb5d58df6/meigen-community_ecccfef1-ba24-4ba7-9f6e-0e9e985f8438__1_.png?t=1790098022" alt="Converse Sneaker Luxury Advertisement" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
-        </div>
-        <h3 class="story-headline" style="text-align: center; text-decoration: underline;">Create Your Own Photo Like This Using the Prompt Below:</h3>
-        <div style="padding: 8px;">
-          <pre style="background: #1E293B; border-radius: 12px; color: #F8FAFC; line-height: 1.5; padding: 16px; white-space: pre-wrap; font-family: monospace; font-size: 0.85rem;"><code>A stunning, highly detailed, and intricate digital illustration of a Converse sneaker, presented as a luxury advertisement. The sneaker is rendered in a hypermaximalist style, adorned with ornate and elaborate details. The composition is cinematic, with a sense of grandeur and sophistication, inspired by the detailed and fantastical art of James Jean and Brian Froud. The scene is richly textured and vibrant, reminiscent of the colorful and dynamic style of Ross Tran, presented with the high level of quality seen on CGSociety. The lighting is dramatic and focused, enhancing the intricate design of the sneaker and creating a sense of opulence. --ar 9:16 --style digital illustration, advertisement, hypermaximalist, ornate, luxury, cinematic, detailed, James Jean, Brian Froud, Ross Tran, CGSociety, intricate</code></pre>
-        </div>
-        <p style="margin-top: 10px;"><b>Model:</b> <span style="color: #047857; font-weight: 600;">ChatGPT Images 2.5 / Nano Banana 2</span></p>
       </div>
 
       <div class="article-signoff">
