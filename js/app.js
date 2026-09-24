@@ -6329,7 +6329,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         tag: defaultTmpl ? defaultTmpl.tag : 'News',
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         reading_time: defaultTmpl ? defaultTmpl.readingTime : '4 minutes',
-        image_url: 'assets/logo.jpg',
+        image_url: 'assets/aira-banner-template-v2.jpg',
         author: 'AIRA',
         body_html: defaultTmpl ? defaultTmpl.body : ''
       };
