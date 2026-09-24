@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Keep purely user-created articles (whose slugs are NOT in base dataset) at the top
     const customOnlyArticles = customList.filter(a => a && a.slug && !baseSlugs.has(a.slug));
 
-    // 2. Base articles: ALWAYS use the latest official base article from data/articles.js
-    // to prevent stale mobile browser storage snapshots from overriding updated images/text.
+    // 2. Base articles:
+    // If the admin has customized or edited the article (_is_custom_edit or _is_admin_draft or custom image/content),
+    // preserve the user's custom changes! Otherwise use the latest base article.
     const mergedBaseArticles = base.map(baseArt => {
       const customMatch = customList.find(a => a && a.slug === baseArt.slug);
-      if (customMatch && customMatch._is_admin_draft) {
+      if (customMatch && (customMatch._is_custom_edit || customMatch._is_admin_draft || (customMatch._edited_at && customMatch._edited_at > 0))) {
         return { ...baseArt, ...customMatch };
       }
       return baseArt;
@@ -5031,7 +5032,10 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               likes: 0,
               views: '1.0k',
               featured: false,
-              body_html
+              body_html,
+              _is_custom_edit: true,
+              _is_admin_draft: true,
+              _edited_at: Date.now()
             };
             saveArticles([newArt, ...state.articles]);
             showToast('🎉 New newsletter edition published successfully!');
@@ -5047,39 +5051,30 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             }
           } else {
             const idx = state.articles.findIndex(a => a.slug === origSlug);
+            const existingArt = idx !== -1 ? state.articles[idx] : null;
+            const updatedArt = {
+              ...(existingArt || {}),
+              id: existingArt?.id || ('post-' + Date.now()),
+              slug,
+              title,
+              subtitle,
+              image_url,
+              author,
+              date,
+              reading_time,
+              tag,
+              body_html,
+              _is_custom_edit: true,
+              _is_admin_draft: true,
+              _edited_at: Date.now()
+            };
+
             if (idx !== -1) {
-              state.articles[idx] = {
-                ...state.articles[idx],
-                slug,
-                title,
-                subtitle,
-                image_url,
-                author,
-                date,
-                reading_time,
-                tag,
-                body_html
-              };
+              state.articles[idx] = updatedArt;
               saveArticles([...state.articles]);
               showToast('💾 Article changes saved successfully!');
             } else {
-              saveArticles([{
-                id: 'post-' + Date.now(),
-                slug,
-                title,
-                subtitle,
-                image_url,
-                author,
-                author_avatar: 'assets/logo.jpg',
-                date,
-                iso_date: new Date().toISOString(),
-                reading_time,
-                tag,
-                likes: 0,
-                views: '1.0k',
-                featured: false,
-                body_html
-              }, ...state.articles]);
+              saveArticles([updatedArt, ...state.articles]);
               showToast('💾 Article saved successfully!');
             }
           }
