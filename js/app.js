@@ -6,33 +6,47 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Helper to intelligently merge base articles with custom creations/edits
+  // Helper to intelligently merge base articles with custom overrides and new creations
   function mergeArticlesWithBase(customList, baseList) {
-    const base = Array.isArray(baseList) ? baseList : (typeof ARTICLES !== 'undefined' ? ARTICLES : []);
-    if (!Array.isArray(customList) || customList.length === 0) return base;
+    const base = Array.isArray(baseList) ? baseList : (typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES) ? ARTICLES : []);
+    
+    // Read lightweight overrides dictionary
+    let overrides = {};
+    try {
+      const rawOvr = localStorage.getItem('aira_article_overrides');
+      if (rawOvr) overrides = JSON.parse(rawOvr) || {};
+    } catch (e) {}
 
     const baseSlugs = new Set(base.map(a => a && a.slug));
+    const safeCustomList = Array.isArray(customList) ? customList : [];
 
     // 1. Keep purely user-created articles (whose slugs are NOT in base dataset) at the top
-    const customOnlyArticles = customList.filter(a => a && a.slug && !baseSlugs.has(a.slug));
+    const customOnlyArticles = safeCustomList.filter(a => a && a.slug && !baseSlugs.has(a.slug));
 
-    // 2. Base articles:
-    // If the admin has customized or edited the article (_is_custom_edit or _is_admin_draft or custom image/content),
-    // preserve the user's custom changes! Otherwise use the latest base article.
+    // 2. Base articles: Apply explicit overrides first, then any custom list matches
     const mergedBaseArticles = base.map(baseArt => {
-      const customMatch = customList.find(a => a && a.slug === baseArt.slug);
+      if (!baseArt || !baseArt.slug) return baseArt;
+      
+      // Check explicit overrides map
+      if (overrides[baseArt.slug]) {
+        return { ...baseArt, ...overrides[baseArt.slug] };
+      }
+
+      // Check custom list match
+      const customMatch = safeCustomList.find(a => a && a.slug === baseArt.slug);
       if (customMatch && (customMatch._is_custom_edit || customMatch._is_admin_draft || (customMatch._edited_at && customMatch._edited_at > 0))) {
         return { ...baseArt, ...customMatch };
       }
+
       return baseArt;
     });
 
     return [...customOnlyArticles, ...mergedBaseArticles];
   }
 
-  // Helper to load articles from IndexedDB / localStorage / default dataset
+  // Helper to load articles from storage & default dataset with instant synchronous paint
   function getArticles() {
-    const base = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
+    const base = typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES) ? ARTICLES : [];
     try {
       let custom = null;
       if (window.AiraStorage) {
@@ -44,9 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
           custom = JSON.parse(stored);
         }
       }
-      if (Array.isArray(custom) && custom.length > 0) {
-        return mergeArticlesWithBase(custom, base);
-      }
+      return mergeArticlesWithBase(custom, base);
     } catch (e) {
       console.error('Error loading custom articles from storage:', e);
     }
@@ -55,14 +67,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveArticles(list) {
     state.articles = list;
-    if (window.AiraStorage) {
-      window.AiraStorage.set('aira_custom_articles', list);
-    } else {
-      try {
-        localStorage.setItem('aira_custom_articles', JSON.stringify(list));
-      } catch (e) {
-        console.warn('LocalStorage save error:', e);
+    const base = typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES) ? ARTICLES : [];
+    const baseSlugs = new Set(base.map(a => a && a.slug));
+
+    // Extract overrides dictionary for base articles
+    let overrides = {};
+    try {
+      overrides = JSON.parse(localStorage.getItem('aira_article_overrides') || '{}');
+    } catch (e) {}
+
+    const customOnly = [];
+
+    list.forEach(art => {
+      if (!art || !art.slug) return;
+      if (baseSlugs.has(art.slug)) {
+        const baseMatch = base.find(b => b.slug === art.slug);
+        const isModified = art._is_custom_edit || 
+                           art._is_admin_draft || 
+                           (baseMatch && (art.image_url !== baseMatch.image_url || art.title !== baseMatch.title || art.subtitle !== baseMatch.subtitle));
+        if (isModified) {
+          overrides[art.slug] = {
+            ...art,
+            _is_custom_edit: true,
+            _is_admin_draft: true,
+            _edited_at: art._edited_at || Date.now()
+          };
+        }
+      } else {
+        customOnly.push(art);
       }
+    });
+
+    // Save lightweight overrides map (instantly in localStorage + IndexedDB)
+    try {
+      localStorage.setItem('aira_article_overrides', JSON.stringify(overrides));
+    } catch (e) {}
+    if (window.AiraStorage) {
+      window.AiraStorage.set('aira_article_overrides', overrides);
+    }
+
+    // Save custom-only creations
+    try {
+      localStorage.setItem('aira_custom_articles', JSON.stringify(customOnly));
+    } catch (e) {}
+    if (window.AiraStorage) {
+      window.AiraStorage.set('aira_custom_articles', customOnly);
     }
   }
 
@@ -6787,11 +6836,15 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     const resetArticlesBtn = document.getElementById('btn-reset-articles');
     if (resetArticlesBtn) {
       resetArticlesBtn.addEventListener('click', () => {
-        if (confirm('Reset articles to the original 192 editions? This will discard custom local edits.')) {
-          if (window.AiraStorage) window.AiraStorage.remove('aira_custom_articles');
+        if (confirm('Reset articles to the original default editions? This will discard custom local edits.')) {
+          if (window.AiraStorage) {
+            window.AiraStorage.remove('aira_custom_articles');
+            window.AiraStorage.remove('aira_article_overrides');
+          }
           localStorage.removeItem('aira_custom_articles');
-          state.articles = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
-          showToast('🔄 Restored default 192 articles!');
+          localStorage.removeItem('aira_article_overrides');
+          state.articles = typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES) ? ARTICLES : [];
+          showToast('🔄 Restored default articles baseline!');
           renderAdminPage();
         }
       });
@@ -9269,13 +9322,29 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
   // Asynchronously hydrate and sync large datasets from IndexedDB
   if (typeof window !== 'undefined' && window.AiraStorage) {
-    window.AiraStorage.get('aira_custom_articles').then((dbArticles) => {
-      if (dbArticles && Array.isArray(dbArticles) && dbArticles.length > 0) {
-        const base = typeof ARTICLES !== 'undefined' ? ARTICLES : [];
-        const merged = mergeArticlesWithBase(dbArticles, base);
-        if (JSON.stringify(merged) !== JSON.stringify(state.articles)) {
-          state.articles = merged;
-          // If user is already on a route, gently refresh to show all saved articles
+    Promise.all([
+      window.AiraStorage.get('aira_article_overrides'),
+      window.AiraStorage.get('aira_custom_articles')
+    ]).then(([dbOverrides, dbCustom]) => {
+      let changed = false;
+      if (dbOverrides && typeof dbOverrides === 'object' && Object.keys(dbOverrides).length > 0) {
+        try {
+          const localOvr = JSON.parse(localStorage.getItem('aira_article_overrides') || '{}');
+          const mergedOvr = { ...localOvr, ...dbOverrides };
+          localStorage.setItem('aira_article_overrides', JSON.stringify(mergedOvr));
+          changed = true;
+        } catch (e) {}
+      }
+      if (dbCustom && Array.isArray(dbCustom) && dbCustom.length > 0) {
+        try {
+          localStorage.setItem('aira_custom_articles', JSON.stringify(dbCustom));
+          changed = true;
+        } catch (e) {}
+      }
+      if (changed) {
+        const fresh = getArticles();
+        if (JSON.stringify(fresh) !== JSON.stringify(state.articles)) {
+          state.articles = fresh;
           renderCurrentRoute();
         }
       }
