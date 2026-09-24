@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '96.0';
+  const CURRENT_DATA_VERSION = '97.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1342,78 +1342,55 @@ Website: https://aira-newsletter.vercel.app/
 
   function renderHomePage() {
     appContainer.innerHTML = `
-      <!-- OpenAlternative-Inspired Hero Section -->
+      <!-- OpenAlternative Exact Modern Hero Section -->
       <section class="hero-openalt-section">
         <div class="hero-openalt-container">
-          <!-- 1. Top Curated Pill Badge -->
-          <a href="#/tags" class="hero-openalt-badge" title="Explore 400+ Curated AI Tools">
-            <span class="hero-badge-pill-tag">✨ Open Source & AI</span>
-            <span class="hero-badge-text">Curating 400+ Frontier AI Tools & Breakdowns</span>
-            <svg class="hero-badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          
+          <!-- 0. Top Ad / Featured Spotlight Bar -->
+          <div class="hero-openalt-top-ad">
+            <div class="hero-top-ad-left">
+              <span class="hero-ad-badge-pill">Ad</span>
+              <span class="hero-ad-brand-icon">⚡</span>
+              <span class="hero-ad-text-content"><strong>AIRA VIP</strong> – Daily frontier AI breakthroughs, 400+ curated tools, and open-source models.</span>
+            </div>
+            <a href="#/advertise" class="hero-ad-action-btn">Learn More</a>
+          </div>
 
-          <!-- 2. Main Title (High Impact Bold Typography) -->
-          <h1 class="hero-openalt-title">
-            Discover Open-Source & <br class="hero-br-desktop" />
-            <span class="hero-title-highlight">Frontier AI Intelligence</span>
+          <!-- 1. Top Mini Pill Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>Built with ⚡ AIRA</span>
+          </div>
+
+          <!-- 2. Main Title (Exact Clean Typography) -->
+          <h1 class="hero-openalt-heading">
+            Open Source Alternatives<br />
+            to Popular Software
           </h1>
 
-          <!-- 3. Subtitle / Value Proposition -->
-          <p class="hero-openalt-subtitle">
-            Daily frontier AI breakdowns, curated open-source alternatives, battle-tested prompt recipes, and direct verified tool links.
+          <!-- 3. Subtitle -->
+          <p class="hero-openalt-subheading">
+            Over 1 million users replaced their proprietary tools with open source software.<br class="hero-br-desktop" />
+            Discover the best alternatives, frontier AI tools, and join the movement.
           </p>
 
-          <!-- 4. Interactive Email Subscribe & Search Combined Bar -->
-          <div class="hero-openalt-action-box">
-            <form class="hero-openalt-form" id="hero-openalt-sub-form">
-              <div class="hero-form-input-wrap">
-                <svg class="hero-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                <input type="email" class="hero-openalt-input" id="hero-openalt-email" placeholder="Enter your work email address..." required autocomplete="email" />
-              </div>
-              <button type="submit" class="hero-openalt-btn" id="hero-openalt-sub-btn">
-                <span>Subscribe Free ⚡</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </form>
+          <!-- 4. Single Clean Subscription Box (Exact Screenshot Match) -->
+          <form class="hero-openalt-subscribe-box" id="hero-openalt-sub-form">
+            <input type="email" class="hero-openalt-email-input" id="hero-openalt-email" placeholder="Enter your email" required autocomplete="email" />
+            <button type="submit" class="hero-openalt-submit-btn" id="hero-openalt-sub-btn">Subscribe</button>
+          </form>
 
-            <!-- Instant Live Search Bar for Articles & Tools -->
-            <form class="hero-openalt-search-bar" id="hero-search-form" onsubmit="event.preventDefault();">
-              <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="hero-search-input" class="hero-search-input-field" placeholder="Or search 400+ AI tools, models, news..." value="${state.homeSearchQuery || ''}" autocomplete="off" />
-              <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
-            </form>
-          </div>
-
-          <!-- 5. Quick Category Tags Row (OpenAlternative Style) -->
-          <div class="hero-openalt-quick-tags">
-            <span class="hero-tags-label">Quick Explore:</span>
-            <a href="#/tags?category=chatbots-llms" class="hero-quick-tag">🤖 LLMs & Chat</a>
-            <a href="#/tags?category=developer-tools" class="hero-quick-tag">💻 Coding & Dev</a>
-            <a href="#/tags?category=image-generators" class="hero-quick-tag">🎨 Image AI</a>
-            <a href="#/alternatives" class="hero-quick-tag">🔄 Alternatives</a>
-            <a href="#/prompts" class="hero-quick-tag">✨ Prompts Vault</a>
-          </div>
-
-          <!-- 6. Social Proof Avatars Stack & Community Trust -->
-          <div class="hero-openalt-social-proof">
-            <div class="hero-avatar-stack">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
+          <!-- 5. Social Proof (5 Overlapping Avatars + 12K+ People) -->
+          <div class="hero-openalt-social-proof-clean">
+            <div class="hero-avatar-stack-clean">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
             </div>
-            <div class="hero-proof-details">
-              <div class="hero-proof-stars">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                <span class="hero-proof-rating">4.9 / 5.0</span>
-              </div>
-              <span class="hero-proof-subtext">Trusted by <strong>15,000+</strong> AI engineers, founders & builders</span>
-            </div>
+            <span class="hero-proof-text-clean">Trusted by 12K+ people</span>
           </div>
+
         </div>
       </section>
 
@@ -1466,13 +1443,22 @@ Website: https://aira-newsletter.vercel.app/
         .slice(0, 7);
 
       feedInner.innerHTML = `
-        <!-- Articles Header & Filter Pills -->
+        <!-- Articles Header & Filter Pills + Quick Search -->
         <div class="feed-header">
-          <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
-          <div class="filter-pills">
-            <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
-            <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
-            <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
+            <div class="filter-pills">
+              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
+              <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
+              <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
+            </div>
+          </div>
+
+          <!-- Feed Live Search Bar -->
+          <div class="feed-search-wrap" style="display: flex; align-items: center; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 9999px; padding: 6px 14px; max-width: 280px; width: 100%; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2" style="flex-shrink: 0;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="feed-search-input" placeholder="Filter articles..." value="${state.homeSearchQuery || ''}" style="border: none; background: transparent; outline: none; font-size: 0.85rem; padding: 0 6px; flex: 1; color: #18181B;" />
+            <button type="button" id="feed-search-clear" style="background: none; border: none; cursor: pointer; color: #71717A; font-size: 0.8rem; display: ${state.homeSearchQuery ? 'block' : 'none'};">✕</button>
           </div>
         </div>
 
@@ -1622,7 +1608,7 @@ Website: https://aira-newsletter.vercel.app/
               <p class="ad-banner-desc">Daily frontier research, step-by-step tutorials and reasoning models delivered free.</p>
             </div>
             <button type="button" class="ad-pill-btn" onclick="document.getElementById('subscribe-modal').classList.add('active'); document.body.style.overflow='hidden';">
-              <span>Subscribe Free ⚡</span>
+              <span>Subscribe ⚡</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
@@ -1655,28 +1641,46 @@ Website: https://aira-newsletter.vercel.app/
         });
       });
 
+      // Bind Feed search input
+      const feedSearchInput = document.getElementById('feed-search-input');
+      const feedSearchClear = document.getElementById('feed-search-clear');
+      if (feedSearchInput) {
+        feedSearchInput.addEventListener('input', (e) => {
+          state.homeSearchQuery = e.target.value;
+          if (feedSearchClear) feedSearchClear.style.display = e.target.value ? 'block' : 'none';
+          state.homeCurrentPage = 1;
+          updateArticlesGrid();
+        });
+      }
+      if (feedSearchClear) {
+        feedSearchClear.addEventListener('click', () => {
+          state.homeSearchQuery = '';
+          if (feedSearchInput) feedSearchInput.value = '';
+          feedSearchClear.style.display = 'none';
+          state.homeCurrentPage = 1;
+          updateArticlesGrid();
+        });
+      }
+
       // Bind clear search buttons
       const clearQueryBtn = document.getElementById('btn-clear-search-query');
       if (clearQueryBtn) {
-        clearQueryBtn.addEventListener('click', clearHeroSearch);
+        clearQueryBtn.addEventListener('click', () => {
+          state.homeSearchQuery = '';
+          if (feedSearchInput) feedSearchInput.value = '';
+          state.homeCurrentPage = 1;
+          updateArticlesGrid();
+        });
       }
       const emptyClearBtn = document.getElementById('btn-empty-clear-search');
       if (emptyClearBtn) {
-        emptyClearBtn.addEventListener('click', clearHeroSearch);
+        emptyClearBtn.addEventListener('click', () => {
+          state.homeSearchQuery = '';
+          if (feedSearchInput) feedSearchInput.value = '';
+          state.homeCurrentPage = 1;
+          updateArticlesGrid();
+        });
       }
-    }
-
-    function clearHeroSearch() {
-      state.homeSearchQuery = '';
-      const heroSearchInput = document.getElementById('hero-search-input');
-      if (heroSearchInput) {
-        heroSearchInput.value = '';
-        heroSearchInput.focus();
-      }
-      const heroSearchClear = document.getElementById('hero-search-clear');
-      if (heroSearchClear) heroSearchClear.style.display = 'none';
-      state.homeCurrentPage = 1;
-      updateArticlesGrid();
     }
 
     // Initial render of grid
@@ -1718,7 +1722,7 @@ Website: https://aira-newsletter.vercel.app/
           setTimeout(() => {
             if (submitBtn) {
               submitBtn.disabled = false;
-              submitBtn.innerHTML = '<span>Subscribe Free ⚡</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+              submitBtn.innerHTML = 'Subscribe';
             }
             if (input) input.value = '';
             if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
@@ -1730,39 +1734,9 @@ Website: https://aira-newsletter.vercel.app/
           localStorage.setItem('aira_subscribed', 'true');
           if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>Subscribe Free ⚡</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+            submitBtn.innerHTML = 'Subscribe';
           }
           showToast('Welcome to AIRA! 🚀');
-        }
-      });
-    }
-
-    // Bind hero search input
-    const heroSearchInput = document.getElementById('hero-search-input');
-    const heroSearchClear = document.getElementById('hero-search-clear');
-    const heroSearchForm = document.getElementById('hero-search-form');
-
-    if (heroSearchInput) {
-      heroSearchInput.addEventListener('input', (e) => {
-        state.homeSearchQuery = e.target.value;
-        if (heroSearchClear) {
-          heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
-        }
-        state.homeCurrentPage = 1;
-        updateArticlesGrid();
-      });
-    }
-
-    if (heroSearchClear) {
-      heroSearchClear.addEventListener('click', clearHeroSearch);
-    }
-
-    if (heroSearchForm) {
-      heroSearchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const feedSection = document.getElementById('main-articles-feed');
-        if (feedSection) {
-          feedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     }
