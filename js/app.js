@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '97.0';
+  const CURRENT_DATA_VERSION = '98.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1373,10 +1373,15 @@ Website: https://aira-newsletter.vercel.app/
             Discover the best alternatives, frontier AI tools, and join the movement.
           </p>
 
-          <!-- 4. Single Clean Subscription Box (Exact Screenshot Match) -->
-          <form class="hero-openalt-subscribe-box" id="hero-openalt-sub-form">
-            <input type="email" class="hero-openalt-email-input" id="hero-openalt-email" placeholder="Enter your email" required autocomplete="email" />
-            <button type="submit" class="hero-openalt-submit-btn" id="hero-openalt-sub-btn">Subscribe</button>
+          <!-- 4. Single Clean Search Box (Replacing Subscribe as requested) -->
+          <form class="hero-openalt-search-box" id="hero-openalt-search-form" onsubmit="event.preventDefault();">
+            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="hero-openalt-search-input" id="hero-search-input" placeholder="Search AI tools, software alternatives, articles..." value="${state.homeSearchQuery || ''}" autocomplete="off" />
+            <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="hero-openalt-search-btn" id="hero-search-btn">Search</button>
           </form>
 
           <!-- 5. Social Proof (5 Overlapping Avatars + 12K+ People) -->
@@ -1686,57 +1691,45 @@ Website: https://aira-newsletter.vercel.app/
     // Initial render of grid
     updateArticlesGrid();
 
-    // Bind Hero Subscribe Form
-    const heroSubForm = document.getElementById('hero-openalt-sub-form');
-    if (heroSubForm) {
-      heroSubForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const input = document.getElementById('hero-openalt-email');
-        const submitBtn = document.getElementById('hero-openalt-sub-btn');
-        const email = input ? input.value.trim() : '';
-        if (!email) return;
+    // Bind Hero Search Form & Input
+    const heroSearchInput = document.getElementById('hero-search-input');
+    const heroSearchClear = document.getElementById('hero-search-clear');
+    const heroSearchForm = document.getElementById('hero-openalt-search-form');
 
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Subscribing...';
+    if (heroSearchInput) {
+      heroSearchInput.addEventListener('input', (e) => {
+        state.homeSearchQuery = e.target.value;
+        if (heroSearchClear) {
+          heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
         }
+        const feedSearchInput = document.getElementById('feed-search-input');
+        if (feedSearchInput) feedSearchInput.value = e.target.value;
+        state.homeCurrentPage = 1;
+        updateArticlesGrid();
+      });
+    }
 
-        try {
-          if (window.DatabaseService) {
-            await window.DatabaseService.subscribe(email, 'OpenAlt Homepage Hero');
-          } else {
-            const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
-            if (!list.includes(email)) {
-              list.push(email);
-              localStorage.setItem('aira_subscribers', JSON.stringify(list));
-            }
-          }
+    if (heroSearchClear) {
+      heroSearchClear.addEventListener('click', () => {
+        state.homeSearchQuery = '';
+        if (heroSearchInput) {
+          heroSearchInput.value = '';
+          heroSearchInput.focus();
+        }
+        heroSearchClear.style.display = 'none';
+        const feedSearchInput = document.getElementById('feed-search-input');
+        if (feedSearchInput) feedSearchInput.value = '';
+        state.homeCurrentPage = 1;
+        updateArticlesGrid();
+      });
+    }
 
-          sessionStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_subscribed', 'true');
-
-          if (submitBtn) submitBtn.innerHTML = 'Subscribed! ✓';
-          showToast('🎉 Welcome to AIRA! Access granted to 50 n8n templates.');
-
-          setTimeout(() => {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = 'Subscribe';
-            }
-            if (input) input.value = '';
-            if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
-          }, 800);
-        } catch (err) {
-          console.error('Subscription error:', err);
-          sessionStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_subscribed', 'true');
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Subscribe';
-          }
-          showToast('Welcome to AIRA! 🚀');
+    if (heroSearchForm) {
+      heroSearchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const feedSection = document.getElementById('main-articles-feed');
+        if (feedSection) {
+          feedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     }

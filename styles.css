@@ -232,11 +232,10 @@ img {
   padding: 24px 0 54px 0;
   text-align: center;
   background-color: #FFFFFF;
-  background-image: 
-    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.98) 75%),
-    radial-gradient(#E2E8F0 1.25px, transparent 1.25px);
-  background-size: 100% 100%, 22px 22px;
-  background-position: center center;
+  background-image: url('assets/hero-grid.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--color-border-light);
@@ -376,32 +375,44 @@ img {
   font-weight: 400;
 }
 
-/* 4. Single Clean Subscription Box (Exact Screenshot Match) */
+/* 4. Search Box in Hero (Replacing Subscribe Button as requested) */
+.hero-openalt-search-box,
 .hero-openalt-subscribe-box,
 .hero-openalt-form,
+.search-form-hero,
 .subscribe-form-hero {
   display: flex;
   align-items: center;
   background: #FFFFFF;
   border: 1px solid #E4E4E7;
   border-radius: 8px;
-  padding: 4px 4px 4px 16px;
-  max-width: 440px;
+  padding: 4px 4px 4px 14px;
+  max-width: 480px;
   width: 100%;
   margin: 0 auto 16px auto;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   transition: all 0.15s ease;
+  gap: 8px;
 }
 
+.hero-openalt-search-box:focus-within,
 .hero-openalt-subscribe-box:focus-within,
 .hero-openalt-form:focus-within,
+.search-form-hero:focus-within,
 .subscribe-form-hero:focus-within {
   border-color: #A1A1AA;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
+.hero-search-icon-left {
+  color: #71717A;
+  flex-shrink: 0;
+}
+
+.hero-openalt-search-input,
 .hero-openalt-email-input,
 .hero-openalt-input,
+.search-input-hero,
 .subscribe-input {
   flex: 1;
   border: none;
@@ -410,31 +421,60 @@ img {
   color: #18181B;
   outline: none;
   padding: 8px 4px;
+  min-width: 0;
 }
 
+.hero-openalt-search-input::placeholder,
 .hero-openalt-email-input::placeholder,
 .hero-openalt-input::placeholder,
+.search-input-hero::placeholder,
 .subscribe-input::placeholder {
   color: #8E8E93;
 }
 
+.hero-search-clear-btn {
+  background: #F4F4F5;
+  border: none;
+  color: #71717A;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.hero-search-clear-btn:hover {
+  background: #E4E4E7;
+  color: #18181B;
+}
+
+.hero-openalt-search-btn,
 .hero-openalt-submit-btn,
 .hero-openalt-btn,
+.search-btn-hero,
 .subscribe-btn-hero {
   background: #A24227;
   color: #FFFFFF;
   font-size: 0.92rem;
   font-weight: 600;
-  padding: 9px 22px;
+  padding: 9px 24px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
+.hero-openalt-search-btn:hover,
 .hero-openalt-submit-btn:hover,
 .hero-openalt-btn:hover,
+.search-btn-hero:hover,
 .subscribe-btn-hero:hover {
   background: #8F3720;
   transform: translateY(-1px);
@@ -7166,12 +7206,14 @@ body.dark-mode .hero-openalt-subtitle,
 body.dark-mode .hero-tagline {
   color: #A1A1AA !important;
 }
+body.dark-mode .hero-openalt-search-box,
 body.dark-mode .hero-openalt-subscribe-box,
 body.dark-mode .hero-openalt-form,
 body.dark-mode .subscribe-form-hero {
   background: #18181B !important;
   border-color: #27272A !important;
 }
+body.dark-mode .hero-openalt-search-input,
 body.dark-mode .hero-openalt-email-input,
 body.dark-mode .hero-openalt-input,
 body.dark-mode .subscribe-input {
