@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '98.0';
+  const CURRENT_DATA_VERSION = '99.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1358,19 +1358,19 @@ Website: https://aira-newsletter.vercel.app/
 
           <!-- 1. Top Mini Pill Badge -->
           <div class="hero-openalt-mini-badge">
-            <span>Built with ⚡ AIRA</span>
+            <span>⚡ AIRA Daily Intelligence</span>
           </div>
 
           <!-- 2. Main Title (Exact Clean Typography) -->
           <h1 class="hero-openalt-heading">
-            Open Source Alternatives<br />
-            to Popular Software
+            The One &amp; Only AI Newsletter<br />
+            &amp; Curated Tools Hub
           </h1>
 
           <!-- 3. Subtitle -->
           <p class="hero-openalt-subheading">
-            Over 1 million users replaced their proprietary tools with open source software.<br class="hero-br-desktop" />
-            Discover the best alternatives, frontier AI tools, and join the movement.
+            Daily frontier AI breakthroughs, 400+ verified tools, prompt vaults, and open-source alternatives.<br class="hero-br-desktop" />
+            Trusted by 50,000+ engineers, founders, and creators worldwide.
           </p>
 
           <!-- 4. Single Clean Search Box (Replacing Subscribe as requested) -->
@@ -1384,7 +1384,7 @@ Website: https://aira-newsletter.vercel.app/
             <button type="submit" class="hero-openalt-search-btn" id="hero-search-btn">Search</button>
           </form>
 
-          <!-- 5. Social Proof (5 Overlapping Avatars + 12K+ People) -->
+          <!-- 5. Social Proof (5 Overlapping Avatars + 50K+ People) -->
           <div class="hero-openalt-social-proof-clean">
             <div class="hero-avatar-stack-clean">
               <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
@@ -1393,7 +1393,7 @@ Website: https://aira-newsletter.vercel.app/
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
               <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
             </div>
-            <span class="hero-proof-text-clean">Trusted by 12K+ people</span>
+            <span class="hero-proof-text-clean">Trusted by 50K+ AI builders</span>
           </div>
 
         </div>
