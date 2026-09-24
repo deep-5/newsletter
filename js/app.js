@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '95.0';
+  const CURRENT_DATA_VERSION = '96.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1342,35 +1342,77 @@ Website: https://aira-newsletter.vercel.app/
 
   function renderHomePage() {
     appContainer.innerHTML = `
-      <!-- Clean AIRA Hero Section with Search Bar -->
-      <section class="hero-section">
-        <div class="container">
-          <div class="hero-logo-box">
-            <img src="assets/logo.jpg" alt="AIRA Logo" class="hero-logo-img" onerror="this.src='assets/logo.svg'" />
-          </div>
-          <h1 class="hero-title">AIRA</h1>
-          <p class="hero-tagline">The one and only AI newsletter. Join us and get the best AI news, tools, and tutorials completely FREE!</p>
-          
-          <form class="search-form-hero" id="hero-search-form" onsubmit="event.preventDefault();">
-            <svg class="hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" id="hero-search-input" class="search-input-hero" placeholder="Search newsletter articles, AI news, topics..." value="${state.homeSearchQuery || ''}" autocomplete="off" />
-            <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
-            <button type="submit" class="search-btn-hero" id="hero-search-btn">Search</button>
-          </form>
+      <!-- OpenAlternative-Inspired Hero Section -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container">
+          <!-- 1. Top Curated Pill Badge -->
+          <a href="#/tags" class="hero-openalt-badge" title="Explore 400+ Curated AI Tools">
+            <span class="hero-badge-pill-tag">✨ Open Source & AI</span>
+            <span class="hero-badge-text">Curating 400+ Frontier AI Tools & Breakdowns</span>
+            <svg class="hero-badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
 
-          <div class="social-bar-hero">
-            <a href="https://whatsapp.com/channel/0029VbC1KWlICVfsFtYhmZ3B" target="_blank" rel="noopener" class="social-icon-btn" title="WhatsApp">
-              <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.99.54 1.761.819 2.796.82 3.18 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.807-5.768-5.807zm0 10.455c-.933 0-1.62-.276-2.434-.76l-.174-.103-1.802.472.48-1.758-.113-.18c-.534-.848-.815-1.523-.815-2.36 0-2.618 2.13-4.748 4.748-4.748 2.617 0 4.747 2.13 4.747 4.748 0 2.618-2.13 4.748-4.748 4.748zm2.607-3.565c-.143-.072-.847-.418-.978-.466-.131-.048-.226-.072-.321.072-.095.143-.369.466-.452.561-.083.096-.167.108-.31.036-.143-.072-.603-.222-1.149-.707-.424-.378-.711-.845-.794-.988-.083-.143-.009-.22.063-.291.064-.064.143-.167.214-.25.072-.084.095-.144.143-.239.048-.096.024-.179-.012-.25-.036-.072-.321-.774-.44-1.06-.116-.28-.234-.241-.321-.246l-.274-.005c-.095 0-.25.036-.381.179-.131.143-.5 488-.5 1.19 0 .702.512 1.38 1.583 2.809 1.488 1.987 2.106 2.059 2.487 2.059.512 0 .976-.321 1.119-.774.143-.452.143-.845.1-.929-.048-.083-.143-.131-.286-.202zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.981-1.306A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.167c-1.636 0-3.17-.487-4.457-1.326l-.32-.209-2.955.775.789-2.88-.228-.363A8.136 8.136 0 0 1 3.833 12c0-4.503 3.664-8.167 8.167-8.167 4.503 0 8.167 3.664 8.167 8.167 0 4.503-3.664 8.167-8.167 8.167z"/></svg>
-            </a>
-            <a href="https://t.me/aira_update" target="_blank" rel="noopener" class="social-icon-btn" title="Telegram">
-              <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/ai-tools-&-ai-news/?viewAsMember=true" target="_blank" rel="noopener" class="social-icon-btn" title="LinkedIn">
-              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.77v8.37H6.46v-8.37M7.85 6.44a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
-            </a>
+          <!-- 2. Main Title (High Impact Bold Typography) -->
+          <h1 class="hero-openalt-title">
+            Discover Open-Source & <br class="hero-br-desktop" />
+            <span class="hero-title-highlight">Frontier AI Intelligence</span>
+          </h1>
+
+          <!-- 3. Subtitle / Value Proposition -->
+          <p class="hero-openalt-subtitle">
+            Daily frontier AI breakdowns, curated open-source alternatives, battle-tested prompt recipes, and direct verified tool links.
+          </p>
+
+          <!-- 4. Interactive Email Subscribe & Search Combined Bar -->
+          <div class="hero-openalt-action-box">
+            <form class="hero-openalt-form" id="hero-openalt-sub-form">
+              <div class="hero-form-input-wrap">
+                <svg class="hero-form-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <input type="email" class="hero-openalt-input" id="hero-openalt-email" placeholder="Enter your work email address..." required autocomplete="email" />
+              </div>
+              <button type="submit" class="hero-openalt-btn" id="hero-openalt-sub-btn">
+                <span>Subscribe Free ⚡</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </form>
+
+            <!-- Instant Live Search Bar for Articles & Tools -->
+            <form class="hero-openalt-search-bar" id="hero-search-form" onsubmit="event.preventDefault();">
+              <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="hero-search-input" class="hero-search-input-field" placeholder="Or search 400+ AI tools, models, news..." value="${state.homeSearchQuery || ''}" autocomplete="off" />
+              <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            </form>
+          </div>
+
+          <!-- 5. Quick Category Tags Row (OpenAlternative Style) -->
+          <div class="hero-openalt-quick-tags">
+            <span class="hero-tags-label">Quick Explore:</span>
+            <a href="#/tags?category=chatbots-llms" class="hero-quick-tag">🤖 LLMs & Chat</a>
+            <a href="#/tags?category=developer-tools" class="hero-quick-tag">💻 Coding & Dev</a>
+            <a href="#/tags?category=image-generators" class="hero-quick-tag">🎨 Image AI</a>
+            <a href="#/alternatives" class="hero-quick-tag">🔄 Alternatives</a>
+            <a href="#/prompts" class="hero-quick-tag">✨ Prompts Vault</a>
+          </div>
+
+          <!-- 6. Social Proof Avatars Stack & Community Trust -->
+          <div class="hero-openalt-social-proof">
+            <div class="hero-avatar-stack">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-img" />
+            </div>
+            <div class="hero-proof-details">
+              <div class="hero-proof-stars">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                <span class="hero-proof-rating">4.9 / 5.0</span>
+              </div>
+              <span class="hero-proof-subtext">Trusted by <strong>15,000+</strong> AI engineers, founders & builders</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1416,13 +1458,6 @@ Website: https://aira-newsletter.vercel.app/
         if (str.endsWith('k')) return parseFloat(str) * 1000;
         if (str.endsWith('m')) return parseFloat(str) * 1000000;
         return parseFloat(str) || 0;
-      };
-
-      const formatViews = (v, idx) => {
-        if (!v) return `${(14.8 - idx * 0.9).toFixed(1)}k views`;
-        const str = String(v).trim();
-        if (str.toLowerCase().includes('view')) return str;
-        return `${str} views`;
       };
 
       // Select top popular posts (Top 7)
@@ -1471,30 +1506,56 @@ Website: https://aira-newsletter.vercel.app/
           <!-- 2-Column Main Layout (Left: Articles Grid | Right: Sidebar Widgets & Resources) -->
           <div class="home-main-layout">
             
-            <!-- Left Column: Articles Grid (Exact 8 Articles Per Page) -->
+            <!-- Left Column: Articles Grid (Exact 8 Articles Per Page in OpenAlternative Modern Box Style) -->
             <div class="home-articles-col">
               <!-- 2-Column Articles Grid -->
               <div class="articles-grid-2col" id="main-articles-grid">
                 ${visibleArticles.map(article => `
-                  <a href="#/p/${article.slug}" class="article-card">
+                  <a href="#/p/${article.slug}" class="article-card openalt-box-card">
+                    <!-- 1. Top Aspect Ratio Preview Image with Badges -->
                     <div class="card-image-wrap">
                       <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
-                      <span class="card-tag-badge">${article.tag || 'Frontier AI'}</span>
+                      <div class="card-badges-overlay">
+                        <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
+                        <span class="openalt-badge-time">${article.reading_time || article.read_time || '4 min read'}</span>
+                      </div>
                     </div>
+
+                    <!-- 2. Card Body Box (OpenAlternative Style) -->
                     <div class="card-body">
-                      <h3 class="card-title">${article.title || ''}</h3>
-                      <p class="card-subtitle">${article.subtitle || ''}</p>
-                      <div class="card-footer">
-                        <div class="card-author-info">
+                      <!-- Header Row: App Favicon / Logo Box + Title -->
+                      <div class="openalt-card-header-row">
+                        <div class="openalt-icon-box">
+                          <img src="assets/logo.png?v=48.0" alt="AIRA" class="openalt-icon-img" onerror="this.src='assets/logo.svg'" />
+                        </div>
+                        <div class="openalt-header-text">
+                          <h3 class="card-title openalt-title">${article.title || ''}</h3>
+                          <div class="openalt-meta-subrow">
+                            <span class="openalt-source-tag">AIRA Edition</span>
+                            <span class="openalt-dot">•</span>
+                            <span class="openalt-date-tag">${article.date || 'Sep 2026'}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Description / Subtitle -->
+                      <p class="card-subtitle openalt-desc">${article.subtitle || ''}</p>
+
+                      <!-- Footer Row: Author + Audio + Action Button -->
+                      <div class="card-footer openalt-footer">
+                        <div class="openalt-footer-left">
                           <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA Editorial Team'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
                           <span class="card-author-name">${article.author || 'AIRA Editorial Team'}</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                          <button type="button" class="card-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
+                        <div class="openalt-footer-right">
+                          <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
                             <span class="listen-btn-icon">🎧</span>
                             <span class="listen-btn-text">Listen</span>
                           </button>
-                          <span class="card-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</span>
+                          <span class="openalt-read-btn">
+                            <span>Read</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -1547,8 +1608,6 @@ Website: https://aira-newsletter.vercel.app/
 
             </div>
           </div>
-
-              
 
           <!-- Centered Numbered Pagination Bar Across Full Container Width -->
           <div class="home-pagination-wrapper">
@@ -1622,6 +1681,61 @@ Website: https://aira-newsletter.vercel.app/
 
     // Initial render of grid
     updateArticlesGrid();
+
+    // Bind Hero Subscribe Form
+    const heroSubForm = document.getElementById('hero-openalt-sub-form');
+    if (heroSubForm) {
+      heroSubForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = document.getElementById('hero-openalt-email');
+        const submitBtn = document.getElementById('hero-openalt-sub-btn');
+        const email = input ? input.value.trim() : '';
+        if (!email) return;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Subscribing...';
+        }
+
+        try {
+          if (window.DatabaseService) {
+            await window.DatabaseService.subscribe(email, 'OpenAlt Homepage Hero');
+          } else {
+            const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+            if (!list.includes(email)) {
+              list.push(email);
+              localStorage.setItem('aira_subscribers', JSON.stringify(list));
+            }
+          }
+
+          sessionStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_subscribed', 'true');
+
+          if (submitBtn) submitBtn.innerHTML = 'Subscribed! ✓';
+          showToast('🎉 Welcome to AIRA! Access granted to 50 n8n templates.');
+
+          setTimeout(() => {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<span>Subscribe Free ⚡</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+            }
+            if (input) input.value = '';
+            if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
+          }, 800);
+        } catch (err) {
+          console.error('Subscription error:', err);
+          sessionStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_unlocked', 'true');
+          localStorage.setItem('aira_subscribed', 'true');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Subscribe Free ⚡</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+          }
+          showToast('Welcome to AIRA! 🚀');
+        }
+      });
+    }
 
     // Bind hero search input
     const heroSearchInput = document.getElementById('hero-search-input');
