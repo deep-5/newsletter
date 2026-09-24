@@ -141,7 +141,7 @@
 
           <p class="p-text" style="margin-top: 24px; margin-bottom: 0;">
             See you in tomorrow's edition,<br>
-            <strong>The AIRA Editorial Team</strong>
+            <strong>AIRA</strong>
           </p>
         </td>
       </tr>

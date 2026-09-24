@@ -54,7 +54,7 @@ When ingesting an article from the source (e.g. AI PlanetX), extract the followi
 - **Cards (`.article-story-card`)**: Elevated white cards (`border: 1px solid #E2E8F0; border-radius: 14px;` | Dark mode: `#18181B`).
 - **Tools Panel (`.article-tools-box`)**: Clean light gray box (`#F8FAFC;` with `✦` bullets).
 - **Tutorial Steps (`.tutorial-step-list`)**: Ordered list with bold headings and code blocks.
-- **Sign-off (`.article-signoff`)**: Standard `"Until next time,<br><strong>AIRA Editorial Team</strong>"`.
+- **Sign-off (`.article-signoff`)**: Standard `"Until next time,<br><strong>AIRA</strong>"`.
 
 ---
 

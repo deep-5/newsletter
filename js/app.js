@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '100.0';
+  const CURRENT_DATA_VERSION = '101.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1473,19 +1473,6 @@ Website: https://aira-newsletter.vercel.app/
           </div>
         ` : ''}
 
-        <!-- 1. Top Banner Ad -->
-        <div class="ad-banner-mint">
-          <div class="ad-banner-content-wrap">
-            <span class="ad-tag-label">ADVERTISEMENT</span>
-            <h3 class="ad-banner-title">Your Ad Here</h3>
-            <p class="ad-banner-desc">Reach thousands of AI enthusiasts and professionals.</p>
-          </div>
-          <a href="mailto:sponsor@aira.com?subject=Advertise%20with%20AIRA" class="ad-pill-btn" target="_blank" rel="noopener">
-            <span>Get Started</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
         ${visibleArticles.length === 0 ? `
           <div class="no-articles-found">
             <p style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">No articles found</p>
@@ -1534,8 +1521,8 @@ Website: https://aira-newsletter.vercel.app/
                       <!-- Footer Row: Author + Audio + Action Button -->
                       <div class="card-footer openalt-footer">
                         <div class="openalt-footer-left">
-                          <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA Editorial Team'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
-                          <span class="card-author-name">${article.author || 'AIRA Editorial Team'}</span>
+                          <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
+                          <span class="card-author-name">${article.author || 'AIRA'}</span>
                         </div>
                         <div class="openalt-footer-right">
                           <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
@@ -1602,19 +1589,6 @@ Website: https://aira-newsletter.vercel.app/
           <!-- Centered Numbered Pagination Bar Across Full Container Width -->
           <div class="home-pagination-wrapper">
             ${renderPaginationHTML(state.homeCurrentPage, totalPages, 'home')}
-          </div>
-
-          <!-- 4. Full-Width Bottom Banner Ad -->
-          <div class="ad-banner-mint" style="margin-top: 32px; margin-bottom: 24px;">
-            <div class="ad-banner-content-wrap">
-              <span class="ad-tag-label">FREE VIP ACCESS</span>
-              <h3 class="ad-banner-title">Never Miss a Frontier AI Breakthrough</h3>
-              <p class="ad-banner-desc">Daily frontier research, step-by-step tutorials and reasoning models delivered free.</p>
-            </div>
-            <button type="button" class="ad-pill-btn" onclick="document.getElementById('subscribe-modal').classList.add('active'); document.body.style.overflow='hidden';">
-              <span>Subscribe ⚡</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
           </div>
         `}
       `;
@@ -1788,9 +1762,9 @@ Website: https://aira-newsletter.vercel.app/
 
             <div class="article-header-meta">
               <div class="article-author-block">
-                <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA Editorial Team'}" class="article-author-img" onerror="this.src='assets/logo.svg'" />
+                <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="article-author-img" onerror="this.src='assets/logo.svg'" />
                 <div>
-                  <div class="article-author-meta-name">${article.author || 'AIRA Editorial Team'}</div>
+                  <div class="article-author-meta-name">${article.author || 'AIRA'}</div>
                   <div class="article-author-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</div>
                 </div>
               </div>
@@ -3037,19 +3011,6 @@ Website: https://aira-newsletter.vercel.app/
               </div>
             </div>
           ` : ''}
-
-          <!-- Full-Width Bottom Banner -->
-          <div class="ad-banner-mint" style="margin-top: 48px;">
-            <div class="ad-banner-content-wrap">
-              <span class="ad-tag-label">AIRA DIRECTORY</span>
-              <h3 class="ad-banner-title">Stay Ahead with the Latest AI Tools & Breakthroughs</h3>
-              <p class="ad-banner-desc">Join 500+ engineers, creators, and founders getting our free weekly newsletter.</p>
-            </div>
-            <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
-              <span>Subscribe Free</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-          </div>
 
         </div>
       </section>
@@ -5416,7 +5377,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
               <div class="saas-user-pill">
                 <img src="assets/logo.jpg" alt="Admin" class="saas-user-avatar" onerror="this.src='assets/logo.svg'" />
-                <span>AIRA Editorial Team</span>
+                <span>AIRA</span>
                 <span style="color: #94A3B8; font-size: 0.75rem;">▾</span>
               </div>
             </div>
