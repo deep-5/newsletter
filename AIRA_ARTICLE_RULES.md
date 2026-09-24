@@ -1,74 +1,63 @@
-# 🔒 AIRA Article Ingestion & Verification Audit Rules (Locked Standard)
+# 🔒 AIRA Master Article Protocol (Permanently Locked Standard)
 
-This document locks the permanent guidelines, filtering standards, and verification audit rules for any current or future articles ingested from source newsletters (e.g. AI Toast, Long Live AI).
-
----
-
-## 🚫 1. What Must NEVER Be Added (Strictly Blocked)
-
-1. **External Branding & Logo Banners**:
-   - `LONGLIVEAI NEWSLETTER @longliveai` banner (`steel_on_black.png`)
-   - `AI Toast` logo banner (`thumb_AI_Toast_Logo.png`)
-   - Any external publication logo, badge, or header banner.
-
-2. **External Author Names & Bylines**:
-   - `Poonam Soni`, `@CodeByPoonam`, `Daniel Murray`, etc.
-   - Any personal Twitter/X handles, LinkedIn URLs, or personal contact blurbs.
-
-3. **Promotional & Sponsor Pitches**:
-   - `Boost revenue and gain new customers by partnering with us...`
-   - `Reach over 35K / 9000 / 50K AI enthusiasts with your product...`
-   - `Join our newsletter to connect with tech professionals, investors...`
-   - `[DM now!]` and partnership contact links.
-   - Third-party sponsor ads (`AdQuick`, `Pacaso`, `KeepCart`, `Norton Neo`, `StackInfluence`, `ListKit`, `Attio`, `Mintlify`, `MavenAGI`, etc.).
-
-4. **Voting Polls, Star Ratings & Reader Surveys**:
-   - `What did you think of today's edition?`
-   - `This helps tune future issues. Thanks for voting.`
-   - `⭐⭐⭐⭐⭐ Loved it`, `⭐⭐⭐ Good, not great`, `⭐ Needs improvement`
-   - `If this issue helped you make sense of AI’s chaos, forward it to a friend...`
-   - Referral program snippets, leaderboards, and subscriber milestone announcements.
-
-5. **Duplicate Cover Images**:
-   - Top hero cover images must **never** be repeated inside the article body (`hero_dupes == 0`).
+This document is the **single source of truth** for adding, formatting, and publishing all present and future newsletter articles on **AIRA**. Every new article must strictly adhere to this locked protocol.
 
 ---
 
-## ✅ 2. What MUST ALWAYS Be Included & Maintained
-
-1. **100% Real Authentic Article Content**:
-   - Complete news stories, technical breakdowns, research analysis, and software engineering deep-dives.
-
-2. **Step-by-Step Tutorials & Prompt Formulas**:
-   - Preserved inside formatted prompt blocks (`.article-practical-guide`).
-
-3. **Authentic Section Diagrams & Technical Visuals**:
-   - All genuine explanatory architecture diagrams, UI screenshots, and product visuals embedded within `.section-image-box`.
-
-4. **Authentic Clean Tech Hyperlinks**:
-   - All genuine outbound references (`openai.com`, `anthropic.com`, `techcrunch.com`, `blog.google`, `github.com`, `reuters.com`, `claude.ai`, etc.) formatted as clickable links with tracking/affiliate parameters removed.
-
-5. **Exact Authentic Publication Dates**:
-   - The original publication timestamp matching when the source published the article, strictly sorted **Latest to Oldest**.
-
-6. **100% AIRA Brand Design System**:
-   - `.article-lead-block` (Introductory summary)
-   - `.article-briefing-box` (⚡ Key Takeaways)
-   - Numbered `.article-section` cards (1., 2., 3.)
-   - `.article-practical-guide` (🛠️ Implementation & Prompt Formulas)
-   - `.article-analysis-card` (💡 The AIRA Strategic Perspective)
-   - Standard AIRA signoff (`Until next time,<br><strong>AIRA</strong>`)
+## 📸 1. Cover Image Standard (100% Uniform)
+- **Top Hero Cover Picture**: Every single article in `data/articles.js` must use `assets/aira-banner-template-v2.jpg` (AIRA Option 2 Custom Cover Banner with real inner newsletter phone mockup).
+- **Zero Variation**: All articles share this exact branded cover banner for 100% aesthetic uniformity.
 
 ---
 
-## 🔒 3. Automated Verification Audit Command
+## 📑 2. Content Extraction Protocol (From Source Editions)
+When ingesting an article from the source (e.g. AI PlanetX), extract the following with **100% precision**:
 
-Whenever articles are updated or added, run the locked pipeline audit:
-```bash
-python scripts/aira_article_pipeline.py
-```
-**Passing criteria:**
-- Bad text pattern hits: **0**
-- Hero duplicates in body: **0**
-- Ad / Banner images: **0**
-- Chronological sort: **100% Valid**
+1. **Title & Subtitle**: Exact original headlines.
+2. **Menu Intro Overview**: Summary list of the 5 main topics.
+3. **🔥 Hottest AI News (Top 2 Major Stories)**:
+   - **Company Tag**: (`OpenAI`, `Anthropic`, `Meta`, `Google`, `DeepMind`, `Apple`, etc.)
+   - **Story Headline**: Exact title.
+   - **Authentic Story Image**: The exact high-res photo/screenshot from the story (*e.g., Masayoshi Son & Sam Altman photo, benchmark diagram, hardware thumbnail*). NEVER use the cover banner or generic placeholder inside the body.
+   - **Story Text & Details**: Complete facts, pricing, specs, and bold highlights.
+   - **Verified Target Links**: Direct links to official research papers, announcements, and models.
+4. **🛠️ Top AI & SaaS Tools (5 Curated Tools)**:
+   - Tool name, link, clean description, and deal badges (`Lifetime Deal`, `Free`, `Free to Try`).
+5. **📚 AI Tutorial / Workflow (Step-by-Step Practical Guide)**:
+   - Exact tutorial headline.
+   - Authentic tutorial screenshot/cover.
+   - Complete 6-step actionable workflow with formatted prompts and code snippets.
+   - **Pro Tip / Key Takeaway** callout box.
+6. **🌐 Top AI & Tech News (4 Quick Hits)**:
+   - 4 bullet points with direct media source links (`Reuters`, `Axios`, `CleanTechnica`, `The Next Web`).
+
+---
+
+## 🚫 3. What to ALWAYS Exclude (Zero Tolerance)
+- ❌ **NO AI Art Spotlight**: Skip all Midjourney/ChatGPT prompt gallery sections.
+- ❌ **NO 3rd-Party Sponsor Ads**: Block all paid sponsor promotions (*Roku Ads Manager, Superhuman Newsletter, Blu Dot, etc.*).
+- ❌ **NO External Branding / Colors**: Block external publication logos, author bylines, external social widgets, and external colors like AI PlanetX purple (`#660DB7`).
+
+---
+
+## 🎨 4. AIRA Design System & Color Palette
+- **Section Headers (`.article-section-header`)**: AIRA Dark Graphite Bar (`background: #090D16; color: #FFFFFF;` | Dark mode: `#18181B`).
+- **Company / Topic Badges (`.story-company-badge`)**: AIRA Emerald Badge (`color: #059669; background: rgba(5, 150, 105, 0.1);`).
+- **Cards (`.article-story-card`)**: Elevated white cards (`border: 1px solid #E2E8F0; border-radius: 14px;` | Dark mode: `#18181B`).
+- **Tools Panel (`.article-tools-box`)**: Clean light gray box (`#F8FAFC;` with `✦` bullets).
+- **Tutorial Steps (`.tutorial-step-list`)**: Ordered list with bold headings and code blocks.
+- **Sign-off (`.article-signoff`)**: Standard `"Until next time,<br><strong>AIRA Editorial Team</strong>"`.
+
+---
+
+## 🚀 5. Deployment & Cache Protocol
+Whenever an article is added or modified:
+1. Validate syntax: `node -c data/articles.js`.
+2. Bump cache version: e.g. `v95` in `sw.js`, `v95.0` in `index.html`, and `95.0` in `js/app.js` (`CURRENT_DATA_VERSION`).
+3. Commit and push to GitHub:
+   ```bash
+   "C:\Users\Deep\.gemini\antigravity\tools\git\cmd\git.exe" add data/articles.js index.html js/app.js styles.css sw.js
+   "C:\Users\Deep\.gemini\antigravity\tools\git\cmd\git.exe" commit -m "..."
+   "C:\Users\Deep\.gemini\antigravity\tools\git\cmd\git.exe" push origin main
+   ```
+4. Verify live deployment at `https://aira-newsletter.vercel.app/`.
