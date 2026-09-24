@@ -15412,31 +15412,36 @@ body.dark-mode .tts-speed-btn.active {
 
 .advertise-slots-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .advertise-slot-card {
   background: #FFFFFF;
-  border: 1px solid #E4E4E7;
-  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
   padding: 24px;
   display: flex;
   flex-direction: column;
+  gap: 14px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   position: relative;
+  box-sizing: border-box;
 }
 
 .advertise-slot-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  border-color: #D4D4D8;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #D1D5DB;
 }
 
 .advertise-slot-card.featured-slot {
   border-color: #18181B;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
 .advertise-slot-pill-top {
@@ -15445,8 +15450,8 @@ body.dark-mode .tts-speed-btn.active {
   right: 20px;
   background: #18181B;
   color: #FFFFFF;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   padding: 3px 10px;
   border-radius: 9999px;
   letter-spacing: 0.04em;
@@ -15455,15 +15460,15 @@ body.dark-mode .tts-speed-btn.active {
 
 .advertise-slot-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 2px;
 }
 
 .advertise-slot-icon {
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #F4F4F5;
   border: 1px solid #E4E4E7;
   display: flex;
@@ -15476,82 +15481,32 @@ body.dark-mode .tts-speed-btn.active {
 .advertise-slot-title {
   font-family: var(--font-header);
   font-size: 1.22rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #18181B;
-  margin-bottom: 2px;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
 }
 
 .advertise-slot-sub {
   font-size: 0.82rem;
   color: #71717A;
-}
-
-.advertise-slot-desc {
-  font-size: 0.9rem;
-  color: #52525B;
-  line-height: 1.5;
-  margin-bottom: 18px;
-}
-
-.advertise-slot-features {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 0.86rem;
-  color: #3F3F46;
-  flex: 1;
-}
-
-.advertise-slot-features li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.advertise-slot-features li span.check-icon {
-  color: #047857;
-  font-weight: 700;
-}
-
-.advertise-slot-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 16px;
-  border-top: 1px solid #F4F4F5;
-  gap: 12px;
-}
-
-.advertise-slot-price {
-  font-family: var(--font-header);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #18181B;
-}
-
-.advertise-slot-price span {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #71717A;
+  margin: 0;
 }
 
 .advertise-preview-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.78rem;
+  gap: 4px;
+  font-size: 0.74rem;
   font-weight: 600;
   color: #52525B;
   background: #F4F4F5;
   border: 1px solid #E4E4E7;
-  padding: 4px 10px;
+  padding: 4px 8px;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
-  margin-left: auto;
+  white-space: nowrap;
 }
 
 .advertise-preview-btn:hover {
@@ -15560,47 +15515,119 @@ body.dark-mode .tts-speed-btn.active {
   border-color: #D4D4D8;
 }
 
+/* Duration Presets Row */
+.adv-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.adv-preset-btn {
+  background: #F4F4F5;
+  border: 1px solid #E4E4E7;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #18181B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.adv-preset-btn:hover {
+  background: #E4E4E7;
+  border-color: #D4D4D8;
+}
+
+.adv-preset-btn.active {
+  background: #18181B;
+  color: #FFFFFF;
+  border-color: #18181B;
+}
+
 /* DevSuite Interactive Mini Calendar */
 .advertise-cal-wrap {
-  margin: 14px 0;
+  margin: 0;
   background: #FAFAFA;
-  border: 1px solid #E4E4E7;
-  border-radius: 10px;
-  padding: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.adv-cal-selection-bar {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  box-sizing: border-box;
+}
+
+.adv-cal-selection-bar .dates-text {
+  color: #18181B;
+  font-weight: 500;
+}
+
+.adv-cal-selection-bar .dates-green {
+  color: #059669;
+  font-weight: 700;
+}
+
+.adv-cal-selection-bar .days-count {
+  color: #374151;
+  font-weight: 500;
+}
+
+.adv-cal-price-highlight {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #059669;
 }
 
 .adv-cal-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  padding: 0 2px;
 }
 
 .adv-cal-month-title {
-  font-size: 0.84rem;
-  font-weight: 700;
+  font-family: var(--font-header);
+  font-size: 0.98rem;
+  font-weight: 800;
   color: #18181B;
 }
 
 .adv-cal-nav-btn {
   background: #FFFFFF;
-  border: 1px solid #E4E4E7;
+  border: 1px solid #E5E7EB;
   border-radius: 6px;
-  width: 26px;
-  height: 26px;
-  display: flex;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 0.85rem;
-  color: #52525B;
+  color: #6B7280;
   transition: all 0.15s ease;
 }
 
 .adv-cal-nav-btn:hover:not(:disabled) {
-  background: #18181B;
-  color: #FFFFFF;
-  border-color: #18181B;
+  background: #F4F4F5;
+  color: #18181B;
+  border-color: #D1D5DB;
 }
 
 .adv-cal-nav-btn:disabled {
@@ -15611,42 +15638,44 @@ body.dark-mode .tts-speed-btn.active {
 .adv-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  gap: 2px 0;
   text-align: center;
 }
 
 .adv-cal-th {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  color: #A1A1AA;
+  color: #9CA3AF;
   padding-bottom: 6px;
+  text-align: center;
 }
 
 .adv-cal-cell {
-  height: 30px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: #27272A;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #18181B;
   background: transparent;
   border: none;
   cursor: pointer;
-  border-radius: 6px;
   transition: background-color 0.12s ease, color 0.12s ease;
   user-select: none;
   position: relative;
+  padding: 0;
 }
 
 .adv-cal-cell:hover:not(.is-disabled):not(.is-empty) {
-  background: #E4E4E7;
+  background: #F4F4F5;
+  border-radius: 6px;
 }
 
 .adv-cal-cell.is-disabled {
-  color: #D4D4D8;
+  color: #D1D5DB;
   cursor: not-allowed;
-  opacity: 0.5;
+  font-weight: 500;
 }
 
 .adv-cal-cell.is-empty {
@@ -15654,35 +15683,35 @@ body.dark-mode .tts-speed-btn.active {
 }
 
 .adv-cal-cell.is-in-range {
-  background: #DCFCE7;
-  color: #065F46;
-  border-radius: 0;
+  background: #DCFCE7 !important;
+  color: #065F46 !important;
+  border-radius: 0 !important;
 }
 
 .adv-cal-cell.is-range-start {
   background: #10B981 !important;
   color: #FFFFFF !important;
   font-weight: 700;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
 }
 
 .adv-cal-cell.is-range-end {
   background: #10B981 !important;
   color: #FFFFFF !important;
   font-weight: 700;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
 }
 
 .adv-cal-cell.is-range-start.is-range-end {
-  border-radius: 6px;
+  border-radius: 8px !important;
 }
 
 .adv-cal-cell.is-today::after {
   content: '';
   position: absolute;
-  bottom: 2px;
+  bottom: 3px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
@@ -15695,42 +15724,104 @@ body.dark-mode .tts-speed-btn.active {
 }
 
 .adv-cal-summary-strip {
-  margin-top: 10px;
-  padding: 8px 10px;
-  background: #F0FDF4;
-  border: 1px solid #BBF7D0;
-  border-radius: 6px;
+  padding: 10px 14px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.78rem;
-  color: #166534;
+  font-size: 0.88rem;
+  color: #065F46;
+  font-weight: 600;
+  box-sizing: border-box;
 }
 
 .adv-cal-summary-strip strong {
   font-weight: 700;
-  color: #047857;
+  color: #065F46;
+}
+
+.advertise-slot-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 4px;
+  margin-top: auto;
+}
+
+.advertise-slot-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.advertise-slot-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.advertise-slot-price-main {
+  font-family: var(--font-header);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #18181B;
+  line-height: 1;
+}
+
+.advertise-slot-price-sub {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748B;
+}
+
+.advertise-slot-rate-note {
+  font-size: 0.8rem;
+  color: #64748B;
+  font-weight: 500;
 }
 
 .advertise-slot-book-btn {
   background: #18181B;
   color: #FFFFFF !important;
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding: 8px 18px;
-  border-radius: 6px;
+  font-family: var(--font-header);
+  border-radius: 10px;
+  padding: 10px 20px;
+  min-width: 190px;
   border: none;
   cursor: pointer;
   transition: all 0.15s ease;
   text-decoration: none;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .advertise-slot-book-btn:hover {
   background: #27272A;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.adv-btn-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.adv-btn-sub {
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
 }
 
 /* 5. Custom Partnership & Inquiry Box */
@@ -16015,75 +16106,6 @@ body.dark-mode .tts-speed-btn.active {
 
 .adv-modal-book-cta:hover {
   background: #27272A;
-}
-
-/* Duration Presets Row */
-.adv-presets-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.adv-preset-btn {
-  background: #FFFFFF;
-  border: 1px solid #E4E4E7;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #52525B;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  flex: 1;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.adv-preset-btn:hover {
-  background: #F4F4F5;
-  color: #18181B;
-  border-color: #D4D4D8;
-}
-
-.adv-preset-btn.active {
-  background: #18181B;
-  color: #FFFFFF;
-  border-color: #18181B;
-}
-
-.adv-cal-selection-bar {
-  background: #FFFFFF;
-  border: 1px solid #E4E4E7;
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.8rem;
-}
-
-.adv-date-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 700;
-  color: #047857;
-}
-
-.adv-cal-instruction {
-  font-size: 0.74rem;
-  color: #71717A;
-  margin-top: 6px;
-  text-align: center;
-}
-
-.adv-cal-price-highlight {
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: #047857;
 }
 
 /* Dark Mode Overrides for Advertise Page */
@@ -16890,5 +16912,171 @@ body.dark-mode .newsletter-spotlight-book-link {
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   Floating Bottom-Right Rotating Ad Widget (15-second rotation)
+   Exact OpenAlternative Style (Matching Uploaded Mockup)
+   ========================================================================== */
+.aira-floating-ad-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+.aira-floating-ad-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  padding: 12px 16px;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.25s ease;
+  animation: floatingAdSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none !important;
+  color: #111827;
+  box-sizing: border-box;
+}
+
+.aira-floating-ad-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #D1D5DB;
+}
+
+.aira-floating-ad-card.fade-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.aira-floating-ad-card.fade-in {
+  animation: floatingAdFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes floatingAdSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatingAdFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aira-floating-ad-badge {
+  position: absolute;
+  top: -9px;
+  right: 18px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  color: #6B7280;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 4px;
+  text-transform: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  line-height: 1.3;
+}
+
+.aira-floating-ad-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 8px;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aira-floating-ad-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.aira-floating-ad-title {
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 2px 0;
+  line-height: 1.25;
+}
+
+.aira-floating-ad-desc {
+  font-family: inherit;
+  font-size: 0.76rem;
+  color: #6B7280;
+  line-height: 1.35;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Dark mode for floating ad */
+body.dark-mode .aira-floating-ad-card {
+  background: #18181B;
+  border-color: #27272A;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .aira-floating-ad-badge {
+  background: #27272A;
+  border-color: #3F3F46;
+  color: #A1A1AA;
+}
+
+body.dark-mode .aira-floating-ad-title {
+  color: #F4F4F5;
+}
+
+body.dark-mode .aira-floating-ad-desc {
+  color: #A1A1AA;
+}
+
+/* Mobile responsive for floating ad */
+@media (max-width: 640px) {
+  .aira-floating-ad-container {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+  }
+  .aira-floating-ad-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 14px;
+  }
+  .aira-floating-ad-title {
+    font-size: 0.88rem;
+  }
+  .aira-floating-ad-desc {
+    font-size: 0.74rem;
+  }
+}
+
+
 
 

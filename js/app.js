@@ -9141,7 +9141,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     if (slot.isEditionBased) {
       selectionBarHTML = `
         <div class="adv-cal-selection-bar">
-          <span>Edition Drop: <strong class="adv-date-badge">📅 ${info.fullStart || 'Select Date'}</strong></span>
+          <span class="dates-text">Edition Drop: <strong class="dates-green">📅 ${info.fullStart || 'Select Date'}</strong></span>
           <span class="adv-cal-price-highlight">$${info.price} / edition</span>
         </div>
       `;
@@ -9149,7 +9149,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       selectionBarHTML = `
         <div class="adv-cal-selection-bar">
           <div>
-            <span>Dates: <strong class="adv-date-badge">📅 ${info.rangeStr}</strong> (${info.days} days)</span>
+            <span class="dates-text">Dates: 📅 <strong class="dates-green">${info.rangeStr}</strong> <span class="days-count">(${info.days} days)</span></span>
           </div>
           <span class="adv-cal-price-highlight">$${info.price} Total</span>
         </div>
@@ -9158,7 +9158,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       selectionBarHTML = `
         <div class="adv-cal-selection-bar" style="background: #FFFBEB; border-color: #FDE68A;">
           <span style="color: #92400E;">Start: <strong>${info.fullStart}</strong> ➔ <em>👉 Click End Date</em></span>
-          <span style="font-size: 0.75rem; color: #B45309;">Selecting...</span>
+          <span style="font-size: 0.75rem; color: #B45309; font-weight: 600;">Selecting...</span>
         </div>
       `;
     }
@@ -9168,35 +9168,47 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     if (slot.isEditionBased) {
       footerHTML = `
         <div class="advertise-slot-footer">
-          <div class="advertise-slot-price">$${info.price} <span>/ edition</span></div>
+          <div class="advertise-slot-footer-left">
+            <div class="advertise-slot-price-row">
+              <span class="advertise-slot-price-main">$${info.price}</span>
+              <span class="advertise-slot-price-sub">/ edition</span>
+            </div>
+            <div class="advertise-slot-rate-note">Guaranteed Placement • 50k+ Subscribers</div>
+          </div>
           <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
-            <span>Book Spotlight ($${info.price})</span>
-            <span>→</span>
+            <span class="adv-btn-title">Book Spotlight</span>
+            <span class="adv-btn-sub">($${info.price}) &nbsp; &rarr;</span>
           </button>
         </div>
       `;
     } else if (info.isComplete) {
       footerHTML = `
         <div class="advertise-slot-footer">
-          <div>
-            <div class="advertise-slot-price">$${info.price} <span>total (${info.days} days)</span></div>
-            <div style="font-size: 0.74rem; color: #71717A; margin-top: 1px;">$${info.dailyAvg}/day • ${info.savingsText || 'Guaranteed Placement'}</div>
+          <div class="advertise-slot-footer-left">
+            <div class="advertise-slot-price-row">
+              <span class="advertise-slot-price-main">$${info.price}</span>
+              <span class="advertise-slot-price-sub">total (${info.days} days)</span>
+            </div>
+            <div class="advertise-slot-rate-note">$${info.dailyAvg}/day • ${info.savingsText || 'Guaranteed Placement'}</div>
           </div>
           <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
-            <span>Book ${slot.name} ($${info.price})</span>
-            <span>→</span>
+            <span class="adv-btn-title">Book ${slot.name}</span>
+            <span class="adv-btn-sub">($${info.price}) &nbsp; &rarr;</span>
           </button>
         </div>
       `;
     } else {
       footerHTML = `
         <div class="advertise-slot-footer">
-          <div>
-            <div class="advertise-slot-price" style="font-size: 1.1rem; color: #D97706;">Select End Date</div>
-            <div style="font-size: 0.74rem; color: #71717A;">Pick an end date on calendar</div>
+          <div class="advertise-slot-footer-left">
+            <div class="advertise-slot-price-row">
+              <span class="advertise-slot-price-main" style="font-size: 1.25rem; color: #D97706;">Select End Date</span>
+            </div>
+            <div class="advertise-slot-rate-note">Pick an end date on the calendar</div>
           </div>
           <button type="button" class="advertise-slot-book-btn" style="opacity: 0.6; cursor: not-allowed;" disabled>
-            <span>Pick End Date →</span>
+            <span class="adv-btn-title">Pick End Date</span>
+            <span class="adv-btn-sub">&rarr;</span>
           </button>
         </div>
       `;
@@ -9584,15 +9596,6 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </a>
                   </div>
                 </div>
-                <p class="advertise-slot-desc">
-                  Prominent placement across 400+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> Placed on 400+ tool detail &amp; category pages</li>
-                  <li><span class="check-icon">✓</span> Direct dofollow backlink &amp; CTA button</li>
-                  <li><span class="check-icon">✓</span> High intent developer &amp; founder traffic</li>
-                  <li><span class="check-icon">✓</span> Weekly &amp; monthly flexible billing</li>
-                </ul>
 
                 <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
                 <div id="slot-card-interactive-listing">
@@ -9618,15 +9621,6 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </a>
                   </div>
                 </div>
-                <p class="advertise-slot-desc">
-                  Prime site-wide placement above the fold. Guaranteed 100% visibility on all pages for maximum brand awareness and direct traffic.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> 100% impressions on all website visitors</li>
-                  <li><span class="check-icon">✓</span> Exclusive single sponsor per weekly cycle</li>
-                  <li><span class="check-icon">✓</span> Custom brand tagline, icon &amp; action link</li>
-                  <li><span class="check-icon">✓</span> Real-time clicks and analytics tracking</li>
-                </ul>
 
                 <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
                 <div id="slot-card-interactive-banner">
@@ -9651,15 +9645,6 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </a>
                   </div>
                 </div>
-                <p class="advertise-slot-desc">
-                  Featured in the dedicated sidebar section on 400+ AI tool detail pages right when developers evaluate product alternatives.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> Featured on 400+ tool detail pages</li>
-                  <li><span class="check-icon">✓</span> Contextually targeted developer audience</li>
-                  <li><span class="check-icon">✓</span> Verified backlink &amp; custom highlight widget</li>
-                  <li><span class="check-icon">✓</span> High conversion rate for developer tools</li>
-                </ul>
 
                 <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
                 <div id="slot-card-interactive-tool">
@@ -9684,15 +9669,6 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     </a>
                   </div>
                 </div>
-                <p class="advertise-slot-desc">
-                  Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> 100-word product review + screenshot</li>
-                  <li><span class="check-icon">✓</span> Sent to 50K+ verified active subscribers</li>
-                  <li><span class="check-icon">✓</span> Permanent edition web archive backlink</li>
-                  <li><span class="check-icon">✓</span> Detailed post-campaign analytics report</li>
-                </ul>
 
                 <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
                 <div id="slot-card-interactive-newsletter">
@@ -10233,8 +10209,128 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   // Initialize Global Elements
   initTheme();
   updateBookmarksBadge();
+  // =========================================================================
+  // Floating Rotating Bottom-Right Ad Widget (15-Second Rotation)
+  // Exact OpenAlternative / DevSuite Style with Multi-Ad Auto Switch
+  // =========================================================================
+  const FLOATING_ROTATING_ADS = [
+    {
+      id: 'c15t',
+      name: 'c15t',
+      tagline: 'Open-source cookie banner, built for control and lightening fast modern web apps.',
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>`,
+      iconBg: '#000000',
+      url: 'https://c15t.com'
+    },
+    {
+      id: 'firecrawl',
+      name: 'Firecrawl',
+      tagline: 'Turn any website into clean, AI-ready markdown data via API.',
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#F97316"><path d="M12 23c4.97 0 9-4.03 9-9 0-4.07-3.05-7.64-6.24-10.72-.88-.85-2.26-.26-2.26.98 0 2.22-1.78 4.02-4 4.02-.75 0-1.46-.21-2.07-.58C4.54 9.17 3 11.41 3 14c0 4.97 4.03 9 9 9z"/></svg>`,
+      iconBg: '#000000',
+      url: 'https://firecrawl.dev'
+    },
+    {
+      id: 'postiz',
+      name: 'Postiz',
+      tagline: 'Schedule, analyze, and manage 30+ social media accounts with AI.',
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#818CF8"><rect x="3" y="3" width="18" height="18" rx="4" fill="#818CF8"/><text x="12" y="16.5" font-size="13" font-weight="900" fill="#000000" text-anchor="middle" font-family="sans-serif">P</text></svg>`,
+      iconBg: '#000000',
+      url: 'https://postiz.com'
+    },
+    {
+      id: 'novu',
+      name: 'Novu',
+      tagline: 'Multi-channel notification infrastructure for modern web applications.',
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>`,
+      iconBg: '#000000',
+      url: 'https://novu.co'
+    },
+    {
+      id: 'cap',
+      name: 'Cap',
+      tagline: 'Screen recorder with instant sharing and built-in studio effects.',
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4" fill="#38BDF8"></circle></svg>`,
+      iconBg: '#000000',
+      url: 'https://cap.so'
+    },
+    {
+      id: 'openseo',
+      name: 'OpenSEO',
+      tagline: 'Self-hosted SEO platform for keyword, backlink, and rank tracking.',
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2L4 9h3v10h10V9h3L12 2z"/></svg>`,
+      iconBg: '#000000',
+      url: 'https://openseo.dev'
+    }
+  ];
+
+  let floatingAdTimer = null;
+  let currentFloatingAdIndex = 0;
+
+  function initFloatingAdWidget() {
+    let adRoot = document.getElementById('aira-floating-bottom-ad');
+    if (!adRoot) {
+      adRoot = document.createElement('div');
+      adRoot.id = 'aira-floating-bottom-ad';
+      adRoot.className = 'aira-floating-ad-container';
+      document.body.appendChild(adRoot);
+    }
+
+    function renderFloatingAd(index, isTransition = false) {
+      const ad = FLOATING_ROTATING_ADS[index % FLOATING_ROTATING_ADS.length];
+      const html = `
+        <a href="${ad.url}" target="_blank" rel="noopener noreferrer" class="aira-floating-ad-card ${isTransition ? 'fade-in' : ''}">
+          <span class="aira-floating-ad-badge">Ad</span>
+          <div class="aira-floating-ad-icon" style="background: ${ad.iconBg};">
+            ${ad.iconSvg}
+          </div>
+          <div class="aira-floating-ad-content">
+            <h4 class="aira-floating-ad-title">${ad.name}</h4>
+            <p class="aira-floating-ad-desc">${ad.tagline}</p>
+          </div>
+        </a>
+      `;
+      adRoot.innerHTML = html;
+    }
+
+    if (sessionStorage.getItem('aira_floating_ad_dismissed') === 'true') {
+      return;
+    }
+
+    renderFloatingAd(currentFloatingAdIndex);
+
+    if (floatingAdTimer) clearInterval(floatingAdTimer);
+    floatingAdTimer = setInterval(() => {
+      if (sessionStorage.getItem('aira_floating_ad_dismissed') === 'true') {
+        clearInterval(floatingAdTimer);
+        return;
+      }
+      currentFloatingAdIndex = (currentFloatingAdIndex + 1) % FLOATING_ROTATING_ADS.length;
+      const cardEl = document.querySelector('.aira-floating-ad-card');
+      if (cardEl) {
+        cardEl.classList.add('fade-out');
+        setTimeout(() => {
+          renderFloatingAd(currentFloatingAdIndex, true);
+        }, 300);
+      } else {
+        renderFloatingAd(currentFloatingAdIndex, true);
+      }
+    }, 15000);
+  }
+
+  window.dismissFloatingAd = function() {
+    const adRoot = document.getElementById('aira-floating-bottom-ad');
+    if (adRoot) adRoot.style.display = 'none';
+    sessionStorage.setItem('aira_floating_ad_dismissed', 'true');
+    if (floatingAdTimer) clearInterval(floatingAdTimer);
+  };
+
+  // Initialize Global Elements
+  initTheme();
+  updateBookmarksBadge();
   initReadingProgressBar();
   initSubmitToolModal();
+  initFloatingAdWidget();
 
   // Listen to hash changes
   window.addEventListener('hashchange', renderCurrentRoute);
