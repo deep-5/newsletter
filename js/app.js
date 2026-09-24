@@ -868,6 +868,10 @@ Website: https://aira-newsletter.vercel.app/
       const slug = hashPath.replace('/post/', '');
       return { name: 'post', slug };
     }
+    if (hashPath.startsWith('/article/')) {
+      const slug = hashPath.replace('/article/', '');
+      return { name: 'post', slug };
+    }
     if (hashPath === '/archive') return { name: 'home' }; // Redirected to home
     if (hashPath === '/admin' || hashPath === '/subscribers') return { name: 'admin' };
     if (hashPath === '/prompts') return { name: 'prompts' };
@@ -1232,6 +1236,39 @@ Website: https://aira-newsletter.vercel.app/
     `;
   }
 
+  // Sidebar Top Articles Helper (Replaces categories in sidebar)
+  function getSidebarTopArticlesHTML() {
+    const articlesList = getArticles();
+    const topArticles = articlesList.slice(0, 4);
+
+    return `
+      <div class="sidebar-trending-tools-widget" style="margin-top: 24px;">
+        <div class="sidebar-trending-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="trending-fire-icon">📰</span>
+            <h4>Top AI Articles</h4>
+          </div>
+          <a href="#/home" class="trending-view-all-link">All 56 →</a>
+        </div>
+        <div class="sidebar-trending-list">
+          ${topArticles.map((art) => `
+            <div class="trending-tool-row" style="cursor: pointer;" onclick="window.location.hash='#/p/${art.slug}';">
+              <div class="trending-tool-icon" style="width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
+                <img src="${art.image_url || 'assets/logo.jpg'}" alt="${escapeHtml(art.title)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/logo.jpg'" loading="lazy" />
+              </div>
+              <div class="trending-tool-details" style="min-width: 0;">
+                <div class="trending-tool-name-line" style="margin-bottom: 2px;">
+                  <span class="trending-tool-name" style="font-size: 0.85rem; font-weight: 700; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${escapeHtml(art.title)}</span>
+                </div>
+                <span class="trending-tool-desc-short" style="font-size: 0.75rem; color: #71717A;">${art.date || 'Sep 2026'} • ${art.reading_time || art.read_time || '4 min read'}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
   // =========================================================================
   // AIRA Pulse: Community Live Weekly AI Poll
   // =========================================================================
@@ -1408,7 +1445,7 @@ Website: https://aira-newsletter.vercel.app/
       const feedInner = document.getElementById('feed-container-inner');
       if (!feedInner) return;
 
-      const ARTICLES_PER_PAGE = 8;
+      const ARTICLES_PER_PAGE = 9;
       const query = (state.homeSearchQuery || '').trim().toLowerCase();
       let filteredArticles = state.selectedTag === 'All' 
         ? state.articles 
@@ -1480,110 +1517,59 @@ Website: https://aira-newsletter.vercel.app/
             <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
           </div>
         ` : `
-          <!-- 2-Column Main Layout (Left: Articles Grid | Right: Sidebar Widgets & Resources) -->
-          <div class="home-main-layout">
-            
-            <!-- Left Column: Articles Grid (Exact 8 Articles Per Page in OpenAlternative Modern Box Style) -->
-            <div class="home-articles-col">
-              <!-- 2-Column Articles Grid -->
-              <div class="articles-grid-2col" id="main-articles-grid">
-                ${visibleArticles.map(article => `
-                  <a href="#/p/${article.slug}" class="article-card openalt-box-card">
-                    <!-- 1. Top Aspect Ratio Preview Image with Badges -->
-                    <div class="card-image-wrap">
-                      <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
-                      <div class="card-badges-overlay">
-                        <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
-                        <span class="openalt-badge-time">${article.reading_time || article.read_time || '4 min read'}</span>
+          <!-- Full-Width Articles Grid (Taking All Available Space across container) -->
+          <div class="articles-grid-full" id="main-articles-grid">
+            ${visibleArticles.map(article => `
+              <a href="#/p/${article.slug}" class="article-card openalt-box-card">
+                <!-- 1. Top Aspect Ratio Preview Image with Badges -->
+                <div class="card-image-wrap">
+                  <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
+                  <div class="card-badges-overlay">
+                    <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
+                    <span class="openalt-badge-time">${article.reading_time || article.read_time || '4 min read'}</span>
+                  </div>
+                </div>
+
+                <!-- 2. Card Body Box (OpenAlternative Style) -->
+                <div class="card-body">
+                  <!-- Header Row: App Favicon / Logo Box + Title -->
+                  <div class="openalt-card-header-row">
+                    <div class="openalt-icon-box">
+                      <img src="assets/logo.png?v=48.0" alt="AIRA" class="openalt-icon-img" onerror="this.src='assets/logo.svg'" />
+                    </div>
+                    <div class="openalt-header-text">
+                      <h3 class="card-title openalt-title">${article.title || ''}</h3>
+                      <div class="openalt-meta-subrow">
+                        <span class="openalt-source-tag">AIRA Edition</span>
+                        <span class="openalt-dot">•</span>
+                        <span class="openalt-date-tag">${article.date || 'Sep 2026'}</span>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- 2. Card Body Box (OpenAlternative Style) -->
-                    <div class="card-body">
-                      <!-- Header Row: App Favicon / Logo Box + Title -->
-                      <div class="openalt-card-header-row">
-                        <div class="openalt-icon-box">
-                          <img src="assets/logo.png?v=48.0" alt="AIRA" class="openalt-icon-img" onerror="this.src='assets/logo.svg'" />
-                        </div>
-                        <div class="openalt-header-text">
-                          <h3 class="card-title openalt-title">${article.title || ''}</h3>
-                          <div class="openalt-meta-subrow">
-                            <span class="openalt-source-tag">AIRA Edition</span>
-                            <span class="openalt-dot">•</span>
-                            <span class="openalt-date-tag">${article.date || 'Sep 2026'}</span>
-                          </div>
-                        </div>
-                      </div>
+                  <!-- Description / Subtitle -->
+                  <p class="card-subtitle openalt-desc">${article.subtitle || ''}</p>
 
-                      <!-- Description / Subtitle -->
-                      <p class="card-subtitle openalt-desc">${article.subtitle || ''}</p>
-
-                      <!-- Footer Row: Author + Audio + Action Button -->
-                      <div class="card-footer openalt-footer">
-                        <div class="openalt-footer-left">
-                          <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
-                          <span class="card-author-name">${article.author || 'AIRA'}</span>
-                        </div>
-                        <div class="openalt-footer-right">
-                          <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
-                            <span class="listen-btn-icon">🎧</span>
-                            <span class="listen-btn-text">Listen</span>
-                          </button>
-                          <span class="openalt-read-btn">
-                            <span>Read</span>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                          </span>
-                        </div>
-                      </div>
+                  <!-- Footer Row: Author + Audio + Action Button -->
+                  <div class="card-footer openalt-footer">
+                    <div class="openalt-footer-left">
+                      <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
+                      <span class="card-author-name">${article.author || 'AIRA'}</span>
                     </div>
-                  </a>
-                `).join('')}
-              </div>
-            </div>
-
-            <!-- Right Column: Sidebar Widgets & Resources -->
-            <div class="home-sidebar-col">
-              
-              <!-- 1. Top 5 Trending AI Tools Leaderboard -->
-              ${getTrendingToolsHTML()}
-
-              <!-- 2. AIRA Pulse: Community Live Weekly AI Poll -->
-              ${getCommunityPollHTML()}
-
-              <!-- Sidebar Ad 1: Master AI Prompts Vault -->
-              <div class="ad-sidebar-card">
-                <span class="ad-tag-label">FEATURED RESOURCE</span>
-                <h3 class="ad-sidebar-title">Master AI Prompts Vault</h3>
-                <p class="ad-sidebar-desc">100+ battle-tested prompts for reasoning, coding, writing & automation.</p>
-                <a href="#/prompts" class="ad-pill-btn">
-                  <span>Open Prompts Vault</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-
-              <!-- Sidebar Ad 2: 50 n8n Templates -->
-              <div class="ad-sidebar-card">
-                <span class="ad-tag-label">FREE BONUS</span>
-                <h3 class="ad-sidebar-title">50 n8n Templates</h3>
-                <p class="ad-sidebar-desc">Get top AI news, breakthroughs + instant access to AI Automation | 50 n8n Templates.</p>
-                <button type="button" class="ad-pill-btn" onclick="document.getElementById('subscribe-modal').classList.add('active'); document.body.style.overflow='hidden';">
-                  <span>Get 50 Templates</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-              </div>
-
-              <!-- Sidebar Ad 3: Advertise with AIRA -->
-              <div class="ad-sidebar-card" style="background: linear-gradient(145deg, #ECFDF5 0%, #D1FAE5 60%, #CCFBF1 100%);">
-                <span class="ad-tag-label">SPONSORSHIP</span>
-                <h3 class="ad-sidebar-title">Partner with AIRA</h3>
-                <p class="ad-sidebar-desc">Put your brand in front of 500+ AI builders, founders, and engineers.</p>
-                <a href="#/advertise" class="ad-pill-btn">
-                  <span>View Media Kit</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-
-            </div>
+                    <div class="openalt-footer-right">
+                      <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
+                        <span class="listen-btn-icon">🎧</span>
+                        <span class="listen-btn-text">Listen</span>
+                      </button>
+                      <span class="openalt-read-btn">
+                        <span>Read</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            `).join('')}
           </div>
 
           <!-- Centered Numbered Pagination Bar Across Full Container Width -->
@@ -8740,144 +8726,733 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
   // =========================================================================
   // 10. Advertise / Sponsorship Media Kit (/#/advertise)
+  // DevSuite-Inspired Modern High-Converting Design
   // =========================================================================
-  function renderAdvertisePage() {
-    appContainer.innerHTML = `
-      <div class="tools-directory-page">
-        <div class="container">
-          <!-- Hero Header -->
-          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
-            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
-              <span>⚡</span> Sponsorship & Media Kit
-            </div>
-            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">Advertise with AIRA</h1>
-            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
-              Put your product, AI platform, or SaaS in front of 500+ top engineers, founders, researchers, and tech leaders every week.
-            </p>
+  // =========================================================================
+  // 10. Advertise / Sponsorship Media Kit (/#/advertise)
+  // DevSuite & OpenAds Inspired High-Converting Interactive Experience
+  // =========================================================================
+  const AD_SLOTS_CONFIG = {
+    listing: {
+      id: 'listing',
+      name: 'Listing Ad',
+      subtitle: 'Visible on every tool listing page & categories',
+      icon: '📋',
+      dailyRate: 29,
+      weeklyRate: 149,
+      minDays: 3,
+      defaultDays: 7,
+      features: [
+        'Placed on 400+ tool detail & category pages',
+        'Direct dofollow backlink & CTA button',
+        'High-intent developer & buyer traffic',
+        'Transparent daily & weekly billing'
+      ]
+    },
+    banner: {
+      id: 'banner',
+      name: 'Top Header Banner',
+      badge: 'MOST POPULAR',
+      subtitle: 'Pinned at the top across all pages',
+      icon: '⚡',
+      dailyRate: 49,
+      weeklyRate: 249,
+      minDays: 3,
+      defaultDays: 7,
+      features: [
+        '100% impressions on all website visitors',
+        'Exclusive single sponsor per weekly cycle',
+        'Custom brand tagline, icon & action link',
+        'Real-time clicks & analytics tracking'
+      ]
+    },
+    tool: {
+      id: 'tool',
+      name: 'Tool Page Ad',
+      subtitle: 'Visible on every single AI tool detail page',
+      icon: '🚀',
+      dailyRate: 39,
+      weeklyRate: 199,
+      minDays: 3,
+      defaultDays: 7,
+      features: [
+        'Featured in the sidebar on 400+ tool pages',
+        'Contextually relevant developer audience',
+        'Verified backlink & custom highlight box',
+        'High conversion for SaaS & devtools'
+      ]
+    },
+    newsletter: {
+      id: 'newsletter',
+      name: 'Newsletter Spotlight',
+      subtitle: 'Direct delivery to 50,000+ inboxes',
+      icon: '📬',
+      dailyRate: 399,
+      weeklyRate: 399,
+      isEditionBased: true,
+      minDays: 1,
+      defaultDays: 1,
+      features: [
+        '100-word product review + screenshot',
+        'Sent to 50,000+ verified active subscribers',
+        'Permanent edition web archive backlink',
+        'Detailed post-campaign click report'
+      ]
+    }
+  };
+
+  function initAdvState() {
+    if (window.airaAdvState) return;
+    const now = new Date();
+    const tom = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const nxt7 = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+
+    window.airaAdvState = {
+      listing: {
+        year: tom.getFullYear(),
+        month: tom.getMonth(),
+        startDate: new Date(tom),
+        endDate: new Date(nxt7)
+      },
+      banner: {
+        year: tom.getFullYear(),
+        month: tom.getMonth(),
+        startDate: new Date(tom),
+        endDate: new Date(nxt7)
+      },
+      tool: {
+        year: tom.getFullYear(),
+        month: tom.getMonth(),
+        startDate: new Date(tom),
+        endDate: new Date(nxt7)
+      },
+      newsletter: {
+        year: tom.getFullYear(),
+        month: tom.getMonth(),
+        startDate: new Date(tom),
+        endDate: new Date(tom)
+      }
+    };
+  }
+
+  function formatAdvDate(d) {
+    if (!d) return '';
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  }
+
+  function formatAdvShort(d) {
+    if (!d) return '';
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[d.getMonth()]} ${d.getDate()}`;
+  }
+
+  function getSlotPriceAndDays(slotKey) {
+    const slot = AD_SLOTS_CONFIG[slotKey];
+    const s = window.airaAdvState[slotKey];
+    if (!s || !s.startDate) return { days: 7, price: slot.weeklyRate, rangeStr: '7 days' };
+
+    let days = 1;
+    if (s.startDate && s.endDate) {
+      const diffMs = Math.abs(s.endDate.getTime() - s.startDate.getTime());
+      days = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
+    }
+
+    let price = 0;
+    if (slot.isEditionBased) {
+      price = slot.dailyRate;
+    } else if (days === 7) {
+      price = slot.weeklyRate;
+    } else if (days < 7) {
+      price = days * slot.dailyRate;
+    } else {
+      price = Math.round(days * (slot.weeklyRate / 7));
+    }
+
+    const startFmt = formatAdvShort(s.startDate);
+    const endFmt = formatAdvShort(s.endDate);
+    const rangeStr = slot.isEditionBased || days === 1 ? `${startFmt}` : `${startFmt} – ${endFmt}`;
+
+    return { days, price, rangeStr, fullStart: formatAdvDate(s.startDate), fullEnd: formatAdvDate(s.endDate) };
+  }
+
+  function renderAdvMiniCalendarHTML(slotKey) {
+    initAdvState();
+    const slot = AD_SLOTS_CONFIG[slotKey];
+    const s = window.airaAdvState[slotKey];
+    const y = s.year;
+    const m = s.month;
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const firstDayOfMonth = new Date(y, m, 1);
+    const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+    let startDayIdx = firstDayOfMonth.getDay() - 1;
+    if (startDayIdx < 0) startDayIdx = 6;
+
+    const now = new Date();
+    const todayZero = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+    const startZero = s.startDate ? new Date(s.startDate.getFullYear(), s.startDate.getMonth(), s.startDate.getDate()).getTime() : null;
+    const endZero = s.endDate ? new Date(s.endDate.getFullYear(), s.endDate.getMonth(), s.endDate.getDate()).getTime() : null;
+
+    let cellsHTML = '';
+    for (let i = 0; i < startDayIdx; i++) {
+      cellsHTML += `<div class="adv-cal-cell is-empty"></div>`;
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cellDate = new Date(y, m, d);
+      const cellTime = cellDate.getTime();
+      const isPast = cellTime < todayZero;
+      const isToday = cellTime === todayZero;
+
+      let isStart = startZero !== null && cellTime === startZero;
+      let isEnd = endZero !== null && cellTime === endZero;
+      let inRange = false;
+      if (startZero !== null && endZero !== null && startZero !== endZero) {
+        inRange = cellTime > startZero && cellTime < endZero;
+      }
+
+      let classList = ['adv-cal-cell'];
+      if (isPast) classList.push('is-disabled');
+      if (isToday) classList.push('is-today');
+      if (isStart) classList.push('is-range-start');
+      if (isEnd) classList.push('is-range-end');
+      if (inRange) classList.push('is-in-range');
+
+      const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      const clickAttr = isPast ? '' : `onclick="window.handleAdvDateSelect('${slotKey}', '${dateStr}')"`;
+
+      cellsHTML += `<button type="button" class="${classList.join(' ')}" ${clickAttr} ${isPast ? 'disabled' : ''}>${d}</button>`;
+    }
+
+    const { days, price, rangeStr } = getSlotPriceAndDays(slotKey);
+
+    return `
+      <div class="advertise-cal-wrap" id="cal-box-${slotKey}">
+        <div class="adv-cal-nav">
+          <span class="adv-cal-month-title">${monthNames[m]} ${y}</span>
+          <div style="display: flex; gap: 4px;">
+            <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${slotKey}', -1)" title="Previous Month">‹</button>
+            <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${slotKey}', 1)" title="Next Month">›</button>
           </div>
+        </div>
+        <div class="adv-cal-grid">
+          <div class="adv-cal-th">Mo</div>
+          <div class="adv-cal-th">Tu</div>
+          <div class="adv-cal-th">We</div>
+          <div class="adv-cal-th">Th</div>
+          <div class="adv-cal-th">Fr</div>
+          <div class="adv-cal-th">Sa</div>
+          <div class="adv-cal-th">Su</div>
+          ${cellsHTML}
+        </div>
+        <div class="adv-cal-summary-strip">
+          <span><strong>${days} ${days === 1 ? 'day' : 'days'}</strong> (${rangeStr})</span>
+          <span><strong>$${price}</strong> total</span>
+        </div>
+      </div>
+    `;
+  }
 
-          <!-- Audience Statistics Grid -->
-          <div class="ad-stats-grid">
-            <div class="ad-stat-card">
-              <div class="ad-stat-num">500+</div>
-              <div class="ad-stat-label">Active Subscribers</div>
+  function updateSlotCardUI(slotKey) {
+    const calEl = document.getElementById(`cal-box-${slotKey}`);
+    if (calEl) {
+      calEl.outerHTML = renderAdvMiniCalendarHTML(slotKey);
+    }
+  }
+
+  window.navAdvMonth = function(slotKey, delta) {
+    initAdvState();
+    const s = window.airaAdvState[slotKey];
+    s.month += delta;
+    if (s.month < 0) {
+      s.month = 11;
+      s.year--;
+    } else if (s.month > 11) {
+      s.month = 0;
+      s.year++;
+    }
+    updateSlotCardUI(slotKey);
+  };
+
+  window.handleAdvDateSelect = function(slotKey, dateStr) {
+    initAdvState();
+    const parts = dateStr.split('-').map(Number);
+    const clicked = new Date(parts[0], parts[1] - 1, parts[2]);
+    const s = window.airaAdvState[slotKey];
+    const slot = AD_SLOTS_CONFIG[slotKey];
+
+    if (slot.isEditionBased) {
+      s.startDate = clicked;
+      s.endDate = clicked;
+    } else {
+      // If no start date or both start & end already picked differently, restart with 7-day default
+      if (!s.startDate || (s.startDate && s.endDate && s.startDate.getTime() !== s.endDate.getTime())) {
+        s.startDate = clicked;
+        s.endDate = new Date(clicked.getFullYear(), clicked.getMonth(), clicked.getDate() + 6);
+      } else if (clicked < s.startDate) {
+        s.startDate = clicked;
+      } else {
+        s.endDate = clicked;
+      }
+    }
+
+    updateSlotCardUI(slotKey);
+  };
+
+  window.bookSlotWithDates = function(slotKey) {
+    initAdvState();
+    const slot = AD_SLOTS_CONFIG[slotKey];
+    const { days, price, rangeStr, fullStart, fullEnd } = getSlotPriceAndDays(slotKey);
+    const dateRangeLabel = slot.isEditionBased ? fullStart : `${fullStart} to ${fullEnd}`;
+    const pkgValue = `${slot.name} (${days} days: ${rangeStr} • $${price})`;
+
+    const selectEl = document.getElementById('advertise-package-select');
+    if (selectEl) {
+      let optionExists = false;
+      for (let opt of selectEl.options) {
+        if (opt.value.startsWith(slot.name)) {
+          opt.text = pkgValue;
+          opt.value = pkgValue;
+          opt.selected = true;
+          optionExists = true;
+          break;
+        }
+      }
+      if (!optionExists) {
+        const opt = new Option(pkgValue, pkgValue, true, true);
+        selectEl.add(opt, 0);
+      }
+      selectEl.value = pkgValue;
+    }
+
+    const msgBox = document.querySelector('textarea[name="message"]');
+    if (msgBox) {
+      msgBox.value = `Selected Slot: ${slot.name}\nTarget Schedule: ${dateRangeLabel} (${days} days)\nEstimated Budget: $${price}\n\nOur product URL / campaign notes: `;
+    }
+
+    const formSec = document.getElementById('sponsor-form-section');
+    if (formSec) {
+      formSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const nameInput = document.querySelector('input[name="contactName"]');
+      if (nameInput) setTimeout(() => nameInput.focus(), 400);
+    }
+
+    showToast(`⚡ Selected ${slot.name} ($${price})! Complete details below.`);
+  };
+
+  window.openAdPreviewModal = function(slotKey) {
+    const slot = AD_SLOTS_CONFIG[slotKey] || AD_SLOTS_CONFIG.banner;
+    const existingModal = document.getElementById('adv-preview-modal-root');
+    if (existingModal) existingModal.remove();
+
+    let mockupContent = '';
+    if (slotKey === 'banner') {
+      mockupContent = `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">https://aira.news/</div>
+        </div>
+        <div class="adv-highlight-box">
+          <span class="adv-highlight-pill">Top Banner Placement</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
+              <img src="assets/logo.jpg" alt="Logo" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+              <span style="font-size: 0.85rem; color: #18181B;"><strong>Your Brand Name</strong> — Launch, scale, and monitor your AI agents in production.</span>
             </div>
-            <div class="ad-stat-card">
-              <div class="ad-stat-num">46.8%</div>
-              <div class="ad-stat-label">Average Open Rate</div>
+            <button style="background: #18181B; color: #FFFFFF; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 9999px; border: none; white-space: nowrap;">Try Free →</button>
+          </div>
+        </div>
+        <div style="opacity: 0.45; pointer-events: none; margin-top: 14px; text-align: center;">
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 6px;">The One &amp; Only AI Newsletter</h2>
+          <p style="font-size: 0.82rem; color: #71717A;">Save time, cut costs, and 10x your productivity with curated tools.</p>
+        </div>
+      `;
+    } else if (slotKey === 'listing') {
+      mockupContent = `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">https://aira.news/#/tools</div>
+        </div>
+        <div class="adv-highlight-box">
+          <span class="adv-highlight-pill">Position #1 Sponsored Tool</span>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">⚡</div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+                <strong style="font-size: 0.95rem; color: #18181B;">Your Software / Tool Name</strong>
+                <span style="background: #DCFCE7; color: #166534; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Sponsored</span>
+              </div>
+              <p style="font-size: 0.8rem; color: #71717A; margin: 0; line-height: 1.4;">Automate your entire software development workflow with intelligent AI agents.</p>
             </div>
-            <div class="ad-stat-card">
-              <div class="ad-stat-num">14.2%</div>
-              <div class="ad-stat-label">Click-Through Rate (CTR)</div>
+            <span style="font-size: 0.82rem; font-weight: 700; color: #10B981; white-space: nowrap;">Visit Tool ↗</span>
+          </div>
+        </div>
+        <div style="opacity: 0.4; pointer-events: none; margin-top: 10px; padding: 10px; background: #FFFFFF; border-radius: 8px; border: 1px solid #E4E4E7;">
+          <div style="font-size: 0.85rem; font-weight: 700;">Organic Tool Listing #2</div>
+          <div style="font-size: 0.75rem; color: #A1A1AA;">Standard community-ranked entry...</div>
+        </div>
+      `;
+    } else if (slotKey === 'tool') {
+      mockupContent = `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">https://aira.news/#/tools/cursor</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 220px; gap: 14px;">
+          <div style="opacity: 0.5; pointer-events: none; background: #FFFFFF; border-radius: 8px; padding: 12px; border: 1px solid #E4E4E7;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 4px;">Tool Overview &amp; Specs</h4>
+            <p style="font-size: 0.75rem; color: #71717A;">Features, alternatives, pricing tiers, and community reviews...</p>
+          </div>
+          <div class="adv-highlight-box" style="margin: 0;">
+            <span class="adv-highlight-pill">Sidebar Widget</span>
+            <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #71717A; margin-bottom: 4px;">Featured Alternative</div>
+            <strong style="font-size: 0.88rem; color: #18181B; display: block; margin-bottom: 4px;">Switch to Your Tool</strong>
+            <p style="font-size: 0.74rem; color: #52525B; line-height: 1.3; margin-bottom: 8px;">10x faster inference and 50% lower monthly API costs.</p>
+            <button style="background: #18181B; color: #FFFFFF; font-size: 0.74rem; font-weight: 600; padding: 5px 10px; border-radius: 5px; border: none; width: 100%;">Get Started →</button>
+          </div>
+        </div>
+      `;
+    } else {
+      mockupContent = `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">AIRA Newsletter Edition (50,000+ Inboxes)</div>
+        </div>
+        <div class="adv-highlight-box">
+          <span class="adv-highlight-pill">Dedicated Spotlight</span>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="background: #FEF08A; color: #854D0E; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">FEATURED SPONSOR</span>
+            <strong style="font-size: 0.92rem; color: #18181B;">Introducing Your Company</strong>
+          </div>
+          <p style="font-size: 0.8rem; color: #3F3F46; line-height: 1.5; margin-bottom: 10px;">
+            Reach 50,000+ AI builders with a high-credibility 100-word product deep dive, custom screenshot, and direct conversion button placed before our main editorial story.
+          </p>
+          <a href="#" style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.76rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; text-decoration: none;">Claim Exclusive 30% Off →</a>
+        </div>
+      `;
+    }
+
+    const modalHTML = `
+      <div class="adv-modal-overlay" id="adv-preview-modal-root" onclick="if(event.target === this) window.closeAdPreviewModal();">
+        <div class="adv-modal-card">
+          <div class="adv-modal-header">
+            <div class="adv-modal-title-wrap">
+              <span style="font-size: 1.2rem;">${slot.icon}</span>
+              <div>
+                <h3 class="adv-modal-title">Live Preview: ${slot.name}</h3>
+                <div style="font-size: 0.76rem; color: #71717A;">${slot.subtitle}</div>
+              </div>
             </div>
-            <div class="ad-stat-card">
-              <div class="ad-stat-num">68%</div>
-              <div class="ad-stat-label">Senior Devs & Founders</div>
+            <button type="button" class="adv-modal-close-btn" onclick="window.closeAdPreviewModal()" title="Close Preview">✕</button>
+          </div>
+          <div class="adv-modal-body">
+            <div class="adv-modal-mockup-frame">
+              ${mockupContent}
             </div>
           </div>
-
-          <!-- Sponsorship Packages Grid -->
-          <div style="text-align: center; margin-bottom: 24px;">
-            <h2 style="font-family: var(--font-header); font-size: 1.8rem; font-weight: 900; color: #18181B; margin-bottom: 8px;">Sponsorship Packages</h2>
-            <p style="color: #71717A; font-size: 0.95rem;">High-visibility placements engineered for conversions and brand authority.</p>
-          </div>
-
-          <div class="ad-packages-grid">
-            <!-- Package 1 -->
-            <div class="ad-package-card featured">
-              <span style="background: #ECFDF5; color: #047857; font-weight: 800; font-size: 0.78rem; padding: 4px 12px; border-radius: 9999px; width: fit-content; margin-bottom: 12px;">MOST POPULAR</span>
-              <h3 style="font-size: 1.35rem; font-weight: 900; color: #18181B;">Primary Main Sponsor</h3>
-              <div class="ad-package-price">$750 <span style="font-size: 0.9rem; font-weight: 500; color: #71717A;">/ edition</span></div>
-              <p style="font-size: 0.9rem; color: #52525B; line-height: 1.5; margin-bottom: 20px;">
-                Premium top-of-newsletter placement. 100-word product description, custom image/logo, and primary call-to-action button.
-              </p>
-              <ul style="list-style: none; padding: 0; margin-bottom: 24px; font-size: 0.88rem; color: #3F3F46; line-height: 2;">
-                <li>✓ Top Header Banner Placement</li>
-                <li>✓ 100 Words + High-Res Banner</li>
-                <li>✓ Featured in Web Archive Edition</li>
-                <li>✓ Performance & Click Analytics</li>
-              </ul>
-              <a href="#sponsor-form-section" class="btn-subscribe-nav" style="text-align: center; padding: 12px; margin-top: auto;">Book Main Sponsor</a>
+          <div class="adv-modal-footer">
+            <div class="adv-modal-footer-info">
+              Pricing starting at <strong>$${slot.weeklyRate}${slot.isEditionBased ? ' / edition' : ' / week'}</strong>
             </div>
-
-            <!-- Package 2 -->
-            <div class="ad-package-card">
-              <h3 style="font-size: 1.35rem; font-weight: 900; color: #18181B;">Tool Spotlight</h3>
-              <div class="ad-package-price">$350 <span style="font-size: 0.9rem; font-weight: 500; color: #71717A;">/ edition</span></div>
-              <p style="font-size: 0.9rem; color: #52525B; line-height: 1.5; margin-bottom: 20px;">
-                Dedicated spotlight section within the "Tools of the Week" segment. Includes logo, 50-word pitch, and direct CTA link.
-              </p>
-              <ul style="list-style: none; padding: 0; margin-bottom: 24px; font-size: 0.88rem; color: #3F3F46; line-height: 2;">
-                <li>✓ Mid-Newsletter Spotlight</li>
-                <li>✓ 50 Words + Tool Logo + CTA</li>
-                <li>✓ Permanent Directory Backlink</li>
-                <li>✓ Performance Analytics</li>
-              </ul>
-              <a href="#sponsor-form-section" class="tool-details-btn" style="text-align: center; padding: 12px; margin-top: auto;">Book Tool Spotlight</a>
-            </div>
-
-            <!-- Package 3 -->
-            <div class="ad-package-card">
-              <h3 style="font-size: 1.35rem; font-weight: 900; color: #18181B;">Classified / Quick Link</h3>
-              <div class="ad-package-price">$150 <span style="font-size: 0.9rem; font-weight: 500; color: #71717A;">/ edition</span></div>
-              <p style="font-size: 0.9rem; color: #52525B; line-height: 1.5; margin-bottom: 20px;">
-                Concise 2-line bullet mention in the curated resources & AI news section with direct hyperlink.
-              </p>
-              <ul style="list-style: none; padding: 0; margin-bottom: 24px; font-size: 0.88rem; color: #3F3F46; line-height: 2;">
-                <li>✓ Classified Section Placement</li>
-                <li>✓ 25 Words + Hyperlink</li>
-                <li>✓ Quick 24h Turnaround</li>
-              </ul>
-              <a href="#sponsor-form-section" class="tool-details-btn" style="text-align: center; padding: 12px; margin-top: auto;">Book Classified</a>
-            </div>
-          </div>
-
-          <!-- Booking Inquiry Form -->
-          <div class="submit-form-card" id="sponsor-form-section" style="margin-bottom: 60px;">
-            <h3 style="font-family: var(--font-header); font-size: 1.5rem; font-weight: 900; color: #18181B; margin-bottom: 8px;">Book Your Sponsorship Slot</h3>
-            <p style="color: #71717A; font-size: 0.93rem; margin-bottom: 24px;">Fill out the details below and our partnerships team will reach out with available dates within 24 hours.</p>
-
-            <form id="advertise-inquiry-form">
-              <div class="form-group">
-                <label class="form-label">Company / Brand Name <span class="req">*</span></label>
-                <input type="text" name="companyName" class="form-input" placeholder="e.g., Anthropic, Cursor, Vercel" required />
-              </div>
-
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label">Work Email <span class="req">*</span></label>
-                  <input type="email" name="workEmail" class="form-input" placeholder="sponsor@company.com" required />
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Interested Package <span class="req">*</span></label>
-                  <select name="package" class="form-select" required>
-                    <option value="Primary Main Sponsor ($750)">Primary Main Sponsor ($750)</option>
-                    <option value="Tool Spotlight ($350)">Tool Spotlight ($350)</option>
-                    <option value="Classified Quick Link ($150)">Classified Quick Link ($150)</option>
-                    <option value="Custom Multi-Issue Bundle">Custom Multi-Issue Bundle</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Target Launch Date / Preferred Month</label>
-                <input type="text" name="targetDate" class="form-input" placeholder="e.g., Next available edition / October 2026" />
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Product Pitch or Campaign Goal</label>
-                <textarea name="message" class="form-textarea" placeholder="Tell us about the product you want to promote..."></textarea>
-              </div>
-
-              <button type="submit" class="btn-subscribe-nav" style="width: 100%; padding: 14px; font-size: 1.05rem; border-radius: 10px; margin-top: 16px;">
-                Send Sponsorship Inquiry ⚡
-              </button>
-            </form>
+            <button type="button" class="adv-modal-book-cta" onclick="window.closeAdPreviewModal(); window.bookSlotWithDates('${slotKey}');">
+              Book This Placement →
+            </button>
           </div>
         </div>
       </div>
     `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const escHandler = (e) => {
+      if (e.key === 'Escape') {
+        window.closeAdPreviewModal();
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
+  };
+
+  window.closeAdPreviewModal = function() {
+    const m = document.getElementById('adv-preview-modal-root');
+    if (m) m.remove();
+  };
+
+  function renderAdvertisePage() {
+    initAdvState();
+
+    appContainer.innerHTML = `
+      <div class="advertise-page-wrap">
+        <div class="advertise-container">
+          
+          <!-- 1. DevSuite Live Preview Floating Top Ad Banner -->
+          <div class="advertise-live-preview-ad">
+            <div class="advertise-live-left">
+              <span class="advertise-ad-badge">Ad</span>
+              <img src="assets/logo.jpg" alt="AIRA" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+              <span><strong>Your brand here</strong> — Reach 50,000+ active software developers, founders, and AI engineers.</span>
+            </div>
+            <a href="#sponsor-form-section" class="advertise-live-btn">Advertise on AIRA</a>
+          </div>
+
+          <!-- 2. Hero Header -->
+          <div class="advertise-hero">
+            <h1 class="advertise-hero-title">Advertise on AIRA</h1>
+            <p class="advertise-hero-desc">
+              Promote your business, AI tool, or software on AIRA and reach an engaged audience of 50,000+ software developers, founders, and tech-savvy builders. Boost your sales, signups, and brand authority.
+            </p>
+          </div>
+
+          <!-- 3. Audience Statistics 4-Card Row -->
+          <div class="advertise-stats-row">
+            <div class="advertise-stat-card">
+              <div class="advertise-stat-val">50,000+</div>
+              <div class="advertise-stat-label">Active AI Builders</div>
+            </div>
+            <div class="advertise-stat-card">
+              <div class="advertise-stat-val">42.4%</div>
+              <div class="advertise-stat-label">Average Open Rate</div>
+            </div>
+            <div class="advertise-stat-card">
+              <div class="advertise-stat-val">8.4%</div>
+              <div class="advertise-stat-label">Average CTR</div>
+            </div>
+            <div class="advertise-stat-card">
+              <div class="advertise-stat-val">74%</div>
+              <div class="advertise-stat-label">Devs &amp; Founders</div>
+            </div>
+          </div>
+
+          <!-- 4. DevSuite-Style Interactive Ad Slots Selection Grid -->
+          <div class="advertise-slots-section">
+            <div class="advertise-section-heading">
+              <h2 class="advertise-section-title">Available Advertising Slots</h2>
+              <p class="advertise-section-desc">Interactive date picker with dynamic pricing and transparent weekly/daily tiers.</p>
+            </div>
+
+            <div class="advertise-slots-grid">
+              
+              <!-- Slot 1: Listing Ad -->
+              <div class="advertise-slot-card">
+                <div class="advertise-slot-header">
+                  <div class="advertise-slot-icon">📋</div>
+                  <div>
+                    <h3 class="advertise-slot-title">Listing Ad</h3>
+                    <div class="advertise-slot-sub">Visible on every tool listing page</div>
+                  </div>
+                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('listing')" title="Preview placement">
+                    <span>👁 Preview</span>
+                  </button>
+                </div>
+                <p class="advertise-slot-desc">
+                  Prominent placement across 400+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.
+                </p>
+                <ul class="advertise-slot-features">
+                  <li><span class="check-icon">✓</span> Placed on 400+ tool detail &amp; category pages</li>
+                  <li><span class="check-icon">✓</span> Direct dofollow backlink &amp; CTA button</li>
+                  <li><span class="check-icon">✓</span> High intent developer &amp; founder traffic</li>
+                  <li><span class="check-icon">✓</span> Weekly &amp; monthly flexible billing</li>
+                </ul>
+
+                <!-- Mini Interactive Date Picker -->
+                ${renderAdvMiniCalendarHTML('listing')}
+
+                <div class="advertise-slot-footer">
+                  <div class="advertise-slot-price">$29 <span>/ day ($149/wk)</span></div>
+                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('listing')">
+                    <span>Book Listing Ad</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Slot 2: Top Header Banner (Featured) -->
+              <div class="advertise-slot-card featured-slot">
+                <span class="advertise-slot-pill-top">MOST POPULAR</span>
+                <div class="advertise-slot-header">
+                  <div class="advertise-slot-icon">⚡</div>
+                  <div>
+                    <h3 class="advertise-slot-title">Top Header Banner</h3>
+                    <div class="advertise-slot-sub">Pinned at the top across all pages</div>
+                  </div>
+                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('banner')" title="Preview placement">
+                    <span>👁 Preview</span>
+                  </button>
+                </div>
+                <p class="advertise-slot-desc">
+                  Prime site-wide placement above the fold. Guaranteed 100% visibility on all pages for maximum brand awareness and direct traffic.
+                </p>
+                <ul class="advertise-slot-features">
+                  <li><span class="check-icon">✓</span> 100% impressions on all website visitors</li>
+                  <li><span class="check-icon">✓</span> Exclusive single sponsor per weekly cycle</li>
+                  <li><span class="check-icon">✓</span> Custom brand tagline, icon &amp; action link</li>
+                  <li><span class="check-icon">✓</span> Real-time clicks and analytics tracking</li>
+                </ul>
+
+                <!-- Mini Interactive Date Picker -->
+                ${renderAdvMiniCalendarHTML('banner')}
+
+                <div class="advertise-slot-footer">
+                  <div class="advertise-slot-price">$49 <span>/ day ($249/wk)</span></div>
+                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('banner')">
+                    <span>Book Top Banner</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Slot 3: Tool Page Ad -->
+              <div class="advertise-slot-card">
+                <div class="advertise-slot-header">
+                  <div class="advertise-slot-icon">🚀</div>
+                  <div>
+                    <h3 class="advertise-slot-title">Tool Page Ad</h3>
+                    <div class="advertise-slot-sub">Visible on every single tool detail page</div>
+                  </div>
+                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('tool')" title="Preview placement">
+                    <span>👁 Preview</span>
+                  </button>
+                </div>
+                <p class="advertise-slot-desc">
+                  Featured in the dedicated sidebar section on 400+ AI tool detail pages right when developers evaluate product alternatives.
+                </p>
+                <ul class="advertise-slot-features">
+                  <li><span class="check-icon">✓</span> Featured on 400+ tool detail pages</li>
+                  <li><span class="check-icon">✓</span> Contextually targeted developer audience</li>
+                  <li><span class="check-icon">✓</span> Verified backlink &amp; custom highlight widget</li>
+                  <li><span class="check-icon">✓</span> High conversion rate for developer tools</li>
+                </ul>
+
+                <!-- Mini Interactive Date Picker -->
+                ${renderAdvMiniCalendarHTML('tool')}
+
+                <div class="advertise-slot-footer">
+                  <div class="advertise-slot-price">$39 <span>/ day ($199/wk)</span></div>
+                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('tool')">
+                    <span>Book Tool Page Ad</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Slot 4: Newsletter Primary Spotlight -->
+              <div class="advertise-slot-card">
+                <div class="advertise-slot-header">
+                  <div class="advertise-slot-icon">📬</div>
+                  <div>
+                    <h3 class="advertise-slot-title">Newsletter Spotlight</h3>
+                    <div class="advertise-slot-sub">Direct delivery to 50,000+ inboxes</div>
+                  </div>
+                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('newsletter')" title="Preview placement">
+                    <span>👁 Preview</span>
+                  </button>
+                </div>
+                <p class="advertise-slot-desc">
+                  Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.
+                </p>
+                <ul class="advertise-slot-features">
+                  <li><span class="check-icon">✓</span> 100-word product review + screenshot</li>
+                  <li><span class="check-icon">✓</span> Sent to 50K+ verified active subscribers</li>
+                  <li><span class="check-icon">✓</span> Permanent edition web archive backlink</li>
+                  <li><span class="check-icon">✓</span> Detailed post-campaign analytics report</li>
+                </ul>
+
+                <!-- Mini Interactive Date Picker -->
+                ${renderAdvMiniCalendarHTML('newsletter')}
+
+                <div class="advertise-slot-footer">
+                  <div class="advertise-slot-price">$399 <span>/ edition</span></div>
+                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('newsletter')">
+                    <span>Book Spotlight</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 5. DevSuite "Need a Custom Partnership?" & Booking Box -->
+          <div class="advertise-custom-box" id="sponsor-form-section">
+            <div class="advertise-custom-header">
+              <h3 class="advertise-custom-title">Need a custom partnership?</h3>
+              <p class="advertise-custom-desc">
+                Tell us more about your company and campaign goals, and our team will get back to you within 24 hours.
+              </p>
+            </div>
+
+            <form id="advertise-inquiry-form">
+              <div class="advertise-form-grid">
+                <div class="advertise-form-group">
+                  <label class="advertise-form-label">Your Name *</label>
+                  <input type="text" name="contactName" class="advertise-form-input" placeholder="e.g. Alex Morgan" required />
+                </div>
+
+                <div class="advertise-form-group">
+                  <label class="advertise-form-label">Work Email *</label>
+                  <input type="email" name="workEmail" class="advertise-form-input" placeholder="alex@company.com" required />
+                </div>
+
+                <div class="advertise-form-group">
+                  <label class="advertise-form-label">Company / Product URL *</label>
+                  <input type="url" name="companyUrl" class="advertise-form-input" placeholder="https://yourproduct.ai" required />
+                </div>
+
+                <div class="advertise-form-group">
+                  <label class="advertise-form-label">Selected Ad Slot / Package *</label>
+                  <select name="package" id="advertise-package-select" class="advertise-form-select" required>
+                    <option value="Top Header Banner (7 days: $249)">Top Header Banner (7 days: $249)</option>
+                    <option value="Listing Ad (7 days: $149)">Listing Ad (7 days: $149)</option>
+                    <option value="Tool Page Ad (7 days: $199)">Tool Page Ad (7 days: $199)</option>
+                    <option value="Newsletter Spotlight (1 Edition: $399)">Newsletter Spotlight (1 Edition: $399)</option>
+                    <option value="Custom Multi-Channel Campaign">Custom Multi-Channel Campaign</option>
+                  </select>
+                </div>
+
+                <div class="advertise-form-group full-width">
+                  <label class="advertise-form-label">Campaign Goals / Message</label>
+                  <textarea name="message" class="advertise-form-textarea" rows="4" placeholder="Tell us about the product you want to promote, target launch date, or any specific requirements..."></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="advertise-submit-btn">
+                <span>Submit Campaign Inquiry</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </form>
+
+            <div class="advertise-direct-contact">
+              Prefer direct email? Reach our partnerships desk at <a href="mailto:sponsor@aira.com">sponsor@aira.com</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    // Helper to auto-select package and scroll smoothly to form
+    window.selectAdvertiseSlot = function(pkgValue) {
+      const selectEl = document.getElementById('advertise-package-select');
+      if (selectEl) {
+        selectEl.value = pkgValue;
+      }
+      const formSec = document.getElementById('sponsor-form-section');
+      if (formSec) {
+        formSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
 
     // Bind inquiry form
     const form = document.getElementById('advertise-inquiry-form');
@@ -8886,10 +9461,10 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         e.preventDefault();
         const formData = new FormData(form);
         const inquiry = {
-          company: formData.get('companyName'),
+          name: formData.get('contactName'),
           email: formData.get('workEmail'),
+          url: formData.get('companyUrl'),
           pkg: formData.get('package'),
-          targetDate: formData.get('targetDate'),
           message: formData.get('message'),
           date: new Date().toISOString()
         };
@@ -8901,16 +9476,16 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         if (card) {
           card.innerHTML = `
             <div style="text-align: center; padding: 40px 20px;">
-              <div style="width: 64px; height: 64px; border-radius: 50%; background: #ECFDF5; color: #047857; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: #ECFDF5; color: #047857; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
               <h2 style="font-size: 1.6rem; font-weight: 900; color: #18181B; margin-bottom: 12px;">Inquiry Received!</h2>
               <p style="color: #52525B; font-size: 1rem; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.6;">
-                Thank you for partnering with AIRA! Our sponsorship manager will reach out to <strong>${inquiry.email}</strong> with available dates and campaign slots within 24 hours.
+                Thank you for choosing AIRA! Our partnerships team will review your campaign details and reach out to <strong>${inquiry.email}</strong> with available slot dates within 24 hours.
               </p>
-              <a href="#/home" class="btn-subscribe-nav">Return to Homepage</a>
+              <a href="#/home" class="btn-subscribe-nav" style="display: inline-block;">Return to Homepage</a>
             </div>
           `;
         }
-        showToast('🎉 Sponsorship inquiry sent!');
+        showToast('🎉 Partnership inquiry sent successfully!');
       });
     }
   }
