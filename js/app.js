@@ -1777,6 +1777,16 @@ Website: https://aira-newsletter.vercel.app/
             <img src="${article.image_url}" alt="${article.title}" class="article-hero-img" loading="lazy" referrerpolicy="no-referrer" />
           </div>
 
+          <!-- Top Header Banner Ad Placement (Slot: Top Header Banner) -->
+          <div class="site-top-ad-banner" style="margin-bottom: 20px;">
+            <div class="site-top-ad-inner">
+              <span class="site-ad-badge">AD</span>
+              <span class="site-ad-icon">⚡</span>
+              <span class="site-ad-text"><strong>AIRA Newsletter Partner</strong> – Build and scale frontier AI agents with verified infrastructure.</span>
+            </div>
+            <a href="#/advertise" class="site-ad-cta-btn">Learn More →</a>
+          </div>
+
           <!-- Text-to-Speech Audio Player Bar -->
           <div class="article-tts-player" id="article-tts-bar">
             <button type="button" class="tts-play-btn" id="btn-tts-play" title="Listen to this article">
@@ -1793,6 +1803,34 @@ Website: https://aira-newsletter.vercel.app/
               <button type="button" class="tts-speed-btn active" data-rate="1">1x</button>
               <button type="button" class="tts-speed-btn" data-rate="1.25">1.25x</button>
               <button type="button" class="tts-speed-btn" data-rate="1.5">1.5x</button>
+            </div>
+          </div>
+
+          <!-- Newsletter Spotlight Placement (Slot: Newsletter Spotlight) -->
+          <div class="newsletter-spotlight-ad-box">
+            <div class="newsletter-spotlight-top">
+              <div class="newsletter-spotlight-pill">
+                <span class="bolt">⚡</span> AIRA SPONSOR SPOTLIGHT
+              </div>
+              <a href="#/advertise" class="newsletter-spotlight-book-link">Book a Spotlight ($399) ↗</a>
+            </div>
+            <div class="newsletter-spotlight-content">
+              <div class="newsletter-spotlight-header-row">
+                <div class="newsletter-spotlight-avatar">🚀</div>
+                <div>
+                  <h4 class="newsletter-spotlight-title">Supercharge Your AI Development with Autonomous Agents</h4>
+                  <span class="newsletter-spotlight-brand">Sponsored by Partner Tech • Verified AIRA Partner</span>
+                </div>
+              </div>
+              <p class="newsletter-spotlight-text">
+                Build, evaluate, and scale production-ready AI agents in minutes. Connect frontier LLMs to your private data, automate complex multi-step workflows, and reduce API token overhead by up to 45%. Trusted by leading engineering teams worldwide.
+              </p>
+              <div class="newsletter-spotlight-footer">
+                <a href="#/advertise" class="newsletter-spotlight-btn">
+                  <span>Claim Exclusive 30% Off Free Trial →</span>
+                </a>
+                <span class="newsletter-spotlight-disclaimer">Delivered to 50,000+ AI engineers &amp; founders</span>
+              </div>
             </div>
           </div>
 
@@ -2411,19 +2449,35 @@ Website: https://aira-newsletter.vercel.app/
         } else {
           const renderedCards = pagedTools.map(renderToolCard);
           if (state.toolCurrentPage === 1 && !state.toolSearchQuery) {
-            const sponsorCtaHtml = `
-              <div class="tool-sponsor-cta-card">
-                <div class="tool-sponsor-cta-text">
-                  <h4>🚀 AI Founder? Showcase Your Tool to 500+ Active Subscribers</h4>
-                  <p>Get featured in our newsletter, top directory spot, and dedicated product review.</p>
+            const sponsorListingHtml = `
+              <div class="tool-card is-sponsored-listing" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/advertise'; }">
+                <div class="tool-card-top">
+                  <div class="tool-icon-avatar" style="background: #18181B; color: #FFFFFF; font-size: 1.25rem;">⚡</div>
+                  <div class="tool-title-group">
+                    <div class="tool-badges-row">
+                      <span class="tool-badge-ad">AD</span>
+                      <span class="tool-badge-promoted" style="background: #FEF08A; color: #854D0E; border: 1px solid #FDE047;"><span class="star">⭐</span> Featured Listing</span>
+                      <span class="tool-badge-pricing pricing-free">Free Trial</span>
+                      <span class="tool-rating-pill">★ 5.0 (AIRA Partner)</span>
+                    </div>
+                    <h3 class="tool-card-name">
+                      <a href="#/advertise" class="tool-title-link">Your AI Tool / Software</a>
+                    </h3>
+                  </div>
                 </div>
-                <a href="#/advertise" class="tool-sponsor-cta-btn">
-                  <span>Sponsor Spotlight</span>
-                  <span style="font-size: 1.1rem;">→</span>
-                </a>
+                <p class="tool-card-desc">Prominently showcase your product across 400+ tool pages and category directories where high-intent buyers evaluate AI software.</p>
+                <div class="tool-card-bottom">
+                  <div class="tool-sponsor-spot-tag">⚡ Listing Ad Placement</div>
+                  <div class="tool-card-actions">
+                    <a href="#/advertise" class="tool-direct-visit-btn" style="background: #18181B; color: #FFFFFF;">
+                      <span>Reserve Slot ($149/wk)</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                  </div>
+                </div>
               </div>
             `;
-            renderedCards.splice(Math.min(3, renderedCards.length), 0, sponsorCtaHtml);
+            renderedCards.unshift(sponsorListingHtml);
           }
           gridEl.innerHTML = renderedCards.join('');
           
@@ -2477,6 +2531,16 @@ Website: https://aira-newsletter.vercel.app/
     appContainer.innerHTML = `
       <section class="tools-directory-view">
         <div class="container">
+          <!-- Top Header Banner Ad Placement (Slot: Top Header Banner) -->
+          <div class="site-top-ad-banner">
+            <div class="site-top-ad-inner">
+              <span class="site-ad-badge">AD</span>
+              <span class="site-ad-icon">⚡</span>
+              <span class="site-ad-text"><strong>AIRA Top Sponsor</strong> – Scale your AI stack 10x faster with frontier developer infrastructure.</span>
+            </div>
+            <a href="#/advertise" class="site-ad-cta-btn">Learn More →</a>
+          </div>
+
           <!-- Directory Hero Header -->
           <div class="tools-hero-banner">
             <div class="tools-hero-badge">
@@ -2934,6 +2998,35 @@ Website: https://aira-newsletter.vercel.app/
                 </div>
               </div>
 
+              <!-- Tool Page Ad Placement (Slot: Tool Page Ad) -->
+              <div class="tool-page-sponsor-card">
+                <div class="tool-sponsor-card-top">
+                  <span class="tool-sponsor-badge">⚡ SPONSORED AI TOOL</span>
+                  <a href="#/advertise" class="tool-sponsor-reserve-link" title="Advertise on 400+ tool pages">Reserve Spot ↗</a>
+                </div>
+                <div class="tool-sponsor-brand-row">
+                  <div class="tool-sponsor-logo">🚀</div>
+                  <div>
+                    <h4 class="tool-sponsor-brand-title">Featured Alternative Tool</h4>
+                    <p class="tool-sponsor-brand-sub">Verified AI &amp; Developer Stack</p>
+                  </div>
+                </div>
+                <p class="tool-sponsor-desc">
+                  Looking for a high-performance alternative to ${tool.name}? Try our verified partner tool for 10x faster inference and lower compute overhead.
+                </p>
+                <ul class="tool-sponsor-bullets">
+                  <li><span class="check-mark">✓</span> Verified Developer Compatibility</li>
+                  <li><span class="check-mark">✓</span> 99.9% High-Throughput API Access</li>
+                  <li><span class="check-mark">✓</span> Exclusive AIRA Free Tier Included</li>
+                </ul>
+                <a href="#/advertise" class="tool-sponsor-cta-btn-main">
+                  <span>Try Partner Tool Free ↗</span>
+                </a>
+                <div class="tool-sponsor-footer-note">
+                  <span>Visible on 400+ AI tool detail pages</span> • <a href="#/advertise">Advertise ($39/day)</a>
+                </div>
+              </div>
+
               <!-- Sidebar Ad: Level Up with AIRA -->
               <div class="ad-sidebar-card">
                 <span class="ad-tag-label">FREE NEWSLETTER</span>
@@ -3095,6 +3188,16 @@ Website: https://aira-newsletter.vercel.app/
     appContainer.innerHTML = `
       <section class="alternatives-directory-view">
         <div class="container">
+          <!-- Top Header Banner Ad Placement (Slot: Top Header Banner) -->
+          <div class="site-top-ad-banner">
+            <div class="site-top-ad-inner">
+              <span class="site-ad-badge">AD</span>
+              <span class="site-ad-icon">⚡</span>
+              <span class="site-ad-text"><strong>AIRA Top Sponsor</strong> – Discover verified open-source software and developer productivity tools.</span>
+            </div>
+            <a href="#/advertise" class="site-ad-cta-btn">Learn More →</a>
+          </div>
+
           <!-- Hero Section -->
           <div class="alt-hero-banner">
             <div class="alt-hero-badge">
@@ -3192,7 +3295,7 @@ Website: https://aira-newsletter.vercel.app/
         return;
       }
 
-      gridEl.innerHTML = pagedSoftware.map(item => {
+      const renderedAltCards = pagedSoftware.map(item => {
         const altCount = item.alternatives ? item.alternatives.length : 0;
         const cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
         const logoUrl = item.logo || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
@@ -3231,7 +3334,31 @@ Website: https://aira-newsletter.vercel.app/
             </div>
           </a>
         `;
-      }).join('');
+      });
+
+      if (state.altCurrentPage === 1 && !state.altSearchQuery) {
+        const sponsorAltHtml = `
+          <a href="#/advertise" class="alt-software-card is-sponsored-alt" style="border-color: #F59E0B; background: linear-gradient(180deg, #FFFDF5 0%, #FFFFFF 100%);">
+            <div class="alt-card-header">
+              <div class="alt-logo-box" style="background: #18181B; color: #FFFFFF; font-size: 1.25rem;">
+                ⚡
+              </div>
+              <div class="alt-card-title-wrap">
+                <span class="alt-cat-badge" style="background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A;">⭐ SPONSORED ALTERNATIVE</span>
+                <h3 class="alt-software-name">Your Open-Source / SaaS Tool</h3>
+              </div>
+            </div>
+            <p class="alt-software-tagline">Promote your product as the top recommended open-source alternative to proprietary software.</p>
+            <div class="alt-tech-tags" style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between;">
+              <span class="alt-tech-tag" style="background: #FEF3C7; color: #92400E; font-weight: 700;">⚡ Listing Ad Slot</span>
+              <span style="font-size: 0.78rem; font-weight: 700; color: #18181B;">Sponsor ($149/wk) →</span>
+            </div>
+          </a>
+        `;
+        renderedAltCards.unshift(sponsorAltHtml);
+      }
+
+      gridEl.innerHTML = renderedAltCards.join('');
 
       if (paginationEl) {
         paginationEl.innerHTML = renderPaginationHTML(state.altCurrentPage, totalPages, 'alternatives');
@@ -9448,9 +9575,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     <h3 class="advertise-slot-title">Listing Ad</h3>
                     <div class="advertise-slot-sub">Visible on every tool listing page</div>
                   </div>
-                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('listing')" title="Preview placement">
-                    <span>👁 Preview</span>
-                  </button>
+                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
+                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('listing')" title="Preview placement">
+                      <span>👁 Preview</span>
+                    </button>
+                    <a href="#/tags" class="advertise-preview-btn" style="text-decoration: none;" title="View live on AI Tools Directory">
+                      <span>🔗 View on Site</span>
+                    </a>
+                  </div>
                 </div>
                 <p class="advertise-slot-desc">
                   Prominent placement across 400+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.
@@ -9477,9 +9609,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     <h3 class="advertise-slot-title">Top Header Banner</h3>
                     <div class="advertise-slot-sub">Pinned at the top across all pages</div>
                   </div>
-                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('banner')" title="Preview placement">
-                    <span>👁 Preview</span>
-                  </button>
+                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
+                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('banner')" title="Preview placement">
+                      <span>👁 Preview</span>
+                    </button>
+                    <a href="#/home" class="advertise-preview-btn" style="text-decoration: none;" title="View live on Homepage">
+                      <span>🔗 View on Site</span>
+                    </a>
+                  </div>
                 </div>
                 <p class="advertise-slot-desc">
                   Prime site-wide placement above the fold. Guaranteed 100% visibility on all pages for maximum brand awareness and direct traffic.
@@ -9505,9 +9642,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     <h3 class="advertise-slot-title">Tool Page Ad</h3>
                     <div class="advertise-slot-sub">Visible on every single tool detail page</div>
                   </div>
-                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('tool')" title="Preview placement">
-                    <span>👁 Preview</span>
-                  </button>
+                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
+                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('tool')" title="Preview placement">
+                      <span>👁 Preview</span>
+                    </button>
+                    <a href="#/tools/claude-3-5-sonnet" class="advertise-preview-btn" style="text-decoration: none;" title="View live on Tool Detail Page">
+                      <span>🔗 View on Site</span>
+                    </a>
+                  </div>
                 </div>
                 <p class="advertise-slot-desc">
                   Featured in the dedicated sidebar section on 400+ AI tool detail pages right when developers evaluate product alternatives.
@@ -9533,9 +9675,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     <h3 class="advertise-slot-title">Newsletter Spotlight</h3>
                     <div class="advertise-slot-sub">Direct delivery to 50,000+ inboxes</div>
                   </div>
-                  <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('newsletter')" title="Preview placement">
-                    <span>👁 Preview</span>
-                  </button>
+                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
+                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('newsletter')" title="Preview placement">
+                      <span>👁 Preview</span>
+                    </button>
+                    <a href="#/post/anthropic-announces-claude-3-7-sonnet" class="advertise-preview-btn" style="text-decoration: none;" title="View live on Newsletter Post">
+                      <span>🔗 View on Site</span>
+                    </a>
+                  </div>
                 </div>
                 <p class="advertise-slot-desc">
                   Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.
