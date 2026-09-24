@@ -8728,7 +8728,6 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   // 10. Advertise / Sponsorship Media Kit (/#/advertise)
   // DevSuite-Inspired Modern High-Converting Design
   // =========================================================================
-  // =========================================================================
   // 10. Advertise / Sponsorship Media Kit (/#/advertise)
   // DevSuite & OpenAds Inspired High-Converting Interactive Experience
   // =========================================================================
@@ -8738,10 +8737,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       name: 'Listing Ad',
       subtitle: 'Visible on every tool listing page & categories',
       icon: '📋',
+      description: 'Prominent placement across 400+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.',
       dailyRate: 29,
       weeklyRate: 149,
-      minDays: 3,
-      defaultDays: 7,
+      twoWeekRate: 289,
+      monthlyRate: 599,
       features: [
         'Placed on 400+ tool detail & category pages',
         'Direct dofollow backlink & CTA button',
@@ -8755,10 +8755,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       badge: 'MOST POPULAR',
       subtitle: 'Pinned at the top across all pages',
       icon: '⚡',
+      description: 'Prime site-wide placement above the fold. Guaranteed 100% visibility on all pages for maximum brand awareness and direct traffic.',
       dailyRate: 49,
       weeklyRate: 249,
-      minDays: 3,
-      defaultDays: 7,
+      twoWeekRate: 479,
+      monthlyRate: 999,
       features: [
         '100% impressions on all website visitors',
         'Exclusive single sponsor per weekly cycle',
@@ -8771,10 +8772,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       name: 'Tool Page Ad',
       subtitle: 'Visible on every single AI tool detail page',
       icon: '🚀',
+      description: 'Featured in the dedicated sidebar section on 400+ AI tool detail pages right when developers evaluate product alternatives.',
       dailyRate: 39,
       weeklyRate: 199,
-      minDays: 3,
-      defaultDays: 7,
+      twoWeekRate: 379,
+      monthlyRate: 799,
       features: [
         'Featured in the sidebar on 400+ tool pages',
         'Contextually relevant developer audience',
@@ -8787,11 +8789,10 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       name: 'Newsletter Spotlight',
       subtitle: 'Direct delivery to 50,000+ inboxes',
       icon: '📬',
+      description: 'Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.',
       dailyRate: 399,
       weeklyRate: 399,
       isEditionBased: true,
-      minDays: 1,
-      defaultDays: 1,
       features: [
         '100-word product review + screenshot',
         'Sent to 50,000+ verified active subscribers',
@@ -8812,25 +8813,33 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         year: tom.getFullYear(),
         month: tom.getMonth(),
         startDate: new Date(tom),
-        endDate: new Date(nxt7)
+        endDate: new Date(nxt7),
+        preset: '7',
+        isSelectingEnd: false
       },
       banner: {
         year: tom.getFullYear(),
         month: tom.getMonth(),
         startDate: new Date(tom),
-        endDate: new Date(nxt7)
+        endDate: new Date(nxt7),
+        preset: '7',
+        isSelectingEnd: false
       },
       tool: {
         year: tom.getFullYear(),
         month: tom.getMonth(),
         startDate: new Date(tom),
-        endDate: new Date(nxt7)
+        endDate: new Date(nxt7),
+        preset: '7',
+        isSelectingEnd: false
       },
       newsletter: {
         year: tom.getFullYear(),
         month: tom.getMonth(),
         startDate: new Date(tom),
-        endDate: new Date(tom)
+        endDate: new Date(tom),
+        preset: '1',
+        isSelectingEnd: false
       }
     };
   }
@@ -8850,40 +8859,101 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   function getSlotPriceAndDays(slotKey) {
     const slot = AD_SLOTS_CONFIG[slotKey];
     const s = window.airaAdvState[slotKey];
-    if (!s || !s.startDate) return { days: 7, price: slot.weeklyRate, rangeStr: '7 days' };
-
-    let days = 1;
-    if (s.startDate && s.endDate) {
-      const diffMs = Math.abs(s.endDate.getTime() - s.startDate.getTime());
-      days = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
+    if (!s || !s.startDate) {
+      return {
+        days: 7,
+        price: slot.weeklyRate,
+        dailyAvg: Math.round(slot.weeklyRate / 7),
+        rangeStr: '7 days',
+        isComplete: true,
+        fullStart: '',
+        fullEnd: ''
+      };
     }
 
-    let price = 0;
     if (slot.isEditionBased) {
+      const fullStart = formatAdvDate(s.startDate);
+      const startFmt = formatAdvShort(s.startDate);
+      return {
+        days: 1,
+        price: slot.dailyRate,
+        dailyAvg: slot.dailyRate,
+        rangeStr: startFmt,
+        isComplete: true,
+        fullStart,
+        fullEnd: fullStart,
+        savingsText: 'Guaranteed 50K+ Inboxes'
+      };
+    }
+
+    if (!s.endDate) {
+      // User only selected start date
+      const fullStart = formatAdvDate(s.startDate);
+      const startFmt = formatAdvShort(s.startDate);
+      return {
+        days: 0,
+        price: 0,
+        dailyAvg: slot.dailyRate,
+        rangeStr: `${startFmt} ➔ (Pick End Date)`,
+        isComplete: false,
+        fullStart,
+        fullEnd: ''
+      };
+    }
+
+    const diffMs = Math.abs(s.endDate.getTime() - s.startDate.getTime());
+    const days = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
+
+    let price = 0;
+    let savingsText = '';
+
+    if (days === 1) {
       price = slot.dailyRate;
-    } else if (days === 7) {
+    } else if (days === 7 && slot.weeklyRate) {
       price = slot.weeklyRate;
+      savingsText = `Save $${(slot.dailyRate * 7) - slot.weeklyRate}!`;
+    } else if (days === 14 && slot.twoWeekRate) {
+      price = slot.twoWeekRate;
+      savingsText = `Save $${(slot.dailyRate * 14) - slot.twoWeekRate}!`;
+    } else if (days === 30 && slot.monthlyRate) {
+      price = slot.monthlyRate;
+      savingsText = `Save $${(slot.dailyRate * 30) - slot.monthlyRate}!`;
     } else if (days < 7) {
       price = days * slot.dailyRate;
     } else {
-      price = Math.round(days * (slot.weeklyRate / 7));
+      // Pro-rated discounted rate for 7+ days
+      const discountedDaily = slot.weeklyRate / 7;
+      price = Math.round(days * discountedDaily);
+      savingsText = `Special discounted rate`;
     }
 
+    const dailyAvg = Math.round((price / days) * 10) / 10;
     const startFmt = formatAdvShort(s.startDate);
     const endFmt = formatAdvShort(s.endDate);
-    const rangeStr = slot.isEditionBased || days === 1 ? `${startFmt}` : `${startFmt} – ${endFmt}`;
+    const rangeStr = `${startFmt} – ${endFmt}`;
 
-    return { days, price, rangeStr, fullStart: formatAdvDate(s.startDate), fullEnd: formatAdvDate(s.endDate) };
+    return {
+      days,
+      price,
+      dailyAvg,
+      savingsText,
+      rangeStr,
+      isComplete: true,
+      fullStart: formatAdvDate(s.startDate),
+      fullEnd: formatAdvDate(s.endDate)
+    };
   }
 
-  function renderAdvMiniCalendarHTML(slotKey) {
+  function renderSlotCardContentHTML(slotKey) {
     initAdvState();
     const slot = AD_SLOTS_CONFIG[slotKey];
     const s = window.airaAdvState[slotKey];
+    const info = getSlotPriceAndDays(slotKey);
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const y = s.year;
     const m = s.month;
 
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const firstDayOfMonth = new Date(y, m, 1);
     const daysInMonth = new Date(y, m + 1, 0).getDate();
 
@@ -8924,13 +8994,97 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
       const clickAttr = isPast ? '' : `onclick="window.handleAdvDateSelect('${slotKey}', '${dateStr}')"`;
 
-      cellsHTML += `<button type="button" class="${classList.join(' ')}" ${clickAttr} ${isPast ? 'disabled' : ''}>${d}</button>`;
+      cellsHTML += `<button type="button" class="${classList.join(' ')}" ${clickAttr} ${isPast ? 'disabled' : ''} title="${formatAdvDate(cellDate)}">${d}</button>`;
     }
 
-    const { days, price, rangeStr } = getSlotPriceAndDays(slotKey);
+    // Presets HTML
+    let presetsHTML = '';
+    if (!slot.isEditionBased) {
+      presetsHTML = `
+        <div class="adv-presets-row">
+          <button type="button" class="adv-preset-btn ${s.preset === '7' ? 'active' : ''}" onclick="window.applyAdvPreset('${slotKey}', 7)">7 Days ($${slot.weeklyRate})</button>
+          <button type="button" class="adv-preset-btn ${s.preset === '14' ? 'active' : ''}" onclick="window.applyAdvPreset('${slotKey}', 14)">14 Days ($${slot.twoWeekRate})</button>
+          <button type="button" class="adv-preset-btn ${s.preset === '30' ? 'active' : ''}" onclick="window.applyAdvPreset('${slotKey}', 30)">30 Days ($${slot.monthlyRate})</button>
+        </div>
+      `;
+    }
+
+    // Selection bar HTML
+    let selectionBarHTML = '';
+    if (slot.isEditionBased) {
+      selectionBarHTML = `
+        <div class="adv-cal-selection-bar">
+          <span>Edition Drop: <strong class="adv-date-badge">📅 ${info.fullStart || 'Select Date'}</strong></span>
+          <span class="adv-cal-price-highlight">$${info.price} / edition</span>
+        </div>
+      `;
+    } else if (info.isComplete) {
+      selectionBarHTML = `
+        <div class="adv-cal-selection-bar">
+          <div>
+            <span>Dates: <strong class="adv-date-badge">📅 ${info.rangeStr}</strong> (${info.days} days)</span>
+          </div>
+          <span class="adv-cal-price-highlight">$${info.price} Total</span>
+        </div>
+      `;
+    } else {
+      selectionBarHTML = `
+        <div class="adv-cal-selection-bar" style="background: #FFFBEB; border-color: #FDE68A;">
+          <span style="color: #92400E;">Start: <strong>${info.fullStart}</strong> ➔ <em>👉 Click End Date</em></span>
+          <span style="font-size: 0.75rem; color: #B45309;">Selecting...</span>
+        </div>
+      `;
+    }
+
+    // Footer HTML
+    let footerHTML = '';
+    if (slot.isEditionBased) {
+      footerHTML = `
+        <div class="advertise-slot-footer">
+          <div class="advertise-slot-price">$${info.price} <span>/ edition</span></div>
+          <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
+            <span>Book Spotlight ($${info.price})</span>
+            <span>→</span>
+          </button>
+        </div>
+      `;
+    } else if (info.isComplete) {
+      footerHTML = `
+        <div class="advertise-slot-footer">
+          <div>
+            <div class="advertise-slot-price">$${info.price} <span>total (${info.days} days)</span></div>
+            <div style="font-size: 0.74rem; color: #71717A; margin-top: 1px;">$${info.dailyAvg}/day • ${info.savingsText || 'Guaranteed Placement'}</div>
+          </div>
+          <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
+            <span>Book ${slot.name} ($${info.price})</span>
+            <span>→</span>
+          </button>
+        </div>
+      `;
+    } else {
+      footerHTML = `
+        <div class="advertise-slot-footer">
+          <div>
+            <div class="advertise-slot-price" style="font-size: 1.1rem; color: #D97706;">Select End Date</div>
+            <div style="font-size: 0.74rem; color: #71717A;">Pick an end date on calendar</div>
+          </div>
+          <button type="button" class="advertise-slot-book-btn" style="opacity: 0.6; cursor: not-allowed;" disabled>
+            <span>Pick End Date →</span>
+          </button>
+        </div>
+      `;
+    }
 
     return `
-      <div class="advertise-cal-wrap" id="cal-box-${slotKey}">
+      <!-- Presets Selector -->
+      ${presetsHTML}
+
+      <!-- Interactive Calendar Wrapper -->
+      <div class="advertise-cal-wrap">
+        <!-- Date Selection Banner -->
+        ${selectionBarHTML}
+
+        <!-- Month Navigation -->
         <div class="adv-cal-nav">
           <span class="adv-cal-month-title">${monthNames[m]} ${y}</span>
           <div style="display: flex; gap: 4px;">
@@ -8938,6 +9092,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${slotKey}', 1)" title="Next Month">›</button>
           </div>
         </div>
+
+        <!-- 7-Day Calendar Grid -->
         <div class="adv-cal-grid">
           <div class="adv-cal-th">Mo</div>
           <div class="adv-cal-th">Tu</div>
@@ -8948,20 +9104,43 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-cal-th">Su</div>
           ${cellsHTML}
         </div>
+
+        <!-- Instruction / Calculation Strip -->
         <div class="adv-cal-summary-strip">
-          <span><strong>${days} ${days === 1 ? 'day' : 'days'}</strong> (${rangeStr})</span>
-          <span><strong>$${price}</strong> total</span>
+          <span>${info.isComplete ? `<strong>${info.days} ${info.days === 1 ? 'day' : 'days'}</strong> (${info.rangeStr})` : `<strong>Select End Date</strong> to calculate price`}</span>
+          <span><strong>$${info.price || slot.weeklyRate}</strong> total</span>
         </div>
       </div>
+
+      <!-- Live Updated Card Footer -->
+      ${footerHTML}
     `;
   }
 
   function updateSlotCardUI(slotKey) {
-    const calEl = document.getElementById(`cal-box-${slotKey}`);
-    if (calEl) {
-      calEl.outerHTML = renderAdvMiniCalendarHTML(slotKey);
+    const cardEl = document.getElementById(`slot-card-interactive-${slotKey}`);
+    if (cardEl) {
+      cardEl.innerHTML = renderSlotCardContentHTML(slotKey);
     }
   }
+
+  window.applyAdvPreset = function(slotKey, daysCount) {
+    initAdvState();
+    const s = window.airaAdvState[slotKey];
+    const now = new Date();
+    const baseStart = s.startDate && s.startDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate()) 
+      ? new Date(s.startDate) 
+      : new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+    s.startDate = baseStart;
+    s.endDate = new Date(baseStart.getFullYear(), baseStart.getMonth(), baseStart.getDate() + (daysCount - 1));
+    s.preset = String(daysCount);
+    s.isSelectingEnd = false;
+    s.year = baseStart.getFullYear();
+    s.month = baseStart.getMonth();
+
+    updateSlotCardUI(slotKey);
+  };
 
   window.navAdvMonth = function(slotKey, delta) {
     initAdvState();
@@ -8987,15 +9166,27 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     if (slot.isEditionBased) {
       s.startDate = clicked;
       s.endDate = clicked;
+      s.preset = '1';
+      s.isSelectingEnd = false;
     } else {
-      // If no start date or both start & end already picked differently, restart with 7-day default
-      if (!s.startDate || (s.startDate && s.endDate && s.startDate.getTime() !== s.endDate.getTime())) {
+      if (!s.startDate || !s.isSelectingEnd) {
+        // Step 1: User clicks start date
         s.startDate = clicked;
-        s.endDate = new Date(clicked.getFullYear(), clicked.getMonth(), clicked.getDate() + 6);
-      } else if (clicked < s.startDate) {
-        s.startDate = clicked;
+        s.endDate = null;
+        s.isSelectingEnd = true;
+        s.preset = 'custom';
       } else {
-        s.endDate = clicked;
+        // Step 2: User clicks end date
+        if (clicked < s.startDate) {
+          s.startDate = clicked;
+          s.endDate = null;
+          s.isSelectingEnd = true;
+          s.preset = 'custom';
+        } else {
+          s.endDate = clicked;
+          s.isSelectingEnd = false;
+          s.preset = 'custom';
+        }
       }
     }
 
@@ -9005,9 +9196,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   window.bookSlotWithDates = function(slotKey) {
     initAdvState();
     const slot = AD_SLOTS_CONFIG[slotKey];
-    const { days, price, rangeStr, fullStart, fullEnd } = getSlotPriceAndDays(slotKey);
-    const dateRangeLabel = slot.isEditionBased ? fullStart : `${fullStart} to ${fullEnd}`;
-    const pkgValue = `${slot.name} (${days} days: ${rangeStr} • $${price})`;
+    const info = getSlotPriceAndDays(slotKey);
+    if (!info.isComplete) {
+      showToast('⚠️ Please select both Start Date and End Date on the calendar.');
+      return;
+    }
+
+    const dateRangeLabel = slot.isEditionBased ? info.fullStart : `${info.fullStart} to ${info.fullEnd}`;
+    const pkgValue = `${slot.name} (${info.days} days: ${info.rangeStr} • $${info.price})`;
 
     const selectEl = document.getElementById('advertise-package-select');
     if (selectEl) {
@@ -9030,7 +9226,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
     const msgBox = document.querySelector('textarea[name="message"]');
     if (msgBox) {
-      msgBox.value = `Selected Slot: ${slot.name}\nTarget Schedule: ${dateRangeLabel} (${days} days)\nEstimated Budget: $${price}\n\nOur product URL / campaign notes: `;
+      msgBox.value = `Selected Slot: ${slot.name}\nTarget Schedule: ${dateRangeLabel} (${info.days} days)\nCalculated Total: $${info.price} ($${info.dailyAvg}/day)\n\nOur product URL / campaign notes: `;
     }
 
     const formSec = document.getElementById('sponsor-form-section');
@@ -9040,7 +9236,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       if (nameInput) setTimeout(() => nameInput.focus(), 400);
     }
 
-    showToast(`⚡ Selected ${slot.name} ($${price})! Complete details below.`);
+    showToast(`⚡ Selected ${slot.name} ($${info.price} for ${info.days} days)! Complete details below.`);
   };
 
   window.openAdPreviewModal = function(slotKey) {
@@ -9059,7 +9255,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         </div>
         <div class="adv-highlight-box">
           <span class="adv-highlight-pill">Top Banner Placement</span>
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
               <img src="assets/logo.jpg" alt="Logo" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
@@ -9083,7 +9279,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         </div>
         <div class="adv-highlight-box">
           <span class="adv-highlight-pill">Position #1 Sponsored Tool</span>
-          <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
             <div style="width: 44px; height: 44px; border-radius: 10px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">⚡</div>
             <div style="flex: 1; min-width: 0;">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
@@ -9239,13 +9435,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="advertise-slots-section">
             <div class="advertise-section-heading">
               <h2 class="advertise-section-title">Available Advertising Slots</h2>
-              <p class="advertise-section-desc">Interactive date picker with dynamic pricing and transparent weekly/daily tiers.</p>
+              <p class="advertise-section-desc">Interactive date range picker with live price calculations and duration discounts.</p>
             </div>
 
             <div class="advertise-slots-grid">
               
               <!-- Slot 1: Listing Ad -->
-              <div class="advertise-slot-card">
+              <div class="advertise-slot-card" id="adv-slot-card-listing">
                 <div class="advertise-slot-header">
                   <div class="advertise-slot-icon">📋</div>
                   <div>
@@ -9266,20 +9462,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <li><span class="check-icon">✓</span> Weekly &amp; monthly flexible billing</li>
                 </ul>
 
-                <!-- Mini Interactive Date Picker -->
-                ${renderAdvMiniCalendarHTML('listing')}
-
-                <div class="advertise-slot-footer">
-                  <div class="advertise-slot-price">$29 <span>/ day ($149/wk)</span></div>
-                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('listing')">
-                    <span>Book Listing Ad</span>
-                    <span>→</span>
-                  </button>
+                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
+                <div id="slot-card-interactive-listing">
+                  ${renderSlotCardContentHTML('listing')}
                 </div>
               </div>
 
               <!-- Slot 2: Top Header Banner (Featured) -->
-              <div class="advertise-slot-card featured-slot">
+              <div class="advertise-slot-card featured-slot" id="adv-slot-card-banner">
                 <span class="advertise-slot-pill-top">MOST POPULAR</span>
                 <div class="advertise-slot-header">
                   <div class="advertise-slot-icon">⚡</div>
@@ -9301,20 +9491,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <li><span class="check-icon">✓</span> Real-time clicks and analytics tracking</li>
                 </ul>
 
-                <!-- Mini Interactive Date Picker -->
-                ${renderAdvMiniCalendarHTML('banner')}
-
-                <div class="advertise-slot-footer">
-                  <div class="advertise-slot-price">$49 <span>/ day ($249/wk)</span></div>
-                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('banner')">
-                    <span>Book Top Banner</span>
-                    <span>→</span>
-                  </button>
+                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
+                <div id="slot-card-interactive-banner">
+                  ${renderSlotCardContentHTML('banner')}
                 </div>
               </div>
 
               <!-- Slot 3: Tool Page Ad -->
-              <div class="advertise-slot-card">
+              <div class="advertise-slot-card" id="adv-slot-card-tool">
                 <div class="advertise-slot-header">
                   <div class="advertise-slot-icon">🚀</div>
                   <div>
@@ -9335,20 +9519,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <li><span class="check-icon">✓</span> High conversion rate for developer tools</li>
                 </ul>
 
-                <!-- Mini Interactive Date Picker -->
-                ${renderAdvMiniCalendarHTML('tool')}
-
-                <div class="advertise-slot-footer">
-                  <div class="advertise-slot-price">$39 <span>/ day ($199/wk)</span></div>
-                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('tool')">
-                    <span>Book Tool Page Ad</span>
-                    <span>→</span>
-                  </button>
+                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
+                <div id="slot-card-interactive-tool">
+                  ${renderSlotCardContentHTML('tool')}
                 </div>
               </div>
 
               <!-- Slot 4: Newsletter Primary Spotlight -->
-              <div class="advertise-slot-card">
+              <div class="advertise-slot-card" id="adv-slot-card-newsletter">
                 <div class="advertise-slot-header">
                   <div class="advertise-slot-icon">📬</div>
                   <div>
@@ -9369,15 +9547,9 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <li><span class="check-icon">✓</span> Detailed post-campaign analytics report</li>
                 </ul>
 
-                <!-- Mini Interactive Date Picker -->
-                ${renderAdvMiniCalendarHTML('newsletter')}
-
-                <div class="advertise-slot-footer">
-                  <div class="advertise-slot-price">$399 <span>/ edition</span></div>
-                  <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('newsletter')">
-                    <span>Book Spotlight</span>
-                    <span>→</span>
-                  </button>
+                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
+                <div id="slot-card-interactive-newsletter">
+                  ${renderSlotCardContentHTML('newsletter')}
                 </div>
               </div>
 

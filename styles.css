@@ -16017,6 +16017,75 @@ body.dark-mode .tts-speed-btn.active {
   background: #27272A;
 }
 
+/* Duration Presets Row */
+.adv-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.adv-preset-btn {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #52525B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.adv-preset-btn:hover {
+  background: #F4F4F5;
+  color: #18181B;
+  border-color: #D4D4D8;
+}
+
+.adv-preset-btn.active {
+  background: #18181B;
+  color: #FFFFFF;
+  border-color: #18181B;
+}
+
+.adv-cal-selection-bar {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.adv-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  color: #047857;
+}
+
+.adv-cal-instruction {
+  font-size: 0.74rem;
+  color: #71717A;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.adv-cal-price-highlight {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #047857;
+}
+
 /* Dark Mode Overrides for Advertise Page */
 body.dark-mode .advertise-live-preview-ad {
   background: rgba(245, 158, 11, 0.12);
@@ -16115,6 +16184,34 @@ body.dark-mode .adv-cal-summary-strip {
 body.dark-mode .adv-cal-summary-strip strong {
   color: #34D399;
 }
+body.dark-mode .adv-preset-btn {
+  background: #27272A;
+  border-color: #3F3F46;
+  color: #D4D4D8;
+}
+body.dark-mode .adv-preset-btn:hover {
+  background: #3F3F46;
+  color: #FFFFFF;
+}
+body.dark-mode .adv-preset-btn.active {
+  background: #FFFFFF;
+  color: #18181B;
+  border-color: #FFFFFF;
+}
+body.dark-mode .adv-cal-selection-bar {
+  background: #18181B;
+  border-color: #27272A;
+  color: #E4E4E7;
+}
+body.dark-mode .adv-date-badge {
+  color: #34D399;
+}
+body.dark-mode .adv-cal-instruction {
+  color: #A1A1AA;
+}
+body.dark-mode .adv-cal-price-highlight {
+  color: #34D399;
+}
 body.dark-mode .advertise-slot-card.featured-slot {
   border-color: #52525B;
 }
@@ -16168,18 +16265,128 @@ body.dark-mode .advertise-direct-contact a {
   color: #FFFFFF;
 }
 
+/* Comprehensive Responsive Media Queries */
+@media (max-width: 1024px) {
+  .advertise-slots-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .advertise-stats-row {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .advertise-slots-grid {
-    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .advertise-form-grid {
     grid-template-columns: 1fr;
   }
   .advertise-hero-title {
-    font-size: 2.1rem;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .advertise-page-wrap {
+    padding: 20px 0 50px 0;
+  }
+  .advertise-container {
+    padding: 0 14px;
+  }
+  .advertise-live-preview-ad {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 12px;
+    padding: 14px;
+  }
+  .advertise-live-left {
+    justify-content: center;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+  }
+  .advertise-live-btn {
+    text-align: center;
+    width: 100%;
+    padding: 10px 16px;
+    box-sizing: border-box;
+  }
+  .advertise-hero-title {
+    font-size: 1.7rem;
+  }
+  .advertise-hero-desc {
+    font-size: 0.88rem;
+  }
+  .advertise-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .advertise-stat-card {
+    padding: 14px 10px;
+  }
+  .advertise-stat-val {
+    font-size: 1.35rem;
+  }
+  .advertise-stat-label {
+    font-size: 0.72rem;
+  }
+  .advertise-slot-card {
+    padding: 18px 14px;
+  }
+  .advertise-slot-title {
+    font-size: 1.08rem;
+  }
+  .advertise-cal-wrap {
+    padding: 10px 8px;
+  }
+  .adv-cal-grid {
+    gap: 1px;
+  }
+  .adv-cal-cell {
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  .adv-presets-row {
+    gap: 4px;
+  }
+  .adv-preset-btn {
+    padding: 5px 6px;
+    font-size: 0.72rem;
+  }
+  .adv-cal-selection-bar {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    font-size: 0.76rem;
+  }
+  .adv-cal-summary-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0.76rem;
+  }
+  .advertise-slot-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .advertise-slot-footer .advertise-slot-price {
+    text-align: center;
+  }
+  .advertise-slot-book-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 16px;
+  }
+  .advertise-custom-box {
+    padding: 24px 16px;
+  }
+  .advertise-custom-title {
+    font-size: 1.4rem;
+  }
+  .advertise-form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
