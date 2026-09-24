@@ -6,6 +6,18 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Auto-sync dataset version & flush stale cached base article overrides
+  const CURRENT_DATA_VERSION = '93.0';
+  try {
+    const savedDataVer = localStorage.getItem('aira_data_version');
+    if (savedDataVer !== CURRENT_DATA_VERSION) {
+      localStorage.removeItem('aira_article_overrides');
+      localStorage.setItem('aira_data_version', CURRENT_DATA_VERSION);
+      if (window.AiraStorage) {
+        window.AiraStorage.set('aira_article_overrides', {});
+      }
+    }
+  } catch(e) {}
   // Helper to intelligently merge base articles with custom overrides and new creations
   function mergeArticlesWithBase(customList, baseList) {
     const base = Array.isArray(baseList) ? baseList : (typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES) ? ARTICLES : []);
