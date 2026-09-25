@@ -7,11 +7,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '101.0';
+  const CURRENT_DATA_VERSION = '110.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
       localStorage.removeItem('aira_article_overrides');
+      localStorage.removeItem('aira_custom_tools');
       localStorage.setItem('aira_data_version', CURRENT_DATA_VERSION);
       if (window.AiraStorage) {
         window.AiraStorage.set('aira_article_overrides', {});
@@ -132,24 +133,26 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (window.AiraStorage) {
         const syncTools = window.AiraStorage.getSync('aira_custom_tools');
-        if (syncTools && Array.isArray(syncTools)) return syncTools;
+        if (Array.isArray(syncTools)) return syncTools;
       }
       const raw = localStorage.getItem('aira_custom_tools');
-      return raw ? JSON.parse(raw) : [];
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
     } catch (e) { return []; }
   }
   function saveCustomTools(tools) {
+    const list = Array.isArray(tools) ? tools : [];
     if (window.AiraStorage) {
-      window.AiraStorage.set('aira_custom_tools', tools);
+      window.AiraStorage.set('aira_custom_tools', list);
     } else {
-      try { localStorage.setItem('aira_custom_tools', JSON.stringify(tools)); } catch (e) {}
+      try { localStorage.setItem('aira_custom_tools', JSON.stringify(list)); } catch (e) {}
     }
   }
   function getAllTools() {
-    const baseTools = typeof AI_TOOLS_DATA !== 'undefined' ? (AI_TOOLS_DATA.tools || []) : [];
+    const baseTools = (typeof AI_TOOLS_DATA !== 'undefined' && Array.isArray(AI_TOOLS_DATA.tools)) ? AI_TOOLS_DATA.tools : [];
     const customTools = getCustomTools();
-    const customIds = new Set(customTools.map(t => t.id));
-    const filteredBase = baseTools.filter(t => !customIds.has(t.id));
+    const customIds = new Set(customTools.filter(Boolean).map(t => t && t.id).filter(Boolean));
+    const filteredBase = baseTools.filter(t => t && t.id && !customIds.has(t.id));
     return [...customTools, ...filteredBase];
   }
 
@@ -159,9 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('AIRA PWA ServiceWorker active with scope:', reg.scope))
-        .catch(err => console.log('AIRA ServiceWorker registration failed:', err));
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        navigator.serviceWorker.getRegistrations().then(regs => {
+          for (let r of regs) r.unregister();
+        });
+      } else {
+        navigator.serviceWorker.register('sw.js?v=110.0')
+          .then(reg => {
+            reg.update();
+            console.log('AIRA PWA ServiceWorker active with scope:', reg.scope);
+          })
+          .catch(err => console.log('AIRA ServiceWorker registration failed:', err));
+      }
     });
   }
 
@@ -295,6 +307,20 @@ document.addEventListener('DOMContentLoaded', () => {
     'cursor', 'deepseek', 'claude', 'chatgpt', 'lovable', 'perplexity', 'elevenlabs',
     'suno', 'runway', 'v0', 'flux', 'midjourney', 'kling', 'hume-ai', 'gamma', 'bolt-new'
   ]);
+
+  function getCategoryBadgeInfo(tool) {
+    let rawBadge = (tool && tool.badge) || '';
+    if (!rawBadge) {
+      const rawCat = (tool && tool.categories && tool.categories[0]) || (tool && tool.category) || 'productivity';
+      const foundCat = (typeof AI_TOOLS_DATA !== 'undefined' && AI_TOOLS_DATA.categories) ? AI_TOOLS_DATA.categories.find(c => c.id === rawCat) : null;
+      rawBadge = foundCat ? foundCat.name : rawCat.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    let cleanText = rawBadge.replace(/^[\uD800-\uDBFF\uDC00-\uDFFF\u2600-\u27BF\s🏷️⚡🎨💭🧠💻🎬🎵📱✍️✨🔍📊]+/g, '').trim();
+    if (!cleanText) cleanText = rawBadge;
+
+    return { label: cleanText };
+  }
 
   function isToolPromoted(toolOrId) {
     if (!toolOrId) return false;
@@ -531,24 +557,26 @@ Access the full interactive database of 100+ Production Prompts:
     try {
       if (window.AiraStorage) {
         const syncDeals = window.AiraStorage.getSync('aira_custom_deals');
-        if (syncDeals && Array.isArray(syncDeals)) return syncDeals;
+        if (Array.isArray(syncDeals)) return syncDeals;
       }
       const raw = localStorage.getItem('aira_custom_deals');
-      return raw ? JSON.parse(raw) : [];
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
     } catch (e) { return []; }
   }
   function saveCustomDeals(deals) {
+    const list = Array.isArray(deals) ? deals : [];
     if (window.AiraStorage) {
-      window.AiraStorage.set('aira_custom_deals', deals);
+      window.AiraStorage.set('aira_custom_deals', list);
     } else {
-      try { localStorage.setItem('aira_custom_deals', JSON.stringify(deals)); } catch (e) {}
+      try { localStorage.setItem('aira_custom_deals', JSON.stringify(list)); } catch (e) {}
     }
   }
   function getAllDeals() {
-    const baseDeals = typeof AI_DEALS_DATA !== 'undefined' ? (AI_DEALS_DATA.deals || []) : [];
+    const baseDeals = (typeof AI_DEALS_DATA !== 'undefined' && Array.isArray(AI_DEALS_DATA.deals)) ? AI_DEALS_DATA.deals : [];
     const customDeals = getCustomDeals();
-    const customIds = new Set(customDeals.map(d => d.id));
-    const filteredBase = baseDeals.filter(d => !customIds.has(d.id));
+    const customIds = new Set(customDeals.filter(Boolean).map(d => d && d.id).filter(Boolean));
+    const filteredBase = baseDeals.filter(d => d && d.id && !customIds.has(d.id));
     return [...customDeals, ...filteredBase];
   }
 
@@ -1138,52 +1166,65 @@ Website: https://aira-newsletter.vercel.app/
   // =========================================================================
   
   // =========================================================================
+  // =========================================================================
+  // Unified AI Tool Card Renderer (Used by Directory, Featured Showcase & Bookmarks)
+  // =========================================================================
+  function renderToolCard(tool) {
+    if (!tool) return '';
+    const pricing = (tool.pricing || 'Free').trim();
+    const pricingLower = pricing.toLowerCase();
+    const pricingClass = `pricing-${pricingLower.replace(/\s+/g, '-')}`;
+    const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+    const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+    const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
+    const fallbackIcon = tool.icon || '⚡';
+    const isPromoted = isToolPromoted(tool);
+    const catInfo = getCategoryBadgeInfo(tool);
+
+    return `
+      <div class="tool-card ${isPromoted ? 'is-promoted-card' : ''} ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
+        <div class="tool-card-header">
+          <a href="#/tools/${tool.id}" class="tool-card-avatar-wrap" title="View ${tool.name} details">
+            <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
+          </a>
+          <div class="tool-header-content">
+            <div class="tool-header-top-line">
+              <h3 class="tool-card-name" title="${tool.name}">
+                <a href="#/tools/${tool.id}" class="tool-title-link">${tool.name}</a>
+              </h3>
+              <span class="tool-verified-check" title="Verified AI Tool">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#059669"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </span>
+            </div>
+            <div class="tool-badges-wrap">
+              <span class="tool-badge-category">${catInfo.label}</span>
+              <span class="tool-badge-pricing ${pricingClass}">${pricing.toUpperCase()}</span>
+              ${isPromoted ? '<span class="tool-badge-promoted"><span class="star">★</span> PROMOTED</span>' : ''}
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-card-desc">${tool.description || ''}</p>
+
+        <div class="tool-card-footer">
+          <a href="#/tools/${tool.id}" class="tool-btn-details" title="View details of ${tool.name}">Details</a>
+          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit" title="Open ${tool.name}">
+            <span>Visit Website</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
   // Featured AI Tools of the Week Generator
   // =========================================================================
   function getFeaturedToolsHTML() {
     const allTools = getAllTools();
-    const featured = allTools.filter(t => t.featured || t.badge === 'Featured').slice(0, 4);
-    const targetTools = featured.length >= 4 ? featured : allTools.slice(0, 4);
+    const featured = allTools.filter(t => t.featured || t.badge === 'Featured' || isToolPromoted(t)).slice(0, 3);
+    const targetTools = featured.length >= 3 ? featured : allTools.slice(0, 3);
 
-    return targetTools.map(tool => {
-      const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0] || 'ai.com';
-      const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
-      const duckLogo = 'https://icons.duckduckgo.com/ip3/' + cleanDomain + '.ico';
-      const stats = getToolRatingStats(tool);
-
-      return `
-        <div class="featured-tool-showcase-card" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
-          <div class="ft-card-top-row">
-            <div class="ft-tool-avatar">
-              <img src="${logoUrl}" alt="${tool.name}" class="ft-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.6rem;\\'>⚡</span>'; }" />
-            </div>
-            <div class="ft-badge-col">
-              <span class="tool-badge-promoted"><span class="star">⭐</span> Promoted</span>
-            </div>
-          </div>
-
-          <h3 class="ft-tool-name">
-            <a href="#/tools/${tool.id}" class="ft-title-link">${tool.name}</a>
-          </h3>
-
-          <p class="ft-tool-tagline">${tool.description || ''}</p>
-
-          <div class="ft-rating-row">
-            <span class="ft-rating-star">★</span>
-            <span class="ft-rating-score">${stats.rating.toFixed(1)}</span>
-            <span class="ft-rating-count">(${stats.votes.toLocaleString()} votes)</span>
-          </div>
-
-          <div class="ft-actions-row">
-            <a href="#/tools/${tool.id}" class="ft-btn-details">Details</a>
-            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="ft-btn-visit">
-              <span>Visit</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            </a>
-          </div>
-        </div>
-      `;
-    }).join('');
+    return targetTools.map(renderToolCard).join('');
   }
 
   // =========================================================================
@@ -1377,7 +1418,29 @@ Website: https://aira-newsletter.vercel.app/
     }
   };
 
-  function renderHomePage() {
+    // =========================================================================
+  // Shared Sponsors Strip & Modern Tool Card Renderer
+  // =========================================================================
+  function getSponsorsStripHTML() {
+    return `
+      <div class="openalt-sponsors-strip">
+        <div class="openalt-sponsors-header">
+          <span class="openalt-sponsors-text">Backed by industry leaders &amp; community partners • <a href="#/advertise">Become a Sponsor</a></span>
+        </div>
+        <div class="openalt-sponsors-grid">
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#F97316;">⚡</span> <span>AIRA VIP</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#D97706;">🤖</span> <span>Anthropic</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#EC4899;">🧠</span> <span>Mistral AI</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#EF4444;">🔥</span> <span>Firecrawl</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#10B981;">📊</span> <span>OpenSEO</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#F59E0B;">✨</span> <span>Sponsor +</span></a>
+        </div>
+      </div>
+    `;
+  }
+
+
+function renderHomePage() {
     appContainer.innerHTML = `
       <!-- OpenAlternative Exact Modern Hero Section -->
       <section class="hero-openalt-section">
@@ -1431,6 +1494,9 @@ Website: https://aira-newsletter.vercel.app/
             </div>
             <span class="hero-proof-text-clean">Trusted by 500+ members</span>
           </div>
+
+          <!-- Partners & Sponsors Grid Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
 
         </div>
       </section>
@@ -2283,54 +2349,7 @@ Website: https://aira-newsletter.vercel.app/
       return filtered;
     }
 
-    function renderToolCard(tool) {
-      const pricingClass = `pricing-${(tool.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}`;
-      const firstCats = (tool.categories || [tool.category || 'productivity']).slice(0, 3);
-      const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
-      const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
-      const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
-      const fallbackIcon = tool.icon || '⚡';
-      const stats = getToolRatingStats(tool);
 
-      return `
-        <div class="tool-card ${tool.featured ? 'is-featured' : ''}" data-tool-id="${stats.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
-          <div class="tool-card-top">
-            <a href="#/tools/${tool.id}" class="tool-icon-avatar" title="View ${tool.name} details">
-              <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
-            </a>
-            <div class="tool-title-group">
-              <div class="tool-badges-row">
-                ${tool.badge ? `<span class="tool-badge-purpose">${tool.badge}</span>` : ''}
-                ${isToolPromoted(tool) ? '<span class="tool-badge-promoted"><span class="star">⭐</span> Promoted</span>' : ''}
-                <span class="tool-badge-pricing ${pricingClass}">${tool.pricing}</span>
-                <span class="tool-rating-pill" title="AIRA Community Rating: ${stats.rating.toFixed(1)} / 5.0 (${stats.votes} votes)">★ ${stats.rating.toFixed(1)}</span>
-              </div>
-              <h3 class="tool-card-name" title="${tool.name}">
-                <a href="#/tools/${tool.id}" class="tool-title-link">${tool.name}</a>
-              </h3>
-            </div>
-          </div>
-
-          <p class="tool-card-desc">${tool.description}</p>
-
-          <div class="tool-card-bottom">
-            <button type="button" class="tool-upvote-btn ${stats.hasVoted ? 'is-voted' : ''}" data-tool-id="${stats.id}" title="${stats.hasVoted ? 'Remove upvote' : 'Upvote tool'}" onclick="event.stopPropagation(); window.toggleToolVote('${stats.id}');">
-              <span class="upvote-arrow">▲</span>
-              <span class="upvote-count">${stats.votes}</span>
-            </button>
-            <div class="tool-card-actions">
-              <a href="#/tools/${tool.id}" class="tool-details-btn" title="View details of ${tool.name}">
-                <span>Details</span>
-              </a>
-              <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${tool.name}">
-                <span>Visit</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
-    }
 
     function updateView() {
       const filtered = getFilteredTools();
@@ -2338,14 +2357,32 @@ Website: https://aira-newsletter.vercel.app/
       const currentCatName = currentCatObj ? currentCatObj.name : 'All Tools';
 
       const TOOLS_PER_PAGE = 12;
-      const totalPages = Math.ceil(filtered.length / TOOLS_PER_PAGE);
+      let totalPages = 1;
+      let startIdx = 0;
+      let endIdx = TOOLS_PER_PAGE;
+
+      if (!state.toolSearchQuery) {
+        // Page 1 has 1 sponsor card + 11 tools = 12 cards total (4 full rows of 3).
+        // Page 2+ has 12 tools = 12 cards total (4 full rows of 3).
+        const remainingAfterP1 = Math.max(0, filtered.length - 11);
+        totalPages = Math.max(1, 1 + Math.ceil(remainingAfterP1 / TOOLS_PER_PAGE));
+        if (state.toolCurrentPage === 1) {
+          startIdx = 0;
+          endIdx = 11;
+        } else {
+          startIdx = 11 + (state.toolCurrentPage - 2) * TOOLS_PER_PAGE;
+          endIdx = startIdx + TOOLS_PER_PAGE;
+        }
+      } else {
+        totalPages = Math.max(1, Math.ceil(filtered.length / TOOLS_PER_PAGE));
+        startIdx = (state.toolCurrentPage - 1) * TOOLS_PER_PAGE;
+        endIdx = state.toolCurrentPage * TOOLS_PER_PAGE;
+      }
+
       if (state.toolCurrentPage > totalPages && totalPages > 0) state.toolCurrentPage = 1;
       if (state.toolCurrentPage < 1) state.toolCurrentPage = 1;
 
-      const pagedTools = filtered.slice(
-        (state.toolCurrentPage - 1) * TOOLS_PER_PAGE,
-        state.toolCurrentPage * TOOLS_PER_PAGE
-      );
+      const pagedTools = filtered.slice(startIdx, endIdx);
 
       const gridEl = document.getElementById('tools-grid-container');
       const countEl = document.getElementById('tools-count-container');
@@ -2451,29 +2488,32 @@ Website: https://aira-newsletter.vercel.app/
           if (state.toolCurrentPage === 1 && !state.toolSearchQuery) {
             const sponsorListingHtml = `
               <div class="tool-card is-sponsored-listing" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/advertise'; }">
-                <div class="tool-card-top">
-                  <div class="tool-icon-avatar" style="background: #18181B; color: #FFFFFF; font-size: 1.25rem;">⚡</div>
-                  <div class="tool-title-group">
-                    <div class="tool-badges-row">
+                <div class="tool-card-header">
+                  <a href="#/advertise" class="tool-card-avatar-wrap sponsor-avatar" title="Advertise your tool">
+                    <span class="sponsor-avatar-icon">⚡</span>
+                  </a>
+                  <div class="tool-header-content">
+                    <div class="tool-header-top-line">
+                      <h3 class="tool-card-name">
+                        <a href="#/advertise" class="tool-title-link">Your AI Tool / Software</a>
+                      </h3>
                       <span class="tool-badge-ad">AD</span>
-                      <span class="tool-badge-promoted" style="background: #FEF08A; color: #854D0E; border: 1px solid #FDE047;"><span class="star">⭐</span> Featured Listing</span>
-                      <span class="tool-badge-pricing pricing-free">Free Trial</span>
-                      <span class="tool-rating-pill">★ 5.0 (AIRA Partner)</span>
                     </div>
-                    <h3 class="tool-card-name">
-                      <a href="#/advertise" class="tool-title-link">Your AI Tool / Software</a>
-                    </h3>
+                    <div class="tool-badges-wrap">
+                      <span class="tool-badge-promoted sponsor-badge"><span class="star">★</span> FEATURED LISTING</span>
+                      <span class="tool-badge-pricing pricing-free-trial">FREE TRIAL</span>
+                    </div>
                   </div>
                 </div>
-                <p class="tool-card-desc">Prominently showcase your product across 400+ tool pages and category directories where high-intent buyers evaluate AI software.</p>
-                <div class="tool-card-bottom">
-                  <div class="tool-sponsor-spot-tag">⚡ Listing Ad Placement</div>
-                  <div class="tool-card-actions">
-                    <a href="#/advertise" class="tool-direct-visit-btn" style="background: #18181B; color: #FFFFFF;">
-                      <span>Reserve Slot ($149/wk)</span>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    </a>
-                  </div>
+
+                <p class="tool-card-desc">Prominently showcase your product across 400+ tool pages to 50,000+ AI buyers.</p>
+
+                <div class="tool-card-footer">
+                  <a href="#/advertise" class="tool-btn-details sponsor-spot-label">⚡ Listing Ad</a>
+                  <a href="#/advertise" class="tool-btn-visit sponsor-book-btn">
+                    <span>Reserve ($149/wk)</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  </a>
                 </div>
               </div>
             `;
@@ -2529,82 +2569,78 @@ Website: https://aira-newsletter.vercel.app/
     }
 
     appContainer.innerHTML = `
-      <section class="tools-directory-view">
-        <div class="container">
-          <!-- Top Header Banner Ad Placement (Slot: Top Header Banner) -->
-          <div class="site-top-ad-banner">
-            <div class="site-top-ad-inner">
-              <span class="site-ad-badge">AD</span>
-              <span class="site-ad-icon">⚡</span>
-              <span class="site-ad-text"><strong>AIRA Top Sponsor</strong> – Scale your AI stack 10x faster with frontier developer infrastructure.</span>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 960px;">
+          <!-- Top Ad Bar -->
+          <div class="hero-openalt-top-ad">
+            <div class="hero-top-ad-left">
+              <span class="hero-ad-badge-pill">AD</span>
+              <span class="hero-ad-brand-icon">⚡</span>
+              <span class="hero-ad-text-content"><strong>AIRA VIP Tool Directory</strong> – Discover 400+ verified production AI tools and workflows.</span>
             </div>
-            <a href="#/advertise" class="site-ad-cta-btn">Learn More →</a>
+            <a href="#/advertise" class="hero-ad-action-btn">Learn More →</a>
           </div>
 
-          <!-- Directory Hero Header -->
-          <div class="tools-hero-banner">
-            <div class="tools-hero-badge">
-              <span class="bolt">⚡</span>
-              <span>AIRA Directory • ${allTools.length} AI Tools • ${categories.length - 1} Categories</span>
-            </div>
-            <h1 class="tools-hero-title">AI Tools & Categories</h1>
-            <p class="tools-hero-subtitle">
-              Discover, compare, and explore the most powerful AI tools, models, and apps across every workflow.
-            </p>
-            <div style="margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
-              <button type="button" class="btn-submit-tool-trigger btn-open-submit-modal-any" style="padding: 9px 18px; font-size: 0.9rem;">
-                <span>➕ Submit Your AI Tool</span>
-              </button>
-              <a href="#/prompts" class="btn-cancel-modal" style="padding: 9px 16px; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
-                <span>✨ AI Prompts Vault</span>
-              </a>
-            </div>
+          <!-- Hero Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>⚡ AIRA Directory • ${allTools.length} Verified AI Tools</span>
+          </div>
 
-            <!-- Search & Pricing Control Bar -->
-            <div class="tools-controls-row">
-              <div class="tool-search-box-wrap">
-                <svg class="tool-search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="tool-search-input" class="tool-search-field" placeholder="Search by tool name, use-case, features..." value="${state.toolSearchQuery}" />
-                <button type="button" id="tool-search-clear" class="tool-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};">✕</button>
-              </div>
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">AI Tools &amp; Categories</h1>
+          <p class="hero-openalt-subheading">
+            Discover <strong>400+</strong> curated, verified AI tools across productivity, developer utilities, autonomous agents, and marketing workflows.
+          </p>
 
-              <div class="tools-pricing-pill-group">
-                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'all' ? 'active' : ''}" data-pricing="all">All</button>
-                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'Free' ? 'active' : ''}" data-pricing="Free">Free</button>
-                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'Freemium' ? 'active' : ''}" data-pricing="Freemium">Freemium</button>
-                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === 'Paid' ? 'active' : ''}" data-pricing="Paid">Paid</button>
-              </div>
+          <!-- Search & Controls Bar -->
+          <div class="tools-controls-row" style="width: 100%; margin: 16px auto 14px auto;">
+            <div class="tool-search-box-wrap" style="flex: 1;">
+              <svg class="tool-search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="tool-search-input" class="tool-search-field" placeholder="Search 400+ AI tools by name, features, tasks..." value="${state.toolSearchQuery || ''}" autocomplete="off" />
+              <button type="button" id="tool-search-clear" class="tool-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
             </div>
 
-            <!-- Categories Clean Responsive Box -->
-            <div class="categories-filter-wrapper">
-              <div class="categories-filter-grid" id="categories-filter-grid">
-                ${visibleCategories.map(cat => {
-                  const count = getCategoryCount(cat.id);
-                  const isActive = state.toolCategoryFilter === cat.id;
-                  return `
-                    <button type="button" class="cat-filter-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
-                      <span class="cat-pill-icon">${cat.icon || '🏷️'}</span>
-                      <span class="cat-pill-name">${cat.name}</span>
-                      <span class="cat-pill-count">${count}</span>
-                    </button>
-                  `;
-                }).join('')}
-              </div>
+            <div class="tools-pricing-pill-group">
+              ${['all', 'Free', 'Freemium', 'Paid'].map(p => `
+                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === p ? 'active' : ''}" data-pricing="${p}">
+                  ${p === 'all' ? 'All Pricing' : p}
+                </button>
+              `).join('')}
+            </div>
+          </div>
 
-              ${hasMore ? `
-                <div class="categories-toggle-row">
-                  <button type="button" class="btn-toggle-all-cats" id="btn-toggle-all-cats">
-                    <span>${isExpanded ? 'Show Less ▴' : `Show All ${categories.length} Categories (${categories.length - initialVisibleCount} more) ▾`}</span>
+          <!-- Categories Filter Bar -->
+          <div class="categories-filter-wrapper" style="width: 100%; margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
+            <div class="categories-filter-grid" id="tools-categories-bar">
+              ${categories.map(cat => {
+                const count = getCategoryCount(cat.id);
+                const isActive = state.toolCategoryFilter === cat.id;
+                return `
+                  <button type="button" class="cat-filter-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
+                    <span class="cat-pill-icon">${cat.icon || '✨'}</span>
+                    <span class="cat-pill-name">${cat.name}</span>
+                    <span class="cat-pill-count">${count}</span>
                   </button>
-                </div>
-              ` : ''}
+                `;
+              }).join('')}
             </div>
           </div>
 
-          <!-- Featured AI Tools of the Week Showcase (Exact Same as Homepage) -->
-          <div class="featured-tools-section" style="margin-top: 36px; margin-bottom: 28px; padding: 0; background: transparent; border: none;">
-            <div class="featured-tools-header-row" style="margin-bottom: 16px;">
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <!-- Directory Body -->
+      <section class="tools-directory-view" style="padding: 20px 0 40px 0; background: #FFFFFF;">
+        <div class="container">
+          <!-- Featured AI Tools of the Week Showcase -->
+          <div class="featured-tools-section" style="margin-top: 0; margin-bottom: 20px; padding: 0; background: transparent; border: none;">
+            <div class="featured-tools-header-row" style="margin-bottom: 12px;">
               <div class="featured-tools-title-wrap">
                 <span class="featured-tools-icon">⚡</span>
                 <h2 class="featured-tools-main-title">FEATURED AI TOOLS OF THE WEEK</h2>
@@ -3027,16 +3063,6 @@ Website: https://aira-newsletter.vercel.app/
                 </div>
               </div>
 
-              <!-- Sidebar Ad: Level Up with AIRA -->
-              <div class="ad-sidebar-card">
-                <span class="ad-tag-label">FREE NEWSLETTER</span>
-                <h3 class="ad-sidebar-title">Discover the Best AI Tools Every Week</h3>
-                <p class="ad-sidebar-desc">Get our weekly curated list of breakthrough AI tools, prompts, and tutorials delivered to your inbox.</p>
-                <button type="button" class="ad-pill-btn" onclick="document.getElementById('btn-subscribe-header') && document.getElementById('btn-subscribe-header').click();">
-                  <span>Subscribe Free</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-              </div>
 
             </div>
 
@@ -3046,47 +3072,8 @@ Website: https://aira-newsletter.vercel.app/
           ${relatedTools.length > 0 ? `
             <div class="tool-related-section">
               <h2 class="tool-related-title">Related AI Tools in ${primaryCatName}</h2>
-              <div class="tool-related-grid">
-                ${relatedTools.map(rel => {
-                  const relCleanDomain = (rel.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
-                  const relLogo = rel.image || `https://www.google.com/s2/favicons?domain=${relCleanDomain}&sz=128`;
-                  const relDuckLogo = `https://icons.duckduckgo.com/ip3/${relCleanDomain}.ico`;
-                  const relPricingClass = `pricing-${(rel.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}`;
-                  const relStats = getToolRatingStats(rel);
-                  return `
-                    <div class="tool-card" data-tool-id="${relStats.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${rel.id}'; }">
-                      <div class="tool-card-top">
-                        <a href="#/tools/${rel.id}" class="tool-icon-avatar" title="View ${rel.name}">
-                          <img src="${relLogo}" alt="${rel.name}" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${relDuckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span>${rel.icon || '⚡'}</span>'; }" />
-                        </a>
-                        <div class="tool-title-group">
-                          <div class="tool-badges-row">
-                            ${rel.badge ? `<span class="tool-badge-purpose">${rel.badge}</span>` : ''}
-                            <span class="tool-badge-pricing ${relPricingClass}">${rel.pricing}</span>
-                            <span class="tool-rating-pill" title="★ ${relStats.rating.toFixed(1)} (${relStats.votes} votes)">★ ${relStats.rating.toFixed(1)}</span>
-                          </div>
-                          <h3 class="tool-card-name">
-                            <a href="#/tools/${rel.id}" class="tool-title-link">${rel.name}</a>
-                          </h3>
-                        </div>
-                      </div>
-                      <p class="tool-card-desc">${rel.description}</p>
-                      <div class="tool-card-bottom">
-                        <button type="button" class="tool-upvote-btn ${relStats.hasVoted ? 'is-voted' : ''}" data-tool-id="${relStats.id}" title="${relStats.hasVoted ? 'Remove upvote' : 'Upvote tool'}" onclick="event.stopPropagation(); window.toggleToolVote('${relStats.id}');">
-                          <span class="upvote-arrow">▲</span>
-                          <span class="upvote-count">${relStats.votes}</span>
-                        </button>
-                        <div class="tool-card-actions">
-                          <a href="#/tools/${rel.id}" class="tool-details-btn">Details</a>
-                          <a href="${rel.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn" title="Open ${rel.name}">
-                            <span>Visit</span>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  `;
-                }).join('')}
+              <div class="tool-related-grid tools-grid-3col">
+                ${relatedTools.map(renderToolCard).join('')}
               </div>
             </div>
           ` : ''}
@@ -3186,57 +3173,65 @@ Website: https://aira-newsletter.vercel.app/
     }
 
     appContainer.innerHTML = `
-      <section class="alternatives-directory-view">
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 960px;">
+          <!-- Top Ad Bar -->
+          <div class="hero-openalt-top-ad">
+            <div class="hero-top-ad-left">
+              <span class="hero-ad-badge-pill">AD</span>
+              <span class="hero-ad-brand-icon">⚡</span>
+              <span class="hero-ad-text-content"><strong>AIRA Top Sponsor</strong> – Discover verified open-source software and developer productivity tools.</span>
+            </div>
+            <a href="#/advertise" class="hero-ad-action-btn">Learn More →</a>
+          </div>
+
+          <!-- Hero Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>⚡ AIRA Directory • ${allSoftware.length} Software • ${totalAltsCount.toLocaleString()}+ Open-Source Alternatives</span>
+          </div>
+
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">Alternatives to Popular Software</h1>
+          <p class="hero-openalt-subheading">
+            Discover <strong>${totalAltsCount.toLocaleString()}+</strong> curated top software alternatives, open-source tools, and competitor comparisons for <strong>${allSoftware.length}</strong> popular software platforms &amp; AI services.
+          </p>
+
+          <!-- Search Form -->
+          <form class="alt-search-form" id="alt-search-form" onsubmit="event.preventDefault();" style="width: 100%; max-width: 760px; margin: 16px auto 14px auto;">
+            <svg class="alt-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search 350+ software tools or 2,400+ alternatives (e.g. Claude Code, Cursor, Notion, Figma, 1Password)..." value="${state.altSearchQuery}" autocomplete="off" />
+            <button type="button" id="alt-search-clear" class="alt-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
+          </form>
+
+          <!-- Categories Filter Wrapper -->
+          <div class="categories-filter-wrapper" style="width: 100%; margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
+            <div class="categories-filter-grid" id="alt-categories-filter-grid">
+              ${categories.map(cat => {
+                const count = getCategoryCount(cat.id);
+                const isActive = state.altCategoryFilter === cat.id;
+                return `
+                  <button type="button" class="cat-filter-pill alt-cat-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
+                    <span class="cat-pill-icon">${cat.icon || '🏷️'}</span>
+                    <span class="cat-pill-name">${cat.name}</span>
+                    <span class="cat-pill-count">${count}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <!-- Alternatives Grid Body -->
+      <section class="alternatives-directory-view" style="padding: 20px 0 40px 0; background: #FFFFFF;">
         <div class="container">
-          <!-- Top Header Banner Ad Placement (Slot: Top Header Banner) -->
-          <div class="site-top-ad-banner">
-            <div class="site-top-ad-inner">
-              <span class="site-ad-badge">AD</span>
-              <span class="site-ad-icon">⚡</span>
-              <span class="site-ad-text"><strong>AIRA Top Sponsor</strong> – Discover verified open-source software and developer productivity tools.</span>
-            </div>
-            <a href="#/advertise" class="site-ad-cta-btn">Learn More →</a>
-          </div>
-
-          <!-- Hero Section -->
-          <div class="alt-hero-banner">
-            <div class="alt-hero-badge">
-              <span class="bolt">⚡</span>
-              <span>AIRA Directory • ${allSoftware.length} Software • ${totalAltsCount.toLocaleString()}+ Open-Source Alternatives</span>
-            </div>
-            <h1 class="alt-hero-title">Alternatives to Popular Software</h1>
-            <p class="alt-hero-desc">
-              Discover <strong>${totalAltsCount.toLocaleString()}+</strong> curated top software alternatives, open-source tools, and competitor comparisons for <strong>${allSoftware.length}</strong> popular software platforms & AI services.
-            </p>
-
-            <!-- Search Form -->
-            <form class="alt-search-form" id="alt-search-form" onsubmit="event.preventDefault();">
-              <svg class="alt-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search 350+ software tools or 2,400+ alternatives (e.g. Claude Code, Cursor, Notion, Figma, 1Password)..." value="${state.altSearchQuery}" autocomplete="off" />
-              <button type="button" id="alt-search-clear" class="alt-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
-            </form>
-
-            <!-- Categories Filter Wrapper (Clean Wrapped Grid, Same as AI Tools) -->
-            <div class="categories-filter-wrapper" style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
-              <div class="categories-filter-grid" id="alt-categories-bar">
-                ${categories.map(cat => {
-                  const count = getCategoryCount(cat.id);
-                  const isActive = state.altCategoryFilter === cat.id;
-                  return `
-                    <button type="button" class="cat-filter-pill alt-cat-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
-                      <span class="cat-pill-icon">${cat.icon || '✨'}</span>
-                      <span class="cat-pill-name">${cat.name}</span>
-                      <span class="cat-pill-count">${count}</span>
-                    </button>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          </div>
-
           <!-- Counter Bar -->
           <div class="alt-count-bar" id="alt-count-bar"></div>
 
@@ -7569,33 +7564,43 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
     // Full-width modern top-filter layout
     appContainer.innerHTML = `
-      <main id="top" class="prompt-library-main">
-        <div class="prompt-vault-container">
-          
-          <!-- Hero Section (Centered & Polished) -->
-          <section class="lib-hero-top">
-            <div class="lib-hero__badge">⚡ AIRA Prompts Vault</div>
-            <h1 class="lib-hero__title">Agentic Coding Prompts Library</h1>
-            <p class="lib-hero__lede">
-              Curated collection of <span id="hero-count">${ALL.length}</span> battle-tested prompts for frontier coding agents, built for
-              <span class="inline-tool" data-mark="claude-code"><span class="inline-tool__mark">${TOOL_MARK['claude-code']}</span>Claude&nbsp;Code</span>,
-              <span class="inline-tool" data-mark="codex"><span class="inline-tool__mark">${TOOL_MARK['codex']}</span>OpenAI&nbsp;Codex</span>, and
-              <span class="inline-tool" data-mark="cursor"><span class="inline-tool__mark">${TOOL_MARK['cursor']}</span>Cursor&nbsp;IDE</span>.
-              Select a task, customize the highlighted tokens, and copy in one click.
-            </p>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 960px;">
+          <!-- Hero Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>⚡ AIRA Prompts Vault • ${ALL.length} Curated Agent Prompts</span>
+          </div>
 
-            <!-- Center Search Bar -->
-            <div class="hero-search-center">
-              <svg class="hero-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
-              </svg>
-              <input id="search" type="search" placeholder="Search prompts by task, tool, keyword (e.g. Bug fix, Onboarding, Refactor, Plan)..." autocomplete="off" spellcheck="false" aria-label="Search prompts" />
-              <button class="hero-search__clear" id="search-clear" type="button" aria-label="Clear search" hidden>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-              </button>
-              <kbd class="hero-search__kbd" id="search-kbd">/</kbd>
-            </div>
-          </section>
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">Agentic Coding Prompts Library</h1>
+          <p class="hero-openalt-subheading">
+            Curated collection of <span id="hero-count">${ALL.length}</span> battle-tested prompts for frontier coding agents, built for
+            <span class="inline-tool" data-mark="claude-code"><span class="inline-tool__mark">${TOOL_MARK['claude-code']}</span>Claude&nbsp;Code</span>,
+            <span class="inline-tool" data-mark="codex"><span class="inline-tool__mark">${TOOL_MARK['codex']}</span>OpenAI&nbsp;Codex</span>, and
+            <span class="inline-tool" data-mark="cursor"><span class="inline-tool__mark">${TOOL_MARK['cursor']}</span>Cursor&nbsp;IDE</span>.
+            Select a task, customize the highlighted tokens, and copy in one click.
+          </p>
+
+          <!-- Center Search Bar -->
+          <div class="hero-search-center" style="margin: 16px auto 14px auto; width: 100%; max-width: 760px;">
+            <svg class="hero-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+            </svg>
+            <input id="search" type="search" placeholder="Search prompts by task, tool, keyword (e.g. Bug fix, Onboarding, Refactor, Plan)..." autocomplete="off" spellcheck="false" aria-label="Search prompts" />
+            <button class="hero-search__clear" id="search-clear" type="button" aria-label="Clear search" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <kbd class="hero-search__kbd" id="search-kbd">/</kbd>
+          </div>
+
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <main id="top" class="prompt-library-main" style="padding: 20px 0 40px 0; background: #FFFFFF;">
+        <div class="prompt-vault-container">
 
           <!-- Top Horizontal Filter Hub (Directly Below Hero) -->
           <div class="prompts-filter-hub">
@@ -8165,19 +8170,27 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     }
 
     appContainer.innerHTML = `
-      <div class="tools-directory-page">
-        <div class="container">
-          <!-- Hero Header -->
-          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
-            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
-              <span>⚔️</span> Side-by-Side Comparison
-            </div>
-            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">AI Tool Comparison (VS Mode)</h1>
-            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
-              Compare specifications, pricing models, key capabilities, pros & cons side-by-side to make the smartest AI choice.
-            </p>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 960px;">
+          <!-- Hero Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>⚔️ Side-by-Side Comparison</span>
           </div>
 
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">AI Tool Comparison (VS Mode)</h1>
+          <p class="hero-openalt-subheading">
+            Compare specifications, pricing models, key capabilities, pros &amp; cons side-by-side to make the smartest AI choice.
+          </p>
+
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <div class="tools-directory-page" style="padding: 20px 0 40px 0; background: #FFFFFF;">
+        <div class="container">
           <!-- Selector Card -->
           <div class="compare-selector-card">
             <div class="compare-selectors-grid">
@@ -8386,37 +8399,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       }
       return `
         <div class="tools-grid-3col">
-          ${list.map(tool => {
-            const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
-            const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
-            return `
-              <div class="tool-card" data-tool-id="${tool.id}">
-                <div class="tool-card-top">
-                  <a href="#/tools/${tool.id}" class="tool-icon-avatar">
-                    <img src="${logoUrl}" alt="${tool.name}" class="tool-logo-img" onerror="this.src='assets/logo.svg'" />
-                  </a>
-                  <div class="tool-title-group">
-                    <div class="tool-badges-row">
-                      <span class="tool-badge-pricing pricing-${(tool.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool.pricing}</span>
-                    </div>
-                    <h3 class="tool-card-name">
-                      <a href="#/tools/${tool.id}" class="tool-title-link">${tool.name}</a>
-                    </h3>
-                  </div>
-                </div>
-                <p class="tool-card-desc">${tool.description}</p>
-                <div class="tool-card-bottom">
-                  <button type="button" class="btn-remove-bookmark" data-tool-id="${tool.id}" style="background: none; border: 1px solid #E4E4E7; color: #EF4444; font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
-                    Remove ✕
-                  </button>
-                  <div class="tool-card-actions">
-                    <a href="#/tools/${tool.id}" class="tool-details-btn">Details</a>
-                    <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-direct-visit-btn">Visit ↗</a>
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join('')}
+          ${list.map(renderToolCard).join('')}
         </div>
       `;
     }
@@ -8488,19 +8471,24 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     }
 
     appContainer.innerHTML = `
-      <div class="tools-directory-page">
-        <div class="container">
-          <!-- Hero Header -->
-          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
-            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #FEF3C7; color: #B45309; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
-              <span>🔖</span> Your Saved Library
-            </div>
-            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">My Bookmarks</h1>
-            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
-              Quickly revisit your saved AI tools, newsletter editions, and open-source alternatives.
-            </p>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 900px;">
+          <div class="hero-openalt-mini-badge">
+            <span>🔖 Your Saved Library</span>
           </div>
+          <h1 class="hero-openalt-heading">My Bookmarks</h1>
+          <p class="hero-openalt-subheading">
+            Quickly revisit your saved AI tools, newsletter editions, and open-source alternatives.
+          </p>
 
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <div class="tools-directory-page" style="padding: 20px 0 40px 0; background: #FFFFFF;">
+        <div class="container">
           <!-- Bookmarks Tabs -->
           <div class="bookmarks-tabs-bar">
             <button type="button" class="bookmark-tab-btn ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
@@ -8569,19 +8557,27 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     const categories = toolsData.categories || [];
 
     appContainer.innerHTML = `
-      <div class="tools-directory-page">
-        <div class="container">
-          <!-- Hero Header -->
-          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
-            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #ECFDF5; color: #047857; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
-              <span>🚀</span> Creator & Founder Submissions
-            </div>
-            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">Submit Your AI Tool</h1>
-            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
-              Get your product featured in front of 500+ AI enthusiasts, builders, investors, and engineers.
-            </p>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 800px;">
+          <!-- Hero Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>🚀 Creator &amp; Founder Submissions</span>
           </div>
 
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">Submit Your AI Tool</h1>
+          <p class="hero-openalt-subheading">
+            Get your product featured in front of 50,000+ AI enthusiasts, builders, investors, and engineers.
+          </p>
+
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <div class="tools-directory-page" style="padding: 20px 0 40px 0; background: #FFFFFF;">
+        <div class="container">
           <!-- Form Card -->
           <div class="submit-form-card" id="submit-form-container">
             <form id="tool-submission-form">
@@ -8731,27 +8727,28 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     const filteredDeals = getFilteredDeals();
 
     appContainer.innerHTML = `
-      <div class="tools-directory-page">
-        <div class="container">
-          <!-- Hero Header -->
-          <div class="tools-hero-section" style="text-align: center; padding: 48px 0 32px 0;">
-            <div class="tools-hero-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #FEF3C7; color: #B45309; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px;">
-              <span>🏷️</span> Exclusive Discounts & Perks
-            </div>
-            <h1 class="page-title" style="font-size: 2.75rem; margin-bottom: 12px;">AI Deals & Discounts</h1>
-            <p class="page-description" style="max-width: 680px; margin: 0 auto 28px auto;">
-              Save big on top AI tools, developer platforms, and creator subscriptions with verified coupon codes and partnership deals.
-            </p>
-
-            <!-- Search Bar -->
-            <div style="max-width: 580px; margin: 0 auto; position: relative;">
-              <input type="text" id="deal-search-input" class="form-input" placeholder="Search deals by tool name or discount..." value="${escapeHtml(state.dealSearchQuery)}" style="width: 100%; padding: 14px 20px; border-radius: 9999px; font-size: 1rem; border: 1.5px solid #E4E4E7;" />
-            </div>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 960px;">
+          <!-- Hero Mini Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>🏷️ Exclusive Discounts &amp; Perks</span>
           </div>
 
-          <!-- Categories Bar -->
-          <div class="cat-filter-scroll-wrapper" style="margin-bottom: 24px;">
-            <div class="cat-filter-pills-row">
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">AI Deals &amp; Discounts</h1>
+          <p class="hero-openalt-subheading">
+            Save big on top AI tools, developer platforms, and creator subscriptions with verified coupon codes and partnership deals.
+          </p>
+
+          <!-- Search Form -->
+          <div style="width: 100%; max-width: 680px; margin: 16px auto 14px auto; position: relative;">
+            <input type="text" id="deal-search-input" class="form-input" placeholder="Search deals by tool name or discount..." value="${escapeHtml(state.dealSearchQuery)}" style="width: 100%; padding: 14px 20px; border-radius: 9999px; font-size: 1rem; border: 1.5px solid #E4E4E7; background: #FFFFFF;" />
+          </div>
+
+          <!-- Categories Filter Wrapper -->
+          <div class="categories-filter-wrapper" style="width: 100%; margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
+            <div class="categories-filter-grid" id="deals-categories-bar">
               ${categories.map(cat => `
                 <button type="button" class="cat-filter-pill ${state.dealCategoryFilter === cat.id ? 'active' : ''}" data-cat="${cat.id}">
                   <span class="cat-pill-icon">${cat.icon || '🏷️'}</span>
@@ -8762,6 +8759,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             </div>
           </div>
 
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
+          ${getSponsorsStripHTML()}
+        </div>
+      </section>
+
+      <!-- Deals Directory View -->
+      <section class="deals-directory-view" style="padding: 20px 0 40px 0; background: #FFFFFF;">
+        <div class="container">
           <!-- Deals Grid -->
           <div class="deals-grid-3col" id="deals-grid-container">
             ${filteredDeals.length === 0 ? `
@@ -8806,13 +8811,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             `).join('')}
           </div>
 
-          <div style="margin: 60px 0 30px 0; text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 32px 20px;">
+          <div style="margin: 40px 0 20px 0; text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 32px 20px;">
             <h3 style="font-size: 1.25rem; font-weight: 800; color: #1E293B; margin-bottom: 6px;">Are you an AI tool creator?</h3>
-            <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 18px;">Offer an exclusive discount or promo code to 500+ AIRA readers.</p>
+            <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 18px;">Offer an exclusive discount or promo code to 50,000+ AIRA readers.</p>
             <a href="#/submit" class="tool-details-btn" style="padding: 10px 20px; font-weight: 700;">Submit Your Deal →</a>
           </div>
         </div>
-      </div>
+      </section>
     `;
 
     // Bind categories
@@ -9244,11 +9249,327 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     `;
   }
 
+  function getSlotMockupHTML(slotKey) {
+    if (slotKey === 'banner') {
+      return `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">https://aira.news/ (Site-Wide Top Bar)</div>
+        </div>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #059669; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #ECFDF5; color: #047857; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Top Banner Placement • 100% Impressions</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
+              <img src="assets/logo.jpg" alt="Logo" style="width: 20px; height: 20px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+              <span style="font-size: 0.82rem; color: #18181B; font-weight: 500;"><strong>Your Brand</strong> — The all-in-one AI agent runtime &amp; telemetry hub.</span>
+            </div>
+            <span style="background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 9999px; white-space: nowrap;">Try Free →</span>
+          </div>
+        </div>
+      `;
+    } else if (slotKey === 'listing') {
+      return `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">https://aira.news/#/tags (AI Tools Directory)</div>
+        </div>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #059669; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #ECFDF5; color: #047857; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Position #1 Sponsored Tool • 400+ Pages</span>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 38px; height: 38px; border-radius: 8px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">⚡</div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+                <strong style="font-size: 0.88rem; color: #18181B;">Your AI Software Name</strong>
+                <span style="background: #FEF3C7; color: #92400E; font-size: 0.62rem; font-weight: 700; padding: 1px 5px; border-radius: 3px;">SPONSORED</span>
+              </div>
+              <p style="font-size: 0.76rem; color: #64748B; margin: 0; line-height: 1.35;">Supercharge your dev velocity with autonomous coding pipelines.</p>
+            </div>
+            <span style="font-size: 0.78rem; font-weight: 700; color: #047857; white-space: nowrap;">Visit ↗</span>
+          </div>
+        </div>
+      `;
+    } else if (slotKey === 'tool') {
+      return `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">https://aira.news/#/tools/cursor (Tool Detail Pages)</div>
+        </div>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #059669; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #ECFDF5; color: #047857; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">High-Intent Sidebar Alternative Widget</span>
+          <div style="font-size: 0.68rem; text-transform: uppercase; font-weight: 700; color: #94A3B8; margin-bottom: 2px;">Featured Alternative</div>
+          <strong style="font-size: 0.88rem; color: #18181B; display: block; margin-bottom: 4px;">Switch to Your Software</strong>
+          <p style="font-size: 0.76rem; color: #64748B; line-height: 1.35; margin: 0 0 8px 0;">Self-hosted, 100% open source with enterprise-grade security compliance.</p>
+          <span style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;">Try 14-Day Free Trial →</span>
+        </div>
+      `;
+    } else {
+      return `
+        <div class="adv-mockup-browser-bar">
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-dot"></div>
+          <div class="adv-browser-url">AIRA Daily Newsletter Edition (50,000+ Inboxes)</div>
+        </div>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #059669; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #ECFDF5; color: #047857; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Dedicated Newsletter Spotlight Edition</span>
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+            <span style="background: #FEF08A; color: #854D0E; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">FEATURED SPONSOR</span>
+            <strong style="font-size: 0.88rem; color: #18181B;">Introducing Your Product</strong>
+          </div>
+          <p style="font-size: 0.76rem; color: #4B5563; line-height: 1.4; margin: 0 0 8px 0;">
+            Delivered straight to 50,000+ software engineers, founders, and CTOs with 42% average open rate.
+          </p>
+          <span style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;">Claim Exclusive Offer →</span>
+        </div>
+      `;
+    }
+  }
+
+  function renderUnifiedAdConfiguratorHTML() {
+    initAdvState();
+    const activeKey = window.airaAdvActiveSlot || 'banner';
+    const slot = AD_SLOTS_CONFIG[activeKey] || AD_SLOTS_CONFIG.banner;
+    const s = window.airaAdvState[activeKey];
+    const info = getSlotPriceAndDays(activeKey);
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const y = s.year;
+    const m = s.month;
+
+    const firstDayOfMonth = new Date(y, m, 1);
+    const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+    let startDayIdx = firstDayOfMonth.getDay() - 1;
+    if (startDayIdx < 0) startDayIdx = 6;
+
+    const now = new Date();
+    const todayZero = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+    const startZero = s.startDate ? new Date(s.startDate.getFullYear(), s.startDate.getMonth(), s.startDate.getDate()).getTime() : null;
+    const endZero = s.endDate ? new Date(s.endDate.getFullYear(), s.endDate.getMonth(), s.endDate.getDate()).getTime() : null;
+
+    let cellsHTML = '';
+    for (let i = 0; i < startDayIdx; i++) {
+      cellsHTML += `<div class="adv-cal-cell is-empty"></div>`;
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cellDate = new Date(y, m, d);
+      const cellTime = cellDate.getTime();
+      const isPast = cellTime < todayZero;
+      const isToday = cellTime === todayZero;
+
+      let isStart = startZero !== null && cellTime === startZero;
+      let isEnd = endZero !== null && cellTime === endZero;
+      let inRange = false;
+      if (startZero !== null && endZero !== null && startZero !== endZero) {
+        inRange = cellTime > startZero && cellTime < endZero;
+      }
+
+      let classList = ['adv-cal-cell'];
+      if (isPast) classList.push('is-disabled');
+      if (isToday) classList.push('is-today');
+      if (isStart) classList.push('is-range-start');
+      if (isEnd) classList.push('is-range-end');
+      if (inRange) classList.push('is-in-range');
+
+      const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      const clickAttr = isPast ? '' : `onclick="window.handleAdvDateSelect('${activeKey}', '${dateStr}')"`;
+
+      cellsHTML += `<button type="button" class="${classList.join(' ')}" ${clickAttr} ${isPast ? 'disabled' : ''} title="${formatAdvDate(cellDate)}">${d}</button>`;
+    }
+
+    // Presets HTML
+    let presetsHTML = '';
+    if (!slot.isEditionBased) {
+      presetsHTML = `
+        <div class="adv-presets-row" style="margin-bottom: 12px;">
+          <button type="button" class="adv-preset-btn ${s.preset === '7' ? 'active' : ''}" onclick="window.applyAdvPreset('${activeKey}', 7)">7 Days ($${slot.weeklyRate})</button>
+          <button type="button" class="adv-preset-btn ${s.preset === '14' ? 'active' : ''}" onclick="window.applyAdvPreset('${activeKey}', 14)">14 Days ($${slot.twoWeekRate} • 10% OFF)</button>
+          <button type="button" class="adv-preset-btn ${s.preset === '30' ? 'active' : ''}" onclick="window.applyAdvPreset('${activeKey}', 30)">30 Days ($${slot.monthlyRate} • 20% OFF)</button>
+        </div>
+      `;
+    }
+
+    // Selection bar HTML
+    let selectionBarHTML = '';
+    if (slot.isEditionBased) {
+      selectionBarHTML = `
+        <div class="adv-cal-selection-bar">
+          <span class="dates-text">Edition Drop: <strong class="dates-green">📅 ${info.fullStart || 'Select Date'}</strong></span>
+          <span class="adv-cal-price-highlight">$${info.price} / edition</span>
+        </div>
+      `;
+    } else if (info.isComplete) {
+      selectionBarHTML = `
+        <div class="adv-cal-selection-bar">
+          <div>
+            <span class="dates-text">Dates: 📅 <strong class="dates-green">${info.rangeStr}</strong> <span class="days-count">(${info.days} days)</span></span>
+          </div>
+          <span class="adv-cal-price-highlight">$${info.price} Total</span>
+        </div>
+      `;
+    } else {
+      selectionBarHTML = `
+        <div class="adv-cal-selection-bar" style="background: #FFFBEB; border-color: #FDE68A;">
+          <span style="color: #92400E;">Start: <strong>${info.fullStart}</strong> ➔ <em>👉 Click End Date</em></span>
+          <span style="font-size: 0.75rem; color: #B45309; font-weight: 600;">Selecting...</span>
+        </div>
+      `;
+    }
+
+    return `
+      <!-- 1. Top Segmented Tabs Row -->
+      <div class="adv-unified-tabs-row">
+        ${Object.keys(AD_SLOTS_CONFIG).map(k => {
+          const item = AD_SLOTS_CONFIG[k];
+          const isActive = k === activeKey;
+          return `
+            <button type="button" class="adv-unified-tab-btn ${isActive ? 'active' : ''}" onclick="window.selectActiveAdvSlot('${k}')">
+              <span class="adv-tab-icon">${item.icon}</span>
+              <span class="adv-tab-name">${item.name}</span>
+              ${item.badge ? `<span class="adv-unified-tab-badge">${item.badge}</span>` : ''}
+            </button>
+          `;
+        }).join('')}
+      </div>
+
+      <!-- 2. Main 2-Column Body -->
+      <div class="adv-unified-body-grid">
+        
+        <!-- Left Column: Configurator & Calendar -->
+        <div class="adv-unified-left-panel">
+          <!-- Slot Header Info -->
+          <div class="adv-unified-slot-header">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.4rem;">${slot.icon}</span>
+                <h3 class="adv-unified-slot-title">${slot.name}</h3>
+                ${slot.badge ? `<span class="adv-unified-tab-badge">${slot.badge}</span>` : ''}
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('${activeKey}')" title="Full size preview modal">
+                  <span>👁 Full Preview</span>
+                </button>
+                <a href="${activeKey === 'banner' ? '#/home' : (activeKey === 'listing' ? '#/tags' : (activeKey === 'tool' ? '#/tools/cursor' : '#/post/anthropic-announces-claude-3-7-sonnet'))}" class="advertise-preview-btn" style="text-decoration: none;" title="View placement on live site">
+                  <span>🔗 View on Site</span>
+                </a>
+              </div>
+            </div>
+            <p class="adv-unified-slot-sub">${slot.subtitle}</p>
+          </div>
+
+          <!-- Features Bullets -->
+          <div class="adv-unified-features-list">
+            ${(slot.features || []).map(f => `
+              <div class="adv-unified-feature-item">
+                <span class="adv-feature-check">✓</span>
+                <span>${f}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Duration Presets -->
+          <div style="margin-top: 14px;">
+            <label style="font-size: 0.8125rem; font-weight: 700; color: #18181B; display: block; margin-bottom: 6px;">
+              ${slot.isEditionBased ? 'Select Newsletter Edition Date:' : 'Select Campaign Duration:'}
+            </label>
+            ${presetsHTML}
+          </div>
+
+          <!-- Interactive Calendar Wrapper -->
+          <div class="advertise-cal-wrap" style="margin-top: 10px;">
+            ${selectionBarHTML}
+
+            <!-- Month Navigation -->
+            <div class="adv-cal-nav">
+              <span class="adv-cal-month-title">${monthNames[m]} ${y}</span>
+              <div style="display: flex; gap: 4px;">
+                <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${activeKey}', -1)" title="Previous Month">‹</button>
+                <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${activeKey}', 1)" title="Next Month">›</button>
+              </div>
+            </div>
+
+            <!-- 7-Day Calendar Grid -->
+            <div class="adv-cal-grid">
+              <div class="adv-cal-th">Mo</div>
+              <div class="adv-cal-th">Tu</div>
+              <div class="adv-cal-th">We</div>
+              <div class="adv-cal-th">Th</div>
+              <div class="adv-cal-th">Fr</div>
+              <div class="adv-cal-th">Sa</div>
+              <div class="adv-cal-th">Su</div>
+              ${cellsHTML}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Mockup & Booking Box -->
+        <div class="adv-unified-right-panel">
+          
+          <!-- Live Mockup Box -->
+          <div class="adv-unified-mockup-wrap">
+            <div class="adv-mockup-label">Live Placement Preview</div>
+            <div class="adv-unified-mockup-frame">
+              ${getSlotMockupHTML(activeKey)}
+            </div>
+          </div>
+
+          <!-- Price & Summary Card -->
+          <div class="adv-unified-price-card">
+            <div class="adv-price-headline">
+              <div class="adv-price-big">$${info.price}</div>
+              <div class="adv-price-period">${slot.isEditionBased ? 'per edition drop' : `total for ${info.days} days ($${info.dailyAvg}/day)`}</div>
+            </div>
+
+            ${info.savingsText ? `
+              <div class="adv-savings-pill">
+                <span>⚡ ${info.savingsText}</span>
+              </div>
+            ` : ''}
+
+            <!-- Book CTA Button -->
+            <button type="button" class="adv-unified-book-btn" onclick="window.bookSlotWithDates('${activeKey}')" ${!info.isComplete ? 'disabled style="opacity:0.6; cursor:not-allowed;"' : ''}>
+              <span>Book ${slot.name} Now →</span>
+            </button>
+
+            <!-- Guarantee Note -->
+            <div class="adv-guarantee-note">
+              <span>🔒 100% Guaranteed Delivery • Rapid 24h Setup</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+  function updateUnifiedConfiguratorUI() {
+    const rootEl = document.getElementById('adv-unified-card-root');
+    if (rootEl) {
+      rootEl.innerHTML = renderUnifiedAdConfiguratorHTML();
+    }
+  }
+
+  window.selectActiveAdvSlot = function(slotKey) {
+    window.airaAdvActiveSlot = slotKey;
+    updateUnifiedConfiguratorUI();
+  };
+
   function updateSlotCardUI(slotKey) {
     const cardEl = document.getElementById(`slot-card-interactive-${slotKey}`);
     if (cardEl) {
       cardEl.innerHTML = renderSlotCardContentHTML(slotKey);
     }
+    updateUnifiedConfiguratorUI();
   }
 
   window.applyAdvPreset = function(slotKey, daysCount) {
@@ -9558,148 +9879,15 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             </div>
           </div>
 
-          <!-- 4. DevSuite-Style Interactive Ad Slots Selection Grid -->
+          <!-- 4. DevSuite-Style Unified Interactive Single Ad Configurator Card -->
           <div class="advertise-slots-section">
             <div class="advertise-section-heading">
               <h2 class="advertise-section-title">Available Advertising Slots</h2>
-              <p class="advertise-section-desc">Interactive date range picker with live price calculations and duration discounts.</p>
+              <p class="advertise-section-desc">Select an advertising slot, configure dates on the live calendar, and book your campaign instantly.</p>
             </div>
 
-            <div class="advertise-slots-grid">
-              
-              <!-- Slot 1: Listing Ad -->
-              <div class="advertise-slot-card" id="adv-slot-card-listing">
-                <div class="advertise-slot-header">
-                  <div class="advertise-slot-icon">📋</div>
-                  <div>
-                    <h3 class="advertise-slot-title">Listing Ad</h3>
-                    <div class="advertise-slot-sub">Visible on every tool listing page</div>
-                  </div>
-                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
-                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('listing')" title="Preview placement">
-                      <span>👁 Preview</span>
-                    </button>
-                    <a href="#/tags" class="advertise-preview-btn" style="text-decoration: none;" title="View live on AI Tools Directory">
-                      <span>🔗 View on Site</span>
-                    </a>
-                  </div>
-                </div>
-                <p class="advertise-slot-desc">
-                  Prominent placement across 400+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> Placed on 400+ tool detail &amp; category pages</li>
-                  <li><span class="check-icon">✓</span> Direct dofollow backlink &amp; CTA button</li>
-                  <li><span class="check-icon">✓</span> High intent developer &amp; founder traffic</li>
-                  <li><span class="check-icon">✓</span> Weekly &amp; monthly flexible billing</li>
-                </ul>
-
-                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
-                <div id="slot-card-interactive-listing">
-                  ${renderSlotCardContentHTML('listing')}
-                </div>
-              </div>
-
-              <!-- Slot 2: Top Header Banner (Featured) -->
-              <div class="advertise-slot-card featured-slot" id="adv-slot-card-banner">
-                <span class="advertise-slot-pill-top">MOST POPULAR</span>
-                <div class="advertise-slot-header">
-                  <div class="advertise-slot-icon">⚡</div>
-                  <div>
-                    <h3 class="advertise-slot-title">Top Header Banner</h3>
-                    <div class="advertise-slot-sub">Pinned at the top across all pages</div>
-                  </div>
-                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
-                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('banner')" title="Preview placement">
-                      <span>👁 Preview</span>
-                    </button>
-                    <a href="#/home" class="advertise-preview-btn" style="text-decoration: none;" title="View live on Homepage">
-                      <span>🔗 View on Site</span>
-                    </a>
-                  </div>
-                </div>
-                <p class="advertise-slot-desc">
-                  Prime site-wide placement above the fold. Guaranteed 100% visibility on all pages for maximum brand awareness and direct traffic.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> 100% impressions on all website visitors</li>
-                  <li><span class="check-icon">✓</span> Exclusive single sponsor per weekly cycle</li>
-                  <li><span class="check-icon">✓</span> Custom brand tagline, icon &amp; action link</li>
-                  <li><span class="check-icon">✓</span> Real-time clicks and analytics tracking</li>
-                </ul>
-
-                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
-                <div id="slot-card-interactive-banner">
-                  ${renderSlotCardContentHTML('banner')}
-                </div>
-              </div>
-
-              <!-- Slot 3: Tool Page Ad -->
-              <div class="advertise-slot-card" id="adv-slot-card-tool">
-                <div class="advertise-slot-header">
-                  <div class="advertise-slot-icon">🚀</div>
-                  <div>
-                    <h3 class="advertise-slot-title">Tool Page Ad</h3>
-                    <div class="advertise-slot-sub">Visible on every single tool detail page</div>
-                  </div>
-                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
-                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('tool')" title="Preview placement">
-                      <span>👁 Preview</span>
-                    </button>
-                    <a href="#/tools/claude-3-5-sonnet" class="advertise-preview-btn" style="text-decoration: none;" title="View live on Tool Detail Page">
-                      <span>🔗 View on Site</span>
-                    </a>
-                  </div>
-                </div>
-                <p class="advertise-slot-desc">
-                  Featured in the dedicated sidebar section on 400+ AI tool detail pages right when developers evaluate product alternatives.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> Featured on 400+ tool detail pages</li>
-                  <li><span class="check-icon">✓</span> Contextually targeted developer audience</li>
-                  <li><span class="check-icon">✓</span> Verified backlink &amp; custom highlight widget</li>
-                  <li><span class="check-icon">✓</span> High conversion rate for developer tools</li>
-                </ul>
-
-                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
-                <div id="slot-card-interactive-tool">
-                  ${renderSlotCardContentHTML('tool')}
-                </div>
-              </div>
-
-              <!-- Slot 4: Newsletter Primary Spotlight -->
-              <div class="advertise-slot-card" id="adv-slot-card-newsletter">
-                <div class="advertise-slot-header">
-                  <div class="advertise-slot-icon">📬</div>
-                  <div>
-                    <h3 class="advertise-slot-title">Newsletter Spotlight</h3>
-                    <div class="advertise-slot-sub">Direct delivery to 50,000+ inboxes</div>
-                  </div>
-                  <div style="display: flex; gap: 6px; align-items: center; margin-left: auto;">
-                    <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('newsletter')" title="Preview placement">
-                      <span>👁 Preview</span>
-                    </button>
-                    <a href="#/post/anthropic-announces-claude-3-7-sonnet" class="advertise-preview-btn" style="text-decoration: none;" title="View live on Newsletter Post">
-                      <span>🔗 View on Site</span>
-                    </a>
-                  </div>
-                </div>
-                <p class="advertise-slot-desc">
-                  Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.
-                </p>
-                <ul class="advertise-slot-features">
-                  <li><span class="check-icon">✓</span> 100-word product review + screenshot</li>
-                  <li><span class="check-icon">✓</span> Sent to 50K+ verified active subscribers</li>
-                  <li><span class="check-icon">✓</span> Permanent edition web archive backlink</li>
-                  <li><span class="check-icon">✓</span> Detailed post-campaign analytics report</li>
-                </ul>
-
-                <!-- Interactive Card Body (Presets + Calendar + Live Price Footer) -->
-                <div id="slot-card-interactive-newsletter">
-                  ${renderSlotCardContentHTML('newsletter')}
-                </div>
-              </div>
-
+            <div class="adv-unified-configurator-card" id="adv-unified-card-root">
+              ${renderUnifiedAdConfiguratorHTML()}
             </div>
           </div>
 
