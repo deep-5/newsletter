@@ -74,9 +74,11 @@ Each tool card must strictly follow this exact layout and CSS classes:
 
 ---
 
-## 4. 📰 Content & Articles Standards
-* **Standard Author**: All editorial content authored by **AIRA**.
-* **Zero Fabricated Content**: Strictly verified authentic data.
+## 4. 📰 Content & Articles Standards (STRICTLY LOCKED)
+* **100% Exact Verbatim Source Text Match (LOCKED)**: Every article ingested from source newsletters must retain 100% exact, word-for-word verbatim text without paraphrasing, rewriting, summarizing, or omitting any sentences, bullets, tools, or tutorial steps.
+* **Standard Author**: All editorial content authored by **AIRA** (`assets/logo.svg`).
+* **Uniform Hero Banner**: Every article uses `assets/aira-banner-template-v2.jpg`.
+* **Zero Fabricated Content**: Strictly verified authentic data from original source editions.
 * **Layout Consistency**: Hero header full-width grid background matching the homepage across all directory views.
 
 ---
