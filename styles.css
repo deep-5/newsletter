@@ -208,20 +208,26 @@ img {
 }
 
 .btn-subscribe-nav {
-  background: var(--color-primary-btn);
-  color: #FFFFFF;
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding: 8px 18px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: transform 0.1s ease, background 0.15s ease, box-shadow 0.15s ease;
+  background: #8F3720 !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
 }
 
 .btn-subscribe-nav:hover {
-  background: var(--color-primary-btn-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #782E1A !important;
+  border-color: #782E1A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(143, 55, 32, 0.28) !important;
 }
 
 /* ==========================================================================
@@ -5355,9 +5361,20 @@ body.dark-mode .footer-status-pill {
   }
 
   .btn-subscribe-nav {
-    padding: 6px 12px;
-    font-size: 0.8125rem;
-  }
+  background: #8F3720 !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
 
   .hero-title {
     font-size: 2.15rem;
@@ -5374,9 +5391,20 @@ body.dark-mode .footer-status-pill {
   }
 
   .btn-subscribe-nav {
-    padding: 5px 10px;
-    font-size: 0.78rem;
-  }
+  background: #8F3720 !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
   
   .hero-tagline {
     font-size: 0.92rem;
@@ -10207,9 +10235,20 @@ body.dark-mode .mobile-drawer-sub-btn {
   }
 
   .btn-subscribe-nav {
-    padding: 7px 14px;
-    font-size: 0.8125rem;
-  }
+  background: #8F3720 !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
 
   .prompts-grid-3col,
   .deals-grid-3col,
@@ -14880,10 +14919,20 @@ img, video, iframe, embed, object {
   }
 
   .btn-subscribe-nav {
-    padding: 6px 11px !important;
-    font-size: 0.78rem !important;
-    font-weight: 700 !important;
-  }
+  background: #8F3720 !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
 
   .nav-right-actions {
     gap: 8px !important;
@@ -15135,9 +15184,20 @@ img, video, iframe, embed, object {
   }
 
   .btn-subscribe-nav {
-    padding: 5px 9px !important;
-    font-size: 0.75rem !important;
-  }
+  background: #8F3720 !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
 
   .hero-title {
     font-size: 1.85rem !important;
@@ -18854,16 +18914,26 @@ body.dark-mode .tool-btn-visit:hover {
 }
 
 .btn-subscribe-nav {
-  background: #18181B !important;
+  background: #8F3720 !important;
   color: #FFFFFF !important;
   border-radius: 8px !important;
-  font-weight: 600 !important;
-  border: 1px solid #18181B !important;
+  font-weight: 700 !important;
+  border: 1px solid #8F3720 !important;
+  padding: 0 16px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
 }
 
 .btn-subscribe-nav:hover {
-  background: #000000 !important;
-  border-color: #000000 !important;
+  background: #782E1A !important;
+  border-color: #782E1A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(143, 55, 32, 0.28) !important;
 }
 
 .mobile-drawer-sub-btn {
@@ -19201,4 +19271,260 @@ body.dark-mode .tool-sponsor-cta-btn-main:hover {
   .site-header {
     height: 58px !important;
   }
+}
+
+
+/* ==========================================================================
+   AIRA UX ENHANCEMENTS & MOBILE SCROLLING (BACK TO TOP + HORIZONTAL PILLS)
+   ========================================================================== */
+
+/* 1. Floating Back to Top Button */
+.btn-back-to-top {
+  position: fixed !important;
+  bottom: 145px !important;
+  right: 24px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: #18181B !important;
+  color: #FFFFFF !important;
+  border: 1px solid #27272A !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(12px) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 100000 !important;
+}
+
+.btn-back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.btn-back-to-top:hover {
+  background: #000000 !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .btn-back-to-top {
+  background: #FFFFFF !important;
+  color: #18181B !important;
+  border-color: #FFFFFF !important;
+}
+
+body.dark-mode .btn-back-to-top:hover {
+  background: #F4F4F5 !important;
+}
+
+/* 2. Mobile Smooth Horizontal Category Pills Scroll */
+@media (max-width: 768px) {
+  .tools-categories-filter,
+  .prompts-category-nav,
+  .tags-filter-bar,
+  .categories-scroll-wrapper,
+  .openalt-categories-bar {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 4px 0 8px 0 !important;
+    margin-bottom: 16px !important;
+    gap: 8px !important;
+  }
+
+  .tools-categories-filter::-webkit-scrollbar,
+  .prompts-category-nav::-webkit-scrollbar,
+  .tags-filter-bar::-webkit-scrollbar,
+  .openalt-categories-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .tool-cat-pill,
+  .prompt-cat-tab,
+  .filter-pill,
+  .openalt-category-pill {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+/* ==========================================================================
+   TOOLS DIRECTORY STATUS TOOLBAR & SUBMIT MODAL ENHANCEMENT
+   ========================================================================== */
+
+.tools-status-bar,
+#tools-count-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+  margin: 32px 0 20px 0 !important;
+  padding: 14px 18px !important;
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+body.dark-mode .tools-status-bar,
+body.dark-mode #tools-count-container {
+  background: #18181B !important;
+  border-color: #27272A !important;
+}
+
+.tools-count-text {
+  font-family: 'Inter', 'Poppins', sans-serif !important;
+  font-size: 14.5px !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+}
+
+.tools-count-text strong {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+.tools-count-text .active-cat-name {
+  color: #8F3720 !important;
+  font-weight: 600 !important;
+}
+
+body.dark-mode .tools-count-text {
+  color: #A1A1AA !important;
+}
+
+body.dark-mode .tools-count-text strong {
+  color: #F8FAFC !important;
+}
+
+body.dark-mode .tools-count-text .active-cat-name {
+  color: #FFA085 !important;
+}
+
+.tool-sort-dropdown {
+  height: 36px !important;
+  padding: 0 12px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  border: 1px solid #CBD5E1 !important;
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  cursor: pointer !important;
+  outline: none !important;
+}
+
+body.dark-mode .tool-sort-dropdown {
+  background: #27272A !important;
+  border-color: #3F3F46 !important;
+  color: #F8FAFC !important;
+}
+
+.btn-submit-tool-trigger {
+  height: 36px !important;
+  padding: 0 16px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  background: #8F3720 !important;
+  border: 1px solid #8F3720 !important;
+  color: #FFFFFF !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+}
+
+.btn-submit-tool-trigger:hover {
+  background: #782E1A !important;
+  border-color: #782E1A !important;
+  box-shadow: 0 4px 14px rgba(143, 55, 32, 0.28) !important;
+  transform: translateY(-1px) !important;
+}
+
+.reset-filters-btn {
+  height: 36px !important;
+  padding: 0 12px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: #F1F5F9 !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #334155 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+}
+
+.reset-filters-btn:hover {
+  background: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+/* Submit Tool Modal Fixes */
+.submit-tool-modal-backdrop {
+  display: none;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 999999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.submit-tool-modal-backdrop.active {
+  display: flex !important;
+}
+
+.submit-tool-modal-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 16px !important;
+  padding: 28px !important;
+  width: 100% !important;
+  max-width: 580px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+body.dark-mode .submit-tool-modal-card {
+  background: #18181B !important;
+  border-color: #27272A !important;
+  color: #FFFFFF !important;
+}
+
+.btn-submit-modal-primary {
+  background: #8F3720 !important;
+  border: 1px solid #8F3720 !important;
+  color: #FFFFFF !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+.btn-submit-modal-primary:hover {
+  background: #782E1A !important;
 }

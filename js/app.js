@@ -6,6 +6,25 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // =========================================================================
+  // Floating Back to Top Button Engine
+  // =========================================================================
+  const backToTopBtn = document.getElementById('btn-back-to-top');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 350) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // Auto-sync dataset version & flush stale cached base article overrides
   const CURRENT_DATA_VERSION = '110.0';
   try {
@@ -687,66 +706,7 @@ Access the full interactive database of 100+ Production Prompts:
     }
   };
 
-  function downloadTextFile(filename, text) {
-    try {
-      const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast('📥 Downloaded: ' + filename);
-    } catch (e) {
-      console.error('Download error:', e);
-      showToast('Download started!');
-    }
-  }
-
-  function getPromptsKitMarkdown() {
-    return `# AIRA 2026 AI Starter Kit: Top 100 Production AI Prompts
-Generated exclusively for AIRA VIP Newsletter Subscribers.
-Website: https://aira-newsletter.vercel.app/
-
----
-
-## 1. Elite Code Generation & Architecture
-**Prompt:**
-"You are a Senior Principal Software Architect and Staff Engineer. Analyze the requirements below with first-principles reasoning. Design an optimal, scalable modular system. Provide clean, production-ready code with complete TypeScript types, exhaustive edge-case coverage, and performance benchmarks."
-
-## 2. Deep Analytical Reasoning & Problem Solving
-**Prompt:**
-"Deconstruct the following complex problem into its foundational components. Identify latent assumptions, synthesize contrasting perspectives, assess 2nd and 3rd order consequences, and propose a prioritized decision matrix with clear trade-offs."
-
-## 3. High-Converting Copywriting & Marketing
-**Prompt:**
-"You are a world-class direct-response copywriter. Craft 5 compelling hook variations, a high-converting headline, and a persuasive value proposition for the following product. Focus on pain points, transformation, and undeniable social proof."
-
-## 4. Autonomous Agent Task Execution
-**Prompt:**
-"Act as an autonomous task executor. Break down the user's objective into strict sequential steps: 1) Information Gathering, 2) Strategy Formation, 3) Tool/API Execution, 4) Self-Correction & Verification. Never skip verification before returning the final result."
-
----
-*Stay ahead in AI with AIRA Newsletter — https://aira-newsletter.vercel.app/*
-`;
-  }
-
-  function getToolsDirectoryKitText() {
-    const tools = getAllTools();
-    let text = "AIRA 2026 AI Tools Directory — Curated 400+ Collection\n";
-    text += "Visit live directory: https://aira-newsletter.vercel.app/#/tags\n";
-    text += "Total Curated Tools: " + tools.length + "\n";
-    text += "====================================================\n\n";
-    tools.forEach((t, i) => {
-      text += (i + 1) + ". " + t.name + " (" + (t.pricing || 'Free') + ")\n";
-      text += "   Category: " + (t.category || (t.categories && t.categories[0]) || 'AI') + "\n";
-      text += "   Tagline: " + (t.description || '') + "\n";
-      text += "   Link: " + t.url + "\n\n";
-    });
-    return text;
-  }
+  // (Download helpers unified at top of application)
 
   window.downloadPromptsKit = function() {
     downloadTextFile('AIRA-2026-Top-100-AI-Prompts-CheatSheet.md', getPromptsKitMarkdown());
@@ -10331,46 +10291,64 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   // =========================================================================
   // Global Submit AI Tool Modal Controller
   // =========================================================================
+    // =========================================================================
+  // Global Submit AI Tool Modal Controller (100% Robust Close & Cancel Engine)
+  // =========================================================================
   function initSubmitToolModal() {
-    const modal = document.getElementById('submit-tool-modal');
-    const form = document.getElementById('submit-tool-form');
-    const closeBtn = document.getElementById('btn-close-submit-modal');
-    const cancelBtn = document.getElementById('btn-cancel-submit-modal');
-
-    function openModal() {
+    window.openSubmitToolModal = function() {
+      const modal = document.getElementById('submit-tool-modal');
       if (modal) {
         modal.style.display = 'flex';
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
-    }
+    };
 
-    function closeModal() {
+    window.closeSubmitToolModal = function() {
+      const modal = document.getElementById('submit-tool-modal');
       if (modal) {
         modal.style.display = 'none';
+        modal.classList.remove('active');
         document.body.style.overflow = '';
       }
-    }
+    };
 
-    // Attach click listeners for any submit tool buttons (navbar, hero, drawer, etc.)
+    // Global Delegated Click Listeners for Open / Close / Cancel
     document.addEventListener('click', (e) => {
-      if (e.target.closest('#btn-submit-tool-header, #btn-open-submit-modal, .btn-open-submit-modal-any, #mobile-drawer-submit-tool')) {
+      // 1. Open Triggers
+      if (e.target.closest('#btn-submit-tool-header, #btn-open-submit-modal, .btn-submit-tool-trigger, .btn-open-submit-modal-any, #mobile-drawer-submit-tool, #footer-btn-submit-tool, .footer-submit-tool-link')) {
         e.preventDefault();
         const drawer = document.getElementById('mobile-nav-drawer');
         const backdrop = document.getElementById('mobile-nav-backdrop');
         if (drawer) drawer.classList.remove('active');
         if (backdrop) backdrop.classList.remove('active');
-        openModal();
+        window.openSubmitToolModal();
+        return;
+      }
+
+      // 2. Close & Cancel Triggers
+      if (e.target.closest('#btn-cancel-submit-modal, .btn-cancel-modal, #btn-close-submit-modal, .submit-modal-close')) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.closeSubmitToolModal();
+        return;
+      }
+
+      // 3. Backdrop Click Outside Card
+      const modal = document.getElementById('submit-tool-modal');
+      if (modal && e.target === modal) {
+        window.closeSubmitToolModal();
       }
     });
 
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
-    if (modal) {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-      });
-    }
+    // Escape Key Close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        window.closeSubmitToolModal();
+      }
+    });
 
+    const form = document.getElementById('submit-tool-form');
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -10388,43 +10366,47 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
         let domain = '';
         try {
-          domain = new URL(url.startsWith('http') ? url : `https://${url}`).hostname.replace(/^www\./, '');
-        } catch (err) {
-          domain = name.toLowerCase().replace(/[^a-z0-9]+/g, '') + '.com';
+          const u = new URL(url.startsWith('http') ? url : 'https://' + url);
+          domain = u.hostname.replace('www.', '');
+        } catch(err) {
+          domain = url.replace(/https?:///, '').split('/')[0];
         }
 
-        const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `tool-${Date.now()}`;
         const newTool = {
-          id: slug,
+          id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now().toString().slice(-4),
           name: name,
-          category: cat || 'business-productivity',
-          categories: [cat || 'business-productivity'],
-          pricing: pricing || 'Freemium',
-          badge: 'Community Submitted',
-          featured: false,
-          description: desc,
-          url: url.startsWith('http') ? url : `https://${url}`,
-          domain: domain,
-          image: `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+          url: url.startsWith('http') ? url : 'https://' + url,
+          logo: 'https://logo.clearbit.com/' + domain,
           icon: '⚡',
-          inner_content: {
-            overview: overview || desc,
-            pricingDetails: `${pricing} plan available`
-          }
+          pricing: pricing || 'Freemium',
+          category: cat || 'developer-tools',
+          categories: [cat || 'developer-tools'],
+          description: desc,
+          verified: false,
+          created_at: new Date().toISOString()
         };
 
-        const existingCustom = getCustomTools();
-        existingCustom.unshift(newTool);
-        saveCustomTools(existingCustom);
+        // Save locally
+        try {
+          const custom = JSON.parse(localStorage.getItem('aira_custom_tools') || '[]');
+          custom.unshift(newTool);
+          localStorage.setItem('aira_custom_tools', JSON.stringify(custom));
+        } catch(err) {}
 
+        // Save to Supabase if connected
+        if (window.AiraSupabase) {
+          window.AiraSupabase.submitTool(newTool).catch(err => console.log('Supabase tool sync error:', err));
+        }
+
+        window.closeSubmitToolModal();
         form.reset();
-        closeModal();
-        showToast(`🎉 "${name}" was successfully added to AIRA Directory!`);
+        showToast('🎉 Thank you! ' + name + ' has been submitted for review.');
 
-        if (window.location.hash.startsWith('#/tags')) {
-          renderCurrentRoute();
-        } else {
-          window.location.hash = '#/tags';
+        // Refresh tools view if currently on tools page
+        if (window.location.hash.startsWith('#/tags') || window.location.hash.startsWith('#/home')) {
+          setTimeout(() => {
+            if (typeof updateView === 'function') updateView();
+          }, 400);
         }
       });
     }
