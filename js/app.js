@@ -1004,7 +1004,7 @@ Access the full interactive database of 100+ Production Prompts:
       <section class="subscribe-landing-page">
         <div class="sub-landing-container">
           <div class="sub-landing-icon-card">
-            <img src="assets/logo.jpg" alt="AIRA" class="sub-landing-logo-img" onerror="this.src='assets/logo.svg'" />
+            <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" class="sub-landing-logo-img" onerror="this.src='assets/logo.svg'" />
           </div>
           
           <h1 class="sub-landing-title">AIRA</h1>
@@ -1145,7 +1145,7 @@ Access the full interactive database of 100+ Production Prompts:
       <div class="tool-card ${isPromoted ? 'is-promoted-card' : ''} ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
         <div class="tool-card-header">
           <a href="#/tools/${tool.id}" class="tool-card-avatar-wrap" title="View ${tool.name} details">
-            <img src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
+            <img loading="lazy" decoding="async" src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
           </a>
           <div class="tool-header-content">
             <div class="tool-header-top-line">
@@ -1216,7 +1216,7 @@ Access the full interactive database of 100+ Production Prompts:
               <div class="trending-tool-row" onclick="window.location.hash='#/tools/${t.id}';">
                 <span class="trending-rank-num ${idx === 0 ? 'is-gold' : (idx === 1 ? 'is-silver' : (idx === 2 ? 'is-bronze' : ''))}">#${idx + 1}</span>
                 <div class="trending-tool-icon">
-                  <img src="${iconSrc}" alt="${escapeHtml(t.name)}" onerror="this.parentElement.innerHTML='⚡'" loading="lazy" />
+                  <img loading="lazy" decoding="async" src="${iconSrc}" alt="${escapeHtml(t.name)}" onerror="this.parentElement.innerHTML='⚡'" loading="lazy" />
                 </div>
                 <div class="trending-tool-details">
                   <div class="trending-tool-name-line">
@@ -1255,7 +1255,7 @@ Access the full interactive database of 100+ Production Prompts:
           ${topArticles.map((art) => `
             <div class="trending-tool-row" style="cursor: pointer;" onclick="window.location.hash='#/p/${art.slug}';">
               <div class="trending-tool-icon" style="width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
-                <img src="${art.image_url || 'assets/logo.jpg'}" alt="${escapeHtml(art.title)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/logo.jpg'" loading="lazy" />
+                <img loading="lazy" decoding="async" src="${art.image_url || 'assets/logo.jpg'}" alt="${escapeHtml(art.title)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/logo.jpg'" loading="lazy" />
               </div>
               <div class="trending-tool-details" style="min-width: 0;">
                 <div class="trending-tool-name-line" style="margin-bottom: 2px;">
@@ -1446,11 +1446,11 @@ function renderHomePage() {
           <!-- 5. Social Proof (5 Overlapping Avatars + 500+ Members) -->
           <div class="hero-openalt-social-proof-clean">
             <div class="hero-avatar-stack-clean">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
+              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
             </div>
             <span class="hero-proof-text-clean">Trusted by 500+ members</span>
           </div>
@@ -1549,7 +1549,7 @@ function renderHomePage() {
               <a href="#/p/${article.slug}" class="article-card openalt-box-card">
                 <!-- 1. Top Aspect Ratio Preview Image with Badges -->
                 <div class="card-image-wrap">
-                  <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
+                  <img loading="lazy" decoding="async" src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
                   <div class="card-badges-overlay">
                     <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
                     <span class="openalt-badge-time">${article.reading_time || article.read_time || '4 min read'}</span>
@@ -1561,7 +1561,7 @@ function renderHomePage() {
                   <!-- Header Row: App Favicon / Logo Box + Title -->
                   <div class="openalt-card-header-row">
                     <div class="openalt-icon-box">
-                      <img src="assets/logo.png?v=48.0" alt="AIRA" class="openalt-icon-img" onerror="this.src='assets/logo.svg'" />
+                      <img loading="lazy" decoding="async" src="assets/logo.png?v=48.0" alt="AIRA" class="openalt-icon-img" onerror="this.src='assets/logo.svg'" />
                     </div>
                     <div class="openalt-header-text">
                       <h3 class="card-title openalt-title">${article.title || ''}</h3>
@@ -1579,7 +1579,7 @@ function renderHomePage() {
                   <!-- Footer Row: Author + Audio + Action Button -->
                   <div class="card-footer openalt-footer">
                     <div class="openalt-footer-left">
-                      <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
+                      <img loading="lazy" decoding="async" src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
                       <span class="card-author-name">${article.author || 'AIRA'}</span>
                     </div>
                     <div class="openalt-footer-right">
@@ -1774,7 +1774,7 @@ function renderHomePage() {
 
             <div class="article-header-meta">
               <div class="article-author-block">
-                <img src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="article-author-img" onerror="this.src='assets/logo.svg'" />
+                <img loading="lazy" decoding="async" src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="article-author-img" onerror="this.src='assets/logo.svg'" />
                 <div>
                   <div class="article-author-meta-name">${article.author || 'AIRA'}</div>
                   <div class="article-author-meta-date">${article.date || 'Sep 2026'} • ${article.reading_time || article.read_time || '4 min read'}</div>
@@ -1800,7 +1800,7 @@ function renderHomePage() {
 
           <!-- Hero Cover Image -->
           <div class="article-hero-cover">
-            <img src="${article.image_url}" alt="${article.title}" class="article-hero-img" loading="lazy" referrerpolicy="no-referrer" />
+            <img loading="lazy" decoding="async" src="${article.image_url}" alt="${article.title}" class="article-hero-img" loading="lazy" referrerpolicy="no-referrer" />
           </div>
 
           <!-- Top Header Banner Ad Placement (Slot: Top Header Banner) -->
@@ -1925,7 +1925,7 @@ function renderHomePage() {
               ${recommendedArticles.map(rec => `
                 <a href="#/p/${rec.slug}" class="kr-card">
                   <div class="kr-card-image-wrap">
-                    <img src="${rec.image_url || 'assets/logo.jpg'}" alt="${rec.title || 'AIRA Article'}" class="kr-card-img" loading="lazy" />
+                    <img loading="lazy" decoding="async" src="${rec.image_url || 'assets/logo.jpg'}" alt="${rec.title || 'AIRA Article'}" class="kr-card-img" loading="lazy" />
                     <span class="kr-card-badge">${(rec.tag || 'Frontier AI').toUpperCase()}</span>
                   </div>
                   <div class="kr-card-body">
@@ -2882,7 +2882,7 @@ function renderHomePage() {
           <div class="tool-detail-hero">
             <div class="tool-detail-hero-top">
               <div class="tool-detail-logo-box">
-                <img src="${logoUrl}" alt="${tool.name} logo" class="tool-detail-logo-img" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:2rem;\\'>${fallbackIcon}</span>'; }" />
+                <img loading="lazy" decoding="async" src="${logoUrl}" alt="${tool.name} logo" class="tool-detail-logo-img" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:2rem;\\'>${fallbackIcon}</span>'; }" />
               </div>
               <div class="tool-detail-title-col">
                 <div class="tool-detail-badges">
@@ -3260,7 +3260,7 @@ function renderHomePage() {
           <a href="#/alternatives/${item.slug}" class="alt-software-card">
             <div class="alt-card-header">
               <div class="alt-logo-box">
-                <img src="${logoUrl}" alt="${item.name}" class="alt-logo-img" loading="lazy" onerror="this.src='assets/logo.svg'" />
+                <img loading="lazy" decoding="async" src="${logoUrl}" alt="${item.name}" class="alt-logo-img" loading="lazy" onerror="this.src='assets/logo.svg'" />
               </div>
               <div class="alt-card-title-wrap">
                 <span class="alt-cat-badge">${item.categoryName || 'Software'}</span>
@@ -3418,7 +3418,7 @@ function renderHomePage() {
             <div class="alt-detail-hero-content">
               <div class="alt-detail-hero-top">
                 <div class="alt-detail-logo-box">
-                  <img src="${logoUrl}" alt="${item.name}" class="alt-detail-logo-img" onerror="this.src='assets/logo.svg'" />
+                  <img loading="lazy" decoding="async" src="${logoUrl}" alt="${item.name}" class="alt-detail-logo-img" onerror="this.src='assets/logo.svg'" />
                 </div>
                 <div class="alt-detail-title-col">
                   <div class="alt-detail-badges">
@@ -3466,7 +3466,7 @@ function renderHomePage() {
                       <div class="alt-item-left">
                         <span class="alt-item-rank">#${idx + 1}</span>
                         <div class="alt-item-logo-box">
-                          <img src="${altLogo}" alt="${alt.name}" class="alt-item-logo-img" onerror="this.src='assets/logo.svg'" />
+                          <img loading="lazy" decoding="async" src="${altLogo}" alt="${alt.name}" class="alt-item-logo-img" onerror="this.src='assets/logo.svg'" />
                         </div>
                         <div>
                           <h3 class="alt-item-name">${alt.name}</h3>
@@ -3534,7 +3534,7 @@ function renderHomePage() {
               <div class="alt-related-grid">
                 ${relatedSoftware.map(rel => `
                   <a href="#/alternatives/${rel.slug}" class="alt-related-card">
-                    <img src="${rel.logo}" alt="${rel.name}" class="alt-related-logo" onerror="this.src='assets/logo.svg'" />
+                    <img loading="lazy" decoding="async" src="${rel.logo}" alt="${rel.name}" class="alt-related-logo" onerror="this.src='assets/logo.svg'" />
                     <div>
                       <h4>${rel.name}</h4>
                       <p>${rel.alternatives ? rel.alternatives.length : 0} open source alternatives</p>
@@ -3959,10 +3959,10 @@ function renderHomePage() {
           html += '    <div class="section-image-box" style="margin: 18px 0; text-align: center;">\n';
           if (story.imageLink && story.imageLink.trim()) {
             html += `      <a href="${story.imageLink.trim()}" target="_blank" rel="noopener noreferrer">\n`;
-            html += `        <img src="${story.image.trim()}" alt="${(story.title || 'Story image').replace(/"/g, '&quot;')}" class="section-inline-img" style="width: 100%; max-height: 440px; object-fit: cover; border-radius: 8px;" loading="lazy" />\n`;
+            html += `        <img loading="lazy" decoding="async" src="${story.image.trim()}" alt="${(story.title || 'Story image').replace(/"/g, '&quot;')}" class="section-inline-img" style="width: 100%; max-height: 440px; object-fit: cover; border-radius: 8px;" loading="lazy" />\n`;
             html += '      </a>\n';
           } else {
-            html += `      <img src="${story.image.trim()}" alt="${(story.title || 'Story image').replace(/"/g, '&quot;')}" class="section-inline-img" style="width: 100%; max-height: 440px; object-fit: cover; border-radius: 8px;" loading="lazy" />\n`;
+            html += `      <img loading="lazy" decoding="async" src="${story.image.trim()}" alt="${(story.title || 'Story image').replace(/"/g, '&quot;')}" class="section-inline-img" style="width: 100%; max-height: 440px; object-fit: cover; border-radius: 8px;" loading="lazy" />\n`;
           }
           if (story.imageCaption && story.imageCaption.trim()) {
             html += `      <small><p class="beehiiv-caption">${story.imageCaption.trim()}</p></small>\n`;
@@ -4227,7 +4227,7 @@ function renderHomePage() {
                         
                         <div style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: center; background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 14px;">
                           <div style="text-align: center;">
-                            <img id="editor-cover-preview-img" src="${art.image_url || 'assets/logo.jpg'}" alt="Cover Preview" style="width: 130px; height: 86px; border-radius: 6px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
+                            <img loading="lazy" decoding="async" id="editor-cover-preview-img" src="${art.image_url || 'assets/logo.jpg'}" alt="Cover Preview" style="width: 130px; height: 86px; border-radius: 6px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
                           </div>
                           
                           <div>
@@ -4417,7 +4417,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <!-- Live Preview Card inside Modal -->
               <div id="modal-img-preview-card" style="display: none; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px; margin-bottom: 18px; text-align: center;">
                 <div style="font-size: 0.75rem; font-weight: 700; color: #64748B; text-align: left; margin-bottom: 8px;">IMAGE PREVIEW:</div>
-                <img id="modal-img-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" />
+                <img loading="lazy" decoding="async" id="modal-img-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" />
                 <div id="modal-img-preview-caption-text" style="font-size: 0.75rem; color: #64748B; margin-top: 6px; font-style: italic;"></div>
               </div>
 
@@ -4475,7 +4475,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
               <div style="display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: center; text-align: left;">
                 <div style="text-align: center;">
-                  <img src="${story.image || 'assets/logo.jpg'}" class="story-img-preview" alt="Story preview" style="width: 130px; height: 90px; border-radius: 6px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
+                  <img loading="lazy" decoding="async" src="${story.image || 'assets/logo.jpg'}" class="story-img-preview" alt="Story preview" style="width: 130px; height: 90px; border-radius: 6px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
                 </div>
                 <div>
                   <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
@@ -5444,7 +5444,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               </button>
 
               <div class="saas-user-pill">
-                <img src="assets/logo.jpg" alt="Admin" class="saas-user-avatar" onerror="this.src='assets/logo.svg'" />
+                <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="Admin" class="saas-user-avatar" onerror="this.src='assets/logo.svg'" />
                 <span>AIRA</span>
                 <span style="color: #94A3B8; font-size: 0.75rem;">▾</span>
               </div>
@@ -5569,7 +5569,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                         <div class="saas-sub-card">
                           <div>
                             <div class="saas-sub-top">
-                              <img src="${logoUrl}" alt="${sub.toolName}" class="saas-sub-logo" onerror="this.src='assets/logo.svg'" />
+                              <img loading="lazy" decoding="async" src="${logoUrl}" alt="${sub.toolName}" class="saas-sub-logo" onerror="this.src='assets/logo.svg'" />
                               <div style="min-width: 0; flex: 1;">
                                 <h4 class="saas-sub-name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${sub.toolName}</h4>
                                 <div style="display: flex; gap: 4px; align-items: center; margin-top: 2px;">
@@ -5660,7 +5660,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       ${allDealsList.slice(0, 4).map(d => `
                         <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px;">
                           <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                            <img loading="lazy" decoding="async" src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
                             <div>
                               <div style="font-weight: 700; font-size: 0.85rem; color: #0F172A;">${d.toolName}</div>
                               <span style="font-size: 0.72rem; color: #64748B;">${d.couponCode ? `Code: ${d.couponCode}` : 'Direct Discount'}</span>
@@ -5726,7 +5726,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       <div class="saas-panel-card" style="border: 1px solid ${isPending ? '#FDE68A' : isApproved ? '#EACCC4' : '#FECACA'}; background: ${isPending ? '#FFFDF5' : isApproved ? '#F8FDFB' : '#FFFBFB'}; padding: 18px;" data-sub-id="${sub.id}">
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; flex-wrap: wrap;">
                           <div style="display: flex; align-items: center; gap: 12px;">
-                            <img src="${logoUrl}" alt="${sub.toolName}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
+                            <img loading="lazy" decoding="async" src="${logoUrl}" alt="${sub.toolName}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
                             <div>
                               <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                                 <h3 style="font-size: 1.25rem; font-weight: 900; color: #0F172A; margin: 0;">${sub.toolName}</h3>
@@ -5829,7 +5829,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                         <tr style="border-bottom: 1px solid #F1F5F9;">
                           <td style="padding: 12px 16px; white-space: nowrap;">
                             <div style="display: flex; align-items: center; gap: 10px;">
-                              <img src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
+                              <img loading="lazy" decoding="async" src="${d.image || 'assets/logo.svg'}" alt="${d.toolName}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
                               <div>
                                 <div style="font-weight: 800; color: #0F172A;">${d.toolName}</div>
                                 <span style="font-size: 0.75rem; color: #64748B;">${d.category}</span>
@@ -5909,7 +5909,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       ${filteredAdminArticles.map(a => `
                         <tr style="border-bottom: 1px solid #F1F5F9;">
                           <td style="padding: 12px 16px; width: 60px;">
-                            <img src="${a.image_url}" alt="${a.title}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
+                            <img loading="lazy" decoding="async" src="${a.image_url}" alt="${a.title}" style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.jpg'" />
                           </td>
                           <td style="padding: 12px 16px; max-width: 360px;">
                             <div style="font-weight: 700; color: #0F172A; font-size: 0.92rem; line-height: 1.35; margin-bottom: 3px;">${a.title}</div>
@@ -8192,7 +8192,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <th style="width: 22%;">Comparison Feature</th>
                   <th style="width: 39%;">
                     <div class="compare-col-header-wrap">
-                      <img src="${getLogo(tool1)}" alt="${tool1?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                      <img loading="lazy" decoding="async" src="${getLogo(tool1)}" alt="${tool1?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
                       <div>
                         <div style="font-size: 1.15rem; font-weight: 900; color: #18181B;">${tool1?.name || 'Tool 1'}</div>
                         <span class="tool-badge-pricing pricing-${(tool1?.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool1?.pricing || 'Free'}</span>
@@ -8201,7 +8201,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   </th>
                   <th style="width: 39%;">
                     <div class="compare-col-header-wrap">
-                      <img src="${getLogo(tool2)}" alt="${tool2?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                      <img loading="lazy" decoding="async" src="${getLogo(tool2)}" alt="${tool2?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
                       <div>
                         <div style="font-size: 1.15rem; font-weight: 900; color: #18181B;">${tool2?.name || 'Tool 2'}</div>
                         <span class="tool-badge-pricing pricing-${(tool2?.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool2?.pricing || 'Free'}</span>
@@ -8380,7 +8380,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           ${list.map(article => `
             <div class="article-card">
               <div class="card-image-wrap">
-                <img src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Article'}" class="card-thumbnail" loading="lazy" />
+                <img loading="lazy" decoding="async" src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Article'}" class="card-thumbnail" loading="lazy" />
                 <span class="card-tag-badge">${article.tag || 'Frontier AI'}</span>
               </div>
               <div class="card-body">
@@ -8742,7 +8742,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 </div>
 
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                  <img src="${deal.image || 'assets/logo.svg'}" alt="${deal.toolName}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                  <img loading="lazy" decoding="async" src="${deal.image || 'assets/logo.svg'}" alt="${deal.toolName}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
                   <div>
                     <h4 style="font-size: 1.15rem; font-weight: 800; color: #18181B; margin-bottom: 2px;">${deal.toolName}</h4>
                     <span style="font-size: 0.8rem; color: #71717A;">${deal.domain || 'Official Partner'}</span>
@@ -9235,7 +9235,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
-              <img src="assets/logo.jpg" alt="Logo" style="width: 20px; height: 20px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="Logo" style="width: 20px; height: 20px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
               <span style="font-size: 0.82rem; color: #18181B; font-weight: 500;"><strong>Your Brand</strong> — The all-in-one AI agent runtime &amp; telemetry hub.</span>
             </div>
             <span style="background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 9999px; white-space: nowrap;">Try Free →</span>
@@ -9678,7 +9678,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
-              <img src="assets/logo.jpg" alt="Logo" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="Logo" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
               <span style="font-size: 0.85rem; color: #18181B;"><strong>Your Brand Name</strong> — Launch, scale, and monitor your AI agents in production.</span>
             </div>
             <button style="background: #18181B; color: #FFFFFF; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 9999px; border: none; white-space: nowrap;">Try Free →</button>
@@ -9817,7 +9817,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="advertise-live-preview-ad">
             <div class="advertise-live-left">
               <span class="advertise-ad-badge">Ad</span>
-              <img src="assets/logo.jpg" alt="AIRA" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
               <span><strong>Your brand here</strong> — Reach 50,000+ active software developers, founders, and AI engineers.</span>
             </div>
             <a href="#sponsor-form-section" class="advertise-live-btn">Advertise on AIRA</a>

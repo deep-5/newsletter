@@ -29,13 +29,13 @@
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#8F3720" />
 
-  <!-- Google Fonts: Poppins -->
+  <!-- Google Fonts: Poppins & Inter (Optimized Essential Weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=130.0" />
+  <link rel="stylesheet" href="styles.css?v=131.0" />
 
   <!-- Instant Cache & ServiceWorker Auto-Purge -->
   <script>
@@ -61,7 +61,7 @@
     <div class="container nav-wrapper">
       <!-- Brand Link -->
       <a href="#/home" class="brand-link">
-        <img src="assets/logo.png?v=48.0" alt="AIRA Logo" class="brand-logo-img" onerror="this.src='assets/logo.svg'" />
+        <img loading="lazy" decoding="async" src="assets/logo.png?v=48.0" alt="AIRA Logo" class="brand-logo-img" onerror="this.src='assets/logo.svg'" />
         <span class="brand-title">AIRA</span>
       </a>
 
@@ -94,7 +94,7 @@
   <aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation">
     <div class="mobile-drawer-header">
       <div class="mobile-drawer-brand">
-        <img src="assets/logo.jpg" alt="AIRA" class="brand-logo-img" onerror="this.src='assets/logo.svg'" />
+        <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" class="brand-logo-img" onerror="this.src='assets/logo.svg'" />
         <span class="brand-title">AIRA</span>
       </div>
       <button type="button" class="mobile-drawer-close" id="btn-mobile-drawer-close" aria-label="Close menu">✕</button>
@@ -182,7 +182,7 @@
         <!-- Col 1: Brand & Social Hub -->
         <div class="footer-col footer-col-brand">
           <a href="#/home" class="footer-brand-header">
-            <img src="assets/logo.png?v=48.0" alt="AIRA Logo" class="footer-logo-img" onerror="this.src='assets/logo.svg'" />
+            <img loading="lazy" decoding="async" src="assets/logo.png?v=48.0" alt="AIRA Logo" class="footer-logo-img" onerror="this.src='assets/logo.svg'" />
             <span class="footer-brand-title">AIRA</span>
           </a>
           <p class="footer-brand-desc">
@@ -271,7 +271,7 @@
   <div class="modal-overlay" id="subscribe-modal">
     <div class="modal-card" style="text-align: center; max-width: 440px;">
       <button type="button" class="modal-close-btn" aria-label="Close" onclick="this.closest('.modal-overlay').classList.remove('active'); document.body.style.overflow='';">✕</button>
-      <img src="assets/logo.png?v=50.0" alt="AIRA" style="width: 52px; height: 52px; border-radius: 12px; margin: 0 auto 12px auto; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+      <img loading="lazy" decoding="async" src="assets/logo.png?v=50.0" alt="AIRA" style="width: 52px; height: 52px; border-radius: 12px; margin: 0 auto 12px auto; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
       <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; background: #F5EBE8; color: #8F3720; padding: 4px 10px; border-radius: 999px; margin-bottom: 8px;">FREE SUBSCRIBER BONUS</span>
       <h3 style="font-family: var(--font-header); font-size: 1.45rem; font-weight: 800; margin-bottom: 6px; color: var(--color-text-primary);">Join AIRA Newsletter</h3>
       <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">Get top AI news, breakthroughs + instant access to <strong>AI Automation | 50 n8n Templates</strong>.</p>
@@ -389,19 +389,19 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Supabase CDN Client & Email Automation Engine -->
-  <script src="js/email-service.js?v=130.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase.js?v=130.0"></script>
+  <script defer src="js/email-service.js?v=131.0"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="js/supabase.js?v=131.0"></script>
 
-  <!-- Data and Application Script -->
-  <script src="data/articles.js?v=130.0"></script>
-  <script src="data/tools.js?v=130.0"></script>
-  <script src="data/alternatives.js?v=130.0"></script>
-  <script src="data/prompts.js?v=130.0"></script>
+  <!-- Data and Application Scripts (Deferred for instant HTML/CSS paint) -->
+  <script defer src="data/articles.js?v=131.0"></script>
+  <script defer src="data/tools.js?v=131.0"></script>
+  <script defer src="data/alternatives.js?v=131.0"></script>
+  <script defer src="data/prompts.js?v=131.0"></script>
   <!-- High-Capacity Client-Side Storage Engine (IndexedDB) -->
-  <script src="js/storage.js?v=130.0"></script>
+  <script defer src="js/storage.js?v=131.0"></script>
   <!-- Audio Player Engine -->
-  <script src="js/audio-player.js?v=130.0"></script>
-  <script src="js/app.js?v=130.0"></script>
+  <script defer src="js/audio-player.js?v=131.0"></script>
+  <script defer src="js/app.js?v=131.0"></script>
 </body>
 </html>
