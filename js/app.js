@@ -10369,7 +10369,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           const u = new URL(url.startsWith('http') ? url : 'https://' + url);
           domain = u.hostname.replace('www.', '');
         } catch(err) {
-          domain = url.replace(/https?:///, '').split('/')[0];
+          domain = url.replace(/^https?:\/\//i, '').split('/')[0];
         }
 
         const newTool = {
