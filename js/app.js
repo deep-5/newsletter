@@ -987,6 +987,8 @@ Access the full interactive database of 100+ Production Prompts:
       renderPromptsPage();
     } else if (route.name === 'bookmarks') {
       renderBookmarksPage();
+    } else if (route.name === 'submit' || route.name === 'submit-tool') {
+      renderSubmitToolPage();
     } else if (route.name === 'advertise') {
       renderAdvertisePage();
     } else if (route.name === 'admin') {
@@ -9067,27 +9069,34 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     const standardCost = slot.isEditionBased ? slot.standardPrice : Math.round(s.days * slot.dailyRate * 10) / 10;
 
     return `
-      <div class="adv-studio-container">
+      <div class="adv-studio-wrapper">
         
-        <!-- TOP FREE PROMO CALLOUT -->
-        <div class="adv-top-free-banner">
-          <span class="adv-free-tag">LIMITED TIME</span>
-          <span>🎉 100% Free Community Sponsorship Launch — Promote your AI tool or software for $0!</span>
-        </div>
+        <!-- HERO SECTION WITH HERO-GRID BACKGROUND -->
+        <div class="adv-hero-section">
+          <div class="adv-hero-container">
+            <!-- TOP FREE PROMO CALLOUT -->
+            <div class="adv-top-free-banner">
+              <span class="adv-free-tag">LIMITED TIME</span>
+              <span class="adv-free-msg">🎉 100% Free Community Sponsorship Launch — Promote your AI tool for $0!</span>
+            </div>
 
-        <!-- HERO HEADER -->
-        <div class="adv-hero-head">
-          <div class="adv-hero-badge">
-            <span class="adv-hero-dot"></span> Reaching 100+ High-Intent Software Builders &amp; Founders
+            <!-- HERO HEADER -->
+            <div class="adv-hero-head">
+              <div class="adv-hero-badge">
+                <span class="adv-hero-dot"></span> Reaching 100+ High-Intent Software Builders &amp; Founders
+              </div>
+              <h1 class="adv-hero-title">Advertise on AIRA: <span>Free Launch Sponsorship</span></h1>
+              <p class="adv-hero-sub">
+                We are partnering with AI developers, tools, and SaaS startups to sponsor AIRA for <strong>$0 (100% Free)</strong> during our growth launch! Customize your ad, pick your dates, and get featured immediately.
+              </p>
+            </div>
           </div>
-          <h1 class="adv-hero-title">Advertise on AIRA: <span>Free Launch Sponsorship</span></h1>
-          <p class="adv-hero-sub">
-            We are partnering with AI developers, tools, and SaaS startups to sponsor AIRA for <strong>$0 (100% Free)</strong> during our growth launch! Customize your ad, pick your dates, and get featured immediately.
-          </p>
         </div>
 
-        <!-- STATS BAR -->
-        <div class="adv-stats-grid">
+        <div class="adv-studio-container">
+
+          <!-- STATS BAR -->
+          <div class="adv-stats-grid">
           <div class="adv-stat-tile">
             <div class="adv-stat-icon">👥</div>
             <div>
@@ -9323,33 +9332,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           </form>
         </div>
 
-        <!-- AUDIENCE DEMOGRAPHICS -->
-        <div class="adv-demographics-sec">
-          <h3 class="adv-demo-title">Verified Developer Demographics</h3>
-          <div class="adv-demo-grid">
-            <div class="adv-demo-box">
-              <div class="adv-demo-pct">45%</div>
-              <div class="adv-demo-role">AI &amp; ML Engineers</div>
-              <div class="adv-demo-desc">Building autonomous agents &amp; LLM pipelines</div>
-            </div>
-            <div class="adv-demo-box">
-              <div class="adv-demo-pct">29%</div>
-              <div class="adv-demo-role">Technical Founders &amp; CTOs</div>
-              <div class="adv-demo-desc">Direct authority over engineering tools &amp; APIs</div>
-            </div>
-            <div class="adv-demo-box">
-              <div class="adv-demo-pct">16%</div>
-              <div class="adv-demo-role">Engineering &amp; Product Leads</div>
-              <div class="adv-demo-desc">Evaluating software stacks for teams</div>
-            </div>
-            <div class="adv-demo-box">
-              <div class="adv-demo-pct">10%</div>
-              <div class="adv-demo-role">AI Researchers &amp; Solopreneurs</div>
-              <div class="adv-demo-desc">High-intent daily adopters of developer tools</div>
-            </div>
-          </div>
         </div>
-
       </div>
     `;
   }
@@ -9504,6 +9487,393 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     initAdvStudioState();
     appContainer.innerHTML = `<div id="advertise-page-root">${renderAdvertiseStudioHTML()}</div>`;
   }
+
+  // =========================================================================
+  // 11. Submit AI Tool Page & Live Directory Preview (/#/submit)
+  // =========================================================================
+  function initSubmitToolState() {
+    if (!window.airaSubmitToolState) {
+      window.airaSubmitToolState = {
+        name: 'AutoGPT Workspace',
+        url: 'https://autogpt.dev',
+        category: 'developer-tools',
+        categoryLabel: 'Developer Tools',
+        pricing: 'Freemium',
+        tagline: 'Autonomous AI agents orchestration platform with real-time browser execution and API tools.',
+        description: 'AutoGPT Workspace enables software teams to build, test, and deploy collaborative multi-agent swarms with native IDE integration and telemetry logging.',
+        features: 'Multi-agent orchestration\nBrowser & Terminal execution\nOpen-source Python SDK',
+        logoUrl: '',
+        contactName: 'Sarah Chen',
+        workEmail: 'sarah@autogpt.dev',
+        twitter: '@sarahc_ai'
+      };
+    }
+  }
+
+  function getSubmitToolCardLiveHTML(state) {
+    const name = escapeHtml(state.name || 'Your AI Tool');
+    const tagline = escapeHtml(state.tagline || 'Autonomous AI agents orchestration platform for software teams.');
+    const pricing = escapeHtml(state.pricing || 'Freemium');
+    const cat = escapeHtml(state.category || 'developer-tools');
+    const url = escapeHtml(state.url || 'https://yourtool.com');
+
+    let domain = '';
+    try {
+      const u = new URL(url.startsWith('http') ? url : 'https://' + url);
+      domain = u.hostname.replace('www.', '');
+    } catch(err) {
+      domain = 'tool.dev';
+    }
+
+    const logoSrc = state.logoUrl ? escapeHtml(state.logoUrl) : `https://logo.clearbit.com/${domain}`;
+
+    return `
+      <div class="tool-card submit-mockup-tool-card" style="margin: 0; box-shadow: none; border-color: #CBD5E1;">
+        <div class="tool-card-top" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <div class="tool-card-avatar-wrap" style="width: 44px; height: 44px; border-radius: 10px; overflow: hidden; background: #0F172A; display: flex; align-items: center; justify-content: center;">
+            <img src="${logoSrc}" alt="${name}" class="tool-card-avatar" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='assets/logo.png';" />
+          </div>
+          <div class="tool-card-meta" style="display: flex; gap: 6px; align-items: center;">
+            <span class="tool-tag" style="background: #EEF2FF; color: #1C46F5; font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;">${cat.replace(/-/g, ' ').toUpperCase()}</span>
+            <span class="tool-pricing-pill" style="background: #F1F5F9; color: #475569; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px;">${pricing}</span>
+          </div>
+        </div>
+        <div class="tool-card-content" style="margin-bottom: 14px;">
+          <h3 class="tool-card-title" style="font-size: 1.05rem; font-weight: 800; color: #0F172A; margin-bottom: 4px;">${name}</h3>
+          <p class="tool-card-desc" style="font-size: 0.8rem; color: #64748B; line-height: 1.45; margin: 0;">${tagline}</p>
+        </div>
+        <div class="tool-card-footer" style="display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #F1F5F9;">
+          <span class="tool-btn-details" style="font-size: 0.72rem; font-weight: 700; color: #059669;">⚡ Verified Listing</span>
+          <a href="${url}" target="_blank" class="tool-btn-visit" style="background: #0F172A; color: #FFFFFF; font-size: 0.72rem; font-weight: 800; padding: 5px 12px; border-radius: 6px;" onclick="event.preventDefault();">
+            Visit Website ↗
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSubmitToolPage() {
+    initSubmitToolState();
+    const s = window.airaSubmitToolState;
+    const activeCat = s.category || 'developer-tools';
+
+    const CATEGORIES = [
+      { id: 'developer-tools', name: 'Developer Tools', icon: '💻' },
+      { id: 'agents', name: 'AI Agents & Automation', icon: '🤖' },
+      { id: 'llms', name: 'LLMs & Large Models', icon: '🧠' },
+      { id: 'code', name: 'Code & DevOps', icon: '⚡' },
+      { id: 'productivity', name: 'Productivity & Workflow', icon: '📊' },
+      { id: 'design', name: 'Design & Creative', icon: '🎨' },
+      { id: 'writing', name: 'Writing & Research', icon: '✍️' },
+      { id: 'video-audio', name: 'Audio & Video AI', icon: '🎬' },
+      { id: 'analytics', name: 'Analytics & Data', icon: '📈' },
+      { id: 'marketing', name: 'Marketing & SEO', icon: '🚀' }
+    ];
+
+    const PRICING_OPTIONS = ['Freemium', '100% Free', 'Paid / Commercial', 'Open Source', 'Free Trial'];
+
+    appContainer.innerHTML = `
+      <div class="submit-page-wrapper">
+        
+        <!-- HERO HEADER WITH HERO-GRID BACKGROUND -->
+        <div class="submit-hero-section">
+          <div class="submit-hero-container">
+            <div class="submit-top-pill">
+              <span class="submit-pill-badge">FREE DIRECTORY LISTING</span>
+              <span>⚡ Indexed across 96+ AI Tool Categories &amp; Daily Editions</span>
+            </div>
+
+            <div class="submit-hero-head">
+              <div class="adv-hero-badge">
+                <span class="adv-hero-dot"></span> Reaching 100+ Active AI Builders &amp; Engineering Leads
+              </div>
+              <h1 class="submit-hero-title">Submit Your AI Tool: <span>Get Discovered on AIRA</span></h1>
+              <p class="submit-hero-sub">
+                Showcase your AI application, developer tool, or autonomous agent to high-intent engineers, CTOs, and founders. We review and index verified submissions within <strong>24 hours for $0 (Free)</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-main-container">
+          
+          <div class="submit-studio-split" id="submit-studio-root">
+            
+            <!-- LEFT: SUBMISSION FORM -->
+            <div class="submit-form-panel">
+              
+              <!-- STEP 1: TOOL BASICS -->
+              <span class="adv-step-pill">Step 1</span>
+              <h2 class="adv-step-heading">Tool Essentials</h2>
+              
+              <div class="adv-form-group-wrap">
+                <div class="adv-input-2col">
+                  <div class="adv-field">
+                    <label class="adv-label">Tool Name <span class="req">*</span></label>
+                    <input type="text" class="adv-input" id="submit-input-name" value="${escapeHtml(s.name)}" placeholder="e.g., AutoGPT Workspace" oninput="window.updateSubmitToolLivePreview()" required />
+                  </div>
+                  <div class="adv-field">
+                    <label class="adv-label">Website / Landing Page URL <span class="req">*</span></label>
+                    <input type="url" class="adv-input" id="submit-input-url" value="${escapeHtml(s.url)}" placeholder="https://yourtool.com" oninput="window.updateSubmitToolLivePreview()" required />
+                  </div>
+                </div>
+
+                <div class="adv-field">
+                  <label class="adv-label">Short Tagline (Max 100 chars) <span class="req">*</span></label>
+                  <input type="text" class="adv-input" id="submit-input-tagline" value="${escapeHtml(s.tagline)}" placeholder="e.g. Autonomous AI agents orchestration platform for software teams" oninput="window.updateSubmitToolLivePreview()" required />
+                </div>
+
+                <div class="adv-input-2col">
+                  <div class="adv-field">
+                    <label class="adv-label">Primary Category <span class="req">*</span></label>
+                    <select class="adv-input" id="submit-input-category" onchange="window.updateSubmitToolLivePreview()">
+                      ${CATEGORIES.map(c => `<option value="${c.id}" ${c.id === activeCat ? 'selected' : ''}>${c.icon} ${c.name}</option>`).join('')}
+                    </select>
+                  </div>
+                  <div class="adv-field">
+                    <label class="adv-label">Pricing Model <span class="req">*</span></label>
+                    <select class="adv-input" id="submit-input-pricing" onchange="window.updateSubmitToolLivePreview()">
+                      ${PRICING_OPTIONS.map(p => `<option value="${p}" ${p === s.pricing ? 'selected' : ''}>${p}</option>`).join('')}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2: PRODUCT DESCRIPTION & HIGHLIGHTS -->
+              <span class="adv-step-pill">Step 2</span>
+              <h2 class="adv-step-heading">Product Overview &amp; Key Features</h2>
+              
+              <div class="adv-form-group-wrap">
+                <div class="adv-field">
+                  <label class="adv-label">Full Product Description (2-3 Sentences) <span class="req">*</span></label>
+                  <textarea class="adv-textarea" id="submit-input-desc" rows="3" placeholder="Explain what problem your tool solves, how it works, and why developers love it..." oninput="window.updateSubmitToolLivePreview()" required>${escapeHtml(s.description)}</textarea>
+                </div>
+
+                <div class="adv-field">
+                  <label class="adv-label">Key Features / Capabilities (1 per line)</label>
+                  <textarea class="adv-textarea" id="submit-input-features" rows="3" placeholder="e.g.&#10;• Multi-agent orchestration&#10;• Real-time browser sandbox&#10;• Python &amp; TypeScript SDK">${escapeHtml(s.features)}</textarea>
+                </div>
+
+                <div class="adv-field">
+                  <label class="adv-label">Custom Logo / Avatar Image URL (Optional)</label>
+                  <input type="url" class="adv-input" id="submit-input-logo" value="${escapeHtml(s.logoUrl)}" placeholder="https://yourtool.com/logo.png (Auto-fetched from domain if blank)" oninput="window.updateSubmitToolLivePreview()" />
+                </div>
+              </div>
+
+              <!-- STEP 3: MAKER & CONTACT INFO -->
+              <span class="adv-step-pill">Step 3</span>
+              <h2 class="adv-step-heading">Maker &amp; Verification Contact</h2>
+              
+              <div class="adv-form-group-wrap">
+                <div class="adv-input-2col">
+                  <div class="adv-field">
+                    <label class="adv-label">Contact / Founder Name <span class="req">*</span></label>
+                    <input type="text" class="adv-input" id="submit-input-contact" value="${escapeHtml(s.contactName)}" placeholder="Alex Rivera" required />
+                  </div>
+                  <div class="adv-field">
+                    <label class="adv-label">Work Email <span class="req">*</span></label>
+                    <input type="email" class="adv-input" id="submit-input-email" value="${escapeHtml(s.workEmail)}" placeholder="alex@yourtool.com" required />
+                  </div>
+                </div>
+
+                <div class="adv-field">
+                  <label class="adv-label">Twitter / X Handle or GitHub Repo (Optional)</label>
+                  <input type="text" class="adv-input" id="submit-input-twitter" value="${escapeHtml(s.twitter)}" placeholder="@username or https://github.com/org/repo" />
+                </div>
+              </div>
+
+              <!-- SUBMIT BUTTON -->
+              <button type="button" class="adv-btn-claim-free" onclick="window.submitAiraToolForm()">
+                <span>🚀 Submit AI Tool for Review (100% Free)</span>
+              </button>
+              <div class="adv-secure-note">
+                🔒 Free submission • Verified within 24 hours • Indexed permanently in AIRA Directory
+              </div>
+
+            </div>
+
+            <!-- RIGHT: LIVE DIRECTORY CARD PREVIEW & PERKS -->
+            <div class="submit-sidebar-panel">
+              
+              <!-- LIVE PREVIEW CARD -->
+              <div class="submit-preview-card">
+                <div class="adv-canvas-head">
+                  <span class="adv-canvas-title">👁️ LIVE DIRECTORY CARD PREVIEW</span>
+                  <span class="adv-live-tag">LIVE SYNC</span>
+                </div>
+                
+                <div class="submit-preview-frame">
+                  <div class="submit-preview-meta-bar">
+                    <span>AIRA Directory Preview</span>
+                    <span style="color: #059669; font-weight: 700;">Verified Listing</span>
+                  </div>
+                  
+                  <div id="submit-live-card-target" class="submit-card-render-wrap">
+                    ${getSubmitToolCardLiveHTML(s)}
+                  </div>
+                </div>
+              </div>
+
+              <!-- PERKS BENTO BOX -->
+              <div class="submit-perks-card">
+                <h3 class="submit-perks-title">Why List on AIRA?</h3>
+                <div class="submit-perks-list">
+                  <div class="submit-perk-item">
+                    <div class="submit-perk-icon">🎯</div>
+                    <div>
+                      <strong>High-Intent Builders</strong>
+                      <p>100+ active software engineers, CTOs, and founders evaluating AI tools daily.</p>
+                    </div>
+                  </div>
+                  <div class="submit-perk-item">
+                    <div class="submit-perk-icon">⚡</div>
+                    <div>
+                      <strong>Dofollow SEO Authority</strong>
+                      <p>Permanent backlink to boost your domain authority and organic search visibility.</p>
+                    </div>
+                  </div>
+                  <div class="submit-perk-item">
+                    <div class="submit-perk-icon">📬</div>
+                    <div>
+                      <strong>Weekly Newsletter Spotlight</strong>
+                      <p>Top reviewed tools are featured in the Friday AIRA curated edition.</p>
+                    </div>
+                  </div>
+                  <div class="submit-perk-item">
+                    <div class="submit-perk-icon">⏱️</div>
+                    <div>
+                      <strong>24-Hour Express Review</strong>
+                      <p>Fast verification process without complicated approval bottlenecks.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+  window.updateSubmitToolLivePreview = function() {
+    initSubmitToolState();
+    const name = document.getElementById('submit-input-name')?.value || '';
+    const url = document.getElementById('submit-input-url')?.value || '';
+    const tagline = document.getElementById('submit-input-tagline')?.value || '';
+    const cat = document.getElementById('submit-input-category')?.value || 'developer-tools';
+    const pricing = document.getElementById('submit-input-pricing')?.value || 'Freemium';
+    const desc = document.getElementById('submit-input-desc')?.value || '';
+    const logo = document.getElementById('submit-input-logo')?.value || '';
+
+    window.airaSubmitToolState = {
+      ...window.airaSubmitToolState,
+      name,
+      url,
+      tagline,
+      category: cat,
+      pricing,
+      description: desc,
+      logoUrl: logo
+    };
+
+    const targetEl = document.getElementById('submit-live-card-target');
+    if (targetEl) {
+      targetEl.innerHTML = getSubmitToolCardLiveHTML(window.airaSubmitToolState);
+    }
+  };
+
+  window.submitAiraToolForm = function() {
+    initSubmitToolState();
+    const name = (document.getElementById('submit-input-name')?.value || '').trim();
+    const url = (document.getElementById('submit-input-url')?.value || '').trim();
+    const tagline = (document.getElementById('submit-input-tagline')?.value || '').trim();
+    const cat = document.getElementById('submit-input-category')?.value || 'developer-tools';
+    const pricing = document.getElementById('submit-input-pricing')?.value || 'Freemium';
+    const desc = (document.getElementById('submit-input-desc')?.value || '').trim();
+    const features = (document.getElementById('submit-input-features')?.value || '').trim();
+    const logo = (document.getElementById('submit-input-logo')?.value || '').trim();
+    const contact = (document.getElementById('submit-input-contact')?.value || '').trim();
+    const email = (document.getElementById('submit-input-email')?.value || '').trim();
+    const twitter = (document.getElementById('submit-input-twitter')?.value || '').trim();
+
+    if (!name || !url || !tagline || !desc || !contact || !email) {
+      showToast('⚠️ Please fill in all required fields (Tool Name, URL, Tagline, Description, Name, Email).');
+      return;
+    }
+
+    let domain = '';
+    try {
+      const u = new URL(url.startsWith('http') ? url : 'https://' + url);
+      domain = u.hostname.replace('www.', '');
+    } catch(err) {
+      domain = url.replace(/^https?:\/\//i, '').split('/')[0];
+    }
+
+    const newTool = {
+      id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now().toString().slice(-4),
+      name,
+      url: url.startsWith('http') ? url : 'https://' + url,
+      logo: logo || ('https://logo.clearbit.com/' + domain),
+      icon: '⚡',
+      pricing: pricing || 'Freemium',
+      category: cat || 'developer-tools',
+      categories: [cat || 'developer-tools'],
+      description: tagline || desc,
+      fullDescription: desc,
+      features: features.split('\n').filter(Boolean),
+      contactName: contact,
+      workEmail: email,
+      twitter,
+      verified: false,
+      created_at: new Date().toISOString()
+    };
+
+    // Store in localStorage
+    try {
+      const custom = JSON.parse(localStorage.getItem('aira_custom_tools') || '[]');
+      custom.unshift(newTool);
+      localStorage.setItem('aira_custom_tools', JSON.stringify(custom));
+
+      const submissions = JSON.parse(localStorage.getItem('aira_tool_submissions') || '[]');
+      submissions.unshift(newTool);
+      localStorage.setItem('aira_tool_submissions', JSON.stringify(submissions));
+    } catch(err) {}
+
+    // Sync to Supabase if connected
+    if (window.AiraSupabase) {
+      window.AiraSupabase.submitTool(newTool).catch(err => console.log('Supabase sync:', err));
+    }
+
+    const formPanel = document.querySelector('.submit-form-panel');
+    if (formPanel) {
+      formPanel.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #ECFDF5; color: #059669; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+          <h2 style="font-size: 1.6rem; font-weight: 900; color: #0F172A; margin-bottom: 10px;">Tool Submitted Successfully!</h2>
+          <p style="color: #64748B; font-size: 0.95rem; max-width: 480px; margin: 0 auto 20px auto; line-height: 1.6;">
+            Thank you for submitting <strong>${escapeHtml(newTool.name)}</strong>! Our editorial desk will verify your listing within 24 hours. A confirmation email has been sent to <strong>${escapeHtml(newTool.workEmail)}</strong>.
+          </p>
+          <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 10px; padding: 16px; max-width: 460px; margin: 0 auto 24px auto; text-align: left; font-size: 0.85rem; color: #334155;">
+            <div><strong>Tool:</strong> ${escapeHtml(newTool.name)} (${escapeHtml(newTool.pricing)})</div>
+            <div><strong>URL:</strong> <a href="${escapeHtml(newTool.url)}" target="_blank" style="color:#1C46F5;">${escapeHtml(newTool.url)}</a></div>
+            <div><strong>Category:</strong> ${escapeHtml(newTool.category)}</div>
+            <div><strong>Status:</strong> <span style="color:#059669; font-weight:700;">Queued for 24h Indexing</span></div>
+          </div>
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="#/tags" class="btn-sub-nav" style="display: inline-block;">Browse Tools Directory</a>
+            <button type="button" onclick="location.reload();" class="adv-preset-pill" style="padding: 10px 18px;">Submit Another Tool</button>
+          </div>
+        </div>
+      `;
+    }
+
+    showToast('🎉 ' + name + ' submitted successfully! Review within 24h.');
+  };
+
 
   // =========================================================================
   // 11. Subscription Handler (Connected to Database)
