@@ -1445,7 +1445,7 @@ Access the full interactive database of 100+ Production Prompts:
           <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#D97706;">🤖</span> <span>Anthropic</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#EC4899;">🧠</span> <span>Mistral AI</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#EF4444;">🔥</span> <span>Firecrawl</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#8F3720;">📊</span> <span>OpenSEO</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#1C46F5;">📊</span> <span>OpenSEO</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#F59E0B;">✨</span> <span>Sponsor +</span></a>
         </div>
       </div>
@@ -1840,7 +1840,7 @@ function renderHomePage() {
                   <span id="like-count-display">${currentLikes}</span>
                 </button>
                 <button class="action-btn ${isBookmarked ? 'bookmarked' : ''}" id="btn-bookmark-post" data-slug="${article.slug}">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="${isBookmarked ? '#8F3720' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="${isBookmarked ? '#1C46F5' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
                   <span>${isBookmarked ? 'Saved' : 'Save'}</span>
                 </button>
                 <button class="action-btn" id="btn-share-post" data-title="${encodeURIComponent(article.title)}">
@@ -3012,7 +3012,7 @@ function renderHomePage() {
                   ${(tool.inner_content && tool.inner_content.pricingDetails) ? `
                     <div class="tool-spec-row">
                       <span class="tool-spec-label">Pricing Details</span>
-                      <span class="tool-spec-val" style="font-size: 0.85rem; font-weight: 600; color: #8F3720; text-align: right; max-width: 170px;">${tool.inner_content.pricingDetails}</span>
+                      <span class="tool-spec-val" style="font-size: 0.85rem; font-weight: 600; color: #1C46F5; text-align: right; max-width: 170px;">${tool.inner_content.pricingDetails}</span>
                     </div>
                   ` : ''}
                   <div class="tool-spec-row">
@@ -3025,7 +3025,7 @@ function renderHomePage() {
                   </div>
                   <div class="tool-spec-row">
                     <span class="tool-spec-label">Verification</span>
-                    <span class="tool-spec-val" style="color: #8F3720; font-weight: 700;">Verified ✓</span>
+                    <span class="tool-spec-val" style="color: #1C46F5; font-weight: 700;">Verified ✓</span>
                   </div>
                 </div>
 
@@ -4036,7 +4036,7 @@ function renderHomePage() {
         }
 
         if (story.takeaway && story.takeaway.trim()) {
-          html += `    <div class="beehiiv-takeaway">\n      <p style="margin: 0; color: #8F3720; font-size: 0.95rem;"><strong>Takeaway:</strong> ${story.takeaway.trim()}</p>\n    </div>\n`;
+          html += `    <div class="beehiiv-takeaway">\n      <p style="margin: 0; color: #1C46F5; font-size: 0.95rem;"><strong>Takeaway:</strong> ${story.takeaway.trim()}</p>\n    </div>\n`;
         }
 
         if (story.quote && story.quote.trim()) {
@@ -4196,7 +4196,7 @@ function renderHomePage() {
                       ${isNew ? '➕ Create New Article Edition' : '✏️ Edit Article: ' + (art.title || '')}
                     </h2>
                   </div>
-                  <div style="background: #F5EBE8; color: #8F3720; font-weight: 700; font-size: 0.8125rem; padding: 6px 14px; border-radius: 20px; border: 1px solid #EACCC4; display: inline-flex; align-items: center; gap: 6px;">
+                  <div style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.8125rem; padding: 6px 14px; border-radius: 20px; border: 1px solid #C7D2FE; display: inline-flex; align-items: center; gap: 6px;">
                     ✨ 100% Visual Form (No HTML Code Needed)
                   </div>
                 </div>
@@ -4305,12 +4305,12 @@ function renderHomePage() {
                     </div>
 
                     <!-- Section 2: Newsletter Briefing / Intro (The Signal) -->
-                    <div style="background: #F5EBE8; border: 1px solid #EACCC4; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+                    <div style="background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 12px; padding: 22px; margin-bottom: 24px;">
                       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <h3 style="font-size: 1.05rem; font-weight: 800; color: #8F3720; margin: 0; display: flex; align-items: center; gap: 6px;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: #1C46F5; margin: 0; display: flex; align-items: center; gap: 6px;">
                           📢 2. Newsletter Briefing / Intro Banner (THE SIGNAL)
                         </h3>
-                        <span style="font-size: 0.78rem; font-weight: 600; color: #8F3720; background: #F5EBE8; padding: 3px 10px; border-radius: 12px;">Top Banner</span>
+                        <span style="font-size: 0.78rem; font-weight: 600; color: #1C46F5; background: #EEF2FF; padding: 3px 10px; border-radius: 12px;">Top Banner</span>
                       </div>
                       <p style="font-size: 0.8125rem; color: #15803D; margin-bottom: 10px;">Short executive intro or briefing summarizing what readers will learn in this edition.</p>
                       <textarea id="editor-intro-text" class="form-control-textarea" rows="3" placeholder="Welcome back to AIRA... In this edition: story 1, story 2, and key tools.">${cardData.intro || ''}</textarea>
@@ -4387,7 +4387,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <!-- ============================================== -->
                   <div id="view-live-preview" style="display: ${activeTab === 'preview' ? 'block' : 'none'};">
                     <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                      <span style="font-weight: 700; font-size: 0.875rem; color: #8F3720; display: inline-flex; align-items: center; gap: 6px;">
+                      <span style="font-weight: 700; font-size: 0.875rem; color: #1C46F5; display: inline-flex; align-items: center; gap: 6px;">
                         💡 Live Preview Mode: Click on any photo to change/replace it with 1 click!
                       </span>
                       <button type="button" id="btn-return-to-builder" style="background: #18181B; color: #FFFFFF; font-size: 0.8125rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; border: none;">
@@ -4561,8 +4561,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             </div>
 
             <!-- Key Takeaway Box -->
-            <div class="form-group" style="margin-bottom: 10px; background: #F5EBE8; border: 1px solid #EACCC4; padding: 12px 14px; border-radius: 8px;">
-              <label class="form-label" style="color: #8F3720; font-size: 0.8125rem; font-weight: 700; margin-bottom: 4px;">💡 Key Takeaway (Green Highlight Box)</label>
+            <div class="form-group" style="margin-bottom: 10px; background: #EEF2FF; border: 1px solid #C7D2FE; padding: 12px 14px; border-radius: 8px;">
+              <label class="form-label" style="color: #1C46F5; font-size: 0.8125rem; font-weight: 700; margin-bottom: 4px;">💡 Key Takeaway (Green Highlight Box)</label>
               <input type="text" class="form-control-input story-inp-takeaway" value="${(story.takeaway || '').replace(/"/g, '&quot;')}" placeholder="e.g. Actionable advice or takeaway for the reader" style="background: #FFFFFF;" />
             </div>
 
@@ -5115,7 +5115,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             e.preventDefault();
             e.stopPropagation();
             modalDropzone.style.borderColor = '#00BA66';
-            modalDropzone.style.background = '#F5EBE8';
+            modalDropzone.style.background = '#EEF2FF';
           });
           modalDropzone.addEventListener('dragleave', (e) => {
             e.preventDefault();
@@ -5447,7 +5447,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <button type="button" class="saas-nav-btn ${activeTab === 'emails' ? 'active' : ''}" data-admin-tab="emails">
               <span>📧</span>
               <span>Email Automation</span>
-              <span class="saas-nav-badge" style="background: #8F3720; color: white;">⚡ Auto</span>
+              <span class="saas-nav-badge" style="background: #1C46F5; color: white;">⚡ Auto</span>
             </button>
             <button type="button" class="saas-nav-btn ${activeTab === 'comments' ? 'active' : ''}" data-admin-tab="comments">
               <span>💬</span>
@@ -5519,13 +5519,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-kpi-bottom">
                     <div>
                       <div class="saas-kpi-num">${normalizedSubscribers.length > 0 ? (500 + normalizedSubscribers.length).toLocaleString() : '500'}</div>
-                      <div style="font-size: 0.78rem; font-weight: 700; color: #8F3720; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                      <div style="font-size: 0.78rem; font-weight: 700; color: #1C46F5; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
                         <span>↑ 12.4%</span>
                         <span style="color: #94A3B8; font-weight: 500;">this month</span>
                       </div>
                     </div>
                     <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
-                      <path d="M 0 28 Q 25 22, 50 14 T 100 4" fill="none" stroke="#8F3720" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 28 Q 25 22, 50 14 T 100 4" fill="none" stroke="#1C46F5" stroke-width="2.5" stroke-linecap="round"/>
                       <path d="M 0 28 Q 25 22, 50 14 T 100 4 L 100 32 L 0 32 Z" fill="rgba(143, 55, 32, 0.08)"/>
                     </svg>
                   </div>
@@ -5540,12 +5540,12 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-kpi-bottom">
                     <div>
                       <div class="saas-kpi-num" style="color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#0F172A'};">${pendingSubmissions.length}</div>
-                      <div style="font-size: 0.78rem; font-weight: 700; color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#8F3720'}; margin-top: 4px;">
+                      <div style="font-size: 0.78rem; font-weight: 700; color: ${pendingSubmissions.length > 0 ? '#DC2626' : '#1C46F5'}; margin-top: 4px;">
                         ${pendingSubmissions.length > 0 ? '⚠️ Review required' : '✓ All reviewed'}
                       </div>
                     </div>
                     <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
-                      <path d="M 0 24 Q 30 28, 60 16 T 100 8" fill="none" stroke="${pendingSubmissions.length > 0 ? '#EF4444' : '#8F3720'}" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 24 Q 30 28, 60 16 T 100 8" fill="none" stroke="${pendingSubmissions.length > 0 ? '#EF4444' : '#1C46F5'}" stroke-width="2.5" stroke-linecap="round"/>
                       <path d="M 0 24 Q 30 28, 60 16 T 100 8 L 100 32 L 0 32 Z" fill="${pendingSubmissions.length > 0 ? 'rgba(239,68,68,0.08)' : 'rgba(143, 55, 32, 0.08)'}"/>
                     </svg>
                   </div>
@@ -5560,13 +5560,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-kpi-bottom">
                     <div>
                       <div class="saas-kpi-num">${allDealsList.length}</div>
-                      <div style="font-size: 0.78rem; font-weight: 700; color: #8F3720; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                      <div style="font-size: 0.78rem; font-weight: 700; color: #1C46F5; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
                         <span>↑ 8 added</span>
                         <span style="color: #94A3B8; font-weight: 500;">verified active</span>
                       </div>
                     </div>
                     <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
-                      <path d="M 0 26 Q 30 20, 65 10 T 100 4" fill="none" stroke="#8F3720" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 26 Q 30 20, 65 10 T 100 4" fill="none" stroke="#1C46F5" stroke-width="2.5" stroke-linecap="round"/>
                       <path d="M 0 26 Q 30 20, 65 10 T 100 4 L 100 32 L 0 32 Z" fill="rgba(143, 55, 32, 0.08)"/>
                     </svg>
                   </div>
@@ -5581,13 +5581,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-kpi-bottom">
                     <div>
                       <div class="saas-kpi-num">${state.articles.length}</div>
-                      <div style="font-size: 0.78rem; font-weight: 700; color: #8F3720; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                      <div style="font-size: 0.78rem; font-weight: 700; color: #1C46F5; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
                         <span>✓ Issue ready</span>
                         <span style="color: #94A3B8; font-weight: 500;">this week</span>
                       </div>
                     </div>
                     <svg class="saas-sparkline-svg" viewBox="0 0 100 32">
-                      <path d="M 0 22 Q 35 24, 65 10 T 100 4" fill="none" stroke="#8F3720" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 0 22 Q 35 24, 65 10 T 100 4" fill="none" stroke="#1C46F5" stroke-width="2.5" stroke-linecap="round"/>
                       <path d="M 0 22 Q 35 24, 65 10 T 100 4 L 100 32 L 0 32 Z" fill="rgba(143, 55, 32, 0.08)"/>
                     </svg>
                   </div>
@@ -5667,7 +5667,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-panel-card">
                     <div class="saas-panel-header">
                       <h3 class="saas-panel-title">Latest Subscribers Growth</h3>
-                      <span style="font-size: 0.78rem; font-weight: 700; color: #8F3720;">+18.2% vs last week</span>
+                      <span style="font-size: 0.78rem; font-weight: 700; color: #1C46F5;">+18.2% vs last week</span>
                     </div>
 
                     <!-- Mini Growth Curve SVG -->
@@ -5675,13 +5675,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       <svg viewBox="0 0 300 80" style="width: 100%; height: 70px; overflow: visible;">
                         <defs>
                           <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#8F3720" stop-opacity="0.3"/>
-                            <stop offset="100%" stop-color="#8F3720" stop-opacity="0.0"/>
+                            <stop offset="0%" stop-color="#1C46F5" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#1C46F5" stop-opacity="0.0"/>
                           </linearGradient>
                         </defs>
                         <path d="M 0 65 Q 50 60, 100 48 T 200 28 T 300 10 L 300 80 L 0 80 Z" fill="url(#growthGrad)"/>
-                        <path d="M 0 65 Q 50 60, 100 48 T 200 28 T 300 10" fill="none" stroke="#8F3720" stroke-width="3" stroke-linecap="round"/>
-                        <circle cx="300" cy="10" r="4" fill="#8F3720"/>
+                        <path d="M 0 65 Q 50 60, 100 48 T 200 28 T 300 10" fill="none" stroke="#1C46F5" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="300" cy="10" r="4" fill="#1C46F5"/>
                       </svg>
                       <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #94A3B8; margin-top: 4px;">
                         <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
@@ -5706,7 +5706,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-panel-card">
                     <div class="saas-panel-header">
                       <h3 class="saas-panel-title">Top Affiliate Deals</h3>
-                      <button type="button" class="btn-overview-action" id="widget-btn-add-deal" style="background: transparent; border: none; font-size: 0.8rem; font-weight: 700; color: #8F3720; cursor: pointer;">+ Add Deal</button>
+                      <button type="button" class="btn-overview-action" id="widget-btn-add-deal" style="background: transparent; border: none; font-size: 0.8rem; font-weight: 700; color: #1C46F5; cursor: pointer;">+ Add Deal</button>
                     </div>
 
                     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
@@ -5776,7 +5776,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     const logoUrl = `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
 
                     return `
-                      <div class="saas-panel-card" style="border: 1px solid ${isPending ? '#FDE68A' : isApproved ? '#EACCC4' : '#FECACA'}; background: ${isPending ? '#FFFDF5' : isApproved ? '#F8FDFB' : '#FFFBFB'}; padding: 18px;" data-sub-id="${sub.id}">
+                      <div class="saas-panel-card" style="border: 1px solid ${isPending ? '#FDE68A' : isApproved ? '#C7D2FE' : '#FECACA'}; background: ${isPending ? '#FFFDF5' : isApproved ? '#F8FDFB' : '#FFFBFB'}; padding: 18px;" data-sub-id="${sub.id}">
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; flex-wrap: wrap;">
                           <div style="display: flex; align-items: center; gap: 12px;">
                             <img loading="lazy" decoding="async" src="${logoUrl}" alt="${sub.toolName}" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1px solid #E2E8F0;" onerror="this.src='assets/logo.svg'" />
@@ -5786,7 +5786,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                                 <span class="tool-badge-pricing pricing-${(sub.pricing || 'freemium').toLowerCase().replace(/\s+/g, '-')}">${sub.pricing}</span>
                                 <span class="tool-category-badge">${sub.category}</span>
                                 ${isPending ? `<span style="font-size: 0.75rem; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 2px 8px; border-radius: 6px;">⏳ Pending Review</span>` : ''}
-                                ${isApproved ? `<span style="font-size: 0.75rem; font-weight: 700; color: #8F3720; background: #F5EBE8; padding: 2px 8px; border-radius: 6px;">✓ Live & Approved</span>` : ''}
+                                ${isApproved ? `<span style="font-size: 0.75rem; font-weight: 700; color: #1C46F5; background: #EEF2FF; padding: 2px 8px; border-radius: 6px;">✓ Live & Approved</span>` : ''}
                                 ${isRejected ? `<span style="font-size: 0.75rem; font-weight: 700; color: #DC2626; background: #FEE2E2; padding: 2px 8px; border-radius: 6px;">✕ Rejected</span>` : ''}
                               </div>
                               <div style="font-size: 0.8rem; color: #64748B; margin-top: 3px;">
@@ -5806,7 +5806,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                             ` : ''}
                             
                             ${isApproved ? `
-                              <a href="#/tools/${(sub.toolName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}" target="_blank" style="background: #F5EBE8; color: #8F3720; border: 1px solid #EACCC4; font-weight: 700; padding: 7px 14px; border-radius: 8px; text-decoration: none; font-size: 0.82rem;">
+                              <a href="#/tools/${(sub.toolName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}" target="_blank" style="background: #EEF2FF; color: #1C46F5; border: 1px solid #C7D2FE; font-weight: 700; padding: 7px 14px; border-radius: 8px; text-decoration: none; font-size: 0.82rem;">
                                 🟢 View Live on Site ↗
                               </a>
                             ` : ''}
@@ -5895,7 +5895,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                           <td style="padding: 12px 16px; max-width: 240px;">
                             <div style="font-weight: 600; color: #0F172A; font-size: 0.85rem; line-height: 1.3;">${d.headline}</div>
                           </td>
-                          <td style="padding: 12px 16px; font-family: monospace; font-weight: 700; color: #8F3720;">
+                          <td style="padding: 12px 16px; font-family: monospace; font-weight: 700; color: #1C46F5;">
                             ${d.couponCode || '—'}
                           </td>
                           <td style="padding: 12px 16px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
@@ -5979,7 +5979,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                               <button class="saas-btn-primary btn-edit-article" data-slug="${a.slug}" style="padding: 6px 12px; font-size: 0.8rem;">
                                 ✏️ Edit
                               </button>
-                              <button class="btn-broadcast-single-article" data-slug="${a.slug}" style="padding: 6px 10px; font-size: 0.8rem; background: #8F3720; color: #FFFFFF; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;" title="Send this edition to all subscribers">
+                              <button class="btn-broadcast-single-article" data-slug="${a.slug}" style="padding: 6px 10px; font-size: 0.8rem; background: #1C46F5; color: #FFFFFF; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;" title="Send this edition to all subscribers">
                                 📧 Broadcast
                               </button>
                               <a href="#/p/${a.slug}" target="_blank" class="btn-saas-reject" style="padding: 6px 10px; font-size: 0.8rem; text-decoration: none;">
@@ -6110,7 +6110,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <p class="saas-panel-sub" style="margin-bottom: 20px;">
                     Download a complete JSON snapshot containing all articles, approved custom tools, submissions, deals, and subscribers.
                   </p>
-                  <button id="btn-settings-export-backup" class="saas-btn-primary" style="background: #8F3720; width: 100%; justify-content: center; padding: 12px; margin-bottom: 16px;">
+                  <button id="btn-settings-export-backup" class="saas-btn-primary" style="background: #1C46F5; width: 100%; justify-content: center; padding: 12px; margin-bottom: 16px;">
                     📥 Download Backup JSON File
                   </button>
 
@@ -6175,11 +6175,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-kpi-card">
                     <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Active Subscribers</div>
                     <div style="font-size: 1.8rem; font-weight: 900; color: #0F172A; margin: 4px 0;">${normalizedSubscribers.length}</div>
-                    <div style="font-size: 0.8rem; color: #8F3720; font-weight: 700;">🟢 Live in Audience CRM</div>
+                    <div style="font-size: 0.8rem; color: #1C46F5; font-weight: 700;">🟢 Live in Audience CRM</div>
                   </div>
                   <div class="saas-kpi-card">
                     <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Welcome Emails Sent</div>
-                    <div style="font-size: 1.8rem; font-weight: 900; color: #8F3720; margin: 4px 0;">${welcomeCount}</div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: #1C46F5; margin: 4px 0;">${welcomeCount}</div>
                     <div style="font-size: 0.8rem; color: #64748B;">🎁 50 n8n Templates Included</div>
                   </div>
                   <div class="saas-kpi-card">
@@ -6192,7 +6192,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                     <div style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 8px 0;">
                       ${emailSettings.resendApiKey ? 'Resend API 🚀' : emailSettings.webhookUrl ? 'n8n Webhook ⚡' : 'Auto Serverless 🟢'}
                     </div>
-                    <div style="font-size: 0.8rem; color: #8F3720; font-weight: 600;">Automated Triggers Ready</div>
+                    <div style="font-size: 0.8rem; color: #1C46F5; font-weight: 600;">Automated Triggers Ready</div>
                   </div>
                 </div>
 
@@ -6222,7 +6222,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                         <button type="button" id="btn-preview-email-html" class="btn-saas-reject" style="flex: 1; padding: 10px; font-weight: 700;">
                           👁️ Preview HTML Email
                         </button>
-                        <button type="button" id="btn-start-broadcast-send" class="saas-btn-primary" style="flex: 1; padding: 10px 18px; font-weight: 800; background: #8F3720;">
+                        <button type="button" id="btn-start-broadcast-send" class="saas-btn-primary" style="flex: 1; padding: 10px 18px; font-weight: 800; background: #1C46F5;">
                           🚀 Send to All (${normalizedSubscribers.length})
                         </button>
                       </div>
@@ -6235,7 +6235,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                         <span id="broadcast-progress-percent">0%</span>
                       </div>
                       <div style="width: 100%; height: 10px; background: #F1F5F9; border-radius: 999px; overflow: hidden;">
-                        <div id="broadcast-progress-bar" style="width: 0%; height: 100%; background: #8F3720; transition: width 0.2s ease;"></div>
+                        <div id="broadcast-progress-bar" style="width: 0%; height: 100%; background: #1C46F5; transition: width 0.2s ease;"></div>
                       </div>
                       <div style="font-size: 0.75rem; color: #64748B; margin-top: 6px;" id="broadcast-progress-detail">Preparing subscriber queue...</div>
                     </div>
@@ -6256,7 +6256,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       <div class="form-group">
                         <label class="form-label">Resend API Key (Recommended - 3,000 Free/Mo)</label>
                         <input type="password" id="input-resend-key" class="form-input" placeholder="re_1234567890abcdef..." value="${emailSettings.resendApiKey || ''}" />
-                        <span style="font-size: 0.75rem; color: #64748B; margin-top: 3px; display: block;">Get your free API key at <a href="https://resend.com" target="_blank" style="color: #8F3720;">resend.com</a></span>
+                        <span style="font-size: 0.75rem; color: #64748B; margin-top: 3px; display: block;">Get your free API key at <a href="https://resend.com" target="_blank" style="color: #1C46F5;">resend.com</a></span>
                       </div>
 
                       <div class="form-group">
@@ -6333,7 +6333,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                           ${emailLogs.map(log => `
                             <tr style="border-bottom: 1px solid #F1F5F9;">
                               <td style="padding: 10px 14px;">
-                                <span style="display: inline-flex; align-items: center; gap: 4px; background: ${log.status === 'delivered' ? '#F5EBE8' : '#FEF2F2'}; color: ${log.status === 'delivered' ? '#8F3720' : '#DC2626'}; border: 1px solid ${log.status === 'delivered' ? '#EACCC4' : '#FECACA'}; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700;">
+                                <span style="display: inline-flex; align-items: center; gap: 4px; background: ${log.status === 'delivered' ? '#EEF2FF' : '#FEF2F2'}; color: ${log.status === 'delivered' ? '#1C46F5' : '#DC2626'}; border: 1px solid ${log.status === 'delivered' ? '#C7D2FE' : '#FECACA'}; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700;">
                                   ${log.status === 'delivered' ? '✓ Delivered' : '✕ Failed'}
                                 </span>
                               </td>
@@ -8282,8 +8282,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 </tr>
                 <tr>
                   <td class="compare-feature-label">Pricing Model</td>
-                  <td><strong style="color: #8F3720; font-size: 1rem;">${tool1?.pricing || 'Free'}</strong></td>
-                  <td><strong style="color: #8F3720; font-size: 1rem;">${tool2?.pricing || 'Free'}</strong></td>
+                  <td><strong style="color: #1C46F5; font-size: 1rem;">${tool1?.pricing || 'Free'}</strong></td>
+                  <td><strong style="color: #1C46F5; font-size: 1rem;">${tool2?.pricing || 'Free'}</strong></td>
                 </tr>
                 <tr>
                   <td class="compare-feature-label">Key Strengths</td>
@@ -8310,7 +8310,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                 <tr>
                   <td class="compare-feature-label">AIRA Recommendation</td>
                   <td>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; background: #F5EBE8; color: #8F3720; font-weight: 800; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem;">
+                    <div style="display: inline-flex; align-items: center; gap: 6px; background: #EEF2FF; color: #1C46F5; font-weight: 800; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem;">
                       ★ 9.4 / 10 • Editor's Choice
                     </div>
                   </td>
@@ -8693,7 +8693,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         if (card) {
           card.innerHTML = `
             <div style="text-align: center; padding: 40px 20px;">
-              <div style="width: 64px; height: 64px; border-radius: 50%; background: #F5EBE8; color: #8F3720; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+              <div style="width: 64px; height: 64px; border-radius: 50%; background: #EEF2FF; color: #1C46F5; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
               <h2 style="font-size: 1.6rem; font-weight: 900; color: #18181B; margin-bottom: 12px;">Submission Received!</h2>
               <p style="color: #52525B; font-size: 1rem; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.6;">
                 Thank you for submitting <strong>${submission.toolName}</strong>. Our editorial team will review your tool and notify you at <strong>${submission.contactEmail}</strong> once approved.
@@ -8789,7 +8789,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <div class="deal-card" data-deal-id="${deal.id}">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
                   <span class="deal-badge-ribbon">${deal.discountBadge}</span>
-                  <span style="font-size: 0.78rem; font-weight: 700; color: #8F3720;">✓ Verified</span>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: #1C46F5;">✓ Verified</span>
                 </div>
 
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
@@ -9281,8 +9281,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-url">https://aira.news/ (Site-Wide Top Bar)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #8F3720; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #F5EBE8; color: #8F3720; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Top Banner Placement • 100% Impressions</span>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Top Banner Placement • 100% Impressions</span>
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
@@ -9301,8 +9301,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-url">https://aira.news/#/tags (AI Tools Directory)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #8F3720; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #F5EBE8; color: #8F3720; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Position #1 Sponsored Tool • 400+ Pages</span>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Position #1 Sponsored Tool • 400+ Pages</span>
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 38px; height: 38px; border-radius: 8px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">⚡</div>
             <div style="flex: 1; min-width: 0;">
@@ -9312,7 +9312,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               </div>
               <p style="font-size: 0.76rem; color: #64748B; margin: 0; line-height: 1.35;">Supercharge your dev velocity with autonomous coding pipelines.</p>
             </div>
-            <span style="font-size: 0.78rem; font-weight: 700; color: #8F3720; white-space: nowrap;">Visit ↗</span>
+            <span style="font-size: 0.78rem; font-weight: 700; color: #1C46F5; white-space: nowrap;">Visit ↗</span>
           </div>
         </div>
       `;
@@ -9324,8 +9324,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-url">https://aira.news/#/tools/cursor (Tool Detail Pages)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #8F3720; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #F5EBE8; color: #8F3720; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">High-Intent Sidebar Alternative Widget</span>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">High-Intent Sidebar Alternative Widget</span>
           <div style="font-size: 0.68rem; text-transform: uppercase; font-weight: 700; color: #94A3B8; margin-bottom: 2px;">Featured Alternative</div>
           <strong style="font-size: 0.88rem; color: #18181B; display: block; margin-bottom: 4px;">Switch to Your Software</strong>
           <p style="font-size: 0.76rem; color: #64748B; line-height: 1.35; margin: 0 0 8px 0;">Self-hosted, 100% open source with enterprise-grade security compliance.</p>
@@ -9340,8 +9340,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-url">AIRA Daily Newsletter Edition (50,000+ Inboxes)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #8F3720; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #F5EBE8; color: #8F3720; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Dedicated Newsletter Spotlight Edition</span>
+        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
+          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Dedicated Newsletter Spotlight Edition</span>
           <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
             <span style="background: #FEF08A; color: #854D0E; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">FEATURED SPONSOR</span>
             <strong style="font-size: 0.88rem; color: #18181B;">Introducing Your Product</strong>
@@ -9755,11 +9755,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <div style="flex: 1; min-width: 0;">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
                 <strong style="font-size: 0.95rem; color: #18181B;">Your Software / Tool Name</strong>
-                <span style="background: #F5EBE8; color: #8F3720; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Sponsored</span>
+                <span style="background: #EEF2FF; color: #1C46F5; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Sponsored</span>
               </div>
               <p style="font-size: 0.8rem; color: #71717A; margin: 0; line-height: 1.4;">Automate your entire software development workflow with intelligent AI agents.</p>
             </div>
-            <span style="font-size: 0.82rem; font-weight: 700; color: #8F3720; white-space: nowrap;">Visit Tool ↗</span>
+            <span style="font-size: 0.82rem; font-weight: 700; color: #1C46F5; white-space: nowrap;">Visit Tool ↗</span>
           </div>
         </div>
         <div style="opacity: 0.4; pointer-events: none; margin-top: 10px; padding: 10px; background: #FFFFFF; border-radius: 8px; border: 1px solid #E4E4E7;">
@@ -10006,7 +10006,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         if (card) {
           card.innerHTML = `
             <div style="text-align: center; padding: 40px 20px;">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #F5EBE8; color: #8F3720; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: #EEF2FF; color: #1C46F5; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
               <h2 style="font-size: 1.6rem; font-weight: 900; color: #18181B; margin-bottom: 12px;">Inquiry Received!</h2>
               <p style="color: #52525B; font-size: 1rem; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.6;">
                 Thank you for choosing AIRA! Our partnerships team will review your campaign details and reach out to <strong>${inquiry.email}</strong> with available slot dates within 24 hours.
@@ -10515,7 +10515,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       id: 'openseo',
       name: 'OpenSEO',
       tagline: 'Self-hosted SEO platform for keyword, backlink, and rank tracking.',
-      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#8F3720"><path d="M12 2L4 9h3v10h10V9h3L12 2z"/></svg>`,
+      iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#1C46F5"><path d="M12 2L4 9h3v10h10V9h3L12 2z"/></svg>`,
       iconBg: '#000000',
       url: 'https://openseo.dev'
     }
