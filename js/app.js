@@ -1526,11 +1526,20 @@ function renderHomePage() {
 
       const ARTICLES_PER_PAGE = 9;
       const query = (state.homeSearchQuery || '').trim().toLowerCase();
-      let filteredArticles = state.selectedTag === 'All' 
-        ? state.articles 
-        : state.articles.filter(a => ((a && a.tag) || 'News').toLowerCase() === state.selectedTag.toLowerCase());
-
-      if (query !== '') {
+            let filteredArticles = state.articles;
+      if (state.selectedTag && state.selectedTag !== 'All') {
+        if (state.selectedTag.toLowerCase() === 'news') {
+          filteredArticles = state.articles.filter(a => !a.is_prompt && (!a.category || a.category !== 'prompt'));
+        } else {
+          filteredArticles = state.articles.filter(a => {
+            const tagVal = ((a && a.tag) || '').toLowerCase();
+            const catVal = ((a && a.category) || '').toLowerCase();
+            const target = state.selectedTag.toLowerCase();
+            return tagVal === target || catVal === target;
+          });
+        }
+      }
+if (query !== '') {
         filteredArticles = filteredArticles.filter(a => {
           const titleMatch = (a.title || '').toLowerCase().includes(query);
           const subtitleMatch = (a.subtitle || '').toLowerCase().includes(query);
@@ -1568,8 +1577,7 @@ function renderHomePage() {
           <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
           <div class="filter-pills">
             <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
-            <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
-            <button class="filter-pill ${state.selectedTag === 'Prompts' || state.selectedTag === 'Prompts & Guides' ? 'active' : ''}" data-tag="Prompts & Guides">Prompts & Guides</button>
+            <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News (${state.articles.length})</button>
           </div>
         </div>
 
