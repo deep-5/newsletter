@@ -1597,7 +1597,7 @@ if (query !== '') {
         ` : `
           <!-- Full-Width Articles Grid (Taking All Available Space across container) -->
           <div class="articles-grid-full" id="main-articles-grid">
-            ${visibleArticles.map(article => `
+            ${visibleArticles.map((article, idx) => `
               <a href="#/p/${article.slug}" class="article-card openalt-box-card">
                 <!-- 1. Top Aspect Ratio Preview Image with Badges -->
                 <div class="card-image-wrap">
@@ -1647,6 +1647,14 @@ if (query !== '') {
                   </div>
                 </div>
               </a>
+              ${idx === 2 ? `
+                <!-- In-Feed Articles Promotional Showcase Banner -->
+                <div class="in-feed-promo-banner-card" style="grid-column: 1 / -1; margin: 18px 0 24px 0; border-radius: 14px; overflow: hidden; border: 1.5px solid #1C46F5; box-shadow: 0 6px 24px rgba(28, 70, 245, 0.16); background: #000000;">
+                  <a href="#/advertise" title="AIRA AI Newsletter & Curated Tools" style="display: block; width: 100%; line-height: 0;">
+                    <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=142.0" alt="Stay Ahead with the Latest AI News, Tools & Updates" style="width: 100%; height: auto; display: block; border-radius: 12px; aspect-ratio: 1376 / 768; object-fit: cover;" />
+                  </a>
+                </div>
+              ` : ''}
             `).join('')}
           </div>
 
@@ -1893,6 +1901,9 @@ if (query !== '') {
               <a href="#/advertise" class="newsletter-spotlight-book-link">Book a Spotlight ($399) ↗</a>
             </div>
             <div class="newsletter-spotlight-content">
+              <a href="#/advertise" style="display: block; margin: 12px 0 16px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);">
+                <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=142.0" alt="AIRA AI Newsletter & Curated Tools Hub" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
+              </a>
               <div class="newsletter-spotlight-header-row">
                 <div class="newsletter-spotlight-avatar">🚀</div>
                 <div>
