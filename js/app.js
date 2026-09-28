@@ -1570,7 +1570,7 @@ function renderHomePage() {
             <div class="filter-pills">
               <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
               <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
-              <button class="filter-pill ${state.selectedTag === 'Prompts' ? 'active' : ''}" data-tag="Prompts">Prompts & Guides</button>
+              <button class="filter-pill ${state.selectedTag === 'Prompts' || state.selectedTag === 'Prompts & Guides' ? 'active' : ''}" data-tag="Prompts & Guides">Prompts & Guides</button>
             </div>
           </div>
 
@@ -1812,9 +1812,9 @@ function renderHomePage() {
         <div class="article-container">
           <!-- Breadcrumb -->
           <div class="breadcrumb-nav">
-            <a href="#/" class="breadcrumb-link">Home</a>
-            <span class="breadcrumb-separator">/</span>
-            <a href="#/home" class="breadcrumb-link">Home</a>
+          <a href="#/" class="breadcrumb-link">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="#/home" class="breadcrumb-link">Posts</a>
             <span class="breadcrumb-separator">/</span>
             <span>${article.title}</span>
           </div>
