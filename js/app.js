@@ -8868,429 +8868,123 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
   }
 
   // =========================================================================
-  // 10. Advertise / Sponsorship Media Kit (/#/advertise)
-  // DevSuite-Inspired Modern High-Converting Design
-  // =========================================================================
-  // 10. Advertise / Sponsorship Media Kit (/#/advertise)
-  // DevSuite & OpenAds Inspired High-Converting Interactive Experience
+  // 10. Advertise / Sponsorship Live Studio & Partnership Hub (/#/advertise)
+  // Free Launch Sponsorship & Custom Partnership Configurator
   // =========================================================================
   const AD_SLOTS_CONFIG = {
-    listing: {
-      id: 'listing',
-      name: 'Listing Ad',
-      subtitle: 'Visible on every tool listing page & categories',
-      icon: '📋',
-      description: 'Prominent placement across 96+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.',
-      dailyRate: 29,
-      weeklyRate: 149,
-      twoWeekRate: 289,
-      monthlyRate: 599,
-      features: [
-        'Placed on 96+ tool detail & category pages',
-        'Direct dofollow backlink & CTA button',
-        'High-intent developer & buyer traffic',
-        'Transparent daily & weekly billing'
-      ]
-    },
     banner: {
       id: 'banner',
       name: 'Top Header Banner',
       badge: 'MOST POPULAR',
-      subtitle: 'Pinned at the top across all pages',
+      subtitle: 'Pinned at the top across 100% of website pages',
       icon: '⚡',
-      description: 'Prime site-wide placement above the fold. Guaranteed 100% visibility on all pages for maximum brand awareness and direct traffic.',
-      dailyRate: 49,
-      weeklyRate: 249,
-      twoWeekRate: 479,
-      monthlyRate: 999,
+      standardPrice: 249,
+      dailyRate: 35.5,
       features: [
         '100% impressions on all website visitors',
-        'Exclusive single sponsor per weekly cycle',
+        'Exclusive single sponsor placement per cycle',
         'Custom brand tagline, icon & action link',
-        'Real-time clicks & analytics tracking'
+        'Real-time clicks & telemetry tracking'
+      ]
+    },
+    listing: {
+      id: 'listing',
+      name: 'Tool Directory #1',
+      badge: 'HIGH CONVERSION',
+      subtitle: 'Position #1 on 96+ tool category pages',
+      icon: '📋',
+      standardPrice: 149,
+      dailyRate: 21.3,
+      features: [
+        'Position #1 on 96+ tool detail & category pages',
+        'High-intent developer & buyer traffic',
+        'Direct dofollow backlink & CTA button'
       ]
     },
     tool: {
       id: 'tool',
-      name: 'Tool Page Ad',
-      subtitle: 'Visible on every single AI tool detail page',
-      icon: '🚀',
-      description: 'Featured in the dedicated sidebar section on 96+ AI tool detail pages right when developers evaluate product alternatives.',
-      dailyRate: 39,
-      weeklyRate: 199,
-      twoWeekRate: 379,
-      monthlyRate: 799,
+      name: 'Article Spotlight',
+      subtitle: 'Embedded in all 18+ deep-dive articles',
+      icon: '📰',
+      standardPrice: 199,
+      dailyRate: 28.4,
       features: [
-        'Featured in the sidebar on 96+ tool pages',
-        'Contextually relevant developer audience',
-        'Verified backlink & custom highlight box',
-        'High conversion for SaaS & devtools'
+        'Featured in all 18+ high-ranking articles',
+        'Contextual developer engagement & trust',
+        'Prominent Neon Lime banner visual showcase'
       ]
     },
     newsletter: {
       id: 'newsletter',
-      name: 'Newsletter Spotlight',
+      name: 'Newsletter Drop',
+      badge: 'DIRECT INBOX',
       subtitle: 'Direct delivery to 100+ inboxes',
       icon: '📬',
-      description: 'Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.',
+      standardPrice: 399,
       dailyRate: 399,
-      weeklyRate: 399,
       isEditionBased: true,
       features: [
-        '100-word product review + screenshot',
-        'Sent to 100+ active subscribers',
-        'Permanent edition web archive backlink',
-        'Detailed post-campaign click report'
+        '100-word review + screenshot sent to 100+ inboxes',
+        '42.4% average open rate with high credibility',
+        'Permanent edition web archive backlink'
       ]
     }
   };
 
-  function initAdvState() {
-    if (window.airaAdvState) return;
-    const now = new Date();
-    const tom = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    const nxt7 = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+  function initAdvStudioState() {
+    if (!window.airaAdvStudioState) {
+      const now = new Date();
+      const tom = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      const day3 = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3);
 
-    window.airaAdvState = {
-      listing: {
-        year: tom.getFullYear(),
-        month: tom.getMonth(),
-        startDate: new Date(tom),
-        endDate: new Date(nxt7),
-        preset: '7',
-        isSelectingEnd: false
-      },
-      banner: {
-        year: tom.getFullYear(),
-        month: tom.getMonth(),
-        startDate: new Date(tom),
-        endDate: new Date(nxt7),
-        preset: '7',
-        isSelectingEnd: false
-      },
-      tool: {
-        year: tom.getFullYear(),
-        month: tom.getMonth(),
-        startDate: new Date(tom),
-        endDate: new Date(nxt7),
-        preset: '7',
-        isSelectingEnd: false
-      },
-      newsletter: {
-        year: tom.getFullYear(),
-        month: tom.getMonth(),
-        startDate: new Date(tom),
-        endDate: new Date(tom),
-        preset: '1',
-        isSelectingEnd: false
-      }
-    };
-  }
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const fmt = (d) => `${months[d.getMonth()]} ${String(d.getDate()).padStart(2, '0')}, ${d.getFullYear()}`;
 
-  function formatAdvDate(d) {
-    if (!d) return '';
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-  }
-
-  function formatAdvShort(d) {
-    if (!d) return '';
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[d.getMonth()]} ${d.getDate()}`;
-  }
-
-  function getSlotPriceAndDays(slotKey) {
-    const slot = AD_SLOTS_CONFIG[slotKey];
-    const s = window.airaAdvState[slotKey];
-    if (!s || !s.startDate) {
-      return {
-        days: 7,
-        price: slot.weeklyRate,
-        dailyAvg: Math.round(slot.weeklyRate / 7),
-        rangeStr: '7 days',
-        isComplete: true,
-        fullStart: '',
-        fullEnd: ''
+      window.airaAdvStudioState = {
+        activeSlot: 'banner',
+        brandName: 'Acme AI',
+        ctaText: 'Try Free →',
+        tagline: 'Autonomous agent runtime & telemetry hub for software teams.',
+        targetUrl: 'https://acme.ai',
+        startDate: fmt(tom),
+        endDate: fmt(day3),
+        days: 3,
+        preset: '3',
+        message: 'Please apply UTM parameter utm_source=aira_newsletter&utm_medium=banner. Target audience: Full-stack developers and AI founders.',
+        contactName: 'Alex Rivera',
+        workEmail: 'alex@acme.ai'
       };
     }
-
-    if (slot.isEditionBased) {
-      const fullStart = formatAdvDate(s.startDate);
-      const startFmt = formatAdvShort(s.startDate);
-      return {
-        days: 1,
-        price: slot.dailyRate,
-        dailyAvg: slot.dailyRate,
-        rangeStr: startFmt,
-        isComplete: true,
-        fullStart,
-        fullEnd: fullStart,
-        savingsText: 'Guaranteed 100+ Inboxes'
-      };
-    }
-
-    if (!s.endDate) {
-      // User only selected start date
-      const fullStart = formatAdvDate(s.startDate);
-      const startFmt = formatAdvShort(s.startDate);
-      return {
-        days: 0,
-        price: 0,
-        dailyAvg: slot.dailyRate,
-        rangeStr: `${startFmt} ➔ (Pick End Date)`,
-        isComplete: false,
-        fullStart,
-        fullEnd: ''
-      };
-    }
-
-    const diffMs = Math.abs(s.endDate.getTime() - s.startDate.getTime());
-    const days = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
-
-    let price = 0;
-    let savingsText = '';
-
-    if (days === 1) {
-      price = slot.dailyRate;
-    } else if (days === 7 && slot.weeklyRate) {
-      price = slot.weeklyRate;
-      savingsText = `Save $${(slot.dailyRate * 7) - slot.weeklyRate}!`;
-    } else if (days === 14 && slot.twoWeekRate) {
-      price = slot.twoWeekRate;
-      savingsText = `Save $${(slot.dailyRate * 14) - slot.twoWeekRate}!`;
-    } else if (days === 30 && slot.monthlyRate) {
-      price = slot.monthlyRate;
-      savingsText = `Save $${(slot.dailyRate * 30) - slot.monthlyRate}!`;
-    } else if (days < 7) {
-      price = days * slot.dailyRate;
-    } else {
-      // Pro-rated discounted rate for 7+ days
-      const discountedDaily = slot.weeklyRate / 7;
-      price = Math.round(days * discountedDaily);
-      savingsText = `Special discounted rate`;
-    }
-
-    const dailyAvg = Math.round((price / days) * 10) / 10;
-    const startFmt = formatAdvShort(s.startDate);
-    const endFmt = formatAdvShort(s.endDate);
-    const rangeStr = `${startFmt} – ${endFmt}`;
-
-    return {
-      days,
-      price,
-      dailyAvg,
-      savingsText,
-      rangeStr,
-      isComplete: true,
-      fullStart: formatAdvDate(s.startDate),
-      fullEnd: formatAdvDate(s.endDate)
-    };
   }
 
-  function renderSlotCardContentHTML(slotKey) {
-    initAdvState();
-    const slot = AD_SLOTS_CONFIG[slotKey];
-    const s = window.airaAdvState[slotKey];
-    const info = getSlotPriceAndDays(slotKey);
+  function getSlotLiveMockupHTML(state) {
+    const slotKey = state.activeSlot || 'banner';
+    const brand = escapeHtml(state.brandName || 'Your Brand');
+    const cta = escapeHtml(state.ctaText || 'Try Free →');
+    const tagline = escapeHtml(state.tagline || 'Autonomous agent runtime & telemetry hub for software teams.');
 
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const y = s.year;
-    const m = s.month;
-
-    const firstDayOfMonth = new Date(y, m, 1);
-    const daysInMonth = new Date(y, m + 1, 0).getDate();
-
-    let startDayIdx = firstDayOfMonth.getDay() - 1;
-    if (startDayIdx < 0) startDayIdx = 6;
-
-    const now = new Date();
-    const todayZero = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-
-    const startZero = s.startDate ? new Date(s.startDate.getFullYear(), s.startDate.getMonth(), s.startDate.getDate()).getTime() : null;
-    const endZero = s.endDate ? new Date(s.endDate.getFullYear(), s.endDate.getMonth(), s.endDate.getDate()).getTime() : null;
-
-    let cellsHTML = '';
-    for (let i = 0; i < startDayIdx; i++) {
-      cellsHTML += `<div class="adv-cal-cell is-empty"></div>`;
-    }
-
-    for (let d = 1; d <= daysInMonth; d++) {
-      const cellDate = new Date(y, m, d);
-      const cellTime = cellDate.getTime();
-      const isPast = cellTime < todayZero;
-      const isToday = cellTime === todayZero;
-
-      let isStart = startZero !== null && cellTime === startZero;
-      let isEnd = endZero !== null && cellTime === endZero;
-      let inRange = false;
-      if (startZero !== null && endZero !== null && startZero !== endZero) {
-        inRange = cellTime > startZero && cellTime < endZero;
-      }
-
-      let classList = ['adv-cal-cell'];
-      if (isPast) classList.push('is-disabled');
-      if (isToday) classList.push('is-today');
-      if (isStart) classList.push('is-range-start');
-      if (isEnd) classList.push('is-range-end');
-      if (inRange) classList.push('is-in-range');
-
-      const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-      const clickAttr = isPast ? '' : `onclick="window.handleAdvDateSelect('${slotKey}', '${dateStr}')"`;
-
-      cellsHTML += `<button type="button" class="${classList.join(' ')}" ${clickAttr} ${isPast ? 'disabled' : ''} title="${formatAdvDate(cellDate)}">${d}</button>`;
-    }
-
-    // Presets HTML
-    let presetsHTML = '';
-    if (!slot.isEditionBased) {
-      presetsHTML = `
-        <div class="adv-presets-row">
-          <button type="button" class="adv-preset-btn ${s.preset === '7' ? 'active' : ''}" onclick="window.applyAdvPreset('${slotKey}', 7)">7 Days ($${slot.weeklyRate})</button>
-          <button type="button" class="adv-preset-btn ${s.preset === '14' ? 'active' : ''}" onclick="window.applyAdvPreset('${slotKey}', 14)">14 Days ($${slot.twoWeekRate})</button>
-          <button type="button" class="adv-preset-btn ${s.preset === '30' ? 'active' : ''}" onclick="window.applyAdvPreset('${slotKey}', 30)">30 Days ($${slot.monthlyRate})</button>
-        </div>
-      `;
-    }
-
-    // Selection bar HTML
-    let selectionBarHTML = '';
-    if (slot.isEditionBased) {
-      selectionBarHTML = `
-        <div class="adv-cal-selection-bar">
-          <span class="dates-text">Edition Drop: <strong class="dates-green">📅 ${info.fullStart || 'Select Date'}</strong></span>
-          <span class="adv-cal-price-highlight">$${info.price} / edition</span>
-        </div>
-      `;
-    } else if (info.isComplete) {
-      selectionBarHTML = `
-        <div class="adv-cal-selection-bar">
-          <div>
-            <span class="dates-text">Dates: 📅 <strong class="dates-green">${info.rangeStr}</strong> <span class="days-count">(${info.days} days)</span></span>
-          </div>
-          <span class="adv-cal-price-highlight">$${info.price} Total</span>
-        </div>
-      `;
-    } else {
-      selectionBarHTML = `
-        <div class="adv-cal-selection-bar" style="background: #FFFBEB; border-color: #FDE68A;">
-          <span style="color: #92400E;">Start: <strong>${info.fullStart}</strong> ➔ <em>👉 Click End Date</em></span>
-          <span style="font-size: 0.75rem; color: #B45309; font-weight: 600;">Selecting...</span>
-        </div>
-      `;
-    }
-
-    // Footer HTML
-    let footerHTML = '';
-    if (slot.isEditionBased) {
-      footerHTML = `
-        <div class="advertise-slot-footer">
-          <div class="advertise-slot-footer-left">
-            <div class="advertise-slot-price-row">
-              <span class="advertise-slot-price-main">$${info.price}</span>
-              <span class="advertise-slot-price-sub">/ edition</span>
-            </div>
-            <div class="advertise-slot-rate-note">Guaranteed Placement • 100+ Subscribers</div>
-          </div>
-          <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
-            <span class="adv-btn-title">Book Spotlight</span>
-            <span class="adv-btn-sub">($${info.price}) &nbsp; &rarr;</span>
-          </button>
-        </div>
-      `;
-    } else if (info.isComplete) {
-      footerHTML = `
-        <div class="advertise-slot-footer">
-          <div class="advertise-slot-footer-left">
-            <div class="advertise-slot-price-row">
-              <span class="advertise-slot-price-main">$${info.price}</span>
-              <span class="advertise-slot-price-sub">total (${info.days} days)</span>
-            </div>
-            <div class="advertise-slot-rate-note">$${info.dailyAvg}/day • ${info.savingsText || 'Guaranteed Placement'}</div>
-          </div>
-          <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
-            <span class="adv-btn-title">Book ${slot.name}</span>
-            <span class="adv-btn-sub">($${info.price}) &nbsp; &rarr;</span>
-          </button>
-        </div>
-      `;
-    } else {
-      footerHTML = `
-        <div class="advertise-slot-footer">
-          <div class="advertise-slot-footer-left">
-            <div class="advertise-slot-price-row">
-              <span class="advertise-slot-price-main" style="font-size: 1.25rem; color: #D97706;">Select End Date</span>
-            </div>
-            <div class="advertise-slot-rate-note">Pick an end date on the calendar</div>
-          </div>
-          <button type="button" class="advertise-slot-book-btn" style="opacity: 0.6; cursor: not-allowed;" disabled>
-            <span class="adv-btn-title">Pick End Date</span>
-            <span class="adv-btn-sub">&rarr;</span>
-          </button>
-        </div>
-      `;
-    }
-
-    return `
-      <!-- Presets Selector -->
-      ${presetsHTML}
-
-      <!-- Interactive Calendar Wrapper -->
-      <div class="advertise-cal-wrap">
-        <!-- Date Selection Banner -->
-        ${selectionBarHTML}
-
-        <!-- Month Navigation -->
-        <div class="adv-cal-nav">
-          <span class="adv-cal-month-title">${monthNames[m]} ${y}</span>
-          <div style="display: flex; gap: 4px;">
-            <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${slotKey}', -1)" title="Previous Month">‹</button>
-            <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${slotKey}', 1)" title="Next Month">›</button>
-          </div>
-        </div>
-
-        <!-- 7-Day Calendar Grid -->
-        <div class="adv-cal-grid">
-          <div class="adv-cal-th">Mo</div>
-          <div class="adv-cal-th">Tu</div>
-          <div class="adv-cal-th">We</div>
-          <div class="adv-cal-th">Th</div>
-          <div class="adv-cal-th">Fr</div>
-          <div class="adv-cal-th">Sa</div>
-          <div class="adv-cal-th">Su</div>
-          ${cellsHTML}
-        </div>
-
-        <!-- Instruction / Calculation Strip -->
-        <div class="adv-cal-summary-strip">
-          <span>${info.isComplete ? `<strong>${info.days} ${info.days === 1 ? 'day' : 'days'}</strong> (${info.rangeStr})` : `<strong>Select End Date</strong> to calculate price`}</span>
-          <span><strong>$${info.price || slot.weeklyRate}</strong> total</span>
-        </div>
-      </div>
-
-      <!-- Live Updated Card Footer -->
-      ${footerHTML}
-    `;
-  }
-
-  function getSlotMockupHTML(slotKey) {
     if (slotKey === 'banner') {
       return `
         <div class="adv-mockup-browser-bar">
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">https://aira.news/ (Site-Wide Top Bar)</div>
+          <div class="adv-browser-url">https://aira.news/ (Sitewide Top Sticky Banner)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Top Banner Placement • 100% Impressions</span>
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
-              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="Logo" style="width: 20px; height: 20px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
-              <span style="font-size: 0.82rem; color: #18181B; font-weight: 500;"><strong>Your Brand</strong> — The all-in-one AI agent runtime &amp; telemetry hub.</span>
+        <div class="adv-live-ad-canvas">
+          <div class="adv-live-rendered-banner">
+            <div class="adv-live-ad-left">
+              <span class="adv-live-ad-pill">AD</span>
+              <div class="adv-live-ad-icon">⚡</div>
+              <span class="adv-live-ad-copy"><strong>${brand}</strong> — ${tagline}</span>
             </div>
-            <span style="background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 9999px; white-space: nowrap;">Try Free →</span>
+            <a href="${escapeHtml(state.targetUrl || '#')}" target="_blank" class="adv-live-ad-cta-btn" onclick="event.preventDefault();">${cta}</a>
           </div>
+        </div>
+        <div class="adv-fake-page-lines">
+          <div class="adv-fake-line-h"></div>
+          <div class="adv-fake-line-p1"></div>
+          <div class="adv-fake-line-p2"></div>
         </div>
       `;
     } else if (slotKey === 'listing') {
@@ -9301,19 +8995,22 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-url">https://aira.news/#/tags (AI Tools Directory)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Position #1 Sponsored Tool • 96+ Pages</span>
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 38px; height: 38px; border-radius: 8px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">⚡</div>
-            <div style="flex: 1; min-width: 0;">
-              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
-                <strong style="font-size: 0.88rem; color: #18181B;">Your AI Software Name</strong>
-                <span style="background: #FEF3C7; color: #92400E; font-size: 0.62rem; font-weight: 700; padding: 1px 5px; border-radius: 3px;">SPONSORED</span>
+        <div class="adv-live-ad-canvas">
+          <div class="adv-live-rendered-listing">
+            <div class="adv-live-listing-icon">⚡</div>
+            <div class="adv-live-listing-info">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+                <strong style="font-size: 0.95rem; color: #131313;">${brand}</strong>
+                <span style="background: #D2FF52; color: #131313; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">FEATURED #1</span>
               </div>
-              <p style="font-size: 0.76rem; color: #64748B; margin: 0; line-height: 1.35;">Supercharge your dev velocity with autonomous coding pipelines.</p>
+              <p style="font-size: 0.78rem; color: #52525B; margin: 0; line-height: 1.35;">${tagline}</p>
             </div>
-            <span style="font-size: 0.78rem; font-weight: 700; color: #1C46F5; white-space: nowrap;">Visit ↗</span>
+            <a href="${escapeHtml(state.targetUrl || '#')}" target="_blank" class="adv-live-ad-cta-btn" onclick="event.preventDefault();">${cta}</a>
           </div>
+        </div>
+        <div class="adv-fake-page-lines">
+          <div class="adv-fake-line-h"></div>
+          <div class="adv-fake-line-p1"></div>
         </div>
       `;
     } else if (slotKey === 'tool') {
@@ -9322,14 +9019,21 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">https://aira.news/#/tools/cursor (Tool Detail Pages)</div>
+          <div class="adv-browser-url">https://aira.news/#/p/anthropic-claude-3-7 (Article Reader)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">High-Intent Sidebar Alternative Widget</span>
-          <div style="font-size: 0.68rem; text-transform: uppercase; font-weight: 700; color: #94A3B8; margin-bottom: 2px;">Featured Alternative</div>
-          <strong style="font-size: 0.88rem; color: #18181B; display: block; margin-bottom: 4px;">Switch to Your Software</strong>
-          <p style="font-size: 0.76rem; color: #64748B; line-height: 1.35; margin: 0 0 8px 0;">Self-hosted, 100% open source with enterprise-grade security compliance.</p>
-          <span style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;">Try 14-Day Free Trial →</span>
+        <div class="adv-live-ad-canvas">
+          <div class="adv-live-rendered-banner" style="border-width: 2px;">
+            <div class="adv-live-ad-left">
+              <span class="adv-live-ad-pill">ARTICLE SPOTLIGHT</span>
+              <div class="adv-live-ad-icon">📰</div>
+              <span class="adv-live-ad-copy"><strong>${brand}</strong> — ${tagline}</span>
+            </div>
+            <a href="${escapeHtml(state.targetUrl || '#')}" target="_blank" class="adv-live-ad-cta-btn" onclick="event.preventDefault();">${cta}</a>
+          </div>
+        </div>
+        <div class="adv-fake-page-lines">
+          <div class="adv-fake-line-h"></div>
+          <div class="adv-fake-line-p1"></div>
         </div>
       `;
     } else {
@@ -9338,686 +9042,467 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">AIRA Daily Newsletter Edition (100+ inboxes)</div>
+          <div class="adv-browser-url">AIRA Newsletter Edition (100+ Inboxes)</div>
         </div>
-        <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Dedicated Newsletter Spotlight Edition</span>
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-            <span style="background: #FEF08A; color: #854D0E; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">FEATURED SPONSOR</span>
-            <strong style="font-size: 0.88rem; color: #18181B;">Introducing Your Product</strong>
+        <div class="adv-live-ad-canvas">
+          <div class="adv-live-rendered-newsletter">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="background: #1C46F5; color: #FFFFFF; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">FEATURED SPONSOR</span>
+              <strong style="font-size: 0.95rem; color: #131313;">${brand}</strong>
+            </div>
+            <p style="font-size: 0.8rem; color: #3F3F46; line-height: 1.45; margin-bottom: 10px;">${tagline}</p>
+            <a href="${escapeHtml(state.targetUrl || '#')}" target="_blank" class="adv-live-ad-cta-btn" onclick="event.preventDefault();">${cta}</a>
           </div>
-          <p style="font-size: 0.76rem; color: #4B5563; line-height: 1.4; margin: 0 0 8px 0;">
-            Delivered straight to 100+ software engineers, founders, and CTOs with 42% average open rate.
-          </p>
-          <span style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;">Claim Exclusive Offer →</span>
         </div>
       `;
     }
   }
 
-  function renderUnifiedAdConfiguratorHTML() {
-    initAdvState();
-    const activeKey = window.airaAdvActiveSlot || 'banner';
+  function renderAdvertiseStudioHTML() {
+    initAdvStudioState();
+    const s = window.airaAdvStudioState;
+    const activeKey = s.activeSlot || 'banner';
     const slot = AD_SLOTS_CONFIG[activeKey] || AD_SLOTS_CONFIG.banner;
-    const s = window.airaAdvState[activeKey];
-    const info = getSlotPriceAndDays(activeKey);
-
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const y = s.year;
-    const m = s.month;
-
-    const firstDayOfMonth = new Date(y, m, 1);
-    const daysInMonth = new Date(y, m + 1, 0).getDate();
-
-    let startDayIdx = firstDayOfMonth.getDay() - 1;
-    if (startDayIdx < 0) startDayIdx = 6;
-
-    const now = new Date();
-    const todayZero = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-
-    const startZero = s.startDate ? new Date(s.startDate.getFullYear(), s.startDate.getMonth(), s.startDate.getDate()).getTime() : null;
-    const endZero = s.endDate ? new Date(s.endDate.getFullYear(), s.endDate.getMonth(), s.endDate.getDate()).getTime() : null;
-
-    let cellsHTML = '';
-    for (let i = 0; i < startDayIdx; i++) {
-      cellsHTML += `<div class="adv-cal-cell is-empty"></div>`;
-    }
-
-    for (let d = 1; d <= daysInMonth; d++) {
-      const cellDate = new Date(y, m, d);
-      const cellTime = cellDate.getTime();
-      const isPast = cellTime < todayZero;
-      const isToday = cellTime === todayZero;
-
-      let isStart = startZero !== null && cellTime === startZero;
-      let isEnd = endZero !== null && cellTime === endZero;
-      let inRange = false;
-      if (startZero !== null && endZero !== null && startZero !== endZero) {
-        inRange = cellTime > startZero && cellTime < endZero;
-      }
-
-      let classList = ['adv-cal-cell'];
-      if (isPast) classList.push('is-disabled');
-      if (isToday) classList.push('is-today');
-      if (isStart) classList.push('is-range-start');
-      if (isEnd) classList.push('is-range-end');
-      if (inRange) classList.push('is-in-range');
-
-      const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-      const clickAttr = isPast ? '' : `onclick="window.handleAdvDateSelect('${activeKey}', '${dateStr}')"`;
-
-      cellsHTML += `<button type="button" class="${classList.join(' ')}" ${clickAttr} ${isPast ? 'disabled' : ''} title="${formatAdvDate(cellDate)}">${d}</button>`;
-    }
-
-    // Presets HTML
-    let presetsHTML = '';
-    if (!slot.isEditionBased) {
-      presetsHTML = `
-        <div class="adv-presets-row" style="margin-bottom: 12px;">
-          <button type="button" class="adv-preset-btn ${s.preset === '7' ? 'active' : ''}" onclick="window.applyAdvPreset('${activeKey}', 7)">7 Days ($${slot.weeklyRate})</button>
-          <button type="button" class="adv-preset-btn ${s.preset === '14' ? 'active' : ''}" onclick="window.applyAdvPreset('${activeKey}', 14)">14 Days ($${slot.twoWeekRate} • 10% OFF)</button>
-          <button type="button" class="adv-preset-btn ${s.preset === '30' ? 'active' : ''}" onclick="window.applyAdvPreset('${activeKey}', 30)">30 Days ($${slot.monthlyRate} • 20% OFF)</button>
-        </div>
-      `;
-    }
-
-    // Selection bar HTML
-    let selectionBarHTML = '';
-    if (slot.isEditionBased) {
-      selectionBarHTML = `
-        <div class="adv-cal-selection-bar">
-          <span class="dates-text">Edition Drop: <strong class="dates-green">📅 ${info.fullStart || 'Select Date'}</strong></span>
-          <span class="adv-cal-price-highlight">$${info.price} / edition</span>
-        </div>
-      `;
-    } else if (info.isComplete) {
-      selectionBarHTML = `
-        <div class="adv-cal-selection-bar">
-          <div>
-            <span class="dates-text">Dates: 📅 <strong class="dates-green">${info.rangeStr}</strong> <span class="days-count">(${info.days} days)</span></span>
-          </div>
-          <span class="adv-cal-price-highlight">$${info.price} Total</span>
-        </div>
-      `;
-    } else {
-      selectionBarHTML = `
-        <div class="adv-cal-selection-bar" style="background: #FFFBEB; border-color: #FDE68A;">
-          <span style="color: #92400E;">Start: <strong>${info.fullStart}</strong> ➔ <em>👉 Click End Date</em></span>
-          <span style="font-size: 0.75rem; color: #B45309; font-weight: 600;">Selecting...</span>
-        </div>
-      `;
-    }
+    
+    const standardCost = slot.isEditionBased ? slot.standardPrice : Math.round(s.days * slot.dailyRate * 10) / 10;
 
     return `
-      <!-- 1. Top Segmented Tabs Row -->
-      <div class="adv-unified-tabs-row">
-        ${Object.keys(AD_SLOTS_CONFIG).map(k => {
-          const item = AD_SLOTS_CONFIG[k];
-          const isActive = k === activeKey;
-          return `
-            <button type="button" class="adv-unified-tab-btn ${isActive ? 'active' : ''}" onclick="window.selectActiveAdvSlot('${k}')">
-              <span class="adv-tab-icon">${item.icon}</span>
-              <span class="adv-tab-name">${item.name}</span>
-              ${item.badge ? `<span class="adv-unified-tab-badge">${item.badge}</span>` : ''}
-            </button>
-          `;
-        }).join('')}
-      </div>
-
-      <!-- 2. Main 2-Column Body -->
-      <div class="adv-unified-body-grid">
+      <div class="adv-studio-container">
         
-        <!-- Left Column: Configurator & Calendar -->
-        <div class="adv-unified-left-panel">
-          <!-- Slot Header Info -->
-          <div class="adv-unified-slot-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 1.4rem;">${slot.icon}</span>
-                <h3 class="adv-unified-slot-title">${slot.name}</h3>
-                ${slot.badge ? `<span class="adv-unified-tab-badge">${slot.badge}</span>` : ''}
-              </div>
-              <div style="display: flex; gap: 6px; align-items: center;">
-                <button type="button" class="advertise-preview-btn" onclick="window.openAdPreviewModal('${activeKey}')" title="Full size preview modal">
-                  <span>👁 Full Preview</span>
-                </button>
-                <a href="${activeKey === 'banner' ? '#/home' : (activeKey === 'listing' ? '#/tags' : (activeKey === 'tool' ? '#/tools/cursor' : '#/post/anthropic-announces-claude-3-7-sonnet'))}" class="advertise-preview-btn" style="text-decoration: none;" title="View placement on live site">
-                  <span>🔗 View on Site</span>
-                </a>
-              </div>
+        <!-- TOP FREE PROMO CALLOUT -->
+        <div class="adv-top-free-banner">
+          <span class="adv-free-tag">LIMITED TIME</span>
+          <span>🎉 100% Free Community Sponsorship Launch — Promote your AI tool or software for $0!</span>
+        </div>
+
+        <!-- HERO HEADER -->
+        <div class="adv-hero-head">
+          <div class="adv-hero-badge">
+            <span class="adv-hero-dot"></span> Reaching 100+ High-Intent Software Builders &amp; Founders
+          </div>
+          <h1 class="adv-hero-title">Advertise on AIRA: <span>Free Launch Sponsorship</span></h1>
+          <p class="adv-hero-sub">
+            We are partnering with AI developers, tools, and SaaS startups to sponsor AIRA for <strong>$0 (100% Free)</strong> during our growth launch! Customize your ad, pick your dates, and get featured immediately.
+          </p>
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="adv-stats-grid">
+          <div class="adv-stat-tile">
+            <div class="adv-stat-icon">👥</div>
+            <div>
+              <div class="adv-stat-val">100+</div>
+              <div class="adv-stat-lbl">Active AI Developers</div>
             </div>
-            <p class="adv-unified-slot-sub">${slot.subtitle}</p>
           </div>
-
-          <!-- Features Bullets -->
-          <div class="adv-unified-features-list">
-            ${(slot.features || []).map(f => `
-              <div class="adv-unified-feature-item">
-                <span class="adv-feature-check">✓</span>
-                <span>${f}</span>
-              </div>
-            `).join('')}
-          </div>
-
-          <!-- Duration Presets -->
-          <div style="margin-top: 14px;">
-            <label style="font-size: 0.8125rem; font-weight: 700; color: #18181B; display: block; margin-bottom: 6px;">
-              ${slot.isEditionBased ? 'Select Newsletter Edition Date:' : 'Select Campaign Duration:'}
-            </label>
-            ${presetsHTML}
-          </div>
-
-          <!-- Interactive Calendar Wrapper -->
-          <div class="advertise-cal-wrap" style="margin-top: 10px;">
-            ${selectionBarHTML}
-
-            <!-- Month Navigation -->
-            <div class="adv-cal-nav">
-              <span class="adv-cal-month-title">${monthNames[m]} ${y}</span>
-              <div style="display: flex; gap: 4px;">
-                <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${activeKey}', -1)" title="Previous Month">‹</button>
-                <button type="button" class="adv-cal-nav-btn" onclick="window.navAdvMonth('${activeKey}', 1)" title="Next Month">›</button>
-              </div>
+          <div class="adv-stat-tile">
+            <div class="adv-stat-icon lime">📬</div>
+            <div>
+              <div class="adv-stat-val">42.4%</div>
+              <div class="adv-stat-lbl">Average Open Rate</div>
             </div>
-
-            <!-- 7-Day Calendar Grid -->
-            <div class="adv-cal-grid">
-              <div class="adv-cal-th">Mo</div>
-              <div class="adv-cal-th">Tu</div>
-              <div class="adv-cal-th">We</div>
-              <div class="adv-cal-th">Th</div>
-              <div class="adv-cal-th">Fr</div>
-              <div class="adv-cal-th">Sa</div>
-              <div class="adv-cal-th">Su</div>
-              ${cellsHTML}
+          </div>
+          <div class="adv-stat-tile">
+            <div class="adv-stat-icon">⚡</div>
+            <div>
+              <div class="adv-stat-val">8.4%</div>
+              <div class="adv-stat-lbl">Average Click-Through (CTR)</div>
+            </div>
+          </div>
+          <div class="adv-stat-tile">
+            <div class="adv-stat-icon lime">💼</div>
+            <div>
+              <div class="adv-stat-val">74%</div>
+              <div class="adv-stat-lbl">Engineers &amp; Founders</div>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Live Mockup & Booking Box -->
-        <div class="adv-unified-right-panel">
-          
-          <!-- Live Mockup Box -->
-          <div class="adv-unified-mockup-wrap">
-            <div class="adv-mockup-label">Live Placement Preview</div>
-            <div class="adv-unified-mockup-frame">
-              ${getSlotMockupHTML(activeKey)}
-            </div>
-          </div>
+        <!-- MAIN 2-COLUMN STUDIO -->
+        <div class="adv-studio-split" id="studio-form-root">
 
-          <!-- Price & Summary Card -->
-          <div class="adv-unified-price-card">
-            <div class="adv-price-headline">
-              <div class="adv-price-big">$${info.price}</div>
-              <div class="adv-price-period">${slot.isEditionBased ? 'per edition drop' : `total for ${info.days} days ($${info.dailyAvg}/day)`}</div>
+          <!-- LEFT: FORM CONFIGURATOR -->
+          <div class="adv-form-panel">
+            
+            <!-- STEP 1 -->
+            <span class="adv-step-pill">Step 1</span>
+            <h2 class="adv-step-heading">Choose Advertising Placement (100% Free Launch)</h2>
+            <div class="adv-slot-pills-grid">
+              ${Object.keys(AD_SLOTS_CONFIG).map(k => {
+                const item = AD_SLOTS_CONFIG[k];
+                const isActive = k === activeKey;
+                return `
+                  <button type="button" class="adv-format-pill-btn ${isActive ? 'active' : ''}" onclick="window.selectAdvStudioSlot('${k}')">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-size: 1.1rem;">${item.icon}</span>
+                      <span class="adv-pill-name">${item.name}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <span class="adv-pill-old">$${item.standardPrice}</span>
+                      <span class="adv-pill-free">FREE</span>
+                    </div>
+                  </button>
+                `;
+              }).join('')}
             </div>
 
-            ${info.savingsText ? `
-              <div class="adv-savings-pill">
-                <span>⚡ ${info.savingsText}</span>
+            <!-- STEP 2 -->
+            <span class="adv-step-pill">Step 2</span>
+            <h2 class="adv-step-heading">Customize Your Ad Copy (Live Real-Time Sync)</h2>
+            <div class="adv-form-group-wrap">
+              <div class="adv-input-2col">
+                <div class="adv-field">
+                  <label class="adv-label">Brand / Product Name <span class="req">*</span></label>
+                  <input type="text" id="adv-input-brand" class="adv-input" value="${escapeHtml(s.brandName)}" placeholder="e.g. Acme AI" oninput="window.updateAdvStudioCopy()" />
+                </div>
+                <div class="adv-field">
+                  <label class="adv-label">CTA Button Label</label>
+                  <input type="text" id="adv-input-cta" class="adv-input" value="${escapeHtml(s.ctaText)}" placeholder="e.g. Try Free →" oninput="window.updateAdvStudioCopy()" />
+                </div>
               </div>
-            ` : ''}
 
-            <!-- Book CTA Button -->
-            <button type="button" class="adv-unified-book-btn" onclick="window.bookSlotWithDates('${activeKey}')" ${!info.isComplete ? 'disabled style="opacity:0.6; cursor:not-allowed;"' : ''}>
-              <span>Book ${slot.name} Now →</span>
-            </button>
+              <div class="adv-field">
+                <label class="adv-label">Ad Tagline / Value Proposition <span style="color:#71717A; font-weight:normal;">(Max 80 chars)</span></label>
+                <input type="text" id="adv-input-tagline" class="adv-input" value="${escapeHtml(s.tagline)}" placeholder="Short punchy description..." oninput="window.updateAdvStudioCopy()" />
+              </div>
 
-            <!-- Guarantee Note -->
-            <div class="adv-guarantee-note">
-              <span>🔒 100% Guaranteed Delivery • Rapid 24h Setup</span>
+              <div class="adv-field">
+                <label class="adv-label">Destination Landing URL <span class="req">*</span></label>
+                <input type="url" id="adv-input-url" class="adv-input" value="${escapeHtml(s.targetUrl)}" placeholder="https://yourproduct.com/?ref=aira" oninput="window.updateAdvStudioCopy()" />
+              </div>
             </div>
+
+            <!-- STEP 3 -->
+            <span class="adv-step-pill">Step 3</span>
+            <h2 class="adv-step-heading">Select Start Day &amp; End Day (Custom Duration)</h2>
+            <div class="adv-schedule-box">
+              <div class="adv-dates-grid">
+                <div class="adv-field">
+                  <label class="adv-label">📅 Start Date <span class="req">*</span></label>
+                  <input type="text" id="adv-input-start-date" class="adv-input" value="${escapeHtml(s.startDate)}" oninput="window.updateAdvStudioDatesManual()" />
+                </div>
+                <div class="adv-field">
+                  <label class="adv-label">📅 End Date <span class="req">*</span></label>
+                  <input type="text" id="adv-input-end-date" class="adv-input" value="${escapeHtml(s.endDate)}" oninput="window.updateAdvStudioDatesManual()" />
+                </div>
+                <div class="adv-field">
+                  <label class="adv-label">Duration &amp; Rate</label>
+                  <div class="adv-duration-badge">
+                    ${s.days} Days (100% FREE)
+                  </div>
+                </div>
+              </div>
+
+              <div style="font-size: 0.8rem; font-weight: 700; color: #27272A; margin-bottom: 6px;">Quick Duration Presets:</div>
+              <div class="adv-presets-row">
+                <button type="button" class="adv-preset-pill ${s.preset === '3' ? 'active' : ''}" onclick="window.applyAdvStudioDays(3)">3 Days (FREE)</button>
+                <button type="button" class="adv-preset-pill ${s.preset === '7' ? 'active' : ''}" onclick="window.applyAdvStudioDays(7)">7 Days (FREE)</button>
+                <button type="button" class="adv-preset-pill ${s.preset === '14' ? 'active' : ''}" onclick="window.applyAdvStudioDays(14)">14 Days (FREE)</button>
+                <button type="button" class="adv-preset-pill ${s.preset === '30' ? 'active' : ''}" onclick="window.applyAdvStudioDays(30)">30 Days (FREE)</button>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <span class="adv-step-pill">Step 4</span>
+            <h2 class="adv-step-heading">Campaign Message &amp; Special Requirements</h2>
+            <div class="adv-field" style="margin-bottom: 22px;">
+              <label class="adv-label">Campaign Notes / UTM Tracking / Instructions <span style="color:#71717A; font-weight:normal;">(Optional)</span></label>
+              <textarea id="adv-input-message" class="adv-textarea" placeholder="Add custom instructions (e.g., specific UTM parameters, launch timing, exclusive coupon code, or custom brand icon request)..." oninput="window.updateAdvStudioMessage()">${escapeHtml(s.message)}</textarea>
+            </div>
+
+            <!-- STEP 5 -->
+            <span class="adv-step-pill">Step 5</span>
+            <h2 class="adv-step-heading">Sponsor Contact Details</h2>
+            <div class="adv-input-2col" style="margin-bottom: 20px;">
+              <div class="adv-field">
+                <label class="adv-label">Your Name <span class="req">*</span></label>
+                <input type="text" id="adv-input-contact" class="adv-input" value="${escapeHtml(s.contactName)}" placeholder="Your full name" />
+              </div>
+              <div class="adv-field">
+                <label class="adv-label">Work Email <span class="req">*</span></label>
+                <input type="email" id="adv-input-email" class="adv-input" value="${escapeHtml(s.workEmail)}" placeholder="alex@company.com" />
+              </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="button" class="adv-btn-claim-free" onclick="window.submitAdvStudioCampaign()">
+              <span>Claim Free Placement ($0.00 • 100% Off) →</span>
+            </button>
+            <div class="adv-secure-note">🔒 100% Guaranteed Free Placement • Rapid 24h Setup • Transparent Analytics</div>
+
           </div>
 
+          <!-- RIGHT: LIVE SIMULATOR & ORDER SUMMARY -->
+          <div class="adv-simulator-panel">
+            
+            <!-- LIVE CANVAS -->
+            <div class="adv-canvas-card">
+              <div class="adv-canvas-head">
+                <div class="adv-canvas-title">
+                  <span>👁 Live Placement Simulator</span>
+                </div>
+                <span class="adv-live-tag">LIVE RENDER</span>
+              </div>
+
+              <div class="adv-browser-frame" id="adv-mockup-frame-root">
+                ${getSlotLiveMockupHTML(s)}
+              </div>
+            </div>
+
+            <!-- SUMMARY CARD -->
+            <div class="adv-summary-card">
+              <div class="adv-sum-head">
+                <div>
+                  <div class="adv-sum-title">Campaign Order Summary</div>
+                  <div class="adv-sum-slot">${slot.name} (${s.days} Days)</div>
+                </div>
+                <span class="adv-sum-badge">Free Early Access</span>
+              </div>
+
+              <div class="adv-sum-row">
+                <span>Selected Placement</span>
+                <span style="font-weight: 700; color: #131313;">${slot.name}</span>
+              </div>
+              <div class="adv-sum-row">
+                <span>Campaign Schedule</span>
+                <span style="font-weight: 700; color: #1C46F5;">${escapeHtml(s.startDate)} – ${escapeHtml(s.endDate)}</span>
+              </div>
+              <div class="adv-sum-row">
+                <span>Standard Price</span>
+                <span style="text-decoration: line-through;">$${standardCost}</span>
+              </div>
+              <div class="adv-sum-row adv-discount-row">
+                <span>🎉 Launch Early Access Discount</span>
+                <span>- $${standardCost} (100% OFF)</span>
+              </div>
+              <div class="adv-sum-row">
+                <span>Audience Guarantee</span>
+                <span style="color: #059669; font-weight: 700;">100+ Builders &amp; Founders</span>
+              </div>
+              <div class="adv-sum-row adv-sum-total">
+                <span>Total Cost</span>
+                <span style="color: #059669;">$0.00 (FREE)</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- "NEED A CUSTOM PARTNERSHIP?" SECTION -->
+        <div class="adv-custom-partner-card" id="sponsor-form-section">
+          <div class="adv-custom-title">Need a custom partnership?</div>
+          <p class="adv-custom-sub">
+            Looking for a bespoke multi-channel campaign, custom event co-hosting, or custom newsletter editorial deep-dive? Tell us more and our partnerships team will reach out within 24 hours.
+          </p>
+
+          <form id="form-custom-partnership" onsubmit="window.handleCustomPartnerSubmit(event)">
+            <div class="adv-custom-grid">
+              <div class="adv-field">
+                <label class="adv-label">Your Name <span class="req">*</span></label>
+                <input type="text" name="partnerName" class="adv-input" placeholder="e.g. Sarah Connor" required />
+              </div>
+              <div class="adv-field">
+                <label class="adv-label">Work Email <span class="req">*</span></label>
+                <input type="email" name="partnerEmail" class="adv-input" placeholder="sarah@startup.io" required />
+              </div>
+              <div class="adv-field">
+                <label class="adv-label">Company / Product URL <span class="req">*</span></label>
+                <input type="url" name="partnerUrl" class="adv-input" placeholder="https://startup.io" required />
+              </div>
+            </div>
+
+            <div class="adv-field" style="margin-bottom: 20px;">
+              <label class="adv-label">Partnership Goals &amp; Specific Details</label>
+              <textarea name="partnerMessage" class="adv-textarea" placeholder="Describe your product, target audience, ideal campaign launch date, and partnership requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="adv-btn-custom-submit">
+              <span>Submit Custom Partnership Inquiry →</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- AUDIENCE DEMOGRAPHICS -->
+        <div class="adv-demographics-sec">
+          <h3 class="adv-demo-title">Verified Developer Demographics</h3>
+          <div class="adv-demo-grid">
+            <div class="adv-demo-box">
+              <div class="adv-demo-pct">45%</div>
+              <div class="adv-demo-role">AI &amp; ML Engineers</div>
+              <div class="adv-demo-desc">Building autonomous agents &amp; LLM pipelines</div>
+            </div>
+            <div class="adv-demo-box">
+              <div class="adv-demo-pct">29%</div>
+              <div class="adv-demo-role">Technical Founders &amp; CTOs</div>
+              <div class="adv-demo-desc">Direct authority over engineering tools &amp; APIs</div>
+            </div>
+            <div class="adv-demo-box">
+              <div class="adv-demo-pct">16%</div>
+              <div class="adv-demo-role">Engineering &amp; Product Leads</div>
+              <div class="adv-demo-desc">Evaluating software stacks for teams</div>
+            </div>
+            <div class="adv-demo-box">
+              <div class="adv-demo-pct">10%</div>
+              <div class="adv-demo-role">AI Researchers &amp; Solopreneurs</div>
+              <div class="adv-demo-desc">High-intent daily adopters of developer tools</div>
+            </div>
+          </div>
         </div>
 
       </div>
     `;
   }
 
-  function updateUnifiedConfiguratorUI() {
-    const rootEl = document.getElementById('adv-unified-card-root');
-    if (rootEl) {
-      rootEl.innerHTML = renderUnifiedAdConfiguratorHTML();
-    }
-  }
-
-  window.selectActiveAdvSlot = function(slotKey) {
-    window.airaAdvActiveSlot = slotKey;
-    updateUnifiedConfiguratorUI();
+  window.selectAdvStudioSlot = function(slotKey) {
+    initAdvStudioState();
+    window.airaAdvStudioState.activeSlot = slotKey;
+    const rootEl = document.getElementById('advertise-page-root');
+    if (rootEl) rootEl.innerHTML = renderAdvertiseStudioHTML();
   };
 
-  function updateSlotCardUI(slotKey) {
-    const cardEl = document.getElementById(`slot-card-interactive-${slotKey}`);
-    if (cardEl) {
-      cardEl.innerHTML = renderSlotCardContentHTML(slotKey);
-    }
-    updateUnifiedConfiguratorUI();
-  }
+  window.updateAdvStudioCopy = function() {
+    initAdvStudioState();
+    const brand = document.getElementById('adv-input-brand');
+    const cta = document.getElementById('adv-input-cta');
+    const tagline = document.getElementById('adv-input-tagline');
+    const url = document.getElementById('adv-input-url');
 
-  window.applyAdvPreset = function(slotKey, daysCount) {
-    initAdvState();
-    const s = window.airaAdvState[slotKey];
+    if (brand) window.airaAdvStudioState.brandName = brand.value;
+    if (cta) window.airaAdvStudioState.ctaText = cta.value;
+    if (tagline) window.airaAdvStudioState.tagline = tagline.value;
+    if (url) window.airaAdvStudioState.targetUrl = url.value;
+
+    const frameEl = document.getElementById('adv-mockup-frame-root');
+    if (frameEl) {
+      frameEl.innerHTML = getSlotLiveMockupHTML(window.airaAdvStudioState);
+    }
+  };
+
+  window.updateAdvStudioMessage = function() {
+    initAdvStudioState();
+    const msg = document.getElementById('adv-input-message');
+    if (msg) window.airaAdvStudioState.message = msg.value;
+  };
+
+  window.updateAdvStudioDatesManual = function() {
+    initAdvStudioState();
+    const start = document.getElementById('adv-input-start-date');
+    const end = document.getElementById('adv-input-end-date');
+    if (start) window.airaAdvStudioState.startDate = start.value;
+    if (end) window.airaAdvStudioState.endDate = end.value;
+    window.airaAdvStudioState.preset = 'custom';
+  };
+
+  window.applyAdvStudioDays = function(daysCount) {
+    initAdvStudioState();
     const now = new Date();
-    const baseStart = s.startDate && s.startDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate()) 
-      ? new Date(s.startDate) 
-      : new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + (daysCount - 1));
 
-    s.startDate = baseStart;
-    s.endDate = new Date(baseStart.getFullYear(), baseStart.getMonth(), baseStart.getDate() + (daysCount - 1));
-    s.preset = String(daysCount);
-    s.isSelectingEnd = false;
-    s.year = baseStart.getFullYear();
-    s.month = baseStart.getMonth();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const fmt = (d) => `${months[d.getMonth()]} ${String(d.getDate()).padStart(2, '0')}, ${d.getFullYear()}`;
 
-    updateSlotCardUI(slotKey);
+    window.airaAdvStudioState.days = daysCount;
+    window.airaAdvStudioState.preset = String(daysCount);
+    window.airaAdvStudioState.startDate = fmt(start);
+    window.airaAdvStudioState.endDate = fmt(end);
+
+    const rootEl = document.getElementById('advertise-page-root');
+    if (rootEl) rootEl.innerHTML = renderAdvertiseStudioHTML();
   };
 
-  window.navAdvMonth = function(slotKey, delta) {
-    initAdvState();
-    const s = window.airaAdvState[slotKey];
-    s.month += delta;
-    if (s.month < 0) {
-      s.month = 11;
-      s.year--;
-    } else if (s.month > 11) {
-      s.month = 0;
-      s.year++;
-    }
-    updateSlotCardUI(slotKey);
-  };
+  window.submitAdvStudioCampaign = function() {
+    initAdvStudioState();
+    const s = window.airaAdvStudioState;
+    const brand = (document.getElementById('adv-input-brand')?.value || s.brandName).trim();
+    const targetUrl = (document.getElementById('adv-input-url')?.value || s.targetUrl).trim();
+    const contact = (document.getElementById('adv-input-contact')?.value || s.contactName).trim();
+    const email = (document.getElementById('adv-input-email')?.value || s.workEmail).trim();
+    const msg = (document.getElementById('adv-input-message')?.value || s.message).trim();
 
-  window.handleAdvDateSelect = function(slotKey, dateStr) {
-    initAdvState();
-    const parts = dateStr.split('-').map(Number);
-    const clicked = new Date(parts[0], parts[1] - 1, parts[2]);
-    const s = window.airaAdvState[slotKey];
-    const slot = AD_SLOTS_CONFIG[slotKey];
-
-    if (slot.isEditionBased) {
-      s.startDate = clicked;
-      s.endDate = clicked;
-      s.preset = '1';
-      s.isSelectingEnd = false;
-    } else {
-      if (!s.startDate || !s.isSelectingEnd) {
-        // Step 1: User clicks start date
-        s.startDate = clicked;
-        s.endDate = null;
-        s.isSelectingEnd = true;
-        s.preset = 'custom';
-      } else {
-        // Step 2: User clicks end date
-        if (clicked < s.startDate) {
-          s.startDate = clicked;
-          s.endDate = null;
-          s.isSelectingEnd = true;
-          s.preset = 'custom';
-        } else {
-          s.endDate = clicked;
-          s.isSelectingEnd = false;
-          s.preset = 'custom';
-        }
-      }
-    }
-
-    updateSlotCardUI(slotKey);
-  };
-
-  window.bookSlotWithDates = function(slotKey) {
-    initAdvState();
-    const slot = AD_SLOTS_CONFIG[slotKey];
-    const info = getSlotPriceAndDays(slotKey);
-    if (!info.isComplete) {
-      showToast('⚠️ Please select both Start Date and End Date on the calendar.');
+    if (!brand || !targetUrl || !contact || !email) {
+      showToast('⚠️ Please fill in all required fields (Brand Name, URL, Name, Work Email).');
       return;
     }
 
-    const dateRangeLabel = slot.isEditionBased ? info.fullStart : `${info.fullStart} to ${info.fullEnd}`;
-    const pkgValue = `${slot.name} (${info.days} days: ${info.rangeStr} • $${info.price})`;
-
-    const selectEl = document.getElementById('advertise-package-select');
-    if (selectEl) {
-      let optionExists = false;
-      for (let opt of selectEl.options) {
-        if (opt.value.startsWith(slot.name)) {
-          opt.text = pkgValue;
-          opt.value = pkgValue;
-          opt.selected = true;
-          optionExists = true;
-          break;
-        }
-      }
-      if (!optionExists) {
-        const opt = new Option(pkgValue, pkgValue, true, true);
-        selectEl.add(opt, 0);
-      }
-      selectEl.value = pkgValue;
-    }
-
-    const msgBox = document.querySelector('textarea[name="message"]');
-    if (msgBox) {
-      msgBox.value = `Selected Slot: ${slot.name}\nTarget Schedule: ${dateRangeLabel} (${info.days} days)\nCalculated Total: $${info.price} ($${info.dailyAvg}/day)\n\nOur product URL / campaign notes: `;
-    }
-
-    const formSec = document.getElementById('sponsor-form-section');
-    if (formSec) {
-      formSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const nameInput = document.querySelector('input[name="contactName"]');
-      if (nameInput) setTimeout(() => nameInput.focus(), 400);
-    }
-
-    showToast(`⚡ Selected ${slot.name} ($${info.price} for ${info.days} days)! Complete details below.`);
-  };
-
-  window.openAdPreviewModal = function(slotKey) {
-    const slot = AD_SLOTS_CONFIG[slotKey] || AD_SLOTS_CONFIG.banner;
-    const existingModal = document.getElementById('adv-preview-modal-root');
-    if (existingModal) existingModal.remove();
-
-    let mockupContent = '';
-    if (slotKey === 'banner') {
-      mockupContent = `
-        <div class="adv-mockup-browser-bar">
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">https://aira.news/</div>
-        </div>
-        <div class="adv-highlight-box">
-          <span class="adv-highlight-pill">Top Banner Placement</span>
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="background: #18181B; color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Ad</span>
-              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="Logo" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
-              <span style="font-size: 0.85rem; color: #18181B;"><strong>Your Brand Name</strong> — Launch, scale, and monitor your AI agents in production.</span>
-            </div>
-            <button style="background: #18181B; color: #FFFFFF; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 9999px; border: none; white-space: nowrap;">Try Free →</button>
-          </div>
-        </div>
-        <div style="opacity: 0.45; pointer-events: none; margin-top: 14px; text-align: center;">
-          <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 6px;">The One &amp; Only AI Newsletter</h2>
-          <p style="font-size: 0.82rem; color: #71717A;">Save time, cut costs, and 10x your productivity with curated tools.</p>
-        </div>
-      `;
-    } else if (slotKey === 'listing') {
-      mockupContent = `
-        <div class="adv-mockup-browser-bar">
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">https://aira.news/#/tools</div>
-        </div>
-        <div class="adv-highlight-box">
-          <span class="adv-highlight-pill">Position #1 Sponsored Tool</span>
-          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-            <div style="width: 44px; height: 44px; border-radius: 10px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">⚡</div>
-            <div style="flex: 1; min-width: 0;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
-                <strong style="font-size: 0.95rem; color: #18181B;">Your Software / Tool Name</strong>
-                <span style="background: #EEF2FF; color: #1C46F5; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Sponsored</span>
-              </div>
-              <p style="font-size: 0.8rem; color: #71717A; margin: 0; line-height: 1.4;">Automate your entire software development workflow with intelligent AI agents.</p>
-            </div>
-            <span style="font-size: 0.82rem; font-weight: 700; color: #1C46F5; white-space: nowrap;">Visit Tool ↗</span>
-          </div>
-        </div>
-        <div style="opacity: 0.4; pointer-events: none; margin-top: 10px; padding: 10px; background: #FFFFFF; border-radius: 8px; border: 1px solid #E4E4E7;">
-          <div style="font-size: 0.85rem; font-weight: 700;">Organic Tool Listing #2</div>
-          <div style="font-size: 0.75rem; color: #A1A1AA;">Standard community-ranked entry...</div>
-        </div>
-      `;
-    } else if (slotKey === 'tool') {
-      mockupContent = `
-        <div class="adv-mockup-browser-bar">
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">https://aira.news/#/tools/cursor</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 220px; gap: 14px;">
-          <div style="opacity: 0.5; pointer-events: none; background: #FFFFFF; border-radius: 8px; padding: 12px; border: 1px solid #E4E4E7;">
-            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 4px;">Tool Overview &amp; Specs</h4>
-            <p style="font-size: 0.75rem; color: #71717A;">Features, alternatives, pricing tiers, and community reviews...</p>
-          </div>
-          <div class="adv-highlight-box" style="margin: 0;">
-            <span class="adv-highlight-pill">Sidebar Widget</span>
-            <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: #71717A; margin-bottom: 4px;">Featured Alternative</div>
-            <strong style="font-size: 0.88rem; color: #18181B; display: block; margin-bottom: 4px;">Switch to Your Tool</strong>
-            <p style="font-size: 0.74rem; color: #52525B; line-height: 1.3; margin-bottom: 8px;">10x faster inference and 50% lower monthly API costs.</p>
-            <button style="background: #18181B; color: #FFFFFF; font-size: 0.74rem; font-weight: 600; padding: 5px 10px; border-radius: 5px; border: none; width: 100%;">Get Started →</button>
-          </div>
-        </div>
-      `;
-    } else {
-      mockupContent = `
-        <div class="adv-mockup-browser-bar">
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">AIRA Newsletter Edition (100+ inboxes)</div>
-        </div>
-        <div class="adv-highlight-box">
-          <span class="adv-highlight-pill">Dedicated Spotlight</span>
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-            <span style="background: #FEF08A; color: #854D0E; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">FEATURED SPONSOR</span>
-            <strong style="font-size: 0.92rem; color: #18181B;">Introducing Your Company</strong>
-          </div>
-          <p style="font-size: 0.8rem; color: #3F3F46; line-height: 1.5; margin-bottom: 10px;">
-            Reach 100+ AI builders with a high-credibility 100-word product deep dive, custom screenshot, and direct conversion button placed before our main editorial story.
-          </p>
-          <a href="#" style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.76rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; text-decoration: none;">Claim Exclusive 30% Off →</a>
-        </div>
-      `;
-    }
-
-    const modalHTML = `
-      <div class="adv-modal-overlay" id="adv-preview-modal-root" onclick="if(event.target === this) window.closeAdPreviewModal();">
-        <div class="adv-modal-card">
-          <div class="adv-modal-header">
-            <div class="adv-modal-title-wrap">
-              <span style="font-size: 1.2rem;">${slot.icon}</span>
-              <div>
-                <h3 class="adv-modal-title">Live Preview: ${slot.name}</h3>
-                <div style="font-size: 0.76rem; color: #71717A;">${slot.subtitle}</div>
-              </div>
-            </div>
-            <button type="button" class="adv-modal-close-btn" onclick="window.closeAdPreviewModal()" title="Close Preview">✕</button>
-          </div>
-          <div class="adv-modal-body">
-            <div class="adv-modal-mockup-frame">
-              ${mockupContent}
-            </div>
-          </div>
-          <div class="adv-modal-footer">
-            <div class="adv-modal-footer-info">
-              Pricing starting at <strong>$${slot.weeklyRate}${slot.isEditionBased ? ' / edition' : ' / week'}</strong>
-            </div>
-            <button type="button" class="adv-modal-book-cta" onclick="window.closeAdPreviewModal(); window.bookSlotWithDates('${slotKey}');">
-              Book This Placement →
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-    const escHandler = (e) => {
-      if (e.key === 'Escape') {
-        window.closeAdPreviewModal();
-        document.removeEventListener('keydown', escHandler);
-      }
+    const campaign = {
+      slot: s.activeSlot,
+      brandName: brand,
+      ctaText: s.ctaText,
+      tagline: s.tagline,
+      targetUrl,
+      startDate: s.startDate,
+      endDate: s.endDate,
+      days: s.days,
+      message: msg,
+      contactName: contact,
+      workEmail: email,
+      isFreeLaunch: true,
+      cost: '$0.00 (FREE)',
+      createdAt: new Date().toISOString()
     };
-    document.addEventListener('keydown', escHandler);
+
+    const inquiries = JSON.parse(localStorage.getItem('aira_ad_inquiries') || '[]');
+    inquiries.push(campaign);
+    localStorage.setItem('aira_ad_inquiries', JSON.stringify(inquiries));
+
+    const formPanel = document.querySelector('.adv-form-panel');
+    if (formPanel) {
+      formPanel.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #ECFDF5; color: #059669; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
+          <h2 style="font-size: 1.6rem; font-weight: 900; color: #131313; margin-bottom: 10px;">Free Sponsor Slot Claimed!</h2>
+          <p style="color: #52525B; font-size: 0.95rem; max-width: 480px; margin: 0 auto 20px auto; line-height: 1.6;">
+            Thank you for partnering with AIRA! Your <strong>${campaign.slot.toUpperCase()}</strong> placement for <strong>${escapeHtml(campaign.brandName)}</strong> (${campaign.days} Days: ${escapeHtml(campaign.startDate)} to ${escapeHtml(campaign.endDate)}) has been locked for <strong>$0.00</strong>.
+          </p>
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px; max-width: 440px; margin: 0 auto 24px auto; text-align: left; font-size: 0.85rem; color: #334155;">
+            <div><strong>Confirmation Sent To:</strong> ${escapeHtml(campaign.workEmail)}</div>
+            <div><strong>Live Launch Window:</strong> ${escapeHtml(campaign.startDate)} – ${escapeHtml(campaign.endDate)}</div>
+            <div><strong>Status:</strong> <span style="color:#059669; font-weight:700;">Active Free Launch Queue</span></div>
+          </div>
+          <a href="#/home" class="btn-sub-nav" style="display: inline-block;">Return to Homepage</a>
+        </div>
+      `;
+    }
+
+    showToast('🎉 Free sponsorship slot claimed successfully! Check your email.');
   };
 
-  window.closeAdPreviewModal = function() {
-    const m = document.getElementById('adv-preview-modal-root');
-    if (m) m.remove();
+  window.handleCustomPartnerSubmit = function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const inquiry = {
+      name: formData.get('partnerName'),
+      email: formData.get('partnerEmail'),
+      url: formData.get('partnerUrl'),
+      message: formData.get('partnerMessage'),
+      date: new Date().toISOString()
+    };
+
+    const customList = JSON.parse(localStorage.getItem('aira_custom_partnerships') || '[]');
+    customList.push(inquiry);
+    localStorage.setItem('aira_custom_partnerships', JSON.stringify(customList));
+
+    const card = document.getElementById('sponsor-form-section');
+    if (card) {
+      card.innerHTML = `
+        <div style="text-align: center; padding: 32px 20px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: #EEF2FF; color: #1C46F5; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">✓</div>
+          <h2 style="font-size: 1.5rem; font-weight: 900; color: #131313; margin-bottom: 8px;">Partnership Inquiry Received!</h2>
+          <p style="color: #52525B; font-size: 0.95rem; max-width: 480px; margin: 0 auto 20px auto; line-height: 1.6;">
+            Thank you! Our partnerships desk will review your requirements and reach out to <strong>${escapeHtml(inquiry.email)}</strong> within 24 hours.
+          </p>
+        </div>
+      `;
+    }
+    showToast('🎉 Partnership inquiry sent successfully!');
   };
 
   function renderAdvertisePage() {
-    initAdvState();
-
-    appContainer.innerHTML = `
-      <div class="advertise-page-wrap">
-        <div class="advertise-container">
-          
-          <!-- 1. DevSuite Live Preview Floating Top Ad Banner -->
-          <div class="advertise-live-preview-ad">
-            <div class="advertise-live-left">
-              <span class="advertise-ad-badge">Ad</span>
-              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
-              <span><strong>Your brand here</strong> — Reach 100+ active software developers, founders, and AI engineers.</span>
-            </div>
-            <a href="#sponsor-form-section" class="advertise-live-btn">Advertise on AIRA</a>
-          </div>
-
-          <!-- 2. Hero Header -->
-          <div class="advertise-hero">
-            <h1 class="advertise-hero-title">Advertise on AIRA</h1>
-            <p class="advertise-hero-desc">
-              Promote your business, AI tool, or software on AIRA and reach an engaged audience of 100+ software developers, founders, and tech-savvy builders. Boost your sales, signups, and brand authority.
-            </p>
-          </div>
-
-          <!-- 3. Audience Statistics 4-Card Row -->
-          <div class="advertise-stats-row">
-            <div class="advertise-stat-card">
-              <div class="advertise-stat-val">100+</div>
-              <div class="advertise-stat-label">Active AI Builders</div>
-            </div>
-            <div class="advertise-stat-card">
-              <div class="advertise-stat-val">42.4%</div>
-              <div class="advertise-stat-label">Average Open Rate</div>
-            </div>
-            <div class="advertise-stat-card">
-              <div class="advertise-stat-val">8.4%</div>
-              <div class="advertise-stat-label">Average CTR</div>
-            </div>
-            <div class="advertise-stat-card">
-              <div class="advertise-stat-val">74%</div>
-              <div class="advertise-stat-label">Devs &amp; Founders</div>
-            </div>
-          </div>
-
-          <!-- 4. DevSuite-Style Unified Interactive Single Ad Configurator Card -->
-          <div class="advertise-slots-section">
-            <div class="advertise-section-heading">
-              <h2 class="advertise-section-title">Available Advertising Slots</h2>
-              <p class="advertise-section-desc">Select an advertising slot, configure dates on the live calendar, and book your campaign instantly.</p>
-            </div>
-
-            <div class="adv-unified-configurator-card" id="adv-unified-card-root">
-              ${renderUnifiedAdConfiguratorHTML()}
-            </div>
-          </div>
-
-          <!-- 5. DevSuite "Need a Custom Partnership?" & Booking Box -->
-          <div class="advertise-custom-box" id="sponsor-form-section">
-            <div class="advertise-custom-header">
-              <h3 class="advertise-custom-title">Need a custom partnership?</h3>
-              <p class="advertise-custom-desc">
-                Tell us more about your company and campaign goals, and our team will get back to you within 24 hours.
-              </p>
-            </div>
-
-            <form id="advertise-inquiry-form">
-              <div class="advertise-form-grid">
-                <div class="advertise-form-group">
-                  <label class="advertise-form-label">Your Name *</label>
-                  <input type="text" name="contactName" class="advertise-form-input" placeholder="e.g. Alex Morgan" required />
-                </div>
-
-                <div class="advertise-form-group">
-                  <label class="advertise-form-label">Work Email *</label>
-                  <input type="email" name="workEmail" class="advertise-form-input" placeholder="alex@company.com" required />
-                </div>
-
-                <div class="advertise-form-group">
-                  <label class="advertise-form-label">Company / Product URL *</label>
-                  <input type="url" name="companyUrl" class="advertise-form-input" placeholder="https://yourproduct.ai" required />
-                </div>
-
-                <div class="advertise-form-group">
-                  <label class="advertise-form-label">Selected Ad Slot / Package *</label>
-                  <select name="package" id="advertise-package-select" class="advertise-form-select" required>
-                    <option value="Top Header Banner (7 days: $249)">Top Header Banner (7 days: $249)</option>
-                    <option value="Listing Ad (7 days: $149)">Listing Ad (7 days: $149)</option>
-                    <option value="Tool Page Ad (7 days: $199)">Tool Page Ad (7 days: $199)</option>
-                    <option value="Newsletter Spotlight (1 Edition: $399)">Newsletter Spotlight (1 Edition: $399)</option>
-                    <option value="Custom Multi-Channel Campaign">Custom Multi-Channel Campaign</option>
-                  </select>
-                </div>
-
-                <div class="advertise-form-group full-width">
-                  <label class="advertise-form-label">Campaign Goals / Message</label>
-                  <textarea name="message" class="advertise-form-textarea" rows="4" placeholder="Tell us about the product you want to promote, target launch date, or any specific requirements..."></textarea>
-                </div>
-              </div>
-
-              <button type="submit" class="advertise-submit-btn">
-                <span>Submit Campaign Inquiry</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
-            </form>
-
-            <div class="advertise-direct-contact">
-              Prefer direct email? Reach our partnerships desk at <a href="mailto:sponsor@aira.com">sponsor@aira.com</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    `;
-
-    // Helper to auto-select package and scroll smoothly to form
-    window.selectAdvertiseSlot = function(pkgValue) {
-      const selectEl = document.getElementById('advertise-package-select');
-      if (selectEl) {
-        selectEl.value = pkgValue;
-      }
-      const formSec = document.getElementById('sponsor-form-section');
-      if (formSec) {
-        formSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    };
-
-    // Bind inquiry form
-    const form = document.getElementById('advertise-inquiry-form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const inquiry = {
-          name: formData.get('contactName'),
-          email: formData.get('workEmail'),
-          url: formData.get('companyUrl'),
-          pkg: formData.get('package'),
-          message: formData.get('message'),
-          date: new Date().toISOString()
-        };
-        const inquiries = JSON.parse(localStorage.getItem('aira_ad_inquiries') || '[]');
-        inquiries.push(inquiry);
-        localStorage.setItem('aira_ad_inquiries', JSON.stringify(inquiries));
-
-        const card = document.getElementById('sponsor-form-section');
-        if (card) {
-          card.innerHTML = `
-            <div style="text-align: center; padding: 40px 20px;">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #EEF2FF; color: #1C46F5; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">✓</div>
-              <h2 style="font-size: 1.6rem; font-weight: 900; color: #18181B; margin-bottom: 12px;">Inquiry Received!</h2>
-              <p style="color: #52525B; font-size: 1rem; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.6;">
-                Thank you for choosing AIRA! Our partnerships team will review your campaign details and reach out to <strong>${inquiry.email}</strong> with available slot dates within 24 hours.
-              </p>
-              <a href="#/home" class="btn-subscribe-nav" style="display: inline-block;">Return to Homepage</a>
-            </div>
-          `;
-        }
-        showToast('🎉 Partnership inquiry sent successfully!');
-      });
-    }
+    initAdvStudioState();
+    appContainer.innerHTML = `<div id="advertise-page-root">${renderAdvertiseStudioHTML()}</div>`;
   }
 
   // =========================================================================
