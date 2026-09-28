@@ -1647,14 +1647,6 @@ if (query !== '') {
                   </div>
                 </div>
               </a>
-              ${idx === 2 ? `
-                <!-- In-Feed Articles Promotional Showcase Banner -->
-                <div class="in-feed-promo-banner-card" style="grid-column: 1 / -1; margin: 18px 0 24px 0; border-radius: 14px; overflow: hidden; border: 1.5px solid #1C46F5; box-shadow: 0 6px 24px rgba(28, 70, 245, 0.16); background: #000000;">
-                  <a href="#/advertise" title="AIRA AI Newsletter & Curated Tools" style="display: block; width: 100%; line-height: 0;">
-                    <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=142.0" alt="Stay Ahead with the Latest AI News, Tools & Updates" style="width: 100%; height: auto; display: block; border-radius: 12px; aspect-ratio: 1376 / 768; object-fit: cover;" />
-                  </a>
-                </div>
-              ` : ''}
             `).join('')}
           </div>
 
