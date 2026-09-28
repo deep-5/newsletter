@@ -20552,3 +20552,261 @@ body,
   border: 1px solid #FFFFFF !important;
   font-weight: 800 !important;
 }
+
+
+/* ==========================================================================
+   4. ELECTRIC COBALT BLUE SPONSOR STRIP & ARTICLE TOP AD BANNER
+   ========================================================================== */
+
+/* 4.1 Sponsors & Partners Grid Bar */
+.openalt-sponsors-strip {
+  margin: 18px 0 10px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+.openalt-sponsors-header {
+  text-align: center !important;
+}
+
+.openalt-sponsors-text {
+  font-size: 0.88rem !important;
+  color: #52525B !important;
+}
+
+.openalt-sponsors-text a,
+.openalt-become-sponsor-link {
+  color: #1C46F5 !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+  margin-left: 4px !important;
+}
+
+.openalt-sponsors-text a:hover,
+.openalt-become-sponsor-link:hover {
+  color: #1539D6 !important;
+}
+
+.openalt-sponsors-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  width: 100% !important;
+  border: 1.5px solid #1C46F5 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #1C46F5 !important;
+  box-shadow: 0 4px 16px rgba(28, 70, 245, 0.22) !important;
+}
+
+.openalt-sponsor-tile {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 13px 12px !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  transition: all 0.15s ease !important;
+  background: #1C46F5 !important;
+}
+
+.openalt-sponsor-tile span,
+.openalt-sponsor-tile .sponsor-name {
+  color: #FFFFFF !important;
+}
+
+.openalt-sponsor-tile:last-child,
+.openalt-sponsor-tile-add {
+  border-right: none !important;
+}
+
+.openalt-sponsor-tile:last-child span,
+.openalt-sponsor-tile-add .sponsor-name {
+  color: #D2FF52 !important;
+  font-weight: 800 !important;
+}
+
+.openalt-sponsor-tile:hover {
+  background: #1539D6 !important;
+}
+
+.openalt-sponsor-tile:hover span,
+.openalt-sponsor-tile:hover .sponsor-name {
+  color: #D2FF52 !important;
+}
+
+@media (max-width: 900px) {
+  .openalt-sponsors-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .openalt-sponsor-tile:nth-child(3n) {
+    border-right: none !important;
+  }
+  .openalt-sponsor-tile {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .openalt-sponsors-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .openalt-sponsor-tile:nth-child(2n) {
+    border-right: none !important;
+  }
+}
+
+
+/* 4.2 Top Header Banner Ad Placement in Article Detail Reader */
+.site-top-ad-banner {
+  background: #1C46F5 !important;
+  background-color: #1C46F5 !important;
+  border: 1.5px solid #1C46F5 !important;
+  border-radius: 10px !important;
+  padding: 8px 16px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(28, 70, 245, 0.22) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin: 0 auto 20px auto !important;
+  max-width: 900px !important;
+  width: 100% !important;
+}
+
+.site-top-ad-inner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  flex: 1 !important;
+}
+
+.site-ad-badge {
+  background: #D2FF52 !important;
+  background-color: #D2FF52 !important;
+  color: #131313 !important;
+  font-weight: 800 !important;
+  font-size: 0.72rem !important;
+  padding: 2px 7px !important;
+  border-radius: 4px !important;
+  border: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  flex-shrink: 0 !important;
+}
+
+.site-ad-icon {
+  color: #D2FF52 !important;
+  font-size: 0.95rem !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+.site-ad-text {
+  color: #FFFFFF !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 0.8125rem !important;
+}
+
+.site-ad-text strong {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+.site-ad-cta-btn {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #1C46F5 !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  border: 1px solid #FFFFFF !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.site-ad-cta-btn:hover {
+  background: #EEF2FF !important;
+  color: #1539D6 !important;
+  border-color: #EEF2FF !important;
+}
+
+@media (max-width: 640px) {
+  .site-top-ad-banner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    text-align: center !important;
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+  .site-top-ad-inner {
+    justify-content: center !important;
+    white-space: normal !important;
+  }
+  .site-ad-cta-btn {
+    text-align: center !important;
+    width: 100% !important;
+    padding: 8px 12px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* 4.3 Feed Header Row Alignment: Title Left, Pills Right */
+.feed-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-bottom: 24px !important;
+}
+
+.feed-title {
+  margin: 0 !important;
+  font-size: 1.85rem !important;
+  font-weight: 900 !important;
+}
+
+.filter-pills {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+}
+
+.filter-pill {
+  padding: 6px 16px !important;
+  border-radius: 9999px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  background: #F4F4F5 !important;
+  color: #71717A !important;
+  cursor: pointer !important;
+  border: 1px solid transparent !important;
+  transition: all 0.15s ease !important;
+}
+
+.filter-pill:hover,
+.filter-pill.active {
+  background: #131313 !important;
+  color: #FFFFFF !important;
+  border-color: #131313 !important;
+}

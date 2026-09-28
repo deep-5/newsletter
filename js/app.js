@@ -1438,15 +1438,15 @@ Access the full interactive database of 100+ Production Prompts:
     return `
       <div class="openalt-sponsors-strip">
         <div class="openalt-sponsors-header">
-          <span class="openalt-sponsors-text">Backed by industry leaders &amp; community partners • <a href="#/advertise">Become a Sponsor</a></span>
+          <span class="openalt-sponsors-text">Backed by industry leaders &amp; community partners • <a href="#/advertise" class="openalt-become-sponsor-link">Become a Sponsor</a></span>
         </div>
         <div class="openalt-sponsors-grid">
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#F97316;">⚡</span> <span>AIRA VIP</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#D97706;">🤖</span> <span>Anthropic</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#EC4899;">🧠</span> <span>Mistral AI</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#EF4444;">🔥</span> <span>Firecrawl</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#1C46F5;">📊</span> <span>OpenSEO</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span style="color:#F59E0B;">✨</span> <span>Sponsor +</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">⚡</span> <span class="sponsor-name">AIRA VIP</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🤖</span> <span class="sponsor-name">Anthropic</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🧠</span> <span class="sponsor-name">Mistral AI</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🔥</span> <span class="sponsor-name">Firecrawl</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">📊</span> <span class="sponsor-name">OpenSEO</span></a>
+          <a href="#/advertise" class="openalt-sponsor-tile openalt-sponsor-tile-add"><span class="sponsor-emoji">✨</span> <span class="sponsor-name">Sponsor +</span></a>
         </div>
       </div>
     `;
@@ -1563,22 +1563,13 @@ function renderHomePage() {
         .slice(0, 7);
 
       feedInner.innerHTML = `
-        <!-- Articles Header & Filter Pills + Quick Search -->
+        <!-- Articles Header & Filter Pills (Right Aligned) -->
         <div class="feed-header">
-          <div style="display: flex; flex-direction: column; gap: 4px;">
-            <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
-            <div class="filter-pills">
-              <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
-              <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
-              <button class="filter-pill ${state.selectedTag === 'Prompts' || state.selectedTag === 'Prompts & Guides' ? 'active' : ''}" data-tag="Prompts & Guides">Prompts & Guides</button>
-            </div>
-          </div>
-
-          <!-- Feed Live Search Bar -->
-          <div class="feed-search-wrap" style="display: flex; align-items: center; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 9999px; padding: 6px 14px; max-width: 280px; width: 100%; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2" style="flex-shrink: 0;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="feed-search-input" placeholder="Filter articles..." value="${state.homeSearchQuery || ''}" style="border: none; background: transparent; outline: none; font-size: 0.85rem; padding: 0 6px; flex: 1; color: #18181B;" />
-            <button type="button" id="feed-search-clear" style="background: none; border: none; cursor: pointer; color: #71717A; font-size: 0.8rem; display: ${state.homeSearchQuery ? 'block' : 'none'};">✕</button>
+          <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
+          <div class="filter-pills">
+            <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
+            <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News</button>
+            <button class="filter-pill ${state.selectedTag === 'Prompts' || state.selectedTag === 'Prompts & Guides' ? 'active' : ''}" data-tag="Prompts & Guides">Prompts & Guides</button>
           </div>
         </div>
 
