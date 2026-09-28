@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '110.0';
+  const CURRENT_DATA_VERSION = '144.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1894,7 +1894,7 @@ if (query !== '') {
             </div>
             <div class="newsletter-spotlight-content">
               <a href="#/advertise" style="display: block; margin: 12px 0 16px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);">
-                <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=142.0" alt="AIRA AI Newsletter & Curated Tools Hub" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
+                <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=144.0" alt="AIRA AI Newsletter & Curated Tools Hub" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
               </a>
               <div class="newsletter-spotlight-header-row">
                 <div class="newsletter-spotlight-avatar">🚀</div>
