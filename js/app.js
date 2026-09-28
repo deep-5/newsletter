@@ -1127,6 +1127,58 @@ Access the full interactive database of 100+ Production Prompts:
   
   // =========================================================================
   // =========================================================================
+  // =========================================================================
+  // Unified AI Tool Domain & High-Resolution Logo Resolvers
+  // =========================================================================
+  function getCleanToolDomain(tool) {
+    if (!tool) return 'ai.com';
+    const rawId = (tool.id || tool.name || '').toLowerCase();
+    
+    // Exact domain mappings for prominent tools
+    if (rawId.includes('notion')) return 'notion.so';
+    if (rawId.includes('chatgpt') || rawId.includes('dalle') || rawId.includes('openai')) return 'openai.com';
+    if (rawId.includes('claude') || rawId.includes('anthropic')) return 'anthropic.com';
+    if (rawId.includes('midjourney')) return 'midjourney.com';
+    if (rawId.includes('stable-diffusion')) return 'stablediffusionweb.com';
+    if (rawId.includes('canva')) return 'canva.com';
+    if (rawId.includes('quick-search-for-bard') || rawId.includes('gemini') || rawId.includes('bard')) return 'google.com';
+    if (rawId.includes('sqan')) return 'sqan.app';
+    if (rawId.includes('easymeety')) return 'easymeety.ai';
+    if (rawId.includes('atom')) return 'github.com';
+    if (rawId.includes('gitlab')) return 'gitlab.com';
+    if (rawId.includes('jira')) return 'atlassian.com';
+    if (rawId.includes('visual-studio-code') || rawId.includes('vscode')) return 'code.visualstudio.com';
+    if (rawId.includes('cursor')) return 'cursor.com';
+    if (rawId.includes('deepseek')) return 'deepseek.com';
+    if (rawId.includes('freepik')) return 'freepik.com';
+    if (rawId.includes('suno')) return 'suno.ai';
+    if (rawId.includes('udio')) return 'udio.com';
+    if (rawId.includes('elevenlabs')) return 'elevenlabs.io';
+    if (rawId.includes('runway')) return 'runwayml.com';
+    if (rawId.includes('perplex')) return 'perplexity.ai';
+
+    let d = (tool.domain || '').trim().toLowerCase().replace(/^https?:\/\//, '').split('/')[0].trim();
+    if (!d || d === 'apps.apple.com' || d.includes('apple.com')) {
+      if (tool.url && !tool.url.includes('apple.com')) {
+        d = tool.url.trim().toLowerCase().replace(/^https?:\/\//, '').split('/')[0].trim();
+      } else {
+        d = rawId.replace(/[^a-z0-9]/g, '') + '.com';
+      }
+    }
+    return d || 'ai.com';
+  }
+
+  function getToolLogoUrl(tool) {
+    if (!tool) return 'assets/logo.png';
+    const cleanDomain = getCleanToolDomain(tool);
+    // If tool has a local asset or custom user-uploaded data/image (not powerfulai.tools)
+    if (tool.image && !tool.image.includes('powerfulai.tools')) {
+      return tool.image;
+    }
+    return `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+  }
+
+  // =========================================================================
   // Unified AI Tool Card Renderer (Used by Directory, Featured Showcase & Bookmarks)
   // =========================================================================
   function renderToolCard(tool) {
@@ -1134,8 +1186,8 @@ Access the full interactive database of 100+ Production Prompts:
     const pricing = (tool.pricing || 'Free').trim();
     const pricingLower = pricing.toLowerCase();
     const pricingClass = `pricing-${pricingLower.replace(/\s+/g, '-')}`;
-    const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
-    const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+    const cleanDomain = getCleanToolDomain(tool);
+    const logoUrl = getToolLogoUrl(tool);
     const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
     const fallbackIcon = tool.icon || '⚡';
     const isPromoted = isToolPromoted(tool);
@@ -1144,13 +1196,13 @@ Access the full interactive database of 100+ Production Prompts:
     return `
       <div class="tool-card ${isPromoted ? 'is-promoted-card' : ''} ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
         <div class="tool-card-header">
-          <a href="#/tools/${tool.id}" class="tool-card-avatar-wrap" title="View ${tool.name} details">
-            <img loading="lazy" decoding="async" src="${logoUrl}" alt="${tool.name} logo" class="tool-logo-img" loading="lazy" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
+          <a href="#/tools/${tool.id}" class="tool-card-avatar-wrap" title="View ${escapeHtml(tool.name)} details">
+            <img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${logoUrl}" alt="${escapeHtml(tool.name)} logo" class="tool-logo-img" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'tool-emoji\\'>${fallbackIcon}</span>'; }" />
           </a>
           <div class="tool-header-content">
             <div class="tool-header-top-line">
-              <h3 class="tool-card-name" title="${tool.name}">
-                <a href="#/tools/${tool.id}" class="tool-title-link">${tool.name}</a>
+              <h3 class="tool-card-name" title="${escapeHtml(tool.name)}">
+                <a href="#/tools/${tool.id}" class="tool-title-link">${escapeHtml(tool.name)}</a>
               </h3>
               <span class="tool-verified-check" title="Verified AI Tool">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="#0F172A"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
@@ -1164,11 +1216,11 @@ Access the full interactive database of 100+ Production Prompts:
           </div>
         </div>
 
-        <p class="tool-card-desc">${tool.description || ''}</p>
+        <p class="tool-card-desc">${escapeHtml(tool.description || '')}</p>
 
         <div class="tool-card-footer">
-          <a href="#/tools/${tool.id}" class="tool-btn-details" title="View details of ${tool.name}">Details</a>
-          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit" title="Open ${tool.name}">
+          <a href="#/tools/${tool.id}" class="tool-btn-details" title="View details of ${escapeHtml(tool.name)}">Details</a>
+          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit" title="Open ${escapeHtml(tool.name)}">
             <span>Visit Website</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
@@ -1209,14 +1261,15 @@ Access the full interactive database of 100+ Production Prompts:
         </div>
         <div class="sidebar-trending-list">
           ${top5.map((t, idx) => {
-            const cleanDomain = (t.domain || '').replace(/^https?:\/\//, '').split('/')[0] || 'ai.com';
-            const iconSrc = t.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=64`;
+            const cleanDomain = getCleanToolDomain(t);
+            const iconSrc = getToolLogoUrl(t);
+            const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
             const stats = getToolRatingStats(t);
             return `
               <div class="trending-tool-row" onclick="window.location.hash='#/tools/${t.id}';">
                 <span class="trending-rank-num ${idx === 0 ? 'is-gold' : (idx === 1 ? 'is-silver' : (idx === 2 ? 'is-bronze' : ''))}">#${idx + 1}</span>
                 <div class="trending-tool-icon">
-                  <img loading="lazy" decoding="async" src="${iconSrc}" alt="${escapeHtml(t.name)}" onerror="this.parentElement.innerHTML='⚡'" loading="lazy" />
+                  <img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${iconSrc}" alt="${escapeHtml(t.name)}" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='⚡'; }" />
                 </div>
                 <div class="trending-tool-details">
                   <div class="trending-tool-name-line">
@@ -2835,8 +2888,8 @@ function renderHomePage() {
       `;
     }
 
-    const cleanDomain = (tool.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
-    const logoUrl = tool.image || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+    const cleanDomain = getCleanToolDomain(tool);
+    const logoUrl = getToolLogoUrl(tool);
     const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
     const fallbackIcon = tool.icon || '⚡';
     const primaryCat = tool.category || (tool.categories && tool.categories[0]) || 'productivity';
@@ -2882,7 +2935,7 @@ function renderHomePage() {
           <div class="tool-detail-hero">
             <div class="tool-detail-hero-top">
               <div class="tool-detail-logo-box">
-                <img loading="lazy" decoding="async" src="${logoUrl}" alt="${tool.name} logo" class="tool-detail-logo-img" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:2rem;\\'>${fallbackIcon}</span>'; }" />
+                <img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${logoUrl}" alt="${escapeHtml(tool.name)} logo" class="tool-detail-logo-img" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:2rem;\\'>${fallbackIcon}</span>'; }" />
               </div>
               <div class="tool-detail-title-col">
                 <div class="tool-detail-badges">
@@ -8120,13 +8173,11 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     ];
 
     function getToolDomain(t) {
-      if (!t) return 'ai.com';
-      return (t.domain || t.url || '').replace(/^https?:\/\//, '').split('/')[0].trim() || 'ai.com';
+      return getCleanToolDomain(t);
     }
 
     function getLogo(t) {
-      if (!t) return 'assets/logo.svg';
-      return t.image || `https://www.google.com/s2/favicons?domain=${getToolDomain(t)}&sz=128`;
+      return getToolLogoUrl(t);
     }
 
     appContainer.innerHTML = `
