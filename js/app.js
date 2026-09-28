@@ -1514,6 +1514,17 @@ function renderHomePage() {
         </div>
       </section>
 
+      <!-- Official AIRA Promotional Showcase Banner -->
+      <section class="site-promo-banner-section">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
+          <div class="site-promo-banner-card">
+            <a href="#/advertise" title="AIRA AI Newsletter & Curated Tools Hub">
+              <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=140.0" alt="Stay Ahead with the Latest AI News, Tools & Updates" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- Articles Feed Section -->
       <section class="feed-section" id="main-articles-feed">
         <div class="container" id="feed-container-inner"></div>
