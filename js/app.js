@@ -485,7 +485,7 @@ Access the full interactive database of 100+ Production Prompts:
 
   function getToolsDirectoryKitText() {
     const tools = getAllTools();
-    let text = "AIRA 2026 AI Tools Directory — Curated 400+ Collection\n";
+    let text = "AIRA 2026 AI Tools Directory — Curated 96+ Collection\n";
     text += "Visit live directory: https://aira-newsletter.vercel.app/#/tags\n";
     text += "Total Curated Tools: " + tools.length + "\n";
     text += "====================================================\n\n";
@@ -950,7 +950,7 @@ Access the full interactive database of 100+ Production Prompts:
     if (route.name === 'home') {
       updateSocialMetaTags('AIRA | The One and Only AI Newsletter', 'The one and only AI newsletter. Join us and get the best AI news, tools, prompts, and tutorials completely FREE!');
     } else if (route.name === 'tags') {
-      updateSocialMetaTags('AI Tools Directory (400+ Curated Tools) | AIRA', 'Explore top curated AI tools, community ratings, alternatives, and verified links.');
+      updateSocialMetaTags('AI Tools Directory (96+ curated tools) | AIRA', 'Explore top curated AI tools, community ratings, alternatives, and verified links.');
     } else if (route.name === 'alternatives') {
       updateSocialMetaTags('AI Software Alternatives & Competitors | AIRA', 'Find the best open-source and proprietary alternatives for top AI tools.');
     } else if (route.name === 'prompts') {
@@ -960,7 +960,7 @@ Access the full interactive database of 100+ Production Prompts:
     } else if (route.name === 'archive') {
       updateSocialMetaTags('Newsletter Archive | AIRA', 'Browse all previous editions of the AIRA Newsletter.');
     } else if (route.name === 'submit') {
-      updateSocialMetaTags('Submit Your AI Tool | AIRA', 'Get your AI product featured to 500+ subscribers.');
+      updateSocialMetaTags('Submit Your AI Tool | AIRA', 'Get your AI product featured to 100+ subscribers.');
     } else if (route.name === 'advertise') {
       updateSocialMetaTags('Advertise with AIRA | AIRA', 'Partner with AIRA to sponsor newsletter editions and tool spotlights.');
     }
@@ -1010,7 +1010,7 @@ Access the full interactive database of 100+ Production Prompts:
           <h1 class="sub-landing-title">AIRA</h1>
           
           <p class="sub-landing-tagline">
-            Level up your AI knowledge in just 5 minutes | Join 500+ AI pioneers & engineers from top tech companies.
+            Level up your AI knowledge in just 5 minutes | Join 100+ AI pioneers & engineers from top tech companies.
           </p>
           
           <form class="sub-pill-form" id="gate-sub-form">
@@ -1464,7 +1464,7 @@ function renderHomePage() {
             <div class="hero-top-ad-left">
               <span class="hero-ad-badge-pill">Ad</span>
               <span class="hero-ad-brand-icon">⚡</span>
-              <span class="hero-ad-text-content"><strong>AIRA VIP</strong> – Daily frontier AI breakthroughs, 400+ curated tools, and open-source models.</span>
+              <span class="hero-ad-text-content"><strong>AIRA Sponsor</strong> — Daily frontier AI breakthroughs, 96+ verified tools, and expert workflows.</span>
             </div>
             <a href="#/advertise" class="hero-ad-action-btn">Learn More</a>
           </div>
@@ -1496,7 +1496,7 @@ function renderHomePage() {
             <button type="submit" class="hero-openalt-search-btn" id="hero-search-btn">Search</button>
           </form>
 
-          <!-- 5. Social Proof (5 Overlapping Avatars + 500+ Members) -->
+          <!-- 5. Social Proof (5 Overlapping Avatars + 100+ members) -->
           <div class="hero-openalt-social-proof-clean">
             <div class="hero-avatar-stack-clean">
               <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
@@ -1505,7 +1505,7 @@ function renderHomePage() {
               <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
               <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
             </div>
-            <span class="hero-proof-text-clean">Trusted by 500+ members</span>
+            <span class="hero-proof-text-clean">Trusted by 100+ members</span>
           </div>
 
           <!-- Partners & Sponsors Grid Strip (Bottom of Hero) -->
@@ -1908,7 +1908,7 @@ function renderHomePage() {
                 <a href="#/advertise" class="newsletter-spotlight-btn">
                   <span>Claim Exclusive 30% Off Free Trial →</span>
                 </a>
-                <span class="newsletter-spotlight-disclaimer">Delivered to 50,000+ AI engineers &amp; founders</span>
+                <span class="newsletter-spotlight-disclaimer">Delivered to 100+ AI engineers &amp; founders</span>
               </div>
             </div>
           </div>
@@ -2519,7 +2519,7 @@ function renderHomePage() {
                   </div>
                 </div>
 
-                <p class="tool-card-desc">Prominently showcase your product across 400+ tool pages to 50,000+ AI buyers.</p>
+                <p class="tool-card-desc">Prominently showcase your product across 96+ tool pages to 100+ AI builders.</p>
 
                 <div class="tool-card-footer">
                   <a href="#/advertise" class="tool-btn-details sponsor-spot-label">⚡ Listing Ad</a>
@@ -2590,7 +2590,7 @@ function renderHomePage() {
             <div class="hero-top-ad-left">
               <span class="hero-ad-badge-pill">AD</span>
               <span class="hero-ad-brand-icon">⚡</span>
-              <span class="hero-ad-text-content"><strong>AIRA VIP Tool Directory</strong> – Discover 400+ verified production AI tools and workflows.</span>
+              <span class="hero-ad-text-content"><strong>AIRA Sponsor</strong> — Explore 96+ curated, verified AI tools and production workflows.</span>
             </div>
             <a href="#/advertise" class="hero-ad-action-btn">Learn More →</a>
           </div>
@@ -2603,7 +2603,7 @@ function renderHomePage() {
           <!-- Hero Heading & Subheading -->
           <h1 class="hero-openalt-heading">AI Tools &amp; Categories</h1>
           <p class="hero-openalt-subheading">
-            Discover <strong>400+</strong> curated, verified AI tools across productivity, developer utilities, autonomous agents, and marketing workflows.
+            Discover <strong>96+</strong> curated, verified AI tools across productivity, developer utilities, autonomous agents, and marketing workflows.
           </p>
 
           <!-- Search & Controls Bar -->
@@ -2613,7 +2613,7 @@ function renderHomePage() {
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input type="text" id="tool-search-input" class="tool-search-field" placeholder="Search 400+ AI tools by name, features, tasks..." value="${state.toolSearchQuery || ''}" autocomplete="off" />
+              <input type="text" id="tool-search-input" class="tool-search-field" placeholder="Search 96+ AI tools by name, features, tasks..." value="${state.toolSearchQuery || ''}" autocomplete="off" />
               <button type="button" id="tool-search-clear" class="tool-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
             </div>
 
@@ -3051,7 +3051,7 @@ function renderHomePage() {
               <div class="tool-page-sponsor-card">
                 <div class="tool-sponsor-card-top">
                   <span class="tool-sponsor-badge">⚡ SPONSORED AI TOOL</span>
-                  <a href="#/advertise" class="tool-sponsor-reserve-link" title="Advertise on 400+ tool pages">Reserve Spot ↗</a>
+                  <a href="#/advertise" class="tool-sponsor-reserve-link" title="Advertise on 96+ tool pages">Reserve Spot ↗</a>
                 </div>
                 <div class="tool-sponsor-brand-row">
                   <div class="tool-sponsor-logo">🚀</div>
@@ -3072,7 +3072,7 @@ function renderHomePage() {
                   <span>Try Partner Tool Free ↗</span>
                 </a>
                 <div class="tool-sponsor-footer-note">
-                  <span>Visible on 400+ AI tool detail pages</span> • <a href="#/advertise">Advertise ($39/day)</a>
+                  <span>Visible on 96+ AI tool detail pages</span> • <a href="#/advertise">Advertise ($39/day)</a>
                 </div>
               </div>
 
@@ -3216,7 +3216,7 @@ function renderHomePage() {
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search 350+ software tools or 2,400+ alternatives (e.g. Claude Code, Cursor, Notion, Figma, 1Password)..." value="${state.altSearchQuery}" autocomplete="off" />
+            <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search AI tools & software (e.g. Claude Code, Cursor, Notion, Figma, 1Password)..." value="${state.altSearchQuery}" autocomplete="off" />
             <button type="button" id="alt-search-clear" class="alt-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
           </form>
 
@@ -8508,9 +8508,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <button type="button" class="bookmark-tab-btn ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
               <span>📰 Saved Articles (${savedArticlesList.length})</span>
             </button>
-            <button type="button" class="bookmark-tab-btn ${currentTab === 'alternatives' ? 'active' : ''}" data-tab="alternatives">
-              <span>🔄 Saved Alternatives (${savedAltsList.length})</span>
-            </button>
+            
           </div>
 
           <!-- Content Area -->
@@ -8579,7 +8577,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <!-- Hero Heading & Subheading -->
           <h1 class="hero-openalt-heading">Submit Your AI Tool</h1>
           <p class="hero-openalt-subheading">
-            Get your product featured in front of 50,000+ AI enthusiasts, builders, investors, and engineers.
+            Get your product featured in front of 100+ AI enthusiasts, builders, investors, and engineers.
           </p>
 
           <!-- Partners & Sponsors Strip (Bottom of Hero) -->
@@ -8824,7 +8822,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
 
           <div style="margin: 40px 0 20px 0; text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 32px 20px;">
             <h3 style="font-size: 1.25rem; font-weight: 800; color: #1E293B; margin-bottom: 6px;">Are you an AI tool creator?</h3>
-            <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 18px;">Offer an exclusive discount or promo code to 50,000+ AIRA readers.</p>
+            <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 18px;">Offer an exclusive discount or promo code to 100+ AIRA readers.</p>
             <a href="#/submit" class="tool-details-btn" style="padding: 10px 20px; font-weight: 700;">Submit Your Deal →</a>
           </div>
         </div>
@@ -8880,13 +8878,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       name: 'Listing Ad',
       subtitle: 'Visible on every tool listing page & categories',
       icon: '📋',
-      description: 'Prominent placement across 400+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.',
+      description: 'Prominent placement across 96+ AI tool pages and category directories where high-intent buyers evaluate software alternatives.',
       dailyRate: 29,
       weeklyRate: 149,
       twoWeekRate: 289,
       monthlyRate: 599,
       features: [
-        'Placed on 400+ tool detail & category pages',
+        'Placed on 96+ tool detail & category pages',
         'Direct dofollow backlink & CTA button',
         'High-intent developer & buyer traffic',
         'Transparent daily & weekly billing'
@@ -8915,13 +8913,13 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       name: 'Tool Page Ad',
       subtitle: 'Visible on every single AI tool detail page',
       icon: '🚀',
-      description: 'Featured in the dedicated sidebar section on 400+ AI tool detail pages right when developers evaluate product alternatives.',
+      description: 'Featured in the dedicated sidebar section on 96+ AI tool detail pages right when developers evaluate product alternatives.',
       dailyRate: 39,
       weeklyRate: 199,
       twoWeekRate: 379,
       monthlyRate: 799,
       features: [
-        'Featured in the sidebar on 400+ tool pages',
+        'Featured in the sidebar on 96+ tool pages',
         'Contextually relevant developer audience',
         'Verified backlink & custom highlight box',
         'High conversion for SaaS & devtools'
@@ -8930,7 +8928,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
     newsletter: {
       id: 'newsletter',
       name: 'Newsletter Spotlight',
-      subtitle: 'Direct delivery to 50,000+ inboxes',
+      subtitle: 'Direct delivery to 100+ inboxes',
       icon: '📬',
       description: 'Featured dedicated section in the daily AIRA Newsletter edition with high editorial credibility and 42% average open rates.',
       dailyRate: 399,
@@ -8938,7 +8936,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
       isEditionBased: true,
       features: [
         '100-word product review + screenshot',
-        'Sent to 50,000+ verified active subscribers',
+        'Sent to 100+ active subscribers',
         'Permanent edition web archive backlink',
         'Detailed post-campaign click report'
       ]
@@ -9025,7 +9023,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         isComplete: true,
         fullStart,
         fullEnd: fullStart,
-        savingsText: 'Guaranteed 50K+ Inboxes'
+        savingsText: 'Guaranteed 100+ Inboxes'
       };
     }
 
@@ -9189,7 +9187,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
               <span class="advertise-slot-price-main">$${info.price}</span>
               <span class="advertise-slot-price-sub">/ edition</span>
             </div>
-            <div class="advertise-slot-rate-note">Guaranteed Placement • 50k+ Subscribers</div>
+            <div class="advertise-slot-rate-note">Guaranteed Placement • 100+ Subscribers</div>
           </div>
           <button type="button" class="advertise-slot-book-btn" onclick="window.bookSlotWithDates('${slotKey}')">
             <span class="adv-btn-title">Book Spotlight</span>
@@ -9302,7 +9300,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-url">https://aira.news/#/tags (AI Tools Directory)</div>
         </div>
         <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
-          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Position #1 Sponsored Tool • 400+ Pages</span>
+          <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Position #1 Sponsored Tool • 96+ Pages</span>
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 38px; height: 38px; border-radius: 8px; background: #18181B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">⚡</div>
             <div style="flex: 1; min-width: 0;">
@@ -9338,7 +9336,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">AIRA Daily Newsletter Edition (50,000+ Inboxes)</div>
+          <div class="adv-browser-url">AIRA Daily Newsletter Edition (100+ inboxes)</div>
         </div>
         <div class="adv-highlight-box" style="margin: 0; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid #1C46F5; border-radius: 10px;">
           <span class="adv-highlight-pill" style="background: #EEF2FF; color: #1C46F5; font-weight: 700; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">Dedicated Newsletter Spotlight Edition</span>
@@ -9347,7 +9345,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <strong style="font-size: 0.88rem; color: #18181B;">Introducing Your Product</strong>
           </div>
           <p style="font-size: 0.76rem; color: #4B5563; line-height: 1.4; margin: 0 0 8px 0;">
-            Delivered straight to 50,000+ software engineers, founders, and CTOs with 42% average open rate.
+            Delivered straight to 100+ software engineers, founders, and CTOs with 42% average open rate.
           </p>
           <span style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;">Claim Exclusive Offer →</span>
         </div>
@@ -9795,7 +9793,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
           <div class="adv-browser-dot"></div>
-          <div class="adv-browser-url">AIRA Newsletter Edition (50,000+ Inboxes)</div>
+          <div class="adv-browser-url">AIRA Newsletter Edition (100+ inboxes)</div>
         </div>
         <div class="adv-highlight-box">
           <span class="adv-highlight-pill">Dedicated Spotlight</span>
@@ -9804,7 +9802,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <strong style="font-size: 0.92rem; color: #18181B;">Introducing Your Company</strong>
           </div>
           <p style="font-size: 0.8rem; color: #3F3F46; line-height: 1.5; margin-bottom: 10px;">
-            Reach 50,000+ AI builders with a high-credibility 100-word product deep dive, custom screenshot, and direct conversion button placed before our main editorial story.
+            Reach 100+ AI builders with a high-credibility 100-word product deep dive, custom screenshot, and direct conversion button placed before our main editorial story.
           </p>
           <a href="#" style="display: inline-block; background: #18181B; color: #FFFFFF; font-size: 0.76rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; text-decoration: none;">Claim Exclusive 30% Off →</a>
         </div>
@@ -9869,7 +9867,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
             <div class="advertise-live-left">
               <span class="advertise-ad-badge">Ad</span>
               <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" style="width: 18px; height: 18px; border-radius: 4px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
-              <span><strong>Your brand here</strong> — Reach 50,000+ active software developers, founders, and AI engineers.</span>
+              <span><strong>Your brand here</strong> — Reach 100+ active software developers, founders, and AI engineers.</span>
             </div>
             <a href="#sponsor-form-section" class="advertise-live-btn">Advertise on AIRA</a>
           </div>
@@ -9878,14 +9876,14 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
           <div class="advertise-hero">
             <h1 class="advertise-hero-title">Advertise on AIRA</h1>
             <p class="advertise-hero-desc">
-              Promote your business, AI tool, or software on AIRA and reach an engaged audience of 50,000+ software developers, founders, and tech-savvy builders. Boost your sales, signups, and brand authority.
+              Promote your business, AI tool, or software on AIRA and reach an engaged audience of 100+ software developers, founders, and tech-savvy builders. Boost your sales, signups, and brand authority.
             </p>
           </div>
 
           <!-- 3. Audience Statistics 4-Card Row -->
           <div class="advertise-stats-row">
             <div class="advertise-stat-card">
-              <div class="advertise-stat-val">50,000+</div>
+              <div class="advertise-stat-val">100+</div>
               <div class="advertise-stat-label">Active AI Builders</div>
             </div>
             <div class="advertise-stat-card">
