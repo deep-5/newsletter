@@ -1603,7 +1603,7 @@ if (query !== '') {
               <a href="#/p/${article.slug}" class="article-card openalt-box-card">
                 <!-- 1. Top Aspect Ratio Preview Image with Badges -->
                 <div class="card-image-wrap">
-                  <img loading="lazy" decoding="async" src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Edition'}" class="card-thumbnail" loading="lazy" />
+                  <img loading="lazy" decoding="async" src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Article'}" class="card-thumbnail" loading="lazy" />
                   <div class="card-badges-overlay">
                     <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
                     <span class="openalt-badge-time">${article.reading_time || article.read_time || '4 min read'}</span>
@@ -1619,11 +1619,6 @@ if (query !== '') {
                     </div>
                     <div class="openalt-header-text">
                       <h3 class="card-title openalt-title">${article.title || ''}</h3>
-                      <div class="openalt-meta-subrow">
-                        <span class="openalt-source-tag">AIRA Edition</span>
-                        <span class="openalt-dot">•</span>
-                        <span class="openalt-date-tag">${article.date || 'Sep 2026'}</span>
-                      </div>
                     </div>
                   </div>
 
@@ -1635,6 +1630,8 @@ if (query !== '') {
                     <div class="openalt-footer-left">
                       <img loading="lazy" decoding="async" src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
                       <span class="card-author-name">${article.author || 'AIRA'}</span>
+                      <span class="openalt-dot">•</span>
+                      <span class="openalt-date-tag">${article.date || 'Sep 2026'}</span>
                     </div>
                     <div class="openalt-footer-right">
                       <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
