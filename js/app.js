@@ -449,16 +449,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getPromptsKitMarkdown() {
-    return `# AIRA 2026 AI Starter Kit: Top 100 Production AI Prompts
+    return `# AIRA 2026 AI Starter Kit: 3,000+ ChatGPT Prompts & 50 n8n Automation Templates
 Generated exclusively for AIRA VIP Newsletter Subscribers.
 Website: https://aira-newsletter.vercel.app/
-Live Google Sheet: https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing
+Live Google Sheet: https://docs.google.com/spreadsheets/d/1fOGVDjv6T_v_lw1L04BROEySfSbbYxadKqk2MVPmH44/edit?usp=sharing
 
 ---
 
 ## 📊 Live Google Spreadsheet Access
-Access the full interactive database of 100+ Production Prompts:
-👉 https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing
+Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 n8n Production Workflows:
+👉 https://docs.google.com/spreadsheets/d/1fOGVDjv6T_v_lw1L04BROEySfSbbYxadKqk2MVPmH44/edit?usp=sharing
 
 ---
 
@@ -1928,12 +1928,12 @@ if (query !== '') {
               <span class="sub-bolt-icon">⚡</span>
             </div>
             <h3 class="article-sub-title">Stay Ahead in AI with AIRA</h3>
-            <p class="article-sub-desc">Get top AI news, breakthroughs + instant access to AI Automation | 50 n8n Templates.</p>
+            <p class="article-sub-desc">Get top AI news, breakthroughs + instant access to <strong>3,000+ ChatGPT Prompts &amp; 50 n8n Templates</strong>.</p>
             
             <form class="article-sub-form-dark" id="article-sub-form">
               <div class="sub-dark-input-wrap">
                 <input type="email" class="sub-dark-input" placeholder="Your email address" required />
-                <button type="submit" class="sub-dark-btn">Subscribe & Get 50 Templates 🎁</button>
+                <button type="submit" class="sub-dark-btn">Subscribe &amp; Get 3,000+ Prompts &amp; 50 Templates 🎁</button>
               </div>
             </form>
           </div>
@@ -6184,7 +6184,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                   <div class="saas-kpi-card">
                     <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Welcome Emails Sent</div>
                     <div style="font-size: 1.8rem; font-weight: 900; color: #1C46F5; margin: 4px 0;">${welcomeCount}</div>
-                    <div style="font-size: 0.8rem; color: #64748B;">🎁 50 n8n Templates Included</div>
+                    <div style="font-size: 0.8rem; color: #64748B;">🎁 3,000+ Prompts &amp; 50 Templates</div>
                   </div>
                   <div class="saas-kpi-card">
                     <div style="font-size: 0.8125rem; font-weight: 700; color: #64748B; text-transform: uppercase;">Broadcast Editions Sent</div>
@@ -6282,8 +6282,8 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
                       </div>
 
                       <div class="form-group">
-                        <label class="form-label">Lead Magnet Link (50 Templates)</label>
-                        <input type="url" id="input-lead-magnet" class="form-input" placeholder="https://docs.google.com/spreadsheets/..." value="${emailSettings.leadMagnetUrl || 'https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing'}" />
+                        <label class="form-label">Lead Magnet Link (3,000+ Prompts &amp; 50 Templates)</label>
+                        <input type="url" id="input-lead-magnet" class="form-input" placeholder="https://docs.google.com/spreadsheets/..." value="${emailSettings.leadMagnetUrl || 'https://docs.google.com/spreadsheets/d/1fOGVDjv6T_v_lw1L04BROEySfSbbYxadKqk2MVPmH44/edit?usp=sharing'}" />
                       </div>
                     </div>
 
@@ -9918,7 +9918,7 @@ AIRA Team">${cardData.signoff || 'Until next week,\nAIRA'}</textarea>
         submitBtn.innerHTML = 'Subscribed! ✓';
       }
 
-      showToast('🎉 Welcome to AIRA! Opening 50 n8n Templates...');
+      showToast('🎉 Welcome to AIRA! Opening 3,000+ Prompts & 50 n8n Templates...');
       input.value = '';
 
       setTimeout(() => {

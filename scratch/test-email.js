@@ -7,10 +7,10 @@ async function testEmailService() {
   // 1. Test Welcome Email HTML builder
   const welcomeHtml = EmailService.buildWelcomeEmailHTML('testuser@gmail.com');
   console.log('✔ Welcome Email HTML generated, length:', welcomeHtml.length);
-  if (!welcomeHtml.includes('AI Automation | 50 n8n Templates') || !welcomeHtml.includes('https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing')) {
-    throw new Error('Welcome Email HTML missing 50 n8n templates gift link!');
+  if (!welcomeHtml.includes('3,000+ ChatGPT Prompts + 50 n8n Templates') || !welcomeHtml.includes('https://docs.google.com/spreadsheets/d/1fOGVDjv6T_v_lw1L04BROEySfSbbYxadKqk2MVPmH44/edit?usp=sharing')) {
+    throw new Error('Welcome Email HTML missing 3,000+ Prompts & 50 n8n templates gift link!');
   }
-  console.log('✔ Welcome Email HTML contains 50 n8n Templates Google Sheet link!');
+  console.log('✔ Welcome Email HTML contains 3,000+ Prompts & 50 n8n Templates Google Sheet link!');
 
   // 2. Test Article Broadcast Email HTML builder
   const sampleArticle = {

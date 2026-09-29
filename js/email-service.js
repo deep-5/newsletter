@@ -1,7 +1,7 @@
 /**
  * AIRA Newsletter - Automated Email Delivery & Broadcast Engine
  * Supports:
- * 1. Automated Welcome Email upon Subscription (With 50 n8n Templates Lead Magnet Link)
+ * 1. Automated Welcome Email upon Subscription (With 3,000+ ChatGPT Prompts & 50 n8n Templates Google Sheet Link)
  * 2. Automated / Manual Broadcast Email on New Article Publication
  * 3. Multi-Provider Transports: Resend API, n8n/Make Webhook, Vercel Serverless /api/send-email, and Local Audit Logger
  */
@@ -16,7 +16,7 @@
     senderName: 'AIRA Newsletter',
     webhookUrl: '',
     replyTo: 'editorial@aira.news',
-    leadMagnetUrl: 'https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing'
+    leadMagnetUrl: 'https://docs.google.com/spreadsheets/d/1fOGVDjv6T_v_lw1L04BROEySfSbbYxadKqk2MVPmH44/edit?usp=sharing'
   };
 
   function getSettings() {
@@ -76,7 +76,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to AIRA + Your 50 n8n Templates</title>
+  <title>Welcome to AIRA + Your 3,000+ ChatGPT Prompts & 50 n8n Templates</title>
   <style>
     body { margin: 0; padding: 0; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1E293B; }
     table { border-spacing: 0; border-collapse: collapse; }
@@ -119,11 +119,11 @@
 
           <!-- Free Gift Box -->
           <div class="gift-card">
-            <span class="gift-badge">🎁 YOUR SUBSCRIBER GIFT</span>
-            <h3 class="gift-title">AI Automation | 50 n8n Templates</h3>
-            <p class="gift-desc">Instant production-ready workflow automation blueprints for AI agents, leads, scrapers & integrations.</p>
+            <span class="gift-badge">🎁 FREE SUBSCRIBER MEGA BUNDLE</span>
+            <h3 class="gift-title">3,000+ ChatGPT Prompts + 50 n8n Templates</h3>
+            <p class="gift-desc">Instant access to 3,000+ categorized ChatGPT prompts and 50 production-grade AI &amp; n8n workflow blueprints with tutorials.</p>
             <a href="${settings.leadMagnetUrl}" target="_blank" class="btn-gift">
-              Access 50 n8n Templates (Google Sheet) ➔
+              Access 3,000+ Prompts &amp; 50 n8n Templates (Google Sheet) ➔
             </a>
           </div>
 
@@ -388,10 +388,10 @@
 
   const EmailService = {
     /**
-     * Send instant Welcome Email with 50 n8n templates Google Sheet link
+     * Send instant Welcome Email with 3,000+ ChatGPT Prompts & 50 n8n templates Google Sheet link
      */
     async sendWelcomeEmail(subscriberEmail, source = 'Website') {
-      const subject = '⚡ Welcome to AIRA + Your 50 n8n Templates (Google Sheet)';
+      const subject = '⚡ Welcome to AIRA + Your 3,000+ ChatGPT Prompts & 50 n8n Templates (Google Sheet)';
       const html = buildWelcomeEmailHTML(subscriberEmail);
       
       const result = await executeSend({
@@ -399,7 +399,7 @@
         subject: subject,
         html: html,
         type: 'welcome',
-        metadata: { source: source, gift: '50 n8n Templates' }
+        metadata: { source: source, gift: '3000+ Prompts & 50 n8n Templates' }
       });
 
       return result;

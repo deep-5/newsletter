@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 
     const resendKey = process.env.RESEND_API_KEY;
     const sender = process.env.SENDER_EMAIL || 'AIRA Newsletter <onboarding@resend.dev>';
-    const leadMagnetUrl = 'https://docs.google.com/spreadsheets/d/190nDBrA-I8J03VlsneEO3U3-z0ERqCfXdF0mwjyKZBY/edit?usp=sharing';
+    const leadMagnetUrl = 'https://docs.google.com/spreadsheets/d/1fOGVDjv6T_v_lw1L04BROEySfSbbYxadKqk2MVPmH44/edit?usp=sharing';
 
     let emailSent = false;
     let emailError = null;
@@ -44,9 +44,10 @@ module.exports = async (req, res) => {
             You're now subscribed to daily AI breakthroughs, prompt engineering frameworks, and curated tools.
           </p>
           <div style="background: #ECFDF5; border: 1.5px solid #10B981; border-radius: 8px; padding: 18px; margin: 24px 0; text-align: center;">
-            <p style="color: #047857; font-weight: 800; font-size: 12px; margin: 0 0 6px 0; text-transform: uppercase;">🎁 FREE SUBSCRIBER GIFT</p>
-            <h3 style="color: #065F46; font-size: 18px; margin: 0 0 12px 0;">AI Automation | 50 n8n Templates</h3>
-            <a href="${leadMagnetUrl}" target="_blank" style="display: inline-block; background: #047857; color: white; text-decoration: none; padding: 10px 22px; font-weight: 700; border-radius: 6px;">Access 50 n8n Templates (Google Sheet) ➔</a>
+            <p style="color: #047857; font-weight: 800; font-size: 12px; margin: 0 0 6px 0; text-transform: uppercase;">🎁 FREE SUBSCRIBER MEGA BUNDLE</p>
+            <h3 style="color: #065F46; font-size: 18px; margin: 0 0 8px 0;">3,000+ ChatGPT Prompts + 50 n8n Templates</h3>
+            <p style="color: #047857; font-size: 13px; margin: 0 0 14px 0;">Instant access to 3,000+ categorized prompts and 50 production AI &amp; n8n workflow blueprints.</p>
+            <a href="${leadMagnetUrl}" target="_blank" style="display: inline-block; background: #047857; color: white; text-decoration: none; padding: 11px 24px; font-weight: 700; border-radius: 6px;">Access Prompts &amp; Templates (Google Sheet) ➔</a>
           </div>
           <p style="color: #64748B; font-size: 12px; border-top: 1px solid #F1F5F9; padding-top: 14px; margin-top: 24px;">
             © ${new Date().getFullYear()} AIRA. All rights reserved.
@@ -62,7 +63,7 @@ module.exports = async (req, res) => {
           body: JSON.stringify({
             from: sender,
             to: [cleanEmail],
-            subject: '⚡ Welcome to AIRA + Your 50 n8n Templates (Google Sheet)',
+            subject: '⚡ Welcome to AIRA + Your 3,000+ ChatGPT Prompts & 50 n8n Templates (Google Sheet)',
             html: welcomeHtml
           })
         });
