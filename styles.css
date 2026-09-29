@@ -1627,12 +1627,12 @@ body.aira-admin-active strong {
 .openalt-title,
 .card-title {
   font-family: var(--font-header);
-  font-size: 1.08rem;
+  font-size: 1.15rem;
   font-weight: 700;
   line-height: 1.35;
   letter-spacing: -0.015em;
   color: #0F172A;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

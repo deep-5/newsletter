@@ -1612,15 +1612,8 @@ if (query !== '') {
 
                 <!-- 2. Card Body Box (OpenAlternative Style) -->
                 <div class="card-body">
-                  <!-- Header Row: App Favicon / Logo Box + Title -->
-                  <div class="openalt-card-header-row">
-                    <div class="openalt-icon-box">
-                      <img loading="lazy" decoding="async" src="assets/logo.png?v=48.0" alt="AIRA" class="openalt-icon-img" onerror="this.src='assets/logo.svg'" />
-                    </div>
-                    <div class="openalt-header-text">
-                      <h3 class="card-title openalt-title">${article.title || ''}</h3>
-                    </div>
-                  </div>
+                  <!-- Title -->
+                  <h3 class="card-title openalt-title">${article.title || ''}</h3>
 
                   <!-- Description / Subtitle -->
                   <p class="card-subtitle openalt-desc">${article.subtitle || ''}</p>
