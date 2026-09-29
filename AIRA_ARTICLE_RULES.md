@@ -4,17 +4,19 @@ This document is the **single source of truth** for adding, formatting, and publ
 
 ---
 
-## 📝 1. 100% Exact Verbatim Source Text Match Standard (STRICTLY LOCKED)
-- **Zero Paraphrasing / Zero Rewriting**: Every single sentence, headline, paragraph, bullet point, tool description, tutorial step, code snippet, and tech news item must be copied **100% word-for-word verbatim** from the source newsletter edition.
-- **Zero Missing / Truncated Text**: Never cut, condense, or omit any details, specs, bullet points, sub-lists, code snippets, or takeaways.
+## 📝 1. 100% Exact Verbatim Text Standard (STRICTLY LOCKED)
+- **Zero Paraphrasing / Zero Rewriting / Zero AI Hallucination**: Every single sentence, headline, paragraph, bullet point, tool description, tutorial step, code snippet, and tech news item must be copied **100% word-for-word verbatim** from the source newsletter edition.
+- **Zero Missing / Truncated Text**: Never cut, condense, skip, or omit any details, specs, bullet points, sub-lists, code snippets, or takeaways.
 - **Preserve Verbatim Typography**: Keep all authentic bold text (`<b>...</b>`), italics (`<i>...</i>`), code formatting (`<code>...</code>`), and quotes exactly as written in the original source.
 - **Verbatim Authenticity**: AI assistant rewriting or summarizing is strictly prohibited. The content must remain 100% authentic to the source edition.
 
 ---
 
-## 📸 2. Cover Image Standard (100% Uniform)
-- **Top Hero Cover Picture**: Every single article in `data/articles.js` must use `assets/aira-banner-template-v2.jpg` (AIRA Option 2 Custom Cover Banner with real inner newsletter phone mockup).
-- **Zero Variation**: All articles share this exact branded cover banner for 100% aesthetic uniformity.
+## 📸 2. 100% Authentic Pictures & Placement Standard (STRICTLY LOCKED)
+- **Zero Missing Inline Images**: Every single story, tool spotlight, or tutorial that has an image/screenshot in the source MUST have its exact high-resolution image preserved inside the body.
+- **Exact Image URLs**: Preserve the authentic high-res image source (e.g. Beehiiv CDN webp/png) with `class="section-inline-img" loading="lazy" referrerpolicy="no-referrer"`.
+- **Top Hero Cover Banner**: Every single article in `data/articles.js` must use `assets/aira-banner-template-v2.jpg?v=148.0` for uniform brand presentation.
+- **Inside Body Images**: NEVER replace authentic story screenshots with generic placeholders. The inline images must be 100% identical to the source publication.
 
 ---
 
