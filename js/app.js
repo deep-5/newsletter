@@ -1606,12 +1606,21 @@ if (query !== '') {
                   <img loading="lazy" decoding="async" src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Article'}" class="card-thumbnail" loading="lazy" />
                   <div class="card-badges-overlay">
                     <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
-                    <span class="openalt-badge-time">${article.reading_time || article.read_time || '4 min read'}</span>
                   </div>
                 </div>
 
                 <!-- 2. Card Body Box (OpenAlternative Style) -->
                 <div class="card-body">
+                  <!-- Meta Row: Date & Reading Time -->
+                  <div class="openalt-card-meta-top">
+                    <span class="openalt-date-badge">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                      ${article.date || 'Sep 2026'}
+                    </span>
+                    <span class="openalt-dot">•</span>
+                    <span class="openalt-readtime-badge">${article.reading_time || article.read_time || '4 min read'}</span>
+                  </div>
+
                   <!-- Title -->
                   <h3 class="card-title openalt-title">${article.title || ''}</h3>
 
@@ -1623,8 +1632,6 @@ if (query !== '') {
                     <div class="openalt-footer-left">
                       <img loading="lazy" decoding="async" src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
                       <span class="card-author-name">${article.author || 'AIRA'}</span>
-                      <span class="openalt-dot">•</span>
-                      <span class="openalt-date-tag">${article.date || 'Sep 2026'}</span>
                     </div>
                     <div class="openalt-footer-right">
                       <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">

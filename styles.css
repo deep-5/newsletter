@@ -1592,36 +1592,34 @@ body.aira-admin-active strong {
   flex: 1;
 }
 
-.openalt-card-header-row {
+.openalt-card-meta-top {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #64748B;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-.openalt-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  display: flex;
+.openalt-date-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 5px;
+  color: #1C46F5;
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.openalt-date-badge svg {
+  stroke: #1C46F5;
   flex-shrink: 0;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.openalt-icon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.openalt-header-text {
-  flex: 1;
-  min-width: 0;
+.openalt-readtime-badge {
+  color: #64748B;
+  font-weight: 500;
+  font-size: 0.78rem;
 }
 
 .openalt-title,
@@ -7593,6 +7591,18 @@ body.dark-mode .openalt-box-card:hover {
 body.dark-mode .openalt-icon-box {
   background: #1F1F23 !important;
   border-color: #27272A !important;
+}
+body.dark-mode .openalt-card-meta-top {
+  color: #A1A1AA !important;
+}
+body.dark-mode .openalt-date-badge {
+  color: #60A5FA !important;
+}
+body.dark-mode .openalt-date-badge svg {
+  stroke: #60A5FA !important;
+}
+body.dark-mode .openalt-readtime-badge {
+  color: #A1A1AA !important;
 }
 body.dark-mode .openalt-title {
   color: #F4F4F5 !important;
