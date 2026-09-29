@@ -22022,3 +22022,13 @@ body,
     padding: 7px 6px;
   }
 }
+
+/* Permanently Hide Floating Rotating Bottom Ad Widget */
+#aira-floating-bottom-ad,
+.aira-floating-ad-container,
+.aira-floating-ad-card {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
