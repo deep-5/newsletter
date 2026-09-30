@@ -20293,11 +20293,23 @@ body,
   color: #D2FF52 !important;
 }
 
+.hero-openalt-top-ad .hero-top-ad-left,
+.hero-top-ad-strip .hero-top-ad-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+
 .hero-openalt-top-ad .hero-ad-text-content,
 .hero-top-ad-strip .hero-ad-text-content,
 .hero-openalt-top-ad .hero-ad-text-content strong,
 .hero-top-ad-strip .hero-ad-text-content strong {
   color: #FFFFFF !important;
+  white-space: normal !important;
+  font-size: 0.88rem !important;
 }
 
 .hero-openalt-top-ad .hero-ad-action-btn,

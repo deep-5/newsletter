@@ -1563,11 +1563,14 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
           <span class="openalt-sponsors-text">Backed by industry leaders &amp; community partners • <a href="#/advertise" class="openalt-become-sponsor-link">Become a Sponsor</a></span>
         </div>
         <div class="openalt-sponsors-grid">
+          <a href="https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw" target="_blank" class="openalt-sponsor-tile" style="background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.45);" title="Join UI/UX Design Community">
+            <img src="assets/ui-designer-community.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: cover; display: inline-block; vertical-align: middle;" alt="UI Designer" />
+            <span class="sponsor-name" style="font-weight: 700; color: #FFFFFF;">UI Designer</span>
+          </a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">⚡</span> <span class="sponsor-name">AIRA VIP</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🤖</span> <span class="sponsor-name">Anthropic</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🧠</span> <span class="sponsor-name">Mistral AI</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🔥</span> <span class="sponsor-name">Firecrawl</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">📊</span> <span class="sponsor-name">OpenSEO</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile openalt-sponsor-tile-add"><span class="sponsor-emoji">✨</span> <span class="sponsor-name">Sponsor +</span></a>
         </div>
       </div>
@@ -2020,35 +2023,49 @@ if (query !== '') {
           <!-- Newsletter Spotlight Placement (Slot: Newsletter Spotlight / In-Feed Ad) -->
           ${(() => {
             const sp = (typeof getSponsorSettings === 'function') ? getSponsorSettings() : null;
-            const inFeed = sp ? sp.inFeed : { active: true, tag: 'Featured Partner', title: 'Supercharge Your AI Development with Autonomous Agents', body: 'Build, evaluate, and scale production-ready AI agents in minutes. Connect frontier LLMs to your private data, automate complex multi-step workflows, and reduce API token overhead by up to 45%.', btnText: 'Claim Exclusive 30% Off Free Trial →', btnLink: '#/advertise', badge: 'Sponsored' };
+            const inFeed = sp ? sp.inFeed : {
+              active: true,
+              tag: 'UI/UX Community',
+              title: 'Join our UI/UX Design Community',
+              body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.',
+              btnText: 'Join the community →',
+              btnLink: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
+              badge: 'Community Spotlight',
+              bannerImg: 'assets/ui-designer-banner.svg',
+              avatarImg: 'assets/ui-designer-community.png'
+            };
             if (!inFeed || inFeed.active === false) return '';
+            const bannerSource = inFeed.bannerImg || inFeed.image || 'assets/ui-designer-banner.svg';
+            const avatarSource = inFeed.avatarImg || inFeed.avatar || 'assets/ui-designer-community.png';
             return `
               <div class="newsletter-spotlight-ad-box">
                 <div class="newsletter-spotlight-top">
                   <div class="newsletter-spotlight-pill">
-                    <span class="bolt">⚡</span> AIRA SPONSOR SPOTLIGHT
+                    <span class="bolt">⚡</span> ${escapeHtml(inFeed.badge || 'AIRA COMMUNITY SPOTLIGHT')}
                   </div>
                   <a href="#/advertise" class="newsletter-spotlight-book-link">Book a Spotlight ($399) ↗</a>
                 </div>
                 <div class="newsletter-spotlight-content">
-                  <a href="${inFeed.btnLink || '#/advertise'}" style="display: block; margin: 12px 0 16px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);">
-                    <img loading="lazy" decoding="async" src="assets/aira-promo-banner.png?v=144.0" alt="AIRA AI Newsletter & Curated Tools Hub" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
+                  <a href="${inFeed.btnLink || '#/advertise'}" target="${inFeed.btnLink && inFeed.btnLink.startsWith('http') ? '_blank' : '_self'}" style="display: block; margin: 12px 0 16px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); background: #000;">
+                    <img loading="lazy" decoding="async" src="${bannerSource}" alt="${escapeHtml(inFeed.title || 'UI/UX Design Community')}" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
                   </a>
                   <div class="newsletter-spotlight-header-row">
-                    <div class="newsletter-spotlight-avatar">🚀</div>
+                    <div class="newsletter-spotlight-avatar" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.4);">
+                      <img src="${avatarSource}" style="width: 100%; height: 100%; object-fit: cover;" alt="UI Designer Logo" onerror="this.outerHTML='🎨'" />
+                    </div>
                     <div>
-                      <h4 class="newsletter-spotlight-title">${escapeHtml(inFeed.title || 'Supercharge Your AI Development with Autonomous Agents')}</h4>
-                      <span class="newsletter-spotlight-brand">Sponsored by ${escapeHtml(inFeed.tag || 'Partner Tech')} • Verified AIRA Partner</span>
+                      <h4 class="newsletter-spotlight-title">${escapeHtml(inFeed.title || 'Join our UI/UX Design Community')}</h4>
+                      <span class="newsletter-spotlight-brand">Sponsored by ${escapeHtml(inFeed.tag || 'UI Designer Community')} • Verified Community</span>
                     </div>
                   </div>
                   <p class="newsletter-spotlight-text">
-                    ${escapeHtml(inFeed.body || 'Build, evaluate, and scale production-ready AI agents in minutes. Connect frontier LLMs to your private data, automate complex multi-step workflows, and reduce API token overhead by up to 45%. Trusted by leading engineering teams worldwide.')}
+                    ${escapeHtml(inFeed.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.')}
                   </p>
                   <div class="newsletter-spotlight-footer">
                     <a href="${inFeed.btnLink || '#/advertise'}" target="${inFeed.btnLink && inFeed.btnLink.startsWith('http') ? '_blank' : '_self'}" class="newsletter-spotlight-btn">
-                      <span>${escapeHtml(inFeed.btnText || 'Claim Exclusive 30% Off Free Trial →')}</span>
+                      <span>${escapeHtml(inFeed.btnText || 'Join the community →')}</span>
                     </a>
-                    <span class="newsletter-spotlight-disclaimer">Delivered to 100+ AI engineers &amp; founders</span>
+                    <span class="newsletter-spotlight-disclaimer">Active design community &amp; daily job alerts</span>
                   </div>
                 </div>
               </div>
@@ -4280,27 +4297,29 @@ if (query !== '') {
     const defaultSettings = {
       topBar: {
         active: true,
-        badge: 'Ad',
-        icon: '⚡',
-        headline: '<strong>AIRA Sponsor</strong> — Daily frontier AI breakthroughs, 96+ verified tools, and expert workflows.',
-        link: '#/advertise',
-        ctaText: 'Learn More'
+        badge: 'COMMUNITY',
+        icon: '🎨',
+        headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & 20+ HR job postings.',
+        link: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
+        ctaText: 'Join WhatsApp Community →'
       },
       inFeed: {
         active: true,
-        tag: 'Featured Partner',
-        title: 'Deploy Production AI Agents Faster with Superbase',
-        body: 'Connect high-speed vector storage, automated LLM cron workflows, and instant API triggers in under 2 minutes.',
-        btnText: 'Claim 30% Off Lifetime Deal →',
-        btnLink: 'https://supabase.com',
-        badge: 'Sponsored'
+        tag: 'UI/UX Community',
+        title: 'Join our UI/UX Design Community',
+        body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.',
+        btnText: 'Join the community →',
+        btnLink: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
+        badge: 'Community Spotlight',
+        bannerImg: 'assets/ui-designer-banner.svg',
+        avatarImg: 'assets/ui-designer-community.png'
       },
       sponsorLogos: [
+        { name: 'UI Designer', emoji: '🎨', image: 'assets/ui-designer-community.png', link: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw' },
         { name: 'AIRA VIP', emoji: '⚡', link: '#/advertise' },
         { name: 'Anthropic', emoji: '🤖', link: 'https://anthropic.com' },
         { name: 'Mistral AI', emoji: '🧠', link: 'https://mistral.ai' },
         { name: 'Firecrawl', emoji: '🔥', link: 'https://firecrawl.dev' },
-        { name: 'OpenSEO', emoji: '📊', link: '#/advertise' },
         { name: 'Sponsor +', emoji: '✨', link: '#/advertise' }
       ]
     };
@@ -5283,29 +5302,31 @@ if (query !== '') {
                 <div class="newsletter-spotlight-ad-box" style="margin-bottom: 28px;">
                   <div class="newsletter-spotlight-top">
                     <div class="newsletter-spotlight-pill">
-                      <span class="bolt">⚡</span> AIRA SPONSOR SPOTLIGHT
+                      <span class="bolt">⚡</span> ${escapeHtml(inFeedAd.badge || 'AIRA COMMUNITY SPOTLIGHT')}
                     </div>
                     <a href="#/advertise" class="newsletter-spotlight-book-link">Book a Spotlight ($399) ↗</a>
                   </div>
                   <div class="newsletter-spotlight-content">
-                    <a href="${inFeedAd.btnLink || '#/advertise'}" style="display: block; margin: 12px 0 16px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);">
-                      <img src="assets/aira-promo-banner.png?v=144.0" alt="AIRA AI Newsletter & Curated Tools Hub" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
+                    <a href="${inFeedAd.btnLink || '#/advertise'}" target="_blank" style="display: block; margin: 12px 0 16px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); background: #000;">
+                      <img src="${inFeedAd.bannerImg || inFeedAd.image || 'assets/ui-designer-banner.svg'}" alt="${escapeHtml(inFeedAd.title || 'AIRA Spotlight')}" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
                     </a>
                     <div class="newsletter-spotlight-header-row">
-                      <div class="newsletter-spotlight-avatar">🚀</div>
+                      <div class="newsletter-spotlight-avatar" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.4);">
+                        <img src="${inFeedAd.avatarImg || inFeedAd.avatar || 'assets/ui-designer-community.png'}" style="width: 100%; height: 100%; object-fit: cover;" alt="UI Designer Logo" onerror="this.outerHTML='🎨'" />
+                      </div>
                       <div>
-                        <h4 class="newsletter-spotlight-title">${escapeHtml(inFeedAd.title || 'Supercharge Your AI Development with Autonomous Agents')}</h4>
-                        <span class="newsletter-spotlight-brand">Sponsored by ${escapeHtml(inFeedAd.tag || 'Partner Tech')} • Verified AIRA Partner</span>
+                        <h4 class="newsletter-spotlight-title">${escapeHtml(inFeedAd.title || 'Join our UI/UX Design Community')}</h4>
+                        <span class="newsletter-spotlight-brand">Sponsored by ${escapeHtml(inFeedAd.tag || 'UI Designer Community')} • Verified Community</span>
                       </div>
                     </div>
                     <p class="newsletter-spotlight-text">
-                      ${escapeHtml(inFeedAd.body || 'Build, evaluate, and scale production-ready AI agents in minutes. Connect frontier LLMs to your private data, automate complex multi-step workflows, and reduce API token overhead by up to 45%.')}
+                      ${escapeHtml(inFeedAd.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.')}
                     </p>
                     <div class="newsletter-spotlight-footer">
                       <a href="${inFeedAd.btnLink || '#/advertise'}" target="_blank" class="newsletter-spotlight-btn">
-                        <span>${escapeHtml(inFeedAd.btnText || 'Claim Exclusive 30% Off Free Trial →')}</span>
+                        <span>${escapeHtml(inFeedAd.btnText || 'Join the community →')}</span>
                       </a>
-                      <span class="newsletter-spotlight-disclaimer">Delivered to 100+ AI engineers &amp; founders</span>
+                      <span class="newsletter-spotlight-disclaimer">Active design community &amp; daily job alerts</span>
                     </div>
                   </div>
                 </div>
