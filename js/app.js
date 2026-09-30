@@ -2027,7 +2027,7 @@ if (query !== '') {
               active: true,
               tag: 'UI/UX Community',
               title: 'Join our UI/UX Design Community',
-              body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.',
+              body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR',
               btnText: 'Join the community →',
               btnLink: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
               badge: 'Community Spotlight',
@@ -2059,13 +2059,13 @@ if (query !== '') {
                     </div>
                   </div>
                   <p class="newsletter-spotlight-text">
-                    ${escapeHtml(inFeed.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.')}
+                    ${escapeHtml(inFeed.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR')}
                   </p>
                   <div class="newsletter-spotlight-footer">
                     <a href="${inFeed.btnLink || '#/advertise'}" target="${inFeed.btnLink && inFeed.btnLink.startsWith('http') ? '_blank' : '_self'}" class="newsletter-spotlight-btn">
                       <span>${escapeHtml(inFeed.btnText || 'Join the community →')}</span>
                     </a>
-                    <span class="newsletter-spotlight-disclaimer">Active design community &amp; daily job alerts</span>
+                    <span class="newsletter-spotlight-disclaimer">Active design community &amp; 20+ HR</span>
                   </div>
                 </div>
               </div>
@@ -4299,7 +4299,7 @@ if (query !== '') {
         active: true,
         badge: 'COMMUNITY',
         icon: '🎨',
-        headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & 20+ HR job postings.',
+        headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & 20+ HR.',
         link: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
         ctaText: 'Join WhatsApp Community →'
       },
@@ -4307,7 +4307,7 @@ if (query !== '') {
         active: true,
         tag: 'UI/UX Community',
         title: 'Join our UI/UX Design Community',
-        body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.',
+        body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR',
         btnText: 'Join the community →',
         btnLink: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
         badge: 'Community Spotlight',
@@ -5320,13 +5320,13 @@ if (query !== '') {
                       </div>
                     </div>
                     <p class="newsletter-spotlight-text">
-                      ${escapeHtml(inFeedAd.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR job posting.')}
+                      ${escapeHtml(inFeedAd.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR')}
                     </p>
                     <div class="newsletter-spotlight-footer">
                       <a href="${inFeedAd.btnLink || '#/advertise'}" target="_blank" class="newsletter-spotlight-btn">
                         <span>${escapeHtml(inFeedAd.btnText || 'Join the community →')}</span>
                       </a>
-                      <span class="newsletter-spotlight-disclaimer">Active design community &amp; daily job alerts</span>
+                      <span class="newsletter-spotlight-disclaimer">Active design community &amp; 20+ HR</span>
                     </div>
                   </div>
                 </div>
