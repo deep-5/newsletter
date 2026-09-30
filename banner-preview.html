@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AIRA LinkedIn Banner (Avatar Safe Zone Adjusted - 1584 x 396 px)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #0B0A0A;
+      color: #F7F7F7;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .header-box {
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin: 0 0 8px 0;
+      color: #F7F7F7;
+    }
+    .badge-alert {
+      display: inline-block;
+      background: rgba(210, 255, 82, 0.15);
+      border: 1px solid #D2FF52;
+      color: #D2FF52;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 14px;
+    }
+    .preview-container {
+      width: 100%;
+      max-width: 1100px;
+      border: 1px solid #27272A;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      background: #131313;
+      position: relative;
+    }
+    .preview-img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+    .actions-bar {
+      margin-top: 24px;
+      display: flex;
+      gap: 16px;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-download {
+      background: #D2FF52;
+      color: #131313;
+      border: none;
+    }
+    .btn-download:hover {
+      background: #bbf030;
+      transform: translateY(-1px);
+    }
+    .btn-svg {
+      background: #18181B;
+      color: #D2FF52;
+      border: 1px solid #27272A;
+    }
+    .btn-svg:hover {
+      background: #27272A;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge-alert">✓ LinkedIn Profile Avatar Safe Zone Fixed!</div>
+    <h1>🎨 AIRA LinkedIn Banner (1584 x 396 px)</h1>
+    <p style="color: #A1A1AA; font-size: 0.88rem; margin: 0;">Text shifted to X: 380px so the LinkedIn profile picture on bottom-left will NEVER cover any text!</p>
+  </div>
+
+  <div class="preview-container">
+    <img src="assets/aira-linkedin-banner-1584x396.svg" alt="AIRA LinkedIn Banner" class="preview-img" id="bannerImg" />
+  </div>
+
+  <div class="actions-bar">
+    <button class="btn btn-download" onclick="downloadAsPNG()">📥 Download Fixed 1584x396 PNG</button>
+    <a href="assets/aira-linkedin-banner-1584x396.svg" download="aira-linkedin-banner-1584x396.svg" class="btn btn-svg">📄 Download Vector SVG</a>
+  </div>
+
+  <canvas id="exportCanvas" width="1584" height="396" style="display:none;"></canvas>
+
+  <script>
+    function downloadAsPNG() {
+      const img = document.getElementById('bannerImg');
+      const canvas = document.getElementById('exportCanvas');
+      const ctx = canvas.getContext('2d');
+      const tempImg = new Image();
+      tempImg.crossOrigin = 'anonymous';
+      tempImg.onload = function() {
+        ctx.clearRect(0, 0, 1584, 396);
+        ctx.drawImage(tempImg, 0, 0, 1584, 396);
+        const a = document.createElement('a');
+        a.download = 'aira-linkedin-banner-1584x396.png';
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      };
+      tempImg.src = img.src;
+    }
+  </script>
+</body>
+</html>

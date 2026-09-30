@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Ambient Blue Glow on Right -->
+    <radialGradient id="glow_blue" cx="88%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#1C46F5" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#1C46F5" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#1C46F5" stop-opacity="0" />
+    </radialGradient>
+    
+    <!-- Ambient Lime Glow on Center -->
+    <radialGradient id="glow_lime" cx="40%" cy="20%" r="45%">
+      <stop offset="0%" stop-color="#D2FF52" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#D2FF52" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Technical Background Grid -->
+    <pattern id="tech_grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#222225" stroke-width="0.75" />
+    </pattern>
+  </defs>
+
+  <!-- Base Dark Canvas #131313 -->
+  <rect width="1584" height="396" fill="#131313" />
+  <rect width="1584" height="396" fill="url(#tech_grid)" />
+  <rect width="1584" height="396" fill="url(#glow_blue)" />
+  <rect width="1584" height="396" fill="url(#glow_lime)" />
+
+  <!-- Top & Bottom Structural Accents -->
+  <line x1="40" y1="32" x2="1544" y2="32" stroke="#242429" stroke-width="1" />
+  <line x1="40" y1="364" x2="1544" y2="364" stroke="#242429" stroke-width="1" />
+
+  <!-- 
+    ========================================================================
+    LEFT-CENTER TEXT BLOCK (Shifted to X: 380 to clear LinkedIn Avatar safe zone)
+    LinkedIn Avatar sits at X: 50-320px, Y: 170-396px.
+    By placing text at X: 380px, NOT A SINGLE PIXEL IS COVERED!
+    ========================================================================
+  -->
+  <g transform="translate(380, 52)">
+    <!-- Top Pill: Status -->
+    <rect x="0" y="0" width="180" height="26" rx="13" fill="#1B1B1F" stroke="#2E2E35" stroke-width="1" />
+    <circle cx="13" cy="13" r="4" fill="#D2FF52" />
+    <text x="26" y="17" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#D2FF52" letter-spacing="1.2">FRONTIER AI PLATFORM</text>
+
+    <!-- Brand Name: AIRA (Clean bold modern typography) -->
+    <text x="0" y="92" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-size="64" font-weight="900" fill="#F7F7F7" letter-spacing="-0.035em">AIRA</text>
+    
+    <!-- Subtitle Headline -->
+    <text x="0" y="142" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-size="21" font-weight="600" fill="#F7F7F7" letter-spacing="-0.01em">
+      Frontier AI Intelligence <tspan fill="#D2FF52">•</tspan> Verified Tools <tspan fill="#D2FF52">•</tspan> Workflows
+    </text>
+    
+    <!-- Value Statement / Description -->
+    <text x="0" y="176" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-size="13.5" font-weight="400" fill="#9E9EA8" letter-spacing="0">
+      Zero hype. Curated daily briefs, 100+ vetted tools, open-source alternatives &amp; n8n blueprints.
+    </text>
+
+    <!-- Clean Website Tag -->
+    <text x="0" y="218" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-size="14.5" font-weight="700" fill="#D2FF52" letter-spacing="0.5">
+      aira.today
+    </text>
+  </g>
+
+  <!-- 
+    ========================================================================
+    RIGHT BENTO GRID (Clean minimal cards, exact brand colors, shifted up)
+    ========================================================================
+  -->
+  <g transform="translate(970, 52)">
+    <!-- Bento 1: 4-Min Daily Briefs -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="265" height="124" rx="14" fill="#18181D" stroke="#2B2B33" stroke-width="1.2" />
+      <rect x="18" y="18" width="28" height="22" rx="6" fill="#1C46F5" />
+      <text x="24" y="33" font-family="'Poppins', 'Inter', sans-serif" font-size="10.5" font-weight="800" fill="#FFFFFF">01</text>
+      <text x="54" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="700" fill="#F7F7F7">4-Min Daily Briefs</text>
+      <text x="18" y="66" font-family="'Poppins', 'Inter', sans-serif" font-size="11.5" font-weight="400" fill="#9E9EA8">Zero-fluff frontier AI news</text>
+      <rect x="18" y="86" width="90" height="20" rx="5" fill="#131313" stroke="#2B2B33" stroke-width="1" />
+      <text x="25" y="100" font-family="'Poppins', 'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#D2FF52">QUICK READ</text>
+    </g>
+
+    <!-- Bento 2: 100+ Verified Tools -->
+    <g transform="translate(285, 0)">
+      <rect x="0" y="0" width="265" height="124" rx="14" fill="#18181D" stroke="#2B2B33" stroke-width="1.2" />
+      <rect x="18" y="18" width="28" height="22" rx="6" fill="#D2FF52" />
+      <text x="24" y="33" font-family="'Poppins', 'Inter', sans-serif" font-size="10.5" font-weight="800" fill="#131313">02</text>
+      <text x="54" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="700" fill="#F7F7F7">100+ Verified Tools</text>
+      <text x="18" y="66" font-family="'Poppins', 'Inter', sans-serif" font-size="11.5" font-weight="400" fill="#9E9EA8">Vetted software &amp; alts</text>
+      <rect x="18" y="86" width="125" height="20" rx="5" fill="#131313" stroke="#2B2B33" stroke-width="1" />
+      <text x="25" y="100" font-family="'Poppins', 'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#60A5FA">OPEN-SOURCE ALTS</text>
+    </g>
+
+    <!-- Bento 3: 50+ n8n Workflows -->
+    <g transform="translate(0, 142)">
+      <rect x="0" y="0" width="265" height="124" rx="14" fill="#18181D" stroke="#2B2B33" stroke-width="1.2" />
+      <rect x="18" y="18" width="28" height="22" rx="6" fill="#D2FF52" />
+      <text x="24" y="33" font-family="'Poppins', 'Inter', sans-serif" font-size="10.5" font-weight="800" fill="#131313">03</text>
+      <text x="54" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="700" fill="#F7F7F7">50+ n8n Workflows</text>
+      <text x="18" y="66" font-family="'Poppins', 'Inter', sans-serif" font-size="11.5" font-weight="400" fill="#9E9EA8">Automation blueprints</text>
+      <rect x="18" y="86" width="105" height="20" rx="5" fill="#131313" stroke="#2B2B33" stroke-width="1" />
+      <text x="25" y="100" font-family="'Poppins', 'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#10B981">FREE TEMPLATES</text>
+    </g>
+
+    <!-- Bento 4: 1,000+ Master Prompts -->
+    <g transform="translate(285, 142)">
+      <rect x="0" y="0" width="265" height="124" rx="14" fill="#18181D" stroke="#2B2B33" stroke-width="1.2" />
+      <rect x="18" y="18" width="28" height="22" rx="6" fill="#1C46F5" />
+      <text x="24" y="33" font-family="'Poppins', 'Inter', sans-serif" font-size="10.5" font-weight="800" fill="#FFFFFF">04</text>
+      <text x="54" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="700" fill="#F7F7F7">1,000+ Prompts</text>
+      <text x="18" y="66" font-family="'Poppins', 'Inter', sans-serif" font-size="11.5" font-weight="400" fill="#9E9EA8">Coding &amp; research kit</text>
+      <rect x="18" y="86" width="95" height="20" rx="5" fill="#131313" stroke="#2B2B33" stroke-width="1" />
+      <text x="25" y="100" font-family="'Poppins', 'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#D2FF52">GROWTH KIT</text>
+    </g>
+  </g>
+</svg>

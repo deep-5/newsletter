@@ -22042,3 +22042,134 @@ body,
   pointer-events: none !important;
 }
 
+/* ========================================================================= */
+/* AIRA ADMIN PORTAL LOCK SCREEN & EXTENDED SUITE STYLING                    */
+/* ========================================================================= */
+.admin-lock-screen {
+  min-height: calc(100vh - 80px);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 60px 20px !important;
+  background: radial-gradient(circle at center, #1E293B 0%, #090D16 100%) !important;
+}
+
+.admin-lock-card {
+  max-width: 440px !important;
+  width: 100% !important;
+  background: rgba(30, 41, 59, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 24px !important;
+  padding: 40px 32px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5) !important;
+  text-align: center !important;
+  color: #FFFFFF !important;
+}
+
+body.aira-admin-active .admin-lock-screen h1,
+body.aira-admin-active .admin-lock-screen h2,
+body.aira-admin-active .admin-lock-screen h3,
+body.aira-admin-active .admin-lock-screen h4,
+body.aira-admin-active .admin-lock-screen h5,
+body.aira-admin-active .admin-lock-screen h6,
+body.aira-admin-active .admin-lock-card h1,
+body.aira-admin-active .admin-lock-card h2,
+body.aira-admin-active .admin-lock-card h3,
+body.aira-admin-active .admin-lock-card h4,
+body.aira-admin-active .admin-lock-card h5,
+body.aira-admin-active .admin-lock-card h6 {
+  color: #FFFFFF !important;
+}
+
+body.aira-admin-active .admin-lock-screen p,
+body.aira-admin-active .admin-lock-card p {
+  color: #94A3B8 !important;
+}
+
+body.aira-admin-active .admin-lock-card strong {
+  color: #38BDF8 !important;
+}
+
+/* Dark Card Headings in Admin */
+body.aira-admin-active .saas-panel-card[style*="linear-gradient"] h3,
+body.aira-admin-active .saas-panel-card[style*="background: linear-gradient"] h3,
+body.aira-admin-active .saas-dark-panel h3,
+body.aira-admin-active .saas-dark-panel h2 {
+  color: #FFFFFF !important;
+}
+
+body.aira-admin-active .saas-panel-card[style*="linear-gradient"] p,
+body.aira-admin-active .saas-dark-panel p {
+  color: #94A3B8 !important;
+}
+
+#app .admin-lock-card h2,
+.admin-lock-card h2,
+.admin-lock-screen h2 {
+  color: #FFFFFF !important;
+  font-family: var(--font-header) !important;
+  font-size: 1.75rem !important;
+  font-weight: 900 !important;
+  margin: 10px 0 !important;
+  letter-spacing: -0.02em !important;
+}
+
+#app .admin-lock-card p,
+.admin-lock-card p,
+.admin-lock-screen p {
+  color: #94A3B8 !important;
+  font-size: 0.92rem !important;
+  line-height: 1.55 !important;
+  margin-bottom: 26px !important;
+}
+
+.admin-lock-card input.form-input {
+  background: #0B1120 !important;
+  border: 1px solid #334155 !important;
+  color: #FFFFFF !important;
+  text-align: center !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 0.25em !important;
+  padding: 14px !important;
+  border-radius: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.admin-lock-card input.form-input:focus {
+  border-color: #1C46F5 !important;
+  box-shadow: 0 0 0 3px rgba(28, 70, 245, 0.3) !important;
+  outline: none !important;
+}
+
+.admin-lock-card input.form-input::placeholder {
+  color: #64748B !important;
+  letter-spacing: normal !important;
+  font-size: 0.9rem !important;
+}
+
+.admin-lock-card .saas-btn-primary {
+  background: #1C46F5 !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 14px !important;
+  border-radius: 12px !important;
+  width: 100% !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 20px rgba(28, 70, 245, 0.4) !important;
+  transition: all 0.2s ease !important;
+  justify-content: center !important;
+}
+
+.admin-lock-card .saas-btn-primary:hover {
+  background: #1539D6 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 24px rgba(28, 70, 245, 0.5) !important;
+}
+
+

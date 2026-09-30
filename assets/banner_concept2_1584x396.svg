@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c2_wave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C46F5" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0E2AA8" stop-opacity="0.95" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background #131313 -->
+  <rect width="1584" height="396" fill="#131313" />
+
+  <!-- Right Geometric Wave Section in Royal Cobalt #1C46F5 -->
+  <path d="M 980 0 C 900 120, 860 260, 940 396 L 1584 396 L 1584 0 Z" fill="url(#c2_wave)" />
+  <path d="M 976 0 C 896 120, 856 260, 936 396" stroke="#D2FF52" stroke-width="3.5" fill="none" />
+
+  <!-- LEFT BRANDING -->
+  <g transform="translate(100, 95)">
+    <!-- Starburst badge -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="145" height="26" rx="13" fill="#1B1B1F" stroke="#2E2E35" stroke-width="1" />
+      <circle cx="13" cy="13" r="4" fill="#D2FF52" />
+      <text x="26" y="17" font-family="'Poppins', 'Inter', sans-serif" font-size="10.5" font-weight="700" fill="#D2FF52" letter-spacing="1">AIRA MEDIA</text>
+    </g>
+
+    <!-- Main Title -->
+    <g transform="translate(0, 42)">
+      <text x="0" y="44" font-family="'Poppins', 'Inter', sans-serif" font-size="56" font-weight="900" fill="#F7F7F7" letter-spacing="-0.03em">AIRA<tspan fill="#D2FF52">.</tspan></text>
+      <text x="0" y="86" font-family="'Poppins', 'Inter', sans-serif" font-size="20" font-weight="600" fill="#F7F7F7">
+        Frontier AI Intelligence &amp; Production Workflows
+      </text>
+      <text x="0" y="114" font-family="'Poppins', 'Inter', sans-serif" font-size="13.5" font-weight="400" fill="#9E9EA8">
+        The curated daily newsletter and tools engine for modern builders and founders.
+      </text>
+    </g>
+
+    <!-- URL Tag -->
+    <g transform="translate(0, 185)">
+      <rect x="0" y="0" width="125" height="34" rx="8" fill="#1E1E24" stroke="#33333D" stroke-width="1" />
+      <text x="14" y="22" font-family="'Poppins', 'Inter', sans-serif" font-size="13" font-weight="700" fill="#D2FF52">⚡ aira.today</text>
+    </g>
+  </g>
+
+  <!-- RIGHT NEON PILL STACK (Inside Blue Wave) -->
+  <g transform="translate(1030, 65)">
+    <!-- Pill 1 -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="460" height="56" rx="28" fill="#D2FF52" />
+      <text x="28" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="800" fill="#131313">⚡ 4-Min Daily Briefs</text>
+      <text x="270" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#131313">Zero-Fluff News →</text>
+    </g>
+
+    <!-- Pill 2 -->
+    <g transform="translate(0, 70)">
+      <rect x="0" y="0" width="460" height="56" rx="28" fill="#D2FF52" />
+      <text x="28" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="800" fill="#131313">🛠️ 100+ Verified AI Tools</text>
+      <text x="270" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#131313">Open-Source Alts →</text>
+    </g>
+
+    <!-- Pill 3 -->
+    <g transform="translate(0, 140)">
+      <rect x="0" y="0" width="460" height="56" rx="28" fill="#D2FF52" />
+      <text x="28" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="15" font-weight="800" fill="#131313">🚀 50+ n8n Workflows &amp; 1K Prompts</text>
+      <text x="360" y="34" font-family="'Poppins', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#131313">Free →</text>
+    </g>
+
+    <!-- Pill 4: Micro Tagline -->
+    <g transform="translate(20, 210)">
+      <text x="0" y="16" font-family="'Poppins', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#FFFFFF" fill-opacity="0.9">
+        Trusted by 10,000+ AI founders, developers &amp; creators.
+      </text>
+    </g>
+  </g>
+</svg>
