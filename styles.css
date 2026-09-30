@@ -22178,6 +22178,39 @@ body.aira-admin-active .saas-dark-panel p {
   justify-content: center !important;
 }
 
+/* ==========================================================================
+   BANANA PROMPT AI SPONSORED CARD IN ARTICLE FEED
+   ========================================================================== */
+.banana-prompt-ad-box {
+  box-sizing: border-box !important;
+}
+.banana-prompt-ad-box * {
+  box-sizing: border-box !important;
+}
+.banana-prompt-ad-box h3 {
+  color: #FFFFFF !important;
+}
+.banana-prompt-ad-box li {
+  color: #F1F5F9 !important;
+  list-style: none !important;
+}
+.banana-prompt-ad-box li strong,
+.banana-prompt-ad-box li b {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+.banana-prompt-ad-box li span {
+  color: #E2E8F0 !important;
+}
+.banana-prompt-ad-box li span strong {
+  color: #FFFFFF !important;
+}
+.banana-prompt-ad-box a:hover {
+  opacity: 0.95 !important;
+  transform: translateY(-1px) !important;
+}
+
+
 .admin-lock-card .saas-btn-primary:hover {
   background: #1539D6 !important;
   transform: translateY(-1px) !important;

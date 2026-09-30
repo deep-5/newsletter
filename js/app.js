@@ -1567,10 +1567,13 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
             <img src="assets/ui-designer-community.png" style="width: 20px; height: 20px; border-radius: 4px; object-fit: cover; display: inline-block; vertical-align: middle;" alt="UI Designer" />
             <span class="sponsor-name" style="font-weight: 700; color: #FFFFFF;">UI Designer</span>
           </a>
+          <a href="https://t.me/GemaniPrompt_21" target="_blank" class="openalt-sponsor-tile" style="background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.45);" title="BananaPromptAI - 500+ Ready-Made Prompts">
+            <span class="sponsor-emoji">🍌</span>
+            <span class="sponsor-name" style="font-weight: 700; color: #FFFFFF;">BananaPromptAI</span>
+          </a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">⚡</span> <span class="sponsor-name">AIRA VIP</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🤖</span> <span class="sponsor-name">Anthropic</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🧠</span> <span class="sponsor-name">Mistral AI</span></a>
-          <a href="#/advertise" class="openalt-sponsor-tile"><span class="sponsor-emoji">🔥</span> <span class="sponsor-name">Firecrawl</span></a>
           <a href="#/advertise" class="openalt-sponsor-tile openalt-sponsor-tile-add"><span class="sponsor-emoji">✨</span> <span class="sponsor-name">Sponsor +</span></a>
         </div>
       </div>
@@ -1933,6 +1936,67 @@ if (query !== '') {
     const recommendedArticles = state.articles.filter(a => a.slug !== article.slug).slice(0, 2);
     updateSocialMetaTags(article.title, article.subtitle || article.title, article.image_url);
 
+    function getBananaPromptAdHTML() {
+      return `
+        <div class="banana-prompt-ad-box" style="margin: 32px 0; background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 60%, #312E81 100%); border: 1.5px solid #6366F1; border-radius: 16px; padding: 24px; color: #FFFFFF; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25); overflow: hidden; position: relative;">
+          <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center;">
+            
+            <!-- Image Preview Column -->
+            <div style="flex: 0 0 200px; max-width: 220px; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,0.45); border: 2px solid rgba(255,255,255,0.25); background: #000;">
+              <img src="assets/banana-prompt-ai.jpg" alt="BananaPromptAI Generation Example" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+              <span style="position: absolute; bottom: 8px; left: 8px; right: 8px; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); color: #FACC15; font-size: 0.68rem; font-weight: 800; padding: 4px 6px; border-radius: 6px; text-align: center; border: 1px solid rgba(250,204,21,0.35);">
+                ✨ Generated with AI
+              </span>
+            </div>
+
+            <!-- Content Column -->
+            <div style="flex: 1; min-width: 260px;">
+              <!-- Pill Badge -->
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: #FACC15; color: #0F172A; font-weight: 800; font-size: 0.72rem; padding: 3px 10px; border-radius: 9999px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em;">
+                <span>🍌</span> BANANA PROMPT AI • 100% FREE
+              </div>
+
+              <!-- Headline -->
+              <h3 style="font-size: 1.28rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin: 0 0 12px 0;">
+                AI se best results chahiye? Toh BananaPromptAI try karo! 😍
+              </h3>
+
+              <!-- Feature Bullets -->
+              <ul style="list-style: none; padding: 0; margin: 0 0 16px 0; display: flex; flex-direction: column; gap: 8px;">
+                <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">
+                  <span style="color: #22C55E; font-weight: 700; flex-shrink: 0;">✅</span>
+                  <span><strong>500+ Ready-Made Prompts</strong> — Gemini, ChatGPT, Grok ya kisi bhi AI me paste karo.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">
+                  <span style="color: #22C55E; font-weight: 700; flex-shrink: 0;">✅</span>
+                  <span><strong>Apni photo upload karo</strong> aur amazing AI images generate karo.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">
+                  <span style="color: #22C55E; font-weight: 700; flex-shrink: 0;">✅</span>
+                  <span>Prompt likhne ki tension khatam!</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">
+                  <span style="color: #22C55E; font-weight: 700; flex-shrink: 0;">✅</span>
+                  <span>Sab kuch ek hi jagah – <strong style="color: #FACC15;">FREE</strong>.</span>
+                </li>
+              </ul>
+
+              <!-- CTA Button Row -->
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <a href="https://t.me/GemaniPrompt_21" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #0088CC; background: linear-gradient(135deg, #0088CC 0%, #229ED9 100%); color: #FFFFFF; font-weight: 800; font-size: 0.9rem; padding: 11px 20px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 14px rgba(0, 136, 204, 0.4);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.61 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.48-.42-1.42-.88.03-.24.38-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.49 3.85-1.6 4.65-1.88 5.17-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.24z"/>
+                  </svg>
+                  <span>Join Telegram (Free Prompts) ↗</span>
+                </a>
+                <span style="font-size: 0.8rem; color: #94A3B8;">🔥 500+ Ready Prompts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     const enrichedBodyHtml = linkToolMentionsInArticle(article.body_html);
 
     appContainer.innerHTML = `
@@ -2074,7 +2138,19 @@ if (query !== '') {
 
           <!-- Body Content -->
           <div class="article-rich-body">
-            ${enrichedBodyHtml || article.body_html}
+            ${(() => {
+              let body = enrichedBodyHtml || article.body_html || '';
+              const bananaAd = getBananaPromptAdHTML();
+              if (body.includes('<h2>📚 AI Tutorial</h2>')) {
+                return body.replace('<h2>📚 AI Tutorial</h2>', `${bananaAd}<h2>📚 AI Tutorial</h2>`);
+              } else if (body.includes('<h2>🛠️ Top AI &amp; SaaS Tools</h2>')) {
+                return body.replace('<h2>🛠️ Top AI &amp; SaaS Tools</h2>', `${bananaAd}<h2>🛠️ Top AI &amp; SaaS Tools</h2>`);
+              } else if (body.includes('<h2>🌐 Top AI &amp; Tech News</h2>')) {
+                return body.replace('<h2>🌐 Top AI &amp; Tech News</h2>', `${bananaAd}<h2>🌐 Top AI &amp; Tech News</h2>`);
+              } else {
+                return body + bananaAd;
+              }
+            })()}
           </div>
 
           <!-- Inline Subscribe Card (Exact Dark UI) -->
