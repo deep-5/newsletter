@@ -20335,6 +20335,82 @@ body,
   color: #1539D6 !important;
 }
 
+/* Mobile Responsive Adjustments for Top Header Ad Bar */
+@media (max-width: 768px) {
+  .hero-openalt-top-ad,
+  .hero-top-ad-strip,
+  .hero-ad-strip-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+    margin-bottom: 16px !important;
+    height: auto !important;
+    min-height: unset !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-openalt-top-ad .hero-top-ad-left,
+  .hero-top-ad-strip .hero-top-ad-left {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    flex: unset !important;
+  }
+
+  .hero-openalt-top-ad .hero-ad-badge-pill,
+  .hero-top-ad-strip .hero-ad-badge-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  .hero-openalt-top-ad .hero-ad-brand-icon,
+  .hero-top-ad-strip .hero-ad-brand-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  .hero-openalt-top-ad .hero-ad-text-content,
+  .hero-top-ad-strip .hero-ad-text-content {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 0.84rem !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    color: #FFFFFF !important;
+    margin-top: 2px !important;
+    text-align: center !important;
+  }
+
+  .hero-openalt-top-ad .hero-ad-action-btn,
+  .hero-top-ad-strip .hero-ad-action-btn,
+  .advertise-live-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding: 8px 14px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    box-sizing: border-box !important;
+    border-radius: 6px !important;
+  }
+}
+
 
 /* In-Feed Newsletter Spotlight Banner */
 .newsletter-spotlight-ad-box,
@@ -22208,6 +22284,29 @@ body.aira-admin-active .saas-dark-panel p {
 .banana-prompt-ad-box a:hover {
   opacity: 0.95 !important;
   transform: translateY(-1px) !important;
+}
+
+@media (max-width: 640px) {
+  .banana-prompt-ad-box {
+    padding: 18px 14px !important;
+    margin: 20px 0 !important;
+    border-radius: 14px !important;
+  }
+  .banana-prompt-ad-box div[style*="flex: 0 0 210px"] {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .banana-prompt-ad-box div[style*="flex: 1 1 280px"] {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+  .banana-prompt-ad-box a[href*="t.me"] {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
 }
 
 
