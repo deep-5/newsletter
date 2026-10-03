@@ -983,6 +983,18 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
       return { name: 'admin' };
     }
     if (hashPath === '/prompts') return { name: 'prompts' };
+    if (hashPath === '/jobs' || hashPath === '/job') {
+      const params = new URLSearchParams(hashQuery || '');
+      const category = params.get('category') || 'all';
+      return { name: 'jobs', category };
+    }
+    if (hashPath === '/post-job' || hashPath === '/submit-job' || hashPath === '/jobs/post' || hashPath === '/jobs/new') {
+      return { name: 'post-job' };
+    }
+    if (hashPath.startsWith('/jobs/') || hashPath.startsWith('/job/')) {
+      const id = hashPath.replace('/jobs/', '').replace('/job/', '');
+      return { name: 'job-detail', id };
+    }
     if (hashPath === '/compare') return { name: 'tags' }; // Redirected to AI tools
     if (hashPath === '/bookmarks') return { name: 'bookmarks' };
     if (hashPath === '/submit') return { name: 'submit' };
@@ -1055,6 +1067,8 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
       const target = link.getAttribute('data-nav');
       if (target === route.name || 
          (route.name === 'gate' && target === 'home') ||
+         (route.name === 'job-detail' && target === 'jobs') ||
+         (route.name === 'post-job' && target === 'jobs') ||
          (route.name === 'alternative-detail' && target === 'alternatives') ||
          (route.name === 'tool-detail' && target === 'tags')) {
         link.classList.add('active');
@@ -1063,12 +1077,28 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
       }
     });
 
+    // Update active mobile bottom app dock tabs
+    document.querySelectorAll('.mobile-dock-tab').forEach(dock => {
+      const target = dock.getAttribute('data-dock');
+      const isMatch = (target === route.name) ||
+                      (target === 'home' && (route.name === 'gate' || route.name === 'home')) ||
+                      (target === 'jobs' && (route.name === 'jobs' || route.name === 'job-detail' || route.name === 'post-job')) ||
+                      (target === 'tags' && (route.name === 'tags' || route.name === 'tool-detail' || route.name === 'alternatives' || route.name === 'alternative-detail')) ||
+                      (target === 'prompts' && route.name === 'prompts') ||
+                      (target === 'bookmarks' && route.name === 'bookmarks');
+      dock.classList.toggle('active', !!isMatch);
+    });
+
     window.scrollTo({ top: 0, behavior: 'instant' });
     updateReadingProgress();
 
     // Dynamic Route Meta Tags
     if (route.name === 'home') {
       updateSocialMetaTags('AIRA | The One and Only AI Newsletter', 'The one and only AI newsletter. Join us and get the best AI news, tools, prompts, and tutorials completely FREE!');
+    } else if (route.name === 'jobs') {
+      updateSocialMetaTags('AIRA Jobs Board | Verified AI, UI/UX & Remote Openings', 'Discover high-paying roles in AI Engineering, UI/UX Design, and Prompt Engineering.');
+    } else if (route.name === 'post-job' || route.name === 'submit-job') {
+      updateSocialMetaTags('Post an AI, UI/UX or Prompt Engineering Job | AIRA', 'Reach 100+ vetted senior engineers, UI/UX product designers, and prompt specialists. Submit your open role with direct official career page application link.');
     } else if (route.name === 'tags') {
       updateSocialMetaTags('AI Tools Directory (96+ curated tools) | AIRA', 'Explore top curated AI tools, community ratings, alternatives, and verified links.');
     } else if (route.name === 'alternatives') {
@@ -1089,6 +1119,13 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
       renderSubscribeGatePage();
     } else if (route.name === 'home') {
       renderHomePage();
+    } else if (route.name === 'jobs') {
+      if (route.category) state.jobCategoryFilter = route.category;
+      renderJobsPage();
+    } else if (route.name === 'post-job' || route.name === 'submit-job') {
+      renderPostJobPage();
+    } else if (route.name === 'job-detail') {
+      renderJobDetailPage(route.id);
     } else if (route.name === 'post') {
       await renderPostPage(route.slug);
     } else if (route.name === 'alternatives') {
@@ -2108,7 +2145,7 @@ if (query !== '') {
               active: true,
               tag: 'UI/UX Community',
               title: 'Join our UI/UX Design Community',
-              body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR',
+              body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives.',
               btnText: 'Join the community →',
               btnLink: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
               badge: 'Community Spotlight',
@@ -2140,13 +2177,13 @@ if (query !== '') {
                     </div>
                   </div>
                   <p class="newsletter-spotlight-text">
-                    ${escapeHtml(inFeed.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR')}
+                    ${escapeHtml(inFeed.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives.')}
                   </p>
                   <div class="newsletter-spotlight-footer">
                     <a href="${inFeed.btnLink || '#/advertise'}" target="${inFeed.btnLink && inFeed.btnLink.startsWith('http') ? '_blank' : '_self'}" class="newsletter-spotlight-btn">
                       <span>${escapeHtml(inFeed.btnText || 'Join the community →')}</span>
                     </a>
-                    <span class="newsletter-spotlight-disclaimer">Active design community &amp; 20+ HR</span>
+                    <span class="newsletter-spotlight-disclaimer">Active design community &amp; verified network</span>
                   </div>
                 </div>
               </div>
@@ -3394,7 +3431,1272 @@ if (query !== '') {
   }
 
   // =========================================================================
-  // 5. Open Source Alternatives Directory View (/#/alternatives)
+  // 5. AIRA Jobs Board & Recruitment Engine (/#/jobs)
+  // =========================================================================
+  function getJobs() {
+    const base = typeof AI_JOBS_DATA !== 'undefined' && Array.isArray(AI_JOBS_DATA.jobs) ? AI_JOBS_DATA.jobs : [];
+    try {
+      const stored = localStorage.getItem('aira_custom_jobs');
+      if (stored) {
+        const custom = JSON.parse(stored);
+        if (Array.isArray(custom)) {
+          const baseIds = new Set(base.map(j => j.id));
+          const customOnly = custom.filter(j => !baseIds.has(j.id));
+          return [...customOnly, ...base];
+        }
+      }
+    } catch (e) {}
+    return base;
+  }
+
+  function saveJobs(list) {
+    try {
+      localStorage.setItem('aira_custom_jobs', JSON.stringify(list));
+      if (window.AiraStorage) window.AiraStorage.set('aira_custom_jobs', list);
+    } catch (e) {}
+  }
+
+  function renderJobsPage() {
+    const allJobs = getJobs();
+    if (!state.jobCategoryFilter) state.jobCategoryFilter = 'all';
+    if (state.jobSearchQuery === undefined) state.jobSearchQuery = '';
+
+    const baseCategories = [
+      { id: 'all', name: 'All Roles', icon: '💼' },
+      { id: 'ui-ux', name: 'UI/UX Design', icon: '🎨' },
+      { id: 'ai-eng', name: 'AI Engineering', icon: '⚡' },
+      { id: 'prompt-eng', name: 'Prompt Engineering', icon: '💡' },
+      { id: 'remote', name: '100% Remote', icon: '🌍' },
+      { id: 'verified', name: 'Verified Openings', icon: '✅' }
+    ];
+
+    // Dynamically collect custom categories from all active jobs
+    const standardIds = new Set(baseCategories.map(c => c.id));
+    const extraCategories = [];
+    allJobs.forEach(j => {
+      const catId = j.categorySlug || (j.category ? j.category.toLowerCase().replace(/[^a-z0-9]+/g, '-') : '');
+      if (catId && !standardIds.has(catId) && !extraCategories.some(c => c.id === catId)) {
+        extraCategories.push({
+          id: catId,
+          name: j.categoryName || j.category || 'Specialized Role',
+          icon: j.categoryIcon || '🚀'
+        });
+      }
+    });
+
+    const categories = [...baseCategories, ...extraCategories];
+
+    // Find featured job
+    const featuredJob = allJobs.find(j => j.featured) || allJobs[0];
+
+    appContainer.innerHTML = `
+      <section class="jobs-hero-card">
+        <div class="jobs-container">
+          <!-- Top Ad / Announcement Bar -->
+          ${(() => {
+            const sp = (typeof getSponsorSettings === 'function') ? getSponsorSettings() : null;
+            const topBar = sp ? sp.topBar : { active: true, badge: 'COMMUNITY', icon: '🎨', headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & tech trends.', link: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw', ctaText: 'Join WhatsApp Community →' };
+            if (!topBar || topBar.active === false) return '';
+            return `
+              <div class="hero-openalt-top-ad" style="max-width: 820px; margin: 0 auto 20px auto;">
+                <div class="hero-top-ad-left">
+                  <span class="hero-ad-badge-pill">${escapeHtml(topBar.badge || 'Ad')}</span>
+                  <span class="hero-ad-brand-icon">${topBar.icon || '⚡'}</span>
+                  <span class="hero-ad-text-content">${topBar.headline || ''}</span>
+                </div>
+                <a href="${topBar.link || '#/advertise'}" target="${topBar.link && topBar.link.startsWith('http') ? '_blank' : '_self'}" class="hero-ad-action-btn">${escapeHtml(topBar.ctaText || 'Learn More')}</a>
+              </div>
+            `;
+          })()}
+
+          <!-- Centered Hero Header -->
+          <div class="jobs-hero-badge">
+            <span>⚡ VERIFIED AI, DESIGN &amp; TECH ROLES</span>
+          </div>
+          
+          <h1 class="jobs-hero-title">AIRA Jobs Board</h1>
+          
+          <p class="jobs-hero-desc">
+            Discover high-impact AI, UI/UX Design &amp; Prompt Engineering roles at world-class tech companies and frontier AI startups.
+          </p>
+
+          <!-- Search & Post a Job Action Bar -->
+          <div class="jobs-hero-search-wrapper">
+            <form class="jobs-search-form" id="jobs-search-form" onsubmit="event.preventDefault();">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2" style="flex-shrink: 0;">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" class="jobs-search-input" id="jobs-search-input" placeholder="Search roles, companies, skills (e.g. OpenAI, Figma, Remote)..." value="${escapeHtml(state.jobSearchQuery)}" autocomplete="off" />
+              <button type="submit" class="jobs-search-btn">Search Jobs</button>
+            </form>
+
+            <a href="#/post-job" class="jobs-hero-post-btn" title="Post an opening on AIRA Jobs Board">
+              <span>✍️ Post a Job</span>
+              <span class="post-btn-badge">HR Portal</span>
+            </a>
+          </div>
+
+          <!-- Category Filter Chips -->
+          <div class="jobs-filter-chips-wrapper">
+            <div class="jobs-filter-chips-row">
+              ${categories.map(cat => {
+                const count = cat.id === 'all' 
+                  ? allJobs.length 
+                  : (cat.id === 'remote' 
+                      ? allJobs.filter(j => (j.workplace || '').toLowerCase().includes('remote') || (j.location || '').toLowerCase().includes('remote')).length
+                      : (cat.id === 'verified'
+                          ? allJobs.filter(j => (j.badge || '').toLowerCase().includes('verified')).length
+                          : allJobs.filter(j => j.category === cat.id || j.categorySlug === cat.id || (j.categoryName && j.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cat.id)).length));
+                const isActive = state.jobCategoryFilter === cat.id;
+                return `
+                  <button type="button" class="job-filter-pill ${isActive ? 'active' : ''}" data-job-cat="${cat.id}">
+                    <span>${cat.icon} ${cat.name}</span>
+                    <span class="pill-count">${count}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="jobs-container" style="padding-bottom: 60px;">
+        
+        <!-- Featured Spotlight Job of the Day -->
+        ${featuredJob && (!state.jobSearchQuery && state.jobCategoryFilter === 'all') ? `
+          <div class="job-featured-spotlight-card" data-job-id="${featuredJob.id}">
+            <div class="job-featured-top-row">
+              <div class="job-company-badge-wrap">
+                <div class="job-company-avatar" style="background: ${featuredJob.companyBg || '#18181B'};">
+                  ${featuredJob.companyInitial || featuredJob.company.charAt(0)}
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-weight: 800; font-size: 1.05rem; color: #18181B;" class="dark-text-white">${escapeHtml(featuredJob.company)}</span>
+                    <span class="job-featured-tag-pill">★ FEATURED ROLE</span>
+                  </div>
+                  <span style="font-size: 0.8rem; color: #71717A;">${escapeHtml(featuredJob.companyDomain || '')} • ${escapeHtml(featuredJob.postedAt || 'Recently')}</span>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="job-salary-tag">${escapeHtml(featuredJob.salary)}</span>
+                ${featuredJob.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.72rem; padding: 4px 8px; border-radius: 6px;">✓ ${escapeHtml(featuredJob.badge)}</span>` : ''}
+              </div>
+            </div>
+
+            <h2 class="job-featured-title">${escapeHtml(featuredJob.title)}</h2>
+            
+            <div class="job-featured-meta">
+              <span>📍 ${escapeHtml(featuredJob.location)}</span>
+              <span>💼 ${escapeHtml(featuredJob.type)}</span>
+              <span>⏳ ${escapeHtml(featuredJob.experience || '3+ yrs exp')}</span>
+            </div>
+
+            <p class="job-featured-desc">${escapeHtml(featuredJob.tagline || featuredJob.overview || '')}</p>
+
+            <div class="job-skills-wrap">
+              ${featuredJob.categoryName ? `<span class="job-skill-chip" style="background: rgba(28,70,245,0.08); color: #1C46F5; font-weight: 700;">${escapeHtml(featuredJob.categoryIcon || '💼')} ${escapeHtml(featuredJob.categoryName)}</span>` : ''}
+              ${(featuredJob.skills || []).map(skill => `<span class="job-skill-chip">${escapeHtml(skill)}</span>`).join('')}
+            </div>
+
+            <div class="job-card-actions-row">
+              <a href="${featuredJob.officialApplyUrl || featuredJob.applyUrl || 'https://openai.com/careers'}" target="_blank" rel="noopener noreferrer" class="job-btn-primary">
+                <span>Apply on Official Site ↗</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+              <button type="button" class="job-btn-secondary btn-open-job-detail" data-job-id="${featuredJob.id}">View Full Role &amp; Perks</button>
+              <button type="button" class="btn-toggle-save-job" data-job-id="${featuredJob.id}" style="background: transparent; border: none; cursor: pointer; padding: 8px; color: #71717A;" title="Save job">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="${(state.savedJobs || []).includes(featuredJob.id) ? '#1C46F5' : 'none'}" stroke="${(state.savedJobs || []).includes(featuredJob.id) ? '#1C46F5' : 'currentColor'}" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+              </button>
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Jobs Feed List Header -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <h3 style="font-family: var(--font-header); font-size: 1.18rem; font-weight: 800; margin: 0;">Verified Job Openings</h3>
+          <span id="jobs-count-label" style="font-size: 0.82rem; color: #71717A;">Showing verified openings</span>
+        </div>
+
+        <!-- Jobs Feed Container -->
+        <div class="jobs-feed-list" id="jobs-feed-container">
+          <!-- Filtered jobs dynamically injected here -->
+        </div>
+
+        <!-- Recruiter / Post a Job Box -->
+        <div class="job-post-recruiter-card">
+          <div>
+            <h4 class="job-post-recruiter-title">Hiring Top AI, UI/UX, Product or Engineering Talent?</h4>
+            <p class="job-post-recruiter-desc">Showcase your open role to 100+ vetted AI pioneers, product designers, and senior engineers.</p>
+          </div>
+          <a href="#/post-job" class="job-btn-primary" style="background: #FFFFFF; color: #18181B !important; box-shadow: none;">
+            <span>Post a Job / HR Submit ✍️</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Job Detail Modal Container -->
+      <div class="job-modal-overlay" id="job-detail-modal">
+        <div class="job-modal-card" id="job-modal-card-content">
+          <!-- Populated dynamically on click -->
+        </div>
+      </div>
+    `;
+
+    // Internal render feed function
+    function updateJobsFeed() {
+      const feedContainer = document.getElementById('jobs-feed-container');
+      const countLabel = document.getElementById('jobs-count-label');
+      if (!feedContainer) return;
+
+      const q = (state.jobSearchQuery || '').toLowerCase().trim();
+      const cat = state.jobCategoryFilter || 'all';
+
+      const filtered = allJobs.filter(job => {
+        // Category filter
+        let matchCat = true;
+        if (cat === 'remote') {
+          matchCat = (job.workplace || '').toLowerCase().includes('remote') || (job.location || '').toLowerCase().includes('remote');
+        } else if (cat === 'verified') {
+          matchCat = (job.badge || '').toLowerCase().includes('verified');
+        } else if (cat !== 'all') {
+          matchCat = job.category === cat || job.categorySlug === cat || (job.categoryName && job.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cat);
+        }
+
+        // Search query filter
+        let matchSearch = true;
+        if (q) {
+          const haystack = `${job.title} ${job.company} ${job.location} ${job.salary} ${job.categoryName || ''} ${(job.skills || []).join(' ')} ${job.tagline || ''}`.toLowerCase();
+          matchSearch = haystack.includes(q);
+        }
+
+        return matchCat && matchSearch;
+      });
+
+      if (countLabel) {
+        countLabel.innerText = `Showing ${filtered.length} verified opening${filtered.length === 1 ? '' : 's'}`;
+      }
+
+      if (filtered.length === 0) {
+        feedContainer.innerHTML = `
+          <div style="text-align: center; padding: 48px 20px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 14px;">
+            <div style="font-size: 2.2rem; margin-bottom: 10px;">💼</div>
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;">No jobs found</h4>
+            <p style="color: #71717A; font-size: 0.88rem; margin-bottom: 16px;">Try adjusting your search terms or selecting a different category filter.</p>
+            <button type="button" class="job-btn-secondary" id="btn-reset-job-filters">Clear All Filters</button>
+          </div>
+        `;
+        const resetBtn = document.getElementById('btn-reset-job-filters');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            state.jobCategoryFilter = 'all';
+            state.jobSearchQuery = '';
+            const inputEl = document.getElementById('jobs-search-input');
+            if (inputEl) inputEl.value = '';
+            document.querySelectorAll('.job-filter-pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-job-cat') === 'all'));
+            updateJobsFeed();
+          });
+        }
+        return;
+      }
+
+      feedContainer.innerHTML = filtered.map(job => {
+        const isSaved = (state.savedJobs || []).includes(job.id);
+        const officialLink = job.officialApplyUrl || job.applyUrl || `https://${job.companyDomain || 'google.com'}`;
+        return `
+          <div class="job-feed-card" data-job-id="${job.id}">
+            <div class="job-feed-main">
+              <div class="job-company-avatar" style="background: ${job.companyBg || '#18181B'}; width: 40px; height: 40px; font-size: 1.1rem;">
+                ${job.companyInitial || job.company.charAt(0)}
+              </div>
+              <div class="job-feed-content">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <h4 class="job-feed-title">${escapeHtml(job.title)}</h4>
+                  ${job.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">${escapeHtml(job.badge)}</span>` : ''}
+                </div>
+                <div class="job-feed-company-row">
+                  <strong style="color: #18181B;" class="dark-text-white">${escapeHtml(job.company)}</strong>
+                  <span>•</span>
+                  <span>📍 ${escapeHtml(job.location)}</span>
+                  <span>•</span>
+                  <span>⏱ ${escapeHtml(job.postedAt || 'Recently')}</span>
+                </div>
+                <div class="job-feed-pills-row">
+                  <span class="job-salary-tag" style="padding: 2px 7px; font-size: 0.74rem;">${escapeHtml(job.salary)}</span>
+                  <span class="job-skill-chip">${escapeHtml(job.type)}</span>
+                  ${job.categoryName ? `<span class="job-skill-chip" style="background: rgba(28,70,245,0.06); color: #1C46F5; font-weight: 700;">${escapeHtml(job.categoryIcon || '💼')} ${escapeHtml(job.categoryName)}</span>` : ''}
+                  ${(job.skills || []).slice(0, 2).map(s => `<span class="job-skill-chip">${escapeHtml(s)}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div class="job-feed-actions">
+              <button type="button" class="btn-toggle-save-job" data-job-id="${job.id}" style="background: transparent; border: none; cursor: pointer; padding: 6px; color: #71717A;" title="Save job">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? '#1C46F5' : 'none'}" stroke="${isSaved ? '#1C46F5' : 'currentColor'}" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+              </button>
+              <button type="button" class="job-btn-secondary btn-open-job-detail" data-job-id="${job.id}" style="padding: 8px 14px; font-size: 0.8rem;">Details</button>
+              <a href="${officialLink}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" style="padding: 8px 16px; font-size: 0.8rem;" title="Apply directly on official website">
+                <span>Apply Official ↗</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Bind Job Card clicks & modal triggers
+      feedContainer.querySelectorAll('.btn-open-job-detail, .job-feed-card').forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('a, .btn-toggle-save-job')) return;
+          const jobId = item.getAttribute('data-job-id');
+          if (jobId) openJobDetailModal(jobId);
+        });
+      });
+
+      // Bind Bookmark save toggle
+      feedContainer.querySelectorAll('.btn-toggle-save-job').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const jobId = btn.getAttribute('data-job-id');
+          if (!jobId) return;
+          if (!state.savedJobs) state.savedJobs = [];
+          const idx = state.savedJobs.indexOf(jobId);
+          if (idx >= 0) {
+            state.savedJobs.splice(idx, 1);
+            showToast('Job removed from saved bookmarks');
+          } else {
+            state.savedJobs.push(jobId);
+            showToast('⭐ Job saved to bookmarks!');
+          }
+          localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
+          updateJobsFeed();
+          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
+        });
+      });
+    }
+
+    // Modal Opener function
+    function openJobDetailModal(jobId) {
+      const job = allJobs.find(j => j.id === jobId);
+      if (!job) return;
+
+      const modalOverlay = document.getElementById('job-detail-modal');
+      const modalContent = document.getElementById('job-modal-card-content');
+      if (!modalOverlay || !modalContent) return;
+
+      const isSaved = (state.savedJobs || []).includes(job.id);
+      const officialLink = job.officialApplyUrl || job.applyUrl || `https://${job.companyDomain || 'google.com'}`;
+
+      modalContent.innerHTML = `
+        <button type="button" class="job-modal-close-btn" id="btn-close-job-modal">✕</button>
+        
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #E4E4E7;" class="dark-border-gray">
+          <div class="job-company-avatar" style="background: ${job.companyBg || '#18181B'}; width: 48px; height: 48px; font-size: 1.3rem;">
+            ${job.companyInitial || job.company.charAt(0)}
+          </div>
+          <div>
+            <h3 style="font-family: var(--font-header); font-size: 1.3rem; font-weight: 800; margin: 0 0 2px 0;">${escapeHtml(job.title)}</h3>
+            <div style="font-size: 0.86rem; color: #71717A; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
+              <strong style="color: #18181B;" class="dark-text-white">${escapeHtml(job.company)}</strong>
+              <span>•</span>
+              <a href="${officialLink}" target="_blank" rel="noopener noreferrer" style="color: #1C46F5; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 3px;">
+                <span>${escapeHtml(job.companyDomain || job.company)}</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+              <span>•</span>
+              <span>📍 ${escapeHtml(job.location)}</span>
+              <span>•</span>
+              <span>⏱ ${escapeHtml(job.postedAt || 'Recently')}</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+          <span class="job-salary-tag" style="font-size: 0.88rem; padding: 4px 10px;">💰 ${escapeHtml(job.salary)}</span>
+          <span class="job-skill-chip" style="font-size: 0.8rem; padding: 4px 10px;">⏳ ${escapeHtml(job.experience || 'Full-Time')}</span>
+          <span class="job-skill-chip" style="font-size: 0.8rem; padding: 4px 10px;">🏢 ${escapeHtml(job.workplace || job.type)}</span>
+          ${job.categoryName ? `<span class="job-skill-chip" style="font-size: 0.8rem; padding: 4px 10px; background: rgba(28,70,245,0.08); color: #1C46F5; font-weight: 700;">${escapeHtml(job.categoryIcon || '💼')} ${escapeHtml(job.categoryName)}</span>` : ''}
+          ${job.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.76rem; padding: 4px 8px; border-radius: 6px;">✓ ${escapeHtml(job.badge)}</span>` : ''}
+        </div>
+
+        <div style="font-size: 0.92rem; line-height: 1.6; color: #3F3F46; margin-bottom: 24px;" class="dark-text-gray">
+          <h4 style="color: #18181B; margin: 16px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Role Overview</h4>
+          <p>${escapeHtml(job.overview || job.tagline || '')}</p>
+
+          ${job.responsibilities && job.responsibilities.length ? `
+            <h4 style="color: #18181B; margin: 18px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Key Responsibilities</h4>
+            <ul style="padding-left: 20px; margin: 0 0 16px 0;">
+              ${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
+            </ul>
+          ` : ''}
+
+          ${job.requirements && job.requirements.length ? `
+            <h4 style="color: #18181B; margin: 18px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Requirements &amp; Qualifications</h4>
+            <ul style="padding-left: 20px; margin: 0 0 16px 0;">
+              ${job.requirements.map(req => `<li>${escapeHtml(req)}</li>`).join('')}
+            </ul>
+          ` : ''}
+
+          ${job.benefits && job.benefits.length ? `
+            <h4 style="color: #18181B; margin: 18px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Compensation &amp; Benefits</h4>
+            <ul style="padding-left: 20px; margin: 0 0 16px 0;">
+              ${job.benefits.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+            </ul>
+          ` : ''}
+        </div>
+
+        <!-- Direct Official Apply & WhatsApp Referral Dual Action Bar -->
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 16px; border-top: 1px solid #E4E4E7;" class="dark-border-gray">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button type="button" class="job-btn-secondary btn-modal-toggle-save" data-job-id="${job.id}">
+              <span>${isSaved ? '★ Saved' : '☆ Save Job'}</span>
+            </button>
+            <a href="https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw" target="_blank" rel="noopener noreferrer" class="job-btn-secondary" style="font-size: 0.85rem; padding: 10px 14px; gap: 5px;" title="Connect with community">
+              <span style="color: #25D366;">💬</span>
+              <span>WhatsApp Community</span>
+            </a>
+          </div>
+
+          <a href="${officialLink}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" style="padding: 12px 24px; font-size: 0.92rem;">
+            <span>Apply on Official Website (${escapeHtml(job.company)}) ↗</span>
+          </a>
+        </div>
+      `;
+
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Bind close
+      document.getElementById('btn-close-job-modal').addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Bind Save in modal
+      const modalSaveBtn = modalContent.querySelector('.btn-modal-toggle-save');
+      if (modalSaveBtn) {
+        modalSaveBtn.addEventListener('click', () => {
+          if (!state.savedJobs) state.savedJobs = [];
+          const idx = state.savedJobs.indexOf(job.id);
+          if (idx >= 0) {
+            state.savedJobs.splice(idx, 1);
+            modalSaveBtn.innerHTML = '<span>☆ Save Job</span>';
+            showToast('Job removed from bookmarks');
+          } else {
+            state.savedJobs.push(job.id);
+            modalSaveBtn.innerHTML = '<span>★ Saved</span>';
+            showToast('⭐ Job saved to bookmarks!');
+          }
+          localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
+          updateJobsFeed();
+          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
+        });
+      }
+    }
+
+    // Bind Category Filter Pills
+    document.querySelectorAll('.job-filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const cat = pill.getAttribute('data-job-cat');
+        state.jobCategoryFilter = cat;
+        document.querySelectorAll('.job-filter-pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-job-cat') === cat));
+        updateJobsFeed();
+      });
+    });
+
+    // Bind Search input
+    const searchInput = document.getElementById('jobs-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        state.jobSearchQuery = e.target.value;
+        updateJobsFeed();
+      });
+    }
+
+    // Bind Featured Job card click
+    const featuredCard = document.querySelector('.job-featured-spotlight-card');
+    if (featuredCard) {
+      const openBtn = featuredCard.querySelector('.btn-open-job-detail');
+      if (openBtn) {
+        openBtn.addEventListener('click', () => {
+          const jobId = featuredCard.getAttribute('data-job-id');
+          if (jobId) openJobDetailModal(jobId);
+        });
+      }
+      const featSaveBtn = featuredCard.querySelector('.btn-toggle-save-job');
+      if (featSaveBtn) {
+        featSaveBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const jobId = featSaveBtn.getAttribute('data-job-id');
+          if (!jobId) return;
+          if (!state.savedJobs) state.savedJobs = [];
+          const idx = state.savedJobs.indexOf(jobId);
+          if (idx >= 0) {
+            state.savedJobs.splice(idx, 1);
+            showToast('Job removed from saved bookmarks');
+          } else {
+            state.savedJobs.push(jobId);
+            showToast('⭐ Job saved to bookmarks!');
+          }
+          localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
+          renderJobsPage();
+          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
+        });
+      }
+    }
+
+    // Initial feed render
+    updateJobsFeed();
+  }
+
+  function renderJobDetailPage(jobId) {
+    const allJobs = getJobs();
+    const job = allJobs.find(j => j.id === jobId) || allJobs[0];
+    if (!job) {
+      renderJobsPage();
+      return;
+    }
+    renderJobsPage();
+    setTimeout(() => {
+      const modalOverlay = document.getElementById('job-detail-modal');
+      if (modalOverlay) {
+        // Trigger modal opener directly
+        const card = document.querySelector(`.job-feed-card[data-job-id="${job.id}"], .job-featured-spotlight-card[data-job-id="${job.id}"]`);
+        if (card) {
+          const btn = card.querySelector('.btn-open-job-detail');
+          if (btn) btn.click();
+        }
+      }
+    }, 100);
+  }
+
+  // =========================================================================
+  // 5c. Post a Job / HR Recruiter Portal Page (/#/post-job)
+  // =========================================================================
+  function renderPostJobPage() {
+    let previewMode = 'spotlight'; // 'spotlight' or 'feed'
+
+    const defaultDraft = {
+      title: 'Senior AI & Prompt Engineer',
+      category: 'ai-eng',
+      workplace: 'Remote / Hybrid',
+      type: 'Full-time',
+      location: 'San Francisco, CA / Remote',
+      experience: '3+ yrs exp',
+      salary: '$185,000 - $245,000 + Equity',
+      company: 'Anthropic',
+      companyDomain: 'anthropic.com',
+      companyInitial: 'A',
+      companyBg: '#D97706',
+      tagline: 'Build and evaluate cutting-edge prompt workflows and safety benchmarks for frontier LLMs.',
+      overview: 'We are looking for a Senior AI & Prompt Engineer to lead developer evaluation systems and prompt infrastructure.',
+      responsibilities: '• Architect and evaluate prompt pipelines for Claude frontier models.\n• Design automated benchmark suites for coding, reasoning, and tool use.\n• Collaborate with research scientists to improve model steerability.',
+      requirements: '• 3+ years experience with Python, LLM prompting, and API integration.\n• Deep understanding of agentic workflows, function calling, and RAG systems.\n• Strong problem solving and system architecture skills.',
+      skills: 'Prompt Engineering, Python, Claude, PyTorch, RAG',
+      benefits: '• Top-tier market compensation & equity grants\n• Comprehensive health, dental, and vision insurance\n• 100% remote flexibility & home office stipend',
+      officialApplyUrl: 'https://anthropic.com/careers',
+      recruiterName: 'Talent Acquisition Team',
+      recruiterEmail: 'careers@anthropic.com',
+      recruiterWhatsapp: '+1 (555) 019-2834',
+      isSpotlight: true,
+      isHrVerified: true
+    };
+
+    appContainer.innerHTML = `
+      <div class="post-job-wrapper">
+        <div class="post-job-container">
+          
+          <!-- Breadcrumb Navigation -->
+          <nav class="alt-breadcrumb-nav" style="margin-bottom: 20px;">
+            <a href="#/home">Home</a>
+            <span class="bc-sep">/</span>
+            <a href="#/jobs">Jobs Board</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-curr">Post a Job (HR Portal)</span>
+          </nav>
+
+          <!-- Top Hero Card -->
+          <div class="post-job-header-card">
+            <div>
+              <div class="post-job-hero-badge">
+                <span>⚡ AIRA Jobs Board • HR &amp; Recruiter Portal</span>
+              </div>
+              <h1 class="post-job-header-title">Post an AI, UI/UX or Prompt Role</h1>
+              <p class="post-job-header-desc">
+                Publish your opening directly to 100+ vetted senior AI engineers, product designers, and prompt specialists. Candidates apply straight to your official company careers page.
+              </p>
+            </div>
+            <div class="post-job-hero-actions">
+              <a href="#/jobs" class="job-btn-secondary" style="font-size: 0.88rem; padding: 10px 18px;">
+                <span>← View Jobs Board</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Main 2-Column Grid: Form Left, Sticky Live Preview Right -->
+          <div class="post-job-layout-grid" id="post-job-main-grid">
+            
+            <!-- LEFT: HR SUBMISSION FORM -->
+            <div class="post-job-form-panel">
+              <form id="form-post-job">
+                
+                <!-- STEP 1: ROLE DETAILS -->
+                <div class="post-job-step-section">
+                  <div class="post-job-step-header">
+                    <div class="post-job-step-bubble">1</div>
+                    <div>
+                      <h3 class="post-job-step-title">Role Overview</h3>
+                      <p class="post-job-step-subtitle">Core title, category, workplace type and compensation</p>
+                    </div>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Job Title <span class="req">*</span></label>
+                    <input type="text" id="pj-title" class="post-job-input" placeholder="e.g. Senior AI &amp; Prompt Engineer" value="${escapeHtml(defaultDraft.title)}" required />
+                  </div>
+
+                  <div class="post-job-row-2">
+                    <div class="post-job-field">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label class="post-job-label" style="margin-bottom: 0;">Role Category <span class="req">*</span></label>
+                        <button type="button" id="btn-toggle-custom-cat" style="background: none; border: none; color: #1C46F5; font-size: 0.78rem; font-weight: 700; cursor: pointer; padding: 0; text-decoration: underline;">
+                          ✍️ Type Custom Role
+                        </button>
+                      </div>
+                      <select id="pj-category" class="post-job-select" required>
+                        <option value="ai-eng" selected>⚡ AI Engineering</option>
+                        <option value="ui-ux">🎨 UI/UX Design</option>
+                        <option value="prompt-eng">💡 Prompt Engineering</option>
+                        <option value="product-mgmt">💼 Product Management</option>
+                        <option value="data-science">📊 Data Science &amp; ML</option>
+                        <option value="fullstack">💻 Full-Stack Engineering</option>
+                        <option value="frontend">🖥️ Frontend Engineering</option>
+                        <option value="backend">⚙️ Backend Engineering</option>
+                        <option value="mobile">📱 Mobile App Development</option>
+                        <option value="devops">☁️ DevOps &amp; Cloud Infrastructure</option>
+                        <option value="marketing">📈 Growth &amp; Product Marketing</option>
+                        <option value="custom">✍️ + Type Custom Role Category...</option>
+                      </select>
+
+                      <div id="pj-custom-category-wrap" style="display: none; margin-top: 8px;">
+                        <input type="text" id="pj-custom-category" class="post-job-input" placeholder="Type custom role category (e.g. AI Researcher, Growth Lead, Blockchain)..." value="" />
+                        <div class="post-job-field-hint" style="margin-top: 4px;">Recruiters can type any custom category for specific hiring roles.</div>
+                      </div>
+                    </div>
+
+                    <div class="post-job-field">
+                      <label class="post-job-label">Workplace Model <span class="req">*</span></label>
+                      <select id="pj-workplace" class="post-job-select" required>
+                        <option value="Remote" selected>🌍 100% Remote</option>
+                        <option value="Hybrid">🏢 Hybrid</option>
+                        <option value="Onsite">📍 On-site</option>
+                        <option value="Worldwide Remote">🌐 Worldwide Remote</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="post-job-row-3">
+                    <div class="post-job-field">
+                      <label class="post-job-label">Employment Type <span class="req">*</span></label>
+                      <select id="pj-type" class="post-job-select" required>
+                        <option value="Full-time" selected>Full-time</option>
+                        <option value="Contract">Contract / Freelance</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Internship">Internship</option>
+                      </select>
+                    </div>
+
+                    <div class="post-job-field">
+                      <label class="post-job-label">Location <span class="req">*</span></label>
+                      <input type="text" id="pj-location" class="post-job-input" placeholder="e.g. San Francisco, CA / Remote" value="${escapeHtml(defaultDraft.location)}" required />
+                    </div>
+
+                    <div class="post-job-field">
+                      <label class="post-job-label">Experience <span class="req">*</span></label>
+                      <input type="text" id="pj-experience" class="post-job-input" placeholder="e.g. 3+ yrs exp" value="${escapeHtml(defaultDraft.experience)}" required />
+                    </div>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Compensation / Salary Range <span class="req">*</span></label>
+                    <input type="text" id="pj-salary" class="post-job-input" placeholder="e.g. $185,000 - $245,000 + Equity or ₹25 - ₹45 LPA" value="${escapeHtml(defaultDraft.salary)}" required />
+                    <div class="post-job-field-hint">Transparent salary ranges receive 3.4x more qualified applicants.</div>
+                  </div>
+                </div>
+
+                <!-- STEP 2: COMPANY PROFILE -->
+                <div class="post-job-step-section">
+                  <div class="post-job-step-header">
+                    <div class="post-job-step-bubble">2</div>
+                    <div>
+                      <h3 class="post-job-step-title">Company Profile</h3>
+                      <p class="post-job-step-subtitle">Your brand identity, website, and avatar logo</p>
+                    </div>
+                  </div>
+
+                  <div class="post-job-row-2">
+                    <div class="post-job-field">
+                      <label class="post-job-label">Company Name <span class="req">*</span></label>
+                      <input type="text" id="pj-company" class="post-job-input" placeholder="e.g. Anthropic" value="${escapeHtml(defaultDraft.company)}" required />
+                    </div>
+
+                    <div class="post-job-field">
+                      <label class="post-job-label">Company Domain / Website <span class="req">*</span></label>
+                      <input type="text" id="pj-domain" class="post-job-input" placeholder="e.g. anthropic.com" value="${escapeHtml(defaultDraft.companyDomain)}" required />
+                    </div>
+                  </div>
+
+                  <div class="post-job-row-2">
+                    <div class="post-job-field">
+                      <label class="post-job-label">Logo Monogram Initial</label>
+                      <input type="text" id="pj-initial" class="post-job-input" placeholder="e.g. A" maxlength="2" value="${escapeHtml(defaultDraft.companyInitial)}" style="text-align: center; font-weight: 800;" />
+                    </div>
+
+                    <div class="post-job-field">
+                      <label class="post-job-label">Brand Color</label>
+                      <div style="display: flex; gap: 8px; align-items: center;">
+                        <input type="color" id="pj-bg-picker" value="${defaultDraft.companyBg}" style="width: 44px; height: 40px; border: 1px solid #E4E4E7; border-radius: 8px; cursor: pointer; padding: 2px;" />
+                        <input type="text" id="pj-bg-text" class="post-job-input" value="${defaultDraft.companyBg}" style="flex: 1;" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Company 1-Line Tagline <span class="req">*</span></label>
+                    <input type="text" id="pj-tagline" class="post-job-input" placeholder="e.g. AI research and safety company building reliable frontier systems" value="${escapeHtml(defaultDraft.tagline)}" required />
+                  </div>
+                </div>
+
+                <!-- STEP 3: ROLE DETAILS & PERKS -->
+                <div class="post-job-step-section">
+                  <div class="post-job-step-header">
+                    <div class="post-job-step-bubble">3</div>
+                    <div>
+                      <h3 class="post-job-step-title">Role Details &amp; Qualifications</h3>
+                      <p class="post-job-step-subtitle">Detailed description, responsibilities, requirements, and perks</p>
+                    </div>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Role Overview / Hook <span class="req">*</span></label>
+                    <textarea id="pj-overview" class="post-job-textarea" rows="2" placeholder="Brief summary of why this role exists and the team mission..." required>${escapeHtml(defaultDraft.overview)}</textarea>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Key Responsibilities (One per line)</label>
+                    <textarea id="pj-responsibilities" class="post-job-textarea" rows="3" placeholder="• Architect and evaluate prompt pipelines...&#10;• Design automated benchmark suites...&#10;• Collaborate with research scientists...">${escapeHtml(defaultDraft.responsibilities)}</textarea>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Requirements &amp; Qualifications (One per line)</label>
+                    <textarea id="pj-requirements" class="post-job-textarea" rows="3" placeholder="• 3+ years experience with Python and LLM prompting...&#10;• Deep understanding of agentic workflows...&#10;• Strong problem solving and system architecture skills...">${escapeHtml(defaultDraft.requirements)}</textarea>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Skills Tags (Comma-separated) <span class="req">*</span></label>
+                    <input type="text" id="pj-skills" class="post-job-input" placeholder="e.g. Prompt Engineering, Python, Claude, PyTorch, RAG" value="${escapeHtml(defaultDraft.skills)}" required />
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Compensation &amp; Benefits (One per line)</label>
+                    <textarea id="pj-benefits" class="post-job-textarea" rows="3" placeholder="• Top-tier market compensation &amp; equity grants&#10;• Comprehensive health, dental, and vision insurance&#10;• 100% remote flexibility &amp; home office stipend">${escapeHtml(defaultDraft.benefits)}</textarea>
+                  </div>
+                </div>
+
+                <!-- STEP 4: OFFICIAL APPLY LINK & RECRUITER CONTACT -->
+                <div class="post-job-step-section">
+                  <div class="post-job-step-header">
+                    <div class="post-job-step-bubble">4</div>
+                    <div>
+                      <h3 class="post-job-step-title">Official Apply Link &amp; HR Verification</h3>
+                      <p class="post-job-step-subtitle">Where candidates apply directly on your official site</p>
+                    </div>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">Official Careers Page / ATS Apply Link URL <span class="req">*</span></label>
+                    <input type="url" id="pj-apply-url" class="post-job-input" placeholder="https://anthropic.com/careers/senior-prompt-engineer or Greenhouse/Lever link" value="${escapeHtml(defaultDraft.officialApplyUrl)}" required />
+                    <div class="post-job-field-hint">Candidates will click directly to this URL to submit their official application.</div>
+                  </div>
+
+                  <div class="post-job-row-2">
+                    <div class="post-job-field">
+                      <label class="post-job-label">Recruiter / HR Contact Name <span class="req">*</span></label>
+                      <input type="text" id="pj-recruiter-name" class="post-job-input" placeholder="e.g. Sarah Jenkins (Head of Talent)" value="${escapeHtml(defaultDraft.recruiterName)}" required />
+                    </div>
+
+                    <div class="post-job-field">
+                      <label class="post-job-label">Official Work Email <span class="req">*</span></label>
+                      <input type="email" id="pj-recruiter-email" class="post-job-input" placeholder="e.g. careers@anthropic.com" value="${escapeHtml(defaultDraft.recruiterEmail)}" required />
+                    </div>
+                  </div>
+
+                  <div class="post-job-field">
+                    <label class="post-job-label">WhatsApp / Phone for Fast-Track (Optional)</label>
+                    <input type="text" id="pj-recruiter-whatsapp" class="post-job-input" placeholder="e.g. +1 (555) 019-2834 or WhatsApp link" value="${escapeHtml(defaultDraft.recruiterWhatsapp)}" />
+                  </div>
+
+                  <div style="margin-top: 16px;">
+                    <label class="post-job-checkbox-card">
+                      <input type="checkbox" id="pj-check-hr" ${defaultDraft.isHrVerified ? 'checked' : ''} />
+                      <div>
+                        <div class="post-job-checkbox-text">✅ Include "Verified Opening" Badge</div>
+                        <div class="post-job-checkbox-sub">Adds trusted neon badge to your opening and lists it under the verified filter.</div>
+                      </div>
+                    </label>
+
+                    <label class="post-job-checkbox-card">
+                      <input type="checkbox" id="pj-check-spotlight" ${defaultDraft.isSpotlight ? 'checked' : ''} />
+                      <div>
+                        <div class="post-job-checkbox-text">⭐ Feature as Spotlight Opening of the Day</div>
+                        <div class="post-job-checkbox-sub">Pins your job with a glowing spotlight card at the very top of the Jobs Board.</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- SUBMIT ACTION BUTTON -->
+                <div style="margin-top: 24px;">
+                  <button type="submit" class="post-job-submit-btn" id="btn-submit-post-job">
+                    <span>🚀 Publish Job Opening to Board</span>
+                  </button>
+                  <p style="font-size: 0.8rem; color: #71717A; text-align: center; margin-top: 10px;">
+                    Instant publish on localhost. Readers click directly to your official company careers page.
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <!-- RIGHT: REAL-TIME LIVE CARD PREVIEW -->
+            <div class="post-job-preview-panel">
+              <div class="post-job-preview-header">
+                <div class="post-job-preview-pill">
+                  <span>⚡ LIVE PREVIEW</span>
+                </div>
+                <div class="post-job-preview-toggle">
+                  <button type="button" class="post-job-toggle-btn ${previewMode === 'spotlight' ? 'active' : ''}" id="btn-preview-spotlight">★ Spotlight</button>
+                  <button type="button" class="post-job-toggle-btn ${previewMode === 'feed' ? 'active' : ''}" id="btn-preview-feed">📋 Feed Card</button>
+                </div>
+              </div>
+
+              <div class="post-job-preview-card-wrap" id="post-job-live-card-container">
+                <!-- Rendered dynamically via updatePostJobLivePreview() -->
+              </div>
+
+              <p class="post-job-preview-notice">
+                👁️ This is a 100% accurate real-time preview of how your opening looks to candidates on the AIRA Jobs Board.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Real-time Preview Sync Function
+    function getFormValues() {
+      const title = document.getElementById('pj-title')?.value || 'Senior AI & Prompt Engineer';
+      const categorySelect = document.getElementById('pj-category');
+      const customCategoryInput = document.getElementById('pj-custom-category');
+      const customCatVal = (customCategoryInput?.value || '').trim();
+      const selVal = categorySelect?.value || 'ai-eng';
+
+      let category = selVal;
+      let categoryName = 'AI Engineering';
+      let categoryIcon = '⚡';
+
+      if (selVal === 'custom' || customCatVal) {
+        if (customCatVal) {
+          category = customCatVal.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          categoryName = customCatVal;
+          const lower = customCatVal.toLowerCase();
+          if (lower.includes('design') || lower.includes('ux') || lower.includes('ui')) categoryIcon = '🎨';
+          else if (lower.includes('ai') || lower.includes('ml') || lower.includes('prompt') || lower.includes('model') || lower.includes('llm')) categoryIcon = '⚡';
+          else if (lower.includes('data') || lower.includes('analyst') || lower.includes('analytics')) categoryIcon = '📊';
+          else if (lower.includes('product') || lower.includes('pm') || lower.includes('owner') || lower.includes('lead') || lower.includes('head')) categoryIcon = '💼';
+          else if (lower.includes('cloud') || lower.includes('devops') || lower.includes('infra') || lower.includes('sre')) categoryIcon = '☁️';
+          else if (lower.includes('growth') || lower.includes('market') || lower.includes('sales') || lower.includes('seo')) categoryIcon = '📈';
+          else if (lower.includes('mobile') || lower.includes('ios') || lower.includes('android') || lower.includes('flutter') || lower.includes('react native')) categoryIcon = '📱';
+          else if (lower.includes('frontend') || lower.includes('web') || lower.includes('react') || lower.includes('vue')) categoryIcon = '🖥️';
+          else if (lower.includes('backend') || lower.includes('node') || lower.includes('python') || lower.includes('golang') || lower.includes('rust')) categoryIcon = '⚙️';
+          else categoryIcon = '🚀';
+        } else {
+          category = 'specialized-role';
+          categoryName = 'Specialized Role';
+          categoryIcon = '💼';
+        }
+      } else {
+        const catMap = {
+          'ai-eng': { name: 'AI Engineering', icon: '⚡' },
+          'ui-ux': { name: 'UI/UX Design', icon: '🎨' },
+          'prompt-eng': { name: 'Prompt Engineering', icon: '💡' },
+          'product-mgmt': { name: 'Product Management', icon: '💼' },
+          'data-science': { name: 'Data Science & ML', icon: '📊' },
+          'fullstack': { name: 'Full-Stack Engineering', icon: '💻' },
+          'frontend': { name: 'Frontend Engineering', icon: '🖥️' },
+          'backend': { name: 'Backend Engineering', icon: '⚙️' },
+          'mobile': { name: 'Mobile App Development', icon: '📱' },
+          'devops': { name: 'DevOps & Cloud', icon: '☁️' },
+          'marketing': { name: 'Growth & Marketing', icon: '📈' }
+        };
+        if (catMap[selVal]) {
+          category = selVal;
+          categoryName = catMap[selVal].name;
+          categoryIcon = catMap[selVal].icon;
+        }
+      }
+
+      const workplace = document.getElementById('pj-workplace')?.value || 'Remote';
+      const type = document.getElementById('pj-type')?.value || 'Full-time';
+      const location = document.getElementById('pj-location')?.value || 'San Francisco, CA / Remote';
+      const experience = document.getElementById('pj-experience')?.value || '3+ yrs exp';
+      const salary = document.getElementById('pj-salary')?.value || '$185,000 - $245,000 + Equity';
+      const company = document.getElementById('pj-company')?.value || 'Anthropic';
+      const companyDomain = (document.getElementById('pj-domain')?.value || 'anthropic.com').replace(/^https?:\/\//i, '').split('/')[0];
+      const companyInitial = (document.getElementById('pj-initial')?.value || company.charAt(0) || 'A').toUpperCase();
+      const companyBg = document.getElementById('pj-bg-text')?.value || '#D97706';
+      const tagline = document.getElementById('pj-tagline')?.value || 'Build and evaluate cutting-edge prompt workflows and safety benchmarks for frontier LLMs.';
+      const overview = document.getElementById('pj-overview')?.value || tagline;
+      const skillsRaw = document.getElementById('pj-skills')?.value || 'Prompt Engineering, Python, Claude, PyTorch, RAG';
+      const skills = skillsRaw.split(',').map(s => s.trim()).filter(Boolean);
+      const applyUrl = document.getElementById('pj-apply-url')?.value || 'https://anthropic.com/careers';
+      const isHrVerified = document.getElementById('pj-check-hr')?.checked ?? true;
+      const isSpotlight = document.getElementById('pj-check-spotlight')?.checked ?? true;
+
+      return {
+        title,
+        category,
+        categoryName,
+        categoryIcon,
+        workplace,
+        type,
+        location,
+        experience,
+        salary,
+        company,
+        companyDomain,
+        companyInitial,
+        companyBg,
+        tagline,
+        overview,
+        skills,
+        applyUrl,
+        isHrVerified,
+        isSpotlight
+      };
+    }
+
+    function updateLivePreview() {
+      const container = document.getElementById('post-job-live-card-container');
+      if (!container) return;
+
+      const f = getFormValues();
+
+      if (previewMode === 'spotlight') {
+        container.innerHTML = `
+          <div class="job-featured-spotlight-card" style="margin: 0;">
+            <div class="job-featured-top-row">
+              <div class="job-company-badge-wrap">
+                <div class="job-company-avatar" style="background: ${f.companyBg};">
+                  ${escapeHtml(f.companyInitial)}
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-weight: 800; font-size: 1.05rem; color: #18181B;" class="dark-text-white">${escapeHtml(f.company)}</span>
+                    <span class="job-featured-tag-pill">★ FEATURED ROLE</span>
+                  </div>
+                  <span style="font-size: 0.8rem; color: #71717A;">${escapeHtml(f.companyDomain)} • Just now</span>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="job-salary-tag">${escapeHtml(f.salary)}</span>
+                ${f.isHrVerified ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.72rem; padding: 4px 8px; border-radius: 6px;">✓ Verified</span>` : ''}
+              </div>
+            </div>
+
+            <h2 class="job-featured-title" style="font-size: 1.25rem;">${escapeHtml(f.title)}</h2>
+            
+            <div class="job-featured-meta">
+              <span>📍 ${escapeHtml(f.location)}</span>
+              <span>💼 ${escapeHtml(f.type)}</span>
+              <span>⏳ ${escapeHtml(f.experience)}</span>
+            </div>
+
+            <p class="job-featured-desc">${escapeHtml(f.tagline || f.overview)}</p>
+
+            <div class="job-skills-wrap">
+              <span class="job-skill-chip" style="background: rgba(28,70,245,0.08); color: #1C46F5; font-weight: 700;">${escapeHtml(f.categoryIcon)} ${escapeHtml(f.categoryName)}</span>
+              ${f.skills.map(s => `<span class="job-skill-chip">${escapeHtml(s)}</span>`).join('')}
+            </div>
+
+            <div class="job-card-actions-row">
+              <a href="${escapeHtml(f.applyUrl)}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" onclick="event.preventDefault(); showToast('Preview Link: ' + this.href);">
+                <span>Apply on Official Site ↗</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+              <button type="button" class="job-btn-secondary">View Role &amp; Perks</button>
+            </div>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="job-feed-card" style="margin: 0; box-shadow: none;">
+            <div class="job-feed-main">
+              <div class="job-company-avatar" style="background: ${f.companyBg}; width: 40px; height: 40px; font-size: 1.1rem;">
+                ${escapeHtml(f.companyInitial)}
+              </div>
+              <div class="job-feed-content">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <h4 class="job-feed-title">${escapeHtml(f.title)}</h4>
+                  ${f.isHrVerified ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">Verified</span>` : ''}
+                </div>
+                <div class="job-feed-company-row">
+                  <strong style="color: #18181B;" class="dark-text-white">${escapeHtml(f.company)}</strong>
+                  <span>•</span>
+                  <span>📍 ${escapeHtml(f.location)}</span>
+                  <span>•</span>
+                  <span>⏱ Just now</span>
+                </div>
+                <div class="job-feed-pills-row">
+                  <span class="job-salary-tag" style="padding: 2px 7px; font-size: 0.74rem;">${escapeHtml(f.salary)}</span>
+                  <span class="job-skill-chip">${escapeHtml(f.type)}</span>
+                  <span class="job-skill-chip" style="background: rgba(28,70,245,0.06); color: #1C46F5; font-weight: 700;">${escapeHtml(f.categoryIcon)} ${escapeHtml(f.categoryName)}</span>
+                  ${f.skills.slice(0, 2).map(s => `<span class="job-skill-chip">${escapeHtml(s)}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div class="job-feed-actions">
+              <button type="button" class="job-btn-secondary" style="padding: 8px 12px; font-size: 0.8rem;">Details</button>
+              <a href="${escapeHtml(f.applyUrl)}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" style="padding: 8px 14px; font-size: 0.8rem;" onclick="event.preventDefault(); showToast('Preview Link: ' + this.href);">
+                <span>Apply Official ↗</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Attach listeners to all inputs for real-time live preview update
+    appContainer.querySelectorAll('.post-job-input, .post-job-select, .post-job-textarea, input[type="checkbox"]').forEach(el => {
+      el.addEventListener('input', updateLivePreview);
+      el.addEventListener('change', updateLivePreview);
+    });
+
+    // Handle Category Select & Custom Category Input Toggle
+    const catSelect = document.getElementById('pj-category');
+    const customCatWrap = document.getElementById('pj-custom-category-wrap');
+    const customCatInput = document.getElementById('pj-custom-category');
+    const toggleCustomBtn = document.getElementById('btn-toggle-custom-cat');
+
+    if (catSelect && customCatWrap) {
+      catSelect.addEventListener('change', () => {
+        if (catSelect.value === 'custom') {
+          customCatWrap.style.display = 'block';
+          if (customCatInput) {
+            customCatInput.focus();
+            if (!customCatInput.value) customCatInput.placeholder = 'e.g. AI Researcher, Growth Lead, Blockchain Dev...';
+          }
+        } else {
+          if (!customCatInput?.value?.trim()) {
+            customCatWrap.style.display = 'none';
+          }
+        }
+        updateLivePreview();
+      });
+    }
+
+    if (toggleCustomBtn && customCatWrap) {
+      toggleCustomBtn.addEventListener('click', () => {
+        if (catSelect) catSelect.value = 'custom';
+        customCatWrap.style.display = 'block';
+        if (customCatInput) {
+          customCatInput.focus();
+        }
+        updateLivePreview();
+      });
+    }
+
+    // Sync Color picker and text box
+    const colorPicker = document.getElementById('pj-bg-picker');
+    const colorText = document.getElementById('pj-bg-text');
+    if (colorPicker && colorText) {
+      colorPicker.addEventListener('input', (e) => {
+        colorText.value = e.target.value;
+        updateLivePreview();
+      });
+      colorText.addEventListener('input', (e) => {
+        if (e.target.value.startsWith('#') && (e.target.value.length === 7 || e.target.value.length === 4)) {
+          colorPicker.value = e.target.value;
+        }
+        updateLivePreview();
+      });
+    }
+
+    // Company Initial auto-fill from Company name
+    const companyInput = document.getElementById('pj-company');
+    const initialInput = document.getElementById('pj-initial');
+    if (companyInput && initialInput) {
+      companyInput.addEventListener('input', () => {
+        const val = companyInput.value.trim();
+        if (val && (!initialInput.value || initialInput.value.length <= 1)) {
+          initialInput.value = val.charAt(0).toUpperCase();
+        }
+        updateLivePreview();
+      });
+    }
+
+    // Toggle Preview Tabs
+    const btnSpotlight = document.getElementById('btn-preview-spotlight');
+    const btnFeed = document.getElementById('btn-preview-feed');
+    if (btnSpotlight && btnFeed) {
+      btnSpotlight.addEventListener('click', () => {
+        previewMode = 'spotlight';
+        btnSpotlight.classList.add('active');
+        btnFeed.classList.remove('active');
+        updateLivePreview();
+      });
+      btnFeed.addEventListener('click', () => {
+        previewMode = 'feed';
+        btnFeed.classList.add('active');
+        btnSpotlight.classList.remove('active');
+        updateLivePreview();
+      });
+    }
+
+    // Handle Form Submit
+    const form = document.getElementById('form-post-job');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const f = getFormValues();
+        const respText = document.getElementById('pj-responsibilities')?.value || '';
+        const reqText = document.getElementById('pj-requirements')?.value || '';
+        const benText = document.getElementById('pj-benefits')?.value || '';
+        const recruiterName = document.getElementById('pj-recruiter-name')?.value || 'Talent Team';
+        const recruiterEmail = document.getElementById('pj-recruiter-email')?.value || '';
+        const recruiterWhatsapp = document.getElementById('pj-recruiter-whatsapp')?.value || '';
+
+        const cleanDomain = f.companyDomain || (f.company.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com');
+
+        const newJob = {
+          id: `custom_job_${Date.now()}`,
+          title: f.title,
+          company: f.company,
+          companyDomain: cleanDomain,
+          companyInitial: f.companyInitial || f.company.charAt(0).toUpperCase(),
+          companyBg: f.companyBg || '#18181B',
+          category: f.category,
+          categorySlug: f.category,
+          categoryName: f.categoryName,
+          categoryIcon: f.categoryIcon,
+          location: f.location,
+          salary: f.salary,
+          type: f.type,
+          workplace: f.workplace,
+          experience: f.experience,
+          skills: f.skills,
+          tagline: f.tagline,
+          overview: f.overview || f.tagline,
+          responsibilities: respText.split('\n').map(l => l.replace(/^[•\-\*]\s*/, '').trim()).filter(Boolean),
+          requirements: reqText.split('\n').map(l => l.replace(/^[•\-\*]\s*/, '').trim()).filter(Boolean),
+          benefits: benText.split('\n').map(l => l.replace(/^[•\-\*]\s*/, '').trim()).filter(Boolean),
+          officialApplyUrl: f.applyUrl,
+          applyUrl: f.applyUrl,
+          recruiterName: recruiterName,
+          recruiterEmail: recruiterEmail,
+          recruiterWhatsapp: recruiterWhatsapp,
+          badge: f.isHrVerified ? 'Verified' : (f.isSpotlight ? 'Featured' : ''),
+          featured: f.isSpotlight,
+          postedAt: 'Just now',
+          createdAt: new Date().toISOString()
+        };
+
+        // Save into local custom jobs
+        let existing = [];
+        try {
+          const raw = localStorage.getItem('aira_custom_jobs');
+          if (raw) existing = JSON.parse(raw);
+          if (!Array.isArray(existing)) existing = [];
+        } catch (err) { existing = []; }
+
+        existing.unshift(newJob);
+        saveJobs(existing);
+
+        // Save submission audit record
+        try {
+          const rawSubs = localStorage.getItem('aira_job_submissions');
+          let subs = rawSubs ? JSON.parse(rawSubs) : [];
+          if (!Array.isArray(subs)) subs = [];
+          subs.unshift({ ...newJob, status: 'published' });
+          localStorage.setItem('aira_job_submissions', JSON.stringify(subs));
+        } catch (e) {}
+
+        // Render Success Confirmation View
+        const mainGrid = document.getElementById('post-job-main-grid');
+        if (mainGrid) {
+          mainGrid.style.display = 'block';
+          mainGrid.innerHTML = `
+            <div class="post-job-success-card">
+              <div class="post-job-success-icon">🎉</div>
+              <h2 class="post-job-success-title">Job Opening Published Live!</h2>
+              <p class="post-job-success-desc">
+                Your role for <strong>${escapeHtml(newJob.title)}</strong> at <strong>${escapeHtml(newJob.company)}</strong> is now published on the AIRA Jobs Board. Candidates can apply directly to your official company careers page.
+              </p>
+              
+              <div style="background: #F4F4F5; border-radius: 12px; padding: 16px 20px; max-width: 480px; margin: 0 auto 24px auto; text-align: left;" class="dark-bg-card">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                  <span style="font-weight: 800; font-size: 1.05rem;">${escapeHtml(newJob.title)}</span>
+                  ${newJob.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px;">✓ ${escapeHtml(newJob.badge)}</span>` : ''}
+                </div>
+                <div style="font-size: 0.82rem; color: #71717A;">
+                  <strong>${escapeHtml(newJob.company)}</strong> • 📍 ${escapeHtml(newJob.location)} • 💰 ${escapeHtml(newJob.salary)}
+                </div>
+                <div style="font-size: 0.82rem; color: #1C46F5; margin-top: 6px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  Apply URL: ${escapeHtml(newJob.officialApplyUrl)}
+                </div>
+              </div>
+
+              <div class="post-job-success-actions">
+                <a href="#/jobs" class="job-btn-primary" style="padding: 12px 28px; font-size: 0.95rem;">
+                  <span>View Live on Jobs Board ↗</span>
+                </a>
+                <button type="button" class="job-btn-secondary" id="btn-post-another-job" style="padding: 12px 24px; font-size: 0.95rem;">
+                  <span>✍️ Post Another Opening</span>
+                </button>
+              </div>
+            </div>
+          `;
+
+          const postAnotherBtn = document.getElementById('btn-post-another-job');
+          if (postAnotherBtn) {
+            postAnotherBtn.addEventListener('click', () => {
+              renderPostJobPage();
+            });
+          }
+        }
+
+        showToast('🎉 Job opening published live to board!');
+      });
+    }
+
+    // Initial Live Preview Render
+    updateLivePreview();
+  }
+
+  // =========================================================================
+  // 6. Open Source Alternatives Directory View (/#/alternatives)
   // =========================================================================
   function renderAlternativesPage() {
     const data = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { categories: [], software: [] };
@@ -4392,7 +5694,7 @@ if (query !== '') {
         active: true,
         badge: 'COMMUNITY',
         icon: '🎨',
-        headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & 20+ HR.',
+        headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & creative discussions.',
         link: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
         ctaText: 'Join WhatsApp Community →'
       },
@@ -4400,7 +5702,7 @@ if (query !== '') {
         active: true,
         tag: 'UI/UX Community',
         title: 'Join our UI/UX Design Community',
-        body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR',
+        body: 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives.',
         btnText: 'Join the community →',
         btnLink: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw',
         badge: 'Community Spotlight',
@@ -5413,13 +6715,13 @@ if (query !== '') {
                       </div>
                     </div>
                     <p class="newsletter-spotlight-text">
-                      ${escapeHtml(inFeedAd.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives. 20+ HR')}
+                      ${escapeHtml(inFeedAd.body || 'A space where designers share ideas, trends, and practical tips. Learn something new, improve your design skills, and connect with like-minded creatives.')}
                     </p>
                     <div class="newsletter-spotlight-footer">
                       <a href="${inFeedAd.btnLink || '#/advertise'}" target="_blank" class="newsletter-spotlight-btn">
                         <span>${escapeHtml(inFeedAd.btnText || 'Join the community →')}</span>
                       </a>
-                      <span class="newsletter-spotlight-disclaimer">Active design community &amp; 20+ HR</span>
+                      <span class="newsletter-spotlight-disclaimer">Active design community &amp; discussions</span>
                     </div>
                   </div>
                 </div>
@@ -8932,14 +10234,17 @@ if (query !== '') {
     const allTools = getAllTools();
     const altsData = typeof ALTERNATIVES_DATA !== 'undefined' ? ALTERNATIVES_DATA : { alternatives: [] };
     const allAlts = altsData.alternatives || [];
+    const allJobsList = typeof getJobs === 'function' ? getJobs() : [];
 
     const savedToolIds = state.savedTools || [];
     const savedArticleSlugs = state.savedArticles || [];
     const savedAltSlugs = state.savedAlternatives || [];
+    const savedJobIds = state.savedJobs || [];
 
     const savedToolsList = allTools.filter(t => savedToolIds.includes(t.id));
     const savedArticlesList = state.articles.filter(a => savedArticleSlugs.includes(a.slug));
     const savedAltsList = allAlts.filter(a => savedAltSlugs.includes(a.slug));
+    const savedJobsList = allJobsList.filter(j => savedJobIds.includes(j.id));
 
     const currentTab = state.bookmarkTab || 'tools';
 
@@ -8994,6 +10299,59 @@ if (query !== '') {
       `;
     }
 
+    function renderSavedJobsHTML(list) {
+      if (list.length === 0) {
+        return `
+          <div style="text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">💼</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #18181B; margin-bottom: 8px;">No Saved Jobs Yet</h3>
+            <p style="color: #71717A; font-size: 0.95rem; margin-bottom: 20px;">Explore verified AI, UI/UX & tech openings and save them for fast applications.</p>
+            <a href="#/jobs" class="btn-subscribe-nav">Explore Jobs Board →</a>
+          </div>
+        `;
+      }
+      return `
+        <div class="jobs-feed-list">
+          ${list.map(job => {
+            const officialLink = job.officialApplyUrl || job.applyUrl || `https://${job.companyDomain || 'google.com'}`;
+            return `
+              <div class="job-feed-card" data-job-id="${job.id}">
+                <div class="job-feed-main">
+                  <div class="job-company-avatar" style="background: ${job.companyBg || '#18181B'}; width: 40px; height: 40px; font-size: 1.1rem;">
+                    ${job.companyInitial || job.company.charAt(0)}
+                  </div>
+                  <div class="job-feed-content">
+                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                      <h4 class="job-feed-title">${escapeHtml(job.title)}</h4>
+                      ${job.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">${escapeHtml(job.badge)}</span>` : ''}
+                    </div>
+                    <div class="job-feed-company-row">
+                      <strong style="color: #18181B;" class="dark-text-white">${escapeHtml(job.company)}</strong>
+                      <span>•</span>
+                      <span>📍 ${escapeHtml(job.location)}</span>
+                      <span>•</span>
+                      <span>⏱ ${escapeHtml(job.postedAt || 'Recently')}</span>
+                    </div>
+                    <div class="job-feed-pills-row">
+                      <span class="job-salary-tag" style="padding: 2px 7px; font-size: 0.74rem;">${escapeHtml(job.salary)}</span>
+                      <span class="job-skill-chip">${escapeHtml(job.type)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="job-feed-actions">
+                  <button type="button" class="btn-remove-job-bookmark" data-job-id="${job.id}" style="background: none; border: 1px solid #E4E4E7; color: #EF4444; font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer;">Remove ✕</button>
+                  <a href="${officialLink}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" style="padding: 8px 16px; font-size: 0.8rem;" title="Apply directly on official website">
+                    <span>Apply Official ↗</span>
+                  </a>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
     function renderSavedAltsHTML(list) {
       if (list.length === 0) {
         return `
@@ -9036,7 +10394,7 @@ if (query !== '') {
           </div>
           <h1 class="hero-openalt-heading">My Bookmarks</h1>
           <p class="hero-openalt-subheading">
-            Quickly revisit your saved AI tools, newsletter editions, and open-source alternatives.
+            Quickly revisit your saved AI tools, newsletter editions, verified job openings, and open-source alternatives.
           </p>
 
           <!-- Partners & Sponsors Strip (Bottom of Hero) -->
@@ -9051,15 +10409,18 @@ if (query !== '') {
             <button type="button" class="bookmark-tab-btn ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
               <span>⚡ Saved AI Tools (${savedToolsList.length})</span>
             </button>
+            <button type="button" class="bookmark-tab-btn ${currentTab === 'jobs' ? 'active' : ''}" data-tab="jobs">
+              <span>💼 Saved Jobs (${savedJobsList.length})</span>
+            </button>
             <button type="button" class="bookmark-tab-btn ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
               <span>📰 Saved Articles (${savedArticlesList.length})</span>
             </button>
-            
           </div>
 
           <!-- Content Area -->
           <div id="bookmarks-tab-content" style="margin-bottom: 60px;">
             ${currentTab === 'tools' ? renderSavedToolsHTML(savedToolsList) : ''}
+            ${currentTab === 'jobs' ? renderSavedJobsHTML(savedJobsList) : ''}
             ${currentTab === 'articles' ? renderSavedArticlesHTML(savedArticlesList) : ''}
             ${currentTab === 'alternatives' ? renderSavedAltsHTML(savedAltsList) : ''}
           </div>
@@ -9082,6 +10443,22 @@ if (query !== '') {
         const tid = btn.getAttribute('data-tool-id');
         toggleSaveTool(tid);
         renderBookmarksPage();
+      });
+    });
+
+    appContainer.querySelectorAll('.btn-remove-job-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const jid = btn.getAttribute('data-job-id');
+        if (jid && state.savedJobs) {
+          const idx = state.savedJobs.indexOf(jid);
+          if (idx >= 0) {
+            state.savedJobs.splice(idx, 1);
+            localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
+            showToast('Job removed from bookmarks');
+            renderBookmarksPage();
+          }
+        }
       });
     });
 
