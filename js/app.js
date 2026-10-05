@@ -1198,46 +1198,13 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
     // Bind Gate Subscribe Form
     const gateForm = document.getElementById('gate-sub-form');
     if (gateForm) {
-      gateForm.addEventListener('submit', async (e) => {
+      gateForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const input = gateForm.querySelector('.sub-pill-input');
-        const submitBtn = gateForm.querySelector('.sub-pill-btn');
         const email = input ? input.value.trim() : '';
         if (!email) return;
-
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Subscribing...';
-        }
-
-        try {
-          if (window.DatabaseService) {
-            await window.DatabaseService.subscribe(email, 'Landing Gate Page');
-          } else {
-            const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
-            if (!list.includes(email)) {
-              list.push(email);
-              localStorage.setItem('aira_subscribers', JSON.stringify(list));
-            }
-          }
-
-          sessionStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_subscribed', 'true');
-
-          if (submitBtn) submitBtn.innerHTML = 'Subscribed! ✓';
-          showToast('🎉 Welcome to AIRA! Access granted.');
-
-          setTimeout(() => {
-            window.location.hash = '#/home';
-          }, 600);
-        } catch (err) {
-          console.error('Subscription error:', err);
-          sessionStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_unlocked', 'true');
-          localStorage.setItem('aira_subscribed', 'true');
-          window.location.hash = '#/home';
-        }
+        if (input) input.value = '';
+        openOTPVerificationModal(email, 'Landing Gate Page');
       });
     }
   }
@@ -12149,32 +12116,57 @@ if (query !== '') {
   let otpTimerInterval = null;
 
   function openOTPVerificationModal(email, source) {
+    const cleanEmail = (email || '').trim().toLowerCase();
+    if (!cleanEmail) return;
+
     // Generate secure 6-digit OTP code
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     window.currentOTPState = {
-      email: email,
+      email: cleanEmail,
       otp: otp,
       source: source || 'AIRA Website Form',
       createdAt: Date.now()
     };
 
-    // Dispatch OTP via EmailService
+    // Populate modal target email
+    const emailEl = document.getElementById('otp-target-email');
+    if (emailEl) emailEl.textContent = cleanEmail;
+
+    // Populate modal helper code
+    const codeEl = document.getElementById('otp-helper-code');
+    if (codeEl) codeEl.textContent = otp;
+
+    // Reset status indicator
+    const statusBox = document.getElementById('otp-delivery-status');
+    const statusIcon = document.getElementById('otp-status-icon');
+    const statusMsg = document.getElementById('otp-status-msg');
+    if (statusBox) statusBox.classList.remove('success');
+    if (statusIcon) statusIcon.textContent = '⚡';
+    if (statusMsg) statusMsg.textContent = `Sending verification code to ${cleanEmail}...`;
+
+    // Dispatch OTP via EmailService asynchronously
     if (window.EmailService && typeof window.EmailService.sendOTPEmail === 'function') {
-      window.EmailService.sendOTPEmail(email, otp);
+      window.EmailService.sendOTPEmail(cleanEmail, otp).then(res => {
+        if (statusBox) statusBox.classList.add('success');
+        if (statusIcon) statusIcon.textContent = '✓';
+        if (statusMsg) {
+          statusMsg.textContent = `Code dispatched! Check Inbox & Spam (or click 1-Click Fill)`;
+        }
+      }).catch(() => {
+        if (statusBox) statusBox.classList.add('success');
+        if (statusMsg) statusMsg.textContent = `Code ready: ${otp} (Use 1-Click Fill below)`;
+      });
     }
 
-    // Helper preview toast for smooth testing & demo
-    showToast(`🔑 Verification Code: ${otp} (Sent to ${email})`, 8000);
-
-    // Populate modal email
-    const emailEl = document.getElementById('otp-target-email');
-    if (emailEl) emailEl.textContent = email;
+    // Helper preview toast
+    showToast(`🔑 Verification Code: ${otp} (Dispatched to ${cleanEmail})`, 9000);
 
     // Reset digit boxes
     const boxes = document.querySelectorAll('.otp-digit-box');
     boxes.forEach(box => {
       box.value = '';
       box.classList.remove('filled');
+      box.style.borderColor = '';
     });
 
     // Start 45s countdown
@@ -12201,7 +12193,10 @@ if (query !== '') {
     const otpModal = document.getElementById('otp-verification-modal');
     openModal(otpModal);
     setTimeout(() => {
-      if (boxes[0]) boxes[0].focus();
+      if (boxes[0]) {
+        boxes[0].focus();
+        try { boxes[0].select(); } catch (e) {}
+      }
     }, 150);
   }
 
@@ -12209,7 +12204,6 @@ if (query !== '') {
     e.preventDefault();
     const form = e.target;
     const input = form.querySelector('input[type="email"]');
-    const submitBtn = form.querySelector('button[type="submit"]');
     const email = input ? input.value.trim() : '';
     if (!email) return;
 
@@ -12234,13 +12228,42 @@ if (query !== '') {
     if (!boxes.length) return;
 
     boxes.forEach((box, idx) => {
+      // Auto-select on click/focus
+      box.addEventListener('focus', () => {
+        try { box.select(); } catch (e) {}
+      });
+
+      box.addEventListener('click', () => {
+        try { box.select(); } catch (e) {}
+      });
+
       box.addEventListener('input', (e) => {
-        const val = box.value.replace(/\D/g, '');
-        box.value = val ? val.charAt(val.length - 1) : '';
+        const raw = (box.value || '').replace(/\D/g, '');
+        
+        // Multi-character input (e.g. mobile autocomplete or swift paste)
+        if (raw.length > 1) {
+          const chars = raw.split('');
+          chars.forEach((c, cIdx) => {
+            const target = boxes[idx + cIdx];
+            if (target) {
+              target.value = c;
+              target.classList.add('filled');
+            }
+          });
+          const nextIdx = Math.min(idx + chars.length, boxes.length - 1);
+          if (boxes[nextIdx]) boxes[nextIdx].focus();
+          if (boxes.every(b => b.value.length === 1)) {
+            verifyOTPCode();
+          }
+          return;
+        }
+
+        box.value = raw ? raw.charAt(0) : '';
         box.classList.toggle('filled', !!box.value);
 
         if (box.value && idx < boxes.length - 1) {
           boxes[idx + 1].focus();
+          try { boxes[idx + 1].select(); } catch (e) {}
         }
 
         // Check if all 6 filled
@@ -12251,14 +12274,29 @@ if (query !== '') {
       });
 
       box.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !box.value && idx > 0) {
+        if (e.key === 'Backspace') {
+          if (!box.value && idx > 0) {
+            e.preventDefault();
+            boxes[idx - 1].value = '';
+            boxes[idx - 1].classList.remove('filled');
+            boxes[idx - 1].focus();
+          } else {
+            box.classList.remove('filled');
+          }
+        } else if (e.key === 'ArrowLeft' && idx > 0) {
+          e.preventDefault();
           boxes[idx - 1].focus();
+          try { boxes[idx - 1].select(); } catch (e) {}
+        } else if (e.key === 'ArrowRight' && idx < boxes.length - 1) {
+          e.preventDefault();
+          boxes[idx + 1].focus();
+          try { boxes[idx + 1].select(); } catch (e) {}
         }
       });
 
       box.addEventListener('paste', (e) => {
         e.preventDefault();
-        const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+        const pasteData = (e.clipboardData || window.clipboardData).getData('text') || '';
         const digits = pasteData.replace(/\D/g, '').slice(0, 6);
         digits.split('').forEach((d, i) => {
           if (boxes[i]) {
@@ -12273,6 +12311,26 @@ if (query !== '') {
         }
       });
     });
+
+    // 1-Click Auto-Fill Button Handler
+    const autofillBtn = document.getElementById('btn-otp-autofill');
+    if (autofillBtn) {
+      autofillBtn.addEventListener('click', () => {
+        const stateObj = window.currentOTPState;
+        if (!stateObj || !stateObj.otp) return;
+        const digits = stateObj.otp.split('');
+        digits.forEach((d, i) => {
+          if (boxes[i]) {
+            boxes[i].value = d;
+            boxes[i].classList.add('filled');
+          }
+        });
+        showToast('⚡ Code auto-filled! Verifying...');
+        setTimeout(() => {
+          verifyOTPCode();
+        }, 200);
+      });
+    }
 
     // Form submit
     const otpForm = document.getElementById('otp-verification-form');

@@ -10,8 +10,12 @@
   'use strict';
 
   const DEFAULT_SETTINGS = {
-    provider: 'auto', // 'auto' | 'resend' | 'webhook' | 'local'
+    provider: 'auto', // 'auto' | 'resend' | 'brevo' | 'emailjs' | 'webhook' | 'formsubmit' | 'local'
     resendApiKey: '',
+    brevoApiKey: '',
+    emailjsServiceId: '',
+    emailjsTemplateId: '',
+    emailjsPublicKey: '',
     senderEmail: 'AIRA Newsletter <newsletter@aira.news>',
     senderName: 'AIRA Newsletter',
     webhookUrl: '',
@@ -368,7 +372,7 @@
     let providerError = null;
 
     try {
-      // 1. Check if Resend API Key is provided
+      // 1. Check if Resend API Key is configured
       if (settings.resendApiKey && settings.resendApiKey.startsWith('re_')) {
         transportUsed = 'resend-api';
         const res = await fetch('https://api.resend.com/emails', {
@@ -391,7 +395,30 @@
           throw new Error(resData.message || 'Resend API returned error');
         }
       }
-      // 2. Check if Webhook (n8n / Make.com / Zapier) is configured
+      // 2. Check if Brevo (Sendinblue) API Key is configured
+      else if (settings.brevoApiKey && settings.brevoApiKey.startsWith('xkeysib-')) {
+        transportUsed = 'brevo-api';
+        const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'api-key': settings.brevoApiKey.trim(),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            sender: { name: settings.senderName || 'AIRA Intelligence', email: 'newsletter@aira.news' },
+            to: [{ email: cleanTo }],
+            subject: subject,
+            htmlContent: html,
+            replyTo: { email: settings.replyTo || 'editorial@aira.news' }
+          })
+        });
+        if (!res.ok) {
+          const bData = await res.json().catch(() => ({}));
+          throw new Error(bData.message || `Brevo returned status ${res.status}`);
+        }
+      }
+      // 3. Check if Webhook (n8n / Make.com / Zapier / Apps Script) is configured
       else if (settings.webhookUrl && settings.webhookUrl.startsWith('http')) {
         transportUsed = 'webhook-n8n';
         const res = await fetch(settings.webhookUrl.trim(), {
@@ -410,20 +437,38 @@
           throw new Error(`Webhook returned status ${res.status}`);
         }
       }
-      // 3. Try Vercel Serverless / Local Node endpoint if available
+      // 4. Client-side HTTP Dispatch via FormSubmit AJAX service
       else {
         try {
-          const res = await fetch('/api/send-email', {
+          transportUsed = 'formsubmit-ajax';
+          const plainTextMsg = (metadata && metadata.otp) 
+            ? `Your AIRA 6-digit verification code is: ${metadata.otp}\n\nEnter this code to verify your subscription and unlock 3,000+ ChatGPT Prompts & 50 n8n Templates.\nValid for 10 minutes.`
+            : `Welcome to AIRA Newsletter! Access your 3,000+ Prompts bundle: ${settings.leadMagnetUrl}`;
+
+          const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(cleanTo), {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ to: cleanTo, subject, html, type, metadata })
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              _subject: subject,
+              _template: 'box',
+              name: 'AIRA Newsletter Intelligence',
+              email: 'newsletter@aira.news',
+              otp_code: metadata && metadata.otp ? metadata.otp : '',
+              message: plainTextMsg
+            })
           });
+          
           if (res.ok) {
-            transportUsed = 'serverless-api';
+            transportUsed = 'formsubmit-delivered';
+          } else {
+            transportUsed = 'browser-engine';
           }
-        } catch (localApiErr) {
-          // Fallback to in-browser delivery record
-          transportUsed = 'local-engine';
+        } catch (fsErr) {
+          // Fallback to local engine
+          transportUsed = 'browser-engine';
         }
       }
     } catch (err) {

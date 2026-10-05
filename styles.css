@@ -23847,6 +23847,116 @@ body.dark-mode .otp-target-email {
   color: #FFFFFF;
 }
 
+.otp-delivery-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #EEF2FF;
+  color: #1C46F5;
+  border: 1px solid #C7D2FE;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .otp-delivery-status {
+  background: rgba(28, 70, 245, 0.15);
+  color: #93C5FD;
+  border-color: rgba(28, 70, 245, 0.4);
+}
+
+.otp-delivery-status.success {
+  background: #ECFDF5;
+  color: #059669;
+  border-color: #A7F3D0;
+}
+
+body.dark-mode .otp-delivery-status.success {
+  background: rgba(210, 255, 82, 0.12);
+  color: #D2FF52;
+  border-color: rgba(210, 255, 82, 0.35);
+}
+
+.otp-helper-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+}
+
+body.dark-mode .otp-helper-card {
+  background: #121216;
+  border-color: #27272A;
+}
+
+.otp-helper-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.otp-helper-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748B;
+}
+
+body.dark-mode .otp-helper-label {
+  color: #A1A1AA;
+}
+
+.otp-helper-code {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #1C46F5;
+  letter-spacing: 2px;
+  background: rgba(28, 70, 245, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+body.dark-mode .otp-helper-code {
+  color: #D2FF52;
+  background: rgba(210, 255, 82, 0.12);
+}
+
+.btn-otp-autofill {
+  background: #1C46F5;
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-otp-autofill:hover {
+  background: #1537C7;
+  transform: translateY(-1px);
+}
+
+body.dark-mode .btn-otp-autofill {
+  background: #D2FF52;
+  color: #0E0E12;
+}
+
+body.dark-mode .btn-otp-autofill:hover {
+  background: #BFEA44;
+}
+
 .otp-inputs-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
