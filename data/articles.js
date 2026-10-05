@@ -6,6 +6,268 @@
 
 const ARTICLES = [
   {
+    "slug": "openai-operator-deepseek-v3-reasoning-breakthrough",
+    "title": "OpenAI Operator & DeepSeek V3 Shockwave",
+    "subtitle": "Autonomous Multi-Agent Web Control Goes Live",
+    "date": "Oct 05, 2026",
+    "tag": "Frontier AI",
+    "read_time": "4 min read",
+    "reading_time": "4 min read",
+    "image_url": "assets/aira-banner-template-v2.jpg?v=148.0",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.svg",
+    "views": 29800,
+    "likes": 94,
+    "body_html": `<div class="article-menu-intro-card">
+      <div class="menu-intro-greeting">Welcome to AIRA! 👋</div>
+      <div class="menu-intro-heading">Here’s what’s on the menu today:</div>
+      <ul class="menu-intro-list">
+        <li><b>Hottest AI News:</b> OpenAI Operator &amp; DeepSeek V3 Release</li>
+        <li><b>Top AI &amp; SaaS Tools:</b> 5 Verified Developer &amp; Creator Blueprints</li>
+        <li><b>AI Tutorial:</b> Build Autonomous Web Automation with Browser-Use &amp; Python</li>
+        <li><b>Top AI &amp; Tech News:</b> High-Speed Frontier Insights</li>
+      </ul>
+      <div class="menu-intro-readtime">
+        <span>☕</span>
+        <span>Total read time: About 4 minutes, perfect for a quick coffee break.</span>
+      </div>
+    </div>
+
+    <!-- Main Clean Content Body -->
+    <div class="article-main-body">
+
+      <div class="article-section-header">
+        <h2>🔥 Hottest AI News</h2>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">OpenAI</span>
+        </div>
+        <h3 class="story-headline">OpenAI Launches "Operator" Autonomous Web Agent for General Public</h3>
+
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/7436d36f-f70d-4221-b449-efb97e671f8f/images__7_.jpg?t=1790607228" alt="OpenAI Launches Operator Agent" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>OpenAI has officially launched <b>Operator</b>, its flagship autonomous agent capable of browsing the open web, writing code in background cloud sandboxes, clicking buttons, booking flights, and executing multi-step business workflows without manual supervision.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li><b>Native Browser Interaction:</b> Operator combines vision-language models with low-latency DOM tree parsers, enabling it to navigate dynamic JavaScript web apps, bypass complex forms, and parse PDF invoices automatically.</li>
+          <li><b>Isolated Execution Sandbox:</b> Each task runs inside an isolated micro-VM equipped with end-to-end encryption, ensuring enterprise credentials and payment tokens never leak to third parties.</li>
+          <li><b>Developer API &amp; Webhooks:</b> Developers can trigger Operator workflows directly through the OpenAI Responses API, streaming execution logs and screenshots back in real-time.</li>
+        </ul>
+        <p>This marks a massive transition from conversational chatbots to autonomous agents that act on your behalf across digital platforms.</p>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">DeepSeek</span>
+        </div>
+        <h3 class="story-headline">DeepSeek Releases Open-Weight V3 &amp; R1 Reasoning Models Crushing Benchmarks</h3>
+
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/c031812b-f725-4ba3-ae5d-8ebdab63d8a3/ls02gF2qL5FaNq32.webp?t=1790516876" alt="DeepSeek V3 and R1 Model Release" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>DeepSeek has open-sourced <b>DeepSeek-V3 (671B MoE)</b> alongside <b>DeepSeek-R1</b>, an ultra-efficient reasoning architecture that rivals proprietary models like OpenAI o1 while cutting inference costs by over 90%.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li><b>Multi-Head Latent Attention (MLA):</b> Drastically reduces KV cache memory footprints during long-context inference, allowing high-throughput concurrent batching on consumer GPUs.</li>
+          <li><b>DeepSeekMoE Architecture:</b> Activates only 37B parameters per token out of 671B total, delivering blazing fast tokens-per-second while maintaining state-of-the-art math and coding capabilities.</li>
+          <li><b>Permissive Open Weights:</b> Distributed under full MIT licensing with quantized GGUF weights available for Ollama, vLLM, and LM Studio day one.</li>
+        </ul>
+        <p>The open-source AI ecosystem is closing the gap with frontier labs faster than ever anticipated.</p>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🛠️ Top AI &amp; SaaS Tools</h2>
+      </div>
+
+      <div class="article-tools-box">
+        <ul class="tools-feature-list">
+          <li><a href="https://github.com/browser-use/browser-use" target="_blank" rel="noopener noreferrer"><b>Browser-Use</b></a> <span class="tool-free-tag">Open Source</span>: Open-source web automation library connecting LLMs with Playwright to control browsers like a human.</li>
+          <li><a href="https://cursor.com/" target="_blank" rel="noopener noreferrer"><b>Cursor Pro 2.0</b></a> <span class="tool-deal-tag">Trending</span>: AI-first code editor featuring native background codebase indexing, instant terminal auto-fixes, and multi-file composer agents.</li>
+          <li><a href="https://bolt.new/" target="_blank" rel="noopener noreferrer"><b>Bolt.new v2</b></a> <span class="tool-free-tag">Free to Try</span>: In-browser fullstack web container AI environment that prompts, builds, runs, and deploys production Node and React applications in seconds.</li>
+          <li><a href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer"><b>ElevenLabs Voice Studio</b></a>: Industry-leading neural voice cloning, multilingual dubbing, and studio-grade audio generation with real-time emotion control.</li>
+          <li><a href="https://granola.ai/" target="_blank" rel="noopener noreferrer"><b>Granola AI</b></a> <span class="tool-free-tag">Free Tier</span>: AI notepad for meetings that turns raw spoken conversations into crisp, structured notes and action items without annoying bots joining your calls.</li>
+        </ul>
+      </div>
+
+      <div class="article-section-header">
+        <h2>📚 AI Tutorial</h2>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">AI Tutorial</span>
+        </div>
+        <h3 class="story-headline">How to Build a Self-Healing Web Agent with Browser-Use &amp; Python</h3>
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/4e86b3aa-3fb4-4459-970a-44256222c234/Gemini_Generated_Image_cvhvogcvhvogcvhv-clean__1_.png?t=1780307575" alt="How to Build a Web Agent with Browser-Use" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>Traditional scraping scripts break whenever a website updates its CSS classes. In this tutorial, you will build an autonomous AI browser agent that inspects pages visually, solves navigation hurdles, and extracts structured data automatically.</p>
+        <ol class="tutorial-step-list">
+          <li><p><b>Install Core Dependencies</b></p><p>Set up your Python virtual environment and install <code>browser-use</code> along with <code>langchain-openai</code>:</p><p><code>pip install browser-use langchain-openai playwright && playwright install</code></p></li>
+          <li><p><b>Initialize Agent Script</b></p><p>Create a fresh script <code>agent.py</code> and import the Agent and Controller modules:</p><p><code>from browser_use import Agent\nfrom langchain_openai import ChatOpenAI\nimport asyncio</code></p></li>
+          <li><p><b>Configure Frontier Model &amp; Task Prompt</b></p><p>Define your target research or extraction objective in plain English:</p><p><code>async def main():\n    llm = ChatOpenAI(model='gpt-4o')\n    agent = Agent(\n        task='Go to news.ycombinator.com, find the top 5 AI stories, and save titles and URLs to results.csv',\n        llm=llm\n    )\n    await agent.run()\n\nasyncio.run(main())</code></p></li>
+          <li><p><b>Run &amp; Inspect Live Visual Execution</b></p><p>Execute <code>python agent.py</code>. The AI agent will launch Chromium, locate links using vision heuristics, click pagination, and export the structured dataset to CSV.</p></li>
+          <li><p><b>Schedule Daily Cron Runs</b></p><p>Deploy the agent script to an always-on server or GitHub Action to automate repetitive competitive intelligence effortlessly.</p></li>
+        </ol>
+        <p><b>Tip:</b> Enable headless mode in production by passing <code>headless=True</code> in browser configuration.</p>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🌐 Top AI &amp; Tech News</h2>
+      </div>
+
+      <div class="article-story-card">
+        <ul class="tech-news-bullets">
+          <li><a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic</a> announces Claude 3.7 Sonnet featuring unified thinking modes that dynamically switch between instantaneous replies and deep reasoning steps.</li>
+          <li><a href="https://microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft</a> expands Copilot Workspace with autonomous background agents capable of triaging GitHub issues and running unit tests across multi-repo environments.</li>
+          <li><a href="https://deepmind.google/" target="_blank" rel="noopener noreferrer">Google DeepMind</a> unveils AlphaGeometry 2, proving 84% of all historical International Mathematical Olympiad geometry problems within sub-minute timeframes.</li>
+          <li><a href="https://tsmc.com/" target="_blank" rel="noopener noreferrer">TSMC</a> confirms volume manufacturing of 2nm nanosheet silicon nodes for next-generation AI accelerators starting early next quarter.</li>
+        </ul>
+      </div>
+
+      <div class="article-signoff">
+        Until next time,<br>
+        <strong>AIRA</strong>
+      </div>
+    </div>`
+  },
+  {
+    "slug": "claude-3-7-hybrid-reasoning-and-flux-pro",
+    "title": "Claude 3.7 Hybrid Reasoning & FLUX Pro 2.0",
+    "subtitle": "Extended Thinking Meets Ultra-Real Multimodal Generation",
+    "date": "Oct 02, 2026",
+    "tag": "Frontier AI",
+    "read_time": "4 min read",
+    "reading_time": "4 min read",
+    "image_url": "assets/aira-banner-template-v2.jpg?v=148.0",
+    "author": "AIRA",
+    "author_avatar": "assets/logo.svg",
+    "views": 28100,
+    "likes": 87,
+    "body_html": `<div class="article-menu-intro-card">
+      <div class="menu-intro-greeting">Welcome to AIRA! 👋</div>
+      <div class="menu-intro-heading">Here’s what’s on the menu today:</div>
+      <ul class="menu-intro-list">
+        <li><b>Hottest AI News:</b> Claude 3.7 Sonnet &amp; FLUX Pro 2.0 Release</li>
+        <li><b>Top AI &amp; SaaS Tools:</b> 5 Cutting-Edge Creator &amp; Coding Tools</li>
+        <li><b>AI Tutorial:</b> Automated Lead Enrichment Agent with n8n &amp; Claude</li>
+        <li><b>Top AI &amp; Tech News:</b> High-Impact Industry Briefs</li>
+      </ul>
+      <div class="menu-intro-readtime">
+        <span>☕</span>
+        <span>Total read time: About 4 minutes, perfect for a quick coffee break.</span>
+      </div>
+    </div>
+
+    <!-- Main Clean Content Body -->
+    <div class="article-main-body">
+
+      <div class="article-section-header">
+        <h2>🔥 Hottest AI News</h2>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">Anthropic</span>
+        </div>
+        <h3 class="story-headline">Anthropic Unveils Claude 3.7 Sonnet: The First Hybrid Reasoning Model</h3>
+
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/aaa8826b-c259-4719-9304-e815a1c89460/claude-fable-5-1-completed-a-frontier-nine-loop-particle-v0-bwcJj0nYl4_zLIXMHpBZT-bx41EjlgjYZUWbx74N5Ao.webp?t=1790438334" alt="Claude 3.7 Sonnet Release" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>Anthropic has released <b>Claude 3.7 Sonnet</b>, pioneering a hybrid reasoning architecture that allows users to seamlessly control how long the model thinks before returning its final answer.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li><b>Variable Thinking Budget:</b> Users and API developers can specify an exact thinking token budget (from 0 to 64,000 tokens), allowing instant conversational speed or deep architectural reasoning on demand.</li>
+          <li><b>Unrivaled Coding Benchmarks:</b> Achieves over 70.3% on SWE-bench Verified, outperforming all existing frontier models in identifying and repairing complex fullstack software bugs.</li>
+          <li><b>Integrated Computer Use:</b> Enhanced multi-modal coordinate precision allows Claude 3.7 to execute desktop automation tasks across multiple software windows smoothly.</li>
+        </ul>
+        <p>Claude 3.7 Sonnet is available immediately on Claude.ai, Anthropic API, Amazon Bedrock, and Google Cloud Vertex AI.</p>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">Black Forest Labs</span>
+        </div>
+        <h3 class="story-headline">FLUX Pro 2.0 Ships with Pixel-Perfect Typography &amp; 4K Generation</h3>
+
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/68e274f3-20bb-4bf5-9c2e-906ccc8c43ca/images.jpg?t=1790350880" alt="FLUX Pro 2.0 Architecture" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>Black Forest Labs has launched <b>FLUX Pro 2.0</b>, setting a new benchmark for open and commercial image generation with photorealistic hands, legible typography, and cinematic lighting control.</p>
+        <p><b>Details:</b></p>
+
+        <ul class="tech-news-bullets">
+          <li><b>Native In-Image Text Rendering:</b> Handles paragraphs of complex text, posters, UI wireframes, and packaging labels without distortion or spelling mistakes.</li>
+          <li><b>Sub-Second Fast Sampling:</b> Distilled latent rectifiers deliver high-resolution 2K and 4K outputs in under 1.5 seconds per generation on modern tensor cores.</li>
+          <li><b>Enterprise Finetuning Support:</b> API customers can inject custom brand LoRAs with only 10 reference images to preserve exact character and product consistency.</li>
+        </ul>
+        <p>FLUX Pro 2.0 represents the pinnacle of visual generative AI fidelity.</p>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🛠️ Top AI &amp; SaaS Tools</h2>
+      </div>
+
+      <div class="article-tools-box">
+        <ul class="tools-feature-list">
+          <li><a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer"><b>Lovable.dev</b></a> <span class="tool-deal-tag">Featured</span>: Fullstack AI software engineer that turns natural language descriptions into production-ready React + Supabase apps with GitHub sync.</li>
+          <li><a href="https://midjourney.com/" target="_blank" rel="noopener noreferrer"><b>Midjourney v7</b></a>: Groundbreaking web generator with interactive depth maps, direct inpainting canvas, and ultra-high dynamic range composition.</li>
+          <li><a href="https://v0.dev/" target="_blank" rel="noopener noreferrer"><b>v0 by Vercel v3</b></a> <span class="tool-free-tag">Free Tier</span>: Generative UI platform that creates modular Tailwind CSS + Shadcn components ready for instant React copy-paste.</li>
+          <li><a href="https://klingai.org/" target="_blank" rel="noopener noreferrer"><b>Kling AI 2.0</b></a> <span class="tool-free-tag">Free to Try</span>: High-definition 1080p AI video generator with advanced physics simulation, camera motion paths, and 10-second continuous shots.</li>
+          <li><a href="https://whisperx.org/" target="_blank" rel="noopener noreferrer"><b>WhisperX Pro</b></a> <span class="tool-free-tag">Open Source</span>: Ultra-fast speech-to-text with word-level phoneme alignment and automatic multi-speaker diarization.</li>
+        </ul>
+      </div>
+
+      <div class="article-section-header">
+        <h2>📚 AI Tutorial</h2>
+      </div>
+
+      <div class="article-story-card">
+        <div class="story-badge-row">
+          <span class="story-company-badge">AI Tutorial</span>
+        </div>
+        <h3 class="story-headline">How to Build an Automated Lead Enrichment AI Agent with n8n</h3>
+        <div class="section-image-box">
+          <img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/260e171c-0992-44f2-ba2e-021441888dde/ChatGPT_Image_Jun_17__2026__07_39_18_PM__1_.png?t=1781703997" alt="Automated Lead Enrichment with n8n" class="section-inline-img" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <p>Learn how to connect n8n with Claude and Apollo to automatically qualify incoming leads, research their company metrics, and draft personalized outreach emails in under 30 seconds.</p>
+        <ol class="tutorial-step-list">
+          <li><p><b>Set Up n8n Webhook Trigger</b></p><p>Create a Webhook node in n8n listening for incoming new subscriber or lead events from your website form.</p></li>
+          <li><p><b>Extract Company Domain &amp; LinkedIn</b></p><p>Use an HTTP Request node to query the Apollo or Clearbit API with the prospect's email address to retrieve industry, employee count, and funding stage.</p></li>
+          <li><p><b>Add Claude AI Scoring Node</b></p><p>Connect the LangChain node in n8n with Claude 3.7 Sonnet. Use the following prompt:</p><p><code>“Analyze this lead: [Company Name], [Industry], [Size]. Score lead fit from 1-100 based on ICP. Draft a 3-sentence personalized value proposition addressing their pain points.”</code></p></li>
+          <li><p><b>Sync to CRM &amp; Send Slack Notification</b></p><p>Route high-scoring leads (80+) directly to HubSpot CRM and dispatch an instant alert to your sales team's Slack channel.</p></li>
+          <li><p><b>Test End-to-End Workflow</b></p><p>Submit a test lead to confirm the automated workflow processes, enriches, and logs all data flawlessly.</p></li>
+        </ol>
+        <p><b>Tip:</b> Use n8n's community templates to import pre-built AI agent nodes in one click.</p>
+      </div>
+
+      <div class="article-section-header">
+        <h2>🌐 Top AI &amp; Tech News</h2>
+      </div>
+
+      <div class="article-story-card">
+        <ul class="tech-news-bullets">
+          <li><a href="https://openai.com/" target="_blank" rel="noopener noreferrer">OpenAI</a> announces o3-mini reasoning models optimized for high-speed mathematical proofs and STEM education software.</li>
+          <li><a href="https://meta.com/" target="_blank" rel="noopener noreferrer">Meta</a> releases Llama 4 developer roadmap focusing on multimodal native sensor processing and on-device quantization.</li>
+          <li><a href="https://perplexity.ai/" target="_blank" rel="noopener noreferrer">Perplexity</a> launches Deep Research agent providing 30-page comprehensive market analysis reports with verified citations in minutes.</li>
+          <li><a href="https://nvidia.com/" target="_blank" rel="noopener noreferrer">NVIDIA</a> Blackwell Ultra enterprise clusters begin global shipments to Tier-1 cloud providers.</li>
+        </ul>
+      </div>
+
+      <div class="article-signoff">
+        Until next time,<br>
+        <strong>AIRA</strong>
+      </div>
+    </div>`
+  },
+  {
     "slug": "nvidia-chip-controls-rogue-ai",
     "title": "NVIDIA Chip Controls Rogue AI",
     "subtitle": "Agentic Deposit Run Is Coming",
