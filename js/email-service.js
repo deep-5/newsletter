@@ -65,6 +65,76 @@
   // =========================================================================
 
   /**
+   * OTP Verification Email Template (Sent when user subscribes)
+   */
+  function buildOTPEmailHTML(email, otp) {
+    const siteUrl = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : 'https://aira.news';
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your AIRA Verification Code: ${otp}</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #0E0E12; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #F4F4F5; }
+    table { border-spacing: 0; border-collapse: collapse; }
+    td { padding: 0; }
+    .wrapper { width: 100%; table-layout: fixed; background-color: #0E0E12; padding: 30px 0 50px 0; }
+    .main-table { background-color: #18181B; margin: 0 auto; width: 100%; max-width: 520px; border: 1px solid #27272A; border-radius: 14px; overflow: hidden; }
+    .header-bar { background-color: #121216; padding: 26px 32px; text-align: center; border-bottom: 1px solid #27272A; }
+    .header-title { color: #FFFFFF; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+    .header-tagline { color: #D2FF52; font-size: 12px; font-weight: 700; margin-top: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .content-body { padding: 36px 32px; text-align: center; }
+    .badge-wrap { display: inline-block; background: rgba(210, 255, 82, 0.12); color: #D2FF52; border: 1px solid rgba(210, 255, 82, 0.3); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 999px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+    .headline { font-size: 22px; font-weight: 800; color: #FFFFFF; margin: 0 0 10px 0; letter-spacing: -0.02em; }
+    .p-text { font-size: 14px; color: #A1A1AA; margin-bottom: 24px; line-height: 1.6; }
+    .otp-box { background: #0E0E12; border: 2px dashed #1C46F5; border-radius: 12px; padding: 18px 24px; margin: 24px 0; text-align: center; display: inline-block; width: 85%; }
+    .otp-digits { font-size: 36px; font-weight: 900; letter-spacing: 12px; color: #D2FF52; font-family: 'JetBrains Mono', Consolas, monospace; margin: 0; }
+    .otp-expiry { font-size: 12px; color: #71717A; margin-top: 10px; font-weight: 500; }
+    .security-note { font-size: 12px; color: #71717A; line-height: 1.5; margin-top: 24px; padding-top: 20px; border-top: 1px solid #27272A; }
+    .footer { background-color: #121216; padding: 20px 32px; text-align: center; font-size: 11px; color: #71717A; border-top: 1px solid #27272A; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table class="main-table" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="header-bar">
+          <h1 class="header-title">⚡ AIRA</h1>
+          <div class="header-tagline">THE ONE AND ONLY AI NEWSLETTER</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="content-body">
+          <div class="badge-wrap">⚡ EMAIL VERIFICATION CODE</div>
+          <h2 class="headline">Confirm Your Subscription</h2>
+          <p class="p-text">
+            Enter the 6-digit verification code below to activate your AIRA subscription and instantly unlock the <strong>3,000+ Prompts &amp; 50 n8n Templates Mega Bundle</strong>.
+          </p>
+
+          <div class="otp-box">
+            <div class="otp-digits">${otp}</div>
+            <div class="otp-expiry">⏱️ Valid for 10 minutes</div>
+          </div>
+
+          <div class="security-note">
+            If you did not request this verification code, you can safely ignore this email.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+          <p style="margin: 0;">© ${new Date().getFullYear()} AIRA Intelligence. All rights reserved.</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>`;
+  }
+
+  /**
    * Welcome Email Template (Sent immediately upon signup)
    */
   function buildWelcomeEmailHTML(email) {
@@ -388,6 +458,24 @@
 
   const EmailService = {
     /**
+     * Send OTP Verification Email
+     */
+    async sendOTPEmail(subscriberEmail, otpCode) {
+      const subject = `⚡ Your AIRA Verification Code: ${otpCode}`;
+      const html = buildOTPEmailHTML(subscriberEmail, otpCode);
+
+      const result = await executeSend({
+        to: subscriberEmail,
+        subject: subject,
+        html: html,
+        type: 'otp_verification',
+        metadata: { otp: otpCode, gift: '3000+ Prompts & 50 n8n Templates' }
+      });
+
+      return result;
+    },
+
+    /**
      * Send instant Welcome Email with 3,000+ ChatGPT Prompts & 50 n8n templates Google Sheet link
      */
     async sendWelcomeEmail(subscriberEmail, source = 'Website') {
@@ -501,6 +589,7 @@
     getSettings,
     saveSettings,
     getLogs,
+    buildOTPEmailHTML,
     buildWelcomeEmailHTML,
     buildArticleBroadcastEmailHTML
   };

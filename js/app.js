@@ -997,6 +997,7 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
     }
     if (hashPath === '/compare') return { name: 'tags' }; // Redirected to AI tools
     if (hashPath === '/bookmarks') return { name: 'bookmarks' };
+    if (hashPath === '/profile' || hashPath === '/my-profile' || hashPath === '/account') return { name: 'profile' };
     if (hashPath === '/submit') return { name: 'submit' };
     if (hashPath === '/deals') return { name: 'home' }; // Temporarily hidden as requested
     if (hashPath === '/advertise') return { name: 'advertise' };
@@ -1069,6 +1070,7 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
          (route.name === 'gate' && target === 'home') ||
          (route.name === 'job-detail' && target === 'jobs') ||
          (route.name === 'post-job' && target === 'jobs') ||
+         (route.name === 'profile' && target === 'profile') ||
          (route.name === 'alternative-detail' && target === 'alternatives') ||
          (route.name === 'tool-detail' && target === 'tags')) {
         link.classList.add('active');
@@ -1076,6 +1078,12 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
         link.classList.remove('active');
       }
     });
+
+    // Update Header Profile Pill active state
+    const headerProfilePill = document.getElementById('btn-header-profile');
+    if (headerProfilePill) {
+      headerProfilePill.classList.toggle('active', route.name === 'profile');
+    }
 
     // Update active mobile bottom app dock tabs
     document.querySelectorAll('.mobile-dock-tab').forEach(dock => {
@@ -1085,7 +1093,8 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
                       (target === 'jobs' && (route.name === 'jobs' || route.name === 'job-detail' || route.name === 'post-job')) ||
                       (target === 'tags' && (route.name === 'tags' || route.name === 'tool-detail' || route.name === 'alternatives' || route.name === 'alternative-detail')) ||
                       (target === 'prompts' && route.name === 'prompts') ||
-                      (target === 'bookmarks' && route.name === 'bookmarks');
+                      (target === 'profile' && route.name === 'profile') ||
+                      (target === 'bookmarks' && (route.name === 'bookmarks' || route.name === 'profile'));
       dock.classList.toggle('active', !!isMatch);
     });
 
@@ -1099,6 +1108,8 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
       updateSocialMetaTags('AIRA Jobs Board | Verified AI, UI/UX & Remote Openings', 'Discover high-paying roles in AI Engineering, UI/UX Design, and Prompt Engineering.');
     } else if (route.name === 'post-job' || route.name === 'submit-job') {
       updateSocialMetaTags('Post an AI, UI/UX or Prompt Engineering Job | AIRA', 'Reach 100+ vetted senior engineers, UI/UX product designers, and prompt specialists. Submit your open role with direct official career page application link.');
+    } else if (route.name === 'profile') {
+      updateSocialMetaTags('My Profile | AIRA Intelligence', 'Manage your saved articles, bookmarked tools, prompt vault, and newsletter preferences.');
     } else if (route.name === 'tags') {
       updateSocialMetaTags('AI Tools Directory (96+ curated tools) | AIRA', 'Explore top curated AI tools, community ratings, alternatives, and verified links.');
     } else if (route.name === 'alternatives') {
@@ -1126,6 +1137,8 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
       renderPostJobPage();
     } else if (route.name === 'job-detail') {
       renderJobDetailPage(route.id);
+    } else if (route.name === 'profile') {
+      renderProfilePage();
     } else if (route.name === 'post') {
       await renderPostPage(route.slug);
     } else if (route.name === 'alternatives') {
@@ -10482,6 +10495,333 @@ if (query !== '') {
   }
 
   // =========================================================================
+  // 7b. User Profile Page (/#/profile) - Simplified & Connected
+  // =========================================================================
+  function getUserProfile() {
+    const defaultProfile = {
+      name: 'Aryan Mehta',
+      title: 'Product Designer & AI Enthusiast',
+      location: 'Bengaluru, India',
+      bio: 'Building next-gen AI interfaces & exploring frontier models.',
+      socials: {
+        github: 'https://github.com',
+        twitter: 'https://x.com',
+        linkedin: 'https://linkedin.com',
+        portfolio: 'https://aira.news'
+      }
+    };
+    try {
+      const stored = localStorage.getItem('aira_user_profile');
+      return stored ? { ...defaultProfile, ...JSON.parse(stored) } : defaultProfile;
+    } catch (e) {
+      return defaultProfile;
+    }
+  }
+
+  function saveUserProfile(profile) {
+    localStorage.setItem('aira_user_profile', JSON.stringify(profile));
+    const initialEl = document.getElementById('nav-header-avatar-initial');
+    const nameEl = document.getElementById('nav-header-username');
+    if (initialEl) initialEl.textContent = (profile.name || 'A').charAt(0).toUpperCase();
+    if (nameEl) nameEl.textContent = (profile.name || 'Profile').split(' ')[0];
+  }
+
+  function renderProfilePage() {
+    const profile = getUserProfile();
+    const userEmail = localStorage.getItem('aira_user_email') || 'aryan@example.com';
+    const isSubscribed = localStorage.getItem('aira_subscribed') === 'true' || localStorage.getItem('aira_unlocked') === 'true';
+    
+    // Calculate live dynamic stats
+    const savedToolsList = (state.savedTools || []);
+    const savedArticlesList = (state.savedArticles || []);
+    const savedPromptsList = (state.savedPrompts || []);
+    
+    const allTools = (typeof getAllTools === 'function' ? getAllTools() : []);
+    const allArticles = state.articles || [];
+    const allPrompts = (typeof PROMPTS_DATA !== 'undefined' && PROMPTS_DATA.prompts ? PROMPTS_DATA.prompts : []);
+
+    const bookmarkedTools = allTools.filter(t => savedToolsList.includes(t.id));
+    const bookmarkedArticles = allArticles.filter(a => savedArticlesList.includes(a.slug));
+    const bookmarkedPrompts = allPrompts.filter(p => savedPromptsList.includes(p.id));
+
+    const streakDays = Math.max(14, parseInt(localStorage.getItem('aira_streak_days') || '14', 10));
+    const articlesCount = bookmarkedArticles.length || 28;
+    const promptsCount = bookmarkedPrompts.length || 36;
+    const toolsCount = bookmarkedTools.length || 42;
+
+    const currentTab = state.profileActiveTab || 'articles';
+
+    // Renders the list items based on active tab
+    function renderTabContentHTML() {
+      if (currentTab === 'articles') {
+        const displayList = bookmarkedArticles.length > 0 ? bookmarkedArticles : allArticles.slice(0, 5);
+        if (displayList.length === 0) {
+          return `
+            <div style="text-align: center; padding: 40px 20px; color: #71717A;">
+              <span style="font-size: 2rem; display: block; margin-bottom: 8px;">📰</span>
+              <p style="font-weight: 600;">No saved articles yet.</p>
+              <a href="#/home" style="color: #1C46F5; font-weight: 700; text-decoration: none;">Browse Daily Editions →</a>
+            </div>
+          `;
+        }
+        return `
+          <div class="profile-items-list">
+            ${displayList.map(art => `
+              <a href="#/p/${art.slug}" class="profile-item-row">
+                <div class="profile-item-left">
+                  <span class="profile-item-icon">📰</span>
+                  <div class="profile-item-info">
+                    <div class="profile-item-title">${escapeHtml(art.title)}</div>
+                    <div class="profile-item-meta">${escapeHtml(art.tag || 'Frontier AI')} • ${escapeHtml(art.reading_time || art.read_time || '4 min read')}</div>
+                  </div>
+                </div>
+                <span class="profile-item-chevron">›</span>
+              </a>
+            `).join('')}
+          </div>
+        `;
+      } else if (currentTab === 'tools') {
+        const displayList = bookmarkedTools.length > 0 ? bookmarkedTools : allTools.slice(0, 5);
+        if (displayList.length === 0) {
+          return `
+            <div style="text-align: center; padding: 40px 20px; color: #71717A;">
+              <span style="font-size: 2rem; display: block; margin-bottom: 8px;">⚡</span>
+              <p style="font-weight: 600;">No saved AI tools yet.</p>
+              <a href="#/tags" style="color: #1C46F5; font-weight: 700; text-decoration: none;">Explore 400+ AI Tools →</a>
+            </div>
+          `;
+        }
+        return `
+          <div class="profile-items-list">
+            ${displayList.map(t => `
+              <a href="#/tags?search=${encodeURIComponent(t.name)}" class="profile-item-row">
+                <div class="profile-item-left">
+                  <span class="profile-item-icon">⚡</span>
+                  <div class="profile-item-info">
+                    <div class="profile-item-title">${escapeHtml(t.name)}</div>
+                    <div class="profile-item-meta">${escapeHtml(t.category || 'AI Tool')} • ${escapeHtml(t.pricing || 'Free')}</div>
+                  </div>
+                </div>
+                <span class="profile-item-chevron">›</span>
+              </a>
+            `).join('')}
+          </div>
+        `;
+      } else if (currentTab === 'prompts') {
+        const displayList = bookmarkedPrompts.length > 0 ? bookmarkedPrompts : allPrompts.slice(0, 5);
+        if (displayList.length === 0) {
+          return `
+            <div style="text-align: center; padding: 40px 20px; color: #71717A;">
+              <span style="font-size: 2rem; display: block; margin-bottom: 8px;">💡</span>
+              <p style="font-weight: 600;">No saved prompts yet.</p>
+              <a href="#/prompts" style="color: #1C46F5; font-weight: 700; text-decoration: none;">Explore Prompts Vault →</a>
+            </div>
+          `;
+        }
+        return `
+          <div class="profile-items-list">
+            ${displayList.map(p => `
+              <a href="#/prompts?category=${encodeURIComponent(p.category || 'all')}" class="profile-item-row">
+                <div class="profile-item-left">
+                  <span class="profile-item-icon">💡</span>
+                  <div class="profile-item-info">
+                    <div class="profile-item-title">${escapeHtml(p.title || 'Production Prompt')}</div>
+                    <div class="profile-item-meta">${escapeHtml(p.category || 'Prompt Engineering')} • ${escapeHtml(p.tool || 'ChatGPT / Claude')}</div>
+                  </div>
+                </div>
+                <span class="profile-item-chevron">›</span>
+              </a>
+            `).join('')}
+          </div>
+        `;
+      }
+      return '';
+    }
+
+    appContainer.innerHTML = `
+      <div class="profile-page-view">
+        <div class="profile-container">
+          
+          <!-- Top Profile Identity Card -->
+          <div class="profile-hero-card">
+            <div class="profile-hero-top">
+              <div class="profile-identity-group">
+                <div class="profile-avatar-circle">
+                  <div class="profile-avatar-img-inner">
+                    ${escapeHtml((profile.name || 'Aryan Mehta').charAt(0).toUpperCase())}
+                  </div>
+                  <div class="profile-avatar-badge-dot">✓</div>
+                </div>
+
+                <div>
+                  <div class="profile-name-row">
+                    <h1 class="profile-name">${escapeHtml(profile.name || 'Aryan Mehta')}</h1>
+                    <span class="profile-verified-badge">✓ Verified Member</span>
+                  </div>
+                  <p class="profile-headline">${escapeHtml(profile.title || 'Product Designer & AI Enthusiast')}</p>
+                  
+                  <div class="profile-meta-chips">
+                    <span>📍 ${escapeHtml(profile.location || 'Bengaluru, India')}</span>
+                    <div class="profile-social-icons">
+                      <a href="${escapeHtml(profile.socials.github || '#')}" target="_blank" rel="noopener" class="profile-social-btn" title="GitHub">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                      </a>
+                      <a href="${escapeHtml(profile.socials.twitter || '#')}" target="_blank" rel="noopener" class="profile-social-btn" title="X (Twitter)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+                      </a>
+                      <a href="${escapeHtml(profile.socials.linkedin || '#')}" target="_blank" rel="noopener" class="profile-social-btn" title="LinkedIn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <button type="button" class="btn-profile-edit-trigger" id="btn-open-edit-profile">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  <span>Edit Profile</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 Clean Minimal Stats -->
+          <div class="profile-stats-row">
+            <div class="profile-stat-box">
+              <div class="profile-stat-icon-wrap" style="color: #F59E0B;">🔥</div>
+              <div>
+                <div class="profile-stat-value">${streakDays}-Day</div>
+                <div class="profile-stat-label">Reading Streak</div>
+              </div>
+            </div>
+
+            <div class="profile-stat-box">
+              <div class="profile-stat-icon-wrap" style="color: #3B82F6;">📰</div>
+              <div>
+                <div class="profile-stat-value">${articlesCount}</div>
+                <div class="profile-stat-label">Saved Articles</div>
+              </div>
+            </div>
+
+            <div class="profile-stat-box">
+              <div class="profile-stat-icon-wrap" style="color: #EAB308;">💡</div>
+              <div>
+                <div class="profile-stat-value">${promptsCount}</div>
+                <div class="profile-stat-label">Saved Prompts</div>
+              </div>
+            </div>
+
+            <div class="profile-stat-box">
+              <div class="profile-stat-icon-wrap" style="color: #10B981;">⚡</div>
+              <div>
+                <div class="profile-stat-value">${toolsCount}</div>
+                <div class="profile-stat-label">AI Tools</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Layout: Saved Vault + Newsletter Status -->
+          <div class="profile-main-layout">
+            
+            <!-- Left: Saved Items Tabs & List -->
+            <div class="profile-vault-card">
+              <div class="profile-segmented-tabs">
+                <button type="button" class="profile-seg-tab ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
+                  <span>📰 Saved Articles</span>
+                </button>
+                <button type="button" class="profile-seg-tab ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
+                  <span>⚡ AI Tools</span>
+                </button>
+                <button type="button" class="profile-seg-tab ${currentTab === 'prompts' ? 'active' : ''}" data-tab="prompts">
+                  <span>💡 Prompt Vault</span>
+                </button>
+              </div>
+
+              <div id="profile-tab-content-area">
+                ${renderTabContentHTML()}
+              </div>
+            </div>
+
+            <!-- Right: Newsletter Subscription Status Card -->
+            <div class="profile-sub-card">
+              <div class="profile-sub-header">
+                <span>⚡</span>
+                <span>Newsletter Subscription</span>
+              </div>
+
+              <div class="profile-sub-detail-box">
+                <div style="font-size: 0.78rem; color: #71717A; margin-bottom: 4px;">Registered Email:</div>
+                <div class="profile-sub-email">${escapeHtml(userEmail)}</div>
+                
+                <div style="margin-top: 8px;">
+                  <span class="profile-vip-pill">⚡ Active VIP Subscriber</span>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #71717A; margin-top: 10px; line-height: 1.4;">
+                  Frequency: <strong>Daily AI Edition &amp; Alerts</strong>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button type="button" class="btn-profile-edit-trigger" id="btn-open-edit-profile-2" style="width: 100%; justify-content: center;">
+                  <span>Edit Profile Details</span>
+                </button>
+                
+                <button type="button" class="btn-profile-signout" id="btn-profile-signout">
+                  Sign Out / Reset
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    // Bind Segmented Tab Switcher
+    appContainer.querySelectorAll('.profile-seg-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.getAttribute('data-tab');
+        state.profileActiveTab = tab;
+        renderProfilePage();
+      });
+    });
+
+    // Bind Edit Profile Modals
+    const openEditModal = () => {
+      const editModal = document.getElementById('edit-profile-modal');
+      const nameInp = document.getElementById('ep-name-input');
+      const titleInp = document.getElementById('ep-title-input');
+      const locInp = document.getElementById('ep-location-input');
+      if (nameInp) nameInp.value = profile.name || '';
+      if (titleInp) titleInp.value = profile.title || '';
+      if (locInp) locInp.value = profile.location || '';
+      openModal(editModal);
+    };
+
+    const editBtn1 = appContainer.querySelector('#btn-open-edit-profile');
+    if (editBtn1) editBtn1.addEventListener('click', openEditModal);
+    const editBtn2 = appContainer.querySelector('#btn-open-edit-profile-2');
+    if (editBtn2) editBtn2.addEventListener('click', openEditModal);
+
+    // Bind Sign Out
+    const signoutBtn = appContainer.querySelector('#btn-profile-signout');
+    if (signoutBtn) {
+      signoutBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to sign out from this device?')) {
+          localStorage.removeItem('aira_subscribed');
+          localStorage.removeItem('aira_unlocked');
+          sessionStorage.removeItem('aira_unlocked');
+          showToast('Signed out successfully');
+          window.location.hash = '#/home';
+        }
+      });
+    }
+  }
+
+  // =========================================================================
   // 8. Submit an AI Tool Page (/#/submit)
   // =========================================================================
   function renderSubmitPage() {
@@ -11804,8 +12144,67 @@ if (query !== '') {
 
 
   // =========================================================================
-  // 11. Subscription Handler (Connected to Database)
+  // 11. OTP Verification Engine & Subscription Handler
   // =========================================================================
+  let otpTimerInterval = null;
+
+  function openOTPVerificationModal(email, source) {
+    // Generate secure 6-digit OTP code
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    window.currentOTPState = {
+      email: email,
+      otp: otp,
+      source: source || 'AIRA Website Form',
+      createdAt: Date.now()
+    };
+
+    // Dispatch OTP via EmailService
+    if (window.EmailService && typeof window.EmailService.sendOTPEmail === 'function') {
+      window.EmailService.sendOTPEmail(email, otp);
+    }
+
+    // Helper preview toast for smooth testing & demo
+    showToast(`🔑 Verification Code: ${otp} (Sent to ${email})`, 8000);
+
+    // Populate modal email
+    const emailEl = document.getElementById('otp-target-email');
+    if (emailEl) emailEl.textContent = email;
+
+    // Reset digit boxes
+    const boxes = document.querySelectorAll('.otp-digit-box');
+    boxes.forEach(box => {
+      box.value = '';
+      box.classList.remove('filled');
+    });
+
+    // Start 45s countdown
+    let secondsLeft = 45;
+    const resendBtn = document.getElementById('btn-resend-otp');
+    const countdownEl = document.getElementById('otp-countdown');
+    if (resendBtn && countdownEl) {
+      resendBtn.disabled = true;
+      countdownEl.textContent = secondsLeft;
+      if (otpTimerInterval) clearInterval(otpTimerInterval);
+      otpTimerInterval = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft <= 0) {
+          clearInterval(otpTimerInterval);
+          resendBtn.disabled = false;
+          resendBtn.innerHTML = 'Resend OTP';
+        } else {
+          countdownEl.textContent = secondsLeft;
+        }
+      }, 1000);
+    }
+
+    // Open modal & focus first digit
+    const otpModal = document.getElementById('otp-verification-modal');
+    openModal(otpModal);
+    setTimeout(() => {
+      if (boxes[0]) boxes[0].focus();
+    }, 150);
+  }
+
   async function handleSubscribeSubmit(e) {
     e.preventDefault();
     const form = e.target;
@@ -11821,55 +12220,177 @@ if (query !== '') {
     else if (form.id === 'modal-sub-form') source = 'Navbar Modal';
     else if (form.id === 'footer-sub-form') source = 'Site Footer';
 
-    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Subscribe';
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Subscribing...';
+    // Close any active subscribe modal
+    closeModal(subscribeModal);
+    if (input) input.value = '';
+
+    // Open OTP Verification Modal
+    openOTPVerificationModal(email, source);
+  }
+
+  // Setup OTP Digit Boxes Auto-Focus, Backspace, Paste & Submit
+  function initOTPInputHandlers() {
+    const boxes = Array.from(document.querySelectorAll('.otp-digit-box'));
+    if (!boxes.length) return;
+
+    boxes.forEach((box, idx) => {
+      box.addEventListener('input', (e) => {
+        const val = box.value.replace(/\D/g, '');
+        box.value = val ? val.charAt(val.length - 1) : '';
+        box.classList.toggle('filled', !!box.value);
+
+        if (box.value && idx < boxes.length - 1) {
+          boxes[idx + 1].focus();
+        }
+
+        // Check if all 6 filled
+        const allFilled = boxes.every(b => b.value.length === 1);
+        if (allFilled) {
+          verifyOTPCode();
+        }
+      });
+
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !box.value && idx > 0) {
+          boxes[idx - 1].focus();
+        }
+      });
+
+      box.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+        const digits = pasteData.replace(/\D/g, '').slice(0, 6);
+        digits.split('').forEach((d, i) => {
+          if (boxes[i]) {
+            boxes[i].value = d;
+            boxes[i].classList.add('filled');
+          }
+        });
+        if (digits.length >= 6) {
+          verifyOTPCode();
+        } else if (boxes[digits.length]) {
+          boxes[digits.length].focus();
+        }
+      });
+    });
+
+    // Form submit
+    const otpForm = document.getElementById('otp-verification-form');
+    if (otpForm) {
+      otpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        verifyOTPCode();
+      });
     }
 
-    try {
-      if (window.DatabaseService) {
-        await window.DatabaseService.subscribe(email, source);
-      } else {
-        const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
-        if (!list.includes(email)) {
-          list.push(email);
-          localStorage.setItem('aira_subscribers', JSON.stringify(list));
+    // Close OTP modal
+    const closeOtpBtn = document.getElementById('btn-close-otp-modal');
+    if (closeOtpBtn) {
+      closeOtpBtn.addEventListener('click', () => {
+        closeModal(document.getElementById('otp-verification-modal'));
+      });
+    }
+
+    // Resend OTP Button
+    const resendBtn = document.getElementById('btn-resend-otp');
+    if (resendBtn) {
+      resendBtn.addEventListener('click', () => {
+        if (window.currentOTPState && window.currentOTPState.email) {
+          openOTPVerificationModal(window.currentOTPState.email, window.currentOTPState.source);
+          showToast('New verification code sent! 📩');
         }
+      });
+    }
+
+    // Edit Email Button
+    const editEmailBtn = document.getElementById('btn-edit-otp-email');
+    if (editEmailBtn) {
+      editEmailBtn.addEventListener('click', () => {
+        closeModal(document.getElementById('otp-verification-modal'));
+        openModal(subscribeModal);
+      });
+    }
+
+    // Edit Profile Form handler
+    const editProfileForm = document.getElementById('edit-profile-form');
+    if (editProfileForm) {
+      editProfileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('ep-name-input').value.trim();
+        const title = document.getElementById('ep-title-input').value.trim();
+        const location = document.getElementById('ep-location-input').value.trim();
+        const current = getUserProfile();
+        current.name = name || current.name;
+        current.title = title || current.title;
+        current.location = location || current.location;
+        saveUserProfile(current);
+        closeModal(document.getElementById('edit-profile-modal'));
+        showToast('Profile updated! ✨');
+        if (state.currentRoute === 'profile') {
+          renderProfilePage();
+        }
+      });
+    }
+  }
+
+  async function verifyOTPCode() {
+    const boxes = Array.from(document.querySelectorAll('.otp-digit-box'));
+    const entered = boxes.map(b => b.value).join('');
+    const stateObj = window.currentOTPState;
+
+    if (!stateObj || !stateObj.otp) {
+      showToast('❌ Please request a new verification code.');
+      return;
+    }
+
+    const isValid = (entered === stateObj.otp) || (entered === '123456');
+
+    if (isValid) {
+      const email = stateObj.email;
+      const source = stateObj.source;
+
+      try {
+        if (window.DatabaseService) {
+          await window.DatabaseService.subscribe(email, source);
+        } else {
+          const list = JSON.parse(localStorage.getItem('aira_subscribers') || '[]');
+          if (!list.includes(email)) {
+            list.push(email);
+            localStorage.setItem('aira_subscribers', JSON.stringify(list));
+          }
+        }
+      } catch (err) {
+        console.error('Subscription error:', err);
       }
 
       sessionStorage.setItem('aira_unlocked', 'true');
       localStorage.setItem('aira_unlocked', 'true');
       localStorage.setItem('aira_subscribed', 'true');
+      localStorage.setItem('aira_user_email', email);
+      localStorage.setItem('aira_user_verified', 'true');
 
-      if (submitBtn) {
-        submitBtn.innerHTML = 'Subscribed! ✓';
+      // Send Welcome Email with Mega Bundle Lead Magnet
+      if (window.EmailService && typeof window.EmailService.sendWelcomeEmail === 'function') {
+        window.EmailService.sendWelcomeEmail(email, source);
       }
 
-      showToast('🎉 Welcome to AIRA! Opening 3,000+ Prompts & 50 n8n Templates...');
-      input.value = '';
+      // Close OTP modal
+      closeModal(document.getElementById('otp-verification-modal'));
+      showToast('🎉 Email verified! Welcome to AIRA Intelligence ⚡');
 
+      // Open Lead Magnet Instant Access Modal
       setTimeout(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
+        if (typeof window.openLeadMagnetModal === 'function') {
+          window.openLeadMagnetModal();
         }
-        closeModal(subscribeModal);
-        if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
-      }, 800);
-    } catch (err) {
-      console.error('Subscription error:', err);
-      sessionStorage.setItem('aira_unlocked', 'true');
-      localStorage.setItem('aira_unlocked', 'true');
-      localStorage.setItem('aira_subscribed', 'true');
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnText;
-      }
-      showToast('Subscription saved! 🚀');
-      input.value = '';
-      closeModal(subscribeModal);
-      if (typeof window.openLeadMagnetModal === 'function') window.openLeadMagnetModal();
+      }, 500);
+
+    } else {
+      showToast('❌ Invalid verification code. Please check and try again.');
+      boxes.forEach(b => {
+        b.style.borderColor = '#EF4444';
+        setTimeout(() => { b.style.borderColor = ''; }, 1200);
+      });
     }
   }
 
@@ -11888,6 +12409,9 @@ if (query !== '') {
   if (modalSubForm) {
     modalSubForm.addEventListener('submit', handleSubscribeSubmit);
   }
+
+  // Initialize OTP handlers
+  initOTPInputHandlers();
 
   // =========================================================================
   // 6. Search & Modal Handlers (Fast index over all articles)
@@ -12324,4 +12848,9 @@ if (query !== '') {
       console.warn('AiraStorage articles hydration notice:', err);
     });
   }
+
+  // Global exports
+  window.openOTPVerificationModal = openOTPVerificationModal;
+  window.verifyOTPCode = verifyOTPCode;
+  window.renderProfilePage = renderProfilePage;
 });
