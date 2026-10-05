@@ -23758,6 +23758,12 @@ body.dark-mode .nav-profile-dot {
   border-color: #18181B;
 }
 
+@media (max-width: 768px) {
+  .nav-profile-pill {
+    display: none !important;
+  }
+}
+
 /* ==========================================================================
    EMAIL OTP VERIFICATION MODAL
    ========================================================================== */
