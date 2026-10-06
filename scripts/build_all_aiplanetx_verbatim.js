@@ -7,15 +7,22 @@ function cleanText(t) {
   return t.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-// Clean tracking params from hyperlinks
-function cleanLinks(html) {
+// Clean inline style, class, target, and tracking params from hyperlinks
+function cleanAttributes(html) {
   if (!html) return '';
-  return html.replace(/href=["']([^"']+)["']/gi, (match, url) => {
+  let cleaned = html
+    .replace(/\s+style="[^"]*"/gi, '')
+    .replace(/\s+class="[^"]*"/gi, '')
+    .replace(/\s+data-[^=]+="[^"]*"/gi, '')
+    .replace(/\s+target="[^"]*"/gi, '')
+    .replace(/\s+rel="[^"]*"/gi, '');
+
+  cleaned = cleaned.replace(/<a\s+href="([^"]+)"/gi, (match, url) => {
     try {
       if (url.includes('beehiiv.com') && url.includes('/v1/')) {
         const u = new URL(url);
         const target = u.searchParams.get('redirect_to');
-        if (target) return `href="${target}" target="_blank" rel="noopener noreferrer"`;
+        if (target) url = target;
       }
       const u = new URL(url);
       u.searchParams.delete('utm_source');
@@ -24,11 +31,13 @@ function cleanLinks(html) {
       u.searchParams.delete('utm_content');
       u.searchParams.delete('utm_term');
       u.searchParams.delete('email');
-      return `href="${u.toString()}" target="_blank" rel="noopener noreferrer"`;
+      return `<a href="${u.toString()}" target="_blank" rel="noopener noreferrer"`;
     } catch (e) {
-      return `href="${url}" target="_blank" rel="noopener noreferrer"`;
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer"`;
     }
   });
+
+  return cleaned.trim();
 }
 
 function parsePost(slug) {
@@ -56,10 +65,7 @@ function parsePost(slug) {
         dateIso = ld.datePublished;
         const d = new Date(ld.datePublished);
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const mStr = months[d.getUTCMonth()];
-        const dayStr = String(d.getUTCDate()).padStart(2, '0');
-        const yStr = d.getUTCFullYear();
-        date = `${mStr} ${dayStr}, ${yStr}`;
+        date = `${months[d.getUTCMonth()]} ${String(d.getUTCDate()).padStart(2, '0')}, ${d.getUTCFullYear()}`;
       }
     } catch (e) {}
   }
@@ -78,7 +84,7 @@ function parsePost(slug) {
     if (subMatch) subtitle = cleanText(subMatch[1]);
   }
 
-  // 2. Extract Exact Content Images via Guaranteed Indexing
+  // 2. Extract Exact Content Images via Guaranteed Sequence
   const allAssetImgs = [...rawHtml.matchAll(/<img[^>]+src=["'](https:\/\/media\.beehiiv\.com\/cdn-cgi\/image\/[^"']+\/uploads\/asset\/file\/[^"']+)["'][^>]*>/gi)].map(m => m[1]);
   const contentImgs = allAssetImgs.filter(img => !img.includes('AI_PlanetX__18') && !img.includes('thumb_LOGO') && !img.includes('profile_picture'));
 
@@ -105,8 +111,7 @@ function parsePost(slug) {
   const tutHtml = rawHtml.substring(tutMatch.index, newsMatch.index);
   const newsHtml = rawHtml.substring(newsMatch.index, endMatch ? endMatch.index : rawHtml.length);
 
-  // --- STORIES IN HOTTEST AI NEWS ---
-  const stories = [];
+  // --- 4. STORIES IN HOTTEST AI NEWS ---
   const h3Regex = /<h3[^>]*>(.*?)<\/h3>/gis;
   let h3Matches = [];
   let h3m;
@@ -115,7 +120,7 @@ function parsePost(slug) {
     h3Matches.push({ index: h3m.index, text, full: h3m[0] });
   }
 
-  // Filter out sponsor H3s
+  // Filter out sponsors
   const validH3s = h3Matches.filter(h => {
     const t = h.text.toLowerCase();
     if (h.text.length > 35) return false;
@@ -124,100 +129,137 @@ function parsePost(slug) {
            !t.includes('prompts') && !t.includes('coding') && !t.includes('founder') &&
            !t.includes('influencer') && !t.includes('stocks') && !t.includes('income') &&
            !t.includes('habits') && !t.includes('course') && !t.includes('marketing') &&
-           !t.includes('granola') && !t.includes('wispr') && !t.includes('handbook');
+           !t.includes('granola') && !t.includes('wispr') && !t.includes('handbook') &&
+           !t.includes('conference') && !t.includes('space') && !t.includes('work');
   });
 
+  const stories = [];
   for (let i = 0; i < validH3s.length && i < 2; i++) {
     const curH3 = validH3s[i];
     const nextH3Idx = (i + 1 < validH3s.length) ? validH3s[i + 1].index : hottestHtml.length;
-    const storyChunk = hottestHtml.substring(curH3.index, nextH3Idx);
+    const chunk = hottestHtml.substring(curH3.index, nextH3Idx);
 
-    // Story Headline (H2)
-    const h2Match = storyChunk.match(/<h2[^>]*>(.*?)<\/h2>/is);
-    const storyHeadline = h2Match ? cleanText(h2Match[1]) : '';
+    const h2m = chunk.match(/<h2[^>]*>(.*?)<\/h2>/is);
+    const headline = h2m ? cleanText(h2m[1]) : '';
 
-    // Story Image
-    const storyImg = (i === 0) ? story1ExactImg : story2ExactImg;
-
-    // Paragraphs
-    const paras = [];
-    const pRegex = /<p[^>]*>(.*?)<\/p>/gis;
-    let pm;
-    while ((pm = pRegex.exec(storyChunk)) !== null) {
-      const pClean = cleanText(pm[1]);
-      if (pClean && !pClean.includes('The Ultimate Claude') && !pClean.includes('Join 250K+') && !pClean.includes('Subscribe to') && !pClean.includes('Sign up for') && !pClean.includes('Leave Granola') && !pClean.includes('Get up to 12 months') && !pClean.includes('Get The Free Guide')) {
-        paras.push(cleanLinks(pm[0]));
+    const ulMatch = chunk.match(/<ul[^>]*>([\s\S]*?)<\/ul>/i);
+    const bullets = [];
+    if (ulMatch) {
+      const liMatches = [...ulMatch[1].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gis)];
+      for (const lm of liMatches) {
+        const liClean = cleanText(lm[1]);
+        if (liClean && liClean.length > 10 && !liClean.includes('The Ultimate Claude') && !liClean.includes('100% Free') && !liClean.includes('Marketers Joined')) {
+          const innerClean = cleanAttributes(lm[1]).replace(/^<p[^>]*>|<\/p>$/gi, '').trim();
+          bullets.push(`<li>${innerClean}</li>`);
+        }
       }
     }
 
-    // Bullets (<li>)
-    const bullets = [];
-    const liRegex = /<li[^>]*>(.*?)<\/li>/gis;
-    let lim;
-    while ((lim = liRegex.exec(storyChunk)) !== null) {
-      const liClean = cleanText(lim[1]);
-      if (liClean && !liClean.includes('The Ultimate Claude') && !liClean.includes('Sign up for') && !liClean.includes('The Code newsletter')) {
-        bullets.push(cleanLinks(lim[0]));
+    const beforeUl = ulMatch ? chunk.substring(0, ulMatch.index) : chunk;
+    const leadParas = [];
+    const pMatchesBefore = [...beforeUl.matchAll(/<p[^>]*>(.*?)<\/p>/gis)];
+    for (const pm of pMatchesBefore) {
+      const pClean = cleanText(pm[1]);
+      if (!pClean || pClean.length < 10) continue;
+      if (pClean.includes('The Ultimate Claude') || pClean.includes('Subscribe') || pClean.includes('Constant Contact') || pClean.includes('Space Stocks') || pClean.includes('Best Space Stocks')) continue;
+      leadParas.push(cleanAttributes(pm[0]));
+    }
+
+    const afterUl = ulMatch ? chunk.substring(ulMatch.index + ulMatch[0].length) : '';
+    const concludingParas = [];
+    const sponsorKeywords = [
+      'the ultimate claude', 'the code', 'anthropic engineers', 'playbook',
+      'sign up', 'join 250k', 'subscribe', 'sponsor', 'constant contact',
+      'guru conference', 'space stocks', 'marketbeat', 'see the 7 stocks',
+      'save your spot', '100% free & virtual', 'leave granola', 'wispr flow',
+      'tldr ai', '1.1m+ readers', 'pioneer 2026', 'blu dot', 'bludot',
+      '1,000+ claude', '100+ coding', '10 ai stocks', 'turn ai into',
+      'get the free guide', 'marketers joined', 'november 12th'
+    ];
+
+    if (afterUl) {
+      const pMatchesAfter = [...afterUl.matchAll(/<p[^>]*>(.*?)<\/p>/gis)];
+      for (const pm of pMatchesAfter) {
+        const pClean = cleanText(pm[1]).toLowerCase();
+        if (!pClean || pClean.length < 10) continue;
+        const isSponsor = sponsorKeywords.some(kw => pClean.includes(kw));
+        if (!isSponsor) {
+          concludingParas.push(cleanAttributes(pm[0]));
+        }
       }
     }
 
     stories.push({
       badge: curH3.text,
-      headline: storyHeadline,
-      img: storyImg,
-      paras,
-      bullets
+      headline,
+      img: (i === 0) ? story1ExactImg : story2ExactImg,
+      leadParas,
+      bullets,
+      concludingParas
     });
   }
 
-  // --- TOOLS ---
+  // --- 5. TOOLS ---
   const tools = [];
-  const toolLiRegex = /<li[^>]*>(.*?)<\/li>/gis;
-  let tlm;
-  while ((tlm = toolLiRegex.exec(toolsHtml)) !== null) {
+  const toolLiMatches = [...toolsHtml.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gis)];
+  for (const tlm of toolLiMatches) {
     const tClean = cleanText(tlm[1]);
-    if (tClean && !tClean.includes('TLDR') && !tClean.includes('Subscribe') && !tClean.includes('Sponsor') && !tClean.includes('curated by engineers')) {
-      tools.push(cleanLinks(tlm[0]));
+    if (tClean && !tClean.includes('TLDR') && !tClean.includes('Subscribe') && !tClean.includes('Sponsor') && !tClean.includes('curated by engineers') && !tClean.includes('Blu Dot')) {
+      const innerClean = cleanAttributes(tlm[1]).replace(/^<p[^>]*>|<\/p>$/gi, '').trim();
+      let item = innerClean
+        .replace(/Life-time Deal|Lifetime Deal/gi, '<span class="tool-deal-tag">Lifetime Deal</span>')
+        .replace(/\[F-R-E-E to Try\]|\[Free to Try\]/gi, '<span class="tool-free-tag">Free to Try</span>')
+        .replace(/\[F-R-E-E\]|\[Free\]/gi, '<span class="tool-free-tag">Free</span>');
+      tools.push(`<li>${item}</li>`);
     }
   }
 
-  // --- TUTORIAL ---
+  // --- 6. TUTORIAL ---
   const tutH2Matches = [...tutHtml.matchAll(/<h2[^>]*>(.*?)<\/h2>/gis)];
   let tutTitle = '';
-  if (tutH2Matches.length >= 2) {
-    tutTitle = cleanText(tutH2Matches[1][1]);
-  } else if (tutH2Matches.length === 1) {
-    tutTitle = cleanText(tutH2Matches[0][1]);
-  }
+  if (tutH2Matches.length >= 2) tutTitle = cleanText(tutH2Matches[1][1]);
+  else if (tutH2Matches.length === 1) tutTitle = cleanText(tutH2Matches[0][1]);
 
-  const tutParas = [];
-  const tutPRegex = /<p[^>]*>(.*?)<\/p>/gis;
-  let tpm;
-  while ((tpm = tutPRegex.exec(tutHtml)) !== null) {
+  // Tutorial Lead Paragraph
+  const tutLeadParas = [];
+  const tutPMatches = [...tutHtml.matchAll(/<p[^>]*>(.*?)<\/p>/gis)];
+  for (const tpm of tutPMatches) {
     const pClean = cleanText(tpm[1]);
-    if (pClean && !pClean.startsWith('AI Tutorial') && !pClean.startsWith('AI Workflow')) {
-      tutParas.push(cleanLinks(tpm[0]));
+    if (pClean && !pClean.startsWith('AI Tutorial') && !pClean.startsWith('AI Workflow') && !pClean.includes('Sponsor') && pClean.length > 20) {
+      tutLeadParas.push(cleanAttributes(tpm[0]));
+      break; // Only first intro paragraph
     }
   }
 
+  // Tutorial Steps
   const tutSteps = [];
-  const tutLiRegex = /<li[^>]*>(.*?)<\/li>/gis;
-  let tlim;
-  while ((tlim = tutLiRegex.exec(tutHtml)) !== null) {
-    const lClean = cleanText(tlim[1]);
-    if (lClean) {
-      tutSteps.push(cleanLinks(tlim[0]));
+  const tutLiMatches = [...tutHtml.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gis)];
+  for (const tlm of tutLiMatches) {
+    const lClean = cleanText(tlm[1]);
+    if (lClean && lClean.length > 10) {
+      const innerClean = cleanAttributes(tlm[1]).replace(/^<p[^>]*>|<\/p>$/gi, '').trim();
+      tutSteps.push(`<li>${innerClean}</li>`);
     }
   }
 
-  // --- TECH NEWS ---
+  // Tutorial Note/Tip Paragraph
+  let tutNote = '';
+  for (let idx = tutPMatches.length - 1; idx >= 0; idx--) {
+    const pClean = cleanText(tutPMatches[idx][1]);
+    if (pClean.startsWith('Note') || pClean.startsWith('Tip') || pClean.includes('Tip:')) {
+      tutNote = cleanAttributes(tutPMatches[idx][0]);
+      break;
+    }
+  }
+
+  // --- 7. TECH NEWS ---
   const newsBullets = [];
-  const newsLiRegex = /<li[^>]*>(.*?)<\/li>/gis;
-  let nlm;
-  while ((nlm = newsLiRegex.exec(newsHtml)) !== null) {
+  const newsLiMatches = [...newsHtml.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gis)];
+  for (const nlm of newsLiMatches) {
     const nClean = cleanText(nlm[1]);
-    if (nClean) {
-      newsBullets.push(cleanLinks(nlm[0]));
+    if (nClean && nClean.length > 15) {
+      const innerClean = cleanAttributes(nlm[1]).replace(/^<p[^>]*>|<\/p>$/gi, '').trim();
+      newsBullets.push(`<li>${innerClean}</li>`);
     }
   }
 
@@ -260,17 +302,22 @@ function parsePost(slug) {
         </div>`;
     }
 
-    st.paras.forEach(p => {
+    st.leadParas.forEach(p => {
       body_html += `\n        ${p}`;
     });
 
     if (st.bullets && st.bullets.length > 0) {
-      body_html += `\n        <ul class="tech-news-bullets">`;
+      body_html += `\n        <p><b>Details:</b></p>
+        <ul class="tech-news-bullets">`;
       st.bullets.forEach(b => {
         body_html += `\n          ${b}`;
       });
       body_html += `\n        </ul>`;
     }
+
+    st.concludingParas.forEach(p => {
+      body_html += `\n        ${p}`;
+    });
 
     body_html += `\n      </div>`;
   });
@@ -284,11 +331,7 @@ function parsePost(slug) {
       <div class="article-tools-box">
         <ul class="tools-feature-list">`;
   tools.forEach(t => {
-    let formattedTool = t
-      .replace(/Life-time Deal|Lifetime Deal/gi, '<span class="tool-deal-tag">Lifetime Deal</span>')
-      .replace(/\[F-R-E-E to Try\]|\[Free to Try\]/gi, '<span class="tool-free-tag">Free to Try</span>')
-      .replace(/\[F-R-E-E\]|\[Free\]/gi, '<span class="tool-free-tag">Free</span>');
-    body_html += `\n          ${formattedTool}`;
+    body_html += `\n          ${t}`;
   });
   body_html += `\n        </ul>
       </div>`;
@@ -312,7 +355,7 @@ function parsePost(slug) {
         </div>`;
   }
 
-  tutParas.forEach(tp => {
+  tutLeadParas.forEach(tp => {
     body_html += `\n        ${tp}`;
   });
 
@@ -322,6 +365,10 @@ function parsePost(slug) {
       body_html += `\n          ${ts}`;
     });
     body_html += `\n        </ol>`;
+  }
+
+  if (tutNote) {
+    body_html += `\n        ${tutNote}`;
   }
 
   body_html += `\n      </div>`;
