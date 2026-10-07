@@ -6867,9 +6867,9 @@ body.dark-mode .footer-status-pill {
 }
 
 .tool-detail-logo-box {
-  width: 76px;
-  height: 76px;
-  border-radius: 16px;
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
   background: #FAFAFA;
   border: 1px solid #E4E4E7;
   display: flex;
@@ -6877,14 +6877,15 @@ body.dark-mode .footer-status-pill {
   justify-content: center;
   overflow: hidden;
   flex-shrink: 0;
-  padding: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .tool-detail-logo-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  display: block;
 }
 
 .tool-detail-title-col {
@@ -18548,11 +18549,11 @@ body.dark-mode .tool-direct-visit-btn:hover {
 }
 
 .tool-card-avatar-wrap {
-  width: 42px !important;
-  height: 42px !important;
-  min-width: 42px !important;
-  max-width: 42px !important;
-  border-radius: 10px !important;
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  max-width: 52px !important;
+  border-radius: 12px !important;
   background: #F8FAFC !important;
   border: 1px solid #E2E8F0 !important;
   display: flex !important;
@@ -18571,20 +18572,21 @@ body.dark-mode .tool-direct-visit-btn:hover {
 }
 
 .sponsor-avatar-icon {
-  font-size: 1.25rem !important;
+  font-size: 1.4rem !important;
   line-height: 1 !important;
   color: #F59E0B !important;
 }
 
 .tool-logo-img {
-  width: 26px !important;
-  height: 26px !important;
-  object-fit: contain !important;
-  border-radius: 4px !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 11px !important;
+  display: block !important;
 }
 
 .tool-emoji {
-  font-size: 1.25rem !important;
+  font-size: 1.5rem !important;
   line-height: 1 !important;
 }
 
@@ -19011,11 +19013,11 @@ body.dark-mode .tool-btn-visit:hover {
 }
 
 .tool-card-avatar-wrap {
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
-  min-height: 44px !important;
-  border-radius: 10px !important;
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  border-radius: 12px !important;
   background: #F1F5F9 !important;
   display: flex !important;
   align-items: center !important;
