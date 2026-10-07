@@ -3447,540 +3447,118 @@ if (query !== '') {
   }
 
   function renderJobsPage() {
-    const allJobs = getJobs();
-    if (!state.jobCategoryFilter) state.jobCategoryFilter = 'all';
-    if (state.jobSearchQuery === undefined) state.jobSearchQuery = '';
-
-    const baseCategories = [
-      { id: 'all', name: 'All Roles', icon: '💼' },
-      { id: 'ui-ux', name: 'UI/UX Design', icon: '🎨' },
-      { id: 'ai-eng', name: 'AI Engineering', icon: '⚡' },
-      { id: 'prompt-eng', name: 'Prompt Engineering', icon: '💡' },
-      { id: 'remote', name: '100% Remote', icon: '🌍' },
-      { id: 'verified', name: 'Verified Openings', icon: '✅' }
-    ];
-
-    // Dynamically collect custom categories from all active jobs
-    const standardIds = new Set(baseCategories.map(c => c.id));
-    const extraCategories = [];
-    allJobs.forEach(j => {
-      const catId = j.categorySlug || (j.category ? j.category.toLowerCase().replace(/[^a-z0-9]+/g, '-') : '');
-      if (catId && !standardIds.has(catId) && !extraCategories.some(c => c.id === catId)) {
-        extraCategories.push({
-          id: catId,
-          name: j.categoryName || j.category || 'Specialized Role',
-          icon: j.categoryIcon || '🚀'
-        });
-      }
-    });
-
-    const categories = [...baseCategories, ...extraCategories];
-
-    // Find featured job
-    const featuredJob = allJobs.find(j => j.featured) || allJobs[0];
-
     appContainer.innerHTML = `
-      <section class="jobs-hero-card">
-        <div class="jobs-container">
-          <!-- Top Ad / Announcement Bar -->
-          ${(() => {
-            const sp = (typeof getSponsorSettings === 'function') ? getSponsorSettings() : null;
-            const topBar = sp ? sp.topBar : { active: true, badge: 'COMMUNITY', icon: '🎨', headline: '<strong>Join our UI/UX Design Community</strong> — Practical tips, design skills & tech trends.', link: 'https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw', ctaText: 'Join WhatsApp Community →' };
-            if (!topBar || topBar.active === false) return '';
-            return `
-              <div class="hero-openalt-top-ad" style="max-width: 820px; margin: 0 auto 20px auto;">
-                <div class="hero-top-ad-left">
-                  <span class="hero-ad-badge-pill">${escapeHtml(topBar.badge || 'Ad')}</span>
-                  <span class="hero-ad-brand-icon">${topBar.icon || '⚡'}</span>
-                  <span class="hero-ad-text-content">${topBar.headline || ''}</span>
-                </div>
-                <a href="${topBar.link || '#/advertise'}" target="${topBar.link && topBar.link.startsWith('http') ? '_blank' : '_self'}" class="hero-ad-action-btn">${escapeHtml(topBar.ctaText || 'Learn More')}</a>
-              </div>
-            `;
-          })()}
-
-          <!-- Centered Hero Header -->
-          <div class="jobs-hero-badge">
-            <span>⚡ VERIFIED AI, DESIGN &amp; TECH ROLES</span>
+      <section class="jobs-hero-card" style="padding: 36px 0 110px 0; margin-bottom: 0; min-height: 80vh; border-bottom: none;">
+        <div class="jobs-container" style="max-width: 860px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; width: 100%;">
+          <!-- Top Launching Soon Badge -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px;">
+            <span style="display: inline-flex; align-items: center; gap: 7px; padding: 6px 16px; background: rgba(28, 70, 245, 0.08); color: var(--color-brand-primary, #1C46F5); border: 1px solid rgba(28, 70, 245, 0.2); border-radius: 999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+              <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981;"></span>
+              🚀 Launching Soon
+            </span>
           </div>
-          
-          <h1 class="jobs-hero-title">AIRA Jobs Board</h1>
-          
-          <p class="jobs-hero-desc">
-            Discover high-impact AI, UI/UX Design &amp; Prompt Engineering roles at world-class tech companies and frontier AI startups.
+
+          <h1 style="font-size: clamp(1.75rem, 5vw, 2.75rem); font-weight: 800; color: var(--color-text-primary); letter-spacing: -0.03em; margin: 0 0 14px 0; line-height: 1.2; text-align: center; word-break: break-word;">
+            AIRA Jobs Board is Coming Soon
+          </h1>
+          <p style="font-size: clamp(0.92rem, 2.5vw, 1.05rem); color: var(--color-text-secondary, #71717A); max-width: 600px; margin: 0 auto 32px auto; line-height: 1.55; text-align: center;">
+            We're building the dedicated career hub for AI engineers, prompt designers, ML researchers, and tech builders. Get verified high-impact opportunities delivered straight to your inbox.
           </p>
 
-          <!-- Search & Post a Job Action Bar -->
-          <div class="jobs-hero-search-wrapper">
-            <form class="hero-openalt-search-box" id="jobs-search-form" onsubmit="event.preventDefault();" style="max-width: 480px; width: 100%; margin: 0; flex: 1; min-width: 280px;">
-              <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" class="hero-openalt-search-input" id="jobs-search-input" placeholder="Search" value="${escapeHtml(state.jobSearchQuery)}" autocomplete="off" />
-              <button type="button" id="jobs-search-clear" class="hero-search-clear-btn" style="display: ${state.jobSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
-              <button type="submit" class="hero-openalt-search-btn" id="jobs-search-btn">Search</button>
-            </form>
+          <!-- Main Feature / Coming Soon Box -->
+          <div class="jobs-coming-soon-card" style="margin-bottom: 24px;">
+            <div class="jobs-coming-soon-grid">
+              <div class="jobs-coming-soon-perk">
+                <div class="jobs-perk-icon-wrap">⚡</div>
+                <div class="jobs-perk-title">Verified AI Roles</div>
+                <p class="jobs-perk-desc">Hand-curated openings from leading AI startups, tech labs, and enterprise innovators.</p>
+              </div>
+              <div class="jobs-coming-soon-perk">
+                <div class="jobs-perk-icon-wrap">🎯</div>
+                <div class="jobs-perk-title">Direct Apply</div>
+                <p class="jobs-perk-desc">Skip the black hole ATS. Connect directly with hiring managers and founders.</p>
+              </div>
+              <div class="jobs-coming-soon-perk">
+                <div class="jobs-perk-icon-wrap">🔔</div>
+                <div class="jobs-perk-title">Early Access Alerts</div>
+                <p class="jobs-perk-desc">Get instant personalized job match alerts right before public listings go live.</p>
+              </div>
+            </div>
 
-            <a href="#/post-job" class="jobs-hero-post-btn" title="Post an opening on AIRA Jobs Board">
-              <span>✍️ Post a Job</span>
-              <span class="post-btn-badge">HR Portal</span>
-            </a>
+            <!-- Email Notification Form -->
+            <div class="jobs-coming-soon-notify-box">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin: 0 0 6px 0;">
+                Get Notified on Launch Day
+              </h3>
+              <p style="font-size: 0.86rem; color: var(--color-text-secondary, #71717A); margin: 0 0 18px 0;">
+                Join 1,400+ AI professionals on the early access priority list. Zero spam, unsubscribe anytime.
+              </p>
+              <form id="form-jobs-notify" style="display: flex; gap: 10px; max-width: 480px; margin: 0 auto; flex-wrap: wrap;" onsubmit="event.preventDefault();">
+                <input 
+                  type="email" 
+                  id="jobs-notify-email" 
+                  placeholder="Enter your work email address..." 
+                  required 
+                  style="flex: 1 1 220px; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--color-border, #E4E4E7); background: var(--color-bg-primary, #FFFFFF); color: var(--color-text-primary); font-size: 0.9rem; outline: none; transition: border-color 0.2s; box-sizing: border-box; width: 100%;"
+                />
+                <button 
+                  type="submit" 
+                  class="btn-primary" 
+                  style="min-height: 44px; padding: 0 20px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; cursor: pointer; flex: 1 0 auto;"
+                >
+                  Notify Me ✨
+                </button>
+              </form>
+            </div>
           </div>
 
-          <!-- Category Filter Chips -->
-          <div class="jobs-filter-chips-wrapper">
-            <div class="jobs-filter-chips-row">
-              ${categories.map(cat => {
-                const count = cat.id === 'all' 
-                  ? allJobs.length 
-                  : (cat.id === 'remote' 
-                      ? allJobs.filter(j => (j.workplace || '').toLowerCase().includes('remote') || (j.location || '').toLowerCase().includes('remote')).length
-                      : (cat.id === 'verified'
-                          ? allJobs.filter(j => (j.badge || '').toLowerCase().includes('verified')).length
-                          : allJobs.filter(j => j.category === cat.id || j.categorySlug === cat.id || (j.categoryName && j.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cat.id)).length));
-                const isActive = state.jobCategoryFilter === cat.id;
-                return `
-                  <button type="button" class="job-filter-pill ${isActive ? 'active' : ''}" data-job-cat="${cat.id}">
-                    <span>${cat.icon} ${cat.name}</span>
-                    <span class="pill-count">${count}</span>
-                  </button>
-                `;
-              }).join('')}
+          <!-- Employer / Recruiter Callout -->
+          <div style="background: rgba(28, 70, 245, 0.04); border: 1px dashed rgba(28, 70, 245, 0.3); border-radius: 16px; padding: 20px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; text-align: left;">
+            <div style="flex: 1 1 260px;">
+              <div style="font-weight: 700; font-size: 0.96rem; color: var(--color-text-primary); margin-bottom: 4px;">
+                💼 Hiring AI Talent for your team?
+              </div>
+              <div style="font-size: 0.84rem; color: var(--color-text-secondary, #71717A); line-height: 1.45;">
+                Post your openings in advance to be featured at launch and reach qualified candidates.
+              </div>
             </div>
+            <a href="#/post-job" class="btn-secondary" style="padding: 9px 18px; border-radius: 10px; font-weight: 700; font-size: 0.86rem; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto;">
+              ✍️ Post an Opening in Advance
+            </a>
           </div>
         </div>
       </section>
-
-      <div class="jobs-container" style="padding-bottom: 60px;">
-        
-        <!-- Featured Spotlight Job of the Day -->
-        ${featuredJob && (!state.jobSearchQuery && state.jobCategoryFilter === 'all') ? `
-          <div class="job-featured-spotlight-card" data-job-id="${featuredJob.id}">
-            <div class="job-featured-top-row">
-              <div class="job-company-badge-wrap">
-                <div class="job-company-avatar" style="background: ${featuredJob.companyBg || '#18181B'};">
-                  ${featuredJob.companyInitial || featuredJob.company.charAt(0)}
-                </div>
-                <div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-weight: 800; font-size: 1.05rem; color: #18181B;" class="dark-text-white">${escapeHtml(featuredJob.company)}</span>
-                    <span class="job-featured-tag-pill">★ FEATURED ROLE</span>
-                  </div>
-                  <span style="font-size: 0.8rem; color: #71717A;">${escapeHtml(featuredJob.companyDomain || '')} • ${escapeHtml(featuredJob.postedAt || 'Recently')}</span>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span class="job-salary-tag">${escapeHtml(featuredJob.salary)}</span>
-                ${featuredJob.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.72rem; padding: 4px 8px; border-radius: 6px;">✓ ${escapeHtml(featuredJob.badge)}</span>` : ''}
-              </div>
-            </div>
-
-            <h2 class="job-featured-title">${escapeHtml(featuredJob.title)}</h2>
-            
-            <div class="job-featured-meta">
-              <span>📍 ${escapeHtml(featuredJob.location)}</span>
-              <span>💼 ${escapeHtml(featuredJob.type)}</span>
-              <span>⏳ ${escapeHtml(featuredJob.experience || '3+ yrs exp')}</span>
-            </div>
-
-            <p class="job-featured-desc">${escapeHtml(featuredJob.tagline || featuredJob.overview || '')}</p>
-
-            <div class="job-skills-wrap">
-              ${featuredJob.categoryName ? `<span class="job-skill-chip" style="background: rgba(28,70,245,0.08); color: #1C46F5; font-weight: 700;">${escapeHtml(featuredJob.categoryIcon || '💼')} ${escapeHtml(featuredJob.categoryName)}</span>` : ''}
-              ${(featuredJob.skills || []).map(skill => `<span class="job-skill-chip">${escapeHtml(skill)}</span>`).join('')}
-            </div>
-
-            <div class="job-card-actions-row">
-              <a href="${featuredJob.officialApplyUrl || featuredJob.applyUrl || 'https://openai.com/careers'}" target="_blank" rel="noopener noreferrer" class="job-btn-primary">
-                <span>Apply on Official Site ↗</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-              <button type="button" class="job-btn-secondary btn-open-job-detail" data-job-id="${featuredJob.id}">View Full Role &amp; Perks</button>
-              <button type="button" class="btn-toggle-save-job" data-job-id="${featuredJob.id}" style="background: transparent; border: none; cursor: pointer; padding: 8px; color: #71717A;" title="Save job">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="${(state.savedJobs || []).includes(featuredJob.id) ? '#1C46F5' : 'none'}" stroke="${(state.savedJobs || []).includes(featuredJob.id) ? '#1C46F5' : 'currentColor'}" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-              </button>
-            </div>
-          </div>
-        ` : ''}
-
-        <!-- Jobs Feed List Header -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-          <h3 style="font-family: var(--font-header); font-size: 1.18rem; font-weight: 800; margin: 0;">Verified Job Openings</h3>
-          <span id="jobs-count-label" style="font-size: 0.82rem; color: #71717A;">Showing verified openings</span>
-        </div>
-
-        <!-- Jobs Feed Container -->
-        <div class="jobs-feed-list" id="jobs-feed-container">
-          <!-- Filtered jobs dynamically injected here -->
-        </div>
-
-        <!-- Recruiter / Post a Job Box -->
-        <div class="job-post-recruiter-card">
-          <div>
-            <h4 class="job-post-recruiter-title">Hiring Top AI, UI/UX, Product or Engineering Talent?</h4>
-            <p class="job-post-recruiter-desc">Showcase your open role to 100+ vetted AI pioneers, product designers, and senior engineers.</p>
-          </div>
-          <a href="#/post-job" class="job-btn-primary" style="background: #FFFFFF; color: #18181B !important; box-shadow: none;">
-            <span>Post a Job / HR Submit ✍️</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Job Detail Modal Container -->
-      <div class="job-modal-overlay" id="job-detail-modal">
-        <div class="job-modal-card" id="job-modal-card-content">
-          <!-- Populated dynamically on click -->
-        </div>
-      </div>
     `;
 
-    // Internal render feed function
-    function updateJobsFeed() {
-      const feedContainer = document.getElementById('jobs-feed-container');
-      const countLabel = document.getElementById('jobs-count-label');
-      if (!feedContainer) return;
-
-      const q = (state.jobSearchQuery || '').toLowerCase().trim();
-      const cat = state.jobCategoryFilter || 'all';
-
-      const filtered = allJobs.filter(job => {
-        // Category filter
-        let matchCat = true;
-        if (cat === 'remote') {
-          matchCat = (job.workplace || '').toLowerCase().includes('remote') || (job.location || '').toLowerCase().includes('remote');
-        } else if (cat === 'verified') {
-          matchCat = (job.badge || '').toLowerCase().includes('verified');
-        } else if (cat !== 'all') {
-          matchCat = job.category === cat || job.categorySlug === cat || (job.categoryName && job.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cat);
-        }
-
-        // Search query filter
-        let matchSearch = true;
-        if (q) {
-          const haystack = `${job.title} ${job.company} ${job.location} ${job.salary} ${job.categoryName || ''} ${(job.skills || []).join(' ')} ${job.tagline || ''}`.toLowerCase();
-          matchSearch = haystack.includes(q);
-        }
-
-        return matchCat && matchSearch;
-      });
-
-      if (countLabel) {
-        countLabel.innerText = `Showing ${filtered.length} verified opening${filtered.length === 1 ? '' : 's'}`;
-      }
-
-      if (filtered.length === 0) {
-        feedContainer.innerHTML = `
-          <div style="text-align: center; padding: 48px 20px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 14px;">
-            <div style="font-size: 2.2rem; margin-bottom: 10px;">💼</div>
-            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;">No jobs found</h4>
-            <p style="color: #71717A; font-size: 0.88rem; margin-bottom: 16px;">Try adjusting your search terms or selecting a different category filter.</p>
-            <button type="button" class="job-btn-secondary" id="btn-reset-job-filters">Clear All Filters</button>
-          </div>
-        `;
-        const resetBtn = document.getElementById('btn-reset-job-filters');
-        if (resetBtn) {
-          resetBtn.addEventListener('click', () => {
-            state.jobCategoryFilter = 'all';
-            state.jobSearchQuery = '';
-            const inputEl = document.getElementById('jobs-search-input');
-            if (inputEl) inputEl.value = '';
-            document.querySelectorAll('.job-filter-pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-job-cat') === 'all'));
-            updateJobsFeed();
-          });
-        }
-        return;
-      }
-
-      feedContainer.innerHTML = filtered.map(job => {
-        const isSaved = (state.savedJobs || []).includes(job.id);
-        const officialLink = job.officialApplyUrl || job.applyUrl || `https://${job.companyDomain || 'google.com'}`;
-        return `
-          <div class="job-feed-card" data-job-id="${job.id}">
-            <div class="job-feed-main">
-              <div class="job-company-avatar" style="background: ${job.companyBg || '#18181B'}; width: 40px; height: 40px; font-size: 1.1rem;">
-                ${job.companyInitial || job.company.charAt(0)}
-              </div>
-              <div class="job-feed-content">
-                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                  <h4 class="job-feed-title">${escapeHtml(job.title)}</h4>
-                  ${job.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">${escapeHtml(job.badge)}</span>` : ''}
-                </div>
-                <div class="job-feed-company-row">
-                  <strong style="color: #18181B;" class="dark-text-white">${escapeHtml(job.company)}</strong>
-                  <span>•</span>
-                  <span>📍 ${escapeHtml(job.location)}</span>
-                  <span>•</span>
-                  <span>⏱ ${escapeHtml(job.postedAt || 'Recently')}</span>
-                </div>
-                <div class="job-feed-pills-row">
-                  <span class="job-salary-tag" style="padding: 2px 7px; font-size: 0.74rem;">${escapeHtml(job.salary)}</span>
-                  <span class="job-skill-chip">${escapeHtml(job.type)}</span>
-                  ${job.categoryName ? `<span class="job-skill-chip" style="background: rgba(28,70,245,0.06); color: #1C46F5; font-weight: 700;">${escapeHtml(job.categoryIcon || '💼')} ${escapeHtml(job.categoryName)}</span>` : ''}
-                  ${(job.skills || []).slice(0, 2).map(s => `<span class="job-skill-chip">${escapeHtml(s)}</span>`).join('')}
-                </div>
-              </div>
-            </div>
-
-            <div class="job-feed-actions">
-              <button type="button" class="btn-toggle-save-job" data-job-id="${job.id}" style="background: transparent; border: none; cursor: pointer; padding: 6px; color: #71717A;" title="Save job">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? '#1C46F5' : 'none'}" stroke="${isSaved ? '#1C46F5' : 'currentColor'}" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-              </button>
-              <button type="button" class="job-btn-secondary btn-open-job-detail" data-job-id="${job.id}" style="padding: 8px 14px; font-size: 0.8rem;">Details</button>
-              <a href="${officialLink}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" style="padding: 8px 16px; font-size: 0.8rem;" title="Apply directly on official website">
-                <span>Apply Official ↗</span>
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      // Bind Job Card clicks & modal triggers
-      feedContainer.querySelectorAll('.btn-open-job-detail, .job-feed-card').forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('a, .btn-toggle-save-job')) return;
-          const jobId = item.getAttribute('data-job-id');
-          if (jobId) openJobDetailModal(jobId);
-        });
-      });
-
-      // Bind Bookmark save toggle
-      feedContainer.querySelectorAll('.btn-toggle-save-job').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const jobId = btn.getAttribute('data-job-id');
-          if (!jobId) return;
-          if (!state.savedJobs) state.savedJobs = [];
-          const idx = state.savedJobs.indexOf(jobId);
-          if (idx >= 0) {
-            state.savedJobs.splice(idx, 1);
-            showToast('Job removed from saved bookmarks');
-          } else {
-            state.savedJobs.push(jobId);
-            showToast('⭐ Job saved to bookmarks!');
-          }
-          localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
-          updateJobsFeed();
-          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
-        });
-      });
-    }
-
-    // Modal Opener function
-    function openJobDetailModal(jobId) {
-      const job = allJobs.find(j => j.id === jobId);
-      if (!job) return;
-
-      const modalOverlay = document.getElementById('job-detail-modal');
-      const modalContent = document.getElementById('job-modal-card-content');
-      if (!modalOverlay || !modalContent) return;
-
-      const isSaved = (state.savedJobs || []).includes(job.id);
-      const officialLink = job.officialApplyUrl || job.applyUrl || `https://${job.companyDomain || 'google.com'}`;
-
-      modalContent.innerHTML = `
-        <button type="button" class="job-modal-close-btn" id="btn-close-job-modal">✕</button>
+    // Handle early access notify form submission
+    const notifyForm = document.getElementById('form-jobs-notify');
+    if (notifyForm) {
+      notifyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('jobs-notify-email');
+        const email = (input ? input.value : '').trim();
+        if (!email) return;
         
-        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #E4E4E7;" class="dark-border-gray">
-          <div class="job-company-avatar" style="background: ${job.companyBg || '#18181B'}; width: 48px; height: 48px; font-size: 1.3rem;">
-            ${job.companyInitial || job.company.charAt(0)}
-          </div>
-          <div>
-            <h3 style="font-family: var(--font-header); font-size: 1.3rem; font-weight: 800; margin: 0 0 2px 0;">${escapeHtml(job.title)}</h3>
-            <div style="font-size: 0.86rem; color: #71717A; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
-              <strong style="color: #18181B;" class="dark-text-white">${escapeHtml(job.company)}</strong>
-              <span>•</span>
-              <a href="${officialLink}" target="_blank" rel="noopener noreferrer" style="color: #1C46F5; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 3px;">
-                <span>${escapeHtml(job.companyDomain || job.company)}</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-              <span>•</span>
-              <span>📍 ${escapeHtml(job.location)}</span>
-              <span>•</span>
-              <span>⏱ ${escapeHtml(job.postedAt || 'Recently')}</span>
-            </div>
-          </div>
-        </div>
+        try {
+          const subs = JSON.parse(localStorage.getItem('aira_jobs_notify_subscribers') || '[]');
+          if (!subs.includes(email)) {
+            subs.push(email);
+            localStorage.setItem('aira_jobs_notify_subscribers', JSON.stringify(subs));
+          }
+        } catch (err) {}
 
-        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
-          <span class="job-salary-tag" style="font-size: 0.88rem; padding: 4px 10px;">💰 ${escapeHtml(job.salary)}</span>
-          <span class="job-skill-chip" style="font-size: 0.8rem; padding: 4px 10px;">⏳ ${escapeHtml(job.experience || 'Full-Time')}</span>
-          <span class="job-skill-chip" style="font-size: 0.8rem; padding: 4px 10px;">🏢 ${escapeHtml(job.workplace || job.type)}</span>
-          ${job.categoryName ? `<span class="job-skill-chip" style="font-size: 0.8rem; padding: 4px 10px; background: rgba(28,70,245,0.08); color: #1C46F5; font-weight: 700;">${escapeHtml(job.categoryIcon || '💼')} ${escapeHtml(job.categoryName)}</span>` : ''}
-          ${job.badge ? `<span style="background: #D2FF52; color: #131313; font-weight: 800; font-size: 0.76rem; padding: 4px 8px; border-radius: 6px;">✓ ${escapeHtml(job.badge)}</span>` : ''}
-        </div>
-
-        <div style="font-size: 0.92rem; line-height: 1.6; color: #3F3F46; margin-bottom: 24px;" class="dark-text-gray">
-          <h4 style="color: #18181B; margin: 16px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Role Overview</h4>
-          <p>${escapeHtml(job.overview || job.tagline || '')}</p>
-
-          ${job.responsibilities && job.responsibilities.length ? `
-            <h4 style="color: #18181B; margin: 18px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Key Responsibilities</h4>
-            <ul style="padding-left: 20px; margin: 0 0 16px 0;">
-              ${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
-            </ul>
-          ` : ''}
-
-          ${job.requirements && job.requirements.length ? `
-            <h4 style="color: #18181B; margin: 18px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Requirements &amp; Qualifications</h4>
-            <ul style="padding-left: 20px; margin: 0 0 16px 0;">
-              ${job.requirements.map(req => `<li>${escapeHtml(req)}</li>`).join('')}
-            </ul>
-          ` : ''}
-
-          ${job.benefits && job.benefits.length ? `
-            <h4 style="color: #18181B; margin: 18px 0 8px 0; font-size: 1.05rem;" class="dark-text-white">Compensation &amp; Benefits</h4>
-            <ul style="padding-left: 20px; margin: 0 0 16px 0;">
-              ${job.benefits.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
-            </ul>
-          ` : ''}
-        </div>
-
-        <!-- Direct Official Apply & WhatsApp Referral Dual Action Bar -->
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 16px; border-top: 1px solid #E4E4E7;" class="dark-border-gray">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <button type="button" class="job-btn-secondary btn-modal-toggle-save" data-job-id="${job.id}">
-              <span>${isSaved ? '★ Saved' : '☆ Save Job'}</span>
-            </button>
-            <a href="https://chat.whatsapp.com/HJ2V5txnytDLPaWDKb1yKw" target="_blank" rel="noopener noreferrer" class="job-btn-secondary" style="font-size: 0.85rem; padding: 10px 14px; gap: 5px;" title="Connect with community">
-              <span style="color: #25D366;">💬</span>
-              <span>WhatsApp Community</span>
-            </a>
-          </div>
-
-          <a href="${officialLink}" target="_blank" rel="noopener noreferrer" class="job-btn-primary" style="padding: 12px 24px; font-size: 0.92rem;">
-            <span>Apply on Official Website (${escapeHtml(job.company)}) ↗</span>
-          </a>
-        </div>
-      `;
-
-      modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-
-      // Bind close
-      document.getElementById('btn-close-job-modal').addEventListener('click', () => {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-
-      modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-          modalOverlay.classList.remove('active');
-          document.body.style.overflow = '';
+        if (input) input.value = '';
+        if (typeof showToast === 'function') {
+          showToast('🎉 You are on the AIRA Jobs early access list! We will notify you at launch.');
+        } else {
+          alert('🎉 You are on the AIRA Jobs early access list! We will notify you at launch.');
         }
       });
-
-      // Bind Save in modal
-      const modalSaveBtn = modalContent.querySelector('.btn-modal-toggle-save');
-      if (modalSaveBtn) {
-        modalSaveBtn.addEventListener('click', () => {
-          if (!state.savedJobs) state.savedJobs = [];
-          const idx = state.savedJobs.indexOf(job.id);
-          if (idx >= 0) {
-            state.savedJobs.splice(idx, 1);
-            modalSaveBtn.innerHTML = '<span>☆ Save Job</span>';
-            showToast('Job removed from bookmarks');
-          } else {
-            state.savedJobs.push(job.id);
-            modalSaveBtn.innerHTML = '<span>★ Saved</span>';
-            showToast('⭐ Job saved to bookmarks!');
-          }
-          localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
-          updateJobsFeed();
-          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
-        });
-      }
     }
-
-    // Bind Category Filter Pills
-    document.querySelectorAll('.job-filter-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        const cat = pill.getAttribute('data-job-cat');
-        state.jobCategoryFilter = cat;
-        document.querySelectorAll('.job-filter-pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-job-cat') === cat));
-        updateJobsFeed();
-      });
-    });
-
-    // Bind Search input & clear button
-    const searchInput = document.getElementById('jobs-search-input');
-    const searchClear = document.getElementById('jobs-search-clear');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        state.jobSearchQuery = e.target.value;
-        if (searchClear) searchClear.style.display = e.target.value ? 'flex' : 'none';
-        updateJobsFeed();
-      });
-    }
-    if (searchClear) {
-      searchClear.addEventListener('click', () => {
-        state.jobSearchQuery = '';
-        if (searchInput) {
-          searchInput.value = '';
-          searchInput.focus();
-        }
-        searchClear.style.display = 'none';
-        updateJobsFeed();
-      });
-    }
-
-    // Bind Featured Job card click
-    const featuredCard = document.querySelector('.job-featured-spotlight-card');
-    if (featuredCard) {
-      const openBtn = featuredCard.querySelector('.btn-open-job-detail');
-      if (openBtn) {
-        openBtn.addEventListener('click', () => {
-          const jobId = featuredCard.getAttribute('data-job-id');
-          if (jobId) openJobDetailModal(jobId);
-        });
-      }
-      const featSaveBtn = featuredCard.querySelector('.btn-toggle-save-job');
-      if (featSaveBtn) {
-        featSaveBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const jobId = featSaveBtn.getAttribute('data-job-id');
-          if (!jobId) return;
-          if (!state.savedJobs) state.savedJobs = [];
-          const idx = state.savedJobs.indexOf(jobId);
-          if (idx >= 0) {
-            state.savedJobs.splice(idx, 1);
-            showToast('Job removed from saved bookmarks');
-          } else {
-            state.savedJobs.push(jobId);
-            showToast('⭐ Job saved to bookmarks!');
-          }
-          localStorage.setItem('aira_saved_jobs', JSON.stringify(state.savedJobs));
-          renderJobsPage();
-          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
-        });
-      }
-    }
-
-    // Initial feed render
-    updateJobsFeed();
   }
 
   function renderJobDetailPage(jobId) {
-    const allJobs = getJobs();
-    const job = allJobs.find(j => j.id === jobId) || allJobs[0];
-    if (!job) {
-      renderJobsPage();
-      return;
-    }
     renderJobsPage();
-    setTimeout(() => {
-      const modalOverlay = document.getElementById('job-detail-modal');
-      if (modalOverlay) {
-        // Trigger modal opener directly
-        const card = document.querySelector(`.job-feed-card[data-job-id="${job.id}"], .job-featured-spotlight-card[data-job-id="${job.id}"]`);
-        if (card) {
-          const btn = card.querySelector('.btn-open-job-detail');
-          if (btn) btn.click();
-        }
-      }
-    }, 100);
   }
 
   // =========================================================================
