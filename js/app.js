@@ -2190,7 +2190,7 @@ if (query !== '') {
           <!-- Inline Subscribe Card (Exact Dark UI) -->
           <div class="article-subscribe-card">
             <div class="article-sub-badge">
-              <span class="sub-bolt-icon">⚡</span>
+              <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" class="sub-brand-logo-img" onerror="this.src='assets/logo.svg'" />
             </div>
             <h3 class="article-sub-title">Stay Ahead in AI with AIRA</h3>
             <p class="article-sub-desc">Get top AI news, breakthroughs + instant access to <strong>3,000+ ChatGPT Prompts &amp; 50 n8n Templates</strong>.</p>
@@ -2198,7 +2198,7 @@ if (query !== '') {
             <form class="article-sub-form-dark" id="article-sub-form">
               <div class="sub-dark-input-wrap">
                 <input type="email" class="sub-dark-input" placeholder="Your email address" required />
-                <button type="submit" class="sub-dark-btn">Subscribe &amp; Get 3,000+ Prompts &amp; 50 Templates 🎁</button>
+                <button type="submit" class="sub-dark-btn">Subscribe</button>
               </div>
             </form>
           </div>
@@ -6715,14 +6715,14 @@ if (query !== '') {
               <!-- Inline Dark Subscribe Card -->
               <div class="article-subscribe-card" style="margin-top: 32px;">
                 <div class="article-sub-badge">
-                  <span class="sub-bolt-icon">⚡</span>
+                  <img loading="lazy" decoding="async" src="assets/logo.jpg" alt="AIRA" class="sub-brand-logo-img" onerror="this.src='assets/logo.svg'" />
                 </div>
                 <h3 class="article-sub-title">Stay Ahead in AI with AIRA</h3>
                 <p class="article-sub-desc">Get top AI news, breakthroughs + instant access to <strong>3,000+ ChatGPT Prompts &amp; 50 n8n Templates</strong>.</p>
                 <form class="article-sub-form-dark" onsubmit="event.preventDefault(); showToast('Preview mode: Subscription form active on live site!');">
                   <div class="sub-dark-input-wrap">
                     <input type="email" class="sub-dark-input" placeholder="Your email address" required />
-                    <button type="submit" class="sub-dark-btn">Subscribe &amp; Get 3,000+ Prompts &amp; 50 Templates 🎁</button>
+                    <button type="submit" class="sub-dark-btn">Subscribe</button>
                   </div>
                 </form>
               </div>
