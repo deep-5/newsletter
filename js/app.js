@@ -1642,7 +1642,7 @@ function renderHomePage() {
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" class="hero-openalt-search-input" id="hero-search-input" placeholder="Search AI tools, software alternatives, articles..." value="${state.homeSearchQuery || ''}" autocomplete="off" />
+            <input type="text" class="hero-openalt-search-input" id="hero-search-input" placeholder="Search" value="${state.homeSearchQuery || ''}" autocomplete="off" />
             <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
             <button type="submit" class="hero-openalt-search-btn" id="hero-search-btn">Search</button>
           </form>
@@ -2874,24 +2874,24 @@ if (query !== '') {
             Discover <strong>${allTools.length}+</strong> curated, verified AI tools across productivity, developer utilities, autonomous agents, and marketing workflows.
           </p>
 
-          <!-- Search & Controls Bar -->
-          <div class="tools-controls-row" style="width: 100%; margin: 16px auto 14px auto;">
-            <div class="tool-search-box-wrap" style="flex: 1;">
-              <svg class="tool-search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="tool-search-input" class="tool-search-field" placeholder="Search ${allTools.length}+ AI tools by name, features, tasks..." value="${state.toolSearchQuery || ''}" autocomplete="off" />
-              <button type="button" id="tool-search-clear" class="tool-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
-            </div>
+          <!-- Search Form (Exact Match to Homepage Hero) -->
+          <form class="hero-openalt-search-box" id="tool-search-form" onsubmit="event.preventDefault();" style="max-width: 520px; width: 100%; margin: 16px auto 14px auto;">
+            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="hero-openalt-search-input" id="tool-search-input" placeholder="Search" value="${state.toolSearchQuery || ''}" autocomplete="off" />
+            <button type="button" id="tool-search-clear" class="hero-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="hero-openalt-search-btn" id="tool-search-btn">Search</button>
+          </form>
 
-            <div class="tools-pricing-pill-group">
-              ${['all', 'Free', 'Freemium', 'Paid'].map(p => `
-                <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === p ? 'active' : ''}" data-pricing="${p}">
-                  ${p === 'all' ? 'All Pricing' : p}
-                </button>
-              `).join('')}
-            </div>
+          <!-- Pricing Filter Pills Row -->
+          <div class="tools-pricing-pill-group" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
+            ${['all', 'Free', 'Freemium', 'Paid'].map(p => `
+              <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === p ? 'active' : ''}" data-pricing="${p}">
+                ${p === 'all' ? 'All Pricing' : p}
+              </button>
+            `).join('')}
           </div>
 
           <!-- Categories Filter Bar -->
@@ -3501,13 +3501,14 @@ if (query !== '') {
 
           <!-- Search & Post a Job Action Bar -->
           <div class="jobs-hero-search-wrapper">
-            <form class="jobs-search-form" id="jobs-search-form" onsubmit="event.preventDefault();">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2" style="flex-shrink: 0;">
+            <form class="hero-openalt-search-box" id="jobs-search-form" onsubmit="event.preventDefault();" style="max-width: 480px; width: 100%; margin: 0; flex: 1; min-width: 280px;">
+              <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input type="text" class="jobs-search-input" id="jobs-search-input" placeholder="Search roles, companies, skills (e.g. OpenAI, Figma, Remote)..." value="${escapeHtml(state.jobSearchQuery)}" autocomplete="off" />
-              <button type="submit" class="jobs-search-btn">Search Jobs</button>
+              <input type="text" class="hero-openalt-search-input" id="jobs-search-input" placeholder="Search" value="${escapeHtml(state.jobSearchQuery)}" autocomplete="off" />
+              <button type="button" id="jobs-search-clear" class="hero-search-clear-btn" style="display: ${state.jobSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+              <button type="submit" class="hero-openalt-search-btn" id="jobs-search-btn">Search</button>
             </form>
 
             <a href="#/post-job" class="jobs-hero-post-btn" title="Post an opening on AIRA Jobs Board">
@@ -3892,11 +3893,24 @@ if (query !== '') {
       });
     });
 
-    // Bind Search input
+    // Bind Search input & clear button
     const searchInput = document.getElementById('jobs-search-input');
+    const searchClear = document.getElementById('jobs-search-clear');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         state.jobSearchQuery = e.target.value;
+        if (searchClear) searchClear.style.display = e.target.value ? 'flex' : 'none';
+        updateJobsFeed();
+      });
+    }
+    if (searchClear) {
+      searchClear.addEventListener('click', () => {
+        state.jobSearchQuery = '';
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        searchClear.style.display = 'none';
         updateJobsFeed();
       });
     }
@@ -4743,14 +4757,15 @@ if (query !== '') {
             Discover <strong>${totalAltsCount.toLocaleString()}+</strong> curated top software alternatives, open-source tools, and competitor comparisons for <strong>${allSoftware.length}</strong> popular software platforms &amp; AI services.
           </p>
 
-          <!-- Search Form -->
-          <form class="alt-search-form" id="alt-search-form" onsubmit="event.preventDefault();" style="width: 100%; max-width: 760px; margin: 16px auto 14px auto;">
-            <svg class="alt-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <!-- Search Form (Exact Match to Homepage Hero) -->
+          <form class="hero-openalt-search-box" id="alt-search-form" onsubmit="event.preventDefault();" style="max-width: 520px; width: 100%; margin: 16px auto 14px auto;">
+            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="alt-search-input" class="alt-search-input" placeholder="Search AI tools & software (e.g. Claude Code, Cursor, Notion, Figma, 1Password)..." value="${state.altSearchQuery}" autocomplete="off" />
-            <button type="button" id="alt-search-clear" class="alt-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear">✕</button>
+            <input type="text" class="hero-openalt-search-input" id="alt-search-input" placeholder="Search" value="${state.altSearchQuery || ''}" autocomplete="off" />
+            <button type="button" id="alt-search-clear" class="hero-search-clear-btn" style="display: ${state.altSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="hero-openalt-search-btn" id="alt-search-btn">Search</button>
           </form>
 
           <!-- Categories Filter Wrapper -->
@@ -9424,17 +9439,16 @@ if (query !== '') {
             Select a task, customize the highlighted tokens, and copy in one click.
           </p>
 
-          <!-- Center Search Bar -->
-          <div class="hero-search-center" style="margin: 16px auto 14px auto; width: 100%; max-width: 760px;">
-            <svg class="hero-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+          <!-- Center Search Bar (Exact Match to Homepage Hero) -->
+          <form class="hero-openalt-search-box" id="prompts-search-form" onsubmit="event.preventDefault();" style="max-width: 520px; width: 100%; margin: 16px auto 14px auto;">
+            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input id="search" type="search" placeholder="Search prompts by task, tool, keyword (e.g. Bug fix, Onboarding, Refactor, Plan)..." autocomplete="off" spellcheck="false" aria-label="Search prompts" />
-            <button class="hero-search__clear" id="search-clear" type="button" aria-label="Clear search" hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-            </button>
-            <kbd class="hero-search__kbd" id="search-kbd">/</kbd>
-          </div>
+            <input type="text" class="hero-openalt-search-input" id="search" placeholder="Search" value="${stateFilter.q || ''}" autocomplete="off" spellcheck="false" aria-label="Search" />
+            <button type="button" id="search-clear" class="hero-search-clear-btn" style="display: ${stateFilter.q ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="hero-openalt-search-btn" id="prompts-search-btn">Search</button>
+          </form>
 
           <!-- Partners & Sponsors Strip (Bottom of Hero) -->
           ${getSponsorsStripHTML()}
@@ -9547,8 +9561,7 @@ if (query !== '') {
     function syncSearchChrome() {
       if (!searchEl) return;
       var has = searchEl.value.length > 0;
-      if (searchClearEl) searchClearEl.hidden = !has;
-      if (searchKbdEl) searchKbdEl.hidden = has || document.activeElement === searchEl;
+      if (searchClearEl) searchClearEl.style.display = has ? 'flex' : 'none';
     }
 
     if (searchEl) {
@@ -10964,6 +10977,52 @@ if (query !== '') {
       });
     }
 
+    function renderDealsCardsHTML(dealsList) {
+      if (dealsList.length === 0) {
+        return `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
+            <p style="font-size: 1.2rem; font-weight: 700; color: #18181B; margin-bottom: 8px;">No deals found</p>
+            <p style="color: #71717A; font-size: 0.95rem;">Try another keyword or select All Deals.</p>
+          </div>
+        `;
+      }
+      return dealsList.map(deal => `
+        <div class="deal-card" data-deal-id="${deal.id}">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <span class="deal-badge-ribbon">${deal.discountBadge}</span>
+            <span style="font-size: 0.78rem; font-weight: 700; color: #1C46F5;">✓ Verified</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img loading="lazy" decoding="async" src="${deal.image || 'assets/logo.svg'}" alt="${deal.toolName}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+            <div>
+              <h4 style="font-size: 1.15rem; font-weight: 800; color: #18181B; margin-bottom: 2px;">${deal.toolName}</h4>
+              <span style="font-size: 0.8rem; color: #71717A;">${deal.domain || 'Official Partner'}</span>
+            </div>
+          </div>
+
+          <h5 style="font-size: 1rem; font-weight: 700; color: #18181B; margin-bottom: 6px; line-height: 1.4;">${deal.headline}</h5>
+          <p style="font-size: 0.88rem; color: #52525B; line-height: 1.5; margin-bottom: 16px; flex: 1;">${deal.description}</p>
+
+          ${deal.couponCode ? `
+            <div class="deal-coupon-box">
+              <div>
+                <span style="font-size: 0.7rem; color: #71717A; text-transform: uppercase; font-weight: 800; display: block;">Coupon Code</span>
+                <span class="deal-code-text">${deal.couponCode}</span>
+              </div>
+              <button type="button" class="btn-copy-code" data-code="${deal.couponCode}">Copy Code</button>
+            </div>
+          ` : ''}
+
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: 12px;">
+            <a href="${deal.url}" target="_blank" rel="noopener noreferrer" class="btn-subscribe-nav" style="flex: 1; text-align: center; text-decoration: none; padding: 10px;">
+              Claim Deal ↗
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
     const filteredDeals = getFilteredDeals();
 
     appContainer.innerHTML = `
@@ -10981,10 +11040,16 @@ if (query !== '') {
             Save big on top AI tools, developer platforms, and creator subscriptions with verified coupon codes and partnership deals.
           </p>
 
-          <!-- Search Form -->
-          <div style="width: 100%; max-width: 680px; margin: 16px auto 14px auto; position: relative;">
-            <input type="text" id="deal-search-input" class="form-input" placeholder="Search deals by tool name or discount..." value="${escapeHtml(state.dealSearchQuery)}" style="width: 100%; padding: 14px 20px; border-radius: 9999px; font-size: 1rem; border: 1.5px solid #E4E4E7; background: #FFFFFF;" />
-          </div>
+          <!-- Search Form (Exact Match to Homepage Hero) -->
+          <form class="hero-openalt-search-box" id="deals-search-form" onsubmit="event.preventDefault();" style="max-width: 520px; width: 100%; margin: 16px auto 14px auto;">
+            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="hero-openalt-search-input" id="deal-search-input" placeholder="Search" value="${escapeHtml(state.dealSearchQuery || '')}" autocomplete="off" />
+            <button type="button" id="deal-search-clear" class="hero-search-clear-btn" style="display: ${state.dealSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="hero-openalt-search-btn" id="deal-search-btn">Search</button>
+          </form>
 
           <!-- Categories Filter Wrapper -->
           <div class="categories-filter-wrapper" style="width: 100%; margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
@@ -11009,46 +11074,7 @@ if (query !== '') {
         <div class="container">
           <!-- Deals Grid -->
           <div class="deals-grid-3col" id="deals-grid-container">
-            ${filteredDeals.length === 0 ? `
-              <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #FAFAFA; border: 1px dashed #E4E4E7; border-radius: 16px;">
-                <p style="font-size: 1.2rem; font-weight: 700; color: #18181B; margin-bottom: 8px;">No deals found</p>
-                <p style="color: #71717A; font-size: 0.95rem;">Try another keyword or select All Deals.</p>
-              </div>
-            ` : filteredDeals.map(deal => `
-              <div class="deal-card" data-deal-id="${deal.id}">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-                  <span class="deal-badge-ribbon">${deal.discountBadge}</span>
-                  <span style="font-size: 0.78rem; font-weight: 700; color: #1C46F5;">✓ Verified</span>
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                  <img loading="lazy" decoding="async" src="${deal.image || 'assets/logo.svg'}" alt="${deal.toolName}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
-                  <div>
-                    <h4 style="font-size: 1.15rem; font-weight: 800; color: #18181B; margin-bottom: 2px;">${deal.toolName}</h4>
-                    <span style="font-size: 0.8rem; color: #71717A;">${deal.domain || 'Official Partner'}</span>
-                  </div>
-                </div>
-
-                <h5 style="font-size: 1rem; font-weight: 700; color: #18181B; margin-bottom: 6px; line-height: 1.4;">${deal.headline}</h5>
-                <p style="font-size: 0.88rem; color: #52525B; line-height: 1.5; margin-bottom: 16px; flex: 1;">${deal.description}</p>
-
-                ${deal.couponCode ? `
-                  <div class="deal-coupon-box">
-                    <div>
-                      <span style="font-size: 0.7rem; color: #71717A; text-transform: uppercase; font-weight: 800; display: block;">Coupon Code</span>
-                      <span class="deal-code-text">${deal.couponCode}</span>
-                    </div>
-                    <button type="button" class="btn-copy-code" data-code="${deal.couponCode}">Copy Code</button>
-                  </div>
-                ` : ''}
-
-                <div style="display: flex; gap: 10px; align-items: center; margin-top: 12px;">
-                  <a href="${deal.url}" target="_blank" rel="noopener noreferrer" class="btn-subscribe-nav" style="flex: 1; text-align: center; text-decoration: none; padding: 10px;">
-                    Claim Deal ↗
-                  </a>
-                </div>
-              </div>
-            `).join('')}
+            ${renderDealsCardsHTML(filteredDeals)}
           </div>
 
           <div style="margin: 40px 0 20px 0; text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 32px 20px;">
@@ -11060,6 +11086,33 @@ if (query !== '') {
       </section>
     `;
 
+    function updateDealsView() {
+      const dealsContainer = document.getElementById('deals-grid-container');
+      if (dealsContainer) {
+        dealsContainer.innerHTML = renderDealsCardsHTML(getFilteredDeals());
+        bindCopyCodeButtons();
+      }
+    }
+
+    function bindCopyCodeButtons() {
+      appContainer.querySelectorAll('.btn-copy-code').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const code = btn.getAttribute('data-code');
+          if (code && navigator.clipboard) {
+            navigator.clipboard.writeText(code).then(() => {
+              btn.innerHTML = 'Copied! ✓';
+              btn.style.background = '#18181B';
+              showToast(`Coupon code ${code} copied! 🏷️`);
+              setTimeout(() => {
+                btn.innerHTML = 'Copy Code';
+                btn.style.background = '';
+              }, 2000);
+            });
+          }
+        });
+      });
+    }
+
     // Bind categories
     appContainer.querySelectorAll('.cat-filter-pill').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -11068,32 +11121,31 @@ if (query !== '') {
       });
     });
 
-    // Bind search input
+    // Bind search input & clear button
     const dealSearch = document.getElementById('deal-search-input');
+    const dealClear = document.getElementById('deal-search-clear');
     if (dealSearch) {
       dealSearch.addEventListener('input', (e) => {
         state.dealSearchQuery = e.target.value;
-        renderDealsPage();
+        if (dealClear) dealClear.style.display = e.target.value ? 'flex' : 'none';
+        updateDealsView();
       });
     }
 
-    // Bind copy code buttons
-    appContainer.querySelectorAll('.btn-copy-code').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const code = btn.getAttribute('data-code');
-        if (code && navigator.clipboard) {
-          navigator.clipboard.writeText(code).then(() => {
-            btn.innerHTML = 'Copied! ✓';
-            btn.style.background = '#18181B';
-            showToast(`Coupon code ${code} copied! 🏷️`);
-            setTimeout(() => {
-              btn.innerHTML = 'Copy Code';
-              btn.style.background = '';
-            }, 2000);
-          });
+    if (dealClear) {
+      dealClear.addEventListener('click', () => {
+        state.dealSearchQuery = '';
+        if (dealSearch) {
+          dealSearch.value = '';
+          dealSearch.focus();
         }
+        dealClear.style.display = 'none';
+        updateDealsView();
       });
-    });
+    }
+
+    // Initial binding of copy code buttons
+    bindCopyCodeButtons();
   }
 
   // =========================================================================
