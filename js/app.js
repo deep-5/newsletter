@@ -3435,6 +3435,17 @@ if (query !== '') {
     } catch (e) {}
   }
 
+  function getMyPostedJobs() {
+    try {
+      const stored = localStorage.getItem('aira_custom_jobs');
+      if (stored) {
+        const custom = JSON.parse(stored);
+        if (Array.isArray(custom)) return custom;
+      }
+    } catch (e) {}
+    return [];
+  }
+
   function renderJobsPage() {
     const allJobs = getJobs();
     if (!state.jobCategoryFilter) state.jobCategoryFilter = 'all';
@@ -10509,109 +10520,159 @@ if (query !== '') {
 
   function renderProfilePage() {
     const profile = getUserProfile();
-    const userEmail = localStorage.getItem('aira_user_email') || 'aryan@example.com';
-    const isSubscribed = localStorage.getItem('aira_subscribed') === 'true' || localStorage.getItem('aira_unlocked') === 'true';
-    
-    // Calculate live dynamic stats
-    const savedToolsList = (state.savedTools || []);
-    const savedArticlesList = (state.savedArticles || []);
-    const savedPromptsList = (state.savedPrompts || []);
-    
-    const allTools = (typeof getAllTools === 'function' ? getAllTools() : []);
-    const allArticles = state.articles || [];
-    const allPrompts = (typeof PROMPTS_DATA !== 'undefined' && PROMPTS_DATA.prompts ? PROMPTS_DATA.prompts : []);
-
-    const bookmarkedTools = allTools.filter(t => savedToolsList.includes(t.id));
-    const bookmarkedArticles = allArticles.filter(a => savedArticlesList.includes(a.slug));
-    const bookmarkedPrompts = allPrompts.filter(p => savedPromptsList.includes(p.id));
-
-    const streakDays = Math.max(14, parseInt(localStorage.getItem('aira_streak_days') || '14', 10));
-    const articlesCount = bookmarkedArticles.length || 28;
-    const promptsCount = bookmarkedPrompts.length || 36;
-    const toolsCount = bookmarkedTools.length || 42;
-
     const currentTab = state.profileActiveTab || 'articles';
 
-    // Renders the list items based on active tab
+    const savedArticlesList = (state.savedArticles || []);
+    const savedToolsList = (state.savedTools || []);
+    const savedPromptsList = (state.savedPrompts || []);
+    const myPostedJobs = (typeof getMyPostedJobs === 'function' ? getMyPostedJobs() : []);
+
+    const allArticles = state.articles || [];
+    const allTools = (typeof getAllTools === 'function' ? getAllTools() : []);
+    const allPrompts = (typeof AI_PROMPTS_DATA !== 'undefined' && AI_PROMPTS_DATA.prompts ? AI_PROMPTS_DATA.prompts : (window.ALL_PROMPTS || []));
+
+    const bookmarkedArticles = allArticles.filter(a => savedArticlesList.includes(a.slug));
+    const bookmarkedTools = allTools.filter(t => savedToolsList.includes(t.id));
+    const bookmarkedPrompts = allPrompts.filter(p => savedPromptsList.includes(p.id));
+
+    // Renders list items using original live profile design
     function renderTabContentHTML() {
       if (currentTab === 'articles') {
-        const displayList = bookmarkedArticles.length > 0 ? bookmarkedArticles : allArticles.slice(0, 5);
-        if (displayList.length === 0) {
+        if (bookmarkedArticles.length === 0) {
           return `
-            <div style="text-align: center; padding: 40px 20px; color: #71717A;">
-              <span style="font-size: 2rem; display: block; margin-bottom: 8px;">📰</span>
-              <p style="font-weight: 600;">No saved articles yet.</p>
-              <a href="#/home" style="color: #1C46F5; font-weight: 700; text-decoration: none;">Browse Daily Editions →</a>
+            <div style="text-align: center; padding: 48px 20px; color: #71717A;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">📰</span>
+              <p style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px;">No saved articles yet</p>
+              <p style="font-size: 0.9rem; margin-bottom: 18px;">Explore daily AI editions and save your favorite stories to read anytime.</p>
+              <a href="#/home" class="btn-subscribe-nav" style="display: inline-block; padding: 8px 18px; text-decoration: none;">Browse Daily Editions →</a>
             </div>
           `;
         }
         return `
           <div class="profile-items-list">
-            ${displayList.map(art => `
-              <a href="#/p/${art.slug}" class="profile-item-row">
-                <div class="profile-item-left">
+            ${bookmarkedArticles.map(art => `
+              <div class="profile-item-row" style="display: flex; align-items: center; justify-content: space-between;">
+                <a href="#/p/${art.slug}" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; gap: 12px; min-width: 0;">
                   <span class="profile-item-icon">📰</span>
                   <div class="profile-item-info">
                     <div class="profile-item-title">${escapeHtml(art.title)}</div>
                     <div class="profile-item-meta">${escapeHtml(art.tag || 'Frontier AI')} • ${escapeHtml(art.reading_time || art.read_time || '4 min read')}</div>
                   </div>
-                </div>
-                <span class="profile-item-chevron">›</span>
-              </a>
+                </a>
+                <button type="button" class="btn-profile-remove-bookmark" data-type="article" data-id="${art.slug}" title="Remove from saved" style="background: transparent; border: none; cursor: pointer; padding: 6px; color: #1C46F5;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#1C46F5" stroke="#1C46F5" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
             `).join('')}
           </div>
         `;
       } else if (currentTab === 'tools') {
-        const displayList = bookmarkedTools.length > 0 ? bookmarkedTools : allTools.slice(0, 5);
-        if (displayList.length === 0) {
+        if (bookmarkedTools.length === 0) {
           return `
-            <div style="text-align: center; padding: 40px 20px; color: #71717A;">
-              <span style="font-size: 2rem; display: block; margin-bottom: 8px;">⚡</span>
-              <p style="font-weight: 600;">No saved AI tools yet.</p>
-              <a href="#/tags" style="color: #1C46F5; font-weight: 700; text-decoration: none;">Explore 400+ AI Tools →</a>
+            <div style="text-align: center; padding: 48px 20px; color: #71717A;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">⚡</span>
+              <p style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px;">No saved AI tools yet</p>
+              <p style="font-size: 0.9rem; margin-bottom: 18px;">Discover 1,100+ curated AI tools and bookmark your favorites for quick access.</p>
+              <a href="#/tags" class="btn-subscribe-nav" style="display: inline-block; padding: 8px 18px; text-decoration: none;">Explore AI Tools →</a>
             </div>
           `;
         }
         return `
           <div class="profile-items-list">
-            ${displayList.map(t => `
-              <a href="#/tags?search=${encodeURIComponent(t.name)}" class="profile-item-row">
-                <div class="profile-item-left">
+            ${bookmarkedTools.map(t => `
+              <div class="profile-item-row" style="display: flex; align-items: center; justify-content: space-between;">
+                <a href="#/tags" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; gap: 12px; min-width: 0;">
                   <span class="profile-item-icon">⚡</span>
                   <div class="profile-item-info">
                     <div class="profile-item-title">${escapeHtml(t.name)}</div>
                     <div class="profile-item-meta">${escapeHtml(t.category || 'AI Tool')} • ${escapeHtml(t.pricing || 'Free')}</div>
                   </div>
-                </div>
-                <span class="profile-item-chevron">›</span>
-              </a>
+                </a>
+                <button type="button" class="btn-profile-remove-bookmark" data-type="tool" data-id="${t.id}" title="Remove from saved" style="background: transparent; border: none; cursor: pointer; padding: 6px; color: #1C46F5;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#1C46F5" stroke="#1C46F5" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
             `).join('')}
           </div>
         `;
       } else if (currentTab === 'prompts') {
-        const displayList = bookmarkedPrompts.length > 0 ? bookmarkedPrompts : allPrompts.slice(0, 5);
-        if (displayList.length === 0) {
+        if (bookmarkedPrompts.length === 0) {
           return `
-            <div style="text-align: center; padding: 40px 20px; color: #71717A;">
-              <span style="font-size: 2rem; display: block; margin-bottom: 8px;">💡</span>
-              <p style="font-weight: 600;">No saved prompts yet.</p>
-              <a href="#/prompts" style="color: #1C46F5; font-weight: 700; text-decoration: none;">Explore Prompts Vault →</a>
+            <div style="text-align: center; padding: 48px 20px; color: #71717A;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">💡</span>
+              <p style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px;">No saved prompts yet</p>
+              <p style="font-size: 0.9rem; margin-bottom: 18px;">Browse 330+ verified AI prompts across ChatGPT, Claude, and Cursor.</p>
+              <a href="#/prompts" class="btn-subscribe-nav" style="display: inline-block; padding: 8px 18px; text-decoration: none;">Explore Prompts Vault →</a>
             </div>
           `;
         }
         return `
           <div class="profile-items-list">
-            ${displayList.map(p => `
-              <a href="#/prompts?category=${encodeURIComponent(p.category || 'all')}" class="profile-item-row">
-                <div class="profile-item-left">
+            ${bookmarkedPrompts.map(p => `
+              <div class="profile-item-row" style="display: flex; align-items: center; justify-content: space-between;">
+                <a href="#/prompts" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; gap: 12px; min-width: 0;">
                   <span class="profile-item-icon">💡</span>
                   <div class="profile-item-info">
                     <div class="profile-item-title">${escapeHtml(p.title || 'Production Prompt')}</div>
                     <div class="profile-item-meta">${escapeHtml(p.category || 'Prompt Engineering')} • ${escapeHtml(p.tool || 'ChatGPT / Claude')}</div>
                   </div>
+                </a>
+                <button type="button" class="btn-profile-remove-bookmark" data-type="prompt" data-id="${p.id}" title="Remove from saved" style="background: transparent; border: none; cursor: pointer; padding: 6px; color: #1C46F5;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#1C46F5" stroke="#1C46F5" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (currentTab === 'my-jobs') {
+        if (myPostedJobs.length === 0) {
+          return `
+            <div style="text-align: center; padding: 48px 20px; color: #71717A;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">💼</span>
+              <p style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px;">No jobs posted yet</p>
+              <p style="font-size: 0.9rem; margin-bottom: 18px;">Post your company openings on the AIRA Jobs Board. You can edit and manage them anytime here.</p>
+              <a href="#/post-job" class="btn-subscribe-nav" style="display: inline-block; padding: 8px 18px; text-decoration: none;">➕ Post a Job Opening →</a>
+            </div>
+          `;
+        }
+        return `
+          <div style="padding: 14px 18px; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(0,0,0,0.01);">
+            <span style="font-size: 0.86rem; color: var(--color-text-secondary); font-weight: 600;">You have <strong>${myPostedJobs.length}</strong> active job posting${myPostedJobs.length > 1 ? 's' : ''}</span>
+            <a href="#/post-job" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 700; color: #1C46F5; text-decoration: none; background: rgba(28, 70, 245, 0.08); padding: 6px 14px; border-radius: 6px;">
+              <span>➕ Post New Job</span>
+            </a>
+          </div>
+          <div class="profile-items-list">
+            ${myPostedJobs.map(j => `
+              <div class="profile-item-row" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px;">
+                <div style="flex: 1; min-width: 0;">
+                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
+                    <a href="#/jobs" style="font-weight: 800; font-size: 0.98rem; color: var(--color-text-primary); text-decoration: none;">
+                      ${escapeHtml(j.title || 'Job Opening')}
+                    </a>
+                    <span style="background: rgba(28, 70, 245, 0.08); color: #1C46F5; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">
+                      ${escapeHtml(j.company || 'Company')}
+                    </span>
+                    ${j.badge ? `<span style="background: #D2FF52; color: #111827; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">✓ ${escapeHtml(j.badge)}</span>` : ''}
+                  </div>
+                  <div class="profile-item-meta" style="font-size: 0.8rem; color: #71717A; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span>📍 ${escapeHtml(j.location || 'Remote')}</span>
+                    ${j.salary ? `<span>💰 ${escapeHtml(j.salary)}</span>` : ''}
+                    ${j.postedAt ? `<span>🕒 ${escapeHtml(j.postedAt)}</span>` : ''}
+                  </div>
                 </div>
-                <span class="profile-item-chevron">›</span>
-              </a>
+
+                <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                  <button type="button" class="btn-profile-edit-my-job" data-id="${j.id}" title="Edit Job" style="background: #F4F4F5; border: 1px solid #E4E4E7; border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 700; color: #18181B; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <span>Edit</span>
+                  </button>
+                  <button type="button" class="btn-profile-delete-my-job" data-id="${j.id}" title="Delete Job" style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 700; color: #EF4444; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
             `).join('')}
           </div>
         `;
@@ -10620,11 +10681,11 @@ if (query !== '') {
     }
 
     appContainer.innerHTML = `
-      <div class="profile-page-view">
-        <div class="profile-container">
+      <div class="profile-page-view" style="padding: 30px 0 60px 0;">
+        <div class="profile-container" style="max-width: 860px; margin: 0 auto; padding: 0 20px;">
           
-          <!-- Top Profile Identity Card -->
-          <div class="profile-hero-card">
+          <!-- Top Profile Identity Card (Exact Live Design) -->
+          <div class="profile-hero-card" style="margin-bottom: 24px;">
             <div class="profile-hero-top">
               <div class="profile-identity-group">
                 <div class="profile-avatar-circle">
@@ -10639,22 +10700,6 @@ if (query !== '') {
                     <h1 class="profile-name">${escapeHtml(profile.name || 'Aryan Mehta')}</h1>
                     <span class="profile-verified-badge">✓ Verified Member</span>
                   </div>
-                  <p class="profile-headline">${escapeHtml(profile.title || 'Product Designer & AI Enthusiast')}</p>
-                  
-                  <div class="profile-meta-chips">
-                    <span>📍 ${escapeHtml(profile.location || 'Bengaluru, India')}</span>
-                    <div class="profile-social-icons">
-                      <a href="${escapeHtml(profile.socials.github || '#')}" target="_blank" rel="noopener" class="profile-social-btn" title="GitHub">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                      </a>
-                      <a href="${escapeHtml(profile.socials.twitter || '#')}" target="_blank" rel="noopener" class="profile-social-btn" title="X (Twitter)">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
-                      </a>
-                      <a href="${escapeHtml(profile.socials.linkedin || '#')}" target="_blank" rel="noopener" class="profile-social-btn" title="LinkedIn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -10667,99 +10712,77 @@ if (query !== '') {
             </div>
           </div>
 
-          <!-- 4 Clean Minimal Stats -->
+          <!-- Profile Clean Stats Row -->
           <div class="profile-stats-row">
-            <div class="profile-stat-box">
-              <div class="profile-stat-icon-wrap" style="color: #F59E0B;">🔥</div>
+            <div class="profile-stat-box profile-stat-clickable" data-tab="articles" style="cursor: pointer;">
+              <div class="profile-stat-icon-wrap">📰</div>
               <div>
-                <div class="profile-stat-value">${streakDays}-Day</div>
-                <div class="profile-stat-label">Reading Streak</div>
-              </div>
-            </div>
-
-            <div class="profile-stat-box">
-              <div class="profile-stat-icon-wrap" style="color: #3B82F6;">📰</div>
-              <div>
-                <div class="profile-stat-value">${articlesCount}</div>
+                <div class="profile-stat-value">${bookmarkedArticles.length}</div>
                 <div class="profile-stat-label">Saved Articles</div>
               </div>
             </div>
 
-            <div class="profile-stat-box">
-              <div class="profile-stat-icon-wrap" style="color: #EAB308;">💡</div>
+            <div class="profile-stat-box profile-stat-clickable" data-tab="tools" style="cursor: pointer;">
+              <div class="profile-stat-icon-wrap">⚡</div>
               <div>
-                <div class="profile-stat-value">${promptsCount}</div>
+                <div class="profile-stat-value">${bookmarkedTools.length}</div>
+                <div class="profile-stat-label">AI Tools</div>
+              </div>
+            </div>
+
+            <div class="profile-stat-box profile-stat-clickable" data-tab="prompts" style="cursor: pointer;">
+              <div class="profile-stat-icon-wrap">💡</div>
+              <div>
+                <div class="profile-stat-value">${bookmarkedPrompts.length}</div>
                 <div class="profile-stat-label">Saved Prompts</div>
               </div>
             </div>
 
-            <div class="profile-stat-box">
-              <div class="profile-stat-icon-wrap" style="color: #10B981;">⚡</div>
+            <div class="profile-stat-box profile-stat-clickable" data-tab="my-jobs" style="cursor: pointer;">
+              <div class="profile-stat-icon-wrap">💼</div>
               <div>
-                <div class="profile-stat-value">${toolsCount}</div>
-                <div class="profile-stat-label">AI Tools</div>
+                <div class="profile-stat-value">${myPostedJobs.length}</div>
+                <div class="profile-stat-label">My Posted Jobs</div>
               </div>
             </div>
           </div>
 
-          <!-- Main Layout: Saved Vault + Newsletter Status -->
-          <div class="profile-main-layout">
-            
-            <!-- Left: Saved Items Tabs & List -->
-            <div class="profile-vault-card">
-              <div class="profile-segmented-tabs">
-                <button type="button" class="profile-seg-tab ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
-                  <span>📰 Saved Articles</span>
-                </button>
-                <button type="button" class="profile-seg-tab ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
-                  <span>⚡ AI Tools</span>
-                </button>
-                <button type="button" class="profile-seg-tab ${currentTab === 'prompts' ? 'active' : ''}" data-tab="prompts">
-                  <span>💡 Prompt Vault</span>
-                </button>
-              </div>
-
-              <div id="profile-tab-content-area">
-                ${renderTabContentHTML()}
-              </div>
+          <!-- Saved Items Card (Exact Live Design) -->
+          <div class="profile-vault-card" style="width: 100%;">
+            <div class="profile-segmented-tabs">
+              <button type="button" class="profile-seg-tab ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
+                <span>📰 Saved Articles (${bookmarkedArticles.length})</span>
+              </button>
+              <button type="button" class="profile-seg-tab ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
+                <span>⚡ AI Tools (${bookmarkedTools.length})</span>
+              </button>
+              <button type="button" class="profile-seg-tab ${currentTab === 'prompts' ? 'active' : ''}" data-tab="prompts">
+                <span>💡 Prompt Vault (${bookmarkedPrompts.length})</span>
+              </button>
+              <button type="button" class="profile-seg-tab ${currentTab === 'my-jobs' ? 'active' : ''}" data-tab="my-jobs">
+                <span>💼 My Posted Jobs (${myPostedJobs.length})</span>
+              </button>
             </div>
 
-            <!-- Right: Newsletter Subscription Status Card -->
-            <div class="profile-sub-card">
-              <div class="profile-sub-header">
-                <span>⚡</span>
-                <span>Newsletter Subscription</span>
-              </div>
-
-              <div class="profile-sub-detail-box">
-                <div style="font-size: 0.78rem; color: #71717A; margin-bottom: 4px;">Registered Email:</div>
-                <div class="profile-sub-email">${escapeHtml(userEmail)}</div>
-                
-                <div style="margin-top: 8px;">
-                  <span class="profile-vip-pill">⚡ Active VIP Subscriber</span>
-                </div>
-
-                <div style="font-size: 0.8rem; color: #71717A; margin-top: 10px; line-height: 1.4;">
-                  Frequency: <strong>Daily AI Edition &amp; Alerts</strong>
-                </div>
-              </div>
-
-              <div style="display: flex; flex-direction: column; gap: 8px;">
-                <button type="button" class="btn-profile-edit-trigger" id="btn-open-edit-profile-2" style="width: 100%; justify-content: center;">
-                  <span>Edit Profile Details</span>
-                </button>
-                
-                <button type="button" class="btn-profile-signout" id="btn-profile-signout">
-                  Sign Out / Reset
-                </button>
-              </div>
+            <div id="profile-tab-content-area">
+              ${renderTabContentHTML()}
             </div>
-
           </div>
 
         </div>
       </div>
     `;
+
+    // Bind Stat Box Click to switch tabs
+    appContainer.querySelectorAll('.profile-stat-clickable').forEach(box => {
+      box.addEventListener('click', () => {
+        const tab = box.getAttribute('data-tab');
+        if (tab) {
+          state.profileActiveTab = tab;
+          renderProfilePage();
+        }
+      });
+    });
 
     // Bind Segmented Tab Switcher
     appContainer.querySelectorAll('.profile-seg-tab').forEach(btn => {
@@ -10770,34 +10793,110 @@ if (query !== '') {
       });
     });
 
-    // Bind Edit Profile Modals
-    const openEditModal = () => {
-      const editModal = document.getElementById('edit-profile-modal');
-      const nameInp = document.getElementById('ep-name-input');
-      const titleInp = document.getElementById('ep-title-input');
-      const locInp = document.getElementById('ep-location-input');
-      if (nameInp) nameInp.value = profile.name || '';
-      if (titleInp) titleInp.value = profile.title || '';
-      if (locInp) locInp.value = profile.location || '';
-      openModal(editModal);
-    };
+    // Bind Edit Job Modal Triggers
+    appContainer.querySelectorAll('.btn-profile-edit-my-job').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const jobId = btn.getAttribute('data-id');
+        const allPosted = (typeof getMyPostedJobs === 'function' ? getMyPostedJobs() : []);
+        const job = allPosted.find(j => j.id === jobId);
+        if (!job) return;
 
-    const editBtn1 = appContainer.querySelector('#btn-open-edit-profile');
-    if (editBtn1) editBtn1.addEventListener('click', openEditModal);
-    const editBtn2 = appContainer.querySelector('#btn-open-edit-profile-2');
-    if (editBtn2) editBtn2.addEventListener('click', openEditModal);
+        const modal = document.getElementById('edit-job-modal');
+        if (!modal) return;
 
-    // Bind Sign Out
-    const signoutBtn = appContainer.querySelector('#btn-profile-signout');
-    if (signoutBtn) {
-      signoutBtn.addEventListener('click', () => {
-        if (confirm('Are you sure you want to sign out from this device?')) {
-          localStorage.removeItem('aira_subscribed');
-          localStorage.removeItem('aira_unlocked');
-          sessionStorage.removeItem('aira_unlocked');
-          showToast('Signed out successfully');
-          window.location.hash = '#/home';
+        document.getElementById('ej-job-id').value = job.id;
+        document.getElementById('ej-title').value = job.title || '';
+        document.getElementById('ej-company').value = job.company || '';
+        document.getElementById('ej-category').value = job.category || 'ai-eng';
+        document.getElementById('ej-location').value = job.location || '';
+        document.getElementById('ej-salary').value = job.salary || '';
+        document.getElementById('ej-apply-url').value = job.applyUrl || job.officialApplyUrl || '';
+        document.getElementById('ej-tagline').value = job.tagline || job.overview || '';
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Bind Delete Job Triggers
+    appContainer.querySelectorAll('.btn-profile-delete-my-job').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const jobId = btn.getAttribute('data-id');
+        if (!confirm('Are you sure you want to delete this job posting? It will be removed from the AIRA Jobs Board.')) return;
+
+        let allPosted = (typeof getMyPostedJobs === 'function' ? getMyPostedJobs() : []);
+        allPosted = allPosted.filter(j => j.id !== jobId);
+        saveJobs(allPosted);
+        showToast('Job posting deleted successfully 🗑️');
+        renderProfilePage();
+      });
+    });
+
+    // Global Edit Job Form Submit Listener
+    const editJobForm = document.getElementById('edit-job-form');
+    if (editJobForm && !editJobForm.dataset.bound) {
+      editJobForm.dataset.bound = 'true';
+      editJobForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const jobId = document.getElementById('ej-job-id').value;
+        let allPosted = (typeof getMyPostedJobs === 'function' ? getMyPostedJobs() : []);
+        const idx = allPosted.findIndex(j => j.id === jobId);
+        if (idx >= 0) {
+          allPosted[idx].title = document.getElementById('ej-title').value.trim();
+          allPosted[idx].company = document.getElementById('ej-company').value.trim();
+          allPosted[idx].category = document.getElementById('ej-category').value;
+          allPosted[idx].categorySlug = document.getElementById('ej-category').value;
+          allPosted[idx].location = document.getElementById('ej-location').value.trim();
+          allPosted[idx].salary = document.getElementById('ej-salary').value.trim();
+          allPosted[idx].applyUrl = document.getElementById('ej-apply-url').value.trim();
+          allPosted[idx].officialApplyUrl = document.getElementById('ej-apply-url').value.trim();
+          allPosted[idx].tagline = document.getElementById('ej-tagline').value.trim();
+          allPosted[idx].overview = document.getElementById('ej-tagline').value.trim();
+
+          saveJobs(allPosted);
+          showToast('Job updated successfully! 🎉');
+          const modal = document.getElementById('edit-job-modal');
+          if (modal) modal.classList.remove('active');
+          document.body.style.overflow = '';
+          renderProfilePage();
         }
+      });
+    }
+
+    // Bind Unsave Bookmark Action Buttons
+    appContainer.querySelectorAll('.btn-profile-remove-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const type = btn.getAttribute('data-type');
+        const id = btn.getAttribute('data-id');
+
+        if (type === 'article') {
+          toggleBookmarkArticle(id);
+        } else if (type === 'tool') {
+          toggleBookmarkTool(id);
+        } else if (type === 'prompt') {
+          if (!state.savedPrompts) state.savedPrompts = [];
+          const idx = state.savedPrompts.indexOf(id);
+          if (idx >= 0) state.savedPrompts.splice(idx, 1);
+          localStorage.setItem('aira_saved_prompts', JSON.stringify(state.savedPrompts));
+          if (typeof updateBookmarksBadge === 'function') updateBookmarksBadge();
+          showToast('Prompt removed from saved');
+        }
+
+        renderProfilePage();
+      });
+    });
+
+    // Bind Edit Profile Modal
+    const editBtn = appContainer.querySelector('#btn-open-edit-profile');
+    if (editBtn) {
+      editBtn.addEventListener('click', () => {
+        const editModal = document.getElementById('edit-profile-modal');
+        const nameInp = document.getElementById('ep-name-input');
+        if (nameInp) nameInp.value = profile.name || '';
+        openModal(editModal);
       });
     }
   }

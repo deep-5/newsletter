@@ -403,7 +403,7 @@
       
       <div class="edit-profile-header">
         <h3 style="font-family: var(--font-header); font-size: 1.35rem; font-weight: 800; margin: 0 0 6px 0; color: var(--color-text-primary);">Edit Profile</h3>
-        <p style="font-size: 0.86rem; color: var(--color-text-secondary); margin: 0;">Update your name, designation &amp; bio</p>
+        <p style="font-size: 0.86rem; color: var(--color-text-secondary); margin: 0;">Update your display name</p>
       </div>
 
       <form id="edit-profile-form" style="display: flex; flex-direction: column; gap: 14px; margin-top: 18px; text-align: left;">
@@ -412,19 +412,76 @@
           <input type="text" id="ep-name-input" placeholder="e.g. Aryan Mehta" required style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" />
         </div>
 
-        <div>
-          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Designation / Title</label>
-          <input type="text" id="ep-title-input" placeholder="e.g. Product Designer &amp; AI Enthusiast" required style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" />
-        </div>
-
-        <div>
-          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Location</label>
-          <input type="text" id="ep-location-input" placeholder="e.g. Bengaluru, India" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" />
-        </div>
-
         <div style="display: flex; gap: 10px; margin-top: 10px;">
           <button type="submit" style="flex: 1; background: #1C46F5; color: #FFFFFF; font-weight: 700; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.92rem;">Save Changes</button>
           <button type="button" onclick="document.getElementById('edit-profile-modal').classList.remove('active'); document.body.style.overflow='';" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary); font-weight: 600; padding: 12px 18px; border-radius: 8px; cursor: pointer; font-size: 0.92rem;">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Posted Job Modal -->
+  <div class="modal-overlay" id="edit-job-modal">
+    <div class="modal-card" style="max-width: 540px; text-align: left; padding: 28px 24px; max-height: 90vh; overflow-y: auto;">
+      <button type="button" class="modal-close-btn" aria-label="Close" onclick="document.getElementById('edit-job-modal').classList.remove('active'); document.body.style.overflow='';">✕</button>
+      
+      <div style="margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span style="font-size: 1.3rem;">✏️</span>
+          <h3 style="font-family: var(--font-header); font-size: 1.35rem; font-weight: 800; margin: 0; color: var(--color-text-primary);">Edit Job Opening</h3>
+        </div>
+        <p style="font-size: 0.86rem; color: var(--color-text-secondary); margin: 0;">Update your posted job details</p>
+      </div>
+
+      <form id="edit-job-form" style="display: flex; flex-direction: column; gap: 14px;">
+        <input type="hidden" id="ej-job-id" />
+        
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Job Role / Title *</label>
+          <input type="text" id="ej-title" required style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" placeholder="e.g., Senior AI Engineer" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Company Name *</label>
+            <input type="text" id="ej-company" required style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" placeholder="e.g., OpenAI" />
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Category</label>
+            <select id="ej-category" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;">
+              <option value="ai-eng">⚡ AI Engineering</option>
+              <option value="ui-ux">🎨 UI/UX Design</option>
+              <option value="prompt-eng">💡 Prompt Engineering</option>
+              <option value="product">📦 Product & Tech</option>
+              <option value="research">🔬 AI Research</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Location / Workplace</label>
+            <input type="text" id="ej-location" required style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" placeholder="e.g., Remote / San Francisco, CA" />
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Salary Range</label>
+            <input type="text" id="ej-salary" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" placeholder="e.g., $140k - $190k • Equity" />
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Apply URL / Careers Link *</label>
+          <input type="url" id="ej-apply-url" required style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none;" placeholder="https://company.com/careers/role" />
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text-primary);">Short Description / Tagline</label>
+          <textarea id="ej-tagline" rows="2" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.92rem; background: var(--color-bg-surface); color: var(--color-text-primary); outline: none; resize: vertical;" placeholder="Brief description of the role"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button type="submit" style="flex: 1; background: #1C46F5; color: #FFFFFF; font-weight: 700; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.92rem;">Save Job Updates</button>
+          <button type="button" onclick="document.getElementById('edit-job-modal').classList.remove('active'); document.body.style.overflow='';" style="background: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary); font-weight: 600; padding: 12px 18px; border-radius: 8px; cursor: pointer; font-size: 0.92rem;">Cancel</button>
         </div>
       </form>
     </div>
