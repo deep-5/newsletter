@@ -2162,13 +2162,19 @@ if (query !== '') {
             ${(() => {
               let body = enrichedBodyHtml || article.body_html || '';
               const bananaAd = getBananaPromptAdHTML();
-              if (body.includes('<h2>🌐 Top AI &amp; Tech News</h2>')) {
-                return body.replace('<h2>🌐 Top AI &amp; Tech News</h2>', `${bananaAd}<h2>🌐 Top AI &amp; Tech News</h2>`);
-              } else if (body.includes('<h2>Top AI &amp; Tech News</h2>')) {
-                return body.replace('<h2>Top AI &amp; Tech News</h2>', `${bananaAd}<h2>Top AI &amp; Tech News</h2>`);
-              } else {
-                return body + bananaAd;
+              
+              const searchKey = body.includes('Top AI &amp; Tech News') 
+                ? 'Top AI &amp; Tech News' 
+                : (body.includes('Top AI & Tech News') ? 'Top AI & Tech News' : null);
+
+              if (searchKey) {
+                const newsIdx = body.indexOf(searchKey);
+                const lastHeaderIdx = body.lastIndexOf('<div class="article-section-header"', newsIdx);
+                if (lastHeaderIdx !== -1) {
+                  return body.slice(0, lastHeaderIdx) + bananaAd + '\n\n' + body.slice(lastHeaderIdx);
+                }
               }
+              return body + '\n\n' + bananaAd;
             })()}
           </div>
 
