@@ -22586,6 +22586,89 @@ body.dark-mode .jobs-coming-soon-notify-box {
   .jobs-coming-soon-notify-box {
     padding: 18px 12px !important;
   }
+  .jobs-notify-submit-btn {
+    width: 100% !important;
+    min-height: 44px !important;
+  }
+  .jobs-post-advance-btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* Jobs Coming Soon Action Buttons */
+.jobs-notify-submit-btn {
+  min-height: 44px;
+  padding: 0 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  background: #1C46F5;
+  color: #FFFFFF !important;
+  border: 1px solid #1C46F5;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(28, 70, 245, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.jobs-notify-submit-btn:hover {
+  background: #1538CC;
+  border-color: #1538CC;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(28, 70, 245, 0.45);
+}
+
+.jobs-notify-submit-btn:active {
+  transform: translateY(0);
+}
+
+.jobs-post-advance-btn {
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  background: #18181B;
+  color: #FFFFFF !important;
+  border: 1px solid #18181B;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jobs-post-advance-btn:hover {
+  background: #27272A;
+  border-color: #3F3F46;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.jobs-post-advance-btn:active {
+  transform: translateY(0);
+}
+
+body.dark-mode .jobs-post-advance-btn {
+  background: #FFFFFF;
+  color: #121216 !important;
+  border-color: #FFFFFF;
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .jobs-post-advance-btn:hover {
+  background: #E4E4E7;
+  border-color: #E4E4E7;
+  color: #121216 !important;
 }
 
 /* 1. Jobs Header Banner */

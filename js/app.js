@@ -3489,27 +3489,26 @@ if (query !== '') {
                 />
                 <button 
                   type="submit" 
-                  class="btn-primary" 
-                  style="min-height: 44px; padding: 0 20px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; cursor: pointer; flex: 1 0 auto;"
+                  class="jobs-notify-submit-btn"
                 >
-                  Notify Me ✨
+                  <span>Notify Me ✨</span>
                 </button>
               </form>
             </div>
           </div>
 
           <!-- Employer / Recruiter Callout -->
-          <div style="background: rgba(28, 70, 245, 0.04); border: 1px dashed rgba(28, 70, 245, 0.3); border-radius: 16px; padding: 20px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; text-align: left;">
+          <div style="background: rgba(28, 70, 245, 0.04); border: 1px dashed rgba(28, 70, 245, 0.35); border-radius: 16px; padding: 22px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; text-align: left;">
             <div style="flex: 1 1 260px;">
-              <div style="font-weight: 700; font-size: 0.96rem; color: var(--color-text-primary); margin-bottom: 4px;">
+              <div style="font-weight: 700; font-size: 0.98rem; color: var(--color-text-primary); margin-bottom: 4px;">
                 💼 Hiring AI Talent for your team?
               </div>
-              <div style="font-size: 0.84rem; color: var(--color-text-secondary, #71717A); line-height: 1.45;">
+              <div style="font-size: 0.85rem; color: var(--color-text-secondary, #71717A); line-height: 1.45;">
                 Post your openings in advance to be featured at launch and reach qualified candidates.
               </div>
             </div>
-            <a href="#/post-job" class="btn-secondary" style="padding: 9px 18px; border-radius: 10px; font-weight: 700; font-size: 0.86rem; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto;">
-              ✍️ Post an Opening in Advance
+            <a href="#/post-job" class="jobs-post-advance-btn">
+              <span>✍️ Post an Opening in Advance</span>
             </a>
           </div>
         </div>
