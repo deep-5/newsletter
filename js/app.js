@@ -1954,63 +1954,63 @@ if (query !== '') {
 
     function getBananaPromptAdHTML() {
       return `
-        <div class="banana-prompt-ad-box" style="margin: 36px 0; background: radial-gradient(120% 120% at 85% 10%, rgba(147, 51, 234, 0.22) 0%, rgba(30, 27, 75, 0.5) 45%, #090D1A 100%); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 18px; padding: 26px 24px; color: #FFFFFF; box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(147, 51, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12); overflow: hidden; position: relative;">
+        <div class="banana-prompt-ad-box" style="margin: 36px 0; background: linear-gradient(135deg, #090D1A 0%, #131B2E 100%); border: 1.5px solid #2D3748; border-radius: 18px; padding: 26px 24px; color: #FFFFFF; box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.45); overflow: hidden; position: relative;">
           
           <!-- Top Branded Header Row -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); flex-wrap: wrap; gap: 10px;">
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 28px; height: 28px; border-radius: 7px; overflow: hidden; border: 1px solid rgba(168, 85, 247, 0.6); box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); flex-shrink: 0;">
+              <div style="width: 32px; height: 32px; border-radius: 8px; overflow: hidden; border: 1.5px solid #A855F7; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); flex-shrink: 0;">
                 <img src="assets/banana-prompt-logo.jpg" alt="AI Creator Academy Logo" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #F8FAFC; letter-spacing: 0.04em; text-transform: uppercase;">AI CREATOR ACADEMY</span>
-                <span style="background: rgba(250, 204, 21, 0.15); border: 1px solid rgba(250, 204, 21, 0.4); color: #FACC15; font-size: 0.68rem; font-weight: 800; padding: 2px 8px; border-radius: 9999px;">BANANA PROMPT AI</span>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.88rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.04em; text-transform: uppercase;">AI CREATOR ACADEMY</span>
+                <span style="background: rgba(250, 204, 21, 0.2); border: 1px solid #FACC15; color: #FACC15; font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 9999px;">BANANA PROMPT AI</span>
               </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.35); padding: 3px 10px; border-radius: 9999px;">
-              <span style="width: 6px; height: 6px; border-radius: 50%; background: #22C55E; display: inline-block;"></span>
-              <span style="font-size: 0.72rem; font-weight: 700; color: #4ADE80; text-transform: uppercase; letter-spacing: 0.04em;">100% FREE CHANNEL</span>
+            <div style="display: flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.18); border: 1px solid #22C55E; padding: 4px 12px; border-radius: 9999px;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: #22C55E; display: inline-block; box-shadow: 0 0 8px #22C55E;"></span>
+              <span style="font-size: 0.75rem; font-weight: 800; color: #4ADE80; text-transform: uppercase; letter-spacing: 0.04em;">100% FREE CHANNEL</span>
             </div>
           </div>
 
           <!-- Main Content Body -->
           <div>
             <!-- Main Catchy Headline -->
-            <h3 style="font-size: clamp(1.15rem, 2.5vw, 1.35rem); font-weight: 900; color: #FFFFFF; line-height: 1.35; margin: 0 0 16px 0; letter-spacing: -0.01em;">
+            <h3 style="font-size: clamp(1.2rem, 3vw, 1.45rem); font-weight: 900; color: #FFFFFF; line-height: 1.35; margin: 0 0 18px 0; letter-spacing: -0.01em;">
               AI se best results chahiye? Toh BananaPromptAI try karo! 😍
             </h3>
 
             <!-- Feature Bullet Cards (2-Column Grid on Desktop, 1-Col on Mobile) -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-bottom: 22px;">
-              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
-                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;"><strong style="color: #FFFFFF;">500+ Ready-Made Prompts</strong> — Gemini, ChatGPT, Grok ya kisi bhi AI me paste karo.</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 24px;">
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15); padding: 12px 14px; border-radius: 10px;">
+                <span style="color: #22C55E; font-size: 1.1rem; line-height: 1; flex-shrink: 0;">✅</span>
+                <span style="font-size: 0.92rem; color: #F1F5F9; line-height: 1.45;"><strong style="color: #60A5FA; font-weight: 700;">500+ Ready-Made Prompts</strong> — Gemini, ChatGPT, Grok ya kisi bhi AI me paste karo.</span>
               </div>
-              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
-                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;"><strong style="color: #FFFFFF;">Apni photo upload karo</strong> aur amazing AI images generate karo.</span>
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15); padding: 12px 14px; border-radius: 10px;">
+                <span style="color: #22C55E; font-size: 1.1rem; line-height: 1; flex-shrink: 0;">✅</span>
+                <span style="font-size: 0.92rem; color: #F1F5F9; line-height: 1.45;"><strong style="color: #60A5FA; font-weight: 700;">Apni photo upload karo</strong> aur amazing AI images generate karo.</span>
               </div>
-              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
-                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">Prompt likhne ki tension khatam!</span>
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15); padding: 12px 14px; border-radius: 10px;">
+                <span style="color: #22C55E; font-size: 1.1rem; line-height: 1; flex-shrink: 0;">✅</span>
+                <span style="font-size: 0.92rem; color: #F1F5F9; line-height: 1.45;"><strong style="color: #FACC15; font-weight: 700;">Prompt likhne ki tension khatam!</strong> Instant copy & paste prompts.</span>
               </div>
-              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
-                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">Sab kuch ek hi jagah – <strong style="color: #FACC15; font-weight: 800;">100% FREE</strong>.</span>
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15); padding: 12px 14px; border-radius: 10px;">
+                <span style="color: #22C55E; font-size: 1.1rem; line-height: 1; flex-shrink: 0;">✅</span>
+                <span style="font-size: 0.92rem; color: #F1F5F9; line-height: 1.45;">Sab kuch ek hi jagah — <strong style="color: #4ADE80; font-weight: 800; background: rgba(74, 222, 128, 0.15); border: 1px solid rgba(74, 222, 128, 0.3); padding: 2px 8px; border-radius: 6px;">100% FREE</strong>.</span>
               </div>
             </div>
 
             <!-- Action Row with Telegram CTA Button -->
-            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-              <a href="https://t.me/GemaniPrompt_21" target="_blank" style="display: inline-flex; align-items: center; gap: 9px; background: linear-gradient(135deg, #0088CC 0%, #0099FF 100%); color: #FFFFFF; font-weight: 800; font-size: 0.92rem; padding: 12px 24px; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 20px rgba(0, 136, 204, 0.45); border: 1px solid rgba(255,255,255,0.25); transition: all 0.15s ease;">
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+              <a href="https://t.me/GemaniPrompt_21" target="_blank" style="display: inline-flex; align-items: center; gap: 9px; background: linear-gradient(135deg, #0088CC 0%, #0099FF 100%); color: #FFFFFF !important; font-weight: 800; font-size: 0.95rem; padding: 13px 26px; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5); border: 1px solid rgba(255,255,255,0.3); transition: all 0.15s ease;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.61 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.48-.42-1.42-.88.03-.24.38-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.49 3.85-1.6 4.65-1.88 5.17-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.24z"/>
                 </svg>
                 <span>Join Telegram Channel (Free Prompts) ↗</span>
               </a>
-              <div style="display: flex; align-items: center; gap: 6px; color: #94A3B8; font-size: 0.8rem; font-weight: 600;">
+              <div style="display: flex; align-items: center; gap: 7px; color: #CBD5E1; font-size: 0.86rem; font-weight: 700;">
                 <span>🔥</span>
-                <span>500+ Ready Prompts Available</span>
+                <span style="color: #FFFFFF; font-weight: 700;">500+ Ready Prompts Available</span>
               </div>
             </div>
           </div>
