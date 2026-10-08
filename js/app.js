@@ -1954,10 +1954,10 @@ if (query !== '') {
 
     function getBananaPromptAdHTML() {
       return `
-        <div class="banana-prompt-ad-box" style="margin: 36px 0; background: radial-gradient(120% 120% at 85% 10%, rgba(147, 51, 234, 0.22) 0%, rgba(30, 27, 75, 0.5) 45%, #090D1A 100%); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 18px; padding: 28px; color: #FFFFFF; box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(147, 51, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12); overflow: hidden; position: relative;">
+        <div class="banana-prompt-ad-box" style="margin: 36px 0; background: radial-gradient(120% 120% at 85% 10%, rgba(147, 51, 234, 0.22) 0%, rgba(30, 27, 75, 0.5) 45%, #090D1A 100%); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 18px; padding: 26px 24px; color: #FFFFFF; box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(147, 51, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12); overflow: hidden; position: relative;">
           
           <!-- Top Branded Header Row -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 10px;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <div style="width: 28px; height: 28px; border-radius: 7px; overflow: hidden; border: 1px solid rgba(168, 85, 247, 0.6); box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); flex-shrink: 0;">
                 <img src="assets/banana-prompt-logo.jpg" alt="AI Creator Academy Logo" style="width: 100%; height: 100%; object-fit: cover;" />
@@ -1973,56 +1973,44 @@ if (query !== '') {
             </div>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 26px; align-items: center;">
-            
-            <!-- Left Photo Column (Luxury AI Portrait Frame) -->
-            <div style="flex: 0 0 210px; max-width: 230px; border-radius: 14px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1.5px solid rgba(255,255,255,0.18); background: #0F172A;">
-              <img src="assets/banana-prompt-ai.jpg" alt="BananaPromptAI Generation Example" style="width: 100%; height: auto; display: block; object-fit: cover;" />
-              <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; background: rgba(9, 13, 26, 0.85); backdrop-filter: blur(8px); color: #F8FAFC; font-size: 0.68rem; font-weight: 700; padding: 5px 8px; border-radius: 7px; text-align: center; border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; gap: 5px;">
-                <span style="color: #A855F7;">✨</span>
-                <span>AI Generated with Prompt</span>
+          <!-- Main Content Body -->
+          <div>
+            <!-- Main Catchy Headline -->
+            <h3 style="font-size: clamp(1.15rem, 2.5vw, 1.35rem); font-weight: 900; color: #FFFFFF; line-height: 1.35; margin: 0 0 16px 0; letter-spacing: -0.01em;">
+              AI se best results chahiye? Toh BananaPromptAI try karo! 😍
+            </h3>
+
+            <!-- Feature Bullet Cards (2-Column Grid on Desktop, 1-Col on Mobile) -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-bottom: 22px;">
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
+                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
+                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;"><strong style="color: #FFFFFF;">500+ Ready-Made Prompts</strong> — Gemini, ChatGPT, Grok ya kisi bhi AI me paste karo.</span>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
+                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
+                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;"><strong style="color: #FFFFFF;">Apni photo upload karo</strong> aur amazing AI images generate karo.</span>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
+                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
+                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">Prompt likhne ki tension khatam!</span>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 10px 12px; border-radius: 9px;">
+                <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
+                <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">Sab kuch ek hi jagah – <strong style="color: #FACC15; font-weight: 800;">100% FREE</strong>.</span>
               </div>
             </div>
 
-            <!-- Right Content Details Column -->
-            <div style="flex: 1; min-width: 280px;">
-              <!-- Main Catchy Headline -->
-              <h3 style="font-size: 1.32rem; font-weight: 900; color: #FFFFFF; line-height: 1.35; margin: 0 0 14px 0; letter-spacing: -0.01em;">
-                AI se best results chahiye? Toh BananaPromptAI try karo! 😍
-              </h3>
-
-              <!-- Feature Bullet Cards -->
-              <div style="display: flex; flex-direction: column; gap: 9px; margin-bottom: 20px;">
-                <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 8px 12px; border-radius: 9px;">
-                  <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                  <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;"><strong style="color: #FFFFFF;">500+ Ready-Made Prompts</strong> — Gemini, ChatGPT, Grok ya kisi bhi AI me paste karo.</span>
-                </div>
-                <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 8px 12px; border-radius: 9px;">
-                  <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                  <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;"><strong style="color: #FFFFFF;">Apni photo upload karo</strong> aur amazing AI images generate karo.</span>
-                </div>
-                <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 8px 12px; border-radius: 9px;">
-                  <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                  <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">Prompt likhne ki tension khatam!</span>
-                </div>
-                <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); padding: 8px 12px; border-radius: 9px;">
-                  <span style="color: #22C55E; font-size: 0.95rem; line-height: 1;">✅</span>
-                  <span style="font-size: 0.88rem; color: #E2E8F0; line-height: 1.4;">Sab kuch ek hi jagah – <strong style="color: #FACC15; font-weight: 800;">100% FREE</strong>.</span>
-                </div>
-              </div>
-
-              <!-- Action Row with Telegram CTA Button -->
-              <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-                <a href="https://t.me/GemaniPrompt_21" target="_blank" style="display: inline-flex; align-items: center; gap: 9px; background: linear-gradient(135deg, #0088CC 0%, #0099FF 100%); color: #FFFFFF; font-weight: 800; font-size: 0.92rem; padding: 12px 24px; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 20px rgba(0, 136, 204, 0.45); border: 1px solid rgba(255,255,255,0.25); transition: all 0.15s ease;">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.61 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.48-.42-1.42-.88.03-.24.38-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.49 3.85-1.6 4.65-1.88 5.17-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.24z"/>
-                  </svg>
-                  <span>Join Telegram Channel (Free Prompts) ↗</span>
-                </a>
-                <div style="display: flex; align-items: center; gap: 6px; color: #94A3B8; font-size: 0.8rem; font-weight: 600;">
-                  <span>🔥</span>
-                  <span>500+ Ready Prompts Available</span>
-                </div>
+            <!-- Action Row with Telegram CTA Button -->
+            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+              <a href="https://t.me/GemaniPrompt_21" target="_blank" style="display: inline-flex; align-items: center; gap: 9px; background: linear-gradient(135deg, #0088CC 0%, #0099FF 100%); color: #FFFFFF; font-weight: 800; font-size: 0.92rem; padding: 12px 24px; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 20px rgba(0, 136, 204, 0.45); border: 1px solid rgba(255,255,255,0.25); transition: all 0.15s ease;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.61 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.48-.42-1.42-.88.03-.24.38-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.49 3.85-1.6 4.65-1.88 5.17-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.24z"/>
+                </svg>
+                <span>Join Telegram Channel (Free Prompts) ↗</span>
+              </a>
+              <div style="display: flex; align-items: center; gap: 6px; color: #94A3B8; font-size: 0.8rem; font-weight: 600;">
+                <span>🔥</span>
+                <span>500+ Ready Prompts Available</span>
               </div>
             </div>
           </div>
@@ -2174,12 +2162,10 @@ if (query !== '') {
             ${(() => {
               let body = enrichedBodyHtml || article.body_html || '';
               const bananaAd = getBananaPromptAdHTML();
-              if (body.includes('<h2>📚 AI Tutorial</h2>')) {
-                return body.replace('<h2>📚 AI Tutorial</h2>', `${bananaAd}<h2>📚 AI Tutorial</h2>`);
-              } else if (body.includes('<h2>🛠️ Top AI &amp; SaaS Tools</h2>')) {
-                return body.replace('<h2>🛠️ Top AI &amp; SaaS Tools</h2>', `${bananaAd}<h2>🛠️ Top AI &amp; SaaS Tools</h2>`);
-              } else if (body.includes('<h2>🌐 Top AI &amp; Tech News</h2>')) {
+              if (body.includes('<h2>🌐 Top AI &amp; Tech News</h2>')) {
                 return body.replace('<h2>🌐 Top AI &amp; Tech News</h2>', `${bananaAd}<h2>🌐 Top AI &amp; Tech News</h2>`);
+              } else if (body.includes('<h2>Top AI &amp; Tech News</h2>')) {
+                return body.replace('<h2>Top AI &amp; Tech News</h2>', `${bananaAd}<h2>Top AI &amp; Tech News</h2>`);
               } else {
                 return body + bananaAd;
               }
