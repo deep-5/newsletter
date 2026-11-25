@@ -1323,14 +1323,13 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
     if (!tool) return '';
     const pricing = (tool.pricing || 'Free').trim();
     const pricingLower = pricing.toLowerCase();
-    const pricingClass = 'pricing-' + pricingLower.replace(/\s+/g, '-');
+    const pricingClass = `pricing-${pricingLower.replace(/\s+/g, '-')}`;
     const cleanDomain = getCleanToolDomain(tool);
     const logoUrl = getToolLogoUrl(tool);
-    const duckLogo = 'https://icons.duckduckgo.com/ip3/' + cleanDomain + '.ico';
+    const duckLogo = `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`;
     const fallbackIcon = tool.icon || '⚡';
     const isPromoted = isToolPromoted(tool);
     const catInfo = getCategoryBadgeInfo(tool);
-    const isSaved = (state.savedTools || []).includes(tool.id);
 
     return `
       <div class="tool-card ${isPromoted ? 'is-promoted-card' : ''} ${tool.featured ? 'is-featured' : ''}" data-tool-id="${tool.id}" onclick="if(!event.target.closest('a, button')) { window.location.hash='#/tools/${tool.id}'; }">
@@ -1342,15 +1341,15 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
             <div class="tool-header-top-line">
               <h3 class="tool-card-name" title="${escapeHtml(tool.name)}">
                 <a href="#/tools/${tool.id}" class="tool-title-link">${escapeHtml(tool.name)}</a>
-                <span class="tool-verified-check" title="Verified Free AI Tool">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#1C46F5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                </span>
               </h3>
-              <span class="tool-badge-pricing ${pricingClass}">${pricing.toUpperCase()}</span>
+              <span class="tool-verified-check" title="Verified AI Tool">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#0F172A"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </span>
             </div>
-            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-              <span class="tool-badge-category" style="font-size: 0.72rem; font-weight: 600; color: #475569; background: #F1F5F9; border: 1px solid #E2E8F0; padding: 2px 7px; border-radius: 5px;">#${catInfo.label}</span>
-              ${isPromoted ? '<span class="tool-badge-promoted" style="font-size: 0.68rem; font-weight: 800; color: #B45309; background: #FEF3C7; border: 1px solid #FDE68A; padding: 2px 6px; border-radius: 4px;">★ FEATURED</span>' : ''}
+            <div class="tool-badges-wrap">
+              <span class="tool-badge-category">${catInfo.label}</span>
+              <span class="tool-badge-pricing ${pricingClass}">${pricing.toUpperCase()}</span>
+              ${isPromoted ? '<span class="tool-badge-promoted"><span class="star">★</span> PROMOTED</span>' : ''}
             </div>
           </div>
         </div>
@@ -1358,14 +1357,9 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
         <p class="tool-card-desc">${escapeHtml(tool.description || '')}</p>
 
         <div class="tool-card-footer">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <a href="#/tools/${tool.id}" class="tool-btn-details" title="Details">Details</a>
-            <button type="button" class="btn-save-tool ${isSaved ? 'saved' : ''}" data-tool-id="${tool.id}" title="${isSaved ? 'Saved to bookmarks' : 'Save tool'}" style="background: ${isSaved ? '#EEF2FF' : '#F8FAFC'}; border: 1px solid ${isSaved ? '#C7D2FE' : '#E2E8F0'}; border-radius: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${isSaved ? '#1C46F5' : '#64748B'};">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="${isSaved ? '#1C46F5' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            </button>
-          </div>
-          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit" title="Try ${escapeHtml(tool.name)}">
-            <span>Try Free</span>
+          <a href="#/tools/${tool.id}" class="tool-btn-details" title="View details of ${escapeHtml(tool.name)}">Details</a>
+          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-btn-visit" title="Open ${escapeHtml(tool.name)}">
+            <span>Visit Website</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
         </div>
@@ -2531,69 +2525,68 @@ function renderHomePage() {
     }
 
     appContainer.innerHTML = `
-      <!-- TAAFT Style Hero Section -->
-      <section class="taaft-hero-wrap">
-        <div class="container" style="max-width: 960px; margin: 0 auto;">
-          <!-- Top Live Pulse Badge -->
-          <div class="taaft-mini-badge">
-            <span class="taaft-pulse-dot"></span>
-            <span>1,100+ Free AI Tools • Updated Daily</span>
+      <!-- Hero Section (Exact Same Full-Width Grid Background as Homepage) -->
+      <section class="hero-openalt-section">
+        <div class="hero-openalt-container" style="max-width: 960px;">
+          <!-- Top Ad Bar -->
+          <div class="hero-openalt-top-ad">
+            <div class="hero-top-ad-left">
+              <span class="hero-ad-badge-pill">AD</span>
+              <span class="hero-ad-brand-icon">⚡</span>
+              <span class="hero-ad-text-content"><strong>AIRA Sponsor</strong> — Explore ${allTools.length}+ curated, verified AI tools and production workflows.</span>
+            </div>
+            <a href="#/advertise" class="hero-ad-action-btn">Learn More →</a>
           </div>
 
-          <!-- Main TAAFT Heading -->
-          <h1 class="taaft-main-heading">
-            Find Free AI Tools for <span>Any Task</span>
-          </h1>
-          <p class="taaft-sub-heading">
-            The largest directory of 100% Free AI tools, generous free tiers, and open-source models without hidden paywalls.
+          <!-- Hero Badge -->
+          <div class="hero-openalt-mini-badge">
+            <span>⚡ AIRA Directory • ${allTools.length} Verified AI Tools</span>
+          </div>
+
+          <!-- Hero Heading & Subheading -->
+          <h1 class="hero-openalt-heading">The One &amp; Only Curated AI Tools Hub</h1>
+          <p class="hero-openalt-subheading">
+            Save time, cut costs, and 10x your productivity with expertly curated AI tools, daily workflows, and open-source software alternatives.
           </p>
 
-          <!-- TAAFT Big Focal Search Box -->
-          <form class="taaft-search-container" id="tool-search-form" onsubmit="event.preventDefault();">
-            <div class="taaft-search-box">
-              <svg class="taaft-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" class="taaft-search-input" id="tool-search-input" placeholder="Find a free AI for... (e.g. video editor, code generation, logo, writing)" value="${state.toolSearchQuery || ''}" autocomplete="off" />
-              <button type="button" id="tool-search-clear" class="hero-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'}; margin-right: 8px;" title="Clear search">✕</button>
-              <button type="submit" class="taaft-search-btn" id="tool-search-btn">Search</button>
-            </div>
+          <!-- Search Form (Exact Match to Homepage Hero) -->
+          <form class="hero-openalt-search-box" id="tool-search-form" onsubmit="event.preventDefault();" style="max-width: 520px; width: 100%; margin: 16px auto 14px auto;">
+            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="hero-openalt-search-input" id="tool-search-input" placeholder="Search" value="${state.toolSearchQuery || ''}" autocomplete="off" />
+            <button type="button" id="tool-search-clear" class="hero-search-clear-btn" style="display: ${state.toolSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
+            <button type="submit" class="hero-openalt-search-btn" id="tool-search-btn">Search</button>
           </form>
 
-          <!-- Pricing Filter Pills (TAAFT Style) -->
-          <div class="taaft-pricing-row">
-            ${[
-              { id: 'all', label: 'All Free Tools' },
-              { id: 'Free', label: '⚡ 100% Free' },
-              { id: 'Freemium', label: '🎁 Freemium' },
-              { id: 'Free Trial', label: '⏳ Free Trial' },
-              { id: 'Paid', label: '💎 Paid' }
-            ].map(p => `
-              <button type="button" class="taaft-pricing-pill ${state.toolPricingFilter === p.id ? 'active' : ''}" data-pricing="${p.id}">
-                ${p.label}
+          <!-- Pricing Filter Pills Row -->
+          <div class="tools-pricing-pill-group" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
+            ${['all', 'Free', 'Freemium', 'Paid'].map(p => `
+              <button type="button" class="pricing-filter-pill ${state.toolPricingFilter === p ? 'active' : ''}" data-pricing="${p}">
+                ${p === 'all' ? 'All Pricing' : p}
               </button>
             `).join('')}
           </div>
 
-          <!-- Horizontal Scrollable Tasks / Categories Pills (TAAFT Signature) -->
-          <div class="taaft-tasks-scroll-wrap">
-            <div class="taaft-tasks-scroll-inner" id="tools-categories-bar">
+          <!-- Categories Filter Bar -->
+          <div class="categories-filter-wrapper" style="width: 100%; margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 14px;">
+            <div class="categories-filter-grid" id="tools-categories-bar">
               ${categories.map(cat => {
                 const count = getCategoryCount(cat.id);
                 const isActive = state.toolCategoryFilter === cat.id;
                 return `
-                  <button type="button" class="taaft-task-pill cat-filter-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
-                    <span>${cat.icon || '✨'}</span>
-                    <span>${cat.name}</span>
-                    <span class="taaft-task-count">${count}</span>
+                  <button type="button" class="cat-filter-pill ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
+                    <span class="cat-pill-icon">${cat.icon || '✨'}</span>
+                    <span class="cat-pill-name">${cat.name}</span>
+                    <span class="cat-pill-count">${count}</span>
                   </button>
                 `;
               }).join('')}
             </div>
           </div>
 
-          <!-- Sponsors Strip -->
+          <!-- Partners & Sponsors Strip (Bottom of Hero) -->
           ${getSponsorsStripHTML()}
         </div>
       </section>
