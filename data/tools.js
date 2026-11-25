@@ -1,6 +1,6 @@
 /**
  * AIRA Newsletter - 100% Authentic Verified AI Tools Dataset
- * Total Verified Live Tools: 777
+ * Total Verified Live Tools: 793
  */
 const AI_TOOLS_DATA = {
   "categories": [
@@ -121,6 +121,422 @@ const AI_TOOLS_DATA = {
     }
   ],
   "tools": [
+    {
+      "id": "claude-3-7-sonnet",
+      "slug": "claude-3-7-sonnet",
+      "name": "Claude 3.7 Sonnet",
+      "category": "ai-assistant",
+      "categoryName": "AI Assistant",
+      "tag": "ai-assistant",
+      "pricing": "Freemium",
+      "description": "Anthropic's hybrid reasoning model combining instant conversational speed with extended deliberate chain-of-thought analysis.",
+      "url": "https://claude.ai/",
+      "domain": "claude.ai",
+      "image": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128",
+      "icon": "🤖",
+      "rating": 4.9,
+      "votes": 590,
+      "featured": true,
+      "inner_content": {
+        "overview": "Claude 3.7 Sonnet is the frontier leader in coding, reasoning, and visual analysis with interactive Artifacts.",
+        "features": [
+          "Hybrid instant and extended reasoning",
+          "Interactive web Artifacts",
+          "Fast code generation",
+          "Free tier on web and mobile"
+        ]
+      }
+    },
+    {
+      "id": "perplexity-pro",
+      "slug": "perplexity-pro",
+      "name": "Perplexity AI",
+      "category": "search-engine",
+      "categoryName": "Search & Research",
+      "tag": "search-engine",
+      "pricing": "Freemium",
+      "description": "Conversational AI search engine delivering accurate, real-time answers with direct web citations, Pro Search, and file uploads.",
+      "url": "https://www.perplexity.ai/",
+      "domain": "perplexity.ai",
+      "image": "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128",
+      "icon": "🔍",
+      "rating": 4.9,
+      "votes": 620,
+      "featured": true,
+      "inner_content": {
+        "overview": "Perplexity replaces traditional search engines with direct answers, citations, and multi-model routing.",
+        "features": [
+          "Source citation grounding",
+          "Pro search with computational steps",
+          "Free unlimited standard searches",
+          "Collections and file analysis"
+        ]
+      }
+    },
+    {
+      "id": "cursor-ai-ide",
+      "slug": "cursor-ai-ide",
+      "name": "Cursor AI",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "The AI-first code editor fork of VS Code built for seamless multi-file editing, codebase chat, and instant bug resolution.",
+      "url": "https://www.cursor.com/",
+      "domain": "cursor.com",
+      "image": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128",
+      "icon": "💻",
+      "rating": 4.9,
+      "votes": 680,
+      "featured": true,
+      "inner_content": {
+        "overview": "Cursor uses deep codebase indexing and agentic multi-file completions to 10x software developer productivity.",
+        "features": [
+          "Composer multi-file generation",
+          "Full repository semantic indexing",
+          "Free tier with 2,000 completions",
+          "One-click VS Code extension import"
+        ]
+      }
+    },
+    {
+      "id": "replit-agent",
+      "slug": "replit-agent",
+      "name": "Replit Agent",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "Autonomous AI software engineering agent that builds, configures databases, installs packages, and deploys cloud applications from text.",
+      "url": "https://replit.com/",
+      "domain": "replit.com",
+      "image": "https://www.google.com/s2/favicons?domain=replit.com&sz=128",
+      "icon": "🚀",
+      "rating": 4.8,
+      "votes": 430,
+      "featured": true,
+      "inner_content": {
+        "overview": "Replit Agent handles the entire development lifecycle from scaffolding to cloud hosting.",
+        "features": [
+          "Autonomous full-stack building",
+          "PostgreSQL database auto-provisioning",
+          "In-browser live preview",
+          "Instant URL hosting"
+        ]
+      }
+    },
+    {
+      "id": "runway-gen3",
+      "slug": "runway-gen3",
+      "name": "Runway Gen-3 Alpha",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "Freemium",
+      "description": "Next-generation cinematic video AI from Runway capable of producing hyper-realistic video with nuanced camera controls and motion brush.",
+      "url": "https://runwayml.com/",
+      "domain": "runwayml.com",
+      "image": "https://www.google.com/s2/favicons?domain=runwayml.com&sz=128",
+      "icon": "🎥",
+      "rating": 4.9,
+      "votes": 510,
+      "featured": true,
+      "inner_content": {
+        "overview": "Gen-3 Alpha delivers high-fidelity cinematic video generation with detailed physical fidelity.",
+        "features": [
+          "Text-to-video and image-to-video",
+          "Director mode camera movements",
+          "Motion brush trajectory control",
+          "Free starter credits"
+        ]
+      }
+    },
+    {
+      "id": "ideogram-ai",
+      "slug": "ideogram-ai",
+      "name": "Ideogram 2.0",
+      "category": "image-generator",
+      "categoryName": "Image Generator",
+      "tag": "image-generator",
+      "pricing": "Freemium",
+      "description": "Leading text-to-image AI model renowned for flawless typography rendering, graphic design posters, and artistic styles.",
+      "url": "https://ideogram.ai/",
+      "domain": "ideogram.ai",
+      "image": "https://www.google.com/s2/favicons?domain=ideogram.ai&sz=128",
+      "icon": "🎨",
+      "rating": 4.9,
+      "votes": 490,
+      "featured": true,
+      "inner_content": {
+        "overview": "Ideogram 2.0 solves the challenge of rendering coherent, stylish typography in AI-generated artwork.",
+        "features": [
+          "Flawless text spelling in images",
+          "Realistic and design illustration styles",
+          "10 free daily credits (40 images)",
+          "Color palette consistency"
+        ]
+      }
+    },
+    {
+      "id": "krea-ai",
+      "slug": "krea-ai",
+      "name": "KREA AI",
+      "category": "image-generator",
+      "categoryName": "Image Generator",
+      "tag": "image-generator",
+      "pricing": "Freemium",
+      "description": "Real-time generative canvas that turns live sketches and shapes into photorealistic imagery with AI video generation and upscaling.",
+      "url": "https://www.krea.ai/",
+      "domain": "krea.ai",
+      "image": "https://www.google.com/s2/favicons?domain=krea.ai&sz=128",
+      "icon": "⚡",
+      "rating": 4.8,
+      "votes": 360,
+      "featured": false,
+      "inner_content": {
+        "overview": "KREA offers zero-latency real-time canvas generation as you draw.",
+        "features": [
+          "Real-time brush drawing",
+          "AI pattern and logo illusion generator",
+          "Ultra-HD image enhancer",
+          "Free daily generations"
+        ]
+      }
+    },
+    {
+      "id": "groq-cloud",
+      "slug": "groq-cloud",
+      "name": "GroqCloud",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "100% Free",
+      "description": "Ultra-fast LPU inference engine running open-source LLMs like Llama 3 and DeepSeek at lightning speeds exceeding 500 tokens/second.",
+      "url": "https://groq.com/",
+      "domain": "groq.com",
+      "image": "https://www.google.com/s2/favicons?domain=groq.com&sz=128",
+      "icon": "⚡",
+      "rating": 4.9,
+      "votes": 540,
+      "featured": true,
+      "inner_content": {
+        "overview": "Groq LPUs deliver the fastest AI token inference speeds on the planet.",
+        "features": [
+          "500+ tokens per second",
+          "Free developer API access",
+          "Llama 3 & DeepSeek models",
+          "Zero cold start latency"
+        ]
+      }
+    },
+    {
+      "id": "together-ai",
+      "slug": "together-ai",
+      "name": "Together AI",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "Leading cloud platform for running, fine-tuning, and scaling open-source AI models with sub-millisecond latency and developer APIs.",
+      "url": "https://www.together.ai/",
+      "domain": "together.ai",
+      "image": "https://www.google.com/s2/favicons?domain=together.ai&sz=128",
+      "icon": "🤝",
+      "rating": 4.8,
+      "votes": 310,
+      "featured": false,
+      "inner_content": {
+        "overview": "Together AI powers frontier AI applications with over 100+ open-source models.",
+        "features": [
+          "$5 free credit on signup",
+          "Open-source model library",
+          "Fast FLUX image generation",
+          "Custom fine-tuning"
+        ]
+      }
+    },
+    {
+      "id": "magnific-ai",
+      "slug": "magnific-ai",
+      "name": "Magnific AI",
+      "category": "image-editing",
+      "categoryName": "Image & Photo Editing",
+      "tag": "image-editing",
+      "pricing": "Free Trial",
+      "description": "Advanced AI image upscaler and hallucination enhancer that adds photorealistic detail, micro-textures, and high resolution to images.",
+      "url": "https://magnific.ai/",
+      "domain": "magnific.ai",
+      "image": "https://www.google.com/s2/favicons?domain=magnific.ai&sz=128",
+      "icon": "🔍",
+      "rating": 4.8,
+      "votes": 380,
+      "featured": false,
+      "inner_content": {
+        "overview": "Magnific AI transforms blurry and low-resolution graphics into 4K/8K hyper-detailed renders.",
+        "features": [
+          "Hallucination detail slider",
+          "Up to 8x resolution scaling",
+          "Skin and texture generation",
+          "Artistic style preservation"
+        ]
+      }
+    },
+    {
+      "id": "freepik-pikaso",
+      "slug": "freepik-pikaso",
+      "name": "Freepik Pikaso",
+      "category": "image-generator",
+      "categoryName": "Image Generator",
+      "tag": "image-generator",
+      "pricing": "Freemium",
+      "description": "Real-time AI drawing canvas by Freepik that turns rough doodles into high-quality digital artwork and illustrations instantaneously.",
+      "url": "https://www.freepik.com/ai/pikaso",
+      "domain": "freepik.com",
+      "image": "https://www.google.com/s2/favicons?domain=freepik.com&sz=128",
+      "icon": "🖌️",
+      "rating": 4.7,
+      "votes": 290,
+      "featured": false,
+      "inner_content": {
+        "overview": "Pikaso lets designers sketch on an interactive canvas and watch AI generate art live.",
+        "features": [
+          "Live drawing canvas",
+          "Camera input feed",
+          "Free daily generations",
+          "Freepik asset library integration"
+        ]
+      }
+    },
+    {
+      "id": "capcut-ai",
+      "slug": "capcut-ai",
+      "name": "CapCut AI",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "100% Free",
+      "description": "All-in-one viral video editor by ByteDance with automatic AI captions, background removal, voice changers, and smart cuts.",
+      "url": "https://www.capcut.com/",
+      "domain": "capcut.com",
+      "image": "https://www.google.com/s2/favicons?domain=capcut.com&sz=128",
+      "icon": "✂️",
+      "rating": 4.9,
+      "votes": 750,
+      "featured": true,
+      "inner_content": {
+        "overview": "CapCut is the gold standard for social media creators on TikTok, Reels, and YouTube Shorts.",
+        "features": [
+          "Auto AI subtitle generation",
+          "One-click background cutout",
+          "Text-to-speech voiceovers",
+          "100% free web and mobile app"
+        ]
+      }
+    },
+    {
+      "id": "descript-ai",
+      "slug": "descript-ai",
+      "name": "Descript",
+      "category": "audio-music",
+      "categoryName": "Audio & Music",
+      "tag": "audio-music",
+      "pricing": "Freemium",
+      "description": "The AI video and podcast editor where you edit audio and video simply by editing the text transcript, featuring voice cloning and filler-word removal.",
+      "url": "https://www.descript.com/",
+      "domain": "descript.com",
+      "image": "https://www.google.com/s2/favicons?domain=descript.com&sz=128",
+      "icon": "🎙️",
+      "rating": 4.8,
+      "votes": 410,
+      "featured": false,
+      "inner_content": {
+        "overview": "Descript makes editing media as simple as editing a Google Doc.",
+        "features": [
+          "Edit video by editing transcript text",
+          "One-click filler word removal ('um', 'uh')",
+          "Studio Sound acoustic cleanup",
+          "Free starter tier"
+        ]
+      }
+    },
+    {
+      "id": "gamma-app",
+      "slug": "gamma-app",
+      "name": "Gamma App",
+      "category": "productivity",
+      "categoryName": "Productivity",
+      "tag": "productivity",
+      "pricing": "Freemium",
+      "description": "Revolutionary AI presentation and document builder that generates interactive slide decks, webpages, and briefings in 30 seconds.",
+      "url": "https://gamma.app/",
+      "domain": "gamma.app",
+      "image": "https://www.google.com/s2/favicons?domain=gamma.app&sz=128",
+      "icon": "📊",
+      "rating": 4.9,
+      "votes": 610,
+      "featured": true,
+      "inner_content": {
+        "overview": "Gamma replaces PowerPoint with interactive, mobile-responsive slides and AI content generation.",
+        "features": [
+          "Prompt-to-slide-deck generation",
+          "Interactive widgets and embeds",
+          "400 free starter credits",
+          "Export to PDF and PPTX"
+        ]
+      }
+    },
+    {
+      "id": "otter-ai",
+      "slug": "otter-ai",
+      "name": "Otter.ai",
+      "category": "productivity",
+      "categoryName": "Productivity",
+      "tag": "productivity",
+      "pricing": "Freemium",
+      "description": "AI meeting assistant that automatically transcribes Zoom, Google Meet, and Teams calls with automated meeting summaries and action items.",
+      "url": "https://otter.ai/",
+      "domain": "otter.ai",
+      "image": "https://www.google.com/s2/favicons?domain=otter.ai&sz=128",
+      "icon": "🦦",
+      "rating": 4.8,
+      "votes": 470,
+      "featured": false,
+      "inner_content": {
+        "overview": "Otter joins your calendar calls to take real-time notes and outline takeaways.",
+        "features": [
+          "Real-time transcription",
+          "300 free monthly minutes",
+          "Automated executive summary",
+          "Action item tracking"
+        ]
+      }
+    },
+    {
+      "id": "synthesia",
+      "slug": "synthesia",
+      "name": "Synthesia",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "Freemium",
+      "description": "Leading enterprise AI video generation platform that turns plain text scripts into professional presenter videos with realistic digital avatars.",
+      "url": "https://www.synthesia.io/",
+      "domain": "synthesia.io",
+      "image": "https://www.google.com/s2/favicons?domain=synthesia.io&sz=128",
+      "icon": "👤",
+      "rating": 4.8,
+      "votes": 380,
+      "featured": false,
+      "inner_content": {
+        "overview": "Synthesia eliminates the need for cameras, studios, and actors for corporate training and marketing videos.",
+        "features": [
+          "140+ diverse AI avatars",
+          "120+ languages and accents",
+          "Screen recorder integration",
+          "Free video generation demo"
+        ]
+      }
+    },
     {
       "id": "deepseek-v3",
       "slug": "deepseek-v3",

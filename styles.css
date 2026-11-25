@@ -6238,6 +6238,20 @@ body.dark-mode .footer-status-pill {
   object-fit: contain;
 }
 
+.alt-letter-fallback {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #18181B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+body.dark-mode .alt-letter-fallback {
+  color: #FFFFFF;
+}
+
 .alt-card-title-wrap {
   flex: 1;
   min-width: 0;

@@ -1,5 +1,6 @@
 /**
- * AIRA Newsletter - Authentic Dataset
+ * AIRA Newsletter - 100% Curated Open-Source & Modern Software Alternatives Dataset
+ * Total Software Collections: 34
  */
 const ALTERNATIVES_DATA = {
   "categories": [
@@ -66,6 +67,276 @@ const ALTERNATIVES_DATA = {
   ],
   "software": [
     {
+      "id": "github",
+      "slug": "github",
+      "name": "GitHub",
+      "domain": "github.com",
+      "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
+      "category": "developer-tools",
+      "categoryName": "Code Hosting & DevOps",
+      "icon": "🐙",
+      "description": "The world's largest code hosting and collaboration platform, owned by Microsoft.",
+      "pricing": "Freemium ($4-$21/mo)",
+      "officialUrl": "https://github.com",
+      "alternatives": [
+        {
+          "id": "gitlab",
+          "name": "GitLab CE",
+          "domain": "gitlab.com",
+          "logo": "https://www.google.com/s2/favicons?domain=gitlab.com&sz=128",
+          "tagline": "Open-source comprehensive DevOps platform",
+          "badge": "Open-Source (MIT)",
+          "badgeType": "free",
+          "description": "Complete self-hosted DevOps platform with Git repository management, CI/CD pipelines, and code review.",
+          "stars": "24.5k",
+          "license": "MIT",
+          "url": "https://gitlab.com",
+          "icon": "🦊",
+          "features": [
+            "Self-hostable",
+            "Integrated CI/CD runners",
+            "Container registry",
+            "Issue tracking"
+          ]
+        },
+        {
+          "id": "gitea",
+          "name": "Gitea / Forgejo",
+          "domain": "gitea.com",
+          "logo": "https://www.google.com/s2/favicons?domain=gitea.com&sz=128",
+          "tagline": "Painless self-hosted Git service written in Go",
+          "badge": "100% Free (MIT)",
+          "badgeType": "free",
+          "description": "Ultra-lightweight self-hosted Git server that runs on Raspberry Pi and minimal servers.",
+          "stars": "43.2k",
+          "license": "MIT",
+          "url": "https://gitea.com",
+          "icon": "☕",
+          "features": [
+            "Ultra-lightweight RAM footprint",
+            "Built-in CI/CD actions",
+            "Docker support",
+            "GitHub-like UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trello-asana",
+      "slug": "trello-asana",
+      "name": "Trello / Asana",
+      "domain": "trello.com",
+      "logo": "https://www.google.com/s2/favicons?domain=trello.com&sz=128",
+      "category": "project-management",
+      "categoryName": "Kanban & Task Management",
+      "icon": "📋",
+      "description": "Visual Kanban board and project management software with per-seat monthly subscription tiers.",
+      "pricing": "Freemium ($5-$17/mo)",
+      "officialUrl": "https://trello.com",
+      "alternatives": [
+        {
+          "id": "focalboard",
+          "name": "Focalboard",
+          "domain": "focalboard.com",
+          "logo": "https://www.google.com/s2/favicons?domain=focalboard.com&sz=128",
+          "tagline": "Open-source multilingual project management alternative to Trello",
+          "badge": "Open-Source (AGPL-3.0)",
+          "badgeType": "free",
+          "description": "Self-hosted project management tool for individuals and teams, built by Mattermost.",
+          "stars": "19.8k",
+          "license": "AGPL-3.0",
+          "url": "https://focalboard.com",
+          "icon": "📌",
+          "features": [
+            "Kanban, table, and calendar views",
+            "Self-hosted Docker",
+            "Multi-user collaboration",
+            "No per-seat fee"
+          ]
+        },
+        {
+          "id": "planka",
+          "name": "Planka",
+          "domain": "planka.app",
+          "logo": "https://www.google.com/s2/favicons?domain=planka.app&sz=128",
+          "tagline": "Elegant, real-time open-source Kanban board",
+          "badge": "100% Free (AGPL)",
+          "badgeType": "free",
+          "description": "Modern real-time Kanban board for workgroups and individuals.",
+          "stars": "7.4k",
+          "license": "AGPL-3.0",
+          "url": "https://planka.app",
+          "icon": "🗂️",
+          "features": [
+            "Real-time board updates",
+            "Custom backgrounds",
+            "Timer & attachments",
+            "Docker compose ready"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "google-forms",
+      "slug": "google-forms",
+      "name": "Google Forms / SurveyMonkey",
+      "domain": "surveymonkey.com",
+      "logo": "https://www.google.com/s2/favicons?domain=surveymonkey.com&sz=128",
+      "category": "analytics-marketing",
+      "categoryName": "Surveys & User Research",
+      "icon": "📊",
+      "description": "Leading survey platforms with strict branding and paywalls on advanced logic.",
+      "pricing": "Paid ($25-$99/mo)",
+      "officialUrl": "https://surveymonkey.com",
+      "alternatives": [
+        {
+          "id": "heyform",
+          "name": "HeyForm",
+          "domain": "heyform.net",
+          "logo": "https://www.google.com/s2/favicons?domain=heyform.net&sz=128",
+          "tagline": "Open-source online form builder",
+          "badge": "Open-Source",
+          "badgeType": "free",
+          "description": "Customizable drag-and-drop form builder with interactive conversational UI.",
+          "stars": "6.2k",
+          "license": "AGPL-3.0",
+          "url": "https://heyform.net",
+          "icon": "📝",
+          "features": [
+            "No-code drag and drop",
+            "Self-hosted Docker",
+            "Custom domains",
+            "Unlimited inputs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hubspot",
+      "slug": "hubspot",
+      "name": "HubSpot",
+      "domain": "hubspot.com",
+      "logo": "https://www.google.com/s2/favicons?domain=hubspot.com&sz=128",
+      "category": "analytics-marketing",
+      "categoryName": "Marketing & Inbound CRM",
+      "icon": "🎯",
+      "description": "Inbound marketing, sales, and service software known for steep pricing jumps at scale.",
+      "pricing": "Paid ($20-$800/mo)",
+      "officialUrl": "https://hubspot.com",
+      "alternatives": [
+        {
+          "id": "erpnext",
+          "name": "ERPNext CRM",
+          "domain": "erpnext.com",
+          "logo": "https://www.google.com/s2/favicons?domain=erpnext.com&sz=128",
+          "tagline": "Open-source comprehensive business suite",
+          "badge": "100% Free & Open-Source",
+          "badgeType": "free",
+          "description": "Full-featured open-source CRM, sales pipeline, and marketing automation.",
+          "stars": "18.1k",
+          "license": "GPL-3.0",
+          "url": "https://erpnext.com",
+          "icon": "🏢",
+          "features": [
+            "Complete CRM & pipeline",
+            "Email campaigns",
+            "Self-hosted",
+            "No license fees"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "posthog-mixpanel",
+      "slug": "posthog-mixpanel",
+      "name": "Mixpanel / Amplitude",
+      "domain": "mixpanel.com",
+      "logo": "https://www.google.com/s2/favicons?domain=mixpanel.com&sz=128",
+      "category": "analytics-marketing",
+      "categoryName": "Product Analytics & Session Replay",
+      "icon": "📈",
+      "description": "Product analytics and user tracking platforms with steep event-volume pricing.",
+      "pricing": "Paid ($20-$800/mo)",
+      "officialUrl": "https://mixpanel.com",
+      "alternatives": [
+        {
+          "id": "posthog",
+          "name": "PostHog",
+          "domain": "posthog.com",
+          "logo": "https://www.google.com/s2/favicons?domain=posthog.com&sz=128",
+          "tagline": "Open-source product analytics suite",
+          "badge": "Open-Source (MIT)",
+          "badgeType": "free",
+          "description": "The open-source all-in-one product suite with analytics, session replay, feature flags, and A/B testing.",
+          "stars": "22.5k",
+          "license": "MIT",
+          "url": "https://posthog.com",
+          "icon": "🦔",
+          "features": [
+            "Product analytics",
+            "Session replays",
+            "Feature flags",
+            "Generous free tier (1M events)"
+          ]
+        },
+        {
+          "id": "umami",
+          "name": "Umami Analytics",
+          "domain": "umami.is",
+          "logo": "https://www.google.com/s2/favicons?domain=umami.is&sz=128",
+          "tagline": "Simple, fast, privacy-focused open-source analytics",
+          "badge": "100% Open-Source (MIT)",
+          "badgeType": "free",
+          "description": "Lightweight, privacy-focused alternative to Google Analytics with no cookie banners required.",
+          "stars": "22.1k",
+          "license": "MIT",
+          "url": "https://umami.is",
+          "icon": "🌱",
+          "features": [
+            "GDPR compliant without cookies",
+            "Self-hosted Docker",
+            "Clean real-time UI",
+            "Lightweight script"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grammarly",
+      "slug": "grammarly",
+      "name": "Grammarly",
+      "domain": "grammarly.com",
+      "logo": "https://www.google.com/s2/favicons?domain=grammarly.com&sz=128",
+      "category": "productivity",
+      "categoryName": "Grammar & Writing Assistants",
+      "icon": "✍️",
+      "description": "AI-powered writing and grammar assistant with paid monthly premium subscriptions.",
+      "pricing": "Freemium ($12-$30/mo)",
+      "officialUrl": "https://grammarly.com",
+      "alternatives": [
+        {
+          "id": "languagetool",
+          "name": "LanguageTool",
+          "domain": "languagetool.org",
+          "logo": "https://www.google.com/s2/favicons?domain=languagetool.org&sz=128",
+          "tagline": "Open-source multilingual grammar, style, and spell checker",
+          "badge": "Open-Source & Free Tier",
+          "badgeType": "free",
+          "description": "Trusted by millions for open-source multilingual grammar checking across 30+ languages.",
+          "stars": "12.4k",
+          "license": "LGPL-2.1",
+          "url": "https://languagetool.org",
+          "icon": "🔤",
+          "features": [
+            "Checks 30+ languages",
+            "Browser extensions",
+            "Self-hostable Java server",
+            "Privacy-first design"
+          ]
+        }
+      ]
+    },
+    {
       "id": "calendly",
       "slug": "calendly",
       "name": "Calendly",
@@ -93,7 +364,9 @@ const ALTERNATIVES_DATA = {
             "Custom branding",
             "No tracking",
             "Stripe payment integration"
-          ]
+          ],
+          "domain": "cal.com",
+          "logo": "https://www.google.com/s2/favicons?domain=cal.com&sz=128"
         },
         {
           "id": "easy-appointments",
@@ -111,9 +384,13 @@ const ALTERNATIVES_DATA = {
             "Multi-provider support",
             "Mobile responsive",
             "Free forever"
-          ]
+          ],
+          "domain": "easyappointments.org",
+          "logo": "https://www.google.com/s2/favicons?domain=easyappointments.org&sz=128"
         }
-      ]
+      ],
+      "domain": "calendly.com",
+      "logo": "https://www.google.com/s2/favicons?domain=calendly.com&sz=128"
     },
     {
       "id": "docusign",
@@ -143,7 +420,9 @@ const ALTERNATIVES_DATA = {
             "Developer API",
             "Legally binding e-signatures",
             "Full audit trail"
-          ]
+          ],
+          "domain": "documenso.com",
+          "logo": "https://www.google.com/s2/favicons?domain=documenso.com&sz=128"
         },
         {
           "id": "signhouse",
@@ -161,9 +440,13 @@ const ALTERNATIVES_DATA = {
             "PDF editing",
             "Mobile signing",
             "Free tier"
-          ]
+          ],
+          "domain": "useizesign.com",
+          "logo": "https://www.google.com/s2/favicons?domain=useizesign.com&sz=128"
         }
-      ]
+      ],
+      "domain": "docusign.com",
+      "logo": "https://www.google.com/s2/favicons?domain=docusign.com&sz=128"
     },
     {
       "id": "typeform",
@@ -192,7 +475,9 @@ const ALTERNATIVES_DATA = {
             "Native webhook & WhatsApp support",
             "Self-host with Docker",
             "Unlimited responses"
-          ]
+          ],
+          "domain": "typebot.io",
+          "logo": "https://www.google.com/s2/favicons?domain=typebot.io&sz=128"
         },
         {
           "id": "formbricks",
@@ -210,7 +495,9 @@ const ALTERNATIVES_DATA = {
             "Privacy-first tracking",
             "Webhook integrations",
             "Self-hostable"
-          ]
+          ],
+          "domain": "formbricks.com",
+          "logo": "https://www.google.com/s2/favicons?domain=formbricks.com&sz=128"
         },
         {
           "id": "tally",
@@ -228,9 +515,13 @@ const ALTERNATIVES_DATA = {
             "Notion-style markdown editor",
             "Custom domains",
             "Zero paywalls on basic logic"
-          ]
+          ],
+          "domain": "tally.so",
+          "logo": "https://www.google.com/s2/favicons?domain=tally.so&sz=128"
         }
-      ]
+      ],
+      "domain": "typeform.com",
+      "logo": "https://www.google.com/s2/favicons?domain=typeform.com&sz=128"
     },
     {
       "id": "salesforce",
@@ -259,7 +550,9 @@ const ALTERNATIVES_DATA = {
             "Self-hostable Docker",
             "Custom object schemas",
             "No per-seat pricing locks"
-          ]
+          ],
+          "domain": "twenty.com",
+          "logo": "https://www.google.com/s2/favicons?domain=twenty.com&sz=128"
         },
         {
           "id": "chatwoot-crm",
@@ -277,9 +570,13 @@ const ALTERNATIVES_DATA = {
             "WhatsApp & Telegram API",
             "Self-hosted",
             "Multi-agent support"
-          ]
+          ],
+          "domain": "chatwoot.com",
+          "logo": "https://www.google.com/s2/favicons?domain=chatwoot.com&sz=128"
         }
-      ]
+      ],
+      "domain": "salesforce.com",
+      "logo": "https://www.google.com/s2/favicons?domain=salesforce.com&sz=128"
     },
     {
       "id": "bitly",
@@ -308,7 +605,9 @@ const ALTERNATIVES_DATA = {
             "Geo-targeted redirection",
             "Dynamic QR codes",
             "Real-time analytics engine"
-          ]
+          ],
+          "domain": "dub.co",
+          "logo": "https://www.google.com/s2/favicons?domain=dub.co&sz=128"
         },
         {
           "id": "kutt-it",
@@ -326,9 +625,13 @@ const ALTERNATIVES_DATA = {
             "REST API",
             "Custom domains",
             "Self-host in 2 minutes"
-          ]
+          ],
+          "domain": "kutt.it",
+          "logo": "https://www.google.com/s2/favicons?domain=kutt.it&sz=128"
         }
-      ]
+      ],
+      "domain": "bitly.com",
+      "logo": "https://www.google.com/s2/favicons?domain=bitly.com&sz=128"
     },
     {
       "id": "shopify",
@@ -357,7 +660,9 @@ const ALTERNATIVES_DATA = {
             "Multi-currency and multi-region",
             "Zero vendor fees",
             "Next.js starter storefronts"
-          ]
+          ],
+          "domain": "medusajs.com",
+          "logo": "https://www.google.com/s2/favicons?domain=medusajs.com&sz=128"
         },
         {
           "id": "saleor-commerce",
@@ -375,9 +680,13 @@ const ALTERNATIVES_DATA = {
             "Multi-warehouse inventory",
             "Global localization",
             "Self-hostable"
-          ]
+          ],
+          "domain": "saleor.io",
+          "logo": "https://www.google.com/s2/favicons?domain=saleor.io&sz=128"
         }
-      ]
+      ],
+      "domain": "shopify.com",
+      "logo": "https://www.google.com/s2/favicons?domain=shopify.com&sz=128"
     },
     {
       "id": "hashicorp-vault",
@@ -406,7 +715,9 @@ const ALTERNATIVES_DATA = {
             "Automatic secret scanning in Git",
             "Kubernetes & Docker integrations",
             "Self-hostable"
-          ]
+          ],
+          "domain": "infisical.com",
+          "logo": "https://www.google.com/s2/favicons?domain=infisical.com&sz=128"
         },
         {
           "id": "bitwarden-secrets",
@@ -424,9 +735,13 @@ const ALTERNATIVES_DATA = {
             "CLI & SDK integrations",
             "Free tier for small teams",
             "Audit logs"
-          ]
+          ],
+          "domain": "bitwarden.com",
+          "logo": "https://www.google.com/s2/favicons?domain=bitwarden.com&sz=128"
         }
-      ]
+      ],
+      "domain": "vaultproject.io",
+      "logo": "https://www.google.com/s2/favicons?domain=vaultproject.io&sz=128"
     },
     {
       "id": "intercom",
@@ -455,7 +770,9 @@ const ALTERNATIVES_DATA = {
             "Omnichannel customer messaging",
             "Mobile apps for agents",
             "No per-agent fees"
-          ]
+          ],
+          "domain": "chatwoot.com",
+          "logo": "https://www.google.com/s2/favicons?domain=chatwoot.com&sz=128"
         },
         {
           "id": "papercups",
@@ -473,9 +790,13 @@ const ALTERNATIVES_DATA = {
             "React widget component",
             "Slack inbox integration",
             "Self-hostable"
-          ]
+          ],
+          "domain": "papercups.io",
+          "logo": "https://www.google.com/s2/favicons?domain=papercups.io&sz=128"
         }
-      ]
+      ],
+      "domain": "intercom.com",
+      "logo": "https://www.google.com/s2/favicons?domain=intercom.com&sz=128"
     },
     {
       "id": "cursor-ide",
@@ -511,7 +832,8 @@ const ALTERNATIVES_DATA = {
             "Rust",
             "Ollama",
             "VS Code Extension"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=continue.dev&sz=128"
         },
         {
           "name": "Aider",
@@ -534,7 +856,8 @@ const ALTERNATIVES_DATA = {
             "Git",
             "Treesitter",
             "OpenAI / Anthropic API"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=aider.chat&sz=128"
         },
         {
           "name": "Void Editor",
@@ -556,7 +879,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Electron",
             "VS Code Core"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=voideditor.com&sz=128"
         },
         {
           "name": "Roo Code (Cline Fork)",
@@ -578,7 +902,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "VS Code Extension",
             "MCP"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=roocode.com&sz=128"
         },
         {
           "name": "Tabby",
@@ -600,7 +925,8 @@ const ALTERNATIVES_DATA = {
             "Rust",
             "CUDA",
             "WebAssembly"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=tabbyml.github.io&sz=128"
         }
       ]
     },
@@ -637,7 +963,8 @@ const ALTERNATIVES_DATA = {
             "FastAPI",
             "Python",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=openwebui.com&sz=128"
         },
         {
           "name": "LibreChat",
@@ -660,7 +987,8 @@ const ALTERNATIVES_DATA = {
             "React",
             "MongoDB",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=librechat.ai&sz=128"
         },
         {
           "name": "Jan.ai",
@@ -682,7 +1010,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "C++",
             "Electron"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=jan.ai&sz=128"
         },
         {
           "name": "Chatbox",
@@ -704,7 +1033,8 @@ const ALTERNATIVES_DATA = {
             "React",
             "Tauri",
             "Rust"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=chatboxai.app&sz=128"
         }
       ]
     },
@@ -740,7 +1070,8 @@ const ALTERNATIVES_DATA = {
             "React",
             "Node.js",
             "MongoDB"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=librechat.ai&sz=128"
         },
         {
           "name": "DeepSeek Chat",
@@ -763,7 +1094,8 @@ const ALTERNATIVES_DATA = {
             "PyTorch",
             "vLLM",
             "GGUF"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128"
         },
         {
           "name": "Lobe Chat",
@@ -785,7 +1117,8 @@ const ALTERNATIVES_DATA = {
             "Next.js",
             "TypeScript",
             "Tailwind CSS"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=lobehub.com&sz=128"
         }
       ]
     },
@@ -822,7 +1155,8 @@ const ALTERNATIVES_DATA = {
             "SearXNG",
             "Ollama",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
         {
           "name": "Khoj",
@@ -844,7 +1178,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "FastAPI",
             "React"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=khoj.dev&sz=128"
         },
         {
           "name": "MindSearch",
@@ -866,7 +1201,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "LangChain",
             "Gradio"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         }
       ]
     },
@@ -903,7 +1239,8 @@ const ALTERNATIVES_DATA = {
             "PyTorch",
             "JavaScript",
             "CUDA"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
         {
           "name": "Fooocus",
@@ -925,7 +1262,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "Gradio",
             "PyTorch"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
         {
           "name": "AUTOMATIC1111 WebUI",
@@ -947,7 +1285,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "Gradio",
             "PyTorch"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
         {
           "name": "InvokeAI",
@@ -969,7 +1308,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Python",
             "React"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=invoke.com&sz=128"
         }
       ]
     },
@@ -1005,7 +1345,8 @@ const ALTERNATIVES_DATA = {
             "Flutter",
             "Rust",
             "SQLite"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=appflowy.io&sz=128"
         },
         {
           "name": "AFFiNE",
@@ -1028,7 +1369,8 @@ const ALTERNATIVES_DATA = {
             "Rust",
             "React",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=affine.pro&sz=128"
         },
         {
           "name": "Anytype",
@@ -1051,7 +1393,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Electron",
             "IPFS / Anysync"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=anytype.io&sz=128"
         },
         {
           "name": "Obsidian",
@@ -1073,7 +1416,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Electron",
             "Markdown"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=obsidian.md&sz=128"
         }
       ]
     },
@@ -1110,7 +1454,8 @@ const ALTERNATIVES_DATA = {
             "Node.js",
             "PostgreSQL",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=nocodb.com&sz=128"
         },
         {
           "name": "Baserow",
@@ -1133,7 +1478,8 @@ const ALTERNATIVES_DATA = {
             "Django",
             "Nuxt.js",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=baserow.io&sz=128"
         },
         {
           "name": "Grist",
@@ -1155,7 +1501,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "TypeScript",
             "SQLite"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=getgrist.com&sz=128"
         }
       ]
     },
@@ -1192,7 +1539,8 @@ const ALTERNATIVES_DATA = {
             "Vue.js",
             "Node.js",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=n8n.io&sz=128"
         },
         {
           "name": "Activepieces",
@@ -1215,7 +1563,8 @@ const ALTERNATIVES_DATA = {
             "Angular",
             "Node.js",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=activepieces.com&sz=128"
         },
         {
           "name": "Windmill",
@@ -1238,7 +1587,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Python",
             "Svelte"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=windmill.dev&sz=128"
         }
       ]
     },
@@ -1274,7 +1624,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Node.js",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=n8n.io&sz=128"
         },
         {
           "name": "Automatisch",
@@ -1296,7 +1647,8 @@ const ALTERNATIVES_DATA = {
             "React",
             "Node.js",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=automatisch.io&sz=128"
         }
       ]
     },
@@ -1333,7 +1685,8 @@ const ALTERNATIVES_DATA = {
             "ClojureScript",
             "SVG",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=penpot.app&sz=128"
         },
         {
           "name": "Lunacy",
@@ -1355,7 +1708,8 @@ const ALTERNATIVES_DATA = {
             "C#",
             ".NET Core",
             "Avalonia"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=icons8.com&sz=128"
         }
       ]
     },
@@ -1391,7 +1745,8 @@ const ALTERNATIVES_DATA = {
             "JavaScript",
             "HTML5 Canvas",
             "WebGL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=photopea.com&sz=128"
         },
         {
           "name": "Polotno Studio",
@@ -1413,7 +1768,8 @@ const ALTERNATIVES_DATA = {
             "React",
             "Konva.js",
             "TypeScript"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=studio.polotno.com&sz=128"
         },
         {
           "name": "GIMP",
@@ -1435,7 +1791,8 @@ const ALTERNATIVES_DATA = {
             "C",
             "GTK",
             "GEGL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=gimp.org&sz=128"
         }
       ]
     },
@@ -1472,7 +1829,8 @@ const ALTERNATIVES_DATA = {
             "React",
             "PostgreSQL",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=mattermost.com&sz=128"
         },
         {
           "name": "Zulip",
@@ -1495,7 +1853,8 @@ const ALTERNATIVES_DATA = {
             "Django",
             "TypeScript",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=zulip.com&sz=128"
         },
         {
           "name": "Element (Matrix)",
@@ -1517,7 +1876,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Matrix Protocol",
             "React"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=element.io&sz=128"
         }
       ]
     },
@@ -1554,7 +1914,8 @@ const ALTERNATIVES_DATA = {
             "Django",
             "TypeScript",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=plane.so&sz=128"
         },
         {
           "name": "Taiga",
@@ -1576,7 +1937,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "Angular",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=taiga.io&sz=128"
         },
         {
           "name": "Leantime",
@@ -1598,7 +1960,8 @@ const ALTERNATIVES_DATA = {
             "PHP",
             "JavaScript",
             "MySQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=leantime.io&sz=128"
         }
       ]
     },
@@ -1634,7 +1997,8 @@ const ALTERNATIVES_DATA = {
             "Vue.js",
             "TypeScript",
             "Nuxt.js"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=hoppscotch.io&sz=128"
         },
         {
           "name": "Bruno",
@@ -1656,7 +2020,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Electron",
             "React"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=usebruno.com&sz=128"
         },
         {
           "name": "Yaak",
@@ -1678,7 +2043,8 @@ const ALTERNATIVES_DATA = {
             "Rust",
             "Tauri",
             "React"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=yaak.app&sz=128"
         }
       ]
     },
@@ -1715,7 +2081,8 @@ const ALTERNATIVES_DATA = {
             "Rust",
             "TypeScript",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=bitwarden.com&sz=128"
         },
         {
           "name": "KeePassXC",
@@ -1737,7 +2104,8 @@ const ALTERNATIVES_DATA = {
             "C++",
             "Qt5",
             "Argon2"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=keepassxc.org&sz=128"
         },
         {
           "name": "Passbolt",
@@ -1759,7 +2127,8 @@ const ALTERNATIVES_DATA = {
             "PHP",
             "OpenPGP",
             "MySQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=passbolt.com&sz=128"
         }
       ]
     },
@@ -1771,7 +2140,7 @@ const ALTERNATIVES_DATA = {
       "categoryName": "Security & Cloud Storage",
       "domain": "google.com/drive",
       "proprietaryUrl": "https://google.com/drive",
-      "logo": "https://www.google.com/s2/favicons?domain=google.com&sz=128",
+      "logo": "https://www.google.com/s2/favicons?domain=google.com/drive&sz=128",
       "tagline": "Cloud file storage, document backup, and Google Workspace integration.",
       "description": "Google Drive scans user files and monetizes user data. Discover self-hosted private cloud storage platforms that turn your own servers or home NAS into private cloud storage.",
       "alternatives": [
@@ -1796,7 +2165,8 @@ const ALTERNATIVES_DATA = {
             "Vue.js",
             "MySQL / PostgreSQL",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=nextcloud.com&sz=128"
         },
         {
           "name": "Syncthing",
@@ -1818,7 +2188,8 @@ const ALTERNATIVES_DATA = {
             "Go",
             "Block Exchange Protocol",
             "Web UI"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=syncthing.net&sz=128"
         },
         {
           "name": "Seafile",
@@ -1841,7 +2212,8 @@ const ALTERNATIVES_DATA = {
             "Python",
             "Django",
             "MySQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=seafile.com&sz=128"
         }
       ]
     },
@@ -1878,7 +2250,8 @@ const ALTERNATIVES_DATA = {
             "Tauri",
             "Next.js",
             "TypeScript"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=cap.so&sz=128"
         },
         {
           "name": "Screenity",
@@ -1900,7 +2273,8 @@ const ALTERNATIVES_DATA = {
             "JavaScript",
             "WebRTC",
             "Browser Extension"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=screenity.io&sz=128"
         },
         {
           "name": "OBS Studio",
@@ -1923,7 +2297,8 @@ const ALTERNATIVES_DATA = {
             "C++",
             "FFmpeg",
             "Qt"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=obsproject.com&sz=128"
         }
       ]
     },
@@ -1935,7 +2310,7 @@ const ALTERNATIVES_DATA = {
       "categoryName": "Analytics & Marketing",
       "domain": "analytics.google.com",
       "proprietaryUrl": "https://analytics.google.com",
-      "logo": "https://www.google.com/s2/favicons?domain=google.com&sz=128",
+      "logo": "https://www.google.com/s2/favicons?domain=analytics.google.com&sz=128",
       "tagline": "Proprietary web and mobile app tracking with complex GA4 reports.",
       "description": "Google Analytics tracks personal user data and requires cookie consent banners under GDPR. Discover lightweight, privacy-focused open-source analytics.",
       "alternatives": [
@@ -1960,7 +2335,8 @@ const ALTERNATIVES_DATA = {
             "Phoenix",
             "ClickHouse",
             "PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=plausible.io&sz=128"
         },
         {
           "name": "Umami",
@@ -1982,7 +2358,8 @@ const ALTERNATIVES_DATA = {
             "Next.js",
             "Prisma",
             "PostgreSQL / MySQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=umami.is&sz=128"
         },
         {
           "name": "PostHog",
@@ -2006,7 +2383,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "ClickHouse",
             "React"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=posthog.com&sz=128"
         }
       ]
     },
@@ -2043,7 +2421,8 @@ const ALTERNATIVES_DATA = {
             "Laravel",
             "Docker",
             "Tailwind CSS"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=coolify.io&sz=128"
         },
         {
           "name": "Dokku",
@@ -2065,7 +2444,8 @@ const ALTERNATIVES_DATA = {
             "Go",
             "Bash",
             "Docker"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=dokku.com&sz=128"
         },
         {
           "name": "CapRover",
@@ -2087,7 +2467,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Node.js",
             "Docker Swarm"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=caprover.com&sz=128"
         }
       ]
     },
@@ -2123,7 +2504,8 @@ const ALTERNATIVES_DATA = {
             "Go",
             "SQLite",
             "Svelte"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=pocketbase.io&sz=128"
         },
         {
           "name": "Appwrite",
@@ -2146,7 +2528,8 @@ const ALTERNATIVES_DATA = {
             "TypeScript",
             "Redis",
             "MariaDB / PostgreSQL"
-          ]
+          ],
+          "logo": "https://www.google.com/s2/favicons?domain=appwrite.io&sz=128"
         }
       ]
     }

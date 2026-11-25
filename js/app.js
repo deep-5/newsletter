@@ -1308,7 +1308,7 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
   }
 
   function getToolLogoUrl(tool) {
-    if (!tool) return 'assets/logo.png';
+    if (!tool) return '';
     if (tool.image) {
       return tool.image;
     }
@@ -4116,15 +4116,26 @@ function renderHomePage() {
 
       const renderedAltCards = pagedSoftware.map(item => {
         const altCount = item.alternatives ? item.alternatives.length : 0;
-        const cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
-        const logoUrl = item.logo || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+        let cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, '').trim();
+        if (!cleanDomain && item.proprietaryUrl) {
+          try {
+            cleanDomain = new URL(item.proprietaryUrl.startsWith('http') ? item.proprietaryUrl : 'https://' + item.proprietaryUrl).hostname.replace(/^www\./, '');
+          } catch(e) {}
+        }
+        const logoUrl = item.logo || (cleanDomain ? `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128` : '');
+        const duckLogo = cleanDomain ? `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico` : '';
+        const initial = (item.name || 'S').trim().charAt(0).toUpperCase();
         const topAltNames = (item.alternatives || []).slice(0, 3).map(a => a.name).join(', ');
 
         return `
           <a href="#/alternatives/${item.slug}" class="alt-software-card">
             <div class="alt-card-header">
               <div class="alt-logo-box">
-                <img loading="lazy" decoding="async" src="${logoUrl}" alt="${item.name}" class="alt-logo-img" loading="lazy" onerror="this.src='assets/logo.svg'" />
+                ${logoUrl ? `
+                  <img loading="lazy" decoding="async" src="${logoUrl}" alt="${escapeHtml(item.name)}" class="alt-logo-img" onerror="if(!this.dataset.triedDuck && '${duckLogo}'){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span class=\\'alt-letter-fallback\\'>${initial}</span>'; }" />
+                ` : `
+                  <span class="alt-letter-fallback">${initial}</span>
+                `}
               </div>
               <div class="alt-card-title-wrap">
                 <span class="alt-cat-badge">${item.categoryName || 'Software'}</span>
@@ -4259,8 +4270,15 @@ function renderHomePage() {
       return;
     }
 
-    const cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
-    const logoUrl = item.logo || `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`;
+    let cleanDomain = (item.domain || '').replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, '').trim();
+    if (!cleanDomain && item.proprietaryUrl) {
+      try {
+        cleanDomain = new URL(item.proprietaryUrl.startsWith('http') ? item.proprietaryUrl : 'https://' + item.proprietaryUrl).hostname.replace(/^www\./, '');
+      } catch(e) {}
+    }
+    const logoUrl = item.logo || (cleanDomain ? `https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128` : '');
+    const duckLogo = cleanDomain ? `https://icons.duckduckgo.com/ip3/${cleanDomain}.ico` : '';
+    const initial = (item.name || 'S').trim().charAt(0).toUpperCase();
     const alternatives = item.alternatives || [];
     const relatedSoftware = allSoftware.filter(s => s.slug !== item.slug && s.category === item.category).slice(0, 3);
 
@@ -4274,7 +4292,7 @@ function renderHomePage() {
             <span class="bc-sep">/</span>
             <a href="#/alternatives">Alternatives</a>
             <span class="bc-sep">/</span>
-            <span class="bc-curr">${item.name}</span>
+            <span class="bc-curr">${escapeHtml(item.name)}</span>
           </nav>
 
           <!-- Top Software Overview Hero Card -->
@@ -4282,7 +4300,11 @@ function renderHomePage() {
             <div class="alt-detail-hero-content">
               <div class="alt-detail-hero-top">
                 <div class="alt-detail-logo-box">
-                  <img loading="lazy" decoding="async" src="${logoUrl}" alt="${item.name}" class="alt-detail-logo-img" onerror="this.src='assets/logo.svg'" />
+                  ${logoUrl ? `
+                    <img loading="lazy" decoding="async" src="${logoUrl}" alt="${escapeHtml(item.name)}" class="alt-detail-logo-img" onerror="if(!this.dataset.triedDuck && '${duckLogo}'){ this.dataset.triedDuck='true'; this.src='${duckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size: 2rem; font-weight: 800; color: #4F46E5;\\'>${initial}</span>'; }" />
+                  ` : `
+                    <span style="font-size: 2rem; font-weight: 800; color: #4F46E5;">${initial}</span>
+                  `}
                 </div>
                 <div class="alt-detail-title-col">
                   <div class="alt-detail-badges">
@@ -4320,8 +4342,15 @@ function renderHomePage() {
 
             <div class="alt-ranked-list">
               ${alternatives.map((alt, idx) => {
-                const altCleanDomain = (alt.domain || '').replace(/^https?:\/\//, '').split('/')[0].trim();
-                const altLogo = alt.logo || `https://www.google.com/s2/favicons?domain=${altCleanDomain}&sz=128`;
+                let altCleanDomain = (alt.domain || '').replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, '').trim();
+                if (!altCleanDomain && alt.website) {
+                  try {
+                    altCleanDomain = new URL(alt.website.startsWith('http') ? alt.website : 'https://' + alt.website).hostname.replace(/^www\./, '');
+                  } catch(e) {}
+                }
+                const altLogo = alt.logo || (altCleanDomain ? `https://www.google.com/s2/favicons?domain=${altCleanDomain}&sz=128` : '');
+                const altDuckLogo = altCleanDomain ? `https://icons.duckduckgo.com/ip3/${altCleanDomain}.ico` : '';
+                const altInitial = (alt.name || 'A').trim().charAt(0).toUpperCase();
                 
                 return `
                   <div class="alt-ranked-item" id="${alt.slug}">
@@ -4330,7 +4359,11 @@ function renderHomePage() {
                       <div class="alt-item-left">
                         <span class="alt-item-rank">#${idx + 1}</span>
                         <div class="alt-item-logo-box">
-                          <img loading="lazy" decoding="async" src="${altLogo}" alt="${alt.name}" class="alt-item-logo-img" onerror="this.src='assets/logo.svg'" />
+                          ${altLogo ? `
+                            <img loading="lazy" decoding="async" src="${altLogo}" alt="${escapeHtml(alt.name)}" class="alt-item-logo-img" onerror="if(!this.dataset.triedDuck && '${altDuckLogo}'){ this.dataset.triedDuck='true'; this.src='${altDuckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size: 1.1rem; font-weight: 800; color: #0F172A;\\'>${altInitial}</span>'; }" />
+                          ` : `
+                            <span style="font-size: 1.1rem; font-weight: 800; color: #0F172A;">${altInitial}</span>
+                          `}
                         </div>
                         <div>
                           <h3 class="alt-item-name">${alt.name}</h3>
@@ -4396,15 +4429,32 @@ function renderHomePage() {
             <div class="alt-related-section">
               <h3 class="alt-related-title">More Open Source Alternatives in ${item.categoryName || 'This Category'}</h3>
               <div class="alt-related-grid">
-                ${relatedSoftware.map(rel => `
-                  <a href="#/alternatives/${rel.slug}" class="alt-related-card">
-                    <img loading="lazy" decoding="async" src="${rel.logo}" alt="${rel.name}" class="alt-related-logo" onerror="this.src='assets/logo.svg'" />
-                    <div>
-                      <h4>${rel.name}</h4>
-                      <p>${rel.alternatives ? rel.alternatives.length : 0} open source alternatives</p>
-                    </div>
-                  </a>
-                `).join('')}
+                ${relatedSoftware.map(rel => {
+                  let relCleanDomain = (rel.domain || '').replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, '').trim();
+                  if (!relCleanDomain && rel.proprietaryUrl) {
+                    try {
+                      relCleanDomain = new URL(rel.proprietaryUrl.startsWith('http') ? rel.proprietaryUrl : 'https://' + rel.proprietaryUrl).hostname.replace(/^www\./, '');
+                    } catch(e) {}
+                  }
+                  const relLogo = rel.logo || (relCleanDomain ? `https://www.google.com/s2/favicons?domain=${relCleanDomain}&sz=128` : '');
+                  const relDuckLogo = relCleanDomain ? `https://icons.duckduckgo.com/ip3/${relCleanDomain}.ico` : '';
+                  const relInitial = (rel.name || 'S').trim().charAt(0).toUpperCase();
+                  return `
+                    <a href="#/alternatives/${rel.slug}" class="alt-related-card">
+                      <div style="width: 36px; height: 36px; min-width: 36px; border-radius: 8px; overflow: hidden; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; padding: 4px;">
+                        ${relLogo ? `
+                          <img loading="lazy" decoding="async" src="${relLogo}" alt="${escapeHtml(rel.name)}" class="alt-related-logo" style="width: 100%; height: 100%; object-fit: contain;" onerror="if(!this.dataset.triedDuck && '${relDuckLogo}'){ this.dataset.triedDuck='true'; this.src='${relDuckLogo}'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-weight: 800; font-size: 0.9rem; color: #4F46E5;\\'>${relInitial}</span>'; }" />
+                        ` : `
+                          <span style="font-weight: 800; font-size: 0.9rem; color: #4F46E5;">${relInitial}</span>
+                        `}
+                      </div>
+                      <div>
+                        <h4>${escapeHtml(rel.name)}</h4>
+                        <p>${rel.alternatives ? rel.alternatives.length : 0} open source alternatives</p>
+                      </div>
+                    </a>
+                  `;
+                }).join('')}
               </div>
             </div>
           ` : ''}
@@ -9348,7 +9398,7 @@ function renderHomePage() {
                   <th style="width: 22%;">Comparison Feature</th>
                   <th style="width: 39%;">
                     <div class="compare-col-header-wrap">
-                      <img loading="lazy" decoding="async" src="${getLogo(tool1)}" alt="${tool1?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                      <img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${getLogo(tool1)}" alt="${escapeHtml(tool1?.name)}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='https://icons.duckduckgo.com/ip3/' + getToolDomain(tool1) + '.ico'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.5rem;\\'>' + (tool1?.icon || '⚡') + '</span>'; }" />
                       <div>
                         <div style="font-size: 1.15rem; font-weight: 900; color: #18181B;">${tool1?.name || 'Tool 1'}</div>
                         <span class="tool-badge-pricing pricing-${(tool1?.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool1?.pricing || 'Free'}</span>
@@ -9357,7 +9407,7 @@ function renderHomePage() {
                   </th>
                   <th style="width: 39%;">
                     <div class="compare-col-header-wrap">
-                      <img loading="lazy" decoding="async" src="${getLogo(tool2)}" alt="${tool2?.name}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+                      <img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${getLogo(tool2)}" alt="${escapeHtml(tool2?.name)}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;" onerror="if(!this.dataset.triedDuck){ this.dataset.triedDuck='true'; this.src='https://icons.duckduckgo.com/ip3/' + getToolDomain(tool2) + '.ico'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.5rem;\\'>' + (tool2?.icon || '⚡') + '</span>'; }" />
                       <div>
                         <div style="font-size: 1.15rem; font-weight: 900; color: #18181B;">${tool2?.name || 'Tool 2'}</div>
                         <span class="tool-badge-pricing pricing-${(tool2?.pricing || 'free').toLowerCase().replace(/\s+/g, '-')}">${tool2?.pricing || 'Free'}</span>
@@ -10237,7 +10287,7 @@ function renderHomePage() {
           </div>
 
           <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-            <img loading="lazy" decoding="async" src="${deal.image || 'assets/logo.svg'}" alt="${deal.toolName}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="this.src='assets/logo.svg'" />
+            <img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${deal.image || ('https://www.google.com/s2/favicons?domain=' + (deal.domain || '') + '&sz=128')}" alt="${escapeHtml(deal.toolName)}" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover;" onerror="if(!this.dataset.triedDuck && '${deal.domain}'){ this.dataset.triedDuck='true'; this.src='https://icons.duckduckgo.com/ip3/${deal.domain}.ico'; } else { this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.3rem;\\'>⚡</span>'; }" />
             <div>
               <h4 style="font-size: 1.15rem; font-weight: 800; color: #18181B; margin-bottom: 2px;">${deal.toolName}</h4>
               <span style="font-size: 0.8rem; color: #71717A;">${deal.domain || 'Official Partner'}</span>
@@ -11059,7 +11109,7 @@ function renderHomePage() {
       <div class="tool-card submit-mockup-tool-card" style="margin: 0; box-shadow: none; border-color: #CBD5E1;">
         <div class="tool-card-top" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
           <div class="tool-card-avatar-wrap" style="width: 44px; height: 44px; border-radius: 10px; overflow: hidden; background: #0F172A; display: flex; align-items: center; justify-content: center;">
-            <img src="${logoSrc}" alt="${name}" class="tool-card-avatar" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='assets/logo.png';" />
+            <img src="${logoSrc}" alt="${name}" class="tool-card-avatar" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\'font-size:1.5rem;\'>⚡</span>';" />
           </div>
           <div class="tool-card-meta" style="display: flex; gap: 6px; align-items: center;">
             <span class="tool-tag" style="background: #EEF2FF; color: #1C46F5; font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;">${cat.replace(/-/g, ' ').toUpperCase()}</span>
