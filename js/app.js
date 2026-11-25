@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Auto-sync dataset version & flush stale cached base article overrides
-  const CURRENT_DATA_VERSION = '144.0';
+  const CURRENT_DATA_VERSION = '145.0';
   try {
     const savedDataVer = localStorage.getItem('aira_data_version');
     if (savedDataVer !== CURRENT_DATA_VERSION) {
@@ -1598,326 +1598,9 @@ Access the full interactive database of 3,000+ Categorized ChatGPT Prompts + 50 
 
 
 function renderHomePage() {
-    appContainer.innerHTML = `
-      <!-- OpenAlternative Exact Modern Hero Section -->
-      <section class="hero-openalt-section">
-        <div class="hero-openalt-container">
-          
-          <!-- 0. Top Ad / Featured Spotlight Bar (Dynamic from Admin Settings) -->
-          ${(() => {
-            const sp = (typeof getSponsorSettings === 'function') ? getSponsorSettings() : null;
-            const topBar = sp ? sp.topBar : { active: true, badge: 'Ad', icon: '⚡', headline: '<strong>AIRA Sponsor</strong> — Daily frontier AI breakthroughs, 96+ verified tools, and expert workflows.', link: '#/advertise', ctaText: 'Learn More' };
-            if (!topBar || topBar.active === false) return '';
-            return `
-              <div class="hero-openalt-top-ad">
-                <div class="hero-top-ad-left">
-                  <span class="hero-ad-badge-pill">${escapeHtml(topBar.badge || 'Ad')}</span>
-                  <span class="hero-ad-brand-icon">${topBar.icon || '⚡'}</span>
-                  <span class="hero-ad-text-content">${topBar.headline || '<strong>AIRA Sponsor</strong> — Daily frontier AI breakthroughs, 96+ verified tools, and expert workflows.'}</span>
-                </div>
-                <a href="${topBar.link || '#/advertise'}" target="${topBar.link && topBar.link.startsWith('http') ? '_blank' : '_self'}" class="hero-ad-action-btn">${escapeHtml(topBar.ctaText || 'Learn More')}</a>
-              </div>
-            `;
-          })()}
-
-          <!-- 1. Top Mini Pill Badge -->
-          <div class="hero-openalt-mini-badge">
-            <span>⚡ AIRA Daily Intelligence</span>
-          </div>
-
-          <!-- 2. Main Title (Exact Clean Typography) -->
-          <h1 class="hero-openalt-heading">
-            The One &amp; Only AI Newsletter<br />
-            &amp; Curated Tools Hub
-          </h1>
-
-          <!-- 3. Subtitle -->
-          <p class="hero-openalt-subheading">
-            Save time, cut costs, and 10x your productivity with expertly curated AI tools, daily breakthroughs, and open-source software alternatives.
-          </p>
-
-          <!-- 4. Single Clean Search Box (Replacing Subscribe as requested) -->
-          <form class="hero-openalt-search-box" id="hero-openalt-search-form" onsubmit="event.preventDefault();">
-            <svg class="hero-search-icon-left" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" class="hero-openalt-search-input" id="hero-search-input" placeholder="Search" value="${state.homeSearchQuery || ''}" autocomplete="off" />
-            <button type="button" id="hero-search-clear" class="hero-search-clear-btn" style="display: ${state.homeSearchQuery ? 'flex' : 'none'};" title="Clear search">✕</button>
-            <button type="submit" class="hero-openalt-search-btn" id="hero-search-btn">Search</button>
-          </form>
-
-          <!-- 5. Social Proof (5 Overlapping Avatars + 100+ members) -->
-          <div class="hero-openalt-social-proof-clean">
-            <div class="hero-avatar-stack-clean">
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&auto=format&fit=crop&q=80" alt="Subscriber" class="hero-avatar-mini" />
-            </div>
-            <span class="hero-proof-text-clean">Trusted by 100+ members</span>
-          </div>
-
-          <!-- Partners & Sponsors Grid Strip (Bottom of Hero) -->
-          ${getSponsorsStripHTML()}
-
-        </div>
-      </section>
-
-<!-- Articles Feed Section -->
-      <section class="feed-section" id="main-articles-feed">
-        <div class="container" id="feed-container-inner"></div>
-      </section>
-    `;
-
-    function updateArticlesGrid() {
-      const feedInner = document.getElementById('feed-container-inner');
-      if (!feedInner) return;
-
-      const ARTICLES_PER_PAGE = 9;
-      const query = (state.homeSearchQuery || '').trim().toLowerCase();
-            let filteredArticles = state.articles;
-      if (state.selectedTag && state.selectedTag !== 'All') {
-        if (state.selectedTag.toLowerCase() === 'news') {
-          filteredArticles = state.articles.filter(a => !a.is_prompt && (!a.category || a.category !== 'prompt'));
-        } else {
-          filteredArticles = state.articles.filter(a => {
-            const tagVal = ((a && a.tag) || '').toLowerCase();
-            const catVal = ((a && a.category) || '').toLowerCase();
-            const target = state.selectedTag.toLowerCase();
-            return tagVal === target || catVal === target;
-          });
-        }
-      }
-if (query !== '') {
-        filteredArticles = filteredArticles.filter(a => {
-          const titleMatch = (a.title || '').toLowerCase().includes(query);
-          const subtitleMatch = (a.subtitle || '').toLowerCase().includes(query);
-          const tagMatch = (a.tag || '').toLowerCase().includes(query);
-          return titleMatch || subtitleMatch || tagMatch;
-        });
-      }
-
-      const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE) || 1;
-      if (!state.homeCurrentPage || state.homeCurrentPage > totalPages) {
-        state.homeCurrentPage = 1;
-      }
-
-      const startIndex = (state.homeCurrentPage - 1) * ARTICLES_PER_PAGE;
-      const visibleArticles = filteredArticles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
-      const isSearching = query.length > 0;
-
-      const parseViews = (v) => {
-        if (typeof v === 'number') return v;
-        if (!v) return 0;
-        const str = String(v).toLowerCase().trim();
-        if (str.endsWith('k')) return parseFloat(str) * 1000;
-        if (str.endsWith('m')) return parseFloat(str) * 1000000;
-        return parseFloat(str) || 0;
-      };
-
-      // Select top popular posts (Top 7)
-      const popularArticles = [...state.articles]
-        .sort((a, b) => parseViews(b.views) - parseViews(a.views))
-        .slice(0, 7);
-
-      feedInner.innerHTML = `
-        <!-- Articles Header & Filter Pills (Right Aligned) -->
-        <div class="feed-header">
-          <h2 class="feed-title">${isSearching ? `Search Results (${filteredArticles.length})` : `Articles (Page ${state.homeCurrentPage} of ${totalPages})`}</h2>
-          <div class="filter-pills">
-            <button class="filter-pill ${state.selectedTag === 'All' ? 'active' : ''}" data-tag="All">All (${state.articles.length})</button>
-            <button class="filter-pill ${state.selectedTag === 'News' ? 'active' : ''}" data-tag="News">News (${state.articles.length})</button>
-          </div>
-        </div>
-
-        ${isSearching ? `
-          <div class="search-results-indicator">
-            <span>Found <strong>${filteredArticles.length}</strong> ${filteredArticles.length === 1 ? 'article' : 'articles'} matching "<em>${state.homeSearchQuery}</em>"</span>
-            <button type="button" class="btn-clear-search-link" id="btn-clear-search-query">Clear search</button>
-          </div>
-        ` : ''}
-
-        ${visibleArticles.length === 0 ? `
-          <div class="no-articles-found">
-            <p style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">No articles found</p>
-            <p style="color: var(--color-text-secondary); font-size: 0.95rem; margin-bottom: 16px;">We couldn't find any articles matching "${state.homeSearchQuery}".</p>
-            <button type="button" class="btn-clear-search-link" id="btn-empty-clear-search" style="font-size: 1rem; font-weight: 600;">← View All Articles</button>
-          </div>
-        ` : `
-          <!-- Full-Width Articles Grid (Taking All Available Space across container) -->
-          <div class="articles-grid-full" id="main-articles-grid">
-            ${visibleArticles.map((article, idx) => `
-              <a href="#/p/${article.slug}" class="article-card openalt-box-card">
-                <!-- 1. Top Aspect Ratio Preview Image with Badges -->
-                <div class="card-image-wrap">
-                  <img loading="lazy" decoding="async" src="${article.image_url || 'assets/logo.jpg'}" alt="${article.title || 'AIRA Article'}" class="card-thumbnail" loading="lazy" />
-                  <div class="card-badges-overlay">
-                    <span class="card-tag-badge openalt-badge-category">${article.tag || 'Frontier AI'}</span>
-                  </div>
-                </div>
-
-                <!-- 2. Card Body Box (OpenAlternative Style) -->
-                <div class="card-body">
-                  <!-- Meta Row: Date & Reading Time -->
-                  <div class="openalt-card-meta-top">
-                    <span class="openalt-date-badge">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                      ${article.date || 'Sep 2026'}
-                    </span>
-                    <span class="openalt-dot">•</span>
-                    <span class="openalt-readtime-badge">${article.reading_time || article.read_time || '4 min read'}</span>
-                  </div>
-
-                  <!-- Title -->
-                  <h3 class="card-title openalt-title">${article.title || ''}</h3>
-
-                  <!-- Description / Subtitle -->
-                  <p class="card-subtitle openalt-desc">${article.subtitle || ''}</p>
-
-                  <!-- Footer Row: Author + Audio + Action Button -->
-                  <div class="card-footer openalt-footer">
-                    <div class="openalt-footer-left">
-                      <img loading="lazy" decoding="async" src="${article.author_avatar || 'assets/logo.svg'}" alt="${article.author || 'AIRA'}" class="card-author-avatar" onerror="this.src='assets/logo.svg'" />
-                      <span class="card-author-name">${article.author || 'AIRA'}</span>
-                    </div>
-                    <div class="openalt-footer-right">
-                      <button type="button" class="card-listen-btn openalt-listen-btn" data-slug="${article.slug}" title="Listen to AI Voice Narration" onclick="event.preventDefault(); event.stopPropagation(); window.airaAudioEngine && window.airaAudioEngine.togglePlay('${article.slug}');">
-                        <span class="listen-btn-icon">🎧</span>
-                        <span class="listen-btn-text">Listen</span>
-                      </button>
-                      <span class="openalt-read-btn">
-                        <span>Read</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            `).join('')}
-          </div>
-
-          <!-- Centered Numbered Pagination Bar Across Full Container Width -->
-          <div class="home-pagination-wrapper">
-            ${renderPaginationHTML(state.homeCurrentPage, totalPages, 'home')}
-          </div>
-        `}
-      `;
-
-      // Bind filter pills
-      if (window.airaAudioEngine) window.airaAudioEngine.syncCardButtons();
-      feedInner.querySelectorAll('.filter-pill').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          state.selectedTag = e.currentTarget.getAttribute('data-tag');
-          state.homeCurrentPage = 1;
-          updateArticlesGrid();
-        });
-      });
-
-      // Bind Home Pagination Buttons
-      feedInner.querySelectorAll('.aira-pagination-bar[data-type="home"] button[data-page]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          if (btn.disabled) return;
-          const targetPage = parseInt(btn.getAttribute('data-page'), 10);
-          if (targetPage && targetPage >= 1 && targetPage <= totalPages && targetPage !== state.homeCurrentPage) {
-            state.homeCurrentPage = targetPage;
-            updateArticlesGrid();
-            const feedSection = document.getElementById('main-articles-feed');
-            if (feedSection) {
-              feedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }
-        });
-      });
-
-      // Bind Feed search input
-      const feedSearchInput = document.getElementById('feed-search-input');
-      const feedSearchClear = document.getElementById('feed-search-clear');
-      if (feedSearchInput) {
-        feedSearchInput.addEventListener('input', (e) => {
-          state.homeSearchQuery = e.target.value;
-          if (feedSearchClear) feedSearchClear.style.display = e.target.value ? 'block' : 'none';
-          state.homeCurrentPage = 1;
-          updateArticlesGrid();
-        });
-      }
-      if (feedSearchClear) {
-        feedSearchClear.addEventListener('click', () => {
-          state.homeSearchQuery = '';
-          if (feedSearchInput) feedSearchInput.value = '';
-          feedSearchClear.style.display = 'none';
-          state.homeCurrentPage = 1;
-          updateArticlesGrid();
-        });
-      }
-
-      // Bind clear search buttons
-      const clearQueryBtn = document.getElementById('btn-clear-search-query');
-      if (clearQueryBtn) {
-        clearQueryBtn.addEventListener('click', () => {
-          state.homeSearchQuery = '';
-          if (feedSearchInput) feedSearchInput.value = '';
-          state.homeCurrentPage = 1;
-          updateArticlesGrid();
-        });
-      }
-      const emptyClearBtn = document.getElementById('btn-empty-clear-search');
-      if (emptyClearBtn) {
-        emptyClearBtn.addEventListener('click', () => {
-          state.homeSearchQuery = '';
-          if (feedSearchInput) feedSearchInput.value = '';
-          state.homeCurrentPage = 1;
-          updateArticlesGrid();
-        });
-      }
-    }
-
-    // Initial render of grid
-    updateArticlesGrid();
-
-    // Bind Hero Search Form & Input
-    const heroSearchInput = document.getElementById('hero-search-input');
-    const heroSearchClear = document.getElementById('hero-search-clear');
-    const heroSearchForm = document.getElementById('hero-openalt-search-form');
-
-    if (heroSearchInput) {
-      heroSearchInput.addEventListener('input', (e) => {
-        state.homeSearchQuery = e.target.value;
-        if (heroSearchClear) {
-          heroSearchClear.style.display = e.target.value ? 'flex' : 'none';
-        }
-        const feedSearchInput = document.getElementById('feed-search-input');
-        if (feedSearchInput) feedSearchInput.value = e.target.value;
-        state.homeCurrentPage = 1;
-        updateArticlesGrid();
-      });
-    }
-
-    if (heroSearchClear) {
-      heroSearchClear.addEventListener('click', () => {
-        state.homeSearchQuery = '';
-        if (heroSearchInput) {
-          heroSearchInput.value = '';
-          heroSearchInput.focus();
-        }
-        heroSearchClear.style.display = 'none';
-        const feedSearchInput = document.getElementById('feed-search-input');
-        if (feedSearchInput) feedSearchInput.value = '';
-        state.homeCurrentPage = 1;
-        updateArticlesGrid();
-      });
-    }
-
-    if (heroSearchForm) {
-      heroSearchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const feedSection = document.getElementById('main-articles-feed');
-        if (feedSection) {
-          feedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
+    state.toolCategoryFilter = 'all';
+    state.toolPricingFilter = 'all';
+    renderTagsPage();
   }
 
   // =========================================================================
@@ -2861,9 +2544,9 @@ if (query !== '') {
           </div>
 
           <!-- Hero Heading & Subheading -->
-          <h1 class="hero-openalt-heading">AI Tools &amp; Categories</h1>
+          <h1 class="hero-openalt-heading">The One &amp; Only Curated AI Tools Hub</h1>
           <p class="hero-openalt-subheading">
-            Discover <strong>${allTools.length}+</strong> curated, verified AI tools across productivity, developer utilities, autonomous agents, and marketing workflows.
+            Save time, cut costs, and 10x your productivity with expertly curated AI tools, daily workflows, and open-source software alternatives.
           </p>
 
           <!-- Search Form (Exact Match to Homepage Hero) -->
@@ -9983,19 +9666,16 @@ if (query !== '') {
             <button type="button" class="bookmark-tab-btn ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
               <span>⚡ Saved AI Tools (${savedToolsList.length})</span>
             </button>
-            <button type="button" class="bookmark-tab-btn ${currentTab === 'jobs' ? 'active' : ''}" data-tab="jobs">
-              <span>💼 Saved Jobs (${savedJobsList.length})</span>
-            </button>
-            <button type="button" class="bookmark-tab-btn ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
-              <span>📰 Saved Articles (${savedArticlesList.length})</span>
+            <button type="button" class="bookmark-tab-btn ${currentTab === 'alternatives' ? 'active' : ''}" data-tab="alternatives">
+              <span>🔄 Software Alternatives (${savedAltsList.length})</span>
             </button>
           </div>
 
           <!-- Content Area -->
           <div id="bookmarks-tab-content" style="margin-bottom: 60px;">
             ${currentTab === 'tools' ? renderSavedToolsHTML(savedToolsList) : ''}
-            ${currentTab === 'jobs' ? renderSavedJobsHTML(savedJobsList) : ''}
-            ${currentTab === 'articles' ? renderSavedArticlesHTML(savedArticlesList) : ''}
+            
+            
             ${currentTab === 'alternatives' ? renderSavedAltsHTML(savedAltsList) : ''}
           </div>
         </div>
@@ -10089,7 +9769,7 @@ if (query !== '') {
 
   function renderProfilePage() {
     const profile = getUserProfile();
-    const currentTab = state.profileActiveTab || 'articles';
+    const currentTab = state.profileActiveTab || 'tools';
 
     const savedArticlesList = (state.savedArticles || []);
     const savedToolsList = (state.savedTools || []);
@@ -10106,36 +9786,7 @@ if (query !== '') {
 
     // Renders list items using original live profile design
     function renderTabContentHTML() {
-      if (currentTab === 'articles') {
-        if (bookmarkedArticles.length === 0) {
-          return `
-            <div style="text-align: center; padding: 48px 20px; color: #71717A;">
-              <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">📰</span>
-              <p style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px;">No saved articles yet</p>
-              <p style="font-size: 0.9rem; margin-bottom: 18px;">Explore daily AI editions and save your favorite stories to read anytime.</p>
-              <a href="#/home" class="btn-subscribe-nav" style="display: inline-block; padding: 8px 18px; text-decoration: none;">Browse Daily Editions →</a>
-            </div>
-          `;
-        }
-        return `
-          <div class="profile-items-list">
-            ${bookmarkedArticles.map(art => `
-              <div class="profile-item-row" style="display: flex; align-items: center; justify-content: space-between;">
-                <a href="#/p/${art.slug}" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; gap: 12px; min-width: 0;">
-                  <span class="profile-item-icon">📰</span>
-                  <div class="profile-item-info">
-                    <div class="profile-item-title">${escapeHtml(art.title)}</div>
-                    <div class="profile-item-meta">${escapeHtml(art.tag || 'Frontier AI')} • ${escapeHtml(art.reading_time || art.read_time || '4 min read')}</div>
-                  </div>
-                </a>
-                <button type="button" class="btn-profile-remove-bookmark" data-type="article" data-id="${art.slug}" title="Remove from saved" style="background: transparent; border: none; cursor: pointer; padding: 6px; color: #1C46F5;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#1C46F5" stroke="#1C46F5" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                </button>
-              </div>
-            `).join('')}
-          </div>
-        `;
-      } else if (currentTab === 'tools') {
+      if (currentTab === 'tools') {
         if (bookmarkedTools.length === 0) {
           return `
             <div style="text-align: center; padding: 48px 20px; color: #71717A;">
@@ -10193,58 +9844,6 @@ if (query !== '') {
             `).join('')}
           </div>
         `;
-      } else if (currentTab === 'my-jobs') {
-        if (myPostedJobs.length === 0) {
-          return `
-            <div style="text-align: center; padding: 48px 20px; color: #71717A;">
-              <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">💼</span>
-              <p style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px;">No jobs posted yet</p>
-              <p style="font-size: 0.9rem; margin-bottom: 18px;">Post your company openings on the AIRA Jobs Board. You can edit and manage them anytime here.</p>
-              <a href="#/post-job" class="btn-subscribe-nav" style="display: inline-block; padding: 8px 18px; text-decoration: none;">➕ Post a Job Opening →</a>
-            </div>
-          `;
-        }
-        return `
-          <div style="padding: 14px 18px; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(0,0,0,0.01);">
-            <span style="font-size: 0.86rem; color: var(--color-text-secondary); font-weight: 600;">You have <strong>${myPostedJobs.length}</strong> active job posting${myPostedJobs.length > 1 ? 's' : ''}</span>
-            <a href="#/post-job" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 700; color: #1C46F5; text-decoration: none; background: rgba(28, 70, 245, 0.08); padding: 6px 14px; border-radius: 6px;">
-              <span>➕ Post New Job</span>
-            </a>
-          </div>
-          <div class="profile-items-list">
-            ${myPostedJobs.map(j => `
-              <div class="profile-item-row" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px;">
-                <div style="flex: 1; min-width: 0;">
-                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
-                    <a href="#/jobs" style="font-weight: 800; font-size: 0.98rem; color: var(--color-text-primary); text-decoration: none;">
-                      ${escapeHtml(j.title || 'Job Opening')}
-                    </a>
-                    <span style="background: rgba(28, 70, 245, 0.08); color: #1C46F5; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">
-                      ${escapeHtml(j.company || 'Company')}
-                    </span>
-                    ${j.badge ? `<span style="background: #D2FF52; color: #111827; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">✓ ${escapeHtml(j.badge)}</span>` : ''}
-                  </div>
-                  <div class="profile-item-meta" style="font-size: 0.8rem; color: #71717A; display: flex; gap: 10px; flex-wrap: wrap;">
-                    <span>📍 ${escapeHtml(j.location || 'Remote')}</span>
-                    ${j.salary ? `<span>💰 ${escapeHtml(j.salary)}</span>` : ''}
-                    ${j.postedAt ? `<span>🕒 ${escapeHtml(j.postedAt)}</span>` : ''}
-                  </div>
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                  <button type="button" class="btn-profile-edit-my-job" data-id="${j.id}" title="Edit Job" style="background: #F4F4F5; border: 1px solid #E4E4E7; border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 700; color: #18181B; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                    <span>Edit</span>
-                  </button>
-                  <button type="button" class="btn-profile-delete-my-job" data-id="${j.id}" title="Delete Job" style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 700; color: #EF4444; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        `;
       }
       return '';
     }
@@ -10280,15 +9879,7 @@ if (query !== '') {
           </div>
 
           <!-- Profile Clean Stats Row -->
-          <div class="profile-stats-row">
-            <div class="profile-stat-box profile-stat-clickable" data-tab="articles" style="cursor: pointer;">
-              <div class="profile-stat-icon-wrap">📰</div>
-              <div>
-                <div class="profile-stat-value">${bookmarkedArticles.length}</div>
-                <div class="profile-stat-label">Saved Articles</div>
-              </div>
-            </div>
-
+          <div class="profile-stats-row" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
             <div class="profile-stat-box profile-stat-clickable" data-tab="tools" style="cursor: pointer;">
               <div class="profile-stat-icon-wrap">⚡</div>
               <div>
@@ -10304,30 +9895,16 @@ if (query !== '') {
                 <div class="profile-stat-label">Saved Prompts</div>
               </div>
             </div>
-
-            <div class="profile-stat-box profile-stat-clickable" data-tab="my-jobs" style="cursor: pointer;">
-              <div class="profile-stat-icon-wrap">💼</div>
-              <div>
-                <div class="profile-stat-value">${myPostedJobs.length}</div>
-                <div class="profile-stat-label">My Posted Jobs</div>
-              </div>
-            </div>
           </div>
 
           <!-- Saved Items Card (Exact Live Design) -->
           <div class="profile-vault-card" style="width: 100%;">
             <div class="profile-segmented-tabs">
-              <button type="button" class="profile-seg-tab ${currentTab === 'articles' ? 'active' : ''}" data-tab="articles">
-                <span>📰 Saved Articles (${bookmarkedArticles.length})</span>
-              </button>
               <button type="button" class="profile-seg-tab ${currentTab === 'tools' ? 'active' : ''}" data-tab="tools">
                 <span>⚡ AI Tools (${bookmarkedTools.length})</span>
               </button>
               <button type="button" class="profile-seg-tab ${currentTab === 'prompts' ? 'active' : ''}" data-tab="prompts">
                 <span>💡 Prompt Vault (${bookmarkedPrompts.length})</span>
-              </button>
-              <button type="button" class="profile-seg-tab ${currentTab === 'my-jobs' ? 'active' : ''}" data-tab="my-jobs">
-                <span>💼 My Posted Jobs (${myPostedJobs.length})</span>
               </button>
             </div>
 
