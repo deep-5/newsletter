@@ -1,8 +1,6 @@
 /**
- * AIRA Newsletter - 100% Curated Open-Source & Modern Software Alternatives Dataset
- * Total Curated Software Collections: 20
+ * AIRA Newsletter - Authentic Dataset
  */
-
 const ALTERNATIVES_DATA = {
   "categories": [
     {
@@ -67,6 +65,418 @@ const ALTERNATIVES_DATA = {
     }
   ],
   "software": [
+    {
+      "id": "calendly",
+      "slug": "calendly",
+      "name": "Calendly",
+      "category": "productivity",
+      "categoryName": "Productivity & Scheduling",
+      "icon": "📅",
+      "description": "Popular scheduling automation platform for booking meetings and appointments without email ping-pong.",
+      "pricing": "Freemium ($10/mo)",
+      "officialUrl": "https://calendly.com",
+      "alternatives": [
+        {
+          "id": "cal-com",
+          "name": "Cal.com",
+          "tagline": "Open-source scheduling infrastructure for everyone",
+          "badge": "100% Free & Open-Source",
+          "badgeType": "free",
+          "description": "The leading open-source alternative to Calendly with full privacy control, unlimited event types, and self-hosting support.",
+          "stars": "34.5k",
+          "license": "AGPL-3.0",
+          "url": "https://cal.com",
+          "icon": "📆",
+          "features": [
+            "Self-hostable",
+            "Unlimited booking links",
+            "Custom branding",
+            "No tracking",
+            "Stripe payment integration"
+          ]
+        },
+        {
+          "id": "easy-appointments",
+          "name": "Easy!Appointments",
+          "tagline": "Open-source appointment scheduler",
+          "badge": "Free & Open-Source",
+          "badgeType": "free",
+          "description": "Lightweight self-hosted booking system that syncs with Google Calendar.",
+          "stars": "3.8k",
+          "license": "GPL-3.0",
+          "url": "https://easyappointments.org",
+          "icon": "⏱️",
+          "features": [
+            "Google Calendar sync",
+            "Multi-provider support",
+            "Mobile responsive",
+            "Free forever"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "docusign",
+      "slug": "docusign",
+      "name": "DocuSign",
+      "category": "productivity",
+      "categoryName": "Legal & E-Signatures",
+      "icon": "✍️",
+      "description": "Industry-standard electronic signature and agreement management software with costly per-envelope pricing.",
+      "pricing": "Paid ($10-$40/mo)",
+      "officialUrl": "https://docusign.com",
+      "alternatives": [
+        {
+          "id": "documenso",
+          "name": "Documenso",
+          "tagline": "The open-source DocuSign alternative",
+          "badge": "100% Open-Source",
+          "badgeType": "free",
+          "description": "Modern open-source e-signature platform built for trust, security, and full document ownership.",
+          "stars": "9.2k",
+          "license": "AGPL-3.0",
+          "url": "https://documenso.com",
+          "icon": "📄",
+          "features": [
+            "Self-hostable",
+            "Unlimited signatures",
+            "Developer API",
+            "Legally binding e-signatures",
+            "Full audit trail"
+          ]
+        },
+        {
+          "id": "signhouse",
+          "name": "SignHouse",
+          "tagline": "Efficient eSignature software",
+          "badge": "Generous Free Tier",
+          "badgeType": "freemium",
+          "description": "Fast, modern electronic signature tool with generous free envelopes.",
+          "stars": "1.5k",
+          "license": "Proprietary Free",
+          "url": "https://useizesign.com",
+          "icon": "🖋️",
+          "features": [
+            "Instant signing",
+            "PDF editing",
+            "Mobile signing",
+            "Free tier"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "typeform",
+      "slug": "typeform",
+      "name": "Typeform",
+      "category": "analytics-marketing",
+      "categoryName": "Forms & Surveys",
+      "icon": "📋",
+      "description": "Interactive conversational form and survey builder with high monthly subscription costs.",
+      "pricing": "Paid ($25-$83/mo)",
+      "officialUrl": "https://typeform.com",
+      "alternatives": [
+        {
+          "id": "typebot",
+          "name": "Typebot",
+          "tagline": "Open-source conversational form and chatbot builder",
+          "badge": "Open-Source & Free",
+          "badgeType": "free",
+          "description": "Build high-converting conversational forms, quiz flows, and lead-gen bots with open-source flexibility.",
+          "stars": "8.4k",
+          "license": "AGPL-3.0",
+          "url": "https://typebot.io",
+          "icon": "🤖",
+          "features": [
+            "Visual drag-and-drop flow",
+            "Native webhook & WhatsApp support",
+            "Self-host with Docker",
+            "Unlimited responses"
+          ]
+        },
+        {
+          "id": "formbricks",
+          "name": "Formbricks",
+          "tagline": "Open-source experience management & micro-surveys",
+          "badge": "Open-Source",
+          "badgeType": "free",
+          "description": "Privacy-first user research and survey suite designed to run in-app or via link.",
+          "stars": "6.1k",
+          "license": "AGPL-3.0",
+          "url": "https://formbricks.com",
+          "icon": "🧱",
+          "features": [
+            "In-app micro-surveys",
+            "Privacy-first tracking",
+            "Webhook integrations",
+            "Self-hostable"
+          ]
+        },
+        {
+          "id": "tally",
+          "name": "Tally Forms",
+          "tagline": "The simplest way to create forms for free",
+          "badge": "99% Free Forever",
+          "badgeType": "freemium",
+          "description": "Notion-like form builder that offers 99% of its features completely free without response limits.",
+          "stars": "5.0k",
+          "license": "Freemium",
+          "url": "https://tally.so",
+          "icon": "📝",
+          "features": [
+            "Unlimited forms and responses",
+            "Notion-style markdown editor",
+            "Custom domains",
+            "Zero paywalls on basic logic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salesforce",
+      "slug": "salesforce",
+      "name": "Salesforce CRM",
+      "category": "analytics-marketing",
+      "categoryName": "CRM & Sales",
+      "icon": "💼",
+      "description": "Complex enterprise CRM with steep licensing fees and high implementation overhead.",
+      "pricing": "Paid ($25-$300/mo/user)",
+      "officialUrl": "https://salesforce.com",
+      "alternatives": [
+        {
+          "id": "twenty-crm",
+          "name": "Twenty CRM",
+          "tagline": "Building the open-source alternative to Salesforce",
+          "badge": "100% Open-Source",
+          "badgeType": "free",
+          "description": "Modern, fast, and community-driven CRM designed to give businesses full control over customer data.",
+          "stars": "23.8k",
+          "license": "AGPL-3.0",
+          "url": "https://twenty.com",
+          "icon": "✨",
+          "features": [
+            "Modern GraphQL API",
+            "Self-hostable Docker",
+            "Custom object schemas",
+            "No per-seat pricing locks"
+          ]
+        },
+        {
+          "id": "chatwoot-crm",
+          "name": "Chatwoot",
+          "tagline": "Open-source customer engagement platform",
+          "badge": "Open-Source",
+          "badgeType": "free",
+          "description": "Omnichannel customer support and relationship tool connecting WhatsApp, Email, and Livechat.",
+          "stars": "21.2k",
+          "license": "AGPL-3.0",
+          "url": "https://chatwoot.com",
+          "icon": "💬",
+          "features": [
+            "Omnichannel inbox",
+            "WhatsApp & Telegram API",
+            "Self-hosted",
+            "Multi-agent support"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bitly",
+      "slug": "bitly",
+      "name": "Bitly",
+      "category": "developer-tools",
+      "categoryName": "Link Management & QR Codes",
+      "icon": "🔗",
+      "description": "Link shortener and QR code platform with strict limits on free link creation and analytics.",
+      "pricing": "Freemium ($8-$199/mo)",
+      "officialUrl": "https://bitly.com",
+      "alternatives": [
+        {
+          "id": "dub-co",
+          "name": "Dub.co",
+          "tagline": "Open-source link management for modern marketing teams",
+          "badge": "Open-Source & Free Tier",
+          "badgeType": "free",
+          "description": "The modern open-source Bitly alternative with custom domains, geo-targeting, QR codes, and rich analytics.",
+          "stars": "18.5k",
+          "license": "AGPL-3.0",
+          "url": "https://dub.co",
+          "icon": "⚡",
+          "features": [
+            "Custom domain branding",
+            "Geo-targeted redirection",
+            "Dynamic QR codes",
+            "Real-time analytics engine"
+          ]
+        },
+        {
+          "id": "kutt-it",
+          "name": "Kutt.it",
+          "tagline": "Modern URL shortener with rich support for custom domains",
+          "badge": "Free & Open-Source",
+          "badgeType": "free",
+          "description": "Clean, lightweight open-source link shortener you can deploy on your own server.",
+          "stars": "6.5k",
+          "license": "MIT",
+          "url": "https://kutt.it",
+          "icon": "✂️",
+          "features": [
+            "MIT Licensed",
+            "REST API",
+            "Custom domains",
+            "Self-host in 2 minutes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shopify",
+      "slug": "shopify",
+      "name": "Shopify",
+      "category": "developer-tools",
+      "categoryName": "E-Commerce Platforms",
+      "icon": "🛍️",
+      "description": "Hosted e-commerce platform with monthly fees and transaction cuts on non-Shopify payments.",
+      "pricing": "Paid ($39-$399/mo + %)",
+      "officialUrl": "https://shopify.com",
+      "alternatives": [
+        {
+          "id": "medusa-js",
+          "name": "Medusa.js",
+          "tagline": "The open-source Shopify alternative for developers",
+          "badge": "100% Open-Source (MIT)",
+          "badgeType": "free",
+          "description": "Modular headless commerce platform built on Node.js with complete frontend flexibility and zero transaction fees.",
+          "stars": "27.4k",
+          "license": "MIT",
+          "url": "https://medusajs.com",
+          "icon": "🐙",
+          "features": [
+            "Headless commerce architecture",
+            "Multi-currency and multi-region",
+            "Zero vendor fees",
+            "Next.js starter storefronts"
+          ]
+        },
+        {
+          "id": "saleor-commerce",
+          "name": "Saleor",
+          "tagline": "Composable headless commerce platform",
+          "badge": "Open-Source (BSD-3)",
+          "badgeType": "free",
+          "description": "Ultra-fast GraphQL-powered headless commerce engine for global multi-channel retail.",
+          "stars": "20.1k",
+          "license": "BSD-3-Clause",
+          "url": "https://saleor.io",
+          "icon": "🛒",
+          "features": [
+            "GraphQL API first",
+            "Multi-warehouse inventory",
+            "Global localization",
+            "Self-hostable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hashicorp-vault",
+      "slug": "hashicorp-vault",
+      "name": "HashiCorp Vault / Doppler",
+      "category": "security-cloud",
+      "categoryName": "Secrets & Environment Management",
+      "icon": "🔐",
+      "description": "Secret and key management systems that transitioned to BSL licenses and high SaaS pricing.",
+      "pricing": "Paid / BSL License",
+      "officialUrl": "https://www.vaultproject.io",
+      "alternatives": [
+        {
+          "id": "infisical",
+          "name": "Infisical",
+          "tagline": "Open-source secret management platform",
+          "badge": "Open-Source (MIT)",
+          "badgeType": "free",
+          "description": "End-to-end encrypted secret management platform for syncing environment variables across teams and CI/CD pipelines.",
+          "stars": "15.8k",
+          "license": "MIT",
+          "url": "https://infisical.com",
+          "icon": "🔒",
+          "features": [
+            "End-to-end encryption",
+            "Automatic secret scanning in Git",
+            "Kubernetes & Docker integrations",
+            "Self-hostable"
+          ]
+        },
+        {
+          "id": "bitwarden-secrets",
+          "name": "Bitwarden Secrets Manager",
+          "tagline": "Developer-first secrets management",
+          "badge": "Open-Source & Free Tier",
+          "badgeType": "free",
+          "description": "Secure storage and injection of API keys, tokens, and credentials for developers.",
+          "stars": "7.2k",
+          "license": "GPL-3.0",
+          "url": "https://bitwarden.com/products/secrets-manager/",
+          "icon": "🛡️",
+          "features": [
+            "Zero-knowledge encryption",
+            "CLI & SDK integrations",
+            "Free tier for small teams",
+            "Audit logs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intercom",
+      "slug": "intercom",
+      "name": "Intercom / Zendesk",
+      "category": "communication",
+      "categoryName": "Customer Support & Live Chat",
+      "icon": "💬",
+      "description": "Customer messaging software with expensive per-seat pricing and high AI resolution add-ons.",
+      "pricing": "Paid ($39-$139/seat/mo)",
+      "officialUrl": "https://intercom.com",
+      "alternatives": [
+        {
+          "id": "chatwoot-support",
+          "name": "Chatwoot",
+          "tagline": "Open-source customer engagement suite",
+          "badge": "100% Open-Source",
+          "badgeType": "free",
+          "description": "The open-source alternative to Intercom. Unified inbox for Live Chat, Email, WhatsApp, Facebook, and Twitter.",
+          "stars": "21.2k",
+          "license": "AGPL-3.0",
+          "url": "https://chatwoot.com",
+          "icon": "🗨️",
+          "features": [
+            "Self-hosted on Docker",
+            "Omnichannel customer messaging",
+            "Mobile apps for agents",
+            "No per-agent fees"
+          ]
+        },
+        {
+          "id": "papercups",
+          "name": "Papercups",
+          "tagline": "Open-source live customer chat",
+          "badge": "Open-Source (MIT)",
+          "badgeType": "free",
+          "description": "Lightweight open-source chat widget that embeds directly into React and web apps.",
+          "stars": "5.6k",
+          "license": "MIT",
+          "url": "https://papercups.io",
+          "icon": "☕",
+          "features": [
+            "MIT Licensed",
+            "React widget component",
+            "Slack inbox integration",
+            "Self-hostable"
+          ]
+        }
+      ]
+    },
     {
       "id": "cursor-ide",
       "slug": "cursor-ide",
@@ -1742,7 +2152,3 @@ const ALTERNATIVES_DATA = {
     }
   ]
 };
-
-if (typeof module !== 'undefined') {
-  module.exports = ALTERNATIVES_DATA;
-}

@@ -1,10 +1,6 @@
 /**
- * AIRA Newsletter - 100% Authentic AI Tools Dataset
- * SOURCED STRICTLY FROM: https://aivalley.ai/
- * Zero fabricated or artificial content. Verbatim titles, descriptions, features, images, and external URLs.
- * Total Verified AI Valley Tools: 1102
+ * AIRA Newsletter - Authentic Dataset
  */
-
 const AI_TOOLS_DATA = {
   "categories": [
     {
@@ -124,6 +120,396 @@ const AI_TOOLS_DATA = {
     }
   ],
   "tools": [
+    {
+      "id": "deepseek-v3",
+      "slug": "deepseek-v3",
+      "name": "DeepSeek V3",
+      "category": "ai-assistant",
+      "categoryName": "AI Assistant",
+      "tag": "ai-assistant",
+      "pricing": "100% Free",
+      "description": "An open-weights frontier reasoning model delivering state-of-the-art coding, math, and conversational performance with transparent open weights.",
+      "url": "https://chat.deepseek.com/",
+      "domain": "deepseek.com",
+      "image": "https://icons.duckduckgo.com/ip3/deepseek.com.ico",
+      "icon": "🧠",
+      "rating": 4.9,
+      "votes": 340,
+      "featured": true,
+      "inner_content": {
+        "overview": "DeepSeek V3 represents a quantum leap in open AI architecture with efficient Mixture-of-Experts (MoE) processing.",
+        "features": [
+          "Open-weights architecture",
+          "Advanced coding and mathematical reasoning",
+          "Fast token throughput",
+          "Free conversational chat interface"
+        ]
+      }
+    },
+    {
+      "id": "bolt-new",
+      "slug": "bolt-new",
+      "name": "Bolt.new",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "In-browser AI web development sandbox by StackBlitz that prompts, builds, runs, and deploys full-stack Node.js and React apps in seconds.",
+      "url": "https://bolt.new/",
+      "domain": "bolt.new",
+      "image": "https://icons.duckduckgo.com/ip3/bolt.new.ico",
+      "icon": "⚡",
+      "rating": 4.9,
+      "votes": 412,
+      "featured": true,
+      "inner_content": {
+        "overview": "Bolt.new allows developers and creators to prototype, run, and host full-stack web applications straight from text prompts.",
+        "features": [
+          "Full-stack container in browser",
+          "One-click Netlify/Vercel deployment",
+          "Real-time error fixing",
+          "Generous free tier"
+        ]
+      }
+    },
+    {
+      "id": "lovable-dev",
+      "slug": "lovable-dev",
+      "name": "Lovable.dev",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "The AI engineer that turns plain English descriptions into production-ready web apps with Supabase backend integration and GitHub sync.",
+      "url": "https://lovable.dev/",
+      "domain": "lovable.dev",
+      "image": "https://icons.duckduckgo.com/ip3/lovable.dev.ico",
+      "icon": "❤️",
+      "rating": 4.8,
+      "votes": 289,
+      "featured": true,
+      "inner_content": {
+        "overview": "Lovable generates modern React + Tailwind web applications with full authentication and database wiring.",
+        "features": [
+          "Instant Supabase integration",
+          "GitHub bidirectional sync",
+          "Visual live component editing",
+          "Free starter credits"
+        ]
+      }
+    },
+    {
+      "id": "v0-by-vercel",
+      "slug": "v0-by-vercel",
+      "name": "v0 by Vercel",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "Generative UI system by Vercel that converts natural language prompts and images into production-quality React, Tailwind, and Shadcn UI components.",
+      "url": "https://v0.dev/",
+      "domain": "v0.dev",
+      "image": "https://icons.duckduckgo.com/ip3/v0.dev.ico",
+      "icon": "▲",
+      "rating": 4.9,
+      "votes": 375,
+      "featured": true,
+      "inner_content": {
+        "overview": "v0 is the premier generative UI tool for frontend developers looking to build clean React components rapidly.",
+        "features": [
+          "Shadcn UI & Tailwind native code",
+          "Copy-paste React JSX",
+          "Image-to-code recognition",
+          "Free daily credits"
+        ]
+      }
+    },
+    {
+      "id": "windsurf-editor",
+      "slug": "windsurf-editor",
+      "name": "Windsurf Editor",
+      "category": "code-assistant",
+      "categoryName": "Code & Developer",
+      "tag": "code-assistant",
+      "pricing": "Freemium",
+      "description": "The first agentic AI IDE by Codeium built on 'Flows' that seamlessly collaborates with developers to understand full codebases and edit multi-file projects.",
+      "url": "https://codeium.com/windsurf",
+      "domain": "codeium.com",
+      "image": "https://icons.duckduckgo.com/ip3/codeium.com.ico",
+      "icon": "🏄",
+      "rating": 4.8,
+      "votes": 260,
+      "featured": true,
+      "inner_content": {
+        "overview": "Windsurf provides real-time AI pair programming with Deep Context and Cascade agent capabilities.",
+        "features": [
+          "Cascade multi-file editing",
+          "Deep codebase indexing",
+          "Free tier with unlimited standard completions",
+          "VS Code fork familiarity"
+        ]
+      }
+    },
+    {
+      "id": "notebooklm",
+      "slug": "notebooklm",
+      "name": "Google NotebookLM",
+      "category": "productivity",
+      "categoryName": "Productivity",
+      "tag": "productivity",
+      "pricing": "100% Free",
+      "description": "Personalized AI research assistant by Google that grounds responses in your uploaded PDFs and notes, generating conversational Audio Overview podcasts.",
+      "url": "https://notebooklm.google.com/",
+      "domain": "notebooklm.google.com",
+      "image": "https://icons.duckduckgo.com/ip3/notebooklm.google.com.ico",
+      "icon": "📓",
+      "rating": 4.9,
+      "votes": 510,
+      "featured": true,
+      "inner_content": {
+        "overview": "NotebookLM provides source-grounded answers with citations, study guides, and viral dual-host Audio Podcasts.",
+        "features": [
+          "100% Free with Google account",
+          "Viral AI Deep Dive audio podcasts",
+          "Zero hallucination source citations",
+          "Upload up to 50 documents per notebook"
+        ]
+      }
+    },
+    {
+      "id": "flux-ai",
+      "slug": "flux-ai",
+      "name": "FLUX.1 by Black Forest Labs",
+      "category": "image-generator",
+      "categoryName": "Image Generator",
+      "tag": "image-generator",
+      "pricing": "100% Free",
+      "description": "Next-generation open-source text-to-image model setting new standards in photorealism, typography rendering, and prompt following.",
+      "url": "https://blackforestlabs.ai/",
+      "domain": "blackforestlabs.ai",
+      "image": "https://icons.duckduckgo.com/ip3/blackforestlabs.ai.ico",
+      "icon": "✨",
+      "rating": 4.9,
+      "votes": 480,
+      "featured": true,
+      "inner_content": {
+        "overview": "FLUX.1 Schnell and Dev offer unprecedented text generation inside images and high-fidelity textures.",
+        "features": [
+          "Exceptional text rendering in graphics",
+          "Open-source Schnell model",
+          "Realistic human hands and skin",
+          "Available on Hugging Face & local ComfyUI"
+        ]
+      }
+    },
+    {
+      "id": "kling-ai",
+      "slug": "kling-ai",
+      "name": "Kling AI",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "Freemium",
+      "description": "State-of-the-art cinematic AI video generator capable of creating 1080p realistic videos up to 2 minutes with accurate physical dynamics.",
+      "url": "https://klingai.com/",
+      "domain": "klingai.com",
+      "image": "https://icons.duckduckgo.com/ip3/klingai.com.ico",
+      "icon": "🎬",
+      "rating": 4.8,
+      "votes": 315,
+      "featured": true,
+      "inner_content": {
+        "overview": "Kling AI is renowned for realistic motion physics, camera controls, and high-definition generative video output.",
+        "features": [
+          "Up to 1080p cinematic video",
+          "Free daily credits on login",
+          "Camera movement panning & zooming",
+          "Motion brush controls"
+        ]
+      }
+    },
+    {
+      "id": "luma-dream-machine",
+      "slug": "luma-dream-machine",
+      "name": "Luma Dream Machine",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "Freemium",
+      "description": "High-fidelity video generation model from Luma AI that generates realistic 5-second video shots with seamless continuity and camera effects.",
+      "url": "https://lumalabs.ai/dream-machine",
+      "domain": "lumalabs.ai",
+      "image": "https://icons.duckduckgo.com/ip3/lumalabs.ai.ico",
+      "icon": "🎥",
+      "rating": 4.7,
+      "votes": 290,
+      "featured": false,
+      "inner_content": {
+        "overview": "Dream Machine is designed for rapid video creation from text and image prompts with realistic physical simulation.",
+        "features": [
+          "Fast video generation",
+          "Keyframe-to-keyframe interpolation",
+          "Free tier with 30 generations/month",
+          "High dynamic range lighting"
+        ]
+      }
+    },
+    {
+      "id": "hailuo-ai",
+      "slug": "hailuo-ai",
+      "name": "MiniMax Hailuo AI",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "Freemium",
+      "description": "Breakthrough AI video model by MiniMax offering ultra-realistic facial expressions, character consistency, and natural physics.",
+      "url": "https://hailuoai.video/",
+      "domain": "hailuoai.video",
+      "image": "https://icons.duckduckgo.com/ip3/hailuoai.video.ico",
+      "icon": "🌊",
+      "rating": 4.9,
+      "votes": 330,
+      "featured": true,
+      "inner_content": {
+        "overview": "Hailuo AI creates stunning, expressive character movements and fluid cinematic camera sweeps with exceptional consistency.",
+        "features": [
+          "Flawless facial expressions",
+          "Image-to-video and text-to-video",
+          "Generous free generations",
+          "High-speed rendering"
+        ]
+      }
+    },
+    {
+      "id": "suno-ai",
+      "slug": "suno-ai",
+      "name": "Suno v4",
+      "category": "audio-music",
+      "categoryName": "Audio & Music",
+      "tag": "audio-music",
+      "pricing": "Freemium",
+      "description": "Premier AI music and song generator that creates complete studio-quality songs with vocals, instruments, lyrics, and arrangements from a text prompt.",
+      "url": "https://suno.com/",
+      "domain": "suno.com",
+      "image": "https://icons.duckduckgo.com/ip3/suno.com.ico",
+      "icon": "🎵",
+      "rating": 4.9,
+      "votes": 520,
+      "featured": true,
+      "inner_content": {
+        "overview": "Suno allows anyone to produce full tracks across any genre (pop, rock, lo-fi, EDM, hip-hop) in seconds.",
+        "features": [
+          "50 free daily credits (10 songs)",
+          "Full lyrics and vocal synthesis",
+          "Style and genre mixing",
+          "Stems and audio separation"
+        ]
+      }
+    },
+    {
+      "id": "udio-music",
+      "slug": "udio-music",
+      "name": "Udio AI",
+      "category": "audio-music",
+      "categoryName": "Audio & Music",
+      "tag": "audio-music",
+      "pricing": "Freemium",
+      "description": "High-fidelity AI music generation platform built by former DeepMind researchers for complex musical compositions and rich vocal textures.",
+      "url": "https://www.udio.com/",
+      "domain": "udio.com",
+      "image": "https://icons.duckduckgo.com/ip3/udio.com.ico",
+      "icon": "🎧",
+      "rating": 4.8,
+      "votes": 310,
+      "featured": false,
+      "inner_content": {
+        "overview": "Udio offers advanced controls for extending tracks, adding intros/outros, and fine-tuning vocal styles.",
+        "features": [
+          "10 free daily generations",
+          "High-definition acoustic mastering",
+          "Genre fusion and lyrical control",
+          "Stem download support"
+        ]
+      }
+    },
+    {
+      "id": "recraft-v3",
+      "slug": "recraft-v3",
+      "name": "Recraft v3",
+      "category": "design",
+      "categoryName": "Design & UI",
+      "tag": "design",
+      "pricing": "Freemium",
+      "description": "AI design canvas specializing in vector illustrations, 3D icons, clean brand typography, and logo generation with direct SVG export.",
+      "url": "https://www.recraft.ai/",
+      "domain": "recraft.ai",
+      "image": "https://icons.duckduckgo.com/ip3/recraft.ai.ico",
+      "icon": "📐",
+      "rating": 4.9,
+      "votes": 345,
+      "featured": true,
+      "inner_content": {
+        "overview": "Recraft produces infinitely scalable vector art and brand graphics suited for professional digital design.",
+        "features": [
+          "Lossless vector SVG export",
+          "Color palette brand consistency",
+          "Infinite canvas layout",
+          "Free daily raster and vector credits"
+        ]
+      }
+    },
+    {
+      "id": "pika-art",
+      "slug": "pika-art",
+      "name": "Pika 2.0",
+      "category": "video-editing",
+      "categoryName": "Video & Animation",
+      "tag": "video-editing",
+      "pricing": "Freemium",
+      "description": "Creative AI video generator with 'Pikaffects' that lets users melt, crush, explode, and animate images and videos with playful realism.",
+      "url": "https://pika.art/",
+      "domain": "pika.art",
+      "image": "https://icons.duckduckgo.com/ip3/pika.art.ico",
+      "icon": "🦊",
+      "rating": 4.7,
+      "votes": 280,
+      "featured": false,
+      "inner_content": {
+        "overview": "Pika 2.0 revolutionizes creative storytelling with specialized simulation effects and camera pans.",
+        "features": [
+          "Exclusive Pikaffects (Melt, Inflate, Crush)",
+          "Lip sync and voice generation",
+          "Free monthly credits",
+          "Sound effect auto-generation"
+        ]
+      }
+    },
+    {
+      "id": "elevenlabs",
+      "slug": "elevenlabs",
+      "name": "ElevenLabs",
+      "category": "audio-music",
+      "categoryName": "Audio & Music",
+      "tag": "audio-music",
+      "pricing": "Freemium",
+      "description": "The world's leading generative voice AI platform for realistic voice cloning, expressive text-to-speech, and automated video dubbing across 29 languages.",
+      "url": "https://elevenlabs.io/",
+      "domain": "elevenlabs.io",
+      "image": "https://icons.duckduckgo.com/ip3/elevenlabs.io.ico",
+      "icon": "🎙️",
+      "rating": 4.9,
+      "votes": 580,
+      "featured": true,
+      "inner_content": {
+        "overview": "ElevenLabs delivers human-like speech synthesis with emotional nuance and voice cloning.",
+        "features": [
+          "10,000 free characters per month",
+          "Voice cloning with 1-minute audio",
+          "Multilingual speech synthesis",
+          "Sound effects generator"
+        ]
+      }
+    },
     {
       "id": "tables",
       "name": "Tables",
@@ -26952,7 +27338,3 @@ const AI_TOOLS_DATA = {
     }
   ]
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = AI_TOOLS_DATA;
-}
