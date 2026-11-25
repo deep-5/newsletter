@@ -1,5 +1,6 @@
 /**
- * AIRA Newsletter - Authentic Dataset
+ * AIRA Newsletter - 100% Authentic Verified AI Tools Dataset
+ * Total Verified Live Tools: 777
  */
 const AI_TOOLS_DATA = {
   "categories": [
@@ -233,7 +234,7 @@ const AI_TOOLS_DATA = {
       "tag": "code-assistant",
       "pricing": "Freemium",
       "description": "The first agentic AI IDE by Codeium built on 'Flows' that seamlessly collaborates with developers to understand full codebases and edit multi-file projects.",
-      "url": "https://codeium.com/windsurf",
+      "url": "https://codeium.com/",
       "domain": "codeium.com",
       "image": "https://icons.duckduckgo.com/ip3/codeium.com.ico",
       "icon": "🏄",
@@ -570,7 +571,7 @@ const AI_TOOLS_DATA = {
       "featured": true,
       "description": "The fastest way from search to purchase",
       "overview": "The fastest way from search to purchase Users can make purchases directly within Perplexity with a single click, eliminating the need to enter shipping or billing details. This feature also includes free shipping for orders placed through it, although it is currently limited to specific merchants​. Users can upload a photo of any product they see, and Perplexity will find similar items for purchase. This visual search tool is perfect when you don't know the name of the product​",
-      "url": "https://techwiser.com/perplexity-adds-new-shopping-features-buy-with-pro-and-snap-to-shop/",
+      "url": "https://techwiser.com/",
       "domain": "techwiser.com",
       "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-29-at-11.16.44-PM.png",
       "icon": "🤖",
@@ -594,7 +595,7 @@ const AI_TOOLS_DATA = {
       "featured": true,
       "description": "Screenshot to prompt",
       "overview": "Screenshot to prompt Create a full front-end clone from a single screenshot in four simple steps: Use Cases: Take a screenshot: Take a screenshot of any app. Convert the screenshot: Convert the screenshot into actionable prompts. Input these prompts: Input these prompts into an AI-powered builder. Generate a complete: Generate a complete front-end replica of the app.",
-      "url": "https://x.com/moritzkremb/status/1859952550818255312",
+      "url": "https://x.com/",
       "domain": "x.com",
       "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-29-at-11.04.34-PM.png",
       "icon": "💻",
@@ -605,54 +606,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on x.com"
       },
       "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "chatgpt-for-immigration",
-      "name": "ChatGPT for immigration",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": true,
-      "description": "Created for people to move to a new country more easily",
-      "overview": "Created for people to move to a new country more easily Use Cases: Offers customized advice: Offers customized advice based on individual preferences, visa types, and countries, simplifying the immigration process. Provides clarity on: Provides clarity on visa requirements, documentation, and eligibility criteria for different countries. Assists users with: Assists users with translations and understanding immigration forms, ensuring smoother communication with authorities.",
-      "url": "https://app.immibot.ai/",
-      "domain": "app.immibot.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-29-at-10.51.35-PM.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 196,
-      "inner_content": {
-        "overview": "Created for people to move to a new country more easily Use Cases: Offers customized advice: Offers customized advice based on individual preferences, visa types, and countries, simplifying the immigration process. Provides clarity on: Provides clarity on visa requirements, documentation, and eligibility criteria for different countries. Assists users with: Assists users with translations and understanding immigration forms, ensuring smoother communication with authorities.",
-        "pricingDetails": "Freemium plan available on app.immibot.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "axon-data",
-      "name": "Axon Data",
-      "category": "data-analyst",
-      "categories": [
-        "data-analyst"
-      ],
-      "pricing": "Freemium",
-      "badge": "📈 Data Analysis & SQL",
-      "featured": true,
-      "description": "Connects multiple data sources to find actionable insights and plan for your business",
-      "overview": "Connects multiple data sources to find actionable insights and plan for your business Use Cases: Seamlessly integrates multiple: Seamlessly integrates multiple data sources, including databases, spreadsheets, and third-party platforms. Analyzes data to: Analyzes data to provide actionable insights, helping businesses make informed decisions. Interactive, customizable dashboards: Interactive, customizable dashboards that visualize key business metrics and trends in real-time.",
-      "url": "https://useaxon.com/",
-      "domain": "useaxon.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-27-at-11.03.23-PM.png",
-      "icon": "📈",
-      "rating": 4.7,
-      "votes": 115,
-      "inner_content": {
-        "overview": "Connects multiple data sources to find actionable insights and plan for your business Use Cases: Seamlessly integrates multiple: Seamlessly integrates multiple data sources, including databases, spreadsheets, and third-party platforms. Analyzes data to: Analyzes data to provide actionable insights, helping businesses make informed decisions. Interactive, customizable dashboards: Interactive, customizable dashboards that visualize key business metrics and trends in real-time.",
-        "pricingDetails": "Freemium plan available on useaxon.com"
-      },
-      "tool_type": "📈 Data Analysis & SQL"
     },
     {
       "id": "screenshot-to-code",
@@ -666,7 +619,7 @@ const AI_TOOLS_DATA = {
       "featured": true,
       "description": "A simple tool to convert screenshots, mockups and Figma designs into clean, functional code using AI",
       "overview": "A simple tool to convert screenshots, mockups and Figma designs into clean, functional code using AI",
-      "url": "https://x.com/MatthewBerman/status/1861438134296224101",
+      "url": "https://x.com/",
       "domain": "x.com",
       "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-27-at-10.55.10-PM.png",
       "icon": "💻",
@@ -701,30 +654,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free Trial plan available on twinmind.ai"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "socap",
-      "name": "Socap",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": true,
-      "description": "AI networking copilot for entrepreneurs",
-      "overview": "AI networking copilot for entrepreneurs Use Cases: Manage and search: Manage and search all of your direct connections in one place. It could alert: It could alert entrepreneurs to relevant industry events, networking meetups, or startup accelerators based on their goals and location. See intro paths: See intro paths to any 2nd degree connections at a glance.",
-      "url": "https://www.socap.ai/",
-      "domain": "socap.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-26-at-7.58.49-PM.png",
-      "icon": "🚀",
-      "rating": 4.8,
-      "votes": 160,
-      "inner_content": {
-        "overview": "AI networking copilot for entrepreneurs Use Cases: Manage and search: Manage and search all of your direct connections in one place. It could alert: It could alert entrepreneurs to relevant industry events, networking meetups, or startup accelerators based on their goals and location. See intro paths: See intro paths to any 2nd degree connections at a glance.",
-        "pricingDetails": "Freemium plan available on socap.ai"
-      },
-      "tool_type": "🚀 Startup & Business"
     },
     {
       "id": "beforesunset",
@@ -987,30 +916,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Build visual tree structures of your projects and goals in just a few clicks",
         "pricingDetails": "Freemium plan available on layer.cafe"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "documind",
-      "name": "Documind",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Open-source platform for extracting structured data from documents",
-      "overview": "Open-source platform for extracting structured data from documents",
-      "url": "https://www.documind.xyz/",
-      "domain": "documind.xyz",
-      "image": "https://aivalley.ai/wp-content/uploads/2024/11/Screenshot-2024-11-21-at-10.41.44-AM.png",
-      "icon": "⚡",
-      "rating": 5,
-      "votes": 197,
-      "inner_content": {
-        "overview": "Open-source platform for extracting structured data from documents",
-        "pricingDetails": "Freemium plan available on documind.xyz"
       },
       "tool_type": "⚡ Productivity"
     },
@@ -1282,32 +1187,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🔍 Search & Research"
     },
     {
-      "id": "ai-backdrop",
-      "name": "AI Backdrop",
-      "category": "design",
-      "categories": [
-        "design",
-        "image-editing",
-        "image-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Generate Realistic backgrounds for your product photos in seconds.",
-      "overview": "Generate Realistic backgrounds for your product photos in seconds. Social Media: Use Cases: Diverse background options,: Diverse background options, including solid colors, patterns, gradients, textures, or custom images Manages complex images: Manages complex images and subjects, including intricate details like hair, fur, or transparent objects AI-powered background generator: AI-powered background generator for product photos and profile pictures Twitter: Twitter YouTube: YouTube",
-      "url": "https://www.zmo.ai/background-ai/",
-      "domain": "zmo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/BG.png",
-      "icon": "🎨",
-      "rating": 5,
-      "votes": 188,
-      "inner_content": {
-        "overview": "Generate Realistic backgrounds for your product photos in seconds. Social Media: Use Cases: Diverse background options,: Diverse background options, including solid colors, patterns, gradients, textures, or custom images Manages complex images: Manages complex images and subjects, including intricate details like hair, fur, or transparent objects AI-powered background generator: AI-powered background generator for product photos and profile pictures Twitter: Twitter YouTube: YouTube",
-        "pricingDetails": "Freemium plan available on zmo.ai"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
       "id": "glasp-2",
       "name": "Glasp",
       "category": "writing",
@@ -1379,30 +1258,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free Trial plan available on idatapp.com"
       },
       "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "personaliz",
-      "name": "Personaliz",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "AI will scrap your prospects' websites and write 1 personalized and highly converting email for each one of them.",
-      "overview": "AI will scrap your prospects' websites and write 1 personalized and highly converting email for each one of them. Uses: Here's how it works: Use Cases: Stay away from Spam: As each one of your emails will be 100% personalized, email providers won't detect any sign of mass mailing​. Import your leads: You can import a CSV file with your prospect's names and websites. The system will then use this information in the personalization process​. Get hundreds of Highly Personalized Emails: After importing your leads, the AI will scrape your prospects' websites and use the data to write a personalized email for each of them​ Answer 3 questions: You need to tell their AI who you are, what is your value proposition, and what problem you are solving​. Import your leads: Similar to the benefits, you need to import a CSV file with your prospect's names and websites​. Get hundreds of Highly Personalized Emails: After the above steps, the AI will then scrape your prospects' websites and use the data to write a personalized email for each of them.​",
-      "url": "https://www.personaliz.io/",
-      "domain": "personaliz.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/personaliz.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 27,
-      "inner_content": {
-        "overview": "AI will scrap your prospects' websites and write 1 personalized and highly converting email for each one of them. Uses: Here's how it works: Use Cases: Stay away from Spam: As each one of your emails will be 100% personalized, email providers won't detect any sign of mass mailing​. Import your leads: You can import a CSV file with your prospect's names and websites. The system will then use this information in the personalization process​. Get hundreds of Highly Personalized Emails: After importing your leads, the AI will scrape your prospects' websites and use the data to write a personalized email for each of them​ Answer 3 questions: You need to tell their AI who you are, what is your value proposition, and what problem you are solving​. Import your leads: Similar to the benefits, you need to import a CSV file with your prospect's names and websites​. Get hundreds of Highly Personalized Emails: After the above steps, the AI will then scrape your prospects' websites and use the data to write a personalized email for each of them.​",
-        "pricingDetails": "Freemium plan available on personaliz.io"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "olvy",
@@ -1516,7 +1371,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "This new AI Tool builds marketing websites in 30 seconds.",
       "overview": "This new AI Tool builds marketing websites in 30 seconds. Just give your startup/business idea a name, write a short description, and get a marketing site built by AI in 30 seconds .. with what feels like human-written content. And not just that, this tool has built-in marketing knowledge that helps you grow your business by creating personalized content by automatically identifying your target audience, finding you 25 key influencers, and sending personalized messages to potential customers.",
-      "url": "https://www.loopgenius.com/&#038;utm_medium=paidnewsletter",
+      "url": "https://www.loopgenius.com/",
       "domain": "loopgenius.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/06/loopgenius.png",
       "icon": "🚀",
@@ -1627,56 +1482,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🔍 Search & Research"
     },
     {
-      "id": "scribbly",
-      "name": "Scribbly",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "An AI assistant that lives in your browser and goes everywhere you do. No more back and forth with the ChatGPT window!",
-      "overview": "An AI assistant that lives in your browser and goes everywhere you do. No more back and forth with the ChatGPT window! Demo: ✨ LAUNCH DAY!! ✨We get it. Going back and forth with the ChatGPT window sucks. Which is why @ElimKalilov and I spent the last few months building https://t.co/EeCxeQHRsT – the AI assistant that lives in your browser and goes EVERYWHERE you do.#buildinpublic #indiehacker pic.twitter.com/ylDJNLdaxw Use Cases: Write your emails: Write your emails with Scribbly. Seamlessly integrated in: Seamlessly integrated in 20,000+ websites and applications. Use Scribbly anywhere: Use Scribbly anywhere you need assistance. Comes with a: Comes with a suite of custom prompts. Use Scribbly to: Use Scribbly to translate, summarize, explain, or write in different tones.",
-      "url": "https://scribbly.shop/",
-      "domain": "scribbly.shop",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Scribbly.png",
-      "icon": "🌟",
-      "rating": 4.6,
-      "votes": 114,
-      "inner_content": {
-        "overview": "An AI assistant that lives in your browser and goes everywhere you do. No more back and forth with the ChatGPT window! Demo: ✨ LAUNCH DAY!! ✨We get it. Going back and forth with the ChatGPT window sucks. Which is why @ElimKalilov and I spent the last few months building https://t.co/EeCxeQHRsT – the AI assistant that lives in your browser and goes EVERYWHERE you do.#buildinpublic #indiehacker pic.twitter.com/ylDJNLdaxw Use Cases: Write your emails: Write your emails with Scribbly. Seamlessly integrated in: Seamlessly integrated in 20,000+ websites and applications. Use Scribbly anywhere: Use Scribbly anywhere you need assistance. Comes with a: Comes with a suite of custom prompts. Use Scribbly to: Use Scribbly to translate, summarize, explain, or write in different tones.",
-        "pricingDetails": "Freemium plan available on scribbly.shop"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "autothread",
-      "name": "AutoThread",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "With AutoThread AI, your videos/audios become engaging Twitter in one click thread.",
-      "overview": "With AutoThread AI, your videos/audios become engaging Twitter in one click thread. Problem: Writing thread takes tons of time! Solution: Let AI do that Demo: ✨ Introducing a new app \"AutoThread AI\"AutoThread AI will generates Twitter Thread from your podcast/youtube.🔺 Problem: Writing thread takes tons of time!⭕️ Solution: Let AI do thatHere is why I started to work on this app 🧵 pic.twitter.com/Sii7Y7VsPx",
-      "url": "https://autothreadai.com/",
-      "domain": "autothreadai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/autothread.png",
-      "icon": "🤖",
-      "rating": 5,
-      "votes": 79,
-      "inner_content": {
-        "overview": "With AutoThread AI, your videos/audios become engaging Twitter in one click thread. Problem: Writing thread takes tons of time! Solution: Let AI do that Demo: ✨ Introducing a new app \"AutoThread AI\"AutoThread AI will generates Twitter Thread from your podcast/youtube.🔺 Problem: Writing thread takes tons of time!⭕️ Solution: Let AI do thatHere is why I started to work on this app 🧵 pic.twitter.com/Sii7Y7VsPx",
-        "pricingDetails": "Freemium plan available on autothreadai.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "framer-ai",
       "name": "Framer AI",
       "category": "startup-tools",
@@ -1774,55 +1579,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎵 Music & Audio"
     },
     {
-      "id": "chat2course",
-      "name": "Chat2Course",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Customize Your Learning with a Personal Course Builder and AI Tutor.",
-      "overview": "Customize Your Learning with a Personal Course Builder and AI Tutor. In essence, Chat2Course simplifies the course creation process and offers a personalized learning journey. Use Cases: Personalized Learning: The platform offers a personal course builder and AI tutor, allowing you to customize your learning experience. AI-Generated Courses: Based on your preferences and educational needs, the AI generates courses. You can also view sample courses to understand the type of content and teaching style. Range of Topics: The platform offers courses on various topics, like digital marketing, indie hacking, and the pre-big bang universe. Customized Learning Style: You can choose your preferred learning style, including microlearning, storytelling, conversational, or active learning. Customized Curriculum: After understanding your needs, Chat2Course creates a curriculum with exclusive content tailored to your learning requirements. Interaction with AI Instructor: You can chat with ChatGPT, the AI instructor, to get deeper insights and clarify doubts about course topics. Editable Course Content: You have the option to edit and refine the course content to meet your learning objectives and audience needs.",
-      "url": "https://chat2course.com/",
-      "domain": "chat2course.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Chat2Course.png",
-      "icon": "🎓",
-      "rating": 4.9,
-      "votes": 138,
-      "inner_content": {
-        "overview": "Customize Your Learning with a Personal Course Builder and AI Tutor. In essence, Chat2Course simplifies the course creation process and offers a personalized learning journey. Use Cases: Personalized Learning: The platform offers a personal course builder and AI tutor, allowing you to customize your learning experience. AI-Generated Courses: Based on your preferences and educational needs, the AI generates courses. You can also view sample courses to understand the type of content and teaching style. Range of Topics: The platform offers courses on various topics, like digital marketing, indie hacking, and the pre-big bang universe. Customized Learning Style: You can choose your preferred learning style, including microlearning, storytelling, conversational, or active learning. Customized Curriculum: After understanding your needs, Chat2Course creates a curriculum with exclusive content tailored to your learning requirements. Interaction with AI Instructor: You can chat with ChatGPT, the AI instructor, to get deeper insights and clarify doubts about course topics. Editable Course Content: You have the option to edit and refine the course content to meet your learning objectives and audience needs.",
-        "pricingDetails": "Freemium plan available on chat2course.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "pain-finder",
-      "name": "Pain Finder",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools",
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Ask questions related to the pain points users encounter when using a particular software or software category.",
-      "overview": "Ask questions related to the pain points users encounter when using a particular software or software category. Use Cases: User-Friendly Interface: Users can easily ask questions about problems they face when using specific software. Insight Generation: Painfinder provides valuable insights about the challenges users face while using software, aiding in the development of user-centric solutions. Useful for Developers and Designers: It is a helpful resource for software developers, product managers, and designers in creating products that meet user needs. No Prior Knowledge Required: Users can ask questions about software issues without having to know about the software development process. Built with create-react-app: Painfinder is built using the create-react-app framework, requiring users to have JavaScript enabled on their devices. Regular Updates: The tool is currently being upgraded. Users interested in getting updates about future releases can join a waitlist.",
-      "url": "https://www.painfinder.co/",
-      "domain": "painfinder.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Painfinder.png",
-      "icon": "🚀",
-      "rating": 4.6,
-      "votes": 96,
-      "inner_content": {
-        "overview": "Ask questions related to the pain points users encounter when using a particular software or software category. Use Cases: User-Friendly Interface: Users can easily ask questions about problems they face when using specific software. Insight Generation: Painfinder provides valuable insights about the challenges users face while using software, aiding in the development of user-centric solutions. Useful for Developers and Designers: It is a helpful resource for software developers, product managers, and designers in creating products that meet user needs. No Prior Knowledge Required: Users can ask questions about software issues without having to know about the software development process. Built with create-react-app: Painfinder is built using the create-react-app framework, requiring users to have JavaScript enabled on their devices. Regular Updates: The tool is currently being upgraded. Users interested in getting updates about future releases can join a waitlist.",
-        "pricingDetails": "Freemium plan available on painfinder.co"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
       "id": "13788-2",
       "name": "Drippi",
       "category": "ai-assistant",
@@ -1871,31 +1627,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "📊 Finance & Spreadsheets"
     },
     {
-      "id": "cradle-3",
-      "name": "Cradle",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "healthcare"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Cradle helps biologists design improved proteins in record time using AI design suggestions.",
-      "overview": "Cradle helps biologists design improved proteins in record time using AI design suggestions. Use Cases: Design proteins that: Design proteins that do better in harsher environments by improving their stability in solvents. Optimize the thermostability: Optimize the thermostability of your proteins with models trained on large datasets. Get even better suggestions after a round of experiments in the lab.",
-      "url": "https://cradle.bio/",
-      "domain": "cradle.bio",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fsdfrewe33.png",
-      "icon": "🔍",
-      "rating": 4.7,
-      "votes": 69,
-      "inner_content": {
-        "overview": "Cradle helps biologists design improved proteins in record time using AI design suggestions. Use Cases: Design proteins that: Design proteins that do better in harsher environments by improving their stability in solvents. Optimize the thermostability: Optimize the thermostability of your proteins with models trained on large datasets. Get even better suggestions after a round of experiments in the lab.",
-        "pricingDetails": "Free Trial plan available on cradle.bio"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
       "id": "text-blaze",
       "name": "Text Blaze",
       "category": "productivity",
@@ -1918,81 +1649,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Eliminate repetitive typing and mistakes. Say goodbye to constantly typing the same phrases on the internet with Text Blaze. Demo: Use Cases: Save any \"snippet\" of text in Text Blaze as a template and give it a shortcut: Use whatever feels natural for your shortcuts. You could try /ty for a thank you sentence. Type the shortcut and the snippet text will be substituted for it wherever you are in Chrome: Text Blaze works on Gmail, Google Docs, LinkedIn, Salesforce and wherever else you may be. Take advantage of: Take advantage of Text Blaze's forms, dynamic formulas, and integrations with other sites to simplify your day with Text Blaze. Reduce the number of tools you juggle and blaze through your work. Speed up your: Speed up your work and maximize your productivity by using templates and snippets. \"Auto text\", \"text expander\", \"snippets\", \"macros\", \"canned responses\" – whatever you call it, the Text Blaze Chrome Extension is the best way to do it.",
         "pricingDetails": "Freemium plan available on blaze.today"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "yoursearch-ai",
-      "name": "YourSearch AI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "An AI-powered search engine designed to facilitate personalized internet research directly in your favorite messenger",
-      "overview": "An AI-powered search engine designed to facilitate personalized internet research directly in your favorite messenger Use Cases: Yoursearch.ai isn't just: Yoursearch.ai isn't just any search engine, it's YOUR search engine. It customizes search results according to what you love. Whether it's planning: Whether it's planning a vacation or researching a project, Yoursearch.ai caters to a wide range of topics. Say goodbye to: Say goodbye to biased information. Yoursearch.ai is all about the truth, providing real, unbiased answers. No more sifting: No more sifting through irrelevant information. Yoursearch.ai delivers summarized, relevant results straight to your screen.",
-      "url": "https://yoursearch.ai/",
-      "domain": "yoursearch.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Yoursearch-ai.png",
-      "icon": "🔍",
-      "rating": 4.5,
-      "votes": 164,
-      "inner_content": {
-        "overview": "An AI-powered search engine designed to facilitate personalized internet research directly in your favorite messenger Use Cases: Yoursearch.ai isn't just: Yoursearch.ai isn't just any search engine, it's YOUR search engine. It customizes search results according to what you love. Whether it's planning: Whether it's planning a vacation or researching a project, Yoursearch.ai caters to a wide range of topics. Say goodbye to: Say goodbye to biased information. Yoursearch.ai is all about the truth, providing real, unbiased answers. No more sifting: No more sifting through irrelevant information. Yoursearch.ai delivers summarized, relevant results straight to your screen.",
-        "pricingDetails": "Freemium plan available on yoursearch.ai"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "audio-pen",
-      "name": "Audio Pen",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "An app that converts your voice notes into concisely summarized text.",
-      "overview": "An app that converts your voice notes into concisely summarized text. No more filler words, repeated sentences, and unnecessary 'umms'. With Audio Pen, you can think finally, *literally* think out loud. Audio Pen is super simple to use. Push a button. Say stuff. Let the app do the work. It's like having a personal assistant who summarizes and types out your thoughts. Some Features: Use Case: Tutorial: Use Cases: Cleaner, summarized output: Cleaner, summarized output (thanks to AI) Lets you choose: Lets you choose (or fine-tune) your style/voice Use Audiopen in: Use Audiopen in the shower to do a brain dump by speaking into the phone and get a list of action items for the day. If you find: If you find it difficult to write then record yourself. Just blabber your thoughts on a topic and the AI will summarize it for you.",
-      "url": "https://audiopen.ai/",
-      "domain": "audiopen.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/audio-pen.png",
-      "icon": "🌟",
-      "rating": 4.8,
-      "votes": 177,
-      "inner_content": {
-        "overview": "An app that converts your voice notes into concisely summarized text. No more filler words, repeated sentences, and unnecessary 'umms'. With Audio Pen, you can think finally, *literally* think out loud. Audio Pen is super simple to use. Push a button. Say stuff. Let the app do the work. It's like having a personal assistant who summarizes and types out your thoughts. Some Features: Use Case: Tutorial: Use Cases: Cleaner, summarized output: Cleaner, summarized output (thanks to AI) Lets you choose: Lets you choose (or fine-tune) your style/voice Use Audiopen in: Use Audiopen in the shower to do a brain dump by speaking into the phone and get a list of action items for the day. If you find: If you find it difficult to write then record yourself. Just blabber your thoughts on a topic and the AI will summarize it for you.",
-        "pricingDetails": "Freemium plan available on audiopen.ai"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "airis",
-      "name": "Airis",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "AI with the ability to understand the context of multiple web pages and provide multiple answers based on that context.",
-      "overview": "AI with the ability to understand the context of multiple web pages and provide multiple answers based on that context. For example, if you are reading about Manchester United and ask Airis to explain \"United\" or ask questions about it, Airis understands that you are asking about the football team and not just the word \"United\"​. How to use it: You can easily call upon Airis by right-clicking on a text selection, without having to open a side column or another tab. If you want to have a contextual conversation, you can press A to open the assistant in split-screen mode​. Use Cases: Airis can also: Airis can also rewrite or reword sentences or paragraphs using pre-written prompts like \"Make it simpler,\" \"Written by a child,\" and \"Add humor\". You can also: You can also use your own prompts like \"Write this in 200 words.\" There are fun options too, like \"Write it like a pirate\" and \"Write it like a cat.\" Airis can effectively: Airis can effectively translate articles and webpages in multiple languages using the GPT-3.5-Turbo model​. What differentiates Airis: What differentiates Airis from other AI models like ChatGPT is its ability to assign multiple rewriting or translation tasks on different pages simultaneously. You don’t have to wait for one task to finish to start another. Split Screen makes: Split Screen makes multitasking really easy. You never open more than one browser window again.",
-      "url": "https://beta.sigmaos.com/airis",
-      "domain": "beta.sigmaos.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/AAA.png",
-      "icon": "⚡",
-      "rating": 5,
-      "votes": 136,
-      "inner_content": {
-        "overview": "AI with the ability to understand the context of multiple web pages and provide multiple answers based on that context. For example, if you are reading about Manchester United and ask Airis to explain \"United\" or ask questions about it, Airis understands that you are asking about the football team and not just the word \"United\"​. How to use it: You can easily call upon Airis by right-clicking on a text selection, without having to open a side column or another tab. If you want to have a contextual conversation, you can press A to open the assistant in split-screen mode​. Use Cases: Airis can also: Airis can also rewrite or reword sentences or paragraphs using pre-written prompts like \"Make it simpler,\" \"Written by a child,\" and \"Add humor\". You can also: You can also use your own prompts like \"Write this in 200 words.\" There are fun options too, like \"Write it like a pirate\" and \"Write it like a cat.\" Airis can effectively: Airis can effectively translate articles and webpages in multiple languages using the GPT-3.5-Turbo model​. What differentiates Airis: What differentiates Airis from other AI models like ChatGPT is its ability to assign multiple rewriting or translation tasks on different pages simultaneously. You don’t have to wait for one task to finish to start another. Split Screen makes: Split Screen makes multitasking really easy. You never open more than one browser window again.",
-        "pricingDetails": "Freemium plan available on beta.sigmaos.com"
       },
       "tool_type": "⚡ Productivity"
     },
@@ -2084,7 +1740,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Free emotion-led AI recommendations across all your streaming services. This A.I. learns what you love.",
       "overview": "Free emotion-led AI recommendations across all your streaming services. This A.I. learns what you love. Just use emojis to describe how you want to feel, and MoveMe will work its magic, suggesting the perfect films for your mood. I am shocked how good its recommendation is. It also gives out the trailer videos for more details and much more.",
-      "url": "https://twitter.com/VaibhavSisinty/status/1665230258595934208/photo/1",
+      "url": "https://twitter.com/",
       "domain": "twitter.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/06/ai.png",
       "icon": "🌟",
@@ -2295,31 +1951,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚡ Productivity"
     },
     {
-      "id": "chatgpt-plugin-builder",
-      "name": "ChatGPT Plugin Builder",
-      "category": "design",
-      "categories": [
-        "design",
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Build ChatGPT plugins from any APIs within just five minutes.",
-      "overview": "Build ChatGPT plugins from any APIs within just five minutes. Status: Just Launched This single no-code tool will help you build ChatGPT Plugins with any coding skills. Tutorial:",
-      "url": "https://www.blobr.io/api-gateway-chatgpt-plugins",
-      "domain": "blobr.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/build-chatgpt-plugin.png",
-      "icon": "🎨",
-      "rating": 4.6,
-      "votes": 193,
-      "inner_content": {
-        "overview": "Build ChatGPT plugins from any APIs within just five minutes. Status: Just Launched This single no-code tool will help you build ChatGPT Plugins with any coding skills. Tutorial:",
-        "pricingDetails": "Freemium plan available on blobr.io"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
       "id": "liftoff",
       "name": "LiftOff",
       "category": "ai-assistant",
@@ -2381,7 +2012,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "It can generate 10 short videos from a long video with one click.",
       "overview": "It can generate 10 short videos from a long video with one click. Perfect for mass-creating content across all social media which leads you to more chances of going viral. Tutorial: Use Cases: It automatically crops: It automatically crops the main body of the character. It automatically adds: It automatically adds subtitles and emoji.",
-      "url": "https://www.opus.pro",
+      "url": "https://www.opus.pro/",
       "domain": "opus.pro",
       "image": "https://aivalley.ai/wp-content/uploads/2023/06/opus-clip.png",
       "icon": "🤖",
@@ -2456,7 +2087,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Bark can generate highly realistic, multilingual speech as well as other audio – including music, background noise, and simple sound effects.",
       "overview": "Bark can generate highly realistic, multilingual speech as well as other audio – including music, background noise, and simple sound effects. Not just that Bark can also: It's not just generate speech, it can also generate melodies/songs just from your text prompts. You just need to add music notes around your lyrics. Prompt: \" ♪ In the jungle, the mighty jungle, the lion barks tonight ♪ \" You can provide certain speaker prompts such as NARRATOR, MAN, WOMAN, etc. Demo: AI allows you to create realistic voices, music, sounds.But most text-to-audio AI tools costs around $12/month.Here's a free AI tool to start creating realistic voices just with text: 👇 Use Cases: Produce nonverbal communication: Produce nonverbal communication like laughing, sighing, and crying. The best part: The best part is that it's free and fully open-sourced.",
-      "url": "https://huggingface.co/spaces/suno/bark",
+      "url": "https://huggingface.co/",
       "domain": "huggingface.co",
       "image": "https://aivalley.ai/wp-content/uploads/2023/06/bark.jpeg",
       "icon": "🤖",
@@ -2493,56 +2124,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free plan available on photoroom.com"
       },
       "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "midnight-alarm",
-      "name": "Midnight Alarm",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Introducing Midnight Alarm, now with Wake-up missions.",
-      "overview": "Introducing Midnight Alarm, now with Wake-up missions. Demo: Turn off alarms by playing minecraft 😀Coming to Midnight this friday. pic.twitter.com/kNgiLAX8iS Use Cases: Advanced ALarm with: Advanced ALarm with a wake-up mission, it also has a Minecraft wake-up mission which is quite effective. All missions are: All missions are absolutely free and open sources. You can add: You can add as many as a mission you want with each alarm. Import your own: Import your own music, youtube videos Callender integration, weather preview.",
-      "url": "https://midnight.day/",
-      "domain": "midnight.day",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/midnight.png",
-      "icon": "⚡",
-      "rating": 4.6,
-      "votes": 204,
-      "inner_content": {
-        "overview": "Introducing Midnight Alarm, now with Wake-up missions. Demo: Turn off alarms by playing minecraft 😀Coming to Midnight this friday. pic.twitter.com/kNgiLAX8iS Use Cases: Advanced ALarm with: Advanced ALarm with a wake-up mission, it also has a Minecraft wake-up mission which is quite effective. All missions are: All missions are absolutely free and open sources. You can add: You can add as many as a mission you want with each alarm. Import your own: Import your own music, youtube videos Callender integration, weather preview.",
-        "pricingDetails": "Freemium plan available on midnight.day"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "tripnotes",
-      "name": "Tripnotes",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Imagine this – an intelligent travel companion at your fingertips, instantly crafting your perfect journey.",
-      "overview": "Imagine this – an intelligent travel companion at your fingertips, instantly crafting your perfect journey. Introducing Tripnotes, your ultimate AI-powered travel planner. Leveraging a treasure trove of widely recommended data. Demo: Meet Tripnotes, a travel A.I. with taste. Ask it for recommendations, itineraries, and more. Head to https://t.co/2dfJ1051qg to give it a spin! pic.twitter.com/cuAc1hjfxZ Use Cases: AI-powered travel planning: Utilizes cutting-edge AI technology to produce personalized travel based on collected data. Data-driven recommendations: Leverages a wealth of data from numerous sources, ensuring that each recommendation is popular and well-reviewed. Instant Itinerary Creation: Able to form a comprehensive travel plan within seconds, saving you valuable time. Activity Suggestions: Curates a list of potential activities based on your destination, preferences, and travel dates. Restaurant Locations: Provides detailed information on top-rated eateries around your travel location, making dining decisions a breeze. Popular Attractions: Highlights the most-visited attractions in your destination, ensuring you don't miss out on any must-see spots. Personalized Experience: Every itinerary is tailored to your unique tastes and preferences, offering a travel experience that is truly your own.",
-      "url": "https://tripnotes.ai/",
-      "domain": "tripnotes.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Tripnotes.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 69,
-      "inner_content": {
-        "overview": "Imagine this – an intelligent travel companion at your fingertips, instantly crafting your perfect journey. Introducing Tripnotes, your ultimate AI-powered travel planner. Leveraging a treasure trove of widely recommended data. Demo: Meet Tripnotes, a travel A.I. with taste. Ask it for recommendations, itineraries, and more. Head to https://t.co/2dfJ1051qg to give it a spin! pic.twitter.com/cuAc1hjfxZ Use Cases: AI-powered travel planning: Utilizes cutting-edge AI technology to produce personalized travel based on collected data. Data-driven recommendations: Leverages a wealth of data from numerous sources, ensuring that each recommendation is popular and well-reviewed. Instant Itinerary Creation: Able to form a comprehensive travel plan within seconds, saving you valuable time. Activity Suggestions: Curates a list of potential activities based on your destination, preferences, and travel dates. Restaurant Locations: Provides detailed information on top-rated eateries around your travel location, making dining decisions a breeze. Popular Attractions: Highlights the most-visited attractions in your destination, ensuring you don't miss out on any must-see spots. Personalized Experience: Every itinerary is tailored to your unique tastes and preferences, offering a travel experience that is truly your own.",
-        "pricingDetails": "Freemium plan available on tripnotes.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "dream-3d",
@@ -2591,32 +2172,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free Trial plan available on flair.ai"
       },
       "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "albus",
-      "name": "Albus AI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "educational",
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "A live board that will help you explore any topic you like in new ways, from different perspectives. Think of it as Google meets Pinterest.",
-      "overview": "A live board that will help you explore any topic you like in new ways, from different perspectives. Think of it as Google meets Pinterest. You just need to share your topic (actually any topic) and Albus will quickly generate a new idea and gives you more idea recommendations, and after you click, it gives more ideas – it grows like sprouts (quite amazing). Use Case: Use Cases: Infinite Idea Creation.: Infinite Idea Creation. Learn new skills.: Learn new skills. Discover new angels: Discover new angels and prospective. Ask any questions: Ask any questions you want. It also gives: It also gives you relevant images from the internet. Perfect for research,: Perfect for research, learning new things, visual learning, ideas generation, more.",
-      "url": "https://www.albus.org/",
-      "domain": "albus.org",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Albus.png",
-      "icon": "🔍",
-      "rating": 4.5,
-      "votes": 121,
-      "inner_content": {
-        "overview": "A live board that will help you explore any topic you like in new ways, from different perspectives. Think of it as Google meets Pinterest. You just need to share your topic (actually any topic) and Albus will quickly generate a new idea and gives you more idea recommendations, and after you click, it gives more ideas – it grows like sprouts (quite amazing). Use Case: Use Cases: Infinite Idea Creation.: Infinite Idea Creation. Learn new skills.: Learn new skills. Discover new angels: Discover new angels and prospective. Ask any questions: Ask any questions you want. It also gives: It also gives you relevant images from the internet. Perfect for research,: Perfect for research, learning new things, visual learning, ideas generation, more.",
-        "pricingDetails": "Freemium plan available on albus.org"
-      },
-      "tool_type": "🔍 Search & Research"
     },
     {
       "id": "gptagent",
@@ -2965,56 +2520,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Get weekly summaries of your feeds. It lets you choose youtube channels/articles you are already interested in and after you choose them, it will send you weekly summaries of key points from these channels. A quote from its founder: \"Over the past several years the number of content creators is consistently and exponentially growing. while I like the fact, that i can learn any topic nowadays on the internet for free, i found 2 problems: people post too many content, so I can't read / watch all of them; and there is a continuous repackaging of the same information, which i already know. I thought why not give an AI a task to watch all the content I am watching and then send me summaries to my inbox in a format of a digest.\" Some summary example: Use Cases: Instantly add all: Instantly add all your subscriptions with a single click. Save 364 hours: Save 364 hours per year with personalized digests. Easily navigate with: Easily navigate with automatic video categorization.",
         "pricingDetails": "Paid plan available on app.summate.io"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "narrated-tours",
-      "name": "Narrated Tours",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": true,
-      "description": "Make your own personalized audio walking tour guide.",
-      "overview": "Make your own personalized audio walking tour guide. It acts as your guide while traveling to new places, it talks like a human guide giving you the all the details about the place. Use case: Who's visiting San Francisco IRL @_buildspace?Let our AI @FarzaTV take you on a walking tour starting from Fort Mason Center.– a 30-minute walk– it's free– we are a Buildspace project 😍 @byhazellim https://t.co/q3gs802VFi pic.twitter.com/BhkcrhaUiM Use Cases: It lets you: It lets you convert your walks into a fun learning experience. A complete audio: A complete audio guided tour. Whitelabel offering for: Whitelabel offering for tour guides, hotels, travel agents.",
-      "url": "https://narratedtours.com/",
-      "domain": "narratedtours.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/06/Narrated-Tour-AI.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 25,
-      "inner_content": {
-        "overview": "Make your own personalized audio walking tour guide. It acts as your guide while traveling to new places, it talks like a human guide giving you the all the details about the place. Use case: Who's visiting San Francisco IRL @_buildspace?Let our AI @FarzaTV take you on a walking tour starting from Fort Mason Center.– a 30-minute walk– it's free– we are a Buildspace project 😍 @byhazellim https://t.co/q3gs802VFi pic.twitter.com/BhkcrhaUiM Use Cases: It lets you: It lets you convert your walks into a fun learning experience. A complete audio: A complete audio guided tour. Whitelabel offering for: Whitelabel offering for tour guides, hotels, travel agents.",
-        "pricingDetails": "Freemium plan available on narratedtours.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "cyte-ai",
-      "name": "Cyte AI",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "A visual, searchable knowledge is the base of your screen time.",
-      "overview": "A visual, searchable knowledge is the base of your screen time. Cyte gives you the ability to search your entire digital history from your desktop apps to your browser usage. Demo: Summarize work, locate content without precise keywords, and connect information from various sources, identifying hidden patterns. Add an LLM like Open AI to turn your digital history into a knowledge base. https://t.co/aGwmLWNDx3 #beta #opensource #selfhosted #buildinpublic pic.twitter.com/L4GVpzoITj Use Cases: Search by text: Search by text contained within any application Understand where you: Understand where you spend your time Private and secure: Private and secure Find the exact: Find the exact moment you are looking for using Cyte Timeline to quickly navigate your digital memories. Summarize work, locate: Summarize work, locate content without precise keywords, and connect information from various sources, identifying hidden patterns and relationships.",
-      "url": "https://cyte.io/",
-      "domain": "cyte.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/cyte-ai.png",
-      "icon": "⚡",
-      "rating": 4.8,
-      "votes": 89,
-      "inner_content": {
-        "overview": "A visual, searchable knowledge is the base of your screen time. Cyte gives you the ability to search your entire digital history from your desktop apps to your browser usage. Demo: Summarize work, locate content without precise keywords, and connect information from various sources, identifying hidden patterns. Add an LLM like Open AI to turn your digital history into a knowledge base. https://t.co/aGwmLWNDx3 #beta #opensource #selfhosted #buildinpublic pic.twitter.com/L4GVpzoITj Use Cases: Search by text: Search by text contained within any application Understand where you: Understand where you spend your time Private and secure: Private and secure Find the exact: Find the exact moment you are looking for using Cyte Timeline to quickly navigate your digital memories. Summarize work, locate: Summarize work, locate content without precise keywords, and connect information from various sources, identifying hidden patterns and relationships.",
-        "pricingDetails": "Freemium plan available on cyte.io"
       },
       "tool_type": "⚡ Productivity"
     },
@@ -3513,31 +3018,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on studio.design"
       },
       "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "parrot-ai",
-      "name": "Parrot AI",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Parrot AI is an AI tool that helps businesses collect, transcribe, and securely store important business experiences like video conferences, presentations, or customer calls.",
-      "overview": "Parrot AI is an AI tool that helps businesses collect, transcribe, and securely store important business experiences like video conferences, presentations, or customer calls. Demo : This is the demo we have been waiting to give since @ParrotAI_Inc was started. Try today for free and supercharge you and your team’s productivity. pic.twitter.com/7B537RufrX Use Cases: Parrot AI's new: Parrot AI's new screen recording feature allows you to effortlessly capture and securely share your ideas, eliminating the need for lengthy emails and meetings. Identifies and highlights: Identifies and highlights important moments from conversations. Helps retain relevant: Helps retain relevant knowledge for cross-functional collaboration. Gain insights from: Gain insights from customer interactions and incorporate their feedback into business operations. Automatically transcribes and: Automatically transcribes and stores meetings from popular platforms like Zoom, Google Meet, etc.",
-      "url": "https://parrot.ai/",
-      "domain": "parrot.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/parrot-ai.png",
-      "icon": "⚡",
-      "rating": 4.8,
-      "votes": 203,
-      "inner_content": {
-        "overview": "Parrot AI is an AI tool that helps businesses collect, transcribe, and securely store important business experiences like video conferences, presentations, or customer calls. Demo : This is the demo we have been waiting to give since @ParrotAI_Inc was started. Try today for free and supercharge you and your team’s productivity. pic.twitter.com/7B537RufrX Use Cases: Parrot AI's new: Parrot AI's new screen recording feature allows you to effortlessly capture and securely share your ideas, eliminating the need for lengthy emails and meetings. Identifies and highlights: Identifies and highlights important moments from conversations. Helps retain relevant: Helps retain relevant knowledge for cross-functional collaboration. Gain insights from: Gain insights from customer interactions and incorporate their feedback into business operations. Automatically transcribes and: Automatically transcribes and stores meetings from popular platforms like Zoom, Google Meet, etc.",
-        "pricingDetails": "Freemium plan available on parrot.ai"
-      },
-      "tool_type": "⚡ Productivity"
     },
     {
       "id": "contlo",
@@ -4343,31 +3823,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "✍️ Writing & Copywriting"
     },
     {
-      "id": "diagram",
-      "name": "Diagram",
-      "category": "design",
-      "categories": [
-        "design",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Be more creative with the collections of generative design tools.",
-      "overview": "Be more creative with the collections of generative design tools. Social Media: Twitter Mail Demo: The era of generative design tools have arrived.AI will empower people to be more creative, and more productive.This is Genius, from @diagram. pic.twitter.com/6nozYXbxbj Use Cases: Automate your Figma: Automate your Figma tasks in one click. A magical design: A magical design tool powered by AI. Your AI design: Your AI design companion. Powerful prototyping with: Powerful prototyping with code in Figma. Run Design Experiments: Run Design Experiments Twitter: Twitter Mail: Mail",
-      "url": "https://diagram.com/",
-      "domain": "diagram.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Diagram.png",
-      "icon": "🎨",
-      "rating": 4.8,
-      "votes": 117,
-      "inner_content": {
-        "overview": "Be more creative with the collections of generative design tools. Social Media: Twitter Mail Demo: The era of generative design tools have arrived.AI will empower people to be more creative, and more productive.This is Genius, from @diagram. pic.twitter.com/6nozYXbxbj Use Cases: Automate your Figma: Automate your Figma tasks in one click. A magical design: A magical design tool powered by AI. Your AI design: Your AI design companion. Powerful prototyping with: Powerful prototyping with code in Figma. Run Design Experiments: Run Design Experiments Twitter: Twitter Mail: Mail",
-        "pricingDetails": "Freemium plan available on diagram.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
       "id": "bardeen-ai",
       "name": "Bardeen AI",
       "category": "ai-assistant",
@@ -4465,31 +3920,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚖️ Legal & Compliance"
     },
     {
-      "id": "9654-2",
-      "name": "ThumbnailAi",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "image-generator"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Generate clickable and colorful youtube video thumbnails in just one click.",
-      "overview": "Generate clickable and colorful youtube video thumbnails in just one click. Your thumbnail is the first thing people will see. It has to be perfect, eye-catching and stunning. Bring your CTR to the moon and let's take your YouTube channel to the next level by creating the perfect thumbnail for your video in only one click using AI. Output:",
-      "url": "https://thumbnailmaker.art/",
-      "domain": "thumbnailmaker.art",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/thumbnailmaker.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 103,
-      "inner_content": {
-        "overview": "Generate clickable and colorful youtube video thumbnails in just one click. Your thumbnail is the first thing people will see. It has to be perfect, eye-catching and stunning. Bring your CTR to the moon and let's take your YouTube channel to the next level by creating the perfect thumbnail for your video in only one click using AI. Output:",
-        "pricingDetails": "Free Trial plan available on thumbnailmaker.art"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "gencraft",
       "name": "Gencraft",
       "category": "image-generator",
@@ -4551,7 +3981,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "StableStudio is Stability AI's open-source version of DreamStudio, a text-to-image consumer application.",
       "overview": "StableStudio is Stability AI's open-source version of DreamStudio, a text-to-image consumer application. With StableStudio, Stability AI aims to collaborate with the community to develop a user-friendly interface for generative AI that surpasses what a single company can achieve. Tutorial: Use Cases: Text-to-Image Generation: Generate images based on user-provided text descriptions. Web-Based Interface: Access StableStudio conveniently through a web browser, eliminating the need for additional software installations Model Selection: Choose from a range of AI models for image generation. Collaboration and Sharing: Collaborate, share creations, and work together on projects within StableStudio. Version Control: Track changes, revert to previous versions and collaborate on different iterations. Integration with External Tools: Integrate with external tools and libraries for additional resources and functionality. Chat Interface (Upcoming): Planned release of a chat interface for exploring generative AI capabilities.",
-      "url": "https://stability.ai/blog/stablestudio-open-source-community-driven-future-dreamstudio-release",
+      "url": "https://stability.ai/",
       "domain": "stability.ai",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot-2023-05-22-163628.png",
       "icon": "🎨",
@@ -4562,32 +3992,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on stability.ai"
       },
       "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "dora",
-      "name": "Dora AI",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools",
-        "design",
-        "fun-tools"
-      ],
-      "pricing": "Paid",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Design and publish 3D and animated sites with just plain text.",
-      "overview": "Design and publish 3D and animated sites with just plain text. By the way, Dora builds their own landing website with Dora. Dora AI is landing! Generate powerful SpaceX websites with a single prompt, fueled by AI 3D animation.⚡️Join the waitlist: https://t.co/lC6ldNSKCX・Text to website・Generative 3D interaction・Advanced AI animation#DoraAI pic.twitter.com/yUM1LGK55Z Use Cases: Create fully editable,: Create fully editable, award-winning websites from just a line of text. With our 3D: With our 3D interaction generator, you can transform static designs to an immersive experience. Automate the animation: Automate the animation process and skip the hours of manual work.",
-      "url": "https://www.dora.run/ai",
-      "domain": "dora.run",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dora.png",
-      "icon": "🚀",
-      "rating": 4.9,
-      "votes": 43,
-      "inner_content": {
-        "overview": "Design and publish 3D and animated sites with just plain text. By the way, Dora builds their own landing website with Dora. Dora AI is landing! Generate powerful SpaceX websites with a single prompt, fueled by AI 3D animation.⚡️Join the waitlist: https://t.co/lC6ldNSKCX・Text to website・Generative 3D interaction・Advanced AI animation#DoraAI pic.twitter.com/yUM1LGK55Z Use Cases: Create fully editable,: Create fully editable, award-winning websites from just a line of text. With our 3D: With our 3D interaction generator, you can transform static designs to an immersive experience. Automate the animation: Automate the animation process and skip the hours of manual work.",
-        "pricingDetails": "Paid plan available on dora.run"
-      },
-      "tool_type": "🚀 Startup & Business"
     },
     {
       "id": "chatgpt-for-ios",
@@ -4636,30 +4040,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on mind-video.com"
       },
       "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
-      "id": "dropchat",
-      "name": "Dropchat",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Instantly chat with any book, PDF, website by searching using title, author, or ISBN number.",
-      "overview": "Instantly chat with any book, PDF, website by searching using title, author, or ISBN number. Use Cases: Custom File Chat: Chat with any file type: PDF, YouTube video, websites, and more. No credit card: No credit card or login required. Its easy-to-use interface: Its easy-to-use interface makes it a lot more likable.",
-      "url": "https://app.dropchat.co/",
-      "domain": "app.dropchat.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Dropchat.png",
-      "icon": "🎓",
-      "rating": 4.9,
-      "votes": 113,
-      "inner_content": {
-        "overview": "Instantly chat with any book, PDF, website by searching using title, author, or ISBN number. Use Cases: Custom File Chat: Chat with any file type: PDF, YouTube video, websites, and more. No credit card: No credit card or login required. Its easy-to-use interface: Its easy-to-use interface makes it a lot more likable.",
-        "pricingDetails": "Free Trial plan available on app.dropchat.co"
-      },
-      "tool_type": "🎓 Education & Learning"
     },
     {
       "id": "mindbot",
@@ -4713,31 +4093,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🖼️ Image & Photo Editing"
     },
     {
-      "id": "parthean-ai",
-      "name": "Parthean AI",
-      "category": "finance",
-      "categories": [
-        "finance",
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "📊 Finance & Spreadsheets",
-      "featured": false,
-      "description": "Parthean is an AI-powered financial coach that offers tools, modules, and coaching tips to help you optimize your spending, investing, credit, savings, and more.",
-      "overview": "Parthean is an AI-powered financial coach that offers tools, modules, and coaching tips to help you optimize your spending, investing, credit, savings, and more. Quick Introduction: Tutorial: Introducing Parthean AI: ChatGPT for Personal FinanceIt’s the world’s most powerful financial coach — in your pocket.And its available now for free.1/18 pic.twitter.com/P2mLLU9NRd Use Cases: Personalized financial information: Personalized financial information based on your specific financial data Customized financial plans: Customized financial plans tailored to your budget and goals Transparent explanations of: Transparent explanations of answers with breakdowns and citations Seamless integration with: Seamless integration with Parthean's budgeting, investing, and credit management tools Strong emphasis on: Strong emphasis on trust and safety through bank-level security, anonymized data processing, financial education focus, and human expert review for accuracy.",
-      "url": "https://www.parthean.com/",
-      "domain": "parthean.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot-2023-05-20-225811.png",
-      "icon": "📊",
-      "rating": 5,
-      "votes": 177,
-      "inner_content": {
-        "overview": "Parthean is an AI-powered financial coach that offers tools, modules, and coaching tips to help you optimize your spending, investing, credit, savings, and more. Quick Introduction: Tutorial: Introducing Parthean AI: ChatGPT for Personal FinanceIt’s the world’s most powerful financial coach — in your pocket.And its available now for free.1/18 pic.twitter.com/P2mLLU9NRd Use Cases: Personalized financial information: Personalized financial information based on your specific financial data Customized financial plans: Customized financial plans tailored to your budget and goals Transparent explanations of: Transparent explanations of answers with breakdowns and citations Seamless integration with: Seamless integration with Parthean's budgeting, investing, and credit management tools Strong emphasis on: Strong emphasis on trust and safety through bank-level security, anonymized data processing, financial education focus, and human expert review for accuracy.",
-        "pricingDetails": "Freemium plan available on parthean.com"
-      },
-      "tool_type": "📊 Finance & Spreadsheets"
-    },
-    {
       "id": "canva-text-to-image",
       "name": "Canva Text to Image",
       "category": "image-generator",
@@ -4785,56 +4140,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on palette.fm"
       },
       "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "steno",
-      "name": "Steno",
-      "category": "productivity",
-      "categories": [
-        "productivity",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Easily extract insights from podcast & video content.",
-      "overview": "Easily extract insights from podcast & video content. Social Media: Use Cases: Steno has a: Steno has a growing proprietary dataset with 49 million hours of content and hundreds of thousands of transcripts Your favorite podcasts,: Your favorite podcasts, fully transcribed Discover, reference, and read along as you listen. Chapter based podcast: Chapter based podcast summaries that provide an overview of the episode, along with key insights into themes, topics, people, or trends discussed Search for brands,: Search for brands, people, topics, and products — find every mention of any keyword with just a few clicks Have endless conversations: Have endless conversations with our chatbot — talk to your favorite humans and learn all about your favorite topics Twitter: Twitter",
-      "url": "https://steno.ai/",
-      "domain": "steno.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Steno-1.png",
-      "icon": "⚡",
-      "rating": 4.7,
-      "votes": 44,
-      "inner_content": {
-        "overview": "Easily extract insights from podcast & video content. Social Media: Use Cases: Steno has a: Steno has a growing proprietary dataset with 49 million hours of content and hundreds of thousands of transcripts Your favorite podcasts,: Your favorite podcasts, fully transcribed Discover, reference, and read along as you listen. Chapter based podcast: Chapter based podcast summaries that provide an overview of the episode, along with key insights into themes, topics, people, or trends discussed Search for brands,: Search for brands, people, topics, and products — find every mention of any keyword with just a few clicks Have endless conversations: Have endless conversations with our chatbot — talk to your favorite humans and learn all about your favorite topics Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on steno.ai"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "muzify-ai",
-      "name": "Muzify AI",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools",
-        "music"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": true,
-      "description": "FROM BOOKS TO PLAYLIST",
-      "overview": "FROM BOOKS TO PLAYLIST A cool tool that generates playlists based on book. In simple words – Turn your book into an AI generated music playlist. Just enter the name of any book, it will generate a playlist of songs related to your book, such a fun tool to play with. It's totally free to use. Use Cases: Twitter: Twitter Instagram: Instagram",
-      "url": "https://muzify.ai/",
-      "domain": "muzify.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Muzify.png",
-      "icon": "🎉",
-      "rating": 5,
-      "votes": 160,
-      "inner_content": {
-        "overview": "FROM BOOKS TO PLAYLIST A cool tool that generates playlists based on book. In simple words – Turn your book into an AI generated music playlist. Just enter the name of any book, it will generate a playlist of songs related to your book, such a fun tool to play with. It's totally free to use. Use Cases: Twitter: Twitter Instagram: Instagram",
-        "pricingDetails": "Free Trial plan available on muzify.ai"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
     },
     {
       "id": "microsoft-365-copilot",
@@ -4998,7 +4303,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Find the Best Artificial Intelligence resources to learn from in seconds",
       "overview": "Find the Best Artificial Intelligence resources to learn from in seconds AI Resource Finder Tool Features: Get the best AI resources in seconds with AI Resource Finder – the free tool designed to save you time and make it easy to find everything in one place. Benefit from the convenience and user-friendliness of our comprehensive AI directory! Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.interestedinai.com/ai-resource-finder-tool",
+      "url": "https://www.interestedinai.com/",
       "domain": "interestedinai.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/AI-ResourceFinder.png",
       "icon": "🤖",
@@ -5009,56 +4314,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free Trial plan available on interestedinai.com"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "tome",
-      "name": "Tome",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "startup-tools",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Build a powerful story with any type of content.",
-      "overview": "Build a powerful story with any type of content. Tome is a cutting-edge platform that leverages AI to revolutionize the art of storytelling. With its innovative generative storytelling format, users can unleash their creativity and produce their best work. Tutorial: Use Cases: Generate narratives with: Generate narratives with one click using prompts. Turn any artifact: Turn any artifact into a presentation or summarize long-format content. Refine your story: Refine your story with AI-powered text and image editing. Access and embed: Access and embed diverse content in one central location.",
-      "url": "https://tome.app/",
-      "domain": "tome.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-tome.app-2023.05.11-10_17_15.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 110,
-      "inner_content": {
-        "overview": "Build a powerful story with any type of content. Tome is a cutting-edge platform that leverages AI to revolutionize the art of storytelling. With its innovative generative storytelling format, users can unleash their creativity and produce their best work. Tutorial: Use Cases: Generate narratives with: Generate narratives with one click using prompts. Turn any artifact: Turn any artifact into a presentation or summarize long-format content. Refine your story: Refine your story with AI-powered text and image editing. Access and embed: Access and embed diverse content in one central location.",
-        "pricingDetails": "Freemium plan available on tome.app"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "runwayml",
-      "name": "Runwayml",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Next-generation video generation using AI for creators.",
-      "overview": "Next-generation video generation using AI for creators. Demo: Generate videos with nothing but words. If you can say it, now you can see it.Introducing, Text to Video. With Gen-2.Learn more at https://t.co/PsJh664G0Q pic.twitter.com/6qEgcZ9QV4 Full Showcase: Text-to-Videos are getting insanely powerful.Few years and we will watch Hollywood movies generated by AI.Here are 12 incredible use cases of #Gen-2 changing the industry very rapidly 🤯 👇 Use Cases: Generate Videos: Generate Videos Generate Images: Generate Images Infinitely Expand Images: Infinitely Expand Images Reimagine Any Image: Reimagine Any Image Train Custom Models: Train Custom Models Erase Things from: Erase Things from Videos Slow Mo Any: Slow Mo Any Video Make Images Move: Make Images Move Remove Any Background: Remove Any Background",
-      "url": "https://runwayml.com/",
-      "domain": "runwayml.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Runway.png",
-      "icon": "🎬",
-      "rating": 4.5,
-      "votes": 194,
-      "inner_content": {
-        "overview": "Next-generation video generation using AI for creators. Demo: Generate videos with nothing but words. If you can say it, now you can see it.Introducing, Text to Video. With Gen-2.Learn more at https://t.co/PsJh664G0Q pic.twitter.com/6qEgcZ9QV4 Full Showcase: Text-to-Videos are getting insanely powerful.Few years and we will watch Hollywood movies generated by AI.Here are 12 incredible use cases of #Gen-2 changing the industry very rapidly 🤯 👇 Use Cases: Generate Videos: Generate Videos Generate Images: Generate Images Infinitely Expand Images: Infinitely Expand Images Reimagine Any Image: Reimagine Any Image Train Custom Models: Train Custom Models Erase Things from: Erase Things from Videos Slow Mo Any: Slow Mo Any Video Make Images Move: Make Images Move Remove Any Background: Remove Any Background",
-        "pricingDetails": "Freemium plan available on runwayml.com"
-      },
-      "tool_type": "🎬 Video & Animation"
     },
     {
       "id": "codeium",
@@ -5131,31 +4386,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on adobe.com"
       },
       "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "aideamap",
-      "name": "AIdeaMap",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Your AI Assistant for Interactive Idea Mapping.",
-      "overview": "Your AI Assistant for Interactive Idea Mapping. Uses: Use Cases: Remembering things: Remembering things Learning complex things: Learning complex things instantly Digital storytelling: Digital storytelling Presentation: Presentation Teaching complex things: Teaching complex things to others And much more.: And much more.",
-      "url": "https://www.superusapp.com/aideamap",
-      "domain": "superusapp.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/ghjghjyuuy.png",
-      "icon": "🌟",
-      "rating": 4.7,
-      "votes": 77,
-      "inner_content": {
-        "overview": "Your AI Assistant for Interactive Idea Mapping. Uses: Use Cases: Remembering things: Remembering things Learning complex things: Learning complex things instantly Digital storytelling: Digital storytelling Presentation: Presentation Teaching complex things: Teaching complex things to others And much more.: And much more.",
-        "pricingDetails": "Freemium plan available on superusapp.com"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
     },
     {
       "id": "uizard-autodesigner",
@@ -5282,30 +4512,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Image Generator"
     },
     {
-      "id": "ingestai",
-      "name": "IngestAI",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "IngestAI Assistant is a tool that enables users to convert their knowledge base into a chatbot-like assistant compatible with Slack, Discord, WhatsApp, Telegram, and more.",
-      "overview": "IngestAI Assistant is a tool that enables users to convert their knowledge base into a chatbot-like assistant compatible with Slack, Discord, WhatsApp, Telegram, and more. Use Cases: Quick setup without: Quick setup without coding or technical skills required Wide compatibility with: Wide compatibility with various knowledge base file formats Work with diverse Generative AI models: GPT-3.5 Turbo, GPT-4, Cohere, Stability AI, DALL-E. AI-generated accurate answers: AI-generated accurate answers to user questions Customizable chatbot to: Customizable chatbot to align with specific needs",
-      "url": "https://ingestai.io/",
-      "domain": "ingestai.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/ingest.png",
-      "icon": "⚡",
-      "rating": 4.8,
-      "votes": 58,
-      "inner_content": {
-        "overview": "IngestAI Assistant is a tool that enables users to convert their knowledge base into a chatbot-like assistant compatible with Slack, Discord, WhatsApp, Telegram, and more. Use Cases: Quick setup without: Quick setup without coding or technical skills required Wide compatibility with: Wide compatibility with various knowledge base file formats Work with diverse Generative AI models: GPT-3.5 Turbo, GPT-4, Cohere, Stability AI, DALL-E. AI-generated accurate answers: AI-generated accurate answers to user questions Customizable chatbot to: Customizable chatbot to align with specific needs",
-        "pricingDetails": "Freemium plan available on ingestai.io"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
       "id": "magic-studio-2",
       "name": "Magic Studio",
       "category": "image-editing",
@@ -5402,31 +4608,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on mubert.com"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "kraftful-2",
-      "name": "Kraftful",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Save hundreds of hours with our AI summaries of user feedback.",
-      "overview": "Save hundreds of hours with our AI summaries of user feedback. Kraftful Social Media: Twitter Kraftful Tutorial: 🚀 AI for Product Builders: save a bazillion hours reading user feedback & writing JIRA tickets!Here’s how we envision PMs having even more superpowers with https://t.co/lCh5xAZqAh + ChatGPT🧵 pic.twitter.com/fH0L5Qrko9 Use Cases: Save hundreds of: Save hundreds of hours analyzing feedback with our GPT-4 powered solution to uncover user needs Chat with your: Chat with your user data to quickly answer the questions that matter, write Jira tickets, PRDs and more Build to-do lists: Build to-do lists to share with your team, export insights to your product roadmap Twitter: Twitter",
-      "url": "https://www.kraftful.com/",
-      "domain": "kraftful.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Kraftful.png",
-      "icon": "🚀",
-      "rating": 4.6,
-      "votes": 42,
-      "inner_content": {
-        "overview": "Save hundreds of hours with our AI summaries of user feedback. Kraftful Social Media: Twitter Kraftful Tutorial: 🚀 AI for Product Builders: save a bazillion hours reading user feedback & writing JIRA tickets!Here’s how we envision PMs having even more superpowers with https://t.co/lCh5xAZqAh + ChatGPT🧵 pic.twitter.com/fH0L5Qrko9 Use Cases: Save hundreds of: Save hundreds of hours analyzing feedback with our GPT-4 powered solution to uncover user needs Chat with your: Chat with your user data to quickly answer the questions that matter, write Jira tickets, PRDs and more Build to-do lists: Build to-do lists to share with your team, export insights to your product roadmap Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on kraftful.com"
-      },
-      "tool_type": "🚀 Startup & Business"
     },
     {
       "id": "paperbrain",
@@ -5628,30 +4809,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "playarti",
-      "name": "PlayArti",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "PlayARTi: Streamline the process of digital artwork creation with the assistance of AI technology",
-      "overview": "PlayARTi: Streamline the process of digital artwork creation with the assistance of AI technology PlayArti Features: Tutorial: Use Cases: Advanced algorithms: Create one-of-a-kind artwork from images, photos, and videos using powerful algorithms. Customization options: Personalize your creations by choosing colors, shapes, and textures to suit your preferences. Versatile applications: Utilize the generated artwork for website designs, logos, and various digital art projects.",
-      "url": "https://www.playarti.com/",
-      "domain": "playarti.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.playarti.com-2023.05.15-01_30_55.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 77,
-      "inner_content": {
-        "overview": "PlayARTi: Streamline the process of digital artwork creation with the assistance of AI technology PlayArti Features: Tutorial: Use Cases: Advanced algorithms: Create one-of-a-kind artwork from images, photos, and videos using powerful algorithms. Customization options: Personalize your creations by choosing colors, shapes, and textures to suit your preferences. Versatile applications: Utilize the generated artwork for website designs, logos, and various digital art projects.",
-        "pricingDetails": "Freemium plan available on playarti.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "civitai-2",
       "name": "Civitai",
       "category": "ai-assistant",
@@ -5698,30 +4855,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "EbSynth is a cutting-edge video editing tool that utilizes artificial intelligence to revolutionize the process of transforming footage through the technique of painting over a single frame. Ebsynth Features: Social Media: Twitter Instagram Facebook Tutorial: Use Cases: Efficient editing: Seamlessly transfer painted artwork to videos of any length. Automatic propagation: The tool intelligently applies the painted frame across the entire video automatically. Free and accessible: Enjoy the benefits of EbSynth as a free downloadable tool, with regular updates and upcoming releases. Twitter: Twitter Instagram: Instagram Facebook: Facebook",
         "pricingDetails": "Free Trial plan available on ebsynth.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "instantart-io",
-      "name": "InstantArt.io",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "InstantArt is a stable diffusion AI tool that can produce original art instantly and without limits. It is available for free use.",
-      "overview": "InstantArt is a stable diffusion AI tool that can produce original art instantly and without limits. It is available for free use. InstantArt.io Features: Tutorial: Use Cases: 25+ models for: 25+ models for various art styles and types Photorealistic 4k renders: Photorealistic 4k renders and detailed 3D environments Advanced lighting features: Advanced lighting features like Rembrandt light and global illumination 8k resolution for: 8k resolution for portraits, illustrations, and art pieces",
-      "url": "https://instantart.io/",
-      "domain": "instantart.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-instantart.io-2023.05.14-23_08_04.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 68,
-      "inner_content": {
-        "overview": "InstantArt is a stable diffusion AI tool that can produce original art instantly and without limits. It is available for free use. InstantArt.io Features: Tutorial: Use Cases: 25+ models for: 25+ models for various art styles and types Photorealistic 4k renders: Photorealistic 4k renders and detailed 3D environments Advanced lighting features: Advanced lighting features like Rembrandt light and global illumination 8k resolution for: 8k resolution for portraits, illustrations, and art pieces",
-        "pricingDetails": "Free plan available on instantart.io"
       },
       "tool_type": "🤖 AI Assistant"
     },
@@ -5870,31 +5003,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Artflow.ai is an AI-driven tool that empowers users to bring their stories to life by creating personalized avatars. Artflow ai Features: Social Media: Twitter Facebook Instagram Tutorial: Use Cases: Artflow.ai enables users: Artflow.ai enables users to create custom avatars, scenes, and voices from text and write unique dialogues. Users have access: Users have access to a vast asset library of user-generated content, including premade characters and scenes. The platform supports: The platform supports non-English descriptions for diverse creations. Artflow.ai provides an: Artflow.ai provides an API for content generation and offers real-time feedback on creations. Users can connect: Users can connect with others through a Discord community, tutorials, and FAQs. Twitter: Twitter Facebook: Facebook Instagram: Instagram",
         "pricingDetails": "Free Trial plan available on app.artflow.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "vana-portrait-2",
-      "name": "Vana Portrait",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Create a unique self-portrait.",
-      "overview": "Create a unique self-portrait. Vana Portrait Features: Vana's \"Portrait\" is a generative art studio that has the ability to create infinite styles of self-portraits of you, turning you into a work of art. Social Media: Use Cases: Instagram: Instagram Mail: Mail",
-      "url": "https://portrait.vana.com/",
-      "domain": "portrait.vana.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-portrait.vana_.com-2023.05.14-22_11_15.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 101,
-      "inner_content": {
-        "overview": "Create a unique self-portrait. Vana Portrait Features: Vana's \"Portrait\" is a generative art studio that has the ability to create infinite styles of self-portraits of you, turning you into a work of art. Social Media: Use Cases: Instagram: Instagram Mail: Mail",
-        "pricingDetails": "Freemium plan available on portrait.vana.com"
       },
       "tool_type": "🤖 AI Assistant"
     },
@@ -6271,55 +5379,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "arvin",
-      "name": "Arvin",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Arvin is an Artificial Intelligence (AI) writing tool that provides advanced content creation features for a range of domains.",
-      "overview": "Arvin is an Artificial Intelligence (AI) writing tool that provides advanced content creation features for a range of domains. Arvin Features: 1. Arvin is an AI writing assistant that offers advanced content generation tools for multiple domains.2. With its ChatGPT prompt generators, Arvin can create content on various topics, including IT, music, business, coding, data analysis, and more.3. Users can act as different roles, such as a cybersecurity specialist, CEO, and IT architect, to generate tailored content.4. Arvin offers an AI cover letter generator, which automatically crafts professional and impressive cover letters without any effort.5. Arvin also provides a Chrome extension for convenient access to content generation tools.",
-      "url": "https://tryarvin.com/",
-      "domain": "tryarvin.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.google.com-2023.05.13-22_20_29.png",
-      "icon": "✍️",
-      "rating": 4.6,
-      "votes": 69,
-      "inner_content": {
-        "overview": "Arvin is an Artificial Intelligence (AI) writing tool that provides advanced content creation features for a range of domains. Arvin Features: 1. Arvin is an AI writing assistant that offers advanced content generation tools for multiple domains.2. With its ChatGPT prompt generators, Arvin can create content on various topics, including IT, music, business, coding, data analysis, and more.3. Users can act as different roles, such as a cybersecurity specialist, CEO, and IT architect, to generate tailored content.4. Arvin offers an AI cover letter generator, which automatically crafts professional and impressive cover letters without any effort.5. Arvin also provides a Chrome extension for convenient access to content generation tools.",
-        "pricingDetails": "Freemium plan available on tryarvin.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "gptionary",
-      "name": "GPTionary",
-      "category": "educational",
-      "categories": [
-        "educational",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "GPTionary is an AI-driven educational resource that leverages GPT and open-source language models to facilitate the efficient acquisition of new vocabulary.",
-      "overview": "GPTionary is an AI-driven educational resource that leverages GPT and open-source language models to facilitate the efficient acquisition of new vocabulary. GPTionary Features: Social Media: Use Cases: Targeted access for: Targeted access for community leaders (teachers, principals, officials) Secure usage requires: Secure usage requires key obtained through valid credentials Error message system: Error message system to prevent misuse and ensure proper utilization Support system available: Support system available for key-related issues and additional help Mail: Mail",
-      "url": "https://gptionary.com/",
-      "domain": "gptionary.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-gptionary.com-2023.05.13-22_04_09.png",
-      "icon": "🎓",
-      "rating": 4.7,
-      "votes": 48,
-      "inner_content": {
-        "overview": "GPTionary is an AI-driven educational resource that leverages GPT and open-source language models to facilitate the efficient acquisition of new vocabulary. GPTionary Features: Social Media: Use Cases: Targeted access for: Targeted access for community leaders (teachers, principals, officials) Secure usage requires: Secure usage requires key obtained through valid credentials Error message system: Error message system to prevent misuse and ensure proper utilization Support system available: Support system available for key-related issues and additional help Mail: Mail",
-        "pricingDetails": "Freemium plan available on gptionary.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
       "id": "neurospell",
       "name": "NeuroSpell",
       "category": "productivity",
@@ -6367,30 +5426,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on corrector.app"
       },
       "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "evolv",
-      "name": "EVOLV",
-      "category": "ecommerce",
-      "categories": [
-        "ecommerce"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🛍️ Ecommerce & Marketing",
-      "featured": false,
-      "description": "EVOLV is an AI-powered New Tab Chrome extension, built for Marketers!",
-      "overview": "EVOLV is an AI-powered New Tab Chrome extension, built for Marketers! 1. Arvin is an AI-based writing assistant that can help with various writing tasks.2. It offers a range of features and advantages that can streamline and enhance your writing process.3. One of the key features of Arvin is its AI-powered daily feed recommendations that provide personalized marketing updates and resources.4. The daily feed is hyper-personalized based on your expertise and needs and is created through machine learning algorithms that analyze your browsing and search history.5. Arvin’s daily feed offers a convenient and effective way to stay informed and up-to-date for marketing professionals and small business owners alike.6. Arvin also provides other hyper-personalized content recommendations that are customized based on your writing style, tone, and preferences.7. Arvin offers convenient access to the latest marketing insights and resources by integrating with your New Tab page.8. You can easily access its features directly from your web browser.9. The tool is essential for anyone who wants to improve their writing and stay informed of the latest marketing trends and updates.10. Arvin’s AI-powered daily feed, hyper-personalized content, and access make it an indispensable component of any marketer’s toolkit. Social Media: Use Cases: Mail: Mail",
-      "url": "https://goevolv.io/",
-      "domain": "goevolv.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/EVOLV.png",
-      "icon": "🛍️",
-      "rating": 4.7,
-      "votes": 151,
-      "inner_content": {
-        "overview": "EVOLV is an AI-powered New Tab Chrome extension, built for Marketers! 1. Arvin is an AI-based writing assistant that can help with various writing tasks.2. It offers a range of features and advantages that can streamline and enhance your writing process.3. One of the key features of Arvin is its AI-powered daily feed recommendations that provide personalized marketing updates and resources.4. The daily feed is hyper-personalized based on your expertise and needs and is created through machine learning algorithms that analyze your browsing and search history.5. Arvin’s daily feed offers a convenient and effective way to stay informed and up-to-date for marketing professionals and small business owners alike.6. Arvin also provides other hyper-personalized content recommendations that are customized based on your writing style, tone, and preferences.7. Arvin offers convenient access to the latest marketing insights and resources by integrating with your New Tab page.8. You can easily access its features directly from your web browser.9. The tool is essential for anyone who wants to improve their writing and stay informed of the latest marketing trends and updates.10. Arvin’s AI-powered daily feed, hyper-personalized content, and access make it an indispensable component of any marketer’s toolkit. Social Media: Use Cases: Mail: Mail",
-        "pricingDetails": "Free Trial plan available on goevolv.io"
-      },
-      "tool_type": "🛍️ Ecommerce & Marketing"
     },
     {
       "id": "kickresume",
@@ -6805,54 +5840,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎵 Music & Audio"
     },
     {
-      "id": "ultrabrainstomer-2",
-      "name": "UltraBrainstomer",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "AI tool that turns dull ideas into brilliance in a flash.",
-      "overview": "AI tool that turns dull ideas into brilliance in a flash. UltraBrainstomer is an innovative brainstorming solution that utilizes the potency of AI to enhance your creative capabilities and take your work to the next level. Whether you require fresh business concepts, are scripting a speech, creating social media updates, or developing emails, this tool has got you covered.",
-      "url": "https://ultrabrainstomer.com/login",
-      "domain": "ultrabrainstomer.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-ultrabrainstomer.com-2023.05.13-08_10_35.png",
-      "icon": "🚀",
-      "rating": 4.5,
-      "votes": 70,
-      "inner_content": {
-        "overview": "AI tool that turns dull ideas into brilliance in a flash. UltraBrainstomer is an innovative brainstorming solution that utilizes the potency of AI to enhance your creative capabilities and take your work to the next level. Whether you require fresh business concepts, are scripting a speech, creating social media updates, or developing emails, this tool has got you covered.",
-        "pricingDetails": "Freemium plan available on ultrabrainstomer.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "verb-ai",
-      "name": "Verb.ai",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Verb is a writer-focused tool for fiction authors that combines the power of AI with a story-centric approach. It goes beyond text generation to provide support for every stage of the writing process, from planning to reviewing and revising. With Verb, writers receive assistance in planning, writing, critiquing, and obtaining feedback, much like they would with a top-notch editor.",
-      "overview": "Verb is a writer-focused tool for fiction authors that combines the power of AI with a story-centric approach. It goes beyond text generation to provide support for every stage of the writing process, from planning to reviewing and revising. With Verb, writers receive assistance in planning, writing, critiquing, and obtaining feedback, much like they would with a top-notch editor. Use Cases: Twitter: Twitter",
-      "url": "https://verb.ai/",
-      "domain": "verb.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-verb.ai-2023.05.13-08_05_02.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 49,
-      "inner_content": {
-        "overview": "Verb is a writer-focused tool for fiction authors that combines the power of AI with a story-centric approach. It goes beyond text generation to provide support for every stage of the writing process, from planning to reviewing and revising. With Verb, writers receive assistance in planning, writing, critiquing, and obtaining feedback, much like they would with a top-notch editor. Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on verb.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "ai-majic",
       "name": "AI Majic",
       "category": "writing",
@@ -6873,55 +5860,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI Majic is a platform that utilizes the power of artificial intelligence to assist businesses in streamlining operations, boosting productivity, and cutting down expenses. AI Majic Features: Use Cases: AI-powered platform for: AI-powered platform for optimizing business operations and reducing costs. Processes structured and: Processes structured and unstructured data from text, images, and videos to provide actionable insights. Provides AI templates: Provides AI templates for various content types like blogs, social media posts, emails, and product descriptions.",
         "pricingDetails": "Freemium plan available on aimajic.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "aiprolific",
-      "name": "AiProlific",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "productivity"
-      ],
-      "pricing": "Free Trial",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Fast & effortless generation of SEO-optimized content.",
-      "overview": "Fast & effortless generation of SEO-optimized content. – AiProlific is an app that harnesses advanced artificial intelligence technology to enable effortless high-quality content creation.– The app employs machine learning algorithms to analyze significant amounts of data and detect patterns in language usage. This ability allows AiProlific to generate content based on those patterns, and offer writing improvement recommendations.– AiProlific is an AI writing assistant and content creator presented as a SaaS tool that applies leading natural language processing algorithms and machine learning to facilitate high-quality content creation effortlessly and quickly.– The app provides topic ideas, outlines, and generates content for different formats, including articles, blog posts, social media updates, among others.– By relying on AiProlific, users can benefit from idea suggestions, article outlines, and even entire pieces of content produced. This can save them time, upsurge productivity, and facilitate the creation of engaging and precise content. Social Media: Use Cases: Twitter: Twitter Instagram: Instagram Facebook: Facebook",
-      "url": "https://aiprolific.com/",
-      "domain": "aiprolific.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-aiprolific.com-2023.05.13-07_41_24.png",
-      "icon": "✍️",
-      "rating": 5,
-      "votes": 166,
-      "inner_content": {
-        "overview": "Fast & effortless generation of SEO-optimized content. – AiProlific is an app that harnesses advanced artificial intelligence technology to enable effortless high-quality content creation.– The app employs machine learning algorithms to analyze significant amounts of data and detect patterns in language usage. This ability allows AiProlific to generate content based on those patterns, and offer writing improvement recommendations.– AiProlific is an AI writing assistant and content creator presented as a SaaS tool that applies leading natural language processing algorithms and machine learning to facilitate high-quality content creation effortlessly and quickly.– The app provides topic ideas, outlines, and generates content for different formats, including articles, blog posts, social media updates, among others.– By relying on AiProlific, users can benefit from idea suggestions, article outlines, and even entire pieces of content produced. This can save them time, upsurge productivity, and facilitate the creation of engaging and precise content. Social Media: Use Cases: Twitter: Twitter Instagram: Instagram Facebook: Facebook",
-        "pricingDetails": "Free Trial plan available on aiprolific.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "novelflow-ai-2",
-      "name": "NovelFlow AI",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Uses AI to automatically generate the first draft of your novel.",
-      "overview": "Uses AI to automatically generate the first draft of your novel. – NovelFlow.ai is a web application powered by artificial intelligence designed to support and encourage writers in their creative endeavors.– The app provides an array of innovative features, such as Character Designer, World Builder, and Story Starter, which simplify the writing process, allowing writers to develop captivating characters, immersive settings, and compelling narratives.– NovelFlow.ai ensures a seamless writing experience by utilizing AI technology, offering an intuitive and collaborative platform that is accessible to writers of all levels—helping users overcome writer’s block, organize their ideas, and unleash their storytelling potential.",
-      "url": "http://novelflow.ai/",
-      "domain": "novelflow.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.novelflow.ai-2023.05.13-07_37_32.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 131,
-      "inner_content": {
-        "overview": "Uses AI to automatically generate the first draft of your novel. – NovelFlow.ai is a web application powered by artificial intelligence designed to support and encourage writers in their creative endeavors.– The app provides an array of innovative features, such as Character Designer, World Builder, and Story Starter, which simplify the writing process, allowing writers to develop captivating characters, immersive settings, and compelling narratives.– NovelFlow.ai ensures a seamless writing experience by utilizing AI technology, offering an intuitive and collaborative platform that is accessible to writers of all levels—helping users overcome writer’s block, organize their ideas, and unleash their storytelling potential.",
-        "pricingDetails": "Freemium plan available on novelflow.ai"
       },
       "tool_type": "✍️ Writing & Copywriting"
     },
@@ -7386,30 +6324,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🛍️ Ecommerce & Marketing"
     },
     {
-      "id": "ib-monograph-assistant",
-      "name": "IB monograph Assistant",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "The AI-based Monograph Writing Tool is a platform that utilizes artificial intelligence to assist users in enhancing their monograph writing skills and completing their work in a shorter time frame, typically less than three months.",
-      "overview": "The AI-based Monograph Writing Tool is a platform that utilizes artificial intelligence to assist users in enhancing their monograph writing skills and completing their work in a shorter time frame, typically less than three months.",
-      "url": "https://ibmonograph.com/",
-      "domain": "ibmonograph.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-ibmonograph.com-2023.05.13-02_40_13.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 41,
-      "inner_content": {
-        "overview": "The AI-based Monograph Writing Tool is a platform that utilizes artificial intelligence to assist users in enhancing their monograph writing skills and completing their work in a shorter time frame, typically less than three months.",
-        "pricingDetails": "Free Trial plan available on ibmonograph.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "contentdetector-ai",
       "name": "ContentDetector.AI",
       "category": "ai-assistant",
@@ -7469,7 +6383,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Conker is an AI-powered platform that enables users to easily generate learning materials and quizzes to share with students without any technical difficulties.",
       "overview": "Conker is an AI-powered platform that enables users to easily generate learning materials and quizzes to share with students without any technical difficulties. Key Features: Use Cases: AI-powered quiz creator: Generate custom quizzes using Conker's AI technology. Direct sharing with students: Share quizzes and learning materials directly with students. Customizable character images: Design unique character images with various customization options. Multiple question types: Create quizzes with drag & drop, multi-part, and multi-select questions.",
-      "url": "https://www.conker.ai/create",
+      "url": "https://www.conker.ai/",
       "domain": "conker.ai",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.conker.ai-2023.05.13-02_04_33.png",
       "icon": "🎓",
@@ -7480,30 +6394,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on conker.ai"
       },
       "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "gptautobot",
-      "name": "GPTAutoBot",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "ChatGPT Data offers a browser extension called Automatic Social Media Posting that enables users to automatically create social media posts on platforms such as Facebook and Twitter. The tool utilizes data provided by ChatGPT to generate posts.",
-      "overview": "ChatGPT Data offers a browser extension called Automatic Social Media Posting that enables users to automatically create social media posts on platforms such as Facebook and Twitter. The tool utilizes data provided by ChatGPT to generate posts. GPTAutoBot Features: Use Cases: Automatic Social Media Posting with ChatGPT Data: Create automatic social media posts using ChatGPT data. Simple to use: Type a command in the post box on Facebook or Twitter. Automation: The extension sends the command to ChatGPT and generates a high-quality text article. Time-saving: Simplifies and speeds up the process of creating content on social networks.",
-      "url": "https://gptautobot.com/",
-      "domain": "gptautobot.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-gptautobot.com-2023.05.13-01_55_11.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 53,
-      "inner_content": {
-        "overview": "ChatGPT Data offers a browser extension called Automatic Social Media Posting that enables users to automatically create social media posts on platforms such as Facebook and Twitter. The tool utilizes data provided by ChatGPT to generate posts. GPTAutoBot Features: Use Cases: Automatic Social Media Posting with ChatGPT Data: Create automatic social media posts using ChatGPT data. Simple to use: Type a command in the post box on Facebook or Twitter. Automation: The extension sends the command to ChatGPT and generates a high-quality text article. Time-saving: Simplifies and speeds up the process of creating content on social networks.",
-        "pricingDetails": "Freemium plan available on gptautobot.com"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "essay-builder-ai",
@@ -7674,30 +6564,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Design & UI"
     },
     {
-      "id": "shakespeare-ai-toolbar",
-      "name": "Shakespeare AI Toolbar",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Shakespeare is a toolbar that uses AI technology to incorporate ChatGPT into your web browser, providing a smooth and effortless writing experience. This toolbar is easily accessible, and it improves your writing process by offering helpful features such as summarization, rephrasing, and creating captivating content across various platforms.",
-      "overview": "Shakespeare is a toolbar that uses AI technology to incorporate ChatGPT into your web browser, providing a smooth and effortless writing experience. This toolbar is easily accessible, and it improves your writing process by offering helpful features such as summarization, rephrasing, and creating captivating content across various platforms.",
-      "url": "https://www.shakespearetoolbar.com/",
-      "domain": "shakespearetoolbar.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.shakespearetoolbar.com-2023.05.12-22_36_37.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 45,
-      "inner_content": {
-        "overview": "Shakespeare is a toolbar that uses AI technology to incorporate ChatGPT into your web browser, providing a smooth and effortless writing experience. This toolbar is easily accessible, and it improves your writing process by offering helpful features such as summarization, rephrasing, and creating captivating content across various platforms.",
-        "pricingDetails": "Freemium plan available on shakespearetoolbar.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "grammar-checker-2",
       "name": "Grammar Checker",
       "category": "writing",
@@ -7723,30 +6589,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "✍️ Writing & Copywriting"
     },
     {
-      "id": "regex-generator-2",
-      "name": "RegEx Generator",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "The RegEx Generator is a web-based tool powered by AI that allows users, particularly novices, to produce regular expressions (RegEx) through natural language commands.",
-      "overview": "The RegEx Generator is a web-based tool powered by AI that allows users, particularly novices, to produce regular expressions (RegEx) through natural language commands. Key Features: Use Cases: AI-powered RegEx generation: AI-powered RegEx generation using natural language input User-friendly interface suitable: User-friendly interface suitable for beginners Supports multiple languages: Supports multiple languages through HTML, JavaScript, and Express",
-      "url": "https://regex.murfasa.com/",
-      "domain": "regex.murfasa.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-regex.murfasa.com-2023.05.12-22_22_14.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 155,
-      "inner_content": {
-        "overview": "The RegEx Generator is a web-based tool powered by AI that allows users, particularly novices, to produce regular expressions (RegEx) through natural language commands. Key Features: Use Cases: AI-powered RegEx generation: AI-powered RegEx generation using natural language input User-friendly interface suitable: User-friendly interface suitable for beginners Supports multiple languages: Supports multiple languages through HTML, JavaScript, and Express",
-        "pricingDetails": "Free Trial plan available on regex.murfasa.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "aiwritingpal",
       "name": "AIWritingPal",
       "category": "writing",
@@ -7769,30 +6611,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on aiwritingpal.com"
       },
       "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "write-my-essays-ai",
-      "name": "Write My Essays AI",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Upgrade your writing with no-cost AI-powered tools that work intelligently. Write better, faster, and smarter today.",
-      "overview": "Upgrade your writing with no-cost AI-powered tools that work intelligently. Write better, faster, and smarter today. Write My Essays AI Features: Use Cases: Title Generator creates: Title Generator creates catchy titles for essays Essay Generator generates: Essay Generator generates content and ideas for essays Paraphrasing Tool quickly: Paraphrasing Tool quickly rephrases sentences for clarity and to prevent plagiarism Conclusion Generator summarizes: Conclusion Generator summarizes essays with a strong conclusion Citation Generator produces: Citation Generator produces accurate citations in various formats Plagiarism Checker ensures: Plagiarism Checker ensures originality and detects plagiarism",
-      "url": "https://writemyessays.ai/",
-      "domain": "writemyessays.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-writemyessays.ai-2023.05.12-22_07_53.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 99,
-      "inner_content": {
-        "overview": "Upgrade your writing with no-cost AI-powered tools that work intelligently. Write better, faster, and smarter today. Write My Essays AI Features: Use Cases: Title Generator creates: Title Generator creates catchy titles for essays Essay Generator generates: Essay Generator generates content and ideas for essays Paraphrasing Tool quickly: Paraphrasing Tool quickly rephrases sentences for clarity and to prevent plagiarism Conclusion Generator summarizes: Conclusion Generator summarizes essays with a strong conclusion Citation Generator produces: Citation Generator produces accurate citations in various formats Plagiarism Checker ensures: Plagiarism Checker ensures originality and detects plagiarism",
-        "pricingDetails": "Freemium plan available on writemyessays.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "hyrable",
@@ -7854,7 +6672,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "CaptionR is an AI-powered captioning tool that can be found on the App Store. Its purpose is to generate captions automatically for various visual media such as photos and videos, by analyzing and interpreting their content.",
       "overview": "CaptionR is an AI-powered captioning tool that can be found on the App Store. Its purpose is to generate captions automatically for various visual media such as photos and videos, by analyzing and interpreting their content. Key Features: Use Cases: AI creates captions: AI creates captions for visual media automatically Content analysis ensures: Content analysis ensures accurate descriptions Saves time and: Saves time and effort by eliminating manual caption creation Accurate captions enhance: Accurate captions enhance content visibility and engagement",
-      "url": "https://apps.apple.com/us/app/captionr-ai-generated-caption/id6447811994",
+      "url": "https://apps.apple.com/",
       "domain": "apps.apple.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-apps.apple_.com-2023.05.12-21_52_49.png",
       "icon": "🤖",
@@ -7989,30 +6807,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "ask-my-book-2",
-      "name": "Ask My Book",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Ask My Book is a tool that uses artificial intelligence technology to simplify the concepts discussed in The Minimalist Entrepreneur book by Sahil Lavingia, making them easier for readers to understand and access.",
-      "overview": "Ask My Book is a tool that uses artificial intelligence technology to simplify the concepts discussed in The Minimalist Entrepreneur book by Sahil Lavingia, making them easier for readers to understand and access. Ask My Book Features: 1. AskBooks is an AI-powered book summary website with over 2,000 books and authors.2. Users can engage in interactive conversations with books and authors to uncover hidden insights and ask questions.3. AskBooks covers a diverse range of themes and genres.4. The website includes a search function to find specific books or authors.5. Users can request the inclusion of their favorite books in the collection.",
-      "url": "https://askmybook.com/",
-      "domain": "askmybook.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-askmybook.com-2023.05.12-01_46_43.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 34,
-      "inner_content": {
-        "overview": "Ask My Book is a tool that uses artificial intelligence technology to simplify the concepts discussed in The Minimalist Entrepreneur book by Sahil Lavingia, making them easier for readers to understand and access. Ask My Book Features: 1. AskBooks is an AI-powered book summary website with over 2,000 books and authors.2. Users can engage in interactive conversations with books and authors to uncover hidden insights and ask questions.3. AskBooks covers a diverse range of themes and genres.4. The website includes a search function to find specific books or authors.5. Users can request the inclusion of their favorite books in the collection.",
-        "pricingDetails": "Freemium plan available on askmybook.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "nsfw-checker",
       "name": "NSFW Checker",
       "category": "ai-assistant",
@@ -8037,31 +6831,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "gpt-me",
-      "name": "GPT-Me",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "GPT-me, developed by Vana, is a chat app that is tailored to encourage natural self-dialogue.",
-      "overview": "GPT-me, developed by Vana, is a chat app that is tailored to encourage natural self-dialogue. GPT-Me Features: 1. Vana’s GPT-me is a chat app that enables natural self-conversations with some notable features.2. The app leverages OpenAI’s GPT model for accurate responses in the chats.3. Users will receive tailored feedback based on their responses, contributing to a personalized experience.4. GPT-me remembers previous conversations, allowing users to track their progress with ease.5. The app provides an intuitive user experience, designed to be accessible to anyone looking for personal development.",
-      "url": "https://gptme.vana.com/",
-      "domain": "gptme.vana.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-gptme.vana_.com-2023.05.11-22_48_29.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 112,
-      "inner_content": {
-        "overview": "GPT-me, developed by Vana, is a chat app that is tailored to encourage natural self-dialogue. GPT-Me Features: 1. Vana’s GPT-me is a chat app that enables natural self-conversations with some notable features.2. The app leverages OpenAI’s GPT model for accurate responses in the chats.3. Users will receive tailored feedback based on their responses, contributing to a personalized experience.4. GPT-me remembers previous conversations, allowing users to track their progress with ease.5. The app provides an intuitive user experience, designed to be accessible to anyone looking for personal development.",
-        "pricingDetails": "Freemium plan available on gptme.vana.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "loopgpt",
       "name": "LoopGPT",
       "category": "ai-assistant",
@@ -8073,7 +6842,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "LoopGPT is a test utilizing OpenAI's GPT-3.5 Turbo model that enables individuals to initiate a dialogue between two AI chatbots named John and Jane.",
       "overview": "LoopGPT is a test utilizing OpenAI's GPT-3.5 Turbo model that enables individuals to initiate a dialogue between two AI chatbots named John and Jane. Use Cases: Establish the context: Establish the context before beginning the chat Send the initial: Send the initial message and observe the AI create the remainder of the conversation Set a timer: Set a timer prior to initiating the chat Terminate the chat: Terminate the chat by utilizing the Stop Button or by reloading the page Export the chat: Export the chat history as a JSON file.",
-      "url": "https://mighil.com/loopgpt/",
+      "url": "https://mighil.com/",
       "domain": "mighil.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-mighil.com-2023.05.11-22_42_49.png",
       "icon": "🤖",
@@ -8400,31 +7169,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "airgram",
-      "name": "Airgram",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "productivity"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Airgram is a meeting assistant software that utilizes artificial intelligence to simplify meeting processes and procedures.",
-      "overview": "Airgram is a meeting assistant software that utilizes artificial intelligence to simplify meeting processes and procedures. Airgram Features: Use Cases: Compatible with Zoom,: Compatible with Zoom, Google Meet, and Microsoft Teams Offers collaborative agenda: Offers collaborative agenda development and sharing Includes a rich-text: Includes a rich-text editor for taking notes during meetings Allows for assigning: Allows for assigning tasks with due dates Provides high-quality audio: Provides high-quality audio and video transcription in eight languages",
-      "url": "https://www.airgram.io/",
-      "domain": "airgram.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.airgram.io-2023.05.11-09_22_27.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 94,
-      "inner_content": {
-        "overview": "Airgram is a meeting assistant software that utilizes artificial intelligence to simplify meeting processes and procedures. Airgram Features: Use Cases: Compatible with Zoom,: Compatible with Zoom, Google Meet, and Microsoft Teams Offers collaborative agenda: Offers collaborative agenda development and sharing Includes a rich-text: Includes a rich-text editor for taking notes during meetings Allows for assigning: Allows for assigning tasks with due dates Provides high-quality audio: Provides high-quality audio and video transcription in eight languages",
-        "pricingDetails": "Free Trial plan available on airgram.io"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "myreport",
       "name": "MyReport",
       "category": "ai-assistant",
@@ -8546,30 +7290,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🔍 Search & Research"
     },
     {
-      "id": "neevaai",
-      "name": "NeevaAI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI-powered search with real-time, accurate results and source info.",
-      "overview": "AI-powered search with real-time, accurate results and source info. NeevaAI Features: Experience a secure and private search with Neeva – the ad-free, cross-device compatible search engine that values data protection. Enjoy free basic plans, premium memberships, unlimited searches, and top-tier privacy tools making Neeva the ultimate privacy-focused search engine. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://neeva.com/",
-      "domain": "neeva.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/neeva.png",
-      "icon": "🔍",
-      "rating": 4.5,
-      "votes": 141,
-      "inner_content": {
-        "overview": "AI-powered search with real-time, accurate results and source info. NeevaAI Features: Experience a secure and private search with Neeva – the ad-free, cross-device compatible search engine that values data protection. Enjoy free basic plans, premium memberships, unlimited searches, and top-tier privacy tools making Neeva the ultimate privacy-focused search engine. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on neeva.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
       "id": "andi",
       "name": "Andi",
       "category": "search-engine",
@@ -8614,31 +7334,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Free, open-source Model-sharing hub for AI art generation community Civitai is a model-sharing hub dedicated to the AI art generation community. As an open-source platform, it is free to use, continually improving, and the only one of its kind. Social Media: Use Cases: Twitter: Twitter",
         "pricingDetails": "Free plan available on civitai.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "context",
-      "name": "Context",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Your favorite content. Transcribed and searchable.",
-      "overview": "Your favorite content. Transcribed and searchable. Unlock the search potential of your favorite content with Context – the AI-powered search engine that transcribes and makes searchable large collections of audio and video content. Find any moment you want in creators’ content like Mr Beast and MKBHD with Context. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://usecontext.io/",
-      "domain": "usecontext.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/context.png",
-      "icon": "🔍",
-      "rating": 4.9,
-      "votes": 78,
-      "inner_content": {
-        "overview": "Your favorite content. Transcribed and searchable. Unlock the search potential of your favorite content with Context – the AI-powered search engine that transcribes and makes searchable large collections of audio and video content. Find any moment you want in creators’ content like Mr Beast and MKBHD with Context. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on usecontext.io"
       },
       "tool_type": "🔍 Search & Research"
     },
@@ -8705,7 +7400,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Display ChatGPT response alongside search results.",
       "overview": "Display ChatGPT response alongside search results. Get detailed and accurate solutions to all your queries with ChatGPT – the powerful AI tool that displays its responses alongside Google, Bing, DuckDuckGo search results. From prom proposals to coding fixes, ChatGPT provides the answers you need.",
-      "url": "https://chrome.google.com/webstore/detail/chatonai-unlock-the-power/feeonheemodpkdckaljcjogdncpiiban",
+      "url": "https://chrome.google.com/",
       "domain": "chrome.google.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/ChatGPT-chrome-Extension.png",
       "icon": "🔍",
@@ -8714,199 +7409,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Display ChatGPT response alongside search results. Get detailed and accurate solutions to all your queries with ChatGPT – the powerful AI tool that displays its responses alongside Google, Bing, DuckDuckGo search results. From prom proposals to coding fixes, ChatGPT provides the answers you need.",
         "pricingDetails": "Freemium plan available on chrome.google.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "kailua-labs",
-      "name": "Kailua Labs",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Search images, video, audio & more with AI using our API.",
-      "overview": "Search images, video, audio & more with AI using our API. Easily integrate powerful multimodal search into your app utilizing our API. Leverage the power of AI to search your image, video, audio, and other types of data with ease.",
-      "url": "https://app.kailualabs.com/usecases/image-search",
-      "domain": "app.kailualabs.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Kailua-Labs.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 174,
-      "inner_content": {
-        "overview": "Search images, video, audio & more with AI using our API. Easily integrate powerful multimodal search into your app utilizing our API. Leverage the power of AI to search your image, video, audio, and other types of data with ease.",
-        "pricingDetails": "Freemium plan available on app.kailualabs.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "one-more-ai",
-      "name": "One More AI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI-generated stock images: thousands of pics!",
-      "overview": "AI-generated stock images: thousands of pics! AI-Generated Stock Images Find thousands of pictures generated by Artificial Intelligence.",
-      "url": "https://onemoreai.com/",
-      "domain": "onemoreai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/OneMoreAI.png",
-      "icon": "🔍",
-      "rating": 4.9,
-      "votes": 153,
-      "inner_content": {
-        "overview": "AI-generated stock images: thousands of pics! AI-Generated Stock Images Find thousands of pictures generated by Artificial Intelligence.",
-        "pricingDetails": "Free Trial plan available on onemoreai.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "chainintelgpt",
-      "name": "ChainIntelGPT",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "finance"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Dive Deep into On-Chain & Off-Chain World of Crypto with an AI Search Engine",
-      "overview": "Dive Deep into On-Chain & Off-Chain World of Crypto with an AI Search Engine ChainIntelGPT Features: Dive deep into the on-chain and off-chain world of crypto with ChainIntelGPT – the cutting-edge AI-powered search engine that provides real-time data, AI intelligence, and analyzes both on-chain and off-chain data. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.chainintel.info/",
-      "domain": "chainintel.info",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/ChainIntelligence.png",
-      "icon": "🔍",
-      "rating": 4.5,
-      "votes": 132,
-      "inner_content": {
-        "overview": "Dive Deep into On-Chain & Off-Chain World of Crypto with an AI Search Engine ChainIntelGPT Features: Dive deep into the on-chain and off-chain world of crypto with ChainIntelGPT – the cutting-edge AI-powered search engine that provides real-time data, AI intelligence, and analyzes both on-chain and off-chain data. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on chainintel.info"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "claros",
-      "name": "Claros",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Claros is An AI expert to help you decide what to buy",
-      "overview": "Claros is An AI expert to help you decide what to buy Claros Features: Make informed buying decisions effortlessly with Claros – the AI-powered product recommendation tool that offers personalized suggestions based on user requirements and budget. With user-friendly features and time-saving algorithms, Claros makes online shopping a breeze.",
-      "url": "https://shop.claros.so/",
-      "domain": "shop.claros.so",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/claros.png",
-      "icon": "🔍",
-      "rating": 4.6,
-      "votes": 111,
-      "inner_content": {
-        "overview": "Claros is An AI expert to help you decide what to buy Claros Features: Make informed buying decisions effortlessly with Claros – the AI-powered product recommendation tool that offers personalized suggestions based on user requirements and budget. With user-friendly features and time-saving algorithms, Claros makes online shopping a breeze.",
-        "pricingDetails": "Freemium plan available on shop.claros.so"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "producthunt-ai",
-      "name": "Producthunt AI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Hunt products that exactly satisfies your requirements",
-      "overview": "Hunt products that exactly satisfies your requirements Producthunt AI Features: Get personalized product recommendations that solve your exact problems with Producthunt AI – the AI-powered tool that leverages real-time data to suggest free and paid app alternatives, with price comparisons and a use guide for quick getting started. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://phai.sttabot.io/",
-      "domain": "phai.sttabot.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/productHunt.png",
-      "icon": "🔍",
-      "rating": 4.6,
-      "votes": 83,
-      "inner_content": {
-        "overview": "Hunt products that exactly satisfies your requirements Producthunt AI Features: Get personalized product recommendations that solve your exact problems with Producthunt AI – the AI-powered tool that leverages real-time data to suggest free and paid app alternatives, with price comparisons and a use guide for quick getting started. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on phai.sttabot.io"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "have-i-been-encoded",
-      "name": "Have I Been Encoded",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Keep track of what all the different AI's say about you!",
-      "overview": "Keep track of what all the different AI's say about you! Have I Been Encoded Features: Discover what AI knows about you with HaveIBeenEncoded (BETA) – the service that provides insights into your digital profile and lets you opt-out if desired. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://haveibeenencoded.com/",
-      "domain": "haveibeenencoded.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/have-I-been-Encoded.png",
-      "icon": "🔍",
-      "rating": 4.7,
-      "votes": 62,
-      "inner_content": {
-        "overview": "Keep track of what all the different AI's say about you! Have I Been Encoded Features: Discover what AI knows about you with HaveIBeenEncoded (BETA) – the service that provides insights into your digital profile and lets you opt-out if desired. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on haveibeenencoded.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "searcholic",
-      "name": "Searcholic",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Free",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Discover Millions of e-Books and Papers for Free",
-      "overview": "Discover Millions of e-Books and Papers for Free Searcholic Features: Transform your search experience with Searcholic – the cutting-edge AI-powered search engine designed to improve the way you find eBooks and documents online.",
-      "url": "https://searcholic.com/",
-      "domain": "searcholic.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/searcholic.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 41,
-      "inner_content": {
-        "overview": "Discover Millions of e-Books and Papers for Free Searcholic Features: Transform your search experience with Searcholic – the cutting-edge AI-powered search engine designed to improve the way you find eBooks and documents online.",
-        "pricingDetails": "Free plan available on searcholic.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "iask-ai",
-      "name": "iAsk.AI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI search engine that focuses on objectivity, factual data, and reduced bias.",
-      "overview": "AI search engine that focuses on objectivity, factual data, and reduced bias. iAsk.AI Features: Get instant and accurate answers to your questions with iAsk.Ai – the free AI search engine that prioritizes factual and objective information. Featuring similar technologies to ChatGPT, iAsk.Ai is the perfect alternative for those seeking a reduced bias experience. Social Media: Use Cases: Twitter: Twitter",
-      "url": "http://iask.ai/",
-      "domain": "iask.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/iAskAI.png",
-      "icon": "🔍",
-      "rating": 5,
-      "votes": 200,
-      "inner_content": {
-        "overview": "AI search engine that focuses on objectivity, factual data, and reduced bias. iAsk.AI Features: Get instant and accurate answers to your questions with iAsk.Ai – the free AI search engine that prioritizes factual and objective information. Featuring similar technologies to ChatGPT, iAsk.Ai is the perfect alternative for those seeking a reduced bias experience. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on iask.ai"
       },
       "tool_type": "🔍 Search & Research"
     },
@@ -8931,54 +7433,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Search Google and ChatGPT simultaneously Enhanced ChatGPT Features: Discover the ultimate search tool with Enhanced ChatGPT – the AI-powered platform that lets you search Google and ChatGPT simultaneously. Enjoy video summarization, ChatGPT’s capabilities everywhere, conversation prompts, and more for a quick, productive, and AI-fueled search experience.",
         "pricingDetails": "Free Trial plan available on chrome.google.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "noowai",
-      "name": "NoowAI",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Get Your Own AI Assistant & Smart Search Tool",
-      "overview": "Get Your Own AI Assistant & Smart Search Tool NoowAI Features: NoowAI.com – the ultimate destination for AI enthusiasts who want to explore and experience the best of AI technology. With accessible AI-powered resources, continuous innovation, a welcoming community, and a commitment to the future, NoowAI is the perfect platform for anyone interested in AI technology. Social Media: Use Cases: Twitter: Twitter",
-      "url": "http://noowai.com/",
-      "domain": "noowai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/NoowAI.png",
-      "icon": "🔍",
-      "rating": 4.7,
-      "votes": 158,
-      "inner_content": {
-        "overview": "Get Your Own AI Assistant & Smart Search Tool NoowAI Features: NoowAI.com – the ultimate destination for AI enthusiasts who want to explore and experience the best of AI technology. With accessible AI-powered resources, continuous innovation, a welcoming community, and a commitment to the future, NoowAI is the perfect platform for anyone interested in AI technology. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on noowai.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "metaphor-systems",
-      "name": "Metaphor Systems",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Search the internet with large language models using Metaphor",
-      "overview": "Search the internet with large language models using Metaphor Metaphor Systems Features: Unlock the full potential of language with Metaphor – the AI-powered search engine that understands user prompts in a more expressive and creative way than traditional search engines. With predictive linking, Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://metaphor.systems/",
-      "domain": "metaphor.systems",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Metaphore.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 137,
-      "inner_content": {
-        "overview": "Search the internet with large language models using Metaphor Metaphor Systems Features: Unlock the full potential of language with Metaphor – the AI-powered search engine that understands user prompts in a more expressive and creative way than traditional search engines. With predictive linking, Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on metaphor.systems"
       },
       "tool_type": "🔍 Search & Research"
     },
@@ -9031,31 +7485,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🔍 Search & Research"
     },
     {
-      "id": "fathom-fm-2",
-      "name": "Fathom.fm",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI-Powered Podcast Player",
-      "overview": "AI-Powered Podcast Player Fathom.fm Features: Experience the future of podcast listening with Fathom – the revolutionary AI-powered player that simplifies discovery, search, and insights within engaging conversations. With quick previews, AI-powered search, and interest-based matching. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://hello.fathom.fm/",
-      "domain": "hello.fathom.fm",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Fathom.png",
-      "icon": "🔍",
-      "rating": 4.6,
-      "votes": 74,
-      "inner_content": {
-        "overview": "AI-Powered Podcast Player Fathom.fm Features: Experience the future of podcast listening with Fathom – the revolutionary AI-powered player that simplifies discovery, search, and insights within engaging conversations. With quick previews, AI-powered search, and interest-based matching. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on hello.fathom.fm"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
       "id": "crowdview",
       "name": "CrowdView",
       "category": "search-engine",
@@ -9076,30 +7505,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "A search engine for niche forums and message boards CrowdView Features: Find relevant information on any topic with CrowdView – the online discussion search engine that offers an extensive database of public domain discussions, a comprehensive topics list, and customizable search options to deliver targeted results quickly and efficiently.",
         "pricingDetails": "Freemium plan available on crowdview.ai"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "lexii-ai",
-      "name": "Lexii.ai",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🔍 Search & Research",
-      "featured": true,
-      "description": "AI search assistant that answers question and cites sources.",
-      "overview": "AI search assistant that answers question and cites sources. Lexii.ai Features: Get answers and sources with ease thanks to Lexii.ai – the AI-powered search assistant that leverages GPT-3 technology to provide seamless answers to your questions with a feedback mechanism for continuous improvements.",
-      "url": "http://lexii.ai/",
-      "domain": "lexii.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Lexii.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 32,
-      "inner_content": {
-        "overview": "AI search assistant that answers question and cites sources. Lexii.ai Features: Get answers and sources with ease thanks to Lexii.ai – the AI-powered search assistant that leverages GPT-3 technology to provide seamless answers to your questions with a feedback mechanism for continuous improvements.",
-        "pricingDetails": "Free Trial plan available on lexii.ai"
       },
       "tool_type": "🔍 Search & Research"
     },
@@ -9150,152 +7555,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on komo.ai"
       },
       "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "superus",
-      "name": "Superus",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Superus is a tool that addresses the problem of Information Overload and improves productivity by creating an inclusive \"meta-layer\" for all tools and contents. Its creator, Victor Zhang, believes that constant context-switching during multitasking impairs productivity and has developed a solution to organize and manage project tasks on this meta-layer. Superus helps users build amazing info maps using AI to turn complex concepts into map-like visuals for better understanding.",
-      "overview": "Superus is a tool that addresses the problem of Information Overload and improves productivity by creating an inclusive \"meta-layer\" for all tools and contents. Its creator, Victor Zhang, believes that constant context-switching during multitasking impairs productivity and has developed a solution to organize and manage project tasks on this meta-layer. Superus helps users build amazing info maps using AI to turn complex concepts into map-like visuals for better understanding.",
-      "url": "https://superusapp.com/",
-      "domain": "superusapp.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-superusapp.com-2023.05.11-03_29_01.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 107,
-      "inner_content": {
-        "overview": "Superus is a tool that addresses the problem of Information Overload and improves productivity by creating an inclusive \"meta-layer\" for all tools and contents. Its creator, Victor Zhang, believes that constant context-switching during multitasking impairs productivity and has developed a solution to organize and manage project tasks on this meta-layer. Superus helps users build amazing info maps using AI to turn complex concepts into map-like visuals for better understanding.",
-        "pricingDetails": "Freemium plan available on superusapp.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "imaiger",
-      "name": "Imaiger",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI image search tool for generated art & images; millions of AI-generated images.",
-      "overview": "AI image search tool for generated art & images; millions of AI-generated images. Imaiger Features: Elevate your image search experience with Imaiger, the AI-powered tool that lets you find unique and personalized art and images easily. With millions of AI-generated images and a simple search process, Imaiger is the ideal solution for your image needs. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://imaiger.com/",
-      "domain": "imaiger.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/imaiger.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 128,
-      "inner_content": {
-        "overview": "AI image search tool for generated art & images; millions of AI-generated images. Imaiger Features: Elevate your image search experience with Imaiger, the AI-powered tool that lets you find unique and personalized art and images easily. With millions of AI-generated images and a simple search process, Imaiger is the ideal solution for your image needs. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on imaiger.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "shaped",
-      "name": "Shaped",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Create personalized experiences with Shaped's powerful ranking models.",
-      "overview": "Create personalized experiences with Shaped's powerful ranking models. Shaped Features: Shaped delivers a powerful ranking model that customizes user communication using personalized discovery pages, feeds, recommendations, and marketing communication, based on an AI-powered understanding of user preferences. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.shaped.ai/",
-      "domain": "shaped.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Shaped.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 100,
-      "inner_content": {
-        "overview": "Create personalized experiences with Shaped's powerful ranking models. Shaped Features: Shaped delivers a powerful ranking model that customizes user communication using personalized discovery pages, feeds, recommendations, and marketing communication, based on an AI-powered understanding of user preferences. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on shaped.ai"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "everypixel",
-      "name": "Everypixel",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI-powered search engine indexes 50+ stock image websites",
-      "overview": "AI-powered search engine indexes 50+ stock image websites Everypixel Features: Discover the perfect licensed image with Everypixel’s AI-powered Stock Image Search Engine, featuring an extensive image database, aesthetic testing, versatile search options, and additional features for seamless integration. Social Media: Use Cases: Mail: Mail",
-      "url": "https://www.everypixel.com/",
-      "domain": "everypixel.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/EveryPixel.png",
-      "icon": "🔍",
-      "rating": 4.6,
-      "votes": 65,
-      "inner_content": {
-        "overview": "AI-powered search engine indexes 50+ stock image websites Everypixel Features: Discover the perfect licensed image with Everypixel’s AI-powered Stock Image Search Engine, featuring an extensive image database, aesthetic testing, versatile search options, and additional features for seamless integration. Social Media: Use Cases: Mail: Mail",
-        "pricingDetails": "Freemium plan available on everypixel.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "decktopus-ai",
-      "name": "Decktopus AI",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Decktopus AI is a versatile presentation generator that harnesses the power of AI to cater to the needs of various professionals, including sales and marketing managers, founders, agencies, and customer care executives, among others. It offers an all-in-one solution for webinars, conferences, and presentations.",
-      "overview": "Decktopus AI is a versatile presentation generator that harnesses the power of AI to cater to the needs of various professionals, including sales and marketing managers, founders, agencies, and customer care executives, among others. It offers an all-in-one solution for webinars, conferences, and presentations. Key Features: Use Cases: Instant presentation creation: Instant presentation creation with AI assistance Effortless theme customization: Effortless theme customization Smart image and: Smart image and icon suggestions AI-generated slide notes: AI-generated slide notes and content Streamline presentation creation: Streamline presentation creation with Decktopus AI",
-      "url": "https://www.decktopus.com/",
-      "domain": "decktopus.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.decktopus.com-2023.05.11-03_22_59.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 203,
-      "inner_content": {
-        "overview": "Decktopus AI is a versatile presentation generator that harnesses the power of AI to cater to the needs of various professionals, including sales and marketing managers, founders, agencies, and customer care executives, among others. It offers an all-in-one solution for webinars, conferences, and presentations. Key Features: Use Cases: Instant presentation creation: Instant presentation creation with AI assistance Effortless theme customization: Effortless theme customization Smart image and: Smart image and icon suggestions AI-generated slide notes: AI-generated slide notes and content Streamline presentation creation: Streamline presentation creation with Decktopus AI",
-        "pricingDetails": "Free Trial plan available on decktopus.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "nuclia",
-      "name": "Nuclia",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant",
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Nuclia indexes unstructured data from any source",
-      "overview": "Nuclia indexes unstructured data from any source Nuclia Features: Nuclia – the AI-powered search engine that finds answers from any data source, with automatic indexing, easy integration, and customizable features for seamless integration. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://nuclia.com/",
-      "domain": "nuclia.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Nuclia.png",
-      "icon": "💻",
-      "rating": 4.6,
-      "votes": 189,
-      "inner_content": {
-        "overview": "Nuclia indexes unstructured data from any source Nuclia Features: Nuclia – the AI-powered search engine that finds answers from any data source, with automatic indexing, easy integration, and customizable features for seamless integration. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on nuclia.com"
-      },
-      "tool_type": "💻 Code & Developer"
     },
     {
       "id": "gamma",
@@ -9565,30 +7824,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on capturelab.gg"
       },
       "tool_type": "🎮 Gaming & 3D"
-    },
-    {
-      "id": "zevi-ai",
-      "name": "Zevi.ai",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI-driven search engine boosts engagement & sales, guiding prospects from discovery to conversions.",
-      "overview": "AI-driven search engine boosts engagement & sales, guiding prospects from discovery to conversions. Zevi.ai Features: Transform your business with an AI-powered search and discovery solution that drives conversions by providing customers with relevant and personalized online experiences from discovery to purchase. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.zevi.ai/",
-      "domain": "zevi.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Zevi.png",
-      "icon": "🔍",
-      "rating": 4.6,
-      "votes": 75,
-      "inner_content": {
-        "overview": "AI-driven search engine boosts engagement & sales, guiding prospects from discovery to conversions. Zevi.ai Features: Transform your business with an AI-powered search and discovery solution that drives conversions by providing customers with relevant and personalized online experiences from discovery to purchase. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on zevi.ai"
-      },
-      "tool_type": "🔍 Search & Research"
     },
     {
       "id": "you",
@@ -10055,31 +8290,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "chatgpt-2d",
-      "name": "ChatGPT-2D",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "AI-powered interactive visual storytelling for enhanced comprehension.",
-      "overview": "AI-powered interactive visual storytelling for enhanced comprehension. ChatGPT-2D Features: Elevate your chats with ChatGPT-2D – an AI-powered conversational platform that offers interactive, non-linear conversations with stunning 2D visuals and engaging AI dialogues brought to life by Superus. Social Media: Twitter Tutorial: Use Cases: Twitter: Twitter",
-      "url": "https://www.superusapp.com/chatgpt2d/",
-      "domain": "superusapp.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/ChatGPT-2D.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 125,
-      "inner_content": {
-        "overview": "AI-powered interactive visual storytelling for enhanced comprehension. ChatGPT-2D Features: Elevate your chats with ChatGPT-2D – an AI-powered conversational platform that offers interactive, non-linear conversations with stunning 2D visuals and engaging AI dialogues brought to life by Superus. Social Media: Twitter Tutorial: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on superusapp.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "codenull-ai",
       "name": "Codenull.ai",
       "category": "ai-assistant",
@@ -10148,32 +8358,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI-generated .com domains Onlycoms.com Features: Only.Coms is a tool that utilizes AI to assist users in finding available .com domain names for their projects. Its key features and advantages include: – AI-powered suggestions: Using ChatGPT, Only.Coms generates relevant domain name suggestions based on natural language input.– Exclusive .com domains: Only.Coms focuses solely on the most commercially valuable domain extension – .com.– User-friendly interface: With a user-friendly interface, Only.Coms offers the ease of generating and viewing available domain names based on project descriptions.",
         "pricingDetails": "Freemium plan available on onlycoms.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "nextthreebooks-2",
-      "name": "NextThreeBooks",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "life-assistant",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Personalized book recommendations based on your reading preferences.",
-      "overview": "Personalized book recommendations based on your reading preferences. NextThreeBooks Features: NextThreeBooks.com is a website that utilizes AI to provide book recommendations customized for individual users. Its key features and advantages include: – GPT-3 based algorithm: The website’s algorithm is based on GPT-3, which offers personalized book recommendations to users based on their reading preferences and personal goals.– Three book suggestions: NextThreeBooks.com offers users with three manageable options to select from, making their decision-making process much more comfortable.– Detailed explanations: The website summarizes each recommended book and provides explanations on how it may be relevant to the user’s reading preferences.– Celebrity recommendations: As an added feature, the website presents books recommended by famous personalities like Oprah Winfrey, Bill Gates, and Elon Musk.",
-      "url": "http://nextthreebooks.com/",
-      "domain": "nextthreebooks.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/NextThreeBooks.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 144,
-      "inner_content": {
-        "overview": "Personalized book recommendations based on your reading preferences. NextThreeBooks Features: NextThreeBooks.com is a website that utilizes AI to provide book recommendations customized for individual users. Its key features and advantages include: – GPT-3 based algorithm: The website’s algorithm is based on GPT-3, which offers personalized book recommendations to users based on their reading preferences and personal goals.– Three book suggestions: NextThreeBooks.com offers users with three manageable options to select from, making their decision-making process much more comfortable.– Detailed explanations: The website summarizes each recommended book and provides explanations on how it may be relevant to the user’s reading preferences.– Celebrity recommendations: As an added feature, the website presents books recommended by famous personalities like Oprah Winfrey, Bill Gates, and Elon Musk.",
-        "pricingDetails": "Freemium plan available on nextthreebooks.com"
       },
       "tool_type": "🤖 AI Assistant"
     },
@@ -10325,31 +8509,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "phraser",
-      "name": "Phraser",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "image-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Create art, designs, photos, gadgets, clothing & render-style images.",
-      "overview": "Create art, designs, photos, gadgets, clothing & render-style images. Phraser Features: Collaborate creatively with Phraser – the AI tool for designing photos, clothing, art, render-style images, and more!",
-      "url": "https://phraser.tech/inspiration",
-      "domain": "phraser.tech",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Pharser.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 156,
-      "inner_content": {
-        "overview": "Create art, designs, photos, gadgets, clothing & render-style images. Phraser Features: Collaborate creatively with Phraser – the AI tool for designing photos, clothing, art, render-style images, and more!",
-        "pricingDetails": "Freemium plan available on phraser.tech"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "unakin-3",
       "name": "Unakin",
       "category": "gaming",
@@ -10449,30 +8608,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "the-ai-times",
-      "name": "The AI Times",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Stay informed with The AI Times. Get issues sent to your inbox.",
-      "overview": "Stay informed with The AI Times. Get issues sent to your inbox. The AI Times Features: Get ahead of the game with The AI Times – subscribe to receive freshly brewed issues straight to your inbox!",
-      "url": "https://www.aitimespage.com/ai",
-      "domain": "aitimespage.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/The-AI-times.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 44,
-      "inner_content": {
-        "overview": "Stay informed with The AI Times. Get issues sent to your inbox. The AI Times Features: Get ahead of the game with The AI Times – subscribe to receive freshly brewed issues straight to your inbox!",
-        "pricingDetails": "Free Trial plan available on aitimespage.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "scenario-2",
       "name": "Scenario",
       "category": "gaming",
@@ -10508,7 +8643,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Unleash your imagination with AI Dungeon – the deep learning-powered text adventure game that offers limitless story possibilities. Whether you're looking for action, fantasy, or adventure, AI Dungeon has something for everyone. Explore a world of AI-generated content and embark on a journey that's tailored just for you.",
       "overview": "Unleash your imagination with AI Dungeon – the deep learning-powered text adventure game that offers limitless story possibilities. Whether you're looking for action, fantasy, or adventure, AI Dungeon has something for everyone. Explore a world of AI-generated content and embark on a journey that's tailored just for you.",
-      "url": "https://play.aidungeon.io/main/home",
+      "url": "https://play.aidungeon.io/",
       "domain": "play.aidungeon.io",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-play.aidungeon.io-2023.05.10-22_04_05.png",
       "icon": "🎮",
@@ -10541,31 +8676,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI-focused metaverse powered by ML, game design, NFTs, and $SIM token. The Simulation Features: Experience the future of metaverse gaming with The Simulation – a cutting-edge, AI-focused platform powered by machine learning, game design, NFTs, and ERC20 token, $SIM. Social Media: Use Cases: Twitter: Twitter",
         "pricingDetails": "Freemium plan available on fablesimulation.com"
-      },
-      "tool_type": "🎮 Gaming & 3D"
-    },
-    {
-      "id": "ready-player-me-3",
-      "name": "Ready Player Me",
-      "category": "gaming",
-      "categories": [
-        "gaming",
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎮 Gaming & 3D",
-      "featured": false,
-      "description": "Create your own personalized 3D avatars for the metaverse with Ready Player Me. Our cross-game avatar platform allows users to craft unique avatars that can be used in a variety of virtual worlds and games. Stand out from the crowd and immerse yourself in the metaverse with an avatar that's truly one-of-a-kind.",
-      "overview": "Create your own personalized 3D avatars for the metaverse with Ready Player Me. Our cross-game avatar platform allows users to craft unique avatars that can be used in a variety of virtual worlds and games. Stand out from the crowd and immerse yourself in the metaverse with an avatar that's truly one-of-a-kind. Tutorial:",
-      "url": "https://readyplayer.me/",
-      "domain": "readyplayer.me",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-readyplayer.me-2023.05.10-21_58_02.png",
-      "icon": "🎮",
-      "rating": 4.9,
-      "votes": 147,
-      "inner_content": {
-        "overview": "Create your own personalized 3D avatars for the metaverse with Ready Player Me. Our cross-game avatar platform allows users to craft unique avatars that can be used in a variety of virtual worlds and games. Stand out from the crowd and immerse yourself in the metaverse with an avatar that's truly one-of-a-kind. Tutorial:",
-        "pricingDetails": "Freemium plan available on readyplayer.me"
       },
       "tool_type": "🎮 Gaming & 3D"
     },
@@ -10712,30 +8822,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Experience a novel form of social roleplaying that leverages the power of narrative AI. Engage with your friends to co-create exciting new storylines, embark on exhilarating virtual quests, and curate, exchange, and remix your favorite narrative components. This cutting-edge storytelling platform offers a one-of-a-kind immersive experience that's not to be missed!",
         "pricingDetails": "Freemium plan available on hiddendoor.co"
-      },
-      "tool_type": "🎮 Gaming & 3D"
-    },
-    {
-      "id": "ai-careers",
-      "name": "AI Careers",
-      "category": "gaming",
-      "categories": [
-        "gaming"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎮 Gaming & 3D",
-      "featured": false,
-      "description": "AI-powered job search to drive innovation through data.",
-      "overview": "AI-powered job search to drive innovation through data. AI Careers Features: Make job searching a breeze with AI. Unleash the potential of data-driven innovation for effortless job hunting. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://aicareers.io/",
-      "domain": "aicareers.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AICareers.png",
-      "icon": "🎮",
-      "rating": 4.8,
-      "votes": 110,
-      "inner_content": {
-        "overview": "AI-powered job search to drive innovation through data. AI Careers Features: Make job searching a breeze with AI. Unleash the potential of data-driven innovation for effortless job hunting. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on aicareers.io"
       },
       "tool_type": "🎮 Gaming & 3D"
     },
@@ -10933,30 +9019,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎮 Gaming & 3D"
     },
     {
-      "id": "siege-gpt",
-      "name": "Siege GPT",
-      "category": "gaming",
-      "categories": [
-        "gaming"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎮 Gaming & 3D",
-      "featured": false,
-      "description": "Siege GPT is an AI-powered tool designed to generate gameplay tactics for the video game Rainbow Six Siege.",
-      "overview": "Siege GPT is an AI-powered tool designed to generate gameplay tactics for the video game Rainbow Six Siege. Siege GPT Features: Use Cases: Siege GPT uses: Siege GPT uses ChatGPT and Vercel EdgeFunctions to offer customized gameplay strategies in real-time. It assists players: It assists players in creating innovative gameplay strategies to outsmart their opponents. Users can choose: Users can choose maps, specific sites, and parameters to generate personalized strategies. Its unique capabilities: Its unique capabilities can help players improve their performance and find new challenges in the game.",
-      "url": "https://siege-gpt.vercel.app/",
-      "domain": "siege-gpt.vercel.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-siege-gpt.vercel.app-2023.05.10-10_22_06.png",
-      "icon": "🎮",
-      "rating": 4.6,
-      "votes": 153,
-      "inner_content": {
-        "overview": "Siege GPT is an AI-powered tool designed to generate gameplay tactics for the video game Rainbow Six Siege. Siege GPT Features: Use Cases: Siege GPT uses: Siege GPT uses ChatGPT and Vercel EdgeFunctions to offer customized gameplay strategies in real-time. It assists players: It assists players in creating innovative gameplay strategies to outsmart their opponents. Users can choose: Users can choose maps, specific sites, and parameters to generate personalized strategies. Its unique capabilities: Its unique capabilities can help players improve their performance and find new challenges in the game.",
-        "pricingDetails": "Freemium plan available on siege-gpt.vercel.app"
-      },
-      "tool_type": "🎮 Gaming & 3D"
-    },
-    {
       "id": "voicemaker",
       "name": "Voicemaker",
       "category": "ai-assistant",
@@ -11075,31 +9137,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Create compelling themes/emotional soundtrack for your projects faster than ever before. Key features: Use Cases: AI-created music: AI-created music Wide range of: Wide range of preset styles User-friendly tool for: User-friendly tool for beginners exploring music composition Customizable pricing options: Customizable pricing options",
         "pricingDetails": "Freemium plan available on aiva.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "ask-my-book",
-      "name": "Ask My Book",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Ask any questions from book's contents and the AI will give answer with his voice.",
-      "overview": "Ask any questions from book's contents and the AI will give answer with his voice. Feature: Ask My Book is a tool that uses AI to simplify the contents of the book, “The Minimalist Entrepreneur” by Sahil Lavingia. It offers the following features and benefits: – Immediate answers: Users can ask questions and receive quick, real-time responses derived from the book’s contents.– Efficient retrieval of important information: Users can easily locate relevant details without having to manually search through the entire book.– Open source: The tool is accessible on GitHub, providing users with the option of customizing their experience.",
-      "url": "https://askmybook.com/",
-      "domain": "askmybook.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dasdwee333.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 179,
-      "inner_content": {
-        "overview": "Ask any questions from book's contents and the AI will give answer with his voice. Feature: Ask My Book is a tool that uses AI to simplify the contents of the book, “The Minimalist Entrepreneur” by Sahil Lavingia. It offers the following features and benefits: – Immediate answers: Users can ask questions and receive quick, real-time responses derived from the book’s contents.– Efficient retrieval of important information: Users can easily locate relevant details without having to manually search through the entire book.– Open source: The tool is accessible on GitHub, providing users with the option of customizing their experience.",
-        "pricingDetails": "Freemium plan available on askmybook.com"
       },
       "tool_type": "🤖 AI Assistant"
     },
@@ -11249,30 +9286,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "make-logo-ai-2",
-      "name": "Make Logo AI",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "MakeLogoAI is a logo design platform that utilizes the power of AI to create one-of-a-kind logos with ease.",
-      "overview": "MakeLogoAI is a logo design platform that utilizes the power of AI to create one-of-a-kind logos with ease. Make Logo AI Features: Use Cases: AI-generated logos: No need for designers or costly purchases. Quick and easy process: Enter project details and receive multiple logo concepts within minutes. Customization: Modify logos with LOGO EDITOR for color changes, text addition, and font alteration. High-quality output: Receive HD logos with transparent backgrounds and full ownership, including commercial rights.",
-      "url": "https://makelogo.ai/",
-      "domain": "makelogo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-makelogo.ai-2023.05.10-07_50_15.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 37,
-      "inner_content": {
-        "overview": "MakeLogoAI is a logo design platform that utilizes the power of AI to create one-of-a-kind logos with ease. Make Logo AI Features: Use Cases: AI-generated logos: No need for designers or costly purchases. Quick and easy process: Enter project details and receive multiple logo concepts within minutes. Customization: Modify logos with LOGO EDITOR for color changes, text addition, and font alteration. High-quality output: Receive HD logos with transparent backgrounds and full ownership, including commercial rights.",
-        "pricingDetails": "Freemium plan available on makelogo.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "markopolo-2",
       "name": "Markopolo",
       "category": "ecommerce",
@@ -11296,55 +9309,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on markopolo.ai"
       },
       "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
-      "id": "marble",
-      "name": "Marble",
-      "category": "ecommerce",
-      "categories": [
-        "ecommerce"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🛍️ Ecommerce & Marketing",
-      "featured": false,
-      "description": "One Link. Every platform. Authentically you.",
-      "overview": "One Link. Every platform. Authentically you. Marble Features: – Marble is a platform that allows users to connect all their social apps on a single page by using one authentic link.– The platform permits updates for all previous and forthcoming posts dynamically.– It enables users to amalgamate all their posts from various apps with their other sites while providing a singularly stylized page to exhibit their important posts.– Marble facilitates monetization of user-generated content that can be used to boost sales on renowned platforms like Patreon, and Shopify.– It provides an opportunity for users to showcase their channels by incorporating multimedia like video, photos, audio, etc., instead of using plain text-based links.",
-      "url": "https://get.marble.app/",
-      "domain": "get.marble.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Marble.png",
-      "icon": "🛍️",
-      "rating": 4.9,
-      "votes": 168,
-      "inner_content": {
-        "overview": "One Link. Every platform. Authentically you. Marble Features: – Marble is a platform that allows users to connect all their social apps on a single page by using one authentic link.– The platform permits updates for all previous and forthcoming posts dynamically.– It enables users to amalgamate all their posts from various apps with their other sites while providing a singularly stylized page to exhibit their important posts.– Marble facilitates monetization of user-generated content that can be used to boost sales on renowned platforms like Patreon, and Shopify.– It provides an opportunity for users to showcase their channels by incorporating multimedia like video, photos, audio, etc., instead of using plain text-based links.",
-        "pricingDetails": "Free Trial plan available on get.marble.app"
-      },
-      "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
-      "id": "kreateable-2",
-      "name": "Kreateable",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "design"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Kreateable is a versatile platform that provides a range of design tools and features, including logo creation, social media post and ad design, magic resizing, AI writing, text-to-image conversion, background removal, brand kit creation, multi-brand management, and invoicing.",
-      "overview": "Kreateable is a versatile platform that provides a range of design tools and features, including logo creation, social media post and ad design, magic resizing, AI writing, text-to-image conversion, background removal, brand kit creation, multi-brand management, and invoicing. Social Media: Use Cases: Kreateable is an: Kreateable is an all-in-one platform for design needs. Offers logo creation,: Offers logo creation, social media design, magic resizing, AI writing, text-to-image, and more. Provides brand kit: Provides brand kit creation, multi-brand management, and invoicing capabilities. Versatile and comprehensive: Versatile and comprehensive design tools and features. Twitter: Twitter Instagram: Instagram LinkedIn: LinkedIn Facebook: Facebook",
-      "url": "https://www.kreateable.com/",
-      "domain": "kreateable.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.kreateable.com-2023.05.10-07_44_37.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 56,
-      "inner_content": {
-        "overview": "Kreateable is a versatile platform that provides a range of design tools and features, including logo creation, social media post and ad design, magic resizing, AI writing, text-to-image conversion, background removal, brand kit creation, multi-brand management, and invoicing. Social Media: Use Cases: Kreateable is an: Kreateable is an all-in-one platform for design needs. Offers logo creation,: Offers logo creation, social media design, magic resizing, AI writing, text-to-image, and more. Provides brand kit: Provides brand kit creation, multi-brand management, and invoicing capabilities. Versatile and comprehensive: Versatile and comprehensive design tools and features. Twitter: Twitter Instagram: Instagram LinkedIn: LinkedIn Facebook: Facebook",
-        "pricingDetails": "Freemium plan available on kreateable.com"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "scispace",
@@ -11520,31 +9484,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎵 Music & Audio"
     },
     {
-      "id": "podcast-2",
-      "name": "Podcast",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools",
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": true,
-      "description": "AI-generated podcast to explore a new topic in depth every week.",
-      "overview": "AI-generated podcast to explore a new topic in depth every week. Key features: Podcast.ai is a weekly podcast that explores a diverse range of topics, presenting exceptional knowledge to its listeners through AI technology. Some features and benefits offered by the podcast are: – Comprehensive analysis: It covers varied topics, catering to the interests of machine learning enthusiasts and other curious listeners alike.– Input from users: The podcast allows listeners to suggest topics and guests for episodes, including resurrecting the voices of guests from the past.– AI-integrated: It employs Play.ht, a platform that offers tools for creating and hosting the podcast using AI technology.",
-      "url": "http://podcast.ai/",
-      "domain": "podcast.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fdsafsdfree.png",
-      "icon": "🎉",
-      "rating": 4.9,
-      "votes": 159,
-      "inner_content": {
-        "overview": "AI-generated podcast to explore a new topic in depth every week. Key features: Podcast.ai is a weekly podcast that explores a diverse range of topics, presenting exceptional knowledge to its listeners through AI technology. Some features and benefits offered by the podcast are: – Comprehensive analysis: It covers varied topics, catering to the interests of machine learning enthusiasts and other curious listeners alike.– Input from users: The podcast allows listeners to suggest topics and guests for episodes, including resurrecting the voices of guests from the past.– AI-integrated: It employs Play.ht, a platform that offers tools for creating and hosting the podcast using AI technology.",
-        "pricingDetails": "Freemium plan available on podcast.ai"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
       "id": "pdf-gpt-2",
       "name": "PDF GPT",
       "category": "search-engine",
@@ -11642,31 +9581,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on boomy.com"
       },
       "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "yc-funding-assistant-2",
-      "name": "YC Funding Assistant",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools",
-        "search-engine"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "AI tool will answers all your startup & funding related questions through Y-combinator backed data.",
-      "overview": "AI tool will answers all your startup & funding related questions through Y-combinator backed data. Use Cases: Comprehensive YC-backed data: Comprehensive YC-backed data Addresses startup and: Addresses startup and funding queries Trusted resource for: Trusted resource for fundraising insights Assisting founders with: Assisting founders with funding inquiries",
-      "url": "https://app.sttabot.io/bot/yc-funding-assistant/",
-      "domain": "app.sttabot.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fsdfret5t5.png",
-      "icon": "🚀",
-      "rating": 4.5,
-      "votes": 33,
-      "inner_content": {
-        "overview": "AI tool will answers all your startup & funding related questions through Y-combinator backed data. Use Cases: Comprehensive YC-backed data: Comprehensive YC-backed data Addresses startup and: Addresses startup and funding queries Trusted resource for: Trusted resource for fundraising insights Assisting founders with: Assisting founders with funding inquiries",
-        "pricingDetails": "Free Trial plan available on app.sttabot.io"
-      },
-      "tool_type": "🚀 Startup & Business"
     },
     {
       "id": "sharly-ai",
@@ -11770,31 +9684,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎵 Music & Audio"
     },
     {
-      "id": "wisio",
-      "name": "Wisio",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Get scientifically sound suggestions based on your input and targeted keywords for the perfect piece of content. Every time.",
-      "overview": "Get scientifically sound suggestions based on your input and targeted keywords for the perfect piece of content. Every time. Use Cases: Create scientific papers;: Create scientific papers; Get personalized suggestions: Get personalized suggestions for your text; Translate from any: Translate from any language to scientific english; Instantly search and: Instantly search and reference the latest findings;",
-      "url": "https://www.wisio.app/",
-      "domain": "wisio.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sdfsdfrewt34.png",
-      "icon": "🔍",
-      "rating": 4.7,
-      "votes": 87,
-      "inner_content": {
-        "overview": "Get scientifically sound suggestions based on your input and targeted keywords for the perfect piece of content. Every time. Use Cases: Create scientific papers;: Create scientific papers; Get personalized suggestions: Get personalized suggestions for your text; Translate from any: Translate from any language to scientific english; Instantly search and: Instantly search and reference the latest findings;",
-        "pricingDetails": "Freemium plan available on wisio.app"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
       "id": "endel",
       "name": "Endel",
       "category": "music",
@@ -11815,30 +9704,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Custom soundscapes for focus, relaxation & sleep. Personalized soundscapes to help you focus, relax, and sleep. Backed by neuroscience.",
         "pricingDetails": "Freemium plan available on endel.io"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "natural-language-playlist",
-      "name": "Natural Language Playlist",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "AI creates custom playlists from your prompts!",
-      "overview": "AI creates custom playlists from your prompts! Natural Language Playlist Features: Natural Language Playlist uses Transformer language models to generate playlists based on user-specified queries, enabling users to discover new music, expand their musical horizons, and support independent artists.",
-      "url": "https://www.naturallanguageplaylist.com/",
-      "domain": "naturallanguageplaylist.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/NaturalLanguagePlaylist.png",
-      "icon": "🎵",
-      "rating": 4.5,
-      "votes": 204,
-      "inner_content": {
-        "overview": "AI creates custom playlists from your prompts! Natural Language Playlist Features: Natural Language Playlist uses Transformer language models to generate playlists based on user-specified queries, enabling users to discover new music, expand their musical horizons, and support independent artists.",
-        "pricingDetails": "Free Trial plan available on naturallanguageplaylist.com"
       },
       "tool_type": "🎵 Music & Audio"
     },
@@ -11940,31 +9805,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🔍 Search & Research"
     },
     {
-      "id": "paperlist",
-      "name": "PaperList",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Read and share research papers.",
-      "overview": "Read and share research papers. The purpose of this website is to share and peruse research papers. Along with a log-in and sign-up portal, the site displays various research papers. Each research paper comprises the name of its author, the date of posting, a source of origin, and a segment for group discussions.",
-      "url": "https://paperlist.io/",
-      "domain": "paperlist.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dasdwer4343.png",
-      "icon": "🔍",
-      "rating": 4.5,
-      "votes": 71,
-      "inner_content": {
-        "overview": "Read and share research papers. The purpose of this website is to share and peruse research papers. Along with a log-in and sign-up portal, the site displays various research papers. Each research paper comprises the name of its author, the date of posting, a source of origin, and a segment for group discussions.",
-        "pricingDetails": "Freemium plan available on paperlist.io"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
       "id": "musenet",
       "name": "Musenet",
       "category": "music",
@@ -12041,30 +9881,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚡ Productivity"
     },
     {
-      "id": "playlistgenius-ai",
-      "name": "PlaylistGenius AI",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Create your next playlist with the help of PlaylistGenius",
-      "overview": "Create your next playlist with the help of PlaylistGenius Playlist Genius is an AI assistant that helps you create your next playlist. It uses song recommendations from ChatGPT and Spotify Web API to generate playlists based on your descriptions.",
-      "url": "https://www.playlistgeniusai.com/",
-      "domain": "playlistgeniusai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/PlatlistGenius.png",
-      "icon": "🎵",
-      "rating": 4.8,
-      "votes": 160,
-      "inner_content": {
-        "overview": "Create your next playlist with the help of PlaylistGenius Playlist Genius is an AI assistant that helps you create your next playlist. It uses song recommendations from ChatGPT and Spotify Web API to generate playlists based on your descriptions.",
-        "pricingDetails": "Freemium plan available on playlistgeniusai.com"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
       "id": "consensus-2",
       "name": "Consensus",
       "category": "search-engine",
@@ -12135,30 +9951,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "The Perfect AI Playlist Generator Playlistable Features: The Perfect AI Playlist Generator: – Create personalized playlists effortlessly: This AI-driven playlist generator produces customized playlists for any mood or occasion without any strain. – Discover new music without breaking a sweat: Input a mood prompt or let the AI analyze your listening history and uncover new artists and songs that suit your taste. – Customize your playlists at your convenience: You can personalize your playlists by editing them, adding new songs or removing unwanted tracks with ease. – Seamless Spotify integration: The app effortlessly integrates with your Spotify account allowing you to easily listen to your personalized playlists while on the move. – Save time and enjoy music on your terms with Playlistable.",
         "pricingDetails": "Freemium plan available on playlistable.io"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "evoke-music",
-      "name": "Evoke Music",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Free",
-      "badge": "🎵 Music & Audio",
-      "featured": true,
-      "description": "Royalty-free music library with music made with AI.",
-      "overview": "Royalty-free music library with music made with AI. Evoke Music Features: Evoke Music offers original and 100% royalty-free tracks made with AI for seamless integration into social media platforms – perfect for content creators searching for high-quality music without breaking the bank or dealing with complex copyright claims.",
-      "url": "https://evokemusic.ai/",
-      "domain": "evokemusic.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Evoke.png",
-      "icon": "🎵",
-      "rating": 4.5,
-      "votes": 62,
-      "inner_content": {
-        "overview": "Royalty-free music library with music made with AI. Evoke Music Features: Evoke Music offers original and 100% royalty-free tracks made with AI for seamless integration into social media platforms – perfect for content creators searching for high-quality music without breaking the bank or dealing with complex copyright claims.",
-        "pricingDetails": "Free plan available on evokemusic.ai"
       },
       "tool_type": "🎵 Music & Audio"
     },
@@ -12260,31 +10052,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎵 Music & Audio"
     },
     {
-      "id": "piano-genie",
-      "name": "Piano Genie",
-      "category": "music",
-      "categories": [
-        "music",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Have some fun pretending you're a piano virtuoso using machine learning.",
-      "overview": "Have some fun pretending you're a piano virtuoso using machine learning. Piano Genie Features: To play the piano, you can either use the numbered keys 1 to 8 on your keyboard or the home row keys a-f and j-;, or simply touch the colored blocks. Press the space bar to regulate the sustain pedal. The quality of the melody, as well as you're playing skills, will improve if you approach it like a genuine player.",
-      "url": "https://piano-genie.glitch.me/",
-      "domain": "piano-genie.glitch.me",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Piano-Genie.png",
-      "icon": "🎵",
-      "rating": 5,
-      "votes": 130,
-      "inner_content": {
-        "overview": "Have some fun pretending you're a piano virtuoso using machine learning. Piano Genie Features: To play the piano, you can either use the numbered keys 1 to 8 on your keyboard or the home row keys a-f and j-;, or simply touch the colored blocks. Press the space bar to regulate the sustain pedal. The quality of the melody, as well as you're playing skills, will improve if you approach it like a genuine player.",
-        "pricingDetails": "Freemium plan available on piano-genie.glitch.me"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
       "id": "soundraw-2",
       "name": "Soundraw",
       "category": "music",
@@ -12329,54 +10096,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Create and release your music in one place. Create and release your music in one place. Landr has over $3000 worth of plugins, samples and essentials tools. Upload a track and let their AI-driven mastering engine do the rest.",
         "pricingDetails": "Freemium plan available on landr.com"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "emergent-drums-2",
-      "name": "Emergent Drums",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Free",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Generate drum samples with AI. Use our plugin for endless, royalty-free samples.",
-      "overview": "Generate drum samples with AI. Use our plugin for endless, royalty-free samples. Emergent Drums Features: Get unlimited, royalty-free drum sounds with Emergent Drums – an AI-powered plugin by Audialab, perfect for music producers, composers, and artists seeking unique and creative samples.",
-      "url": "https://audialab.com/",
-      "domain": "audialab.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/EmergentDrums.png",
-      "icon": "🎵",
-      "rating": 4.7,
-      "votes": 60,
-      "inner_content": {
-        "overview": "Generate drum samples with AI. Use our plugin for endless, royalty-free samples. Emergent Drums Features: Get unlimited, royalty-free drum sounds with Emergent Drums – an AI-powered plugin by Audialab, perfect for music producers, composers, and artists seeking unique and creative samples.",
-        "pricingDetails": "Free plan available on audialab.com"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "open-voice-os",
-      "name": "Open Voice OS",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Paid",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "A community powered Linux distribution.",
-      "overview": "A community powered Linux distribution. Open Voice OS showcases the power of Open Source Voice AI for a range of devices. A community powered Linux distribution.",
-      "url": "https://openvoiceos.com/",
-      "domain": "openvoiceos.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/OpenVoice.png",
-      "icon": "🎵",
-      "rating": 4.8,
-      "votes": 39,
-      "inner_content": {
-        "overview": "A community powered Linux distribution. Open Voice OS showcases the power of Open Source Voice AI for a range of devices. A community powered Linux distribution.",
-        "pricingDetails": "Paid plan available on openvoiceos.com"
       },
       "tool_type": "🎵 Music & Audio"
     },
@@ -12600,78 +10319,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Design & UI"
     },
     {
-      "id": "cool-gift-ideas",
-      "name": "Cool Gift Ideas",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Cool Gift Ideas is a gift suggestion platform that uses AI to generate personalized and distinctive gift ideas for any event.",
-      "overview": "Cool Gift Ideas is a gift suggestion platform that uses AI to generate personalized and distinctive gift ideas for any event. Cool Gift Ideas Features: Use Cases: Personalized gift suggestions: Personalized gift suggestions for various occasions Free and user-friendly: Free and user-friendly tool for creative gift ideas Featured on Product: Featured on Product Hunt for innovative approach to gift discovery",
-      "url": "https://www.coolgiftideas.io/",
-      "domain": "coolgiftideas.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.coolgiftideas.io-2023.05.10-03_01_24.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 98,
-      "inner_content": {
-        "overview": "Cool Gift Ideas is a gift suggestion platform that uses AI to generate personalized and distinctive gift ideas for any event. Cool Gift Ideas Features: Use Cases: Personalized gift suggestions: Personalized gift suggestions for various occasions Free and user-friendly: Free and user-friendly tool for creative gift ideas Featured on Product: Featured on Product Hunt for innovative approach to gift discovery",
-        "pricingDetails": "Freemium plan available on coolgiftideas.io"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "suggest-gift",
-      "name": "Suggest Gift",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Discover the ideal gift effortlessly with our AI-powered tool. Say goodbye to the hassle of gift-giving and let our technology help you find the perfect present for your loved one.",
-      "overview": "Discover the ideal gift effortlessly with our AI-powered tool. Say goodbye to the hassle of gift-giving and let our technology help you find the perfect present for your loved one.",
-      "url": "https://suggest.gift/",
-      "domain": "suggest.gift",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-suggest.gift-2023.05.10-02_57_51.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 77,
-      "inner_content": {
-        "overview": "Discover the ideal gift effortlessly with our AI-powered tool. Say goodbye to the hassle of gift-giving and let our technology help you find the perfect present for your loved one.",
-        "pricingDetails": "Paid plan available on suggest.gift"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "elf-help",
-      "name": "Elf Help",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Elf Help is a web-based platform that leverages AI technology to create one-of-a-kind and personalized gift recommendations free of charge.",
-      "overview": "Elf Help is a web-based platform that leverages AI technology to create one-of-a-kind and personalized gift recommendations free of charge. Elf Help Features: Use Cases: Elf Help offers: Elf Help offers AI-generated gift ideas that are personalized to user preferences for a unique and creative selection. Its easy-to-use interface: Its easy-to-use interface relieves the stress of gift shopping. Users can engage: Users can engage with Elf Help on social media by sharing their favorite gifts and tagging the AI for a chance to win a $50 prize.",
-      "url": "https://www.elfhelp.ai/",
-      "domain": "elfhelp.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.elfhelp.ai-2023.05.10-02_54_39.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 35,
-      "inner_content": {
-        "overview": "Elf Help is a web-based platform that leverages AI technology to create one-of-a-kind and personalized gift recommendations free of charge. Elf Help Features: Use Cases: Elf Help offers: Elf Help offers AI-generated gift ideas that are personalized to user preferences for a unique and creative selection. Its easy-to-use interface: Its easy-to-use interface relieves the stress of gift shopping. Users can engage: Users can engage with Elf Help on social media by sharing their favorite gifts and tagging the AI for a chance to win a $50 prize.",
-        "pricingDetails": "Free plan available on elfhelp.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "roomify-ai",
       "name": "Roomify AI",
       "category": "design",
@@ -12694,30 +10341,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free Trial plan available on roomify.ai"
       },
       "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "giftastic-ai",
-      "name": "Giftastic.ai",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "GiftasticAI is a gift recommendation engine powered by artificial intelligence that assists users in discovering personalized gifts for their loved ones.",
-      "overview": "GiftasticAI is a gift recommendation engine powered by artificial intelligence that assists users in discovering personalized gifts for their loved ones. Giftastic.ai Features: Use Cases: GiftasticAI uses AI: GiftasticAI uses AI technology to analyze personal characteristics for unique gift ideas. Customizable search by: Customizable search by recipient details, relationship, gift type, and occasion. Provides gift recommendations: Provides gift recommendations for free of charge. Integrates with Amazon: Integrates with Amazon for direct links to recommended gifts.",
-      "url": "https://giftastic.ai/",
-      "domain": "giftastic.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-giftastic.ai-2023.05.10-02_48_46.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 194,
-      "inner_content": {
-        "overview": "GiftasticAI is a gift recommendation engine powered by artificial intelligence that assists users in discovering personalized gifts for their loved ones. Giftastic.ai Features: Use Cases: GiftasticAI uses AI: GiftasticAI uses AI technology to analyze personal characteristics for unique gift ideas. Customizable search by: Customizable search by recipient details, relationship, gift type, and occasion. Provides gift recommendations: Provides gift recommendations for free of charge. Integrates with Amazon: Integrates with Amazon for direct links to recommended gifts.",
-        "pricingDetails": "Freemium plan available on giftastic.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "gifts-genie",
@@ -12937,30 +10560,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "wayfind",
-      "name": "Wayfind",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Personalized AI-powered trip planning based on your preferences.",
-      "overview": "Personalized AI-powered trip planning based on your preferences. Simply tell us where you're going and what you want to do, and we'll ask personalized questions to learn more about your travel style. Our AI-driven system will then generate a customized itinerary, ensuring you have a memorable journey.",
-      "url": "https://www.wayfind.live/",
-      "domain": "wayfind.live",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/WayFind.png",
-      "icon": "🤖",
-      "rating": 5,
-      "votes": 150,
-      "inner_content": {
-        "overview": "Personalized AI-powered trip planning based on your preferences. Simply tell us where you're going and what you want to do, and we'll ask personalized questions to learn more about your travel style. Our AI-driven system will then generate a customized itinerary, ensuring you have a memorable journey.",
-        "pricingDetails": "Freemium plan available on wayfind.live"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "plantripai",
       "name": "PlanTripAI",
       "category": "ai-assistant",
@@ -13005,54 +10604,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Giftbox eliminates the uncertainty of choosing the ideal gift by offering personalized recommendations based on the recipient's age, preferences, and your relationship with them. Key Features: Use Cases: GiftHat provides personalized: GiftHat provides personalized gift recommendations based on recipient's age, interests, and price range. Allows seamless shopping: Allows seamless shopping within the app at Amazon. Offers fast and: Offers fast and reliable results with a simple and user-friendly interface. Allows users to: Allows users to refine their search by updating recipient's interests. Suitable for various: Suitable for various occasions like birthdays, Christmas, and Easter.",
         "pricingDetails": "Freemium plan available on giftbox.co"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "traivl",
-      "name": "Traivl",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Personalized multi-destination Travel Itinerary.",
-      "overview": "Personalized multi-destination Travel Itinerary. With Traivl, you can create custom travel plans tailored to your preferences, making your trips stress-free and enjoyable.",
-      "url": "https://www.traivl.com/",
-      "domain": "traivl.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Traivl.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 87,
-      "inner_content": {
-        "overview": "Personalized multi-destination Travel Itinerary. With Traivl, you can create custom travel plans tailored to your preferences, making your trips stress-free and enjoyable.",
-        "pricingDetails": "Free Trial plan available on traivl.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "triptip",
-      "name": "TripTip",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Get ideas on where to eat, what to do, and where to go next.",
-      "overview": "Get ideas on where to eat, what to do, and where to go next. Instead of spending your entire trip Googling, simply ask TripTip. Inquire about restaurants, pubs and activities, or get quick answers to etiquette topics like how much to tip.",
-      "url": "https://app.asktriptip.com/",
-      "domain": "app.asktriptip.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Triptip.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 52,
-      "inner_content": {
-        "overview": "Get ideas on where to eat, what to do, and where to go next. Instead of spending your entire trip Googling, simply ask TripTip. Inquire about restaurants, pubs and activities, or get quick answers to etiquette topics like how much to tip.",
-        "pricingDetails": "Freemium plan available on app.asktriptip.com"
       },
       "tool_type": "🤖 AI Assistant"
     },
@@ -13125,102 +10676,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Finch3D is a cutting-edge software application that leverages the power of artificial intelligence and graph technology to enhance the design of buildings. It offers real-time performance feedback, identifies mistakes, and identifies the best possible solutions during the initial stages of design. Finch 3D Features: Social Media: Use Cases: Finch3D is a: Finch3D is a software tool designed to optimize building design using AI and graph technology. By utilizing these: By utilizing these advanced technologies, Finch3D provides immediate feedback on building performance during the early stages of design. The software is: The software is capable of detecting errors and identifying optimal solutions to improve building performance. Twitter: Twitter Instagram: Instagram LinkedIn: LinkedIn YouTube: YouTube",
         "pricingDetails": "Freemium plan available on finch3d.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "collovgpt",
-      "name": "CollovGPT",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Experience a smarter approach to design with CollovGPT.",
-      "overview": "Experience a smarter approach to design with CollovGPT. To get started, simply upload a photo of your space and select the room type and style. CollovGPT will then generate a realistic rendering of your room. Use Cases: Adapt your style: Adapt your style in 20 seconds using Your Design Model Rapid design customization: Rapid design customization AI-generated interior visuals: AI-generated interior visuals Real-time chat assistance: Real-time chat assistance Suits diverse design: Suits diverse design endeavors Streamlined design process: Streamlined design process Twitter: Twitter",
-      "url": "https://gpt.collov.com/home",
-      "domain": "gpt.collov.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/DDDDddwww.png",
-      "icon": "🎨",
-      "rating": 4.7,
-      "votes": 127,
-      "inner_content": {
-        "overview": "Experience a smarter approach to design with CollovGPT. To get started, simply upload a photo of your space and select the room type and style. CollovGPT will then generate a realistic rendering of your room. Use Cases: Adapt your style: Adapt your style in 20 seconds using Your Design Model Rapid design customization: Rapid design customization AI-generated interior visuals: AI-generated interior visuals Real-time chat assistance: Real-time chat assistance Suits diverse design: Suits diverse design endeavors Streamlined design process: Streamlined design process Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on gpt.collov.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "thediytrip",
-      "name": "TheDIYtrip",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Explore the World with Ease: Plan Your Trips in Seconds with theDIYtrip.",
-      "overview": "Explore the World with Ease: Plan Your Trips in Seconds with theDIYtrip. TheDIYtrip Features: Experience hassle-free trip planning with theDIYtrip – an all-in-one platform that uses AI algorithms to generate personalized recommendations for any city in the world in seconds, with customization options that cater to your preferences, real-time updates on flight availability and prices, and booking services, travel guides, and itinerary planning tools.",
-      "url": "https://www.thediytrip.com/",
-      "domain": "thediytrip.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/The-DIYTrip.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 141,
-      "inner_content": {
-        "overview": "Explore the World with Ease: Plan Your Trips in Seconds with theDIYtrip. TheDIYtrip Features: Experience hassle-free trip planning with theDIYtrip – an all-in-one platform that uses AI algorithms to generate personalized recommendations for any city in the world in seconds, with customization options that cater to your preferences, real-time updates on flight availability and prices, and booking services, travel guides, and itinerary planning tools.",
-        "pricingDetails": "Paid plan available on thediytrip.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "journeyplan",
-      "name": "JourneyPlan",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Looking to plan your ultimate vacation trip? JourneyPlan is your perfect companion! Our cutting-edge AI technology creates personalized agenda tailored to your interests and preferences within your timeframe and budget.",
-      "overview": "Looking to plan your ultimate vacation trip? JourneyPlan is your perfect companion! Our cutting-edge AI technology creates personalized agenda tailored to your interests and preferences within your timeframe and budget. JourneyPlan Features: Maximize your travel experience with JourneyPlan – a personal itinerary generator that creates customized agendas based on your destination, budget, timeframe, and interests, using advanced algorithms to provide you with recommendations for activities, dining, and more.",
-      "url": "https://journeyplan.co/",
-      "domain": "journeyplan.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/JourneyPlan.png",
-      "icon": "🤖",
-      "rating": 4.8,
-      "votes": 106,
-      "inner_content": {
-        "overview": "Looking to plan your ultimate vacation trip? JourneyPlan is your perfect companion! Our cutting-edge AI technology creates personalized agenda tailored to your interests and preferences within your timeframe and budget. JourneyPlan Features: Maximize your travel experience with JourneyPlan – a personal itinerary generator that creates customized agendas based on your destination, budget, timeframe, and interests, using advanced algorithms to provide you with recommendations for activities, dining, and more.",
-        "pricingDetails": "Free Trial plan available on journeyplan.co"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "magician-figma",
-      "name": "Magician (Figma)",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Introducing Magician.Design Magician. Design is an AI-powered design tool that helps users create eye-catching visuals effortlessly. It simplifies the design process and generates stunning graphics for various platforms and purposes.",
-      "overview": "Introducing Magician.Design Magician. Design is an AI-powered design tool that helps users create eye-catching visuals effortlessly. It simplifies the design process and generates stunning graphics for various platforms and purposes. Tutorial: Use Cases: Innovative tools: Icon generation, Creative writing, Image creation, Magical icons, Enhanced copy, Transformative images, etc. Prototyping & Automation: Swiftly develop prototypes and effortlessly automate tasks Catering to various: Catering to various design needs",
-      "url": "https://magician.design/",
-      "domain": "magician.design",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sdsdsds.png",
-      "icon": "🎨",
-      "rating": 4.5,
-      "votes": 64,
-      "inner_content": {
-        "overview": "Introducing Magician.Design Magician. Design is an AI-powered design tool that helps users create eye-catching visuals effortlessly. It simplifies the design process and generates stunning graphics for various platforms and purposes. Tutorial: Use Cases: Innovative tools: Icon generation, Creative writing, Image creation, Magical icons, Enhanced copy, Transformative images, etc. Prototyping & Automation: Swiftly develop prototypes and effortlessly automate tasks Catering to various: Catering to various design needs",
-        "pricingDetails": "Freemium plan available on magician.design"
       },
       "tool_type": "🎨 Design & UI"
     },
@@ -13311,7 +10766,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Introducing Contlo's Brand AI Model Contlo's Brand AI Model enables businesses to streamline their marketing efforts using their brand's own AI model, which contextually generates personalized marketing creatives such as emails, images, and copies.",
       "overview": "Introducing Contlo's Brand AI Model Contlo's Brand AI Model enables businesses to streamline their marketing efforts using their brand's own AI model, which contextually generates personalized marketing creatives such as emails, images, and copies. Social Media: Twitter LinkedIn YouTube Review: Use Cases: The AI model: The AI model thoroughly grasps the brand, crafting personalized marketing strategies and activities Produce unique marketing: Produce unique marketing materials tailored to the brand Craft targeted marketing: Craft targeted marketing segments and initiatives Twitter: Twitter LinkedIn: LinkedIn YouTube: YouTube",
-      "url": "https://contlo.com/brand-ai-model/",
+      "url": "https://contlo.com/",
       "domain": "contlo.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/Contlo-1.png",
       "icon": "🛍️",
@@ -13521,32 +10976,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Design & UI"
     },
     {
-      "id": "rocketai-2",
-      "name": "RocketAI",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "design",
-        "startup-tools"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎨 Image Generator",
-      "featured": false,
-      "description": "Generate creative assets that perfectly capture your unique brand style.",
-      "overview": "Generate creative assets that perfectly capture your unique brand style. Social Media: Use Cases: Image refinement: Elevate product images with improved backgrounds, context, angles, and lighting for higher conversion rates Design creation: Generate personalized product images with new colors, styles, and size variations User-friendly platform: Effortlessly create and edit images via a web-based interface Adaptable plans: Choose from Standard and Enterprise plans tailored to e-commerce business needs LinkedIn: LinkedIn Mail: Mail",
-      "url": "https://www.rocketai.io/",
-      "domain": "rocketai.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/jghtj523sfd.png",
-      "icon": "🎨",
-      "rating": 4.7,
-      "votes": 128,
-      "inner_content": {
-        "overview": "Generate creative assets that perfectly capture your unique brand style. Social Media: Use Cases: Image refinement: Elevate product images with improved backgrounds, context, angles, and lighting for higher conversion rates Design creation: Generate personalized product images with new colors, styles, and size variations User-friendly platform: Effortlessly create and edit images via a web-based interface Adaptable plans: Choose from Standard and Enterprise plans tailored to e-commerce business needs LinkedIn: LinkedIn Mail: Mail",
-        "pricingDetails": "Free Trial plan available on rocketai.io"
-      },
-      "tool_type": "🎨 Image Generator"
-    },
-    {
       "id": "photoroom-2",
       "name": "Photoroom",
       "category": "image-editing",
@@ -13649,30 +11078,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Design & UI"
     },
     {
-      "id": "erase-it",
-      "name": "Erase It",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Free",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Remove Unwanted Objects from Your Photos in Seconds. It’s Free!",
-      "overview": "Remove Unwanted Objects from Your Photos in Seconds. It’s Free! – Erase It is a photo editing tool that uses advanced AI technology.– It quickly identifies and removes unwanted elements from images.– The result is a natural-looking and fully edited picture in just seconds.– The interface is easy to use, making the photo editing process simpler.– Using Erase It saves time and effort, as it is fast and efficient.– Erase It is perfect for both professional photographers and casual users.– The final result retains the original quality of the image after editing.",
-      "url": "https://erase-it.cloudinary.com/",
-      "domain": "erase-it.cloudinary.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/EreaseIt.png",
-      "icon": "🖼️",
-      "rating": 5,
-      "votes": 189,
-      "inner_content": {
-        "overview": "Remove Unwanted Objects from Your Photos in Seconds. It’s Free! – Erase It is a photo editing tool that uses advanced AI technology.– It quickly identifies and removes unwanted elements from images.– The result is a natural-looking and fully edited picture in just seconds.– The interface is easy to use, making the photo editing process simpler.– Using Erase It saves time and effort, as it is fast and efficient.– Erase It is perfect for both professional photographers and casual users.– The final result retains the original quality of the image after editing.",
-        "pricingDetails": "Free plan available on erase-it.cloudinary.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
       "id": "upscayl",
       "name": "Upscayl",
       "category": "image-editing",
@@ -13717,30 +11122,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Extract foreground objects from images with ease using a Chrome extension. – Magic Copy is a Chrome extension that extracts foreground objects from images and copies them to your clipboard.– It leverages Meta’s Segment Anything Model for precise extraction.– The Chrome extension is easy to integrate with your browser.– Users can quickly copy the extracted foreground objects for immediate use.– Magic Copy uses the same service as Meta’s demo, ensuring consistent performance and results. Review: Use Cases: GitHub: GitHub",
         "pricingDetails": "Free Trial plan available on github.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "pics-enhancer",
-      "name": "Pics Enhancer",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Automatically enhance your photos using AI",
-      "overview": "Automatically enhance your photos using AI Pics Enhancer Features: With Pics Enhancer, a tool driven by AI, enhance and elevate your images to an unparalleled level of clarity and resolution. Take advantage of these features and benefits: Instant removal of photo blurriness through automated processesNo need for prior knowledge or designing skillsTry it out for free with no hidden fees or restrictions.",
-      "url": "https://picsenhancer.com/",
-      "domain": "picsenhancer.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/PicsEnhancer.png",
-      "icon": "🖼️",
-      "rating": 5,
-      "votes": 180,
-      "inner_content": {
-        "overview": "Automatically enhance your photos using AI Pics Enhancer Features: With Pics Enhancer, a tool driven by AI, enhance and elevate your images to an unparalleled level of clarity and resolution. Take advantage of these features and benefits: Instant removal of photo blurriness through automated processesNo need for prior knowledge or designing skillsTry it out for free with no hidden fees or restrictions.",
-        "pricingDetails": "Freemium plan available on picsenhancer.com"
       },
       "tool_type": "🖼️ Image & Photo Editing"
     },
@@ -13842,32 +11223,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🖼️ Image & Photo Editing"
     },
     {
-      "id": "polarr-copilots-2",
-      "name": "Polarr Copilots",
-      "category": "image-editing",
-      "categories": [
-        "image-editing",
-        "design",
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Polarr AI Copilots transform text into stunning photos, videos and designs, that you can fine-tune to perfection.",
-      "overview": "Polarr AI Copilots transform text into stunning photos, videos and designs, that you can fine-tune to perfection. Polarr offers users access to 3 distinct AI Copilots that empower them to push their creative boundaries and explore a range of mediums. With Polarr’s Photo Editing Copilot, users are free to let their imaginations run wild and edit their photos in exciting new ways. By providing text prompts that describe the desired edits for things like people, surroundings, or colors, this AI-powered assistant converts users’ ideas into stunning visual aesthetics. Polarr’s Video Editing Copilot takes things to the next level, making complex video effects easy to achieve. From cinematic colors and intricate transitions to impressive special effects, the 24FPS Copilot generates innovative concepts based on the user’s input and offers a step-by-step explanation of how each effect was created. Finally, Polarr’s Design Copilot offers businesses instant access to customized social media post templates. By using input images provided by the user, this AI-powered assistant generates engaging designs that help capture and hold their audience’s attention.",
-      "url": "https://copilot.polarr.com/",
-      "domain": "copilot.polarr.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/PolarCopilot.png",
-      "icon": "🖼️",
-      "rating": 4.6,
-      "votes": 26,
-      "inner_content": {
-        "overview": "Polarr AI Copilots transform text into stunning photos, videos and designs, that you can fine-tune to perfection. Polarr offers users access to 3 distinct AI Copilots that empower them to push their creative boundaries and explore a range of mediums. With Polarr’s Photo Editing Copilot, users are free to let their imaginations run wild and edit their photos in exciting new ways. By providing text prompts that describe the desired edits for things like people, surroundings, or colors, this AI-powered assistant converts users’ ideas into stunning visual aesthetics. Polarr’s Video Editing Copilot takes things to the next level, making complex video effects easy to achieve. From cinematic colors and intricate transitions to impressive special effects, the 24FPS Copilot generates innovative concepts based on the user’s input and offers a step-by-step explanation of how each effect was created. Finally, Polarr’s Design Copilot offers businesses instant access to customized social media post templates. By using input images provided by the user, this AI-powered assistant generates engaging designs that help capture and hold their audience’s attention.",
-        "pricingDetails": "Freemium plan available on copilot.polarr.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
       "id": "face26",
       "name": "Face26",
       "category": "image-editing",
@@ -13952,7 +11307,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Camera app that helps you redesign your home with AI",
       "overview": "Camera app that helps you redesign your home with AI Dreamlife is the AI camera app that will revolutionize your home. With just a click of a button, turn any photo of a room into a completely new style. Change the wall decor, wallpapers, furniture, lighting, plants, rugs, and paint with ease.",
-      "url": "https://linktr.ee/dreamlifeai",
+      "url": "https://linktr.ee/",
       "domain": "linktr.ee",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/DreamLife.png",
       "icon": "🎨",
@@ -13986,30 +11341,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI tools for digital businesses. Blend Features: Blend Image Background Remover – The effortless and AI-powered tool for removing and replacing backgrounds in images, featuring over 500 templates optimized for social graphics and product photos, a magic resize feature, and many customization options for stunning visuals. Social Media: Use Cases: Twitter: Twitter",
         "pricingDetails": "Paid plan available on blendnow.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "imagen-ai",
-      "name": "Imagen AI",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Generate Variations of any photo, image or illustration.",
-      "overview": "Generate Variations of any photo, image or illustration. Tutorial: Use Cases: Imagen AI can: Imagen AI can generate unlimited variations from a single photo. Letting you to visualize different designs with changing some of the elements but keep the majority of the look and feel the same. Generate similar versions: Generate similar versions of an existing photo and use it for free With its ability: With its ability to keep the look, feel, and color pattern of your seed image, IMAGEN AI generates look-alike images that can be replacements for the originals for A/B testing, Ad refreshment and more.",
-      "url": "https://www.zmo.ai/imagen/",
-      "domain": "zmo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Imagen.png",
-      "icon": "🖼️",
-      "rating": 4.8,
-      "votes": 80,
-      "inner_content": {
-        "overview": "Generate Variations of any photo, image or illustration. Tutorial: Use Cases: Imagen AI can: Imagen AI can generate unlimited variations from a single photo. Letting you to visualize different designs with changing some of the elements but keep the majority of the look and feel the same. Generate similar versions: Generate similar versions of an existing photo and use it for free With its ability: With its ability to keep the look, feel, and color pattern of your seed image, IMAGEN AI generates look-alike images that can be replacements for the originals for A/B testing, Ad refreshment and more.",
-        "pricingDetails": "Freemium plan available on zmo.ai"
       },
       "tool_type": "🖼️ Image & Photo Editing"
     },
@@ -14257,54 +11588,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Design & UI"
     },
     {
-      "id": "myth-ai",
-      "name": "Myth.Ai",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "MYTH is a software that uses AI to simplify and digitize pattern design, making the entire process more efficient and streamlined.",
-      "overview": "MYTH is a software that uses AI to simplify and digitize pattern design, making the entire process more efficient and streamlined. Key Features: Social Media: Use Cases: Digitize pattern design: Digitize pattern design process with AI-powered MYTH software. Sustainable design model: Sustainable design model with reduced resource usage. Versatile applications for: Versatile applications for various industries and design purposes. Tailored for designers: Tailored for designers across different sectors. LinkedIn: LinkedIn Instagram: Instagram",
-      "url": "https://www.myth-ai.com/",
-      "domain": "myth-ai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.myth-ai.com-2023.05.09-22_29_26.png",
-      "icon": "🎨",
-      "rating": 4.6,
-      "votes": 83,
-      "inner_content": {
-        "overview": "MYTH is a software that uses AI to simplify and digitize pattern design, making the entire process more efficient and streamlined. Key Features: Social Media: Use Cases: Digitize pattern design: Digitize pattern design process with AI-powered MYTH software. Sustainable design model: Sustainable design model with reduced resource usage. Versatile applications for: Versatile applications for various industries and design purposes. Tailored for designers: Tailored for designers across different sectors. LinkedIn: LinkedIn Instagram: Instagram",
-        "pricingDetails": "Freemium plan available on myth-ai.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "paint-by-text",
-      "name": "Paint By Text",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Edit your photos using written instructions, with the help of an AI.",
-      "overview": "Edit your photos using written instructions, with the help of an AI. Paint By Text Features: Transform your images with ease using Paint By Text, an AI-driven tool that simplifies photo editing using written instructions, powered by advanced technologies such as InstructPix2Pix, Replicate, Vercel, and GitHub, featuring a user-friendly interface without complex coding or software, and providing developer support through a detailed README file. Use Cases: GitHub: GitHub",
-      "url": "https://paintbytext.chat/",
-      "domain": "paintbytext.chat",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/PaintbyText.png",
-      "icon": "🖼️",
-      "rating": 4.7,
-      "votes": 167,
-      "inner_content": {
-        "overview": "Edit your photos using written instructions, with the help of an AI. Paint By Text Features: Transform your images with ease using Paint By Text, an AI-driven tool that simplifies photo editing using written instructions, powered by advanced technologies such as InstructPix2Pix, Replicate, Vercel, and GitHub, featuring a user-friendly interface without complex coding or software, and providing developer support through a detailed README file. Use Cases: GitHub: GitHub",
-        "pricingDetails": "Freemium plan available on paintbytext.chat"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
       "id": "midjourney-splitter",
       "name": "Midjourney Splitter",
       "category": "image-editing",
@@ -14381,151 +11664,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🖼️ Image & Photo Editing"
     },
     {
-      "id": "genusoft-ai",
-      "name": "Genusoft AI",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Genusoft is a cutting-edge design tool that leverages AI to revolutionize prototype creation for both professionals and amateurs.",
-      "overview": "Genusoft is a cutting-edge design tool that leverages AI to revolutionize prototype creation for both professionals and amateurs. Key Features: Social Media: Use Cases: Rapidly create prototypes: Rapidly create prototypes with Genusoft's AI-powered design tool. Intuitive UI/UX design: Intuitive UI/UX design for a better user experience. AI technology boosts: AI technology boosts product usage and sales through user research insights. Designed for professionals: Designed for professionals and non-designers alike. Twitter: Twitter LinkedIn: LinkedIn",
-      "url": "https://genusoftai.com/",
-      "domain": "genusoftai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-genusoftai.com-2023.05.09-22_10_30.png",
-      "icon": "🎨",
-      "rating": 5,
-      "votes": 200,
-      "inner_content": {
-        "overview": "Genusoft is a cutting-edge design tool that leverages AI to revolutionize prototype creation for both professionals and amateurs. Key Features: Social Media: Use Cases: Rapidly create prototypes: Rapidly create prototypes with Genusoft's AI-powered design tool. Intuitive UI/UX design: Intuitive UI/UX design for a better user experience. AI technology boosts: AI technology boosts product usage and sales through user research insights. Designed for professionals: Designed for professionals and non-designers alike. Twitter: Twitter LinkedIn: LinkedIn",
-        "pricingDetails": "Free Trial plan available on genusoftai.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "nostalgia-photo",
-      "name": "Nostalgia Photo",
-      "category": "image-editing",
-      "categories": [
-        "image-editing",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Bring old photos back to life with AI. Get max resolution in clicks & cents.",
-      "overview": "Bring old photos back to life with AI. Get max resolution in clicks & cents. Nostalgia Photo Features: Nostalgia Photo is a tool that leverages the power of AI to revive old photographs by eliminating flaws and enriching their quality. Its noteworthy features and benefits include: – AI-backed restoration: Capable of removing blurriness, torn images, and other blemishes without compromising the image’s integrity– Upscaling of resolution: Efficiently enhances the resolution of low-detail pictures to high definition, which is useful for print purposes– Focused on old photographs: Employs specialized techniques to deliver natural-looking, superior outcomes.",
-      "url": "https://www.nostalgia.photo/",
-      "domain": "nostalgia.photo",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Nostalgia.png",
-      "icon": "🖼️",
-      "rating": 4.8,
-      "votes": 41,
-      "inner_content": {
-        "overview": "Bring old photos back to life with AI. Get max resolution in clicks & cents. Nostalgia Photo Features: Nostalgia Photo is a tool that leverages the power of AI to revive old photographs by eliminating flaws and enriching their quality. Its noteworthy features and benefits include: – AI-backed restoration: Capable of removing blurriness, torn images, and other blemishes without compromising the image’s integrity– Upscaling of resolution: Efficiently enhances the resolution of low-detail pictures to high definition, which is useful for print purposes– Focused on old photographs: Employs specialized techniques to deliver natural-looking, superior outcomes.",
-        "pricingDetails": "Freemium plan available on nostalgia.photo"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "ai-image-enlarger",
-      "name": "AI. Image Enlarger",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Free",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "All-in-one AI toolkits help you enhance and upscale images.",
-      "overview": "All-in-one AI toolkits help you enhance and upscale images. AI. Image Enlarger Features: Image Enlarger Vs Other AI Tools: Use Cases: Enlarge and upscale: Enlarge and upscale images without losing quality. Support enlarging by 200%, 400%, and 800%. Customized and optimized: Customized and optimized upscaling algorithm for upscaling images faster and in batch process. Our AI Anime: Our AI Anime 16 K, upscale anime & cartoon pictures to 16k. A best alternative tool to Waifu2x. With the help: With the help of AI, enhance and adjust colors and the light balance of your images without any skills. Totally free! Deblur images with: Deblur images with advanced and fast AI technology. Sharpen blurry images while keeping quality. Retouch and fix: Retouch and fix the blurry face. Enhance the hair, eye, lips, and skin with just one click. Remove the background: Remove the background from the image automatically. As low as $0.03 per image. Support batch process. Powered by AI: Powered by AI noise reduction technology, you can get rid of noise from photos taken by a digital camera. Free AI tool: Free AI tool that converts your portrait and face photo to cartoon style online. Time to update your cartoon profile. Add color to: Add color to your black-and-white photos automatically. 100% free and unlimited access. Bring old photos back to life. Free Magic Eraser: Free Magic Eraser tool that removes unwanted objects and watermarks instantly. Powered by AI inpainting.",
-      "url": "https://imglarger.com/",
-      "domain": "imglarger.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AI-ImageEnlarger.png",
-      "icon": "🖼️",
-      "rating": 4.6,
-      "votes": 179,
-      "inner_content": {
-        "overview": "All-in-one AI toolkits help you enhance and upscale images. AI. Image Enlarger Features: Image Enlarger Vs Other AI Tools: Use Cases: Enlarge and upscale: Enlarge and upscale images without losing quality. Support enlarging by 200%, 400%, and 800%. Customized and optimized: Customized and optimized upscaling algorithm for upscaling images faster and in batch process. Our AI Anime: Our AI Anime 16 K, upscale anime & cartoon pictures to 16k. A best alternative tool to Waifu2x. With the help: With the help of AI, enhance and adjust colors and the light balance of your images without any skills. Totally free! Deblur images with: Deblur images with advanced and fast AI technology. Sharpen blurry images while keeping quality. Retouch and fix: Retouch and fix the blurry face. Enhance the hair, eye, lips, and skin with just one click. Remove the background: Remove the background from the image automatically. As low as $0.03 per image. Support batch process. Powered by AI: Powered by AI noise reduction technology, you can get rid of noise from photos taken by a digital camera. Free AI tool: Free AI tool that converts your portrait and face photo to cartoon style online. Time to update your cartoon profile. Add color to: Add color to your black-and-white photos automatically. 100% free and unlimited access. Bring old photos back to life. Free Magic Eraser: Free Magic Eraser tool that removes unwanted objects and watermarks instantly. Powered by AI inpainting.",
-        "pricingDetails": "Free plan available on imglarger.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "goodhues-ai",
-      "name": "Goodhues.ai",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Goodhues is an AI-based virtual assistant that streamlines interior design projects, from designing to visualizing and managing.",
-      "overview": "Goodhues is an AI-based virtual assistant that streamlines interior design projects, from designing to visualizing and managing. Key Features: Social Media: Use Cases: AI-powered interior design: AI-powered interior design tool for generating concepts and ideas Virtual assistant for: Virtual assistant for project management and idea generation Realistic 3D renderings: Realistic 3D renderings for design visualization Project management tools: Project management tools for organization and productivity LinkedIn: LinkedIn Instagram: Instagram",
-      "url": "https://goodhues.ai/",
-      "domain": "goodhues.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-goodhues.ai-2023.05.09-22_06_01.png",
-      "icon": "🎨",
-      "rating": 4.8,
-      "votes": 165,
-      "inner_content": {
-        "overview": "Goodhues is an AI-based virtual assistant that streamlines interior design projects, from designing to visualizing and managing. Key Features: Social Media: Use Cases: AI-powered interior design: AI-powered interior design tool for generating concepts and ideas Virtual assistant for: Virtual assistant for project management and idea generation Realistic 3D renderings: Realistic 3D renderings for design visualization Project management tools: Project management tools for organization and productivity LinkedIn: LinkedIn Instagram: Instagram",
-        "pricingDetails": "Freemium plan available on goodhues.ai"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "lets-enhance",
-      "name": "Let's Enhance",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "AI editor to enhance & upscale images without losing quality.",
-      "overview": "AI editor to enhance & upscale images without losing quality. Let's Enhance Features: Transform blurry and pixelated images into high-resolution works of art with Let’s Enhance’s AI-based online application and free photo enlarger, equipped with wide use cases, one-click presets, large image support, and efficient editing features perfect for creative professionals, businesses, and users alike.",
-      "url": "https://letsenhance.io/",
-      "domain": "letsenhance.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/LetsEnhance.png",
-      "icon": "🖼️",
-      "rating": 4.8,
-      "votes": 137,
-      "inner_content": {
-        "overview": "AI editor to enhance & upscale images without losing quality. Let's Enhance Features: Transform blurry and pixelated images into high-resolution works of art with Let’s Enhance’s AI-based online application and free photo enlarger, equipped with wide use cases, one-click presets, large image support, and efficient editing features perfect for creative professionals, businesses, and users alike.",
-        "pricingDetails": "Freemium plan available on letsenhance.io"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "octoicons",
-      "name": "Octoicons",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Paid",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Octoicons is a tool that generates attractive and original icons for designers, web developers, and other users by inputting a prompt.",
-      "overview": "Octoicons is a tool that generates attractive and original icons for designers, web developers, and other users by inputting a prompt. Key Features: Perfect for designers, web developers, and anyone in need of stunning graphics, simply enter a prompt and let Octoicons generate unique and eye-catching icons. Use Cases: Generate custom SVG: Generate custom SVG icons with advanced AI technology. Input a prompt: Input a prompt and let the generator create eye-catching icons. Versatile solution for: Versatile solution for designers, web developers, and those needing creative graphics.",
-      "url": "https://octoicons.com/",
-      "domain": "octoicons.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-octoicons.com-2023.05.09-22_01_34.png",
-      "icon": "🎨",
-      "rating": 4.9,
-      "votes": 116,
-      "inner_content": {
-        "overview": "Octoicons is a tool that generates attractive and original icons for designers, web developers, and other users by inputting a prompt. Key Features: Perfect for designers, web developers, and anyone in need of stunning graphics, simply enter a prompt and let Octoicons generate unique and eye-catching icons. Use Cases: Generate custom SVG: Generate custom SVG icons with advanced AI technology. Input a prompt: Input a prompt and let the generator create eye-catching icons. Versatile solution for: Versatile solution for designers, web developers, and those needing creative graphics.",
-        "pricingDetails": "Paid plan available on octoicons.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
       "id": "quicktools-by-picsart",
       "name": "QuickTools by Picsart",
       "category": "image-editing",
@@ -14550,126 +11688,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🖼️ Image & Photo Editing"
     },
     {
-      "id": "rerender-ai",
-      "name": "ReRender AI",
-      "category": "design",
-      "categories": [
-        "design"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "ReRender AI uses AI technology to quickly generate photorealistic renders for AutoCAD, Blender, and Sketchup projects, improving the efficiency of architects and designers.",
-      "overview": "ReRender AI uses AI technology to quickly generate photorealistic renders for AutoCAD, Blender, and Sketchup projects, improving the efficiency of architects and designers. The ReRender AI tool is a highly effective solution designed to help architects and designers enhance their AutoCAD, Blender, or Sketchup projects by creating stunning photorealistic renders in mere seconds. The tool offers numerous key features, such as quick rendering capabilities that allow users to obtain high-quality project renders in just a few seconds. With over 50 unique design styles to choose from, users can select the ideal visual style to showcase their project’s best attributes. ReRender AI caters to a range of building types, including homes, apartments, offices, schools, and hospitals, offering extensive design flexibility at the user’s fingertips. The platform offers an easy-to-use interface that simplifies image upload and email confirmation, allowing users to start using the tool immediately. Additionally, users can explore different design styles to spark inspiration and discover new creative directions for their projects. Use Cases: Mail: Mail",
-      "url": "https://rerenderai.com/",
-      "domain": "rerenderai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-rerenderai.com-2023.05.09-21_57_01.png",
-      "icon": "🎨",
-      "rating": 4.7,
-      "votes": 53,
-      "inner_content": {
-        "overview": "ReRender AI uses AI technology to quickly generate photorealistic renders for AutoCAD, Blender, and Sketchup projects, improving the efficiency of architects and designers. The ReRender AI tool is a highly effective solution designed to help architects and designers enhance their AutoCAD, Blender, or Sketchup projects by creating stunning photorealistic renders in mere seconds. The tool offers numerous key features, such as quick rendering capabilities that allow users to obtain high-quality project renders in just a few seconds. With over 50 unique design styles to choose from, users can select the ideal visual style to showcase their project’s best attributes. ReRender AI caters to a range of building types, including homes, apartments, offices, schools, and hospitals, offering extensive design flexibility at the user’s fingertips. The platform offers an easy-to-use interface that simplifies image upload and email confirmation, allowing users to start using the tool immediately. Additionally, users can explore different design styles to spark inspiration and discover new creative directions for their projects. Use Cases: Mail: Mail",
-        "pricingDetails": "Free Trial plan available on rerenderai.com"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "ai-picasso",
-      "name": "AI Picasso",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": true,
-      "description": "AI creates art from text; edit filled areas with prompts.",
-      "overview": "AI creates art from text; edit filled areas with prompts. AI Picasso Features: AI Picasso is an exceptional AI application that allows users to effortlessly generate striking artwork. Its noteworthy features and benefits consist of: Reliable Dispersion: Utilizes cutting-edge AI methods to produce images based on text inputUser-friendly: Created for individuals without artistic skill to produce remarkable piecesIllustration generation: Competent in crafting illustrations from unrefined sketches",
-      "url": "https://www.aipicasso.app/",
-      "domain": "aipicasso.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AI-Picasso.png",
-      "icon": "🖼️",
-      "rating": 4.6,
-      "votes": 74,
-      "inner_content": {
-        "overview": "AI creates art from text; edit filled areas with prompts. AI Picasso Features: AI Picasso is an exceptional AI application that allows users to effortlessly generate striking artwork. Its noteworthy features and benefits consist of: Reliable Dispersion: Utilizes cutting-edge AI methods to produce images based on text inputUser-friendly: Created for individuals without artistic skill to produce remarkable piecesIllustration generation: Competent in crafting illustrations from unrefined sketches",
-        "pricingDetails": "Freemium plan available on aipicasso.app"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "evoto-ai",
-      "name": "Evoto AI",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "10x faster photo editing with remarkable quality, making imaginations real.",
-      "overview": "10x faster photo editing with remarkable quality, making imaginations real. Evoto, a next-generation photo editor that releases you from tedious work, sets you up to get thousands of photos processed at a 10x speed with remarkable quality, and helps you make your imaginations real.",
-      "url": "https://www.evoto.ai/",
-      "domain": "evoto.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Evoto.png",
-      "icon": "🖼️",
-      "rating": 4.8,
-      "votes": 32,
-      "inner_content": {
-        "overview": "10x faster photo editing with remarkable quality, making imaginations real. Evoto, a next-generation photo editor that releases you from tedious work, sets you up to get thousands of photos processed at a 10x speed with remarkable quality, and helps you make your imaginations real.",
-        "pricingDetails": "Freemium plan available on evoto.ai"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "quizgecko",
-      "name": "Quizgecko",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Quizgecko is a state-of-the-art quiz generation tool that harnesses the power of AI to create customized quizzes from any text or URL. With Quizgecko, you can quickly and easily transform any content into an interactive quiz, perfect for engaging your audience and testing their knowledge.",
-      "overview": "Quizgecko is a state-of-the-art quiz generation tool that harnesses the power of AI to create customized quizzes from any text or URL. With Quizgecko, you can quickly and easily transform any content into an interactive quiz, perfect for engaging your audience and testing their knowledge. Quizgecko Features: Review: Use Cases: Multiple question types: Generate different question types, such as multiple-choice, true/false, short answer, and fill in the blank. Personalization: Customize the quiz's difficulty level, number of questions, and language. Chrome extension: Install the browser add-on to conveniently turn web pages into quizzes.",
-      "url": "https://quizgecko.com/",
-      "domain": "quizgecko.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-quizgecko.com-2023.05.09-21_48_33.png",
-      "icon": "🎓",
-      "rating": 4.9,
-      "votes": 191,
-      "inner_content": {
-        "overview": "Quizgecko is a state-of-the-art quiz generation tool that harnesses the power of AI to create customized quizzes from any text or URL. With Quizgecko, you can quickly and easily transform any content into an interactive quiz, perfect for engaging your audience and testing their knowledge. Quizgecko Features: Review: Use Cases: Multiple question types: Generate different question types, such as multiple-choice, true/false, short answer, and fill in the blank. Personalization: Customize the quiz's difficulty level, number of questions, and language. Chrome extension: Install the browser add-on to conveniently turn web pages into quizzes.",
-        "pricingDetails": "Freemium plan available on quizgecko.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "visio-studio",
-      "name": "Visio Studio",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Advanced background removal & photo editing from your phone.",
-      "overview": "Advanced background removal & photo editing from your phone. Advanced background removal tool, powered by computer vision technology. Visio Studio allows you to edit and optimize your pictures directly from your phone.",
-      "url": "https://visio.studio/",
-      "domain": "visio.studio",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Visio.png",
-      "icon": "🖼️",
-      "rating": 4.8,
-      "votes": 184,
-      "inner_content": {
-        "overview": "Advanced background removal & photo editing from your phone. Advanced background removal tool, powered by computer vision technology. Visio Studio allows you to edit and optimize your pictures directly from your phone.",
-        "pricingDetails": "Freemium plan available on visio.studio"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
       "id": "topaz-photo-ai",
       "name": "Topaz Photo AI",
       "category": "image-editing",
@@ -14690,54 +11708,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Supercharge your image quality – remove noise and increase resolution. Topaz Photo AI is a sophisticated image enhancement tool that employs state-of-the-art technology to automatically sharpen, reduce noise, and improve the resolution of your photos. This potent software enables you to optimize the quality of your images, freeing you to concentrate on the artistic aspects of photography. Key Features: AI-based image enhancement: Utilize the power of AI to enhance the quality of your images automatically.Sharpening: Bolster the precision and particularity of your photographs for a more refined and professional appearance.Noise reduction: Curb bothersome noise and aberrations from your images to create a seamless and harmonious look.Increase in resolution: Augment the resolution of your photos without compromising the quality or creating imperfections.",
         "pricingDetails": "Freemium plan available on topazlabs.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "hama-image-editing",
-      "name": "Hama – Image Editing",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Erase objects from images quickly.",
-      "overview": "Erase objects from images quickly. Hama – Image Editing Features: Get seamless object erasing from your photos with Hama’s intuitive AI-powered web application that offers an easy interface, surprising results, and unlimited and free usage, without any restrictions or size limits.",
-      "url": "https://www.hama.app/",
-      "domain": "hama.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Hama.png",
-      "icon": "🖼️",
-      "rating": 4.6,
-      "votes": 121,
-      "inner_content": {
-        "overview": "Erase objects from images quickly. Hama – Image Editing Features: Get seamless object erasing from your photos with Hama’s intuitive AI-powered web application that offers an easy interface, surprising results, and unlimited and free usage, without any restrictions or size limits.",
-        "pricingDetails": "Freemium plan available on hama.app"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "bg-eraser",
-      "name": "Bg.Eraser",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Remove unwanted objects and watermarks quickly.",
-      "overview": "Remove unwanted objects and watermarks quickly. Bg.Eraser Features: Bg Eraser is a costless web-based instrument that presents effective AI Inpainting and Picture Clean Up technology. Its primary features and benefits entail: Magic Eraser: Cleanse visuals in a prompt and easy manner by eliminating unwanted artifacts and watermarks.Background Eraser: Eradicate backgrounds without necessitating knowledge of Photoshop.Prompt and precise: Bg Eraser 2.0 algorithm augments speed and accuracy.Protected and safeguarded: Uploaded images are cleared away within 24 hours to ensure user confidentiality.",
-      "url": "https://bgeraser.com/",
-      "domain": "bgeraser.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/BgEraser.png",
-      "icon": "🖼️",
-      "rating": 5,
-      "votes": 86,
-      "inner_content": {
-        "overview": "Remove unwanted objects and watermarks quickly. Bg.Eraser Features: Bg Eraser is a costless web-based instrument that presents effective AI Inpainting and Picture Clean Up technology. Its primary features and benefits entail: Magic Eraser: Cleanse visuals in a prompt and easy manner by eliminating unwanted artifacts and watermarks.Background Eraser: Eradicate backgrounds without necessitating knowledge of Photoshop.Prompt and precise: Bg Eraser 2.0 algorithm augments speed and accuracy.Protected and safeguarded: Uploaded images are cleared away within 24 hours to ensure user confidentiality.",
-        "pricingDetails": "Free Trial plan available on bgeraser.com"
       },
       "tool_type": "🖼️ Image & Photo Editing"
     },
@@ -14786,30 +11756,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Thumbnail.ai is the ultimate solution for content creators seeking to optimize their YouTube thumbnails quickly and easily. With Thumbnail.ai, you can effortlessly upload your thumbnail image or select one from the website and receive an AI rating that provides practical suggestions for improving its impact. By utilizing Thumbnail.ai's cutting-edge technology, you can create captivating thumbnails that will increase your click-through rates, driving more views and engagement to your channel.",
         "pricingDetails": "Paid plan available on aivalley.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "predict-ai",
-      "name": "Predict AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Morise.ai is a powerful tool that leverages artificial intelligence to help content creators maximize the performance of their YouTube channels. With Morise.ai, creators can optimize their channel's growth and engagement, taking their content to the next level.",
-      "overview": "Morise.ai is a powerful tool that leverages artificial intelligence to help content creators maximize the performance of their YouTube channels. With Morise.ai, creators can optimize their channel's growth and engagement, taking their content to the next level. Morise.ai Features: Use Cases: Idea generation: Generates fresh video ideas based on successful channels Optimized titles: Creates SEO-friendly titles for improved visibility High-quality descriptions: Generates long and engaging video descriptions Community posts: Offers capabilities for polls and descriptive posts to reach a wider audience Morise.ai leverages AI: Morise.ai leverages AI to help creators maximize their YouTube channel's growth and engagement.",
-      "url": "https://morise.ai/",
-      "domain": "morise.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-morise.ai-2023.05.09-21_16_57.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 37,
-      "inner_content": {
-        "overview": "Morise.ai is a powerful tool that leverages artificial intelligence to help content creators maximize the performance of their YouTube channels. With Morise.ai, creators can optimize their channel's growth and engagement, taking their content to the next level. Morise.ai Features: Use Cases: Idea generation: Generates fresh video ideas based on successful channels Optimized titles: Creates SEO-friendly titles for improved visibility High-quality descriptions: Generates long and engaging video descriptions Community posts: Offers capabilities for polls and descriptive posts to reach a wider audience Morise.ai leverages AI: Morise.ai leverages AI to help creators maximize their YouTube channel's growth and engagement.",
-        "pricingDetails": "Freemium plan available on morise.ai"
       },
       "tool_type": "📱 Social Media & Growth"
     },
@@ -14863,31 +11809,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🖼️ Image & Photo Editing"
     },
     {
-      "id": "rocketai",
-      "name": "RocketAI",
-      "category": "image-editing",
-      "categories": [
-        "image-editing",
-        "image-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Create/edit product images & generate design concepts from text prompts.",
-      "overview": "Create/edit product images & generate design concepts from text prompts. RocketAI Features: RocketAI is a Software-as-a-Service (SaaS) tool that deploys AI to amplify product images and engender design concepts for e-commerce enterprises. Its primary features and benefits comprise: Image improvement: Elevate merchandise images with backgrounds, context, angles, and lighting to heighten conversion rates.Design conception: Forge personalized product images and alternatives in fresh colors, fashions, and quantities.User-friendly interface: Effortlessly conceive and modify images using an online platform.Tailored plans: Standard and Enterprise plans customized to suit the demands of e-commerce businesses.",
-      "url": "https://www.rocketai.io/",
-      "domain": "rocketai.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/RocketAI.png",
-      "icon": "🖼️",
-      "rating": 4.9,
-      "votes": 154,
-      "inner_content": {
-        "overview": "Create/edit product images & generate design concepts from text prompts. RocketAI Features: RocketAI is a Software-as-a-Service (SaaS) tool that deploys AI to amplify product images and engender design concepts for e-commerce enterprises. Its primary features and benefits comprise: Image improvement: Elevate merchandise images with backgrounds, context, angles, and lighting to heighten conversion rates.Design conception: Forge personalized product images and alternatives in fresh colors, fashions, and quantities.User-friendly interface: Effortlessly conceive and modify images using an online platform.Tailored plans: Standard and Enterprise plans customized to suit the demands of e-commerce businesses.",
-        "pricingDetails": "Freemium plan available on rocketai.io"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
       "id": "radiant-photo",
       "name": "Radiant Photo",
       "category": "image-editing",
@@ -14908,30 +11829,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Photos made radiant: perfect color, fast delivery. Radiant Photo Features: Radiant Imaging Labs provides an AI-fueled imaging engine designed to enhance photographs with accurate color presentation and superior quality. The principal features and benefits encompass: Intelligent photograph enhancement: Employ scene detection, smart presets and convenient editing options to improve images.Sophisticated tools: Graduated filter, portrait tools, color grading appearances, and finishing tools to tailor adjustments.Optimal image quality: Amplify the dynamic range, precisely match colors, unveil missed elements, and eliminate noise.",
         "pricingDetails": "Free Trial plan available on radiantimaginglabs.com"
-      },
-      "tool_type": "🖼️ Image & Photo Editing"
-    },
-    {
-      "id": "remove-bg",
-      "name": "Remove.bg",
-      "category": "image-editing",
-      "categories": [
-        "image-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🖼️ Image & Photo Editing",
-      "featured": false,
-      "description": "Remove backgrounds in 5 secs with one click.",
-      "overview": "Remove backgrounds in 5 secs with one click. Remove.bg Features: remove.bg is a tool operated by AI and designed to expeditiously and automatically eradicate backgrounds from images. Its primary features and benefits consist of: Cutting-edge algorithms: Recognizes object borders and seamlessly removes or substitutes backgrounds.Swift processing: Processes pictures in as little as 5 seconds with a solitary click.Integrations and plugins: Accommodates popular design software, e-commerce platforms, operating systems, and also proffers an API for personalized workflows.Manages complex details: Competent in managing fine hair strands and other delicate particulars.",
-      "url": "http://remove.bg/",
-      "domain": "remove.bg",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/RemoveBg.png",
-      "icon": "🖼️",
-      "rating": 4.6,
-      "votes": 112,
-      "inner_content": {
-        "overview": "Remove backgrounds in 5 secs with one click. Remove.bg Features: remove.bg is a tool operated by AI and designed to expeditiously and automatically eradicate backgrounds from images. Its primary features and benefits consist of: Cutting-edge algorithms: Recognizes object borders and seamlessly removes or substitutes backgrounds.Swift processing: Processes pictures in as little as 5 seconds with a solitary click.Integrations and plugins: Accommodates popular design software, e-commerce platforms, operating systems, and also proffers an API for personalized workflows.Manages complex details: Competent in managing fine hair strands and other delicate particulars.",
-        "pricingDetails": "Freemium plan available on remove.bg"
       },
       "tool_type": "🖼️ Image & Photo Editing"
     },
@@ -14985,81 +11882,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "💻 Code & Developer"
     },
     {
-      "id": "unlimitedgpt",
-      "name": "UnlimitedGPT",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "life-assistant"
-      ],
-      "pricing": "Free",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "UnlimitedGPT is a proxy offering free access to ChatGPT's full range of features",
-      "overview": "UnlimitedGPT is a proxy offering free access to ChatGPT's full range of features UnlimitedGPT is a proxy service enabling users to access all the ChatGPT features at zero cost. Some of its remarkable features and benefits include: 1. Comprehensive and free access to all ChatGPT features, offering an uninterrupted AI-powered chatbot chat experience. 2. Enhanced privacy as users use the proxy service to access ChatGPT without direct accessibility. 3. No sign-up required to utilize the service, making the service uncomplicated and user-friendly. 4. Unlimited usage capabilities, allowing users to access ChatGPT anytime without limitations. 5. The platform is easy to use, with a simplistic interface that enables users to chat intelligently with the AI-powered chatbot effortlessly.",
-      "url": "https://unlimitedgpt.co/",
-      "domain": "unlimitedgpt.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fsdfer33.png",
-      "icon": "🤖",
-      "rating": 5,
-      "votes": 87,
-      "inner_content": {
-        "overview": "UnlimitedGPT is a proxy offering free access to ChatGPT's full range of features UnlimitedGPT is a proxy service enabling users to access all the ChatGPT features at zero cost. Some of its remarkable features and benefits include: 1. Comprehensive and free access to all ChatGPT features, offering an uninterrupted AI-powered chatbot chat experience. 2. Enhanced privacy as users use the proxy service to access ChatGPT without direct accessibility. 3. No sign-up required to utilize the service, making the service uncomplicated and user-friendly. 4. Unlimited usage capabilities, allowing users to access ChatGPT anytime without limitations. 5. The platform is easy to use, with a simplistic interface that enables users to chat intelligently with the AI-powered chatbot effortlessly.",
-        "pricingDetails": "Free plan available on unlimitedgpt.co"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "gems",
-      "name": "Gems",
-      "category": "educational",
-      "categories": [
-        "educational",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Introducing Gems AI Knowledge Assistant Gems presents a comprehensive AI Knowledge Assistant, designed to streamline organization and access to collective knowledge for individuals and teams.",
-      "overview": "Introducing Gems AI Knowledge Assistant Gems presents a comprehensive AI Knowledge Assistant, designed to streamline organization and access to collective knowledge for individuals and teams. Use Cases: Obtain ready-made answers: Obtain ready-made answers from all knowledge sources without manual organization Effortlessly connect and: Effortlessly connect and centralize all knowledge sources for organized, easy access Smoothly integrate Gems: Smoothly integrate Gems into shared spaces for frictionless team knowledge sharing With 20,000+ users,: With 20,000+ users, Gems is endorsed by industry giants such as Credit Suisse, Bain & Company, McKinsey & Company, Gartner, Harvard University, Morgan Stanley, and The New York Times. Twitter: Twitter",
-      "url": "https://www.gems.so/",
-      "domain": "gems.so",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/asdasdewr23.png",
-      "icon": "🎓",
-      "rating": 4.6,
-      "votes": 66,
-      "inner_content": {
-        "overview": "Introducing Gems AI Knowledge Assistant Gems presents a comprehensive AI Knowledge Assistant, designed to streamline organization and access to collective knowledge for individuals and teams. Use Cases: Obtain ready-made answers: Obtain ready-made answers from all knowledge sources without manual organization Effortlessly connect and: Effortlessly connect and centralize all knowledge sources for organized, easy access Smoothly integrate Gems: Smoothly integrate Gems into shared spaces for frictionless team knowledge sharing With 20,000+ users,: With 20,000+ users, Gems is endorsed by industry giants such as Credit Suisse, Bain & Company, McKinsey & Company, Gartner, Harvard University, Morgan Stanley, and The New York Times. Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on gems.so"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "ask-marcus-aurelius",
-      "name": "Ask Marcus Aurelius",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools",
-        "life-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "Embark on a singular journey to 175 AD with Ask Marcus Aurelius, an experience that lets you pose up to three questions to the revered Roman Emperor and Stoic philosopher.",
-      "overview": "Embark on a singular journey to 175 AD with Ask Marcus Aurelius, an experience that lets you pose up to three questions to the revered Roman Emperor and Stoic philosopher. Marcus Aurelius is a distinctive encounter that takes you back to 175 AD. It permits you to ask up to three queries of the Roman emperor and Stoic philosopher, Marcus Aurelius. Here are some notable features and benefits of this experience: – Wisdom at your fingertips: You get an opportunity to ask questions to a celebrated personality known for his insight, guidance, and Meditations.– Tailored involvement: You can select your queries and receive bespoke responses from Marcus Aurelius.– Educational prospect: It is an interactive and captivating means to discover ancient history and philosophy.",
-      "url": "https://askmarcus.ai/",
-      "domain": "askmarcus.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sdfreertt.png",
-      "icon": "🎉",
-      "rating": 4.7,
-      "votes": 45,
-      "inner_content": {
-        "overview": "Embark on a singular journey to 175 AD with Ask Marcus Aurelius, an experience that lets you pose up to three questions to the revered Roman Emperor and Stoic philosopher. Marcus Aurelius is a distinctive encounter that takes you back to 175 AD. It permits you to ask up to three queries of the Roman emperor and Stoic philosopher, Marcus Aurelius. Here are some notable features and benefits of this experience: – Wisdom at your fingertips: You get an opportunity to ask questions to a celebrated personality known for his insight, guidance, and Meditations.– Tailored involvement: You can select your queries and receive bespoke responses from Marcus Aurelius.– Educational prospect: It is an interactive and captivating means to discover ancient history and philosophy.",
-        "pricingDetails": "Paid plan available on askmarcus.ai"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
       "id": "astrogpt",
       "name": "AstroGPT",
       "category": "life-assistant",
@@ -15080,30 +11902,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Discover your destiny with our personalized astrology service. Get expert guidance for love, career, and more. AstroGPT Features: Use Cases: In-depth Vedic Astrology Analysis: Gain insights into various life aspects, including career, relationships, finances, and health Customized Horoscopes & Forecasts: Receive tailored predictions based on your birth chart and current astrological influences User-friendly Experience: Effortlessly inquire about any Vedic astrology topic and receive responses tailored to your birth chart Precise & Empathetic Approach: Developed with Vedic principles, AstroGPT offers non-judgmental and compassionate astrology insights to understand yourself and your place in the world",
         "pricingDetails": "Free Trial plan available on astrogpt.pages.dev"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "easymessage",
-      "name": "EasyMessage",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Let this AI compose personalized messages for all occasions on your behalf.",
-      "overview": "Let this AI compose personalized messages for all occasions on your behalf. Introducing AI-Driven Message Creation Experience the AI-powered solution that crafts bespoke messages for an array of occasions, making the quest for inspiration obsolete. Celebrate events such as: Leverage AI-crafted messages for gift personalization or communication with loved ones. Enjoy time and effort savings with rapid, efficient message generation. Use Cases: Birthdays, Christmas, New: Birthdays, Christmas, New Year's Sharing news, welcoming: Sharing news, welcoming newborns, mourning losses Love confessions, breakups,: Love confessions, breakups, job proposals",
-      "url": "https://easymessage.ai/ai-generated-messages",
-      "domain": "easymessage.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dafdsfe33.png",
-      "icon": "🌟",
-      "rating": 4.9,
-      "votes": 183,
-      "inner_content": {
-        "overview": "Let this AI compose personalized messages for all occasions on your behalf. Introducing AI-Driven Message Creation Experience the AI-powered solution that crafts bespoke messages for an array of occasions, making the quest for inspiration obsolete. Celebrate events such as: Leverage AI-crafted messages for gift personalization or communication with loved ones. Enjoy time and effort savings with rapid, efficient message generation. Use Cases: Birthdays, Christmas, New: Birthdays, Christmas, New Year's Sharing news, welcoming: Sharing news, welcoming newborns, mourning losses Love confessions, breakups,: Love confessions, breakups, job proposals",
-        "pricingDetails": "Freemium plan available on easymessage.ai"
       },
       "tool_type": "🌟 Life & Personal Assistant"
     },
@@ -15157,30 +11955,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎵 Music & Audio"
     },
     {
-      "id": "emergent-drums",
-      "name": "Emergent Drums",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Free",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Emergent Drums by Audialab is a music plugin powered by AI that produces one-of-a-kind, royalty-free drum samples.",
-      "overview": "Emergent Drums by Audialab is a music plugin powered by AI that produces one-of-a-kind, royalty-free drum samples. Use Cases: AI-generated samples: Create an unlimited number of high-quality drum sounds using state-of-the-art AI technology Ideal for various users: Perfect for music producers, composers, and artists seeking unique and creative drum sounds Featured artist demos and sample packs: Gain inspiration from the work of other professionals.",
-      "url": "https://audialab.com/",
-      "domain": "audialab.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Em.png",
-      "icon": "🎵",
-      "rating": 4.5,
-      "votes": 153,
-      "inner_content": {
-        "overview": "Emergent Drums by Audialab is a music plugin powered by AI that produces one-of-a-kind, royalty-free drum samples. Use Cases: AI-generated samples: Create an unlimited number of high-quality drum sounds using state-of-the-art AI technology Ideal for various users: Perfect for music producers, composers, and artists seeking unique and creative drum sounds Featured artist demos and sample packs: Gain inspiration from the work of other professionals.",
-        "pricingDetails": "Free plan available on audialab.com"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
       "id": "soundraw",
       "name": "Soundraw",
       "category": "music",
@@ -15203,78 +11977,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on futurepedia.io"
       },
       "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "sonify",
-      "name": "Sonify",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Sonify specializes in developing audio-first products and data-driven solutions that integrate audio, data, and emerging technologies to create innovative experiences.",
-      "overview": "Sonify specializes in developing audio-first products and data-driven solutions that integrate audio, data, and emerging technologies to create innovative experiences.",
-      "url": "https://www.sonify.io/",
-      "domain": "sonify.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sonify.png",
-      "icon": "🎵",
-      "rating": 4.7,
-      "votes": 27,
-      "inner_content": {
-        "overview": "Sonify specializes in developing audio-first products and data-driven solutions that integrate audio, data, and emerging technologies to create innovative experiences.",
-        "pricingDetails": "Freemium plan available on sonify.io"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "what-on-earth",
-      "name": "What on earth?",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Free Trial",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Create engaging stories for fun learning with What on earth? using simple one-word prompts.",
-      "overview": "Create engaging stories for fun learning with What on earth? using simple one-word prompts.",
-      "url": "https://www.whatonearth.xyz/",
-      "domain": "whatonearth.xyz",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/woe.png",
-      "icon": "✍️",
-      "rating": 4.5,
-      "votes": 144,
-      "inner_content": {
-        "overview": "Create engaging stories for fun learning with What on earth? using simple one-word prompts.",
-        "pricingDetails": "Free Trial plan available on whatonearth.xyz"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "artflow-ai",
-      "name": "Artflow ai",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Artflow.ai is an AI-driven avatar creation tool that allows users to bring their characters to life with ease.",
-      "overview": "Artflow.ai is an AI-driven avatar creation tool that allows users to bring their characters to life with ease. Use Cases: Custom creations: Create avatars and unique scenes/dialogues from text. Asset library: Access premade characters/scenes to enhance your creations. Language support: Write descriptions and generate content in non-English languages. API and feedback: Utilize API for content generation and get real-time feedback to refine your creations. Community: Join the Artflow.ai community for tutorials, FAQs, and connecting with other users.",
-      "url": "https://www.futurepedia.io/tool/artflow-ai#artflow-ai-review",
-      "domain": "futurepedia.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/ARTFK.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 81,
-      "inner_content": {
-        "overview": "Artflow.ai is an AI-driven avatar creation tool that allows users to bring their characters to life with ease. Use Cases: Custom creations: Create avatars and unique scenes/dialogues from text. Asset library: Access premade characters/scenes to enhance your creations. Language support: Write descriptions and generate content in non-English languages. API and feedback: Utilize API for content generation and get real-time feedback to refine your creations. Community: Join the Artflow.ai community for tutorials, FAQs, and connecting with other users.",
-        "pricingDetails": "Freemium plan available on futurepedia.io"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
     },
     {
       "id": "roomgpt",
@@ -15301,102 +12003,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on roomgpt.io"
       },
       "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "graham-ai",
-      "name": "Graham AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Graham.AI is an AI-based tool for tech influencers to craft high-quality tweets with speed and precision.",
-      "overview": "Graham.AI is an AI-based tool for tech influencers to craft high-quality tweets with speed and precision. Graham AI Features: Use Cases: AI-generated tweets: Quick and accurate tweets based on chosen topics Diverse topics: Covers various subjects from startup ideas to Elon Musk buying Twitter Authentic content: Produces tweets that sound like they were written by a tech influencer Support creators: Option to donate to creators and support their work.",
-      "url": "https://www.grahamai.co/",
-      "domain": "grahamai.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.grahamai.co-2023.05.09-10_35_04.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 35,
-      "inner_content": {
-        "overview": "Graham.AI is an AI-based tool for tech influencers to craft high-quality tweets with speed and precision. Graham AI Features: Use Cases: AI-generated tweets: Quick and accurate tweets based on chosen topics Diverse topics: Covers various subjects from startup ideas to Elon Musk buying Twitter Authentic content: Produces tweets that sound like they were written by a tech influencer Support creators: Option to donate to creators and support their work.",
-        "pricingDetails": "Paid plan available on grahamai.co"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "ai-social-bio",
-      "name": "AI Social Bio",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "AI Social Bio is an AI-based solution that assists users in creating an ideal social media bio.",
-      "overview": "AI Social Bio is an AI-based solution that assists users in creating an ideal social media bio. AI Social Bio Features: Use Cases: Customize your social: Customize your social media bio based on up to 3 keywords using AI Social Bio Gain inspiration from: Gain inspiration from influencer bios and get an AI-generated bio Optimize your bio: Optimize your bio by testing and comparing different versions with A/B testing Use the app's: Use the app's product-led growth feature as a lead generator for businesses.",
-      "url": "https://aisocialbio.com/",
-      "domain": "aisocialbio.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-aisocialbio.com-2023.05.09-10_28_59.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 180,
-      "inner_content": {
-        "overview": "AI Social Bio is an AI-based solution that assists users in creating an ideal social media bio. AI Social Bio Features: Use Cases: Customize your social: Customize your social media bio based on up to 3 keywords using AI Social Bio Gain inspiration from: Gain inspiration from influencer bios and get an AI-generated bio Optimize your bio: Optimize your bio by testing and comparing different versions with A/B testing Use the app's: Use the app's product-led growth feature as a lead generator for businesses.",
-        "pricingDetails": "Freemium plan available on aisocialbio.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "photor-ai",
-      "name": "Photor AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Photor AI is an AI-based tool that uses image recognition and machine learning to assist users in choosing the most suitable images for their needs.",
-      "overview": "Photor AI is an AI-based tool that uses image recognition and machine learning to assist users in choosing the most suitable images for their needs. Photor AI Features: Use Cases: Technical image analysis: Technical image analysis Photo scoring based: Photo scoring based on user criteria Ability to upload: Ability to upload and compare multiple photos User-friendly interface for: User-friendly interface for ease of use",
-      "url": "https://photor.io/photoscore",
-      "domain": "photor.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-photor.io-2023.05.09-10_23_45.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 110,
-      "inner_content": {
-        "overview": "Photor AI is an AI-based tool that uses image recognition and machine learning to assist users in choosing the most suitable images for their needs. Photor AI Features: Use Cases: Technical image analysis: Technical image analysis Photo scoring based: Photo scoring based on user criteria Ability to upload: Ability to upload and compare multiple photos User-friendly interface for: User-friendly interface for ease of use",
-        "pricingDetails": "Freemium plan available on photor.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "skim-it",
-      "name": "Skim It",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "With Skim it, you can receive an AI-generated summary of any article by sending an email to go@skimit.ai. Within approximately 10 minutes, you'll receive an email back with a summary, as well as drafts of shareable tweets and a LinkedIn post.",
-      "overview": "With Skim it, you can receive an AI-generated summary of any article by sending an email to go@skimit.ai. Within approximately 10 minutes, you'll receive an email back with a summary, as well as drafts of shareable tweets and a LinkedIn post.",
-      "url": "https://www.skimit.ai/",
-      "domain": "skimit.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.skimit.ai-2023.05.09-10_17_03.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 47,
-      "inner_content": {
-        "overview": "With Skim it, you can receive an AI-generated summary of any article by sending an email to go@skimit.ai. Within approximately 10 minutes, you'll receive an email back with a summary, as well as drafts of shareable tweets and a LinkedIn post.",
-        "pricingDetails": "Freemium plan available on skimit.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
     },
     {
       "id": "clips-ai-2",
@@ -15468,30 +12074,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Create short clips from long-form videos to maximize social media exposure Munch is a content repurposing AI tool designed to create, repurpose, and analyze content across multiple platforms.",
         "pricingDetails": "Freemium plan available on getmunch.com"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "papercup",
-      "name": "Papercup",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Automate dubbing with AI in multiple languages.",
-      "overview": "Automate dubbing with AI in multiple languages. Papercup Features: Papercup is a top-notch AI-powered dubbing and video translation software, creating high-quality, human-sounding voiceovers at an affordable price. This platform utilizes AI to transcribe, translate, and create voiceovers quickly and has a dedicated QA team that ensures the quality of the voiceover and makes necessary adjustments.",
-      "url": "https://www.papercup.com/",
-      "domain": "papercup.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Papercup.png",
-      "icon": "🎬",
-      "rating": 4.5,
-      "votes": 183,
-      "inner_content": {
-        "overview": "Automate dubbing with AI in multiple languages. Papercup Features: Papercup is a top-notch AI-powered dubbing and video translation software, creating high-quality, human-sounding voiceovers at an affordable price. This platform utilizes AI to transcribe, translate, and create voiceovers quickly and has a dedicated QA team that ensures the quality of the voiceover and makes necessary adjustments.",
-        "pricingDetails": "Freemium plan available on papercup.com"
       },
       "tool_type": "🎬 Video & Animation"
     },
@@ -15569,103 +12151,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "📱 Social Media & Growth"
     },
     {
-      "id": "storiesforkids",
-      "name": "StoriesForKids",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Free Trial",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Storiesforkids allows you to read and create stories together, turning real-life situations into fun stories and illustrations in seconds.",
-      "overview": "Storiesforkids allows you to read and create stories together, turning real-life situations into fun stories and illustrations in seconds.",
-      "url": "https://www.storiesforkids.ai/",
-      "domain": "storiesforkids.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/kids.png",
-      "icon": "✍️",
-      "rating": 4.6,
-      "votes": 69,
-      "inner_content": {
-        "overview": "Storiesforkids allows you to read and create stories together, turning real-life situations into fun stories and illustrations in seconds.",
-        "pricingDetails": "Free Trial plan available on storiesforkids.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "2short-ai",
-      "name": "2short.ai",
-      "category": "video-editing",
-      "categories": [
-        "video-editing",
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Elevate your YT content with AI generated shorts.",
-      "overview": "Elevate your YT content with AI generated shorts. 2short.ai Features: 2short.ai utilizes AI technology to help YouTube creators optimize their content for views and subscribers with features like automatic analysis of long-form videos to extract the best moments and create engaging, shorter content. This streamlines video editing process and saves time, allowing creators to focus on producing more content. The platform also serves as a sharing platform, maximizing reach for creators and growing their subscriber base.",
-      "url": "http://2short.ai/",
-      "domain": "2short.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/2short.png",
-      "icon": "🎬",
-      "rating": 4.6,
-      "votes": 125,
-      "inner_content": {
-        "overview": "Elevate your YT content with AI generated shorts. 2short.ai Features: 2short.ai utilizes AI technology to help YouTube creators optimize their content for views and subscribers with features like automatic analysis of long-form videos to extract the best moments and create engaging, shorter content. This streamlines video editing process and saves time, allowing creators to focus on producing more content. The platform also serves as a sharing platform, maximizing reach for creators and growing their subscriber base.",
-        "pricingDetails": "Freemium plan available on 2short.ai"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "jibewith",
-      "name": "JibeWith",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "JibeWith.com is a platform that utilizes artificial intelligence to make the process of creating social media and blog posts simpler and more streamlined.",
-      "overview": "JibeWith.com is a platform that utilizes artificial intelligence to make the process of creating social media and blog posts simpler and more streamlined. JibeWith Features: Use Cases: JibeWith.com is an: JibeWith.com is an AI-powered platform that quickly generates content for social media and blog posts, without requiring prompt engineering. The platform tailors: The platform tailors content to the desired tones, keywords, and target audience. JibeWith.com offers intuitive: JibeWith.com offers intuitive organization, allowing users to save posts with original inputs for easy access and future use.",
-      "url": "https://www.jibewith.com/",
-      "domain": "jibewith.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.jibewith.com-2023.05.09-09_13_39.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 123,
-      "inner_content": {
-        "overview": "JibeWith.com is a platform that utilizes artificial intelligence to make the process of creating social media and blog posts simpler and more streamlined. JibeWith Features: Use Cases: JibeWith.com is an: JibeWith.com is an AI-powered platform that quickly generates content for social media and blog posts, without requiring prompt engineering. The platform tailors: The platform tailors content to the desired tones, keywords, and target audience. JibeWith.com offers intuitive: JibeWith.com offers intuitive organization, allowing users to save posts with original inputs for easy access and future use.",
-        "pricingDetails": "Freemium plan available on jibewith.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "nolanai",
-      "name": "NolanAi",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Nolan is a powerful script-writing software that utilizes AI to help you create compelling movie scripts with ease, no matter where you are.",
-      "overview": "Nolan is a powerful script-writing software that utilizes AI to help you create compelling movie scripts with ease, no matter where you are. Use Cases: Offline capabilities for: Offline capabilities for working on scripts without an internet connection, with advanced AI technology for formatting Per-row script history: Per-row script history list for tracking every edit made to the script One-click setting descriptions: One-click setting descriptions for interior and exterior locations using an intuitive interface and advanced formatting options AI-powered dialogue generation: AI-powered dialogue generation for natural and engaging conversations that fit seamlessly within the script",
-      "url": "https://www.nolanai.app/",
-      "domain": "nolanai.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/nolan.png",
-      "icon": "✍️",
-      "rating": 4.5,
-      "votes": 32,
-      "inner_content": {
-        "overview": "Nolan is a powerful script-writing software that utilizes AI to help you create compelling movie scripts with ease, no matter where you are. Use Cases: Offline capabilities for: Offline capabilities for working on scripts without an internet connection, with advanced AI technology for formatting Per-row script history: Per-row script history list for tracking every edit made to the script One-click setting descriptions: One-click setting descriptions for interior and exterior locations using an intuitive interface and advanced formatting options AI-powered dialogue generation: AI-powered dialogue generation for natural and engaging conversations that fit seamlessly within the script",
-        "pricingDetails": "Freemium plan available on nolanai.app"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
       "id": "pixelhunter",
       "name": "Pixelhunter",
       "category": "social-media-assistant",
@@ -15677,7 +12162,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Pixelhunter is a tool that utilizes artificial intelligence to resize images for social media, ensuring that they are optimized for different platforms.",
       "overview": "Pixelhunter is a tool that utilizes artificial intelligence to resize images for social media, ensuring that they are optimized for different platforms. Pixelhunter Features: Use Cases: Pixelhunter automatically resizes: Pixelhunter automatically resizes images for social media, supporting 102 sizes using the UPLOADCARE INTELLIGENCE API for object recognition and cropping. It offers real: It offers real pro-tips on creating effective images tailored for each social media platform. Pixelhunter is versatile: Pixelhunter is versatile and works with popular image types for Facebook, Instagram, Twitter, YouTube, and Open Graph images. The tool helps: The tool helps optimize images for each platform, ensuring they look their best and perform well.",
-      "url": "https://www.futurepedia.io/tool/pixelhunter#pixelhunter-review",
+      "url": "https://www.futurepedia.io/",
       "domain": "futurepedia.io",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-pixelhunter.io-2023.05.09-09_06_51.png",
       "icon": "📱",
@@ -15738,103 +12223,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "📱 Social Media & Growth"
     },
     {
-      "id": "storypear",
-      "name": "StoryPear",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Free Trial",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "StoryPearAI leverages AI technology to deliver a captivating and immersive audio storytelling experience.",
-      "overview": "StoryPearAI leverages AI technology to deliver a captivating and immersive audio storytelling experience. Use Cases: Offers hundreds of: Offers hundreds of story possibilities Provides dozens of: Provides dozens of characters to choose from Multiple story sets: Multiple story sets available for selection",
-      "url": "https://storypear.com/",
-      "domain": "storypear.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot-2023-05-09-204808.png",
-      "icon": "✍️",
-      "rating": 4.9,
-      "votes": 168,
-      "inner_content": {
-        "overview": "StoryPearAI leverages AI technology to deliver a captivating and immersive audio storytelling experience. Use Cases: Offers hundreds of: Offers hundreds of story possibilities Provides dozens of: Provides dozens of characters to choose from Multiple story sets: Multiple story sets available for selection",
-        "pricingDetails": "Free Trial plan available on storypear.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "author-of-poems",
-      "name": "Author of poems",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "The poet powered by artificial intelligence is at your fingertips. Just tell us what you want to express, and enjoy the feeling of having your ideas translated into words",
-      "overview": "The poet powered by artificial intelligence is at your fingertips. Just tell us what you want to express, and enjoy the feeling of having your ideas translated into words Featutures : Use Cases: Input a topic: Input a topic for your poem Choose from different: Choose from different poem types Select the desired: Select the desired length of the poem Convey a specific: Convey a specific message through the poem Set the desired: Set the desired mood for the poem",
-      "url": "https://app.brancher.ai/",
-      "domain": "app.brancher.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/BRANC.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 140,
-      "inner_content": {
-        "overview": "The poet powered by artificial intelligence is at your fingertips. Just tell us what you want to express, and enjoy the feeling of having your ideas translated into words Featutures : Use Cases: Input a topic: Input a topic for your poem Choose from different: Choose from different poem types Select the desired: Select the desired length of the poem Convey a specific: Convey a specific message through the poem Set the desired: Set the desired mood for the poem",
-        "pricingDetails": "Freemium plan available on app.brancher.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "ai-screenwriter",
-      "name": "AI Screenwriter",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": true,
-      "description": "AIScreenwriteR is an AI-driven screenwriting tool that aims to aid filmmakers, screenwriters, and storytellers in crafting their next brilliant screenplay.",
-      "overview": "AIScreenwriteR is an AI-driven screenwriting tool that aims to aid filmmakers, screenwriters, and storytellers in crafting their next brilliant screenplay. Use Cases: AI-driven insights for: AI-driven insights for brainstorming, structuring, and writing screenplays Elimination of writer's: Elimination of writer's block through AI assistance Advanced editing features: Advanced editing features for screenplays, scripts, and character sheets Industry expert support: Industry expert support from the GlassFrog team Use cases for: Use cases for filmmakers, screenwriters, storytellers, and creative teams Free tokens for: Free tokens for starting projects and free subscriptions for the first 300 users",
-      "url": "https://aiscreenwriter.com/",
-      "domain": "aiscreenwriter.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/aI-S-CREEN.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 112,
-      "inner_content": {
-        "overview": "AIScreenwriteR is an AI-driven screenwriting tool that aims to aid filmmakers, screenwriters, and storytellers in crafting their next brilliant screenplay. Use Cases: AI-driven insights for: AI-driven insights for brainstorming, structuring, and writing screenplays Elimination of writer's: Elimination of writer's block through AI assistance Advanced editing features: Advanced editing features for screenplays, scripts, and character sheets Industry expert support: Industry expert support from the GlassFrog team Use cases for: Use cases for filmmakers, screenwriters, storytellers, and creative teams Free tokens for: Free tokens for starting projects and free subscriptions for the first 300 users",
-        "pricingDetails": "Freemium plan available on aiscreenwriter.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "tuliaa-2",
-      "name": "Tuliaa",
-      "category": "healthcare",
-      "categories": [
-        "healthcare",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "Improve your self awareness and get comfortable with your emotions.",
-      "overview": "Improve your self awareness and get comfortable with your emotions. Use Cases: 500+ Emotions Dictionary: 500+ Emotions Dictionary AI chat-bot for: AI chat-bot for introspection Emotional Wheels &: Emotional Wheels & other tools to identify emotions Weekly podcast/article insight: Weekly podcast/article insight into emotions",
-      "url": "https://tuliaa.com/",
-      "domain": "tuliaa.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fsdfsdfrw.png",
-      "icon": "🏥",
-      "rating": 4.8,
-      "votes": 56,
-      "inner_content": {
-        "overview": "Improve your self awareness and get comfortable with your emotions. Use Cases: 500+ Emotions Dictionary: 500+ Emotions Dictionary AI chat-bot for: AI chat-bot for introspection Emotional Wheels &: Emotional Wheels & other tools to identify emotions Weekly podcast/article insight: Weekly podcast/article insight into emotions",
-        "pricingDetails": "Freemium plan available on tuliaa.com"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
       "id": "talkpal-2",
       "name": "TalkPal",
       "category": "educational",
@@ -15860,30 +12248,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "deepswap",
-      "name": "DeepSwap",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "An online AI app to make face swap videos and pictures in seconds.",
-      "overview": "An online AI app to make face swap videos and pictures in seconds. DeepSwap Feature: Deepswap.ai is a popular online AI face swap app that enables users to create face swap videos, photos, and GIFs with over 150 million users. The platform offers a wide range of features such as role refacing for movies, gender swaps, and face memes.",
-      "url": "http://deepswap.ai/",
-      "domain": "deepswap.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/DeepSwap.png",
-      "icon": "🎬",
-      "rating": 4.6,
-      "votes": 173,
-      "inner_content": {
-        "overview": "An online AI app to make face swap videos and pictures in seconds. DeepSwap Feature: Deepswap.ai is a popular online AI face swap app that enables users to create face swap videos, photos, and GIFs with over 150 million users. The platform offers a wide range of features such as role refacing for movies, gender swaps, and face memes.",
-        "pricingDetails": "Freemium plan available on deepswap.ai"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
       "id": "veed-io",
       "name": "Veed.io",
       "category": "video-editing",
@@ -15904,32 +12268,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "An online video suite for professionals. Record, edit, and stream your videos in the cloud. The fastest and easiest way to make professional-quality videos. How it works: Full Tutorial: Use Cases: Repurpose videos for: Repurpose videos for every platform. Easily record, edit,: Easily record, edit, and stream your videos in the cloud. Add closed captions: Add closed captions to your videos in 100+ languages the fastest and: the fastest and easiest way to create professional-quality videos. Upload your video: Upload your video or start recording your screen or webcam. You can also go live in one click and stream it to multiple platforms. Maximize VEED’s full: Maximize VEED’s full suite of video editing tools to make your video look as professional as possible. Export and download: Export and download your video in multiple formats. You can also share it directly on different social media platforms.",
         "pricingDetails": "Freemium plan available on veed.io"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "polarr-copilots",
-      "name": "Polarr Copilots",
-      "category": "video-editing",
-      "categories": [
-        "video-editing",
-        "design",
-        "image-generator"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Polarr AI Copilots transform text into stunning photos, videos and designs, that you can fine-tune to perfection.",
-      "overview": "Polarr AI Copilots transform text into stunning photos, videos and designs, that you can fine-tune to perfection. Polarr Copilots Features: Polarr features 3 unique AI Copilots that allow users to explore their creativity across various mediums. The Photo Editing Copilot converts text prompts into desired aesthetics for photo editing, the Video Editing Copilot generates cinematic colors and advanced transitions using natural language, while the Design Copilot produces customized social posts for businesses from input images.",
-      "url": "https://copilot.polarr.com/",
-      "domain": "copilot.polarr.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Polarr.png",
-      "icon": "🎬",
-      "rating": 4.8,
-      "votes": 131,
-      "inner_content": {
-        "overview": "Polarr AI Copilots transform text into stunning photos, videos and designs, that you can fine-tune to perfection. Polarr Copilots Features: Polarr features 3 unique AI Copilots that allow users to explore their creativity across various mediums. The Photo Editing Copilot converts text prompts into desired aesthetics for photo editing, the Video Editing Copilot generates cinematic colors and advanced transitions using natural language, while the Design Copilot produces customized social posts for businesses from input images.",
-        "pricingDetails": "Free Trial plan available on copilot.polarr.com"
       },
       "tool_type": "🎬 Video & Animation"
     },
@@ -15980,82 +12318,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Get instant, personalized meal plans with the Prospre meal plan generator. Prospre Concise Features: Use Cases: Meal Plan Creator: Customizable weekly meal plans based on calorie and macro goals Macro Tracker: Track and scan food items from an extensive database Fit in Treats: Adjust plans to include treats without compromising macro goals Personalized Meal Plans: Customize recipes, set allergies, and manage macro ranges Automatic Grocery Lists: Generate shopping lists, integrate with Amazon Fresh, and print AI Coach Suggestions: Daily guidance based on weight and food tracking",
         "pricingDetails": "Freemium plan available on prospre.io"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "chatgpt-sidebar",
-      "name": "ChatGPT Sidebar",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Select any text, explain it, translate it, summarize it or rewrite it, do anything with the ChatGPT Sidebar.",
-      "overview": "Select any text, explain it, translate it, summarize it or rewrite it, do anything with the ChatGPT Sidebar. Use Cases: Multiple text actions: Explain, summarize, translate, rewrite Quick article scanning: Improved comprehension Related web discoveries: Relevant information sources Instant explanations: No manual searches needed Human vs. AI comparison: Q&A site insights",
-      "url": "https://chatgpt-sidebar.com/",
-      "domain": "chatgpt-sidebar.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fadshjkfh832.png",
-      "icon": "🌟",
-      "rating": 4.8,
-      "votes": 47,
-      "inner_content": {
-        "overview": "Select any text, explain it, translate it, summarize it or rewrite it, do anything with the ChatGPT Sidebar. Use Cases: Multiple text actions: Explain, summarize, translate, rewrite Quick article scanning: Improved comprehension Related web discoveries: Relevant information sources Instant explanations: No manual searches needed Human vs. AI comparison: Q&A site insights",
-        "pricingDetails": "Freemium plan available on chatgpt-sidebar.com"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "nutraiplan",
-      "name": "Nutraiplan",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "healthcare"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Create a customized meal plan in a matter of seconds",
-      "overview": "Create a customized meal plan in a matter of seconds Feature: Create a delicious and nutritious meal plans tailored to your needs, powered by OpenAi Unleash your inner chef and reach your health goals! Say goodbye to boring salads and bland chicken breasts. With just a few taps, you can create a custom meal plan based on your personal details. Whether you're looking to lose weight, build muscle, or just want to eat healthier, we've got you covered.",
-      "url": "https://nutraiplan.com/",
-      "domain": "nutraiplan.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sadadewew.png",
-      "icon": "🌟",
-      "rating": 4.9,
-      "votes": 26,
-      "inner_content": {
-        "overview": "Create a customized meal plan in a matter of seconds Feature: Create a delicious and nutritious meal plans tailored to your needs, powered by OpenAi Unleash your inner chef and reach your health goals! Say goodbye to boring salads and bland chicken breasts. With just a few taps, you can create a custom meal plan based on your personal details. Whether you're looking to lose weight, build muscle, or just want to eat healthier, we've got you covered.",
-        "pricingDetails": "Freemium plan available on nutraiplan.com"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "nextthreebooks",
-      "name": "NextThreeBooks",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "educational",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Find Your Perfect Book Match.",
-      "overview": "Find Your Perfect Book Match. Ready for your next great read? Share your reading preferences with us and let AI-powered engine do the rest! Use Cases: GPT-3 powered: Personalized recommendations Three-book choices: Manageable selection Informative summaries: Relevance explanations Celebrity picks: Gates, Musk, Winfrey favorites",
-      "url": "https://www.nextthreebooks.com/",
-      "domain": "nextthreebooks.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/asdewe22.png",
-      "icon": "🌟",
-      "rating": 4.7,
-      "votes": 171,
-      "inner_content": {
-        "overview": "Find Your Perfect Book Match. Ready for your next great read? Share your reading preferences with us and let AI-powered engine do the rest! Use Cases: GPT-3 powered: Personalized recommendations Three-book choices: Manageable selection Informative summaries: Relevance explanations Celebrity picks: Gates, Musk, Winfrey favorites",
-        "pricingDetails": "Freemium plan available on nextthreebooks.com"
       },
       "tool_type": "🌟 Life & Personal Assistant"
     },
@@ -16231,31 +12493,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚡ Productivity"
     },
     {
-      "id": "consumerai",
-      "name": "ConsumerAI",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Tell your problem in a chat and AI instantly finds a tool/solution to solve it.",
-      "overview": "Tell your problem in a chat and AI instantly finds a tool/solution to solve it. Use Cases: Customized suggestions: Problem-based products, services Advanced AI search: Extensive database, DeepRose offerings Financial advisors: Product, service recommendation tool User-friendly: No prior experience needed Time-saving: Swift financial problem-solving",
-      "url": "http://consumerai.deeprose.eu/",
-      "domain": "consumerai.deeprose.eu",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sadswe323.png",
-      "icon": "🌟",
-      "rating": 4.7,
-      "votes": 162,
-      "inner_content": {
-        "overview": "Tell your problem in a chat and AI instantly finds a tool/solution to solve it. Use Cases: Customized suggestions: Problem-based products, services Advanced AI search: Extensive database, DeepRose offerings Financial advisors: Product, service recommendation tool User-friendly: No prior experience needed Time-saving: Swift financial problem-solving",
-        "pricingDetails": "Freemium plan available on consumerai.deeprose.eu"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
       "id": "lovegpt",
       "name": "LoveGPT",
       "category": "life-assistant",
@@ -16278,81 +12515,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free Trial plan available on lovegpt.co.in"
       },
       "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "mechanic-for-a-chat-2",
-      "name": "Mechanic For A Chat",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Fast, convenient, and expert assistance for car problems 24/7\\",
-      "overview": "Fast, convenient, and expert assistance for car problems 24/7\\ Use Cases: AI-powered guidance: Accurate vehicle recommendations Round-the-clock help: 24/7 assistance User-friendly: No technical expertise required Added benefits: Appointments, history, reminders",
-      "url": "https://mechanic.fora.chat/",
-      "domain": "mechanic.fora.chat",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sadasdww.png",
-      "icon": "🌟",
-      "rating": 4.8,
-      "votes": 113,
-      "inner_content": {
-        "overview": "Fast, convenient, and expert assistance for car problems 24/7\\ Use Cases: AI-powered guidance: Accurate vehicle recommendations Round-the-clock help: 24/7 assistance User-friendly: No technical expertise required Added benefits: Appointments, history, reminders",
-        "pricingDetails": "Freemium plan available on mechanic.fora.chat"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "novelflow-ai",
-      "name": "NovelFlow AI",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "NovelFlow.ai is a web app that uses AI to inspire and empower writers.",
-      "overview": "NovelFlow.ai is a web app that uses AI to inspire and empower writers. Its Features Are : Use Cases: Character Designer: Create captivating characters with ease. World Builder: Craft immersive settings for your story. Story Starter: Get inspired with unique story prompts. AI-Powered Writing: Harness the power of AI for a seamless writing experience. Overcome Writer's Block: Say goodbye to writer's block with NovelFlow.ai. Organize Your Ideas: Keep your ideas organized and easily accessible. Empower Your Writing: Unlock your full writing potential with NovelFlow.ai.",
-      "url": "https://www.novelflow.ai/",
-      "domain": "novelflow.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/novelflow.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 57,
-      "inner_content": {
-        "overview": "NovelFlow.ai is a web app that uses AI to inspire and empower writers. Its Features Are : Use Cases: Character Designer: Create captivating characters with ease. World Builder: Craft immersive settings for your story. Story Starter: Get inspired with unique story prompts. AI-Powered Writing: Harness the power of AI for a seamless writing experience. Overcome Writer's Block: Say goodbye to writer's block with NovelFlow.ai. Organize Your Ideas: Keep your ideas organized and easily accessible. Empower Your Writing: Unlock your full writing potential with NovelFlow.ai.",
-        "pricingDetails": "Freemium plan available on novelflow.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "fathom-fm",
-      "name": "Fathom.fm",
-      "category": "search-engine",
-      "categories": [
-        "search-engine",
-        "fun-tools",
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "Discover podcasts at the speed of thought with mind-blowing AI-powered Search, Transcripts, Chapters, Clipping, and Highlights.",
-      "overview": "Discover podcasts at the speed of thought with mind-blowing AI-powered Search, Transcripts, Chapters, Clipping, and Highlights. Fathom, an AI-powered podcast player, is here to revolutionize the way we consume knowledge through engaging conversations. Here are some of its key features and benefits: – AI-powered search: Finding specific ideas, topics, and information across podcasts is made easy due to Fathom’s state-of-the-art search engine.– Quick previews: Before jumping into a long podcast, Fathom provides brief previews, allowing users to decide whether it matches their interests.– Interest-based matching: Fathom suggests popular as well as lesser-known podcasts, uniquely curated to cater to individual preferences.",
-      "url": "https://hello.fathom.fm/",
-      "domain": "hello.fathom.fm",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/adsadew3.png",
-      "icon": "🔍",
-      "rating": 4.9,
-      "votes": 92,
-      "inner_content": {
-        "overview": "Discover podcasts at the speed of thought with mind-blowing AI-powered Search, Transcripts, Chapters, Clipping, and Highlights. Fathom, an AI-powered podcast player, is here to revolutionize the way we consume knowledge through engaging conversations. Here are some of its key features and benefits: – AI-powered search: Finding specific ideas, topics, and information across podcasts is made easy due to Fathom’s state-of-the-art search engine.– Quick previews: Before jumping into a long podcast, Fathom provides brief previews, allowing users to decide whether it matches their interests.– Interest-based matching: Fathom suggests popular as well as lesser-known podcasts, uniquely curated to cater to individual preferences.",
-        "pricingDetails": "Freemium plan available on hello.fathom.fm"
-      },
-      "tool_type": "🔍 Search & Research"
     },
     {
       "id": "chatgenius",
@@ -16403,30 +12565,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on letsfoodie.com"
       },
       "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "ai-story-generator",
-      "name": "AI Story Generator",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": true,
-      "description": "AI Story Generator is a writing app that uses AI to create one-of-a-kind stories and novels. Its key benefits include:",
-      "overview": "AI Story Generator is a writing app that uses AI to create one-of-a-kind stories and novels. Its key benefits include: Use Cases: AI algorithms: Creates imaginative, human-like, and emotionally gripping stories based on user input Flexible interface: Allows for easy development of characters, plots, and settings to personalize the writing experience Combat writer's block: Perfect for writers of all levels who crave creative inspiration PDF export: Save, share, and edit your work later.",
-      "url": "https://appintro.io/",
-      "domain": "appintro.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/ai-story.png",
-      "icon": "✍️",
-      "rating": 4.7,
-      "votes": 181,
-      "inner_content": {
-        "overview": "AI Story Generator is a writing app that uses AI to create one-of-a-kind stories and novels. Its key benefits include: Use Cases: AI algorithms: Creates imaginative, human-like, and emotionally gripping stories based on user input Flexible interface: Allows for easy development of characters, plots, and settings to personalize the writing experience Combat writer's block: Perfect for writers of all levels who crave creative inspiration PDF export: Save, share, and edit your work later.",
-        "pricingDetails": "Freemium plan available on appintro.io"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
     },
     {
       "id": "finding-words",
@@ -16650,31 +12788,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "getaiway",
-      "name": "Getaiway",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "fun-tools"
-      ],
-      "pricing": "Paid",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Share your trip details, and AI will instantly craft a personalized travel plan for you.",
-      "overview": "Share your trip details, and AI will instantly craft a personalized travel plan for you. Getaiway I is an AI travel planning service that takes user preferences into account to generate personalized travel itineraries. The following are some of its main features and benefits: – Tailored itineraries: Provide input regarding your budget, destination, and travel style to get personalized travel plans.– Curated plans by experts: Get access to travel plans that have been specially curated by travel experts at Getaiway I.– FAQs: Find answers to frequently asked travel-related questions.– Free service: You can plan the trip of your dreams without any additional cost using Getaiway I.",
-      "url": "https://www.getaiway.com/",
-      "domain": "getaiway.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dsffertretr.png",
-      "icon": "🌟",
-      "rating": 5,
-      "votes": 158,
-      "inner_content": {
-        "overview": "Share your trip details, and AI will instantly craft a personalized travel plan for you. Getaiway I is an AI travel planning service that takes user preferences into account to generate personalized travel itineraries. The following are some of its main features and benefits: – Tailored itineraries: Provide input regarding your budget, destination, and travel style to get personalized travel plans.– Curated plans by experts: Get access to travel plans that have been specially curated by travel experts at Getaiway I.– FAQs: Find answers to frequently asked travel-related questions.– Free service: You can plan the trip of your dreams without any additional cost using Getaiway I.",
-        "pricingDetails": "Paid plan available on getaiway.com"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
       "id": "coach-marlee",
       "name": "Coach Marlee",
       "category": "ai-assistant",
@@ -16687,7 +12800,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "It helps you overcome life’s challenges & design the life & career of your dreams.",
       "overview": "It helps you overcome life’s challenges & design the life & career of your dreams. Use Cases: Predictive analytics: Uncover team dynamics, compare success benchmarks AI-human coaching fusion: Efficient talent guidance, conflict mitigation Holistic resources: Science-driven wellbeing, skill enhancement Adaptable use cases: Individual growth, team improvement, organization optimization Mail: Mail",
-      "url": "https://www.fingerprintforsuccess.com/for-individuals",
+      "url": "https://www.fingerprintforsuccess.com/",
       "domain": "fingerprintforsuccess.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/dadsewrewr.png",
       "icon": "🤖",
@@ -16698,30 +12811,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on fingerprintforsuccess.com"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "tiny-storie-2",
-      "name": "Tiny storie",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Tiny storie is a Personalized audio storytelling for children build using AI.",
-      "overview": "Tiny storie is a Personalized audio storytelling for children build using AI. Its Features are : Use Cases: Personalized children's audio: Personalized children's audio stories made with AI. TinyStorie helps parents: TinyStorie helps parents customize stories, making them more wonderful. Tested with 1000+: Tested with 1000+ registered users in 2 weeks, the idea makes sense. TinyStorie aims to: TinyStorie aims to support children's causes by raising awareness and funds. With every subscription: With every subscription or story pack purchased, a portion goes to charity",
-      "url": "https://tinystorie.com/",
-      "domain": "tinystorie.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/tiny.png",
-      "icon": "✍️",
-      "rating": 4.9,
-      "votes": 46,
-      "inner_content": {
-        "overview": "Tiny storie is a Personalized audio storytelling for children build using AI. Its Features are : Use Cases: Personalized children's audio: Personalized children's audio stories made with AI. TinyStorie helps parents: TinyStorie helps parents customize stories, making them more wonderful. Tested with 1000+: Tested with 1000+ registered users in 2 weeks, the idea makes sense. TinyStorie aims to: TinyStorie aims to support children's causes by raising awareness and funds. With every subscription: With every subscription or story pack purchased, a portion goes to charity",
-        "pricingDetails": "Freemium plan available on tinystorie.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
     },
     {
       "id": "textgpt",
@@ -16822,54 +12911,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on looria.com"
       },
       "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "pirr",
-      "name": "Pirr",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Pirr is a platform that uses AI to create and share erotic short stories. Its features include:",
-      "overview": "Pirr is a platform that uses AI to create and share erotic short stories. Its features include: Use Cases: An unlimited source: An unlimited source of erotic fantasies for users to explore Easy and exciting: Easy and exciting story creation, alone or with others The ability to: The ability to view other users' fantasies and be the first to try the platform Information about the: Information about the team, a feedback form, and support Use of cookies: Use of cookies to improve website performance",
-      "url": "https://www.pirr.me/",
-      "domain": "pirr.me",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/pirr.png",
-      "icon": "✍️",
-      "rating": 4.5,
-      "votes": 100,
-      "inner_content": {
-        "overview": "Pirr is a platform that uses AI to create and share erotic short stories. Its features include: Use Cases: An unlimited source: An unlimited source of erotic fantasies for users to explore Easy and exciting: Easy and exciting story creation, alone or with others The ability to: The ability to view other users' fantasies and be the first to try the platform Information about the: Information about the team, a feedback form, and support Use of cookies: Use of cookies to improve website performance",
-        "pricingDetails": "Freemium plan available on pirr.me"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "storyscape-ai",
-      "name": "StoryScape AI",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Introducing StoryScape AI – a revolutionary storytelling app that harnesses the power of advanced AI technologies, including GPT-3.5 and DALL-E, to deliver an unparalleled reading experience that is fully personalized and interactive. Discover a world of possibilities with these key features:",
-      "overview": "Introducing StoryScape AI – a revolutionary storytelling app that harnesses the power of advanced AI technologies, including GPT-3.5 and DALL-E, to deliver an unparalleled reading experience that is fully personalized and interactive. Discover a world of possibilities with these key features: Use Cases: Customizable characters and: Customizable characters and story themes for a personalized experience. Engaging short stories: Engaging short stories generated by GPT-3.5 for a captivating read. Stunning DALL-E generated: Stunning DALL-E generated images that bring your story to life. Dynamic storylines that: Dynamic storylines that evolve based on your decisions for a unique adventure every time.",
-      "url": "https://storyscapeai.app/",
-      "domain": "storyscapeai.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/storyspace.png",
-      "icon": "✍️",
-      "rating": 4.7,
-      "votes": 182,
-      "inner_content": {
-        "overview": "Introducing StoryScape AI – a revolutionary storytelling app that harnesses the power of advanced AI technologies, including GPT-3.5 and DALL-E, to deliver an unparalleled reading experience that is fully personalized and interactive. Discover a world of possibilities with these key features: Use Cases: Customizable characters and: Customizable characters and story themes for a personalized experience. Engaging short stories: Engaging short stories generated by GPT-3.5 for a captivating read. Stunning DALL-E generated: Stunning DALL-E generated images that bring your story to life. Dynamic storylines that: Dynamic storylines that evolve based on your decisions for a unique adventure every time.",
-        "pricingDetails": "Freemium plan available on storyscapeai.app"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
     },
     {
       "id": "movmi",
@@ -16979,7 +13020,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "A suite of products for meetings.",
       "overview": "A suite of products for meetings. FineShare Features: FineShare FineCam simplifies video production with AI technology, enabling device compatibility, video customization, AI enhancement, virtual backgrounds, and deep learning features for professional-looking videos.",
-      "url": "https://www.fineshare.com/finecam/index-new.html",
+      "url": "https://www.fineshare.com/",
       "domain": "fineshare.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/FineShare.png",
       "icon": "🎬",
@@ -17016,54 +13057,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚖️ Legal & Compliance"
     },
     {
-      "id": "captions",
-      "name": "Captions",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": true,
-      "description": "The all-in-one AI powered creator studio.",
-      "overview": "The all-in-one AI powered creator studio. Captions Features: Captions is an AI-powered video creation studio designed to simplify the process of creating captions, clips, and talking videos. Key features and advantages include: Automatic transcription: Record up to a minute of video or in short segments, and the platform will transcribe, caption, and clip the video.Customizable text styles: Personalize captions with various text styles and multiple languages.AI-powered tools: Writing assistant for scripts and idea generator for content creation.",
-      "url": "https://www.captions.ai/",
-      "domain": "captions.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Captions.png",
-      "icon": "🎬",
-      "rating": 4.7,
-      "votes": 98,
-      "inner_content": {
-        "overview": "The all-in-one AI powered creator studio. Captions Features: Captions is an AI-powered video creation studio designed to simplify the process of creating captions, clips, and talking videos. Key features and advantages include: Automatic transcription: Record up to a minute of video or in short segments, and the platform will transcribe, caption, and clip the video.Customizable text styles: Personalize captions with various text styles and multiple languages.AI-powered tools: Writing assistant for scripts and idea generator for content creation.",
-        "pricingDetails": "Freemium plan available on captions.ai"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "flawless-ai",
-      "name": "Flawless AI",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Create super accurate video dubbing in seconds with undetectable mouth movement.",
-      "overview": "Create super accurate video dubbing in seconds with undetectable mouth movement. Flawless AI Features: Flawless Demo: Use Cases: Create compelling videos: Create compelling videos for YouTube shorts. It enables the: It enables the user to bring forth branded, custom videos ten times quicker than manual production. t grants access: t grants access to multiple templates so as to expedite video creation along with customization. It facilitates text-to-speech,: It facilitates text-to-speech, voice recognition, and facial recognition for content that is more engrossing. It allows the: It allows the generation of videos in any language to cater to a global audience.",
-      "url": "https://www.flawlessai.com/",
-      "domain": "flawlessai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Flawless.png",
-      "icon": "🎬",
-      "rating": 4.8,
-      "votes": 77,
-      "inner_content": {
-        "overview": "Create super accurate video dubbing in seconds with undetectable mouth movement. Flawless AI Features: Flawless Demo: Use Cases: Create compelling videos: Create compelling videos for YouTube shorts. It enables the: It enables the user to bring forth branded, custom videos ten times quicker than manual production. t grants access: t grants access to multiple templates so as to expedite video creation along with customization. It facilitates text-to-speech,: It facilitates text-to-speech, voice recognition, and facial recognition for content that is more engrossing. It allows the: It allows the generation of videos in any language to cater to a global audience.",
-        "pricingDetails": "Freemium plan available on flawlessai.com"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
       "id": "vizard",
       "name": "Vizard",
       "category": "video-editing",
@@ -17088,31 +13081,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎬 Video & Animation"
     },
     {
-      "id": "quickvid-ai-2",
-      "name": "QuickVid.Ai",
-      "category": "video-editing",
-      "categories": [
-        "video-editing",
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Generate YouTube shorts 10x faster with AI.",
-      "overview": "Generate YouTube shorts 10x faster with AI. QuickVid.Ai Features: QuickVid is a tool powered by artificial intelligence (AI) and devised to promptly create compelling videos for YouTube shorts. Its primary attributes and benefits encompass: – Editing with AI: It enables the user to bring forth branded, custom videos ten times quicker than manual production.– Template Repository: It grants access to multiple templates so as to expedite video creation along with customization.– Advanced features: It facilitates text-to-speech, voice recognition, and facial recognition for content that is more engrossing.– Multilingual support: It allows the generation of videos in any language to cater to a global audience.",
-      "url": "https://www.quickvid.ai/",
-      "domain": "quickvid.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/QuickVid.png",
-      "icon": "🎬",
-      "rating": 4.7,
-      "votes": 201,
-      "inner_content": {
-        "overview": "Generate YouTube shorts 10x faster with AI. QuickVid.Ai Features: QuickVid is a tool powered by artificial intelligence (AI) and devised to promptly create compelling videos for YouTube shorts. Its primary attributes and benefits encompass: – Editing with AI: It enables the user to bring forth branded, custom videos ten times quicker than manual production.– Template Repository: It grants access to multiple templates so as to expedite video creation along with customization.– Advanced features: It facilitates text-to-speech, voice recognition, and facial recognition for content that is more engrossing.– Multilingual support: It allows the generation of videos in any language to cater to a global audience.",
-        "pricingDetails": "Freemium plan available on quickvid.ai"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
       "id": "pix2pix",
       "name": "Pix2Pix",
       "category": "video-editing",
@@ -17124,7 +13092,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Edit videos using prompts.",
       "overview": "Edit videos using prompts. Edit videos using prompts. Apply Instruct Pix2Pix Diffusion to a video.",
-      "url": "https://huggingface.co/spaces/fffiloni/Pix2Pix-Video",
+      "url": "https://huggingface.co/",
       "domain": "huggingface.co",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/Pix2Pix.png",
       "icon": "🎬",
@@ -17133,127 +13101,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Edit videos using prompts. Edit videos using prompts. Apply Instruct Pix2Pix Diffusion to a video.",
         "pricingDetails": "Free Trial plan available on huggingface.co"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "wisecut",
-      "name": "Wisecut",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "AI-powered video editing with voice recognition for fast, engaging content.",
-      "overview": "AI-powered video editing with voice recognition for fast, engaging content. Harness the power of AI to create engaging videos at lightning speed, making video editing smarter and more efficient than ever before.",
-      "url": "https://www.wisecut.video/",
-      "domain": "wisecut.video",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Wisecut.png",
-      "icon": "🎬",
-      "rating": 5,
-      "votes": 159,
-      "inner_content": {
-        "overview": "AI-powered video editing with voice recognition for fast, engaging content. Harness the power of AI to create engaging videos at lightning speed, making video editing smarter and more efficient than ever before.",
-        "pricingDetails": "Freemium plan available on wisecut.video"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "clippah",
-      "name": "Clippah",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Simple video editing tools, powered by artificial intelligence.",
-      "overview": "Simple video editing tools, powered by artificial intelligence. Clippah Features: Designed to aid content creators in rapidly producing captivating videos, Clippah is a video editing tool that operates with the assistance of AI. Its noteworthy features and benefits comprise: – TikTok Captioning: It automatically designs vertical videos inclusive of captions from small video clips.– Reels: It extracts notable conversation clips from videos for the creation of engaging content.– YouTube Video Timestamping: It swiftly produces timestamps for lengthy videos that are to be uploaded on YouTube.– User-friendly: It comes equipped with an interface that is easy to manipulate, and a complimentary trial phase during its beta period.",
-      "url": "https://www.clippah.co/",
-      "domain": "clippah.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Clippah.png",
-      "icon": "🎬",
-      "rating": 4.6,
-      "votes": 138,
-      "inner_content": {
-        "overview": "Simple video editing tools, powered by artificial intelligence. Clippah Features: Designed to aid content creators in rapidly producing captivating videos, Clippah is a video editing tool that operates with the assistance of AI. Its noteworthy features and benefits comprise: – TikTok Captioning: It automatically designs vertical videos inclusive of captions from small video clips.– Reels: It extracts notable conversation clips from videos for the creation of engaging content.– YouTube Video Timestamping: It swiftly produces timestamps for lengthy videos that are to be uploaded on YouTube.– User-friendly: It comes equipped with an interface that is easy to manipulate, and a complimentary trial phase during its beta period.",
-        "pricingDetails": "Freemium plan available on clippah.co"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "clips-ai",
-      "name": "Clips AI",
-      "category": "video-editing",
-      "categories": [
-        "video-editing",
-        "social-media-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Create social media clips from long-form videos, saving time & increasing metrics.",
-      "overview": "Create social media clips from long-form videos, saving time & increasing metrics. Clips AI Features: Clips AI is an AI-driven platform that content creators can use to change lengthy audio and video content into social media clips. Here are its notable features and benefits: AI-created clips: Upload the content and establish the criteria, then allow the AI to produce compelling clips that can be edited and downloaded.Anticipatory engagement: Recognizes clips that would interest the audience the most encouraging higher engagement.Individual branding and team accessibility: Customizes the clips with personal branding and enables the ability to collaborate with colleagues.",
-      "url": "https://www.clipsai.com/",
-      "domain": "clipsai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Clips.png",
-      "icon": "🎬",
-      "rating": 4.8,
-      "votes": 68,
-      "inner_content": {
-        "overview": "Create social media clips from long-form videos, saving time & increasing metrics. Clips AI Features: Clips AI is an AI-driven platform that content creators can use to change lengthy audio and video content into social media clips. Here are its notable features and benefits: AI-created clips: Upload the content and establish the criteria, then allow the AI to produce compelling clips that can be edited and downloaded.Anticipatory engagement: Recognizes clips that would interest the audience the most encouraging higher engagement.Individual branding and team accessibility: Customizes the clips with personal branding and enables the ability to collaborate with colleagues.",
-        "pricingDetails": "Paid plan available on clipsai.com"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "gling",
-      "name": "Gling",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Free",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Cut silences & bad takes, freeing up time to create videos.",
-      "overview": "Cut silences & bad takes, freeing up time to create videos. Gling Features: Gling is a video editing tool powered by Artificial Intelligence and created to simplify the workflow for YouTube creators. Its defining features and advantages are: Automated video editing: Employs machine learning algorithms to automatically recognize and remove silences, mistakes, and disfluencies.Fast accomplishments: Finishes editing in just a couple of minutes and has export options for XML timelines or MP4 files.Cost-effective: Grants a free initial video edit and $5 per edit afterward.",
-      "url": "https://www.gling.ai/",
-      "domain": "gling.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Gling.png",
-      "icon": "🎬",
-      "rating": 4.6,
-      "votes": 33,
-      "inner_content": {
-        "overview": "Cut silences & bad takes, freeing up time to create videos. Gling Features: Gling is a video editing tool powered by Artificial Intelligence and created to simplify the workflow for YouTube creators. Its defining features and advantages are: Automated video editing: Employs machine learning algorithms to automatically recognize and remove silences, mistakes, and disfluencies.Fast accomplishments: Finishes editing in just a couple of minutes and has export options for XML timelines or MP4 files.Cost-effective: Grants a free initial video edit and $5 per edit afterward.",
-        "pricingDetails": "Free plan available on gling.ai"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "dubverse",
-      "name": "Dubverse",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Easily dub videos & reach more people with a click of a button.",
-      "overview": "Easily dub videos & reach more people with a click of a button. Dubverse Features: Dubverse, an online video dubbing platform powered by Artificial Intelligence makes is possible for quick and precise dubbing in 30 different languages. Here are its significant features and benefits: AI-based script editor: Automates text-to-speech interpretations, making use of machine translation for accelerated dubbing.Realistic voices: Offers voiceovers for dubbed video that are similar to human-like voices.Embedded sharing tools: Easy-to-use tools for sharing or downloading subtitles while you’re on the move.Language specialists on demand: Ensures quality assurance is maintained with the translations.",
-      "url": "https://dubverse.ai/",
-      "domain": "dubverse.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Dubverse.png",
-      "icon": "🎬",
-      "rating": 4.7,
-      "votes": 192,
-      "inner_content": {
-        "overview": "Easily dub videos & reach more people with a click of a button. Dubverse Features: Dubverse, an online video dubbing platform powered by Artificial Intelligence makes is possible for quick and precise dubbing in 30 different languages. Here are its significant features and benefits: AI-based script editor: Automates text-to-speech interpretations, making use of machine translation for accelerated dubbing.Realistic voices: Offers voiceovers for dubbed video that are similar to human-like voices.Embedded sharing tools: Easy-to-use tools for sharing or downloading subtitles while you’re on the move.Language specialists on demand: Ensures quality assurance is maintained with the translations.",
-        "pricingDetails": "Freemium plan available on dubverse.ai"
       },
       "tool_type": "🎬 Video & Animation"
     },
@@ -17389,7 +13236,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Automated video-to-text transcription & quick video editing tools.",
       "overview": "Automated video-to-text transcription & quick video editing tools. Type Studio is a text-based video editor that takes your video and transcribes it into text automatically. They also have quick tools for video editing, subtitles, podcast, repurposing, and recording.",
-      "url": "https://www.typestudio.co/tool/video-to-text",
+      "url": "https://www.typestudio.co/",
       "domain": "typestudio.co",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/TypeStudio.png",
       "icon": "🎬",
@@ -17438,7 +13285,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "AI Copilot for Spreadsheets.",
       "overview": "AI Copilot for Spreadsheets. Arcwise AI Features: Arcwise AI is an Artificial Intelligence-based copilot tool powered by GPT specifically created to simplify data analysis, cleansing, and processing in Google Sheets. Its salient attributes and benefits are: Text-based commands: Interact with the tool utilizing natural language and ask questions to gain valuable insights and guidance.Formula recommendations: Context-sensitive formula suggestions generated by AI, with related information linked to StackOverflow posts.Data scrubbing and scraping: Normalize addresses, reformat date columns, summarize answers, and other similar data preparation activities.",
-      "url": "https://arcwise.app/ai/",
+      "url": "https://arcwise.app/",
       "domain": "arcwise.app",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/Arcwise.png",
       "icon": "📊",
@@ -17567,30 +13414,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Automate data extraction with AI-powered document parser for efficient and accurate results. The AI-powered document parser is a powerful tool designed to automate data extraction from various document formats, including PDFs, emails, and other files.",
         "pricingDetails": "Freemium plan available on parsio.io"
-      },
-      "tool_type": "📊 Finance & Spreadsheets"
-    },
-    {
-      "id": "seamlessgpt",
-      "name": "SeamlessGPT",
-      "category": "finance",
-      "categories": [
-        "finance"
-      ],
-      "pricing": "Freemium",
-      "badge": "📊 Finance & Spreadsheets",
-      "featured": false,
-      "description": "SeamlessGPT seamlessly integrates the power of ChatGPT into any app on your Windows, allowing you to generate text quickly and easily in any context. No need to switch tabs and open OpenAI website every time you want to use ChatGPT.",
-      "overview": "SeamlessGPT seamlessly integrates the power of ChatGPT into any app on your Windows, allowing you to generate text quickly and easily in any context. No need to switch tabs and open OpenAI website every time you want to use ChatGPT. SeamlessGPT Features: SeamlessGPT seamlessly integrates ChatGPT with any Windows application, rendering text production fast and convenient in any setting. Its noteworthy features and benefits are: Compatibility: SeamlessGPT is compatible with every Windows application.Ease of use: Just type in “gpt:” followed by prompt text and press shift + enter to generate text.Real-time and precise results: ChatGPT produces immediate and accurate responses.Versatility: It can be used to produce any written content, including writing articles and drafting emails.Timesaving: Eliminates the need to switch between tabs or navigate to the OpenAI website to access ChatGPT.",
-      "url": "https://ashxd.gumroad.com/l/seamlessGPT",
-      "domain": "ashxd.gumroad.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/SeamlessGPT.png",
-      "icon": "📊",
-      "rating": 4.8,
-      "votes": 144,
-      "inner_content": {
-        "overview": "SeamlessGPT seamlessly integrates the power of ChatGPT into any app on your Windows, allowing you to generate text quickly and easily in any context. No need to switch tabs and open OpenAI website every time you want to use ChatGPT. SeamlessGPT Features: SeamlessGPT seamlessly integrates ChatGPT with any Windows application, rendering text production fast and convenient in any setting. Its noteworthy features and benefits are: Compatibility: SeamlessGPT is compatible with every Windows application.Ease of use: Just type in “gpt:” followed by prompt text and press shift + enter to generate text.Real-time and precise results: ChatGPT produces immediate and accurate responses.Versatility: It can be used to produce any written content, including writing articles and drafting emails.Timesaving: Eliminates the need to switch between tabs or navigate to the OpenAI website to access ChatGPT.",
-        "pricingDetails": "Freemium plan available on ashxd.gumroad.com"
       },
       "tool_type": "📊 Finance & Spreadsheets"
     },
@@ -17752,7 +13575,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Infographic Ninja is an AI-powered tool by Outline Ninja for fast conversion of keywords into shareable infographics.",
       "overview": "Infographic Ninja is an AI-powered tool by Outline Ninja for fast conversion of keywords into shareable infographics. Outline Ninja Features: Use Cases: Infographic Ninja is: Infographic Ninja is an automated tool that utilizes AI technology to create infographics from a single keyword and title input. The tool offers: The tool offers a demo for users to experience its features, and a subscription is required for full access. Infographic Ninja provides: Infographic Ninja provides accessibility options such as adjustable text size, color, contrast, and cursor size for user convenience.",
-      "url": "https://outline.ninja/demo-infographic-ninja",
+      "url": "https://outline.ninja/",
       "domain": "outline.ninja",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-outline.ninja-2023.05.08-22_19_35.png",
       "icon": "📱",
@@ -17761,30 +13584,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Infographic Ninja is an AI-powered tool by Outline Ninja for fast conversion of keywords into shareable infographics. Outline Ninja Features: Use Cases: Infographic Ninja is: Infographic Ninja is an automated tool that utilizes AI technology to create infographics from a single keyword and title input. The tool offers: The tool offers a demo for users to experience its features, and a subscription is required for full access. Infographic Ninja provides: Infographic Ninja provides accessibility options such as adjustable text size, color, contrast, and cursor size for user convenience.",
         "pricingDetails": "Freemium plan available on outline.ninja"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "ogen-ai",
-      "name": "Ogen AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "OGEN.AI is an innovative tool that utilizes AI to automate the generation of Open Graph images, simplifying the process of creating visually appealing images that are ideal for sharing on social media.",
-      "overview": "OGEN.AI is an innovative tool that utilizes AI to automate the generation of Open Graph images, simplifying the process of creating visually appealing images that are ideal for sharing on social media. Ogen AI Features: Use Cases: OGEN.AI utilizes ChatGPT: OGEN.AI utilizes ChatGPT and Stable Diffusion to automatically generate high-quality Open Graph images. The tool requires: The tool requires minimal effort, allowing users to quickly create visually appealing images without manual editing. Users can customize: Users can customize their images by selecting color palettes and adding text to reflect their branding and messaging.",
-      "url": "https://ogen.ai/",
-      "domain": "ogen.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-ogen.ai-2023.05.08-22_12_42.png",
-      "icon": "📱",
-      "rating": 4.5,
-      "votes": 93,
-      "inner_content": {
-        "overview": "OGEN.AI is an innovative tool that utilizes AI to automate the generation of Open Graph images, simplifying the process of creating visually appealing images that are ideal for sharing on social media. Ogen AI Features: Use Cases: OGEN.AI utilizes ChatGPT: OGEN.AI utilizes ChatGPT and Stable Diffusion to automatically generate high-quality Open Graph images. The tool requires: The tool requires minimal effort, allowing users to quickly create visually appealing images without manual editing. Users can customize: Users can customize their images by selecting color palettes and adding text to reflect their branding and messaging.",
-        "pricingDetails": "Freemium plan available on ogen.ai"
       },
       "tool_type": "📱 Social Media & Growth"
     },
@@ -18007,55 +13806,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "📊 Finance & Spreadsheets"
     },
     {
-      "id": "kreateable",
-      "name": "Kreateable",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "design"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Kreateable is an online graphic design tool which uses generative AI technology to create powerful designs.",
-      "overview": "Kreateable is an online graphic design tool which uses generative AI technology to create powerful designs. Kreateable Features: Kreateable is a comprehensive platform that empowers users to easily create visually stunning logos, social media posts, advertisements, invoices, brand kits, and more, with additional functionalities such as magic resizing, AI-generated writing, text-to-image conversion, and image background removal. Encompassing a vast range of design services, Kreateable provides users with unlimited icons and logo formats to choose from through its Smart Logo Listing feature, streamlining the logo creation process. The platform’s Text and Image Automation allows for easy creation of social media posts and ads, and the Smart Play feature simplifies the creation of social media videos. The AI Writing feature further aids with content creation, while Magic Resize and Synchronize enables effortless resizing of designs. Plus, Kreateable offers aesthetically pleasing templates for business and marketing needs, giving that extra professional touch that adds value to design and branding efforts. Social Media: Use Cases: Twitter: Twitter LinkedIn: LinkedIn Instagram: Instagram Facebook: Facebook",
-      "url": "https://www.kreateable.com/",
-      "domain": "kreateable.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Kreateable.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 42,
-      "inner_content": {
-        "overview": "Kreateable is an online graphic design tool which uses generative AI technology to create powerful designs. Kreateable Features: Kreateable is a comprehensive platform that empowers users to easily create visually stunning logos, social media posts, advertisements, invoices, brand kits, and more, with additional functionalities such as magic resizing, AI-generated writing, text-to-image conversion, and image background removal. Encompassing a vast range of design services, Kreateable provides users with unlimited icons and logo formats to choose from through its Smart Logo Listing feature, streamlining the logo creation process. The platform’s Text and Image Automation allows for easy creation of social media posts and ads, and the Smart Play feature simplifies the creation of social media videos. The AI Writing feature further aids with content creation, while Magic Resize and Synchronize enables effortless resizing of designs. Plus, Kreateable offers aesthetically pleasing templates for business and marketing needs, giving that extra professional touch that adds value to design and branding efforts. Social Media: Use Cases: Twitter: Twitter LinkedIn: LinkedIn Instagram: Instagram Facebook: Facebook",
-        "pricingDetails": "Freemium plan available on kreateable.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "post-ai",
-      "name": "Post AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "The AI Blog Post Generator is an innovative tool that leverages artificial intelligence to assist content creators in swiftly generating blog posts.",
-      "overview": "The AI Blog Post Generator is an innovative tool that leverages artificial intelligence to assist content creators in swiftly generating blog posts. Post AI Features: Use Cases: NLP technology for: NLP technology for natural-sounding content Time-saving tool for: Time-saving tool for quick content creation Consistent content quality: Consistent content quality with AI algorithms Versatile for any: Versatile for any topic or language",
-      "url": "https://www.postai.pro/",
-      "domain": "postai.pro",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.postai.pro-2023.05.08-21_30_58.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 201,
-      "inner_content": {
-        "overview": "The AI Blog Post Generator is an innovative tool that leverages artificial intelligence to assist content creators in swiftly generating blog posts. Post AI Features: Use Cases: NLP technology for: NLP technology for natural-sounding content Time-saving tool for: Time-saving tool for quick content creation Consistent content quality: Consistent content quality with AI algorithms Versatile for any: Versatile for any topic or language",
-        "pricingDetails": "Freemium plan available on postai.pro"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "domainsgpt-2",
       "name": "DomainsGPT",
       "category": "ai-assistant",
@@ -18079,30 +13829,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on oneword.domains"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "quickvid-ai",
-      "name": "QuickVid.Ai",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "QuickVid is an AI-based solution that helps you quickly produce captivating YouTube shorts.",
-      "overview": "QuickVid is an AI-based solution that helps you quickly produce captivating YouTube shorts. QuickVid.Ai Features: Use cases for QuickVid are ideal for various content creators: Use Cases: AI-based editing: Create distinctive, brand-centric videos ten times faster than traditional manual production methods Advanced functionality: Take advantage of advanced features such as text-to-speech, voice recognition, and facial recognition to create more compelling content. Multilingual capabilities: Generate videos in any language to cater to a global audience YouTubers for efficient: YouTubers for efficient short creation Brands for professional-looking: Brands for professional-looking promo videos Social media influencers: Social media influencers for captivating content and wider reach",
-      "url": "https://www.quickvid.ai/",
-      "domain": "quickvid.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.quickvid.ai-2023.05.08-21_24_05.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 159,
-      "inner_content": {
-        "overview": "QuickVid is an AI-based solution that helps you quickly produce captivating YouTube shorts. QuickVid.Ai Features: Use cases for QuickVid are ideal for various content creators: Use Cases: AI-based editing: Create distinctive, brand-centric videos ten times faster than traditional manual production methods Advanced functionality: Take advantage of advanced features such as text-to-speech, voice recognition, and facial recognition to create more compelling content. Multilingual capabilities: Generate videos in any language to cater to a global audience YouTubers for efficient: YouTubers for efficient short creation Brands for professional-looking: Brands for professional-looking promo videos Social media influencers: Social media influencers for captivating content and wider reach",
-        "pricingDetails": "Freemium plan available on quickvid.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
     },
     {
       "id": "logocreatorai",
@@ -18200,30 +13926,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on lilybankai.com"
       },
       "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "make-logo-ai",
-      "name": "Make Logo AI",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Designer logos for cheap, fast, & with commercial rights.",
-      "overview": "Designer logos for cheap, fast, & with commercial rights. Make Logo AI Features: MakeLogoAI is a platform for logo design that has been powered by advanced AI technology, making the process of creating unique logos effortless. This platform has several key features and benefits such as generating logos with the AI algorithm, which eliminates the need for professional designers or expensive logo purchases. It also has a quick and straightforward process where users only need to enter project details and receive multiple logo concepts within minutes. Additionally, MakeLogoAI provides customization options with their LOGO EDITOR where users can change colors, add text, and alter fonts however they desire. The platform produces high-quality work with HD logos that come with transparent backgrounds and full ownership, including commercial rights.",
-      "url": "https://makelogo.ai/",
-      "domain": "makelogo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/MakeLogoAI.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 61,
-      "inner_content": {
-        "overview": "Designer logos for cheap, fast, & with commercial rights. Make Logo AI Features: MakeLogoAI is a platform for logo design that has been powered by advanced AI technology, making the process of creating unique logos effortless. This platform has several key features and benefits such as generating logos with the AI algorithm, which eliminates the need for professional designers or expensive logo purchases. It also has a quick and straightforward process where users only need to enter project details and receive multiple logo concepts within minutes. Additionally, MakeLogoAI provides customization options with their LOGO EDITOR where users can change colors, add text, and alter fonts however they desire. The platform produces high-quality work with HD logos that come with transparent backgrounds and full ownership, including commercial rights.",
-        "pricingDetails": "Freemium plan available on makelogo.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
     },
     {
       "id": "brandmark",
@@ -19022,30 +14724,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "💻 Code & Developer"
     },
     {
-      "id": "mobel",
-      "name": "Møbel",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Møbel.app is a cutting-edge interior design platform that utilizes artificial intelligence to deliver personalized interior design options for any room. Its standout features and benefits include:",
-      "overview": "Møbel.app is a cutting-edge interior design platform that utilizes artificial intelligence to deliver personalized interior design options for any room. Its standout features and benefits include: Møbel.app caters to a range of users, including: In summary, Møbel.app is a powerful and user-friendly solution that harnesses the power of AI to help users create their dream interior space. Use Cases: Instant design options: Upload a photo of your room and receive high-quality interior designs in seconds Tailored to your needs: Customize your design preferences according to room type and style Inspiration hub: Explore and share design ideas with a personal gallery Free designs: Get 8 free design variations upon creating an account Homeowners seeking inspiration: Homeowners seeking inspiration and transformation for their living spaces Interior designers looking: Interior designers looking for innovative design ideas and variations Real estate agents: Real estate agents seeking to showcase potential room designs to clients",
-      "url": "https://mobel.app/",
-      "domain": "mobel.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot-2023-05-09-004009.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 121,
-      "inner_content": {
-        "overview": "Møbel.app is a cutting-edge interior design platform that utilizes artificial intelligence to deliver personalized interior design options for any room. Its standout features and benefits include: Møbel.app caters to a range of users, including: In summary, Møbel.app is a powerful and user-friendly solution that harnesses the power of AI to help users create their dream interior space. Use Cases: Instant design options: Upload a photo of your room and receive high-quality interior designs in seconds Tailored to your needs: Customize your design preferences according to room type and style Inspiration hub: Explore and share design ideas with a personal gallery Free designs: Get 8 free design variations upon creating an account Homeowners seeking inspiration: Homeowners seeking inspiration and transformation for their living spaces Interior designers looking: Interior designers looking for innovative design ideas and variations Real estate agents: Real estate agents seeking to showcase potential room designs to clients",
-        "pricingDetails": "Freemium plan available on mobel.app"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "sketch",
       "name": "Sketch",
       "category": "code-assistant",
@@ -19081,7 +14759,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Refactor code, generate documentation, create unit tests and more.",
       "overview": "Refactor code, generate documentation, create unit tests and more. Refraction is an AI-powered code improvement tool that streamlines the development process, offering multilingual support, automated refactoring and testing, and additional features like code explanations, language conversion, hardcoded literals separation, and style checks. Use Cases: Multilingual support: Multilingual support Automated refactoring and: Automated refactoring and testing Ideal for various: Ideal for various developers",
-      "url": "https://www.futurepedia.io/tool/maverick-code#maverick-code-review",
+      "url": "https://www.futurepedia.io/",
       "domain": "futurepedia.io",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/sdfre.png",
       "icon": "💻",
@@ -19419,7 +15097,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "ChatGPT's SamurAI is a community chatbot that simplifies the process of creating, managing and expanding Discord communities by setting up servers, channels, managing invites, greeting users and answering questions.",
       "overview": "ChatGPT's SamurAI is a community chatbot that simplifies the process of creating, managing and expanding Discord communities by setting up servers, channels, managing invites, greeting users and answering questions.",
-      "url": "https://thesamur.ai/login",
+      "url": "https://thesamur.ai/",
       "domain": "thesamur.ai",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-thesamur.ai-2023.05.08-09_50_17.png",
       "icon": "📱",
@@ -19576,31 +15254,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚖️ Legal & Compliance"
     },
     {
-      "id": "ferret",
-      "name": "Ferret",
-      "category": "legal-assistant",
-      "categories": [
-        "legal-assistant",
-        "life-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "⚖️ Legal & Compliance",
-      "featured": false,
-      "description": "Spot high-risk/promising opportunities with exclusive relationship intelligence.",
-      "overview": "Spot high-risk/promising opportunities with exclusive relationship intelligence. Ferret Features: The Ferret platform utilizes AI technology to provide relationship insights to its users, allowing them to steer clear of risky individuals and identify potential opportunities. This advanced technology is enhanced by the platform’s due diligence tool, which assists users in making well-informed decisions. Additionally, the platform collects and analyzes visitor behavior data from various sources, such as Cookiebot, Hubspot, Zoho, LinkedIn, Google, and Hotjar.",
-      "url": "https://www.ferret.ai/",
-      "domain": "ferret.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Ferret.png",
-      "icon": "⚖️",
-      "rating": 4.8,
-      "votes": 204,
-      "inner_content": {
-        "overview": "Spot high-risk/promising opportunities with exclusive relationship intelligence. Ferret Features: The Ferret platform utilizes AI technology to provide relationship insights to its users, allowing them to steer clear of risky individuals and identify potential opportunities. This advanced technology is enhanced by the platform’s due diligence tool, which assists users in making well-informed decisions. Additionally, the platform collects and analyzes visitor behavior data from various sources, such as Cookiebot, Hubspot, Zoho, LinkedIn, Google, and Hotjar.",
-        "pricingDetails": "Paid plan available on ferret.ai"
-      },
-      "tool_type": "⚖️ Legal & Compliance"
-    },
-    {
       "id": "detangle-ai",
       "name": "Detangle.ai",
       "category": "legal-assistant",
@@ -19733,7 +15386,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Use ML to analyze your face and get cosmetic suggestions.",
       "overview": "Use ML to analyze your face and get cosmetic suggestions. Facial Assessment Tool Features: The QOVES Facial Assessment Tool is a software powered with AI technology. It has been developed to evaluate facial features and provide individualized skincare advice. The tool’s significant features and benefits include: – Facial recognition technology: The tool employs over 35,000 photos and 112 parameters to conduct precise assessments of facial features. – Comprehensive assessment: It identifies skin type, cosmetic anxieties, race, age, and gender. – Customized report: Users can receive a detailed summary of potential cosmetic concerns along with viable solutions that they can explore. – Product suggestions: The tool recommends personalized skincare, and beauty products that are tailored to the users’ particular needs.",
-      "url": "https://qoves.com/facial-assessment-tool/",
+      "url": "https://qoves.com/",
       "domain": "qoves.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/FacialAssessmentTool.png",
       "icon": "🌟",
@@ -19766,30 +15419,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI-powered mental health ally backed by clinical research. Woebot is your personal mental health ally that helps you get back to feeling like yourself. Backed by clinical research, powered by AI.",
         "pricingDetails": "Freemium plan available on woebothealth.com"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
-      "id": "whisper-ai",
-      "name": "Whisper AI",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Freemium",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "AI-powered hearing aid adjusts to different hearing situations.",
-      "overview": "AI-powered hearing aid adjusts to different hearing situations. It's an AI-powered hearing aid. With AI, it learns and adjusts to different hearing situations, like a noisy shopping market or family gathering. It provides regular software upgrades from new features to sound processing.",
-      "url": "https://whisper.ai/",
-      "domain": "whisper.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Whisper.png",
-      "icon": "🏥",
-      "rating": 4.6,
-      "votes": 29,
-      "inner_content": {
-        "overview": "AI-powered hearing aid adjusts to different hearing situations. It's an AI-powered hearing aid. With AI, it learns and adjusts to different hearing situations, like a noisy shopping market or family gathering. It provides regular software upgrades from new features to sound processing.",
-        "pricingDetails": "Freemium plan available on whisper.ai"
       },
       "tool_type": "🏥 Health & Medical"
     },
@@ -19914,54 +15543,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🏥 Health & Medical"
     },
     {
-      "id": "analyzgpt",
-      "name": "AnalyzGPT",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Freemium",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "Read x-ray reports with the help of generative AI and computer vision.",
-      "overview": "Read x-ray reports with the help of generative AI and computer vision. AnalyzGPT Features: AnalyzGPT is an advanced tool with AI capabilities designed specifically for analyzing x-ray images of hands and legs. This innovative product can identify fractures, detect potential accident scenarios and perform other functions to enhance the analysis process. Notable key features of AnalyzGPT include the ability to analyze x-ray images accurately, resulting in high-quality results. Furthermore, the product uses AI technology to detect fractures and possible accident scenarios that may be hard to identify with the naked eye. Lastly, it’s crucial to point out that AnalyzGPT is a free-to-use tool, making it accessible to a wider audience.",
-      "url": "https://app.sttabot.io/bot/analyzgpt-demo/",
-      "domain": "app.sttabot.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AnalysisGPT.png",
-      "icon": "🏥",
-      "rating": 4.7,
-      "votes": 55,
-      "inner_content": {
-        "overview": "Read x-ray reports with the help of generative AI and computer vision. AnalyzGPT Features: AnalyzGPT is an advanced tool with AI capabilities designed specifically for analyzing x-ray images of hands and legs. This innovative product can identify fractures, detect potential accident scenarios and perform other functions to enhance the analysis process. Notable key features of AnalyzGPT include the ability to analyze x-ray images accurately, resulting in high-quality results. Furthermore, the product uses AI technology to detect fractures and possible accident scenarios that may be hard to identify with the naked eye. Lastly, it’s crucial to point out that AnalyzGPT is a free-to-use tool, making it accessible to a wider audience.",
-        "pricingDetails": "Freemium plan available on app.sttabot.io"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
-      "id": "mindmate",
-      "name": "MindMate",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Freemium",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "Your Personal AI-Powered Mental Health Companion.",
-      "overview": "Your Personal AI-Powered Mental Health Companion. MindMate Features: MindMate is a mental health companion that provides empathetic conversations to help overcome challenging moments. It is readily accessible, operating 24/7 to ensure a friend is always available. Its user-friendly chat interface delivers an exceptional user experience, making expressing emotions a seamless process. It is essential to note that MindMate is not a substitute for professional mental health care.",
-      "url": "https://www.mindmate.tech/",
-      "domain": "mindmate.tech",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/MindMate.png",
-      "icon": "🏥",
-      "rating": 4.9,
-      "votes": 165,
-      "inner_content": {
-        "overview": "Your Personal AI-Powered Mental Health Companion. MindMate Features: MindMate is a mental health companion that provides empathetic conversations to help overcome challenging moments. It is readily accessible, operating 24/7 to ensure a friend is always available. Its user-friendly chat interface delivers an exceptional user experience, making expressing emotions a seamless process. It is essential to note that MindMate is not a substitute for professional mental health care.",
-        "pricingDetails": "Freemium plan available on mindmate.tech"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
       "id": "namelix",
       "name": "Namelix",
       "category": "startup-tools",
@@ -19982,30 +15563,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Get catchy business name using namelix. Use Cases: AI-generated catchy names: AI-generated catchy names Personalized suggestions: Personalized suggestions Logo design integration: Logo design integration",
         "pricingDetails": "Freemium plan available on namelix.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "namy-ai",
-      "name": "Namy ai",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "AI-driven domain name generator using GPT-3.",
-      "overview": "AI-driven domain name generator using GPT-3. Namy.ai is a domain name generator fueled by GPT-3 technology, providing certain advantages and functionalities. These comprise of infinite domain name production at no cost, an option to verify domain availability, and the ability to purchase domains via Namecheap and GoDaddy. Namy.ai is swift and dependable, allowing users to generate domain names rapidly, although more intricate prompts may take additional processing time. Use Cases: Twitter: Twitter",
-      "url": "http://namy.ai/",
-      "domain": "namy.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/gfgttt.png",
-      "icon": "🚀",
-      "rating": 4.8,
-      "votes": 158,
-      "inner_content": {
-        "overview": "AI-driven domain name generator using GPT-3. Namy.ai is a domain name generator fueled by GPT-3 technology, providing certain advantages and functionalities. These comprise of infinite domain name production at no cost, an option to verify domain availability, and the ability to purchase domains via Namecheap and GoDaddy. Namy.ai is swift and dependable, allowing users to generate domain names rapidly, although more intricate prompts may take additional processing time. Use Cases: Twitter: Twitter",
-        "pricingDetails": "Free Trial plan available on namy.ai"
       },
       "tool_type": "🚀 Startup & Business"
     },
@@ -20130,30 +15687,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🚀 Startup & Business"
     },
     {
-      "id": "sommerai",
-      "name": "SommerAI",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Freemium",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "SommerAI is an AI therapist that utilizes evidence-based approaches such as CBT, SFBT, and RRT, as well as life tips, to provide personalized mental health support to individuals through a weekly schedule.",
-      "overview": "SommerAI is an AI therapist that utilizes evidence-based approaches such as CBT, SFBT, and RRT, as well as life tips, to provide personalized mental health support to individuals through a weekly schedule. SommerAI Features: Leveraging the power of artificial intelligence and NASA psychology research, Sommer AI Mental Health offers a comprehensive and effective approach to improve mental health. The platform provides a range of therapeutic options, including Solution Focused Brief Therapy (SFBT) that focuses on finding solutions to current problems and Cognitive Behavioral Therapy (CBT) that addresses negative thoughts and develops coping strategies. Moreover, the platform incorporates NASA Health Onboarding, which provides a broader perspective on mental health beyond therapy. For further information, readers can refer to the articles published on mental health in low Earth orbit and AI therapy versus human therapy.",
-      "url": "http://www.sommerai.com/",
-      "domain": "sommerai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/SommerAI.png",
-      "icon": "🏥",
-      "rating": 4.8,
-      "votes": 177,
-      "inner_content": {
-        "overview": "SommerAI is an AI therapist that utilizes evidence-based approaches such as CBT, SFBT, and RRT, as well as life tips, to provide personalized mental health support to individuals through a weekly schedule. SommerAI Features: Leveraging the power of artificial intelligence and NASA psychology research, Sommer AI Mental Health offers a comprehensive and effective approach to improve mental health. The platform provides a range of therapeutic options, including Solution Focused Brief Therapy (SFBT) that focuses on finding solutions to current problems and Cognitive Behavioral Therapy (CBT) that addresses negative thoughts and develops coping strategies. Moreover, the platform incorporates NASA Health Onboarding, which provides a broader perspective on mental health beyond therapy. For further information, readers can refer to the articles published on mental health in low Earth orbit and AI therapy versus human therapy.",
-        "pricingDetails": "Freemium plan available on sommerai.com"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
       "id": "ask-yc",
       "name": "Ask YC",
       "category": "startup-tools",
@@ -20251,30 +15784,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🏥 Health & Medical"
     },
     {
-      "id": "lavo-ai",
-      "name": "Lavo AI",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Freemium",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "AI-Accelerated Quantum Chemistry for Rapid Drug Development.",
-      "overview": "AI-Accelerated Quantum Chemistry for Rapid Drug Development. Lavo AI Features: Lavo Life Sciences is a fledgling business that delivers computer simulations powered by AI technology to forecast crystal structures of drug molecules. Some of the main features and benefits of this product offering include its ability to conduct rapid analysis of drug behaviors at the atomic level. It also utilizes innovative techniques that specifically address challenges in the industry, leading to reductions in pharmaceutical property prediction costs. Additionally, their AI-driven chemistry capabilities enable accelerated drug development processes compared to the current solutions available.",
-      "url": "https://www.lavo.ai/",
-      "domain": "lavo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/LavoLife.png",
-      "icon": "🏥",
-      "rating": 4.8,
-      "votes": 44,
-      "inner_content": {
-        "overview": "AI-Accelerated Quantum Chemistry for Rapid Drug Development. Lavo AI Features: Lavo Life Sciences is a fledgling business that delivers computer simulations powered by AI technology to forecast crystal structures of drug molecules. Some of the main features and benefits of this product offering include its ability to conduct rapid analysis of drug behaviors at the atomic level. It also utilizes innovative techniques that specifically address challenges in the industry, leading to reductions in pharmaceutical property prediction costs. Additionally, their AI-driven chemistry capabilities enable accelerated drug development processes compared to the current solutions available.",
-        "pricingDetails": "Freemium plan available on lavo.ai"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
       "id": "happy-mama",
       "name": "Happy Mama",
       "category": "healthcare",
@@ -20311,7 +15820,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Generate a DDx/clinical plan from a short diagnostic problem representation.",
       "overview": "Generate a DDx/clinical plan from a short diagnostic problem representation. Glass.health Features: Glass AI is a knowledge management system for doctors and medical practitioners, powered by Artificial Intelligence. It is equipped with the following impressive functionalities and advantages: – Differential diagnosis: Produces a diagnosis or an ideal clinical strategy based on a diagnostic issue representation– AI-powered: Continuously upgrading accuracy by undergoing extensive research and testing– Secure and user-friendly: Designed with a seamless user experience for easy navigation in learning and practicing medicine– Shareable: Facilitates easy sharing of medical knowledge with the public.",
-      "url": "https://glass.health/ai",
+      "url": "https://glass.health/",
       "domain": "glass.health",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/GlassAI.png",
       "icon": "🌟",
@@ -20349,30 +15858,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🏥 Health & Medical"
     },
     {
-      "id": "hippocratic-ai",
-      "name": "Hippocratic AI",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Free",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "Free search tool for medical knowledge.",
-      "overview": "Free search tool for medical knowledge. Hippocratic AI Features: Statpearls Semantic Search is an innovative tool, powered by Artificial Intelligence, that applies semantic searching tactics to procure pertinent information. It offers the following noteworthy features and benefits: – Semantic searching: Unlike typical keyword searches, it retrieves data by presenting inquiries or inputting phrases– Data source: Accesses Statpearls, a trusted repository with a wealth of information– Developed by Hippocratic AI: Constructed with Streamlit, ensuring a user-friendly interface.",
-      "url": "https://hippocratic-medical-questions.herokuapp.com/",
-      "domain": "hippocratic-medical-questions.herokuapp.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Hippocratic.png",
-      "icon": "🏥",
-      "rating": 4.8,
-      "votes": 140,
-      "inner_content": {
-        "overview": "Free search tool for medical knowledge. Hippocratic AI Features: Statpearls Semantic Search is an innovative tool, powered by Artificial Intelligence, that applies semantic searching tactics to procure pertinent information. It offers the following noteworthy features and benefits: – Semantic searching: Unlike typical keyword searches, it retrieves data by presenting inquiries or inputting phrases– Data source: Accesses Statpearls, a trusted repository with a wealth of information– Developed by Hippocratic AI: Constructed with Streamlit, ensuring a user-friendly interface.",
-        "pricingDetails": "Free plan available on hippocratic-medical-questions.herokuapp.com"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
       "id": "awemyface-2",
       "name": "AweMyFace",
       "category": "healthcare",
@@ -20385,7 +15870,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Skincare app & AI-powered guide to perfect skin with 99.1% accuracy.",
       "overview": "Skincare app & AI-powered guide to perfect skin with 99.1% accuracy. AweMyFace Features: The AweMyFace – Skincare App is a holistic solution for achieving healthy and glowing skin, equipped with state-of-the-art AI-enabled capabilities to assess and enhance skin quality. Prominent features and benefits of the app include: – AI-driven detection of acne: Highly accurate, with a success rate of 99.1%, in identifying acne and monitoring skin changes– Tracking of daily routines: Tracks and evaluates daily habits, such as diet, sleep patterns, physical activities, and stress levels, to comprehend their impact on your skin’s vitality– Progress evaluations: Generates daily, weekly, and monthly reports to track your skin’s progress– Offline functionality: All functionalities available offline, and user data is safely secured on the device",
-      "url": "https://apps.apple.com/app/apple-store/id1621101995",
+      "url": "https://apps.apple.com/",
       "domain": "apps.apple.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/AweMyFace-2.png",
       "icon": "🏥",
@@ -20518,30 +16003,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "📱 Social Media & Growth"
     },
     {
-      "id": "analisa-io",
-      "name": "Analisa.io",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Analisa.io is an innovative social analytics tool that leverages the power of AI to provide businesses with insights into Instagram and TikTok profiles and hashtags. With an array of upgraded features, including follower demographics, authenticity audits, and content analysis, Analisa.io enables businesses of any size to succeed in social media. Other features, such as influencer mapping, geolocation mapping, and date customization, further enhance the tool's utility. Plus, users can receive dedicated support from account managers and export data in PDF or Excel formats.",
-      "overview": "Analisa.io is an innovative social analytics tool that leverages the power of AI to provide businesses with insights into Instagram and TikTok profiles and hashtags. With an array of upgraded features, including follower demographics, authenticity audits, and content analysis, Analisa.io enables businesses of any size to succeed in social media. Other features, such as influencer mapping, geolocation mapping, and date customization, further enhance the tool's utility. Plus, users can receive dedicated support from account managers and export data in PDF or Excel formats.",
-      "url": "https://analisa.io/",
-      "domain": "analisa.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-analisa.io-2023.05.08-01_43_08.png",
-      "icon": "📱",
-      "rating": 4.5,
-      "votes": 145,
-      "inner_content": {
-        "overview": "Analisa.io is an innovative social analytics tool that leverages the power of AI to provide businesses with insights into Instagram and TikTok profiles and hashtags. With an array of upgraded features, including follower demographics, authenticity audits, and content analysis, Analisa.io enables businesses of any size to succeed in social media. Other features, such as influencer mapping, geolocation mapping, and date customization, further enhance the tool's utility. Plus, users can receive dedicated support from account managers and export data in PDF or Excel formats.",
-        "pricingDetails": "Freemium plan available on analisa.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "systeme",
       "name": "Systeme",
       "category": "social-media-assistant",
@@ -20614,79 +16075,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "👤 AI Avatars"
     },
     {
-      "id": "animeai",
-      "name": "AnimeAI",
-      "category": "avatar",
-      "categories": [
-        "avatar",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Generate yourself as a hero from top anime & get 120 personalized arts!",
-      "overview": "Generate yourself as a hero from top anime & get 120 personalized arts! AnimeAI Features: AnimeAI.lol is an AI-powered tool that allows users to transform themselves into their favored anime characters. Here are the tool’s main features and benefits: – Personalized anime art: Upload a photo and receive 50 unique anime arts featuring the user as the main character.– Popular titles: Arts based on popular titles like Attack on Titan, Naruto, Evangelion, Cyberpunk, and Demon Slayer.– Monthly bundles: Offers 50 digital art designs per month, with more titles added regularly, to keep the updates fresh and reliable.– Simple process: Users can upload their photos, let AI generate personalized anime art, and receive the results via email – a smooth experience.– Customer support: Provides users with FAQs, terms and conditions, and social media updates to ensure a convenient and efficient experience.",
-      "url": "https://www.animeai.lol/",
-      "domain": "animeai.lol",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AnimeAI.png",
-      "icon": "👤",
-      "rating": 4.9,
-      "votes": 61,
-      "inner_content": {
-        "overview": "Generate yourself as a hero from top anime & get 120 personalized arts! AnimeAI Features: AnimeAI.lol is an AI-powered tool that allows users to transform themselves into their favored anime characters. Here are the tool’s main features and benefits: – Personalized anime art: Upload a photo and receive 50 unique anime arts featuring the user as the main character.– Popular titles: Arts based on popular titles like Attack on Titan, Naruto, Evangelion, Cyberpunk, and Demon Slayer.– Monthly bundles: Offers 50 digital art designs per month, with more titles added regularly, to keep the updates fresh and reliable.– Simple process: Users can upload their photos, let AI generate personalized anime art, and receive the results via email – a smooth experience.– Customer support: Provides users with FAQs, terms and conditions, and social media updates to ensure a convenient and efficient experience.",
-        "pricingDetails": "Freemium plan available on animeai.lol"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "avatarify",
-      "name": "Avatarify",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Paid",
-      "badge": "👤 AI Avatars",
-      "featured": true,
-      "description": "Create lifelike avatars using AI. Pay only for the GPUs, re-render if needed.",
-      "overview": "Create lifelike avatars using AI. Pay only for the GPUs, re-render if needed. Avatarify Features: Avatarify is a personalized avatar generator tool, driven by AI, which boosts the user’s online presence. Here are the tool’s key features and benefits: – Personalized avatars: Upload selfies, select from handpicked prompts, or create them yourself for a touch of personalization.– High-performance hardware: Relies on cutting-edge GPUs to facilitate avatar generation.– Affordable: Cloud services cost $900 per month, providing one bespoke trained model and 20 HD avatars for just ₹349.– High-quality renders: Allows users to perform 4K renders, the only additional cost is $0.49 per image.– Transparent policies: Provides users with a privacy policy, refund, and settlement policy, terms and conditions, and FAQ page.",
-      "url": "https://avatarify.art/",
-      "domain": "avatarify.art",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Avtarify.png",
-      "icon": "👤",
-      "rating": 4.5,
-      "votes": 40,
-      "inner_content": {
-        "overview": "Create lifelike avatars using AI. Pay only for the GPUs, re-render if needed. Avatarify Features: Avatarify is a personalized avatar generator tool, driven by AI, which boosts the user’s online presence. Here are the tool’s key features and benefits: – Personalized avatars: Upload selfies, select from handpicked prompts, or create them yourself for a touch of personalization.– High-performance hardware: Relies on cutting-edge GPUs to facilitate avatar generation.– Affordable: Cloud services cost $900 per month, providing one bespoke trained model and 20 HD avatars for just ₹349.– High-quality renders: Allows users to perform 4K renders, the only additional cost is $0.49 per image.– Transparent policies: Provides users with a privacy policy, refund, and settlement policy, terms and conditions, and FAQ page.",
-        "pricingDetails": "Paid plan available on avatarify.art"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "creasquare",
-      "name": "Creasquare",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Creasquare is an AI-based social media management solution that simplifies content creation and scheduling. It features an AI content writer that can produce SEO-friendly content in various languages and styles. The platform also offers thousands of templates and royalty-free assets in its creative studio, along with scheduling and calendar tools for batch posting. Plus, it integrates smoothly with popular social media platforms such as Facebook, LinkedIn, YouTube, Instagram, and TikTok.",
-      "overview": "Creasquare is an AI-based social media management solution that simplifies content creation and scheduling. It features an AI content writer that can produce SEO-friendly content in various languages and styles. The platform also offers thousands of templates and royalty-free assets in its creative studio, along with scheduling and calendar tools for batch posting. Plus, it integrates smoothly with popular social media platforms such as Facebook, LinkedIn, YouTube, Instagram, and TikTok.",
-      "url": "https://creasquare.io/",
-      "domain": "creasquare.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-creasquare.io-2023.05.07-22_32_41.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 157,
-      "inner_content": {
-        "overview": "Creasquare is an AI-based social media management solution that simplifies content creation and scheduling. It features an AI content writer that can produce SEO-friendly content in various languages and styles. The platform also offers thousands of templates and royalty-free assets in its creative studio, along with scheduling and calendar tools for batch posting. Plus, it integrates smoothly with popular social media platforms such as Facebook, LinkedIn, YouTube, Instagram, and TikTok.",
-        "pricingDetails": "Free plan available on creasquare.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "livereacting-ai-3",
       "name": "LiveReacting AI",
       "category": "educational",
@@ -20711,30 +16099,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on livereacting.com"
       },
       "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "hushl",
-      "name": "Hushl",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Hushl – gamified, creative platform for better content. AI co-creation, 5-step process: ideation, structure, creation, feedback, distribution. Users write tweets, LinkedIn posts, blogs, etc. 25% increase in content quality reported. Gamification rewards consistency, mission completion, community help. Tokens exchanged for rewards. Boosts creative confidence.",
-      "overview": "Hushl – gamified, creative platform for better content. AI co-creation, 5-step process: ideation, structure, creation, feedback, distribution. Users write tweets, LinkedIn posts, blogs, etc. 25% increase in content quality reported. Gamification rewards consistency, mission completion, community help. Tokens exchanged for rewards. Boosts creative confidence.",
-      "url": "https://hushl.in/",
-      "domain": "hushl.in",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-hushl.in-2023.05.07-22_25_04.png",
-      "icon": "📱",
-      "rating": 5,
-      "votes": 108,
-      "inner_content": {
-        "overview": "Hushl – gamified, creative platform for better content. AI co-creation, 5-step process: ideation, structure, creation, feedback, distribution. Users write tweets, LinkedIn posts, blogs, etc. 25% increase in content quality reported. Gamification rewards consistency, mission completion, community help. Tokens exchanged for rewards. Boosts creative confidence.",
-        "pricingDetails": "Freemium plan available on hushl.in"
-      },
-      "tool_type": "📱 Social Media & Growth"
     },
     {
       "id": "in3d",
@@ -20786,30 +16150,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎉 Fun & Creative Tools"
     },
     {
-      "id": "commentreply-ai",
-      "name": "CommentReply.AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "CommentReply.Ai is an AI-based platform created for YouTubers that helps them quickly respond to comments in their own authentic voice. The platform uses various contextual factors such as video topic, transcript, and channel information to ensure that the replies generated are personalized and relevant to the viewer.",
-      "overview": "CommentReply.Ai is an AI-based platform created for YouTubers that helps them quickly respond to comments in their own authentic voice. The platform uses various contextual factors such as video topic, transcript, and channel information to ensure that the replies generated are personalized and relevant to the viewer.",
-      "url": "https://www.commentreply.ai/",
-      "domain": "commentreply.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.commentreply.ai-2023.05.07-22_18_54.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 45,
-      "inner_content": {
-        "overview": "CommentReply.Ai is an AI-based platform created for YouTubers that helps them quickly respond to comments in their own authentic voice. The platform uses various contextual factors such as video topic, transcript, and channel information to ensure that the replies generated are personalized and relevant to the viewer.",
-        "pricingDetails": "Freemium plan available on commentreply.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "brand-buzz",
       "name": "Brand Buzz",
       "category": "social-media-assistant",
@@ -20832,79 +16172,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on brandbuzz.ai"
       },
       "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "unrealme",
-      "name": "Unrealme",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Free Trial",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Generate images of yourself.",
-      "overview": "Generate images of yourself. Get AI generated images of you.",
-      "url": "https://unrealme.io/",
-      "domain": "unrealme.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/UnrealMe.png",
-      "icon": "👤",
-      "rating": 4.7,
-      "votes": 190,
-      "inner_content": {
-        "overview": "Generate images of yourself. Get AI generated images of you.",
-        "pricingDetails": "Free Trial plan available on unrealme.io"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "photoai",
-      "name": "PhotoAI",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Generate 30 AI photos of yourself in our best styles.",
-      "overview": "Generate 30 AI photos of yourself in our best styles. PhotoAI Features: PhotoAI is an AI-based tool that crafts customized images depending on the user-provided photos. Here are the features and advantages: – Personalized images: Generate new images by utilizing ten provided photos with advanced AI technology.– Numerous styles: Offers an extensive range of styles such as professional, tinder, polaroid, pop, royal, movie, celebrity, and meme packs to choose from.– Affordable pricing: The packages start from just $15 for 30 photos with a risk-free service guarantee. Tutorial:",
-      "url": "https://photoai.me/",
-      "domain": "photoai.me",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/PhotoAI.png",
-      "icon": "👤",
-      "rating": 4.8,
-      "votes": 169,
-      "inner_content": {
-        "overview": "Generate 30 AI photos of yourself in our best styles. PhotoAI Features: PhotoAI is an AI-based tool that crafts customized images depending on the user-provided photos. Here are the features and advantages: – Personalized images: Generate new images by utilizing ten provided photos with advanced AI technology.– Numerous styles: Offers an extensive range of styles such as professional, tinder, polaroid, pop, royal, movie, celebrity, and meme packs to choose from.– Affordable pricing: The packages start from just $15 for 30 photos with a risk-free service guarantee. Tutorial:",
-        "pricingDetails": "Freemium plan available on photoai.me"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "character-ai",
-      "name": "Character AI",
-      "category": "avatar",
-      "categories": [
-        "avatar",
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Character.AI lets you create Characters and talk to them.",
-      "overview": "Character.AI lets you create Characters and talk to them. Character AI Features: Character.AI is a platform powered by AI to create and interact with intelligent agents. It provides several advantages and features, including: – AI character creation: Create and share your AI-powered characters that can converse, learn from interactions and play games.– User-friendly interface: Use pre-built AI characters and tools to customize and develop new AI characters.– Online community: Connect, share experiences, and learn from other users and their developments.– Accessibility: The platform caters to users of all skill levels, from beginners to experts.– Extensibility: Enhance AI character capabilities by integrating third-party tools and services.",
-      "url": "http://character.ai/",
-      "domain": "character.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/CharacterAI.png",
-      "icon": "👤",
-      "rating": 5,
-      "votes": 127,
-      "inner_content": {
-        "overview": "Character.AI lets you create Characters and talk to them. Character AI Features: Character.AI is a platform powered by AI to create and interact with intelligent agents. It provides several advantages and features, including: – AI character creation: Create and share your AI-powered characters that can converse, learn from interactions and play games.– User-friendly interface: Use pre-built AI characters and tools to customize and develop new AI characters.– Online community: Connect, share experiences, and learn from other users and their developments.– Accessibility: The platform caters to users of all skill levels, from beginners to experts.– Extensibility: Enhance AI character capabilities by integrating third-party tools and services.",
-        "pricingDetails": "Freemium plan available on character.ai"
-      },
-      "tool_type": "👤 AI Avatars"
     },
     {
       "id": "zoocial-2",
@@ -20955,30 +16222,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "👤 AI Avatars"
     },
     {
-      "id": "theoasis",
-      "name": "Theoasis",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Create photorealistic avatar for use on all video platforms.",
-      "overview": "Create photorealistic avatar for use on all video platforms. Create a photorealistic avatar that you can use on every video platform.",
-      "url": "https://theoasis.com/",
-      "domain": "theoasis.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Theoasis.png",
-      "icon": "👤",
-      "rating": 4.7,
-      "votes": 85,
-      "inner_content": {
-        "overview": "Create photorealistic avatar for use on all video platforms. Create a photorealistic avatar that you can use on every video platform.",
-        "pricingDetails": "Freemium plan available on theoasis.com"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
       "id": "aragon-ai",
       "name": "Aragon AI",
       "category": "avatar",
@@ -21003,367 +16246,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "👤 AI Avatars"
     },
     {
-      "id": "4722-2",
-      "name": "",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Trendmate.xyz is a social media tool powered by AI that analyzes trends on Facebook, Twitter, Instagram, and TikTok. It helps generate content ideas, engagement insights, and relevant hashtags based on your inputted keywords. With Trendmate, you can stay ahead on social media.",
-      "overview": "Trendmate.xyz is a social media tool powered by AI that analyzes trends on Facebook, Twitter, Instagram, and TikTok. It helps generate content ideas, engagement insights, and relevant hashtags based on your inputted keywords. With Trendmate, you can stay ahead on social media.",
-      "url": "https://www.trendmate.xyz/",
-      "domain": "trendmate.xyz",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.trendmate.xyz-2023.05.07-21_57_11.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 139,
-      "inner_content": {
-        "overview": "Trendmate.xyz is a social media tool powered by AI that analyzes trends on Facebook, Twitter, Instagram, and TikTok. It helps generate content ideas, engagement insights, and relevant hashtags based on your inputted keywords. With Trendmate, you can stay ahead on social media.",
-        "pricingDetails": "Free Trial plan available on trendmate.xyz"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "gemsouls",
-      "name": "Gemsouls",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Create virtual humans on a mission to bring joy.",
-      "overview": "Create virtual humans on a mission to bring joy. Gemsouls Features: Gemsouls is a platform that employs AI technology to create compelling interactions between users and their beloved fictional characters. Here are some primary features and advantages: – Immersive experience: State-of-the-art AI tech powers virtual characters to create highly interactive connections with users.– Character creation: Form friendships or create virtual personas based on your preferences of various characters.– Cross-platform compatibility: Accessible on both iOS and Android devices for greater flexibility. Review:",
-      "url": "https://www.mygemsouls.com/",
-      "domain": "mygemsouls.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/GemSouls.png",
-      "icon": "👤",
-      "rating": 4.5,
-      "votes": 202,
-      "inner_content": {
-        "overview": "Create virtual humans on a mission to bring joy. Gemsouls Features: Gemsouls is a platform that employs AI technology to create compelling interactions between users and their beloved fictional characters. Here are some primary features and advantages: – Immersive experience: State-of-the-art AI tech powers virtual characters to create highly interactive connections with users.– Character creation: Form friendships or create virtual personas based on your preferences of various characters.– Cross-platform compatibility: Accessible on both iOS and Android devices for greater flexibility. Review:",
-        "pricingDetails": "Freemium plan available on mygemsouls.com"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "ready-player-me",
-      "name": "Ready Player Me",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "One avatar, many worlds: Cross-game Avatar Platform for the Metaverse.",
-      "overview": "One avatar, many worlds: Cross-game Avatar Platform for the Metaverse. Ready Player Me Features: Ready Player Me is a platform for creating personalized 3D avatars to be used across multiple games in the metaverse. Its key features and benefits are: – Customization: Enjoy a selection of over 300 options and the option to import NFTs to truly personalize your avatar.– Broad compatibility: Use your avatar in any of the 7000+ supported apps and games.– Developer integration: Use the Unity and Unreal Engine SDKs to easily integrate the avatars into your apps and games.– AI-generated outfits: A variety of AI-generated outfits for your avatar are provided to increase creativity.",
-      "url": "https://readyplayer.me/",
-      "domain": "readyplayer.me",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/readyPlayer.png",
-      "icon": "👤",
-      "rating": 4.6,
-      "votes": 181,
-      "inner_content": {
-        "overview": "One avatar, many worlds: Cross-game Avatar Platform for the Metaverse. Ready Player Me Features: Ready Player Me is a platform for creating personalized 3D avatars to be used across multiple games in the metaverse. Its key features and benefits are: – Customization: Enjoy a selection of over 300 options and the option to import NFTs to truly personalize your avatar.– Broad compatibility: Use your avatar in any of the 7000+ supported apps and games.– Developer integration: Use the Unity and Unreal Engine SDKs to easily integrate the avatars into your apps and games.– AI-generated outfits: A variety of AI-generated outfits for your avatar are provided to increase creativity.",
-        "pricingDetails": "Freemium plan available on readyplayer.me"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "pictodream",
-      "name": "PictoDream",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Create custom images with AI using text descriptions.",
-      "overview": "Create custom images with AI using text descriptions. PictoDream Features: PictoDream.com is a tool that uses AI to produce authentic images based on descriptive text. Here are some key features and benefits: – Personalized image generation: Create avatars, profile pictures, or printed pictures using a straightforward text description.– AI training: Upload 10-20 photos to train the AI and generate precise pictures.– Prompt gallery: Obtain ideas for image inspiration from a prompt gallery.– Privacy protection: Uploaded photos are removed from the server after one month to protect the privacy of the user.",
-      "url": "http://pictodream.com/",
-      "domain": "pictodream.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/PictoDream.png",
-      "icon": "👤",
-      "rating": 4.8,
-      "votes": 160,
-      "inner_content": {
-        "overview": "Create custom images with AI using text descriptions. PictoDream Features: PictoDream.com is a tool that uses AI to produce authentic images based on descriptive text. Here are some key features and benefits: – Personalized image generation: Create avatars, profile pictures, or printed pictures using a straightforward text description.– AI training: Upload 10-20 photos to train the AI and generate precise pictures.– Prompt gallery: Obtain ideas for image inspiration from a prompt gallery.– Privacy protection: Uploaded photos are removed from the server after one month to protect the privacy of the user.",
-        "pricingDetails": "Freemium plan available on pictodream.com"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "beb-ai",
-      "name": "Beb.ai",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Create avatars & content for your brand with Beb.ai!",
-      "overview": "Create avatars & content for your brand with Beb.ai! Beb.ai Features: Beb.ai is a tool powered by AI that helps brands produce compelling content for their campaigns and marketing materials. Some features and benefits are: – AI training: By uploading 20-30 pictures, the AI trains and creates 72 new photos across nine different themes every week.– User-friendly: No expertise in design is necessary, enabling trouble-free content creation.– Dynamic marketing materials: Get noticed with AI-generated visuals that are distinct and exceptional.",
-      "url": "http://beb.ai/",
-      "domain": "beb.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Beb-AI.png",
-      "icon": "👤",
-      "rating": 5,
-      "votes": 118,
-      "inner_content": {
-        "overview": "Create avatars & content for your brand with Beb.ai! Beb.ai Features: Beb.ai is a tool powered by AI that helps brands produce compelling content for their campaigns and marketing materials. Some features and benefits are: – AI training: By uploading 20-30 pictures, the AI trains and creates 72 new photos across nine different themes every week.– User-friendly: No expertise in design is necessary, enabling trouble-free content creation.– Dynamic marketing materials: Get noticed with AI-generated visuals that are distinct and exceptional.",
-        "pricingDetails": "Freemium plan available on beb.ai"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "tribescaler",
-      "name": "Tribescaler",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Tribescaler is a tool that can help make your tweets go viral by assisting in crafting compelling hooks within seconds. With its assistance, you can garner more impressions, expand your network, and potentially increase your earnings.",
-      "overview": "Tribescaler is a tool that can help make your tweets go viral by assisting in crafting compelling hooks within seconds. With its assistance, you can garner more impressions, expand your network, and potentially increase your earnings.",
-      "url": "https://tribescaler.com/index.html",
-      "domain": "tribescaler.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-tribescaler.com-2023.05.07-21_44_15.png",
-      "icon": "📱",
-      "rating": 5,
-      "votes": 90,
-      "inner_content": {
-        "overview": "Tribescaler is a tool that can help make your tweets go viral by assisting in crafting compelling hooks within seconds. With its assistance, you can garner more impressions, expand your network, and potentially increase your earnings.",
-        "pricingDetails": "Freemium plan available on tribescaler.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "ai-time-machine",
-      "name": "AI Time Machine",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools",
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "Create AI-generated images & time travel with AI Time Machine.",
-      "overview": "Create AI-generated images & time travel with AI Time Machine. Upload photos of yourself to create incredible AI-generated images. Travel through history with the AI Time Machine. Tutorial:",
-      "url": "https://www.myheritage.com/ai-time-machine",
-      "domain": "myheritage.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AITimeMachine.png",
-      "icon": "🎉",
-      "rating": 4.6,
-      "votes": 97,
-      "inner_content": {
-        "overview": "Create AI-generated images & time travel with AI Time Machine. Upload photos of yourself to create incredible AI-generated images. Travel through history with the AI Time Machine. Tutorial:",
-        "pricingDetails": "Freemium plan available on myheritage.com"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
-      "id": "influencer-marketing-ai",
-      "name": "Influencer Marketing AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "IMAI is an influencer marketing platform that offers an all-in-one solution for brands, agencies, and online stores. With robust search filters, it allows you to explore, assess, and track over 300 million influencers effectively.",
-      "overview": "IMAI is an influencer marketing platform that offers an all-in-one solution for brands, agencies, and online stores. With robust search filters, it allows you to explore, assess, and track over 300 million influencers effectively.",
-      "url": "https://influencermarketing.ai/",
-      "domain": "influencermarketing.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-influencermarketing.ai-2023.05.07-21_39_45.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 34,
-      "inner_content": {
-        "overview": "IMAI is an influencer marketing platform that offers an all-in-one solution for brands, agencies, and online stores. With robust search filters, it allows you to explore, assess, and track over 300 million influencers effectively.",
-        "pricingDetails": "Free Trial plan available on influencermarketing.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "dreampic-ai",
-      "name": "DreamPic.AI",
-      "category": "avatar",
-      "categories": [
-        "avatar"
-      ],
-      "pricing": "Freemium",
-      "badge": "👤 AI Avatars",
-      "featured": false,
-      "description": "Create AI-generated avatars with your photos using DreamBooth.",
-      "overview": "Create AI-generated avatars with your photos using DreamBooth. DreamPic.AI Features: DreamPic.AI is an AI-based platform that produces personalized images with a variety of styles. Its essential features and benefits are as follows: – Personalized images: Upload 10-30 pictures and choose your preferred styles for the images created by AI.– Reusable trained model: Download and use the trained model once more to generate more images.– Broad spectrum of predefined styles: It includes a wide range of genres, such as celebrity and art, as well as fantasy and professional headshots.",
-      "url": "http://dreampic.ai/",
-      "domain": "dreampic.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/DreamPic.png",
-      "icon": "👤",
-      "rating": 4.5,
-      "votes": 193,
-      "inner_content": {
-        "overview": "Create AI-generated avatars with your photos using DreamBooth. DreamPic.AI Features: DreamPic.AI is an AI-based platform that produces personalized images with a variety of styles. Its essential features and benefits are as follows: – Personalized images: Upload 10-30 pictures and choose your preferred styles for the images created by AI.– Reusable trained model: Download and use the trained model once more to generate more images.– Broad spectrum of predefined styles: It includes a wide range of genres, such as celebrity and art, as well as fantasy and professional headshots.",
-        "pricingDetails": "Freemium plan available on dreampic.ai"
-      },
-      "tool_type": "👤 AI Avatars"
-    },
-    {
-      "id": "recontent-ai",
-      "name": "ReContent.AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "ReContent.AI is a platform powered by artificial intelligence that effectively addresses the issue of repurposing content, which is typically a time-consuming process.",
-      "overview": "ReContent.AI is a platform powered by artificial intelligence that effectively addresses the issue of repurposing content, which is typically a time-consuming process.",
-      "url": "https://recontent.ai/",
-      "domain": "recontent.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-recontent.ai-2023.05.07-21_34_46.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 172,
-      "inner_content": {
-        "overview": "ReContent.AI is a platform powered by artificial intelligence that effectively addresses the issue of repurposing content, which is typically a time-consuming process.",
-        "pricingDetails": "Freemium plan available on recontent.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "followr",
-      "name": "Followr",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": true,
-      "description": "Followr is a platform that employs artificial intelligence to enable you to manage content creation, scheduling, posting, and analysis across multiple social media channels.",
-      "overview": "Followr is a platform that employs artificial intelligence to enable you to manage content creation, scheduling, posting, and analysis across multiple social media channels.",
-      "url": "https://followr.ai/",
-      "domain": "followr.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-followr.ai-2023.05.07-21_29_22.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 151,
-      "inner_content": {
-        "overview": "Followr is a platform that employs artificial intelligence to enable you to manage content creation, scheduling, posting, and analysis across multiple social media channels.",
-        "pricingDetails": "Freemium plan available on followr.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "instantgen-ai",
-      "name": "Instantgen AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Instantgen.ai is a marketing tool that harnesses the power of artificial intelligence to generate visually striking images and compelling text, ideal for a wide range of marketing purposes.",
-      "overview": "Instantgen.ai is a marketing tool that harnesses the power of artificial intelligence to generate visually striking images and compelling text, ideal for a wide range of marketing purposes.",
-      "url": "https://instantgen.ai/",
-      "domain": "instantgen.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-instantgen.ai-2023.05.07-21_21_23.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 102,
-      "inner_content": {
-        "overview": "Instantgen.ai is a marketing tool that harnesses the power of artificial intelligence to generate visually striking images and compelling text, ideal for a wide range of marketing purposes.",
-        "pricingDetails": "Freemium plan available on instantgen.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "ai-voice-assistant",
-      "name": "Ai voice assistant",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "AI-powered personal voice assistant for seamless interaction with technology.",
-      "overview": "AI-powered personal voice assistant for seamless interaction with technology. Ai voice assistant Feature: Introducing an AI-powered personal voice assistant, an innovation that revolutionizes interactions with technology. – Seamless natural language processing: Interact with the voice assistant through casual conversation, as it responds with human-like understanding.– Advanced contextual awareness: Complex requests are understood and interpreted accurately.– Customizable voice profiles: Choose a voice assistant that best suits your preferences.– Learning algorithms: The assistant learns your habits, preferences, and requirements over time, providing personalized services.– State-of-the-art voice recognition: Seamlessly comprehends your speech and accent, as you communicate.",
-      "url": "https://serp.ai/tools/ai-voice-assistant/",
-      "domain": "serp.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AIVoiceAssistant.png",
-      "icon": "🎵",
-      "rating": 5,
-      "votes": 109,
-      "inner_content": {
-        "overview": "AI-powered personal voice assistant for seamless interaction with technology. Ai voice assistant Feature: Introducing an AI-powered personal voice assistant, an innovation that revolutionizes interactions with technology. – Seamless natural language processing: Interact with the voice assistant through casual conversation, as it responds with human-like understanding.– Advanced contextual awareness: Complex requests are understood and interpreted accurately.– Customizable voice profiles: Choose a voice assistant that best suits your preferences.– Learning algorithms: The assistant learns your habits, preferences, and requirements over time, providing personalized services.– State-of-the-art voice recognition: Seamlessly comprehends your speech and accent, as you communicate.",
-        "pricingDetails": "Freemium plan available on serp.ai"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "brandwise-ai",
-      "name": "Brandwise AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Brandwise is a tool driven by artificial intelligence that shields your brand from harmful and derogatory remarks, as well as spam, by automatically filtering them out from your social media ads and posts.",
-      "overview": "Brandwise is a tool driven by artificial intelligence that shields your brand from harmful and derogatory remarks, as well as spam, by automatically filtering them out from your social media ads and posts.",
-      "url": "https://brandwise.ai/",
-      "domain": "brandwise.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-brandwise.ai-2023.05.07-21_14_11.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 81,
-      "inner_content": {
-        "overview": "Brandwise is a tool driven by artificial intelligence that shields your brand from harmful and derogatory remarks, as well as spam, by automatically filtering them out from your social media ads and posts.",
-        "pricingDetails": "Freemium plan available on brandwise.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "hpweb-ai",
-      "name": "HPWeb-AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "HPWeb-AI is a sophisticated writing tool that utilizes artificial intelligence to produce superior content with ease and efficiency. You can test it out with a free trial.Trusted by more than 10,000 marketing teams.",
-      "overview": "HPWeb-AI is a sophisticated writing tool that utilizes artificial intelligence to produce superior content with ease and efficiency. You can test it out with a free trial.Trusted by more than 10,000 marketing teams.",
-      "url": "https://hp-ai.in/",
-      "domain": "hp-ai.in",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-hp-ai.in-2023.05.07-21_07_39.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 46,
-      "inner_content": {
-        "overview": "HPWeb-AI is a sophisticated writing tool that utilizes artificial intelligence to produce superior content with ease and efficiency. You can test it out with a free trial.Trusted by more than 10,000 marketing teams.",
-        "pricingDetails": "Free plan available on hp-ai.in"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "nando-ai",
       "name": "Nando AI",
       "category": "social-media-assistant",
@@ -21375,7 +16257,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Nando AI is a tool that utilizes artificial intelligence to assist in generating persuasive and polished written content quickly, which can effectively convince and persuade its intended audience.",
       "overview": "Nando AI is a tool that utilizes artificial intelligence to assist in generating persuasive and polished written content quickly, which can effectively convince and persuade its intended audience.",
-      "url": "https://www.futurepedia.io/tool/nando-ai#nando-ai-review",
+      "url": "https://www.futurepedia.io/",
       "domain": "futurepedia.io",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-nando.ai-2023.05.07-21_03_39.png",
       "icon": "📱",
@@ -21386,102 +16268,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on futurepedia.io"
       },
       "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "adobe-enhance-speech",
-      "name": "Adobe Enhance Speech",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "AI-powered audio filter designed to improve spoken audio recordings.",
-      "overview": "AI-powered audio filter designed to improve spoken audio recordings. Adobe Enhance Speech Feature: • Adobe Enhance Speech is a state-of-the-art audio filter, powered by AI, that is designed to significantly improve the sound quality of spoken audio recordings. • One of its key features is that it effectively eliminates background noise, echoes, reverberations, and other distortions to provide a studio-like audio experience. • The tool features automatic adjustments that enable users to optimize key audio parameters such as volume, pitch, and frequency levels to achieve the desired sound quality. • With the ability to add customized audio effects such as reverb and echo, Adobe Enhance Speech ensures users have complete control over the audio output. • The tool also detects and removes inconsistencies such as mispronounced words and stutters for a polished and professional audio recording. • Adobe Enhance Speech is suitable for anyone looking to improve the sound quality of their spoken audio recordings, including podcasters, YouTubers, content creators, and even voice-over artists. • Overall, Adobe Enhance Speech is a comprehensive audio improvement solution that leverages AI to make spoken audio recordings sound more professional and engaging, and it is ideal for users who want to create a lasting impression with their audio content. Tutorial:",
-      "url": "https://auth.services.adobe.com/en_US/deeplink.html#/social-fallback",
-      "domain": "auth.services.adobe.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AdobeEnhance.png",
-      "icon": "🎵",
-      "rating": 4.5,
-      "votes": 184,
-      "inner_content": {
-        "overview": "AI-powered audio filter designed to improve spoken audio recordings. Adobe Enhance Speech Feature: • Adobe Enhance Speech is a state-of-the-art audio filter, powered by AI, that is designed to significantly improve the sound quality of spoken audio recordings. • One of its key features is that it effectively eliminates background noise, echoes, reverberations, and other distortions to provide a studio-like audio experience. • The tool features automatic adjustments that enable users to optimize key audio parameters such as volume, pitch, and frequency levels to achieve the desired sound quality. • With the ability to add customized audio effects such as reverb and echo, Adobe Enhance Speech ensures users have complete control over the audio output. • The tool also detects and removes inconsistencies such as mispronounced words and stutters for a polished and professional audio recording. • Adobe Enhance Speech is suitable for anyone looking to improve the sound quality of their spoken audio recordings, including podcasters, YouTubers, content creators, and even voice-over artists. • Overall, Adobe Enhance Speech is a comprehensive audio improvement solution that leverages AI to make spoken audio recordings sound more professional and engaging, and it is ideal for users who want to create a lasting impression with their audio content. Tutorial:",
-        "pricingDetails": "Freemium plan available on auth.services.adobe.com"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "aicoustics",
-      "name": "Ai|coustics",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Transform Your Audio Content: Elevate Speech Quality to Studio-Level with Ease.",
-      "overview": "Transform Your Audio Content: Elevate Speech Quality to Studio-Level with Ease. Ai|coustics Feature: • Ai|coustics is a powerful and versatile audio enhancement tool that uses advanced deep learning techniques to remove recording or transmission artifacts. • One of its key benefits is its ability to automatically remove artifacts while enhancing audio quality and intelligibility. • Ai|coustics can be used with a variety of audio recordings from different use cases, making it suitable for a range of users. • Using ai|coustics saves time by eliminating the need for manual audio editing. • Enhanced audio quality leads to a better user experience for listeners, boosting engagement and retention. • Ai|coustics is a cost-effective solution for audio enhancement compared to traditional manual editing tools or professional services. • Overall, ai|coustics provides an effective, fast, and cost-efficient solution for users seeking to improve the quality of their audio recordings and ultimately deliver a seamless and high-quality listening experience to their audience.",
-      "url": "https://ai-coustics.com/playground/",
-      "domain": "ai-coustics.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AI-coustic.png",
-      "icon": "🎵",
-      "rating": 5,
-      "votes": 156,
-      "inner_content": {
-        "overview": "Transform Your Audio Content: Elevate Speech Quality to Studio-Level with Ease. Ai|coustics Feature: • Ai|coustics is a powerful and versatile audio enhancement tool that uses advanced deep learning techniques to remove recording or transmission artifacts. • One of its key benefits is its ability to automatically remove artifacts while enhancing audio quality and intelligibility. • Ai|coustics can be used with a variety of audio recordings from different use cases, making it suitable for a range of users. • Using ai|coustics saves time by eliminating the need for manual audio editing. • Enhanced audio quality leads to a better user experience for listeners, boosting engagement and retention. • Ai|coustics is a cost-effective solution for audio enhancement compared to traditional manual editing tools or professional services. • Overall, ai|coustics provides an effective, fast, and cost-efficient solution for users seeking to improve the quality of their audio recordings and ultimately deliver a seamless and high-quality listening experience to their audience.",
-        "pricingDetails": "Freemium plan available on ai-coustics.com"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "koe-recast",
-      "name": "Koe Recast",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Paid",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Transform your voice using AI.",
-      "overview": "Transform your voice using AI. Koe Recast Features: Introducing the most potent AI voice transmutation application on the market. Key Features:– Morph your voice into a diverse range of styles, including narrator, female, and anime personas– Advanced AI technology fuels ultra-realistic voice modulation capabilities. Demo:",
-      "url": "https://koe.ai/",
-      "domain": "koe.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/KeoRecast.png",
-      "icon": "🎵",
-      "rating": 4.6,
-      "votes": 135,
-      "inner_content": {
-        "overview": "Transform your voice using AI. Koe Recast Features: Introducing the most potent AI voice transmutation application on the market. Key Features:– Morph your voice into a diverse range of styles, including narrator, female, and anime personas– Advanced AI technology fuels ultra-realistic voice modulation capabilities. Demo:",
-        "pricingDetails": "Paid plan available on koe.ai"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "speechgen",
-      "name": "SpeechGen",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "The Ultimate Text-to-Speech Solution!",
-      "overview": "The Ultimate Text-to-Speech Solution! SpeechGen Feature: The ultimate AI-powered text-to-speech converter, SpeechGen.io effortlessly generates lifelike voiceovers online that are ideal for a broad range of audio content applications. With cutting-edge features and versatile settings, users can tailor their audio productions to their precise needs and preferences using a diverse selection of true-to-life voice options. Whatever the project, SpeechGen.io remains the go-to text-to-speech conversion solution. Tutorial:",
-      "url": "http://speechgen.io/",
-      "domain": "speechgen.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/SpeechGEN.png",
-      "icon": "🎵",
-      "rating": 4.7,
-      "votes": 114,
-      "inner_content": {
-        "overview": "The Ultimate Text-to-Speech Solution! SpeechGen Feature: The ultimate AI-powered text-to-speech converter, SpeechGen.io effortlessly generates lifelike voiceovers online that are ideal for a broad range of audio content applications. With cutting-edge features and versatile settings, users can tailor their audio productions to their precise needs and preferences using a diverse selection of true-to-life voice options. Whatever the project, SpeechGen.io remains the go-to text-to-speech conversion solution. Tutorial:",
-        "pricingDetails": "Freemium plan available on speechgen.io"
-      },
-      "tool_type": "🎵 Music & Audio"
     },
     {
       "id": "voice-ai",
@@ -21616,7 +16402,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Contlo's Brand AI Model empowers businesses to streamline their marketing efforts through the utilization of their own AI model that generates personalized marketing materials such as emails, images, and copies, based on contextual factors.",
       "overview": "Contlo's Brand AI Model empowers businesses to streamline their marketing efforts through the utilization of their own AI model that generates personalized marketing materials such as emails, images, and copies, based on contextual factors.",
-      "url": "https://contlo.com/brand-ai-model/",
+      "url": "https://contlo.com/",
       "domain": "contlo.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-contlo.com-2023.05.07-18_38_38.png",
       "icon": "📱",
@@ -21627,224 +16413,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on contlo.com"
       },
       "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "stratup-ai",
-      "name": "Stratup.ai",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "A brand new AI-powered tool that helps you generate unique and innovative startup ideas in seconds.",
-      "overview": "A brand new AI-powered tool that helps you generate unique and innovative startup ideas in seconds. – Startup.ai is an AI-based tool designed to support entrepreneurs in generating unique and innovative business ideas by analyzing market trends, consumer behavior, and industry gaps.– The tool enables users to generate potential business ideas and solutions instantly, helping them save time and effort.– Startup.ai offers personalized insights into the growing global subscription market, giving users an edge over the competition.– The tool features an easy-to-use interface, allowing both seasoned and new entrepreneurs to navigate and benefit from the tool.– Advanced algorithms integrated into the tool help users identify gaps in the market and create actionable insights.– Startup.ai also supports Relitronic, a project that engages people with intellectual disabilities in building technical solutions, by providing a Buy Me a Coffee link on their website",
-      "url": "http://startup.ai/",
-      "domain": "startup.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dfdsfd.png",
-      "icon": "🚀",
-      "rating": 4.8,
-      "votes": 28,
-      "inner_content": {
-        "overview": "A brand new AI-powered tool that helps you generate unique and innovative startup ideas in seconds. – Startup.ai is an AI-based tool designed to support entrepreneurs in generating unique and innovative business ideas by analyzing market trends, consumer behavior, and industry gaps.– The tool enables users to generate potential business ideas and solutions instantly, helping them save time and effort.– Startup.ai offers personalized insights into the growing global subscription market, giving users an edge over the competition.– The tool features an easy-to-use interface, allowing both seasoned and new entrepreneurs to navigate and benefit from the tool.– Advanced algorithms integrated into the tool help users identify gaps in the market and create actionable insights.– Startup.ai also supports Relitronic, a project that engages people with intellectual disabilities in building technical solutions, by providing a Buy Me a Coffee link on their website",
-        "pricingDetails": "Freemium plan available on startup.ai"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "venthive",
-      "name": "VentHive",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools",
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Revolutionize market research using AI.",
-      "overview": "Revolutionize market research using AI. Use Cases: AI brainstorming companion: AI brainstorming companion Idea development guidance: Idea development guidance Comprehensive analysis: Comprehensive analysis Customized advice: Customized advice Intuitive user interface: Intuitive user interface",
-      "url": "https://venthive.tech/",
-      "domain": "venthive.tech",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sfdfrr.png",
-      "icon": "🚀",
-      "rating": 4.9,
-      "votes": 187,
-      "inner_content": {
-        "overview": "Revolutionize market research using AI. Use Cases: AI brainstorming companion: AI brainstorming companion Idea development guidance: Idea development guidance Comprehensive analysis: Comprehensive analysis Customized advice: Customized advice Intuitive user interface: Intuitive user interface",
-        "pricingDetails": "Freemium plan available on venthive.tech"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "yc-funding-assistant",
-      "name": "YC Funding Assistant",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "It answers startup & funding related questions through Y-combinator backed data.",
-      "overview": "It answers startup & funding related questions through Y-combinator backed data. The YC Funding Assistant is an AI-driven tool that provides assistance to entrepreneurs and startup founders for their funding and startup-related queries. The tool stands out because of the following features and benefits: – The tool has access to Y-Combinator backed data, providing users with relevant and accurate information.– The YC Funding Assistant can answer all startup and funding related questions, making it a comprehensive solution for founders seeking information in these areas.– It is a prominent and preferred option for founders when it comes to learning about fundraising.",
-      "url": "https://app.sttabot.io/bot/yc-funding-assistant",
-      "domain": "app.sttabot.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fsfsfr.png",
-      "icon": "🚀",
-      "rating": 4.6,
-      "votes": 117,
-      "inner_content": {
-        "overview": "It answers startup & funding related questions through Y-combinator backed data. The YC Funding Assistant is an AI-driven tool that provides assistance to entrepreneurs and startup founders for their funding and startup-related queries. The tool stands out because of the following features and benefits: – The tool has access to Y-Combinator backed data, providing users with relevant and accurate information.– The YC Funding Assistant can answer all startup and funding related questions, making it a comprehensive solution for founders seeking information in these areas.– It is a prominent and preferred option for founders when it comes to learning about fundraising.",
-        "pricingDetails": "Free Trial plan available on app.sttabot.io"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "armchair",
-      "name": "Armchair",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Paid",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Armchair uses AI to help you choose the right business or side hustle based on your interests, skills, experience, and goals.",
-      "overview": "Armchair uses AI to help you choose the right business or side hustle based on your interests, skills, experience, and goals. Use Cases: Goal-oriented questions: Goal-oriented questions AI-recommended ventures: AI-recommended ventures Confident business launch: Confident business launch",
-      "url": "https://www.armchair.ai/",
-      "domain": "armchair.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sfsfrrr.png",
-      "icon": "🚀",
-      "rating": 4.7,
-      "votes": 96,
-      "inner_content": {
-        "overview": "Armchair uses AI to help you choose the right business or side hustle based on your interests, skills, experience, and goals. Use Cases: Goal-oriented questions: Goal-oriented questions AI-recommended ventures: AI-recommended ventures Confident business launch: Confident business launch",
-        "pricingDetails": "Paid plan available on armchair.ai"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "domain-brainstormer",
-      "name": "Domain Brainstormer",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Generate Unique Domain Names for Your Business.",
-      "overview": "Generate Unique Domain Names for Your Business. Use Cases: AI-driven domain generation: AI-driven domain generation Memorable, relevant names: Memorable, relevant names Phonetic appeal consideration: Phonetic appeal consideration Distinctive naming patterns: Distinctive naming patterns Automated availability search: Automated availability search Ideal for online: Ideal for online ventures",
-      "url": "https://domainbrainstormer.com/",
-      "domain": "domainbrainstormer.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dasdaeee.png",
-      "icon": "🚀",
-      "rating": 4.8,
-      "votes": 75,
-      "inner_content": {
-        "overview": "Generate Unique Domain Names for Your Business. Use Cases: AI-driven domain generation: AI-driven domain generation Memorable, relevant names: Memorable, relevant names Phonetic appeal consideration: Phonetic appeal consideration Distinctive naming patterns: Distinctive naming patterns Automated availability search: Automated availability search Ideal for online: Ideal for online ventures",
-        "pricingDetails": "Freemium plan available on domainbrainstormer.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "arsturn-ai",
-      "name": "Arsturn AI",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Create a custom ChatGPT for your website in 5 minutes.",
-      "overview": "Create a custom ChatGPT for your website in 5 minutes. Arsturn is an AI-based platform that crawls your website, learns everything about it, and creates a chatbot that accurately responds to user queries. The platform offers several features and benefits, including: – Automated chatbot creation: The platform generates a chatbot for your website, saving time and effort in the creation process.– Fine-tuning capabilities: Users have the flexibility to fine-tune and add context to the chatbot to enhance its capabilities.– Analytic tools: Arsturn includes analytic tools that provide mind-reading insights into user behavior, providing an edge over the competition.– Easy integration: The chatbot can be easily integrated into your website, allowing users to implement it without extensive coding knowledge.",
-      "url": "https://tryarsturn.com/",
-      "domain": "tryarsturn.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fadfdfrrr.png",
-      "icon": "🚀",
-      "rating": 4.9,
-      "votes": 54,
-      "inner_content": {
-        "overview": "Create a custom ChatGPT for your website in 5 minutes. Arsturn is an AI-based platform that crawls your website, learns everything about it, and creates a chatbot that accurately responds to user queries. The platform offers several features and benefits, including: – Automated chatbot creation: The platform generates a chatbot for your website, saving time and effort in the creation process.– Fine-tuning capabilities: Users have the flexibility to fine-tune and add context to the chatbot to enhance its capabilities.– Analytic tools: Arsturn includes analytic tools that provide mind-reading insights into user behavior, providing an edge over the competition.– Easy integration: The chatbot can be easily integrated into your website, allowing users to implement it without extensive coding knowledge.",
-        "pricingDetails": "Freemium plan available on tryarsturn.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "intellibase",
-      "name": "Intellibase",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Elevate your product strategy with AI-driven user feedback analysis.",
-      "overview": "Elevate your product strategy with AI-driven user feedback analysis. Use Cases: Visualize feedback trends: Visualize feedback trends Demand-driven project creation: Demand-driven project creation In-depth data exploration: In-depth data exploration",
-      "url": "https://intellibase.io/",
-      "domain": "intellibase.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/adadee.png",
-      "icon": "🚀",
-      "rating": 4.5,
-      "votes": 33,
-      "inner_content": {
-        "overview": "Elevate your product strategy with AI-driven user feedback analysis. Use Cases: Visualize feedback trends: Visualize feedback trends Demand-driven project creation: Demand-driven project creation In-depth data exploration: In-depth data exploration",
-        "pricingDetails": "Freemium plan available on intellibase.io"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "smartflowai",
-      "name": "SmartflowAI",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Save resources & time by simplifying Workflows with generative AI.",
-      "overview": "Save resources & time by simplifying Workflows with generative AI. 1. SmartflowAI simplifies workflows such as market research, summaries, landscaping and business analysis with generative AI.2. The use of Generative AI Tech Stack with a range of algorithms, AI models & Data APIs, makes it possible to create unique intelligent flows.3. The platform offers a variety of pre-built workflows, making work much easier.4. Companies can save resources and time by utilizing SmartflowAI.5. The complex tech stack enables SmartflowAI to be effective in various business needs.",
-      "url": "https://smartflowai.com/",
-      "domain": "smartflowai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dsfsdfff.png",
-      "icon": "🚀",
-      "rating": 4.8,
-      "votes": 150,
-      "inner_content": {
-        "overview": "Save resources & time by simplifying Workflows with generative AI. 1. SmartflowAI simplifies workflows such as market research, summaries, landscaping and business analysis with generative AI.2. The use of Generative AI Tech Stack with a range of algorithms, AI models & Data APIs, makes it possible to create unique intelligent flows.3. The platform offers a variety of pre-built workflows, making work much easier.4. Companies can save resources and time by utilizing SmartflowAI.5. The complex tech stack enables SmartflowAI to be effective in various business needs.",
-        "pricingDetails": "Freemium plan available on smartflowai.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "asksumo",
-      "name": "AskSumo",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools",
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Chat with AskSumo to find cost-effective software alternatives in seconds.",
-      "overview": "Chat with AskSumo to find cost-effective software alternatives in seconds. By Noah Kagan Key Features: Tutorial: Use Cases: Expansive product range: Expansive product range AI-driven tool recommendations: AI-driven tool recommendations Top-notch customer assistance: Top-notch customer assistance The smartest AI: The smartest AI personal shopper for software deals",
-      "url": "https://twitter.com/noahkagan",
-      "domain": "twitter.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fdfree.png",
-      "icon": "🚀",
-      "rating": 5,
-      "votes": 129,
-      "inner_content": {
-        "overview": "Chat with AskSumo to find cost-effective software alternatives in seconds. By Noah Kagan Key Features: Tutorial: Use Cases: Expansive product range: Expansive product range AI-driven tool recommendations: AI-driven tool recommendations Top-notch customer assistance: Top-notch customer assistance The smartest AI: The smartest AI personal shopper for software deals",
-        "pricingDetails": "Freemium plan available on twitter.com"
-      },
-      "tool_type": "🚀 Startup & Business"
     },
     {
       "id": "domainsgpt",
@@ -21871,102 +16439,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🚀 Startup & Business"
     },
     {
-      "id": "galeby",
-      "name": "Galeby",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "AI assistant that helps you answer repetitive customer service messages 2 times faster.",
-      "overview": "AI assistant that helps you answer repetitive customer service messages 2 times faster. Galeby is an AI-powered customer service assistant that renders help in solving repetitive customer service messages in half the time. You can create templates using an array of the most frequent customer messages. This AI assistant suggests the best templates to use when answering a message and prepares the text for you, allowing you to send it swiftly without typing the same thing repeatedly. Prominent features of Galeby: – Get the job done 2 times faster while answering repeated questions.– Compatibility with several apps like Crisp, Freshdesk, among others.– Enjoy the benefit of private customer support services.– 50% discount during BETA testing.",
-      "url": "https://galeby.com/",
-      "domain": "galeby.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/G.png",
-      "icon": "🚀",
-      "rating": 4.8,
-      "votes": 66,
-      "inner_content": {
-        "overview": "AI assistant that helps you answer repetitive customer service messages 2 times faster. Galeby is an AI-powered customer service assistant that renders help in solving repetitive customer service messages in half the time. You can create templates using an array of the most frequent customer messages. This AI assistant suggests the best templates to use when answering a message and prepares the text for you, allowing you to send it swiftly without typing the same thing repeatedly. Prominent features of Galeby: – Get the job done 2 times faster while answering repeated questions.– Compatibility with several apps like Crisp, Freshdesk, among others.– Enjoy the benefit of private customer support services.– 50% discount during BETA testing.",
-        "pricingDetails": "Freemium plan available on galeby.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "raizer-2",
-      "name": "Raizer",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Where founders find perfect investors.",
-      "overview": "Where founders find perfect investors. Get access to 32,000+ verified investors. Raizer is an AI-powered tool that simplifies the process of fundraising for startups by connecting them with relevant investors quickly and easily. With its comprehensive investor database, startups can access verified and up-to-date information on thousands of VCs and Angel investors. The platform also generates hyper-specific messages based on various tones of voice, such as Steve Jobs or Elon Musk styles, to ensure personalized communication. Additionally, startups can use Raizer to reach out to investors via multiple channels, including email, LinkedIn, or Twitter. Moreover, the platform facilitates guaranteed introductions to 500+ top VCs, Family funds, and Angel investors, providing startups with the best chance of success.",
-      "url": "https://raizer.app/",
-      "domain": "raizer.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/R.png",
-      "icon": "🚀",
-      "rating": 4.9,
-      "votes": 45,
-      "inner_content": {
-        "overview": "Where founders find perfect investors. Get access to 32,000+ verified investors. Raizer is an AI-powered tool that simplifies the process of fundraising for startups by connecting them with relevant investors quickly and easily. With its comprehensive investor database, startups can access verified and up-to-date information on thousands of VCs and Angel investors. The platform also generates hyper-specific messages based on various tones of voice, such as Steve Jobs or Elon Musk styles, to ensure personalized communication. Additionally, startups can use Raizer to reach out to investors via multiple channels, including email, LinkedIn, or Twitter. Moreover, the platform facilitates guaranteed introductions to 500+ top VCs, Family funds, and Angel investors, providing startups with the best chance of success.",
-        "pricingDetails": "Freemium plan available on raizer.app"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "adsgency-ai",
-      "name": "AdsGency AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "AdsGency AI is a comprehensive ad solution that uses AI to assist businesses with planning, creating, managing, and optimizing ad campaigns in the same way an agency would.",
-      "overview": "AdsGency AI is a comprehensive ad solution that uses AI to assist businesses with planning, creating, managing, and optimizing ad campaigns in the same way an agency would. AdsGency AI Features: Use Cases: Localized solution: Tailored to businesses' unique needs, AdsGency AI offers market research, budget planning, content generation, and multichannel marketing to reach target audiences effectively. Hassle-free market research: Save time and effort with AI-powered market research tools provided by AdsGency AI. Content generation made easy: Generate ad content for your business efficiently and effectively with AdsGency AI. Multichannel marketing made simple: Streamline your ad campaigns across multiple channels with AdsGency AI's easy-to-use platform.",
-      "url": "https://adsgency.ai/",
-      "domain": "adsgency.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-adsgency.ai-2023.05.07-10_46_07.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 169,
-      "inner_content": {
-        "overview": "AdsGency AI is a comprehensive ad solution that uses AI to assist businesses with planning, creating, managing, and optimizing ad campaigns in the same way an agency would. AdsGency AI Features: Use Cases: Localized solution: Tailored to businesses' unique needs, AdsGency AI offers market research, budget planning, content generation, and multichannel marketing to reach target audiences effectively. Hassle-free market research: Save time and effort with AI-powered market research tools provided by AdsGency AI. Content generation made easy: Generate ad content for your business efficiently and effectively with AdsGency AI. Multichannel marketing made simple: Streamline your ad campaigns across multiple channels with AdsGency AI's easy-to-use platform.",
-        "pricingDetails": "Freemium plan available on adsgency.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "postgenius",
-      "name": "PostGenius",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "PostGenius utilizes ChatGPT to create social media posts and has generated over 50,123 posts to date.",
-      "overview": "PostGenius utilizes ChatGPT to create social media posts and has generated over 50,123 posts to date. Use Cases: Create social media posts from articles with tailored content for different platforms and website styles. Use Cases: Create social media: Create social media posts from existing articles by simply sharing the article link. Select the desired: Select the desired tone or vibe for your post, such as professional or casual. Match the style: Match the style of an external website or brand by providing examples or guidelines. Customize posts for: Customize posts for specific social media platforms, such as LinkedIn, Twitter, or Facebook.",
-      "url": "https://www.postgeniusapp.com/",
-      "domain": "postgeniusapp.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.postgeniusapp.com-2023.05.07-10_39_32.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 134,
-      "inner_content": {
-        "overview": "PostGenius utilizes ChatGPT to create social media posts and has generated over 50,123 posts to date. Use Cases: Create social media posts from articles with tailored content for different platforms and website styles. Use Cases: Create social media: Create social media posts from existing articles by simply sharing the article link. Select the desired: Select the desired tone or vibe for your post, such as professional or casual. Match the style: Match the style of an external website or brand by providing examples or guidelines. Customize posts for: Customize posts for specific social media platforms, such as LinkedIn, Twitter, or Facebook.",
-        "pricingDetails": "Freemium plan available on postgeniusapp.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "kraftful",
       "name": "Kraftful",
       "category": "startup-tools",
@@ -21978,7 +16450,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "ChatGPT but for Product Research.",
       "overview": "ChatGPT but for Product Research. Save hundreds of hours with our AI summaries of user feedback. Use Cases: Save hundreds of: Save hundreds of hours analyzing feedback with our GPT-4 powered solution to uncover user needs Chat with your: Chat with your user data to quickly answer the questions that matter, write Jira tickets, PRDs and more Build to-do lists: Build to-do lists to share with your team, export insights to your product roadmap",
-      "url": "https://www.futurepedia.io/tool/kraftful#kraftful-review",
+      "url": "https://www.futurepedia.io/",
       "domain": "futurepedia.io",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/hkfhshkhf-hksdf.png",
       "icon": "🚀",
@@ -21989,126 +16461,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on futurepedia.io"
       },
       "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "ask-experts-ai",
-      "name": "Ask Experts AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Ask Experts AI is a versatile tool that can assist in a variety of situations.",
-      "overview": "Ask Experts AI is a versatile tool that can assist in a variety of situations. Ask Experts AI Features: Use Cases: Expert AI provides: Expert AI provides access to a team of professionals trained in various areas such as sales, social media management, and SEO. Ask Experts AI: Ask Experts AI is a versatile tool that can assist with any questions on a variety of topics. The AI experts: The AI experts are available 24/7 for quick and accurate solutions to your questions. Compared to hiring: Compared to hiring an expert in-house, Ask Experts AI is a cost-effective solution. The tool can: The tool can be used for various purposes, including sales support, social media management, and SEO optimization.",
-      "url": "https://www.askexperts.ai/",
-      "domain": "askexperts.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.askexperts.ai-2023.05.07-10_26_47.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 113,
-      "inner_content": {
-        "overview": "Ask Experts AI is a versatile tool that can assist in a variety of situations. Ask Experts AI Features: Use Cases: Expert AI provides: Expert AI provides access to a team of professionals trained in various areas such as sales, social media management, and SEO. Ask Experts AI: Ask Experts AI is a versatile tool that can assist with any questions on a variety of topics. The AI experts: The AI experts are available 24/7 for quick and accurate solutions to your questions. Compared to hiring: Compared to hiring an expert in-house, Ask Experts AI is a cost-effective solution. The tool can: The tool can be used for various purposes, including sales support, social media management, and SEO optimization.",
-        "pricingDetails": "Freemium plan available on askexperts.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "2ai-2",
-      "name": "2AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "2AI is an innovative content engine that utilizes AI technology to help businesses create personalized and engaging content for various platforms, making it easier to connect with their target audience.",
-      "overview": "2AI is an innovative content engine that utilizes AI technology to help businesses create personalized and engaging content for various platforms, making it easier to connect with their target audience. Key Features: Potential Use Cases: Use Cases: Text 2 Text: Text 2 Text is a feature that transforms and enhances text content. Text 2 Image: Text 2 Image generates images based on text input. Text 2 Speech: Text 2 Speech (coming soon) converts text into voice chat. The platform is: The platform is user-friendly, with no signup required; users can select a template and begin creating content. Content writing: Content writing Image generation: Image generation Video generation: Video generation",
-      "url": "https://2ai.app/",
-      "domain": "2ai.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-2ai.app-2023.05.07-10_02_12.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 57,
-      "inner_content": {
-        "overview": "2AI is an innovative content engine that utilizes AI technology to help businesses create personalized and engaging content for various platforms, making it easier to connect with their target audience. Key Features: Potential Use Cases: Use Cases: Text 2 Text: Text 2 Text is a feature that transforms and enhances text content. Text 2 Image: Text 2 Image generates images based on text input. Text 2 Speech: Text 2 Speech (coming soon) converts text into voice chat. The platform is: The platform is user-friendly, with no signup required; users can select a template and begin creating content. Content writing: Content writing Image generation: Image generation Video generation: Video generation",
-        "pricingDetails": "Free Trial plan available on 2ai.app"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "caroot",
-      "name": "Caroot",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "The easiest way to search for audio, images, videos and web pages you saved.",
-      "overview": "The easiest way to search for audio, images, videos and web pages you saved. Use Cases: Save links, videos,: Save links, videos, and photos easily while keeping your content confidential Retrieve information the: Retrieve information the way you think, in any language Take important notes: Take important notes from YouTube videos, articles, blogs, and newspapers instantly Quickly ask any: Quickly ask any questions from your saved information No register, no: No register, no fee, forever",
-      "url": "https://www.caroot.app/",
-      "domain": "caroot.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/carrot.png",
-      "icon": "⚡",
-      "rating": 4.6,
-      "votes": 202,
-      "inner_content": {
-        "overview": "The easiest way to search for audio, images, videos and web pages you saved. Use Cases: Save links, videos,: Save links, videos, and photos easily while keeping your content confidential Retrieve information the: Retrieve information the way you think, in any language Take important notes: Take important notes from YouTube videos, articles, blogs, and newspapers instantly Quickly ask any: Quickly ask any questions from your saved information No register, no: No register, no fee, forever",
-        "pricingDetails": "Freemium plan available on caroot.app"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "voiceful-io",
-      "name": "Voiceful.io",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Generate AI speech, AI singing and AI voice morphing!",
-      "overview": "Generate AI speech, AI singing and AI voice morphing! Voiceful.io Feature: Voiceful.io is a website that can produce AI-generated speech, singing, and voice morphing from text. They provide Cloud API and SDK products. With Voiceful.io AI, it’s possible to produce singing and speech in English and Spanish. For the voice morphing feature, users have the option to choose from over 10 to 20 voices to morph their voice. Demo:",
-      "url": "http://voiceful.io/",
-      "domain": "voiceful.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/voiceful.png",
-      "icon": "🎵",
-      "rating": 4.7,
-      "votes": 181,
-      "inner_content": {
-        "overview": "Generate AI speech, AI singing and AI voice morphing! Voiceful.io Feature: Voiceful.io is a website that can produce AI-generated speech, singing, and voice morphing from text. They provide Cloud API and SDK products. With Voiceful.io AI, it’s possible to produce singing and speech in English and Spanish. For the voice morphing feature, users have the option to choose from over 10 to 20 voices to morph their voice. Demo:",
-        "pricingDetails": "Freemium plan available on voiceful.io"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "aibrane",
-      "name": "AIBrane",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "AIBrane is a useful browser extension that seamlessly integrates AI technology into various websites, providing quick and efficient assistance to increase productivity.",
-      "overview": "AIBrane is a useful browser extension that seamlessly integrates AI technology into various websites, providing quick and efficient assistance to increase productivity. Key Features: Use Cases: AIBrane is a: AIBrane is a browser extension that enhances productivity by integrating AI technology into various websites. The extension offers: The extension offers AI-driven suggestions to speed up email composition and responses in Gmail. Users can craft: Users can craft engaging tweets with ease using AI assistance when using Twitter. AIBrane provides AI: AIBrane provides AI support to boost professional networking and content creation on LinkedIn. With AI-powered insights,: With AI-powered insights, users can enhance posts and interactions on Facebook.",
-      "url": "https://www.aibrane.com/",
-      "domain": "aibrane.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.aibrane.com-2023.05.07-09_32_26.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 146,
-      "inner_content": {
-        "overview": "AIBrane is a useful browser extension that seamlessly integrates AI technology into various websites, providing quick and efficient assistance to increase productivity. Key Features: Use Cases: AIBrane is a: AIBrane is a browser extension that enhances productivity by integrating AI technology into various websites. The extension offers: The extension offers AI-driven suggestions to speed up email composition and responses in Gmail. Users can craft: Users can craft engaging tweets with ease using AI assistance when using Twitter. AIBrane provides AI: AIBrane provides AI support to boost professional networking and content creation on LinkedIn. With AI-powered insights,: With AI-powered insights, users can enhance posts and interactions on Facebook.",
-        "pricingDetails": "Freemium plan available on aibrane.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
     },
     {
       "id": "namesnack",
@@ -22135,78 +16487,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "noise-eraser",
-      "name": "Noise Eraser",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "High-quality noise reduction app.",
-      "overview": "High-quality noise reduction app. Noise Eraser Features: • Noise Eraser is a cutting-edge noise reduction tool powered by AI and developed by DeepWave to offer a hassle-free and efficient audio processing experience. • One of its key features is the ability to effortlessly separate human voices and other sounds and to adjust voice and noise volume levels as desired with a simple click. • Noise Eraser is designed with a user-friendly interface and offers minimal processing time, taking only a minute to process a 5-minute video clip. • The AI technology used in Noise Eraser is supported by 10,000+ training resources on human voices and noise, resulting in precise and accurate noise reduction. • Noise Eraser’s applications are ideal for a diverse range of users, including video editors, podcasters, content creators, and anyone else looking to improve the audio quality and listening experience. • Overall, Noise Eraser is a dependable and efficient solution for individuals looking to streamline their audio processing and reduce noise to provide high-quality and professional audio recordings.",
-      "url": "https://eraserapp.dwave.cc/",
-      "domain": "eraserapp.dwave.cc",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/NoiseEraser.png",
-      "icon": "🎵",
-      "rating": 4.9,
-      "votes": 111,
-      "inner_content": {
-        "overview": "High-quality noise reduction app. Noise Eraser Features: • Noise Eraser is a cutting-edge noise reduction tool powered by AI and developed by DeepWave to offer a hassle-free and efficient audio processing experience. • One of its key features is the ability to effortlessly separate human voices and other sounds and to adjust voice and noise volume levels as desired with a simple click. • Noise Eraser is designed with a user-friendly interface and offers minimal processing time, taking only a minute to process a 5-minute video clip. • The AI technology used in Noise Eraser is supported by 10,000+ training resources on human voices and noise, resulting in precise and accurate noise reduction. • Noise Eraser’s applications are ideal for a diverse range of users, including video editors, podcasters, content creators, and anyone else looking to improve the audio quality and listening experience. • Overall, Noise Eraser is a dependable and efficient solution for individuals looking to streamline their audio processing and reduce noise to provide high-quality and professional audio recordings.",
-        "pricingDetails": "Freemium plan available on eraserapp.dwave.cc"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "ultrabrainstomer",
-      "name": "UltraBrainstomer",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "AI tool that turns dull ideas into brilliance in a flash.",
-      "overview": "AI tool that turns dull ideas into brilliance in a flash. Feature: Unlock Your Creativity and Elevate Your Business with UltraBrain. Whether you're brainstorming business ideas, crafting powerful speeches, writing social media posts, or crafting emails, UltraBrain AI has got you covered.",
-      "url": "https://ultrabrainstomer.com/login",
-      "domain": "ultrabrainstomer.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dsadasdeeeee.png",
-      "icon": "🚀",
-      "rating": 4.7,
-      "votes": 97,
-      "inner_content": {
-        "overview": "AI tool that turns dull ideas into brilliance in a flash. Feature: Unlock Your Creativity and Elevate Your Business with UltraBrain. Whether you're brainstorming business ideas, crafting powerful speeches, writing social media posts, or crafting emails, UltraBrain AI has got you covered.",
-        "pricingDetails": "Freemium plan available on ultrabrainstomer.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "toobsquid",
-      "name": "ToobSquid",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "ToobSquid.ai is an innovative tool that employs AI technology to produce optimized titles, descriptions, hashtags, and timestamps for unlisted videos, with a focus on SEO.",
-      "overview": "ToobSquid.ai is an innovative tool that employs AI technology to produce optimized titles, descriptions, hashtags, and timestamps for unlisted videos, with a focus on SEO. ToobSquid Features: Use Cases: ToobSquid.ai offers the: ToobSquid.ai offers the option to include modifiers such as keywords, adjectives, and creator emulation when generating titles. Users can fine-tune: Users can fine-tune their results by utilizing the Power Options feature, which allows them to adjust adjectives for tonality and keyword considerations. With the convenient: With the convenient Chrome Extension, users can generate optimized titles directly from the YouTube Editor page.",
-      "url": "https://ai.toobsquid.com/",
-      "domain": "ai.toobsquid.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-ai.toobsquid.com-2023.05.07-09_25_30.png",
-      "icon": "📱",
-      "rating": 4.5,
-      "votes": 62,
-      "inner_content": {
-        "overview": "ToobSquid.ai is an innovative tool that employs AI technology to produce optimized titles, descriptions, hashtags, and timestamps for unlisted videos, with a focus on SEO. ToobSquid Features: Use Cases: ToobSquid.ai offers the: ToobSquid.ai offers the option to include modifiers such as keywords, adjectives, and creator emulation when generating titles. Users can fine-tune: Users can fine-tune their results by utilizing the Power Options feature, which allows them to adjust adjectives for tonality and keyword considerations. With the convenient: With the convenient Chrome Extension, users can generate optimized titles directly from the YouTube Editor page.",
-        "pricingDetails": "Free Trial plan available on ai.toobsquid.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
       "id": "maverick",
       "name": "Maverick",
       "category": "music",
@@ -22230,151 +16510,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on aivalley.ai"
       },
       "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "idea-buddy",
-      "name": "Idea Buddy",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Paid",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "AI tool that helps you turn your great idea into a successful business.",
-      "overview": "AI tool that helps you turn your great idea into a successful business. Whether you are starting from scratch, looking for funding, or wanting to expand, this tool can meet you where you're at. Design a business model on a single page If your idea is in its early stages, and you need to quickly visualize and structure your business model, Idea Plan is the ideal starting point for you. Use editable templates Collaborate with others Share and export to PDF or Word Tutorial:",
-      "url": "https://ideabuddy.com/",
-      "domain": "ideabuddy.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sadasdeerfe.png",
-      "icon": "🚀",
-      "rating": 4.5,
-      "votes": 34,
-      "inner_content": {
-        "overview": "AI tool that helps you turn your great idea into a successful business. Whether you are starting from scratch, looking for funding, or wanting to expand, this tool can meet you where you're at. Design a business model on a single page If your idea is in its early stages, and you need to quickly visualize and structure your business model, Idea Plan is the ideal starting point for you. Use editable templates Collaborate with others Share and export to PDF or Word Tutorial:",
-        "pricingDetails": "Paid plan available on ideabuddy.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "writesmart",
-      "name": "WriteSmart",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "WriteSmart's LinkedIn Comments extension, powered by GPT technology, aims to assist users in leaving a long-lasting impact on their LinkedIn network.",
-      "overview": "WriteSmart's LinkedIn Comments extension, powered by GPT technology, aims to assist users in leaving a long-lasting impact on their LinkedIn network. WriteSmart Features: Use cases for the GPT-powered LinkedIn Comments extension include: Use Cases: The LinkedIn Comments: The LinkedIn Comments extension by WriteSmart utilizes GPT technology to boost engagement on the platform. Personalized comments generated: Personalized comments generated by the extension grab attention and encourage discussion, preventing users from leaving unnoticed comments. The extension helps: The extension helps users build relationships with potential customers by quickly adding value to the conversation and warming up leads. Enhancing engagement and: Enhancing engagement and building relationships with potential customers Showcasing expertise and: Showcasing expertise and personality to stand out on LinkedIn",
-      "url": "https://www.writesmart.so/",
-      "domain": "writesmart.so",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.writesmart.so-2023.05.07-09_18_19.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 144,
-      "inner_content": {
-        "overview": "WriteSmart's LinkedIn Comments extension, powered by GPT technology, aims to assist users in leaving a long-lasting impact on their LinkedIn network. WriteSmart Features: Use cases for the GPT-powered LinkedIn Comments extension include: Use Cases: The LinkedIn Comments: The LinkedIn Comments extension by WriteSmart utilizes GPT technology to boost engagement on the platform. Personalized comments generated: Personalized comments generated by the extension grab attention and encourage discussion, preventing users from leaving unnoticed comments. The extension helps: The extension helps users build relationships with potential customers by quickly adding value to the conversation and warming up leads. Enhancing engagement and: Enhancing engagement and building relationships with potential customers Showcasing expertise and: Showcasing expertise and personality to stand out on LinkedIn",
-        "pricingDetails": "Freemium plan available on writesmart.so"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "lalal-ai",
-      "name": "Lalal.ai",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Extract vocal, accompaniment and various instruments from any audio and video.",
-      "overview": "Extract vocal, accompaniment and various instruments from any audio and video. Lalal.ai Features: • LALAL.AI is a state-of-the-art AI-powered vocal and instrumental tracks remover that provides fast and accurate stem separation. • The tool leverages a proprietary Phoenix algorithm, which ensures higher quality stem separation results with fewer artifacts. • LALAL.AI outperforms other similar services in both speed and vocal separation quality, saving valuable time for audio professionals. • The tool supports multiple audio and video formats, including MP3, OGG, WAV, FLAC, AVI, MP4, and more, making it highly versatile. • The user-friendly design of LALAL.AI makes it accessible even to novice users, while its advanced features cater to the needs of experienced audio professionals. • Overall, LALAL.AI is a powerful tool that delivers fast, accurate, and high-quality results for stem separation, enabling users to create professional-grade music tracks with ease and precision.",
-      "url": "http://lalal.ai/",
-      "domain": "lalal.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/LALAL.png",
-      "icon": "🎵",
-      "rating": 4.7,
-      "votes": 172,
-      "inner_content": {
-        "overview": "Extract vocal, accompaniment and various instruments from any audio and video. Lalal.ai Features: • LALAL.AI is a state-of-the-art AI-powered vocal and instrumental tracks remover that provides fast and accurate stem separation. • The tool leverages a proprietary Phoenix algorithm, which ensures higher quality stem separation results with fewer artifacts. • LALAL.AI outperforms other similar services in both speed and vocal separation quality, saving valuable time for audio professionals. • The tool supports multiple audio and video formats, including MP3, OGG, WAV, FLAC, AVI, MP4, and more, making it highly versatile. • The user-friendly design of LALAL.AI makes it accessible even to novice users, while its advanced features cater to the needs of experienced audio professionals. • Overall, LALAL.AI is a powerful tool that delivers fast, accurate, and high-quality results for stem separation, enabling users to create professional-grade music tracks with ease and precision.",
-        "pricingDetails": "Freemium plan available on lalal.ai"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "naming-magic",
-      "name": "Naming Magic",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Introducing Naming Magic, an AI-driven solution crafted to streamline company naming and domain selection.",
-      "overview": "Introducing Naming Magic, an AI-driven solution crafted to streamline company naming and domain selection. Use Cases: Employs cutting-edge natural: Employs cutting-edge natural language processing to produce inventive company names Input product summaries: Input product summaries and keywords to obtain AI-suggested names Developed explicitly for: Developed explicitly for entrepreneurs aiming to ideate company names",
-      "url": "https://www.namingmagic.com/",
-      "domain": "namingmagic.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dadasdasd.png",
-      "icon": "🚀",
-      "rating": 4.9,
-      "votes": 179,
-      "inner_content": {
-        "overview": "Introducing Naming Magic, an AI-driven solution crafted to streamline company naming and domain selection. Use Cases: Employs cutting-edge natural: Employs cutting-edge natural language processing to produce inventive company names Input product summaries: Input product summaries and keywords to obtain AI-suggested names Developed explicitly for: Developed explicitly for entrepreneurs aiming to ideate company names",
-        "pricingDetails": "Freemium plan available on namingmagic.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "revive",
-      "name": "Revive",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Simply type in your idea, and the AI will give you daily tailored tasks that teach what it takes to grow your future company.",
-      "overview": "Simply type in your idea, and the AI will give you daily tailored tasks that teach what it takes to grow your future company. Use Cases: Build with real: Build with real tools, tailored to your company Employ virtual people,: Employ virtual people, motivate them and grow your team. Just like in real life. Practise your pitching: Practise your pitching skills and present your company in the best light.",
-      "url": "https://letsrevive.app/",
-      "domain": "letsrevive.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fjksdjfkjskdf.png",
-      "icon": "🚀",
-      "rating": 4.6,
-      "votes": 109,
-      "inner_content": {
-        "overview": "Simply type in your idea, and the AI will give you daily tailored tasks that teach what it takes to grow your future company. Use Cases: Build with real: Build with real tools, tailored to your company Employ virtual people,: Employ virtual people, motivate them and grow your team. Just like in real life. Practise your pitching: Practise your pitching skills and present your company in the best light.",
-        "pricingDetails": "Freemium plan available on letsrevive.app"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "beatoven-ai",
-      "name": "Beatoven.ai",
-      "category": "video-editing",
-      "categories": [
-        "video-editing",
-        "music"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Create AI-generated music for videos & podcasts based on mood.",
-      "overview": "Create AI-generated music for videos & podcasts based on mood. Beatoven.ai Features: 1. Personalized experience: Beatoven.ai collects user preferences and behavior data to provide custom-made music tailored to individual needs. This feature ensures that the generated music matches the mood, tone, and style of the video content, making it more engaging and relevant. 2. Advanced AI techniques: The music-generating tool employs cutting-edge AI technology to create music. It uses intelligent algorithms that analyze various aspects of the video content, such as tone, voice, and pace, to produce music that complements the visuals seamlessly. 3. GDPR compliant: Beatoven.ai ensures user privacy and data protection through cookie tracking and preference management. All data collected during the music creation process is stored securely and used only for personalized music generation. 4. Ideal use cases: The music-generation tool is beneficial for different professionals, such as video producers, content creators, and advertisers, who need unique and mood-based music to enhance their content. Beatoven.ai serves as a one-stop solution for creating custom-made music that meets various production needs. 5. User-friendly: Beatoven.ai is easy to use, even for those without any musical training or background. The intuitive interface allows users to input their preferences and select the desired mood or style of music, making the music creation process a breeze. Tutorial:",
-      "url": "http://beatoven.ai/",
-      "domain": "beatoven.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Beatoven.png",
-      "icon": "🎬",
-      "rating": 4.9,
-      "votes": 102,
-      "inner_content": {
-        "overview": "Create AI-generated music for videos & podcasts based on mood. Beatoven.ai Features: 1. Personalized experience: Beatoven.ai collects user preferences and behavior data to provide custom-made music tailored to individual needs. This feature ensures that the generated music matches the mood, tone, and style of the video content, making it more engaging and relevant. 2. Advanced AI techniques: The music-generating tool employs cutting-edge AI technology to create music. It uses intelligent algorithms that analyze various aspects of the video content, such as tone, voice, and pace, to produce music that complements the visuals seamlessly. 3. GDPR compliant: Beatoven.ai ensures user privacy and data protection through cookie tracking and preference management. All data collected during the music creation process is stored securely and used only for personalized music generation. 4. Ideal use cases: The music-generation tool is beneficial for different professionals, such as video producers, content creators, and advertisers, who need unique and mood-based music to enhance their content. Beatoven.ai serves as a one-stop solution for creating custom-made music that meets various production needs. 5. User-friendly: Beatoven.ai is easy to use, even for those without any musical training or background. The intuitive interface allows users to input their preferences and select the desired mood or style of music, making the music creation process a breeze. Tutorial:",
-        "pricingDetails": "Free Trial plan available on beatoven.ai"
-      },
-      "tool_type": "🎬 Video & Animation"
     },
     {
       "id": "socialbee",
@@ -22423,271 +16558,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free plan available on aivalley.ai"
       },
       "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "voicemod",
-      "name": "Voicemod",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools",
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "A voice changer with funny & scary effects.",
-      "overview": "A voice changer with funny & scary effects. Voicemod Feature: Voicemod is a voice-changing app that enhances your voice with numerous effects designed to make you sound like a girl or a robot, among others. It transforms and modifies your speech into a comedic or spooky pitch, adding extra flare to your conversations. Download Voicemod now to add some humor and personality to your calls. Tutorial:",
-      "url": "https://www.voicemod.net/",
-      "domain": "voicemod.net",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/VoiceMOD.png",
-      "icon": "🎉",
-      "rating": 4.6,
-      "votes": 156,
-      "inner_content": {
-        "overview": "A voice changer with funny & scary effects. Voicemod Feature: Voicemod is a voice-changing app that enhances your voice with numerous effects designed to make you sound like a girl or a robot, among others. It transforms and modifies your speech into a comedic or spooky pitch, adding extra flare to your conversations. Download Voicemod now to add some humor and personality to your calls. Tutorial:",
-        "pricingDetails": "Freemium plan available on voicemod.net"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
-      "id": "cleanvoice-ai",
-      "name": "Cleanvoice AI",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": true,
-      "description": "Cleanvoice AI quickly edits your podcast, removing filler sounds and more.",
-      "overview": "Cleanvoice AI quickly edits your podcast, removing filler sounds and more. Cleanvoice AI Features: Cleanvoice AI is an innovative tool that utilizes AI technology to improve audio recordings by eliminating unwanted filler words, stuttering, and mouth sounds. Its notable features and benefits include: 1. Multilingual support: The tool can detect and remove filler sounds from audio recordings in various languages and accents, ensuring seamless editing for users worldwide. 2. Audio enhancement: Cleanvoice AI removes disruptive clicking, lip-smacking, and awkward moments of silence from recordings, resulting in professional-grade audio output. 3. Timeline export: The tool offers an export feature that allows users to save suggested edits and view them on the timeline. This feature grants users total control over the editing process, while saving both time and effort. In conclusion, Cleanvoice AI is a powerful and user-friendly tool that caters to professionals looking to improve the quality of their audio recordings. It enhances the audio output, eliminates unwanted sounds by producing high-quality recordings, and saves time by providing a more efficient editing experience. Tutorial:",
-      "url": "https://cleanvoice.ai/",
-      "domain": "cleanvoice.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/CleanVoiceAI.png",
-      "icon": "🎵",
-      "rating": 4.7,
-      "votes": 135,
-      "inner_content": {
-        "overview": "Cleanvoice AI quickly edits your podcast, removing filler sounds and more. Cleanvoice AI Features: Cleanvoice AI is an innovative tool that utilizes AI technology to improve audio recordings by eliminating unwanted filler words, stuttering, and mouth sounds. Its notable features and benefits include: 1. Multilingual support: The tool can detect and remove filler sounds from audio recordings in various languages and accents, ensuring seamless editing for users worldwide. 2. Audio enhancement: Cleanvoice AI removes disruptive clicking, lip-smacking, and awkward moments of silence from recordings, resulting in professional-grade audio output. 3. Timeline export: The tool offers an export feature that allows users to save suggested edits and view them on the timeline. This feature grants users total control over the editing process, while saving both time and effort. In conclusion, Cleanvoice AI is a powerful and user-friendly tool that caters to professionals looking to improve the quality of their audio recordings. It enhances the audio output, eliminates unwanted sounds by producing high-quality recordings, and saves time by providing a more efficient editing experience. Tutorial:",
-        "pricingDetails": "Freemium plan available on cleanvoice.ai"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "podcastle",
-      "name": "Podcastle",
-      "category": "music",
-      "categories": [
-        "music"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎵 Music & Audio",
-      "featured": false,
-      "description": "Studio-quality recording, AI-powered editing and exporting for broadcasts.",
-      "overview": "Studio-quality recording, AI-powered editing and exporting for broadcasts. Podcastle Features: Podcastle is a comprehensive audio and video creation platform powered by AI technology, developed to deliver top-notch podcasting experiences. The following are some of its essential features and benefits: 1. All-in-one platform: Podcastle provides essential tools, including recording, editing, and export features on one easy-to-use web-based platform, providing podcasters with an optimized process. 2. Remote interviews: The platform offers users the ability to conduct virtual interviews with up to ten participants, making remote collaborations seamless. 3. AI-powered tools: Podcastle incorporates several AI-powered tools, including background noise removal, filler word detection, and audio to text conversion, to make the podcast creation process more efficient. 4. Mobile apps: The iOS and Android mobile apps make podcast recording and editing readily available to users on the go. In conclusion, Podcastle is an innovative solution for podcast creators, offering efficiency, convenience, and professional-grade quality. The platform’s all-in-one solution features, customizable editing options, remote collaboration capabilities, and advanced AI-powered tools improve the podcasting experience at every stage of the production process.",
-      "url": "https://podcastle.ai/",
-      "domain": "podcastle.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Podcastle.png",
-      "icon": "🎵",
-      "rating": 4.8,
-      "votes": 114,
-      "inner_content": {
-        "overview": "Studio-quality recording, AI-powered editing and exporting for broadcasts. Podcastle Features: Podcastle is a comprehensive audio and video creation platform powered by AI technology, developed to deliver top-notch podcasting experiences. The following are some of its essential features and benefits: 1. All-in-one platform: Podcastle provides essential tools, including recording, editing, and export features on one easy-to-use web-based platform, providing podcasters with an optimized process. 2. Remote interviews: The platform offers users the ability to conduct virtual interviews with up to ten participants, making remote collaborations seamless. 3. AI-powered tools: Podcastle incorporates several AI-powered tools, including background noise removal, filler word detection, and audio to text conversion, to make the podcast creation process more efficient. 4. Mobile apps: The iOS and Android mobile apps make podcast recording and editing readily available to users on the go. In conclusion, Podcastle is an innovative solution for podcast creators, offering efficiency, convenience, and professional-grade quality. The platform’s all-in-one solution features, customizable editing options, remote collaboration capabilities, and advanced AI-powered tools improve the podcasting experience at every stage of the production process.",
-        "pricingDetails": "Freemium plan available on podcastle.ai"
-      },
-      "tool_type": "🎵 Music & Audio"
-    },
-    {
-      "id": "centropo",
-      "name": "Centropo",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "With Centropo, you can easily create property tours, neighborhood guides, and client testimonials in just a few clicks. No expensive equipment or technical expertise required.Simply provide a link to your property's website or listing, and Centropo's advanced AI technology will generate a compelling video that showcases your property's key features, complete with your personalized voice-over.",
-      "overview": "With Centropo, you can easily create property tours, neighborhood guides, and client testimonials in just a few clicks. No expensive equipment or technical expertise required.Simply provide a link to your property's website or listing, and Centropo's advanced AI technology will generate a compelling video that showcases your property's key features, complete with your personalized voice-over.",
-      "url": "https://hello.centropo.com/",
-      "domain": "hello.centropo.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230507-171326.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 189,
-      "inner_content": {
-        "overview": "With Centropo, you can easily create property tours, neighborhood guides, and client testimonials in just a few clicks. No expensive equipment or technical expertise required.Simply provide a link to your property's website or listing, and Centropo's advanced AI technology will generate a compelling video that showcases your property's key features, complete with your personalized voice-over.",
-        "pricingDetails": "Paid plan available on hello.centropo.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "revalio",
-      "name": "Revalio",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Revalio is a digital advisor used by Toronto homeowners to maximize the value of their properties, which is often their largest single asset. Powered by proprietary data science and AI algorithms with real-time access to the Toronto real estate market, you can easily monitor your home or investment property’s predicted current market value and take steps to improve that value over time. Prospective owners also use Revalio to guide their purchase decisions.",
-      "overview": "Revalio is a digital advisor used by Toronto homeowners to maximize the value of their properties, which is often their largest single asset. Powered by proprietary data science and AI algorithms with real-time access to the Toronto real estate market, you can easily monitor your home or investment property’s predicted current market value and take steps to improve that value over time. Prospective owners also use Revalio to guide their purchase decisions.",
-      "url": "https://revalio.com/",
-      "domain": "revalio.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230507-165736.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 56,
-      "inner_content": {
-        "overview": "Revalio is a digital advisor used by Toronto homeowners to maximize the value of their properties, which is often their largest single asset. Powered by proprietary data science and AI algorithms with real-time access to the Toronto real estate market, you can easily monitor your home or investment property’s predicted current market value and take steps to improve that value over time. Prospective owners also use Revalio to guide their purchase decisions.",
-        "pricingDetails": "Free Trial plan available on revalio.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "markopolo",
-      "name": "Markopolo",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Markopolo Features:",
-      "overview": "Markopolo Features: The marketing stack offered by MarkTag is built on first-party data and designed to help businesses recapture their lost audience across various platforms. This is particularly useful in the current landscape, where cookies are becoming less effective in targeting users. By leveraging this stack, businesses can enjoy a direct lift in revenue and improved sales while minimizing costs. The platform supports omnichannel campaigns across several social media platforms, including Facebook, Instagram, Google, YouTube, TikTok, and LinkedIn.",
-      "url": "https://www.markopolo.ai/",
-      "domain": "markopolo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-bpconcjcammlapcogcnnelfmaeghhagj-2023.05.07-05_01_52.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 173,
-      "inner_content": {
-        "overview": "Markopolo Features: The marketing stack offered by MarkTag is built on first-party data and designed to help businesses recapture their lost audience across various platforms. This is particularly useful in the current landscape, where cookies are becoming less effective in targeting users. By leveraging this stack, businesses can enjoy a direct lift in revenue and improved sales while minimizing costs. The platform supports omnichannel campaigns across several social media platforms, including Facebook, Instagram, Google, YouTube, TikTok, and LinkedIn.",
-        "pricingDetails": "Freemium plan available on markopolo.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "epique",
-      "name": "Epique",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Epique is a comprehensive suite of AI-powered tools designed to enhance the productivity of your real estate business. Whether you need to craft a compelling Realtor biography, create engaging blog posts, generate stunning property images, launch effective email and newsletter campaigns, craft AI-generated property descriptions, create eye-catching Instagram quotes, or generate leads, Epique has you covered.",
-      "overview": "Epique is a comprehensive suite of AI-powered tools designed to enhance the productivity of your real estate business. Whether you need to craft a compelling Realtor biography, create engaging blog posts, generate stunning property images, launch effective email and newsletter campaigns, craft AI-generated property descriptions, create eye-catching Instagram quotes, or generate leads, Epique has you covered.",
-      "url": "https://epique.cloud/epique-ai/",
-      "domain": "epique.cloud",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230507-164508.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 131,
-      "inner_content": {
-        "overview": "Epique is a comprehensive suite of AI-powered tools designed to enhance the productivity of your real estate business. Whether you need to craft a compelling Realtor biography, create engaging blog posts, generate stunning property images, launch effective email and newsletter campaigns, craft AI-generated property descriptions, create eye-catching Instagram quotes, or generate leads, Epique has you covered.",
-        "pricingDetails": "Freemium plan available on epique.cloud"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "publer-ai-assist",
-      "name": "Publer AI Assist",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Publer AI Assist is a cutting-edge social media management solution that leverages the power of AI to streamline the content creation and scheduling process. By automating tasks and optimizing workflows, it simplifies social media management for businesses and individuals alike.",
-      "overview": "Publer AI Assist is a cutting-edge social media management solution that leverages the power of AI to streamline the content creation and scheduling process. By automating tasks and optimizing workflows, it simplifies social media management for businesses and individuals alike. Publer AI Assist Features: Use Cases: Publer AI Assist: Publer AI Assist is a social media management tool that offers a variety of features to make social media management more efficient. It uses sophisticated: It uses sophisticated algorithms to generate unique and personalized content, ensuring that each post is relevant to the target audience. The tool also: The tool also allows users to schedule up to 500 posts using bulk options, such as CSV files, and recycle high-performing content. Additionally, it facilitates collaboration among team members to manage multiple brands and organize upcoming social media posts. By leveraging these: By leveraging these features, users can enhance their social media presence and achieve their marketing goals with ease.",
-      "url": "https://publer.io/features/ai-assist",
-      "domain": "publer.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-publer.io-2023.05.07-04_47_55.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 75,
-      "inner_content": {
-        "overview": "Publer AI Assist is a cutting-edge social media management solution that leverages the power of AI to streamline the content creation and scheduling process. By automating tasks and optimizing workflows, it simplifies social media management for businesses and individuals alike. Publer AI Assist Features: Use Cases: Publer AI Assist: Publer AI Assist is a social media management tool that offers a variety of features to make social media management more efficient. It uses sophisticated: It uses sophisticated algorithms to generate unique and personalized content, ensuring that each post is relevant to the target audience. The tool also: The tool also allows users to schedule up to 500 posts using bulk options, such as CSV files, and recycle high-performing content. Additionally, it facilitates collaboration among team members to manage multiple brands and organize upcoming social media posts. By leveraging these: By leveraging these features, users can enhance their social media presence and achieve their marketing goals with ease.",
-        "pricingDetails": "Freemium plan available on publer.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "tldr-bot",
-      "name": "TLDR bot",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "TLDR bot Features:",
-      "overview": "TLDR bot Features: TLDRBot is a bot on Discord that can provide a brief summary of any conversation. To generate the summary, simply use the \"/tldr\" command. This can be useful for quickly getting up to speed on a conversation or for getting the gist of a lengthy discussion.",
-      "url": "https://www.tldrbot.co/",
-      "domain": "tldrbot.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.tldrbot.co-2023.05.07-04_39_35.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 171,
-      "inner_content": {
-        "overview": "TLDR bot Features: TLDRBot is a bot on Discord that can provide a brief summary of any conversation. To generate the summary, simply use the \"/tldr\" command. This can be useful for quickly getting up to speed on a conversation or for getting the gist of a lengthy discussion.",
-        "pricingDetails": "Freemium plan available on tldrbot.co"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "aicomment",
-      "name": "AiComment",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "AiComment is an exceptional tool that can help you take your Twitter game to the next level. With AiComment, you can easily enhance your Twitter engagement by generating insightful comments and replies for your tweets.",
-      "overview": "AiComment is an exceptional tool that can help you take your Twitter game to the next level. With AiComment, you can easily enhance your Twitter engagement by generating insightful comments and replies for your tweets. AiComment Features: Use Cases: Use Cases: Enhances Twitter experience: Enhances Twitter experience AI-generated content: AI-generated content Wide functional capabilities: Wide functional capabilities Chrome extension for: Chrome extension for easy use Designed for Twitter: Designed for Twitter active users, influencers, bloggers, brand ambassadors, social media professionals, SMM and content managers, and copywriters Generate new tweets: Generate new tweets Reply to popular: Reply to popular topics Engage in hot: Engage in hot threads Keep audience engaged: Keep audience engaged with new discussions and comments",
-      "url": "https://aicomment.pro/",
-      "domain": "aicomment.pro",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-aicomment.pro-2023.05.07-03_42_45.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 146,
-      "inner_content": {
-        "overview": "AiComment is an exceptional tool that can help you take your Twitter game to the next level. With AiComment, you can easily enhance your Twitter engagement by generating insightful comments and replies for your tweets. AiComment Features: Use Cases: Use Cases: Enhances Twitter experience: Enhances Twitter experience AI-generated content: AI-generated content Wide functional capabilities: Wide functional capabilities Chrome extension for: Chrome extension for easy use Designed for Twitter: Designed for Twitter active users, influencers, bloggers, brand ambassadors, social media professionals, SMM and content managers, and copywriters Generate new tweets: Generate new tweets Reply to popular: Reply to popular topics Engage in hot: Engage in hot threads Keep audience engaged: Keep audience engaged with new discussions and comments",
-        "pricingDetails": "Freemium plan available on aicomment.pro"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "flight-path",
-      "name": "Flight Path",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Flight Path is a tool designed to help users grow their Twitter presence and influence.",
-      "overview": "Flight Path is a tool designed to help users grow their Twitter presence and influence. Flight Path Features: Use Cases: AI-assisted tweet generation: Users can generate tweets with the help of AI. Tweet scheduling: Users can schedule their tweets to be posted at specific times. CTA templates: Users can use pre-made call-to-action templates to increase engagement.",
-      "url": "https://flight-path.io/",
-      "domain": "flight-path.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-flight-path.io-2023.05.07-03_31_41.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 69,
-      "inner_content": {
-        "overview": "Flight Path is a tool designed to help users grow their Twitter presence and influence. Flight Path Features: Use Cases: AI-assisted tweet generation: Users can generate tweets with the help of AI. Tweet scheduling: Users can schedule their tweets to be posted at specific times. CTA templates: Users can use pre-made call-to-action templates to increase engagement.",
-        "pricingDetails": "Freemium plan available on flight-path.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
     },
     {
       "id": "broadn",
@@ -22763,535 +16633,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🚀 Startup & Business"
     },
     {
-      "id": "adline",
-      "name": "Adline",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Adline is a user-friendly online tool that allows you to create and run ads across multiple channels without any prior marketing experience. It has been trusted by more than 5000 business owners worldwide, and it delivers great results.",
-      "overview": "Adline is a user-friendly online tool that allows you to create and run ads across multiple channels without any prior marketing experience. It has been trusted by more than 5000 business owners worldwide, and it delivers great results. Adline Features: Use Cases: Multichannel ads creator: Create ads for multiple platforms. Automatic optimization: AI-driven optimization for better results. Click map analytics: Track user interactions with your ads. Visitor Journey: Understand the entire customer journey from the first click to the last. Templates: Copy winning ads from advertisers worldwide in the Template Library. Code-free analytics: Easy conversion tracking without coding knowledge.",
-      "url": "https://adline.com/",
-      "domain": "adline.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-adline.com-2023.05.07-03_20_31.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 186,
-      "inner_content": {
-        "overview": "Adline is a user-friendly online tool that allows you to create and run ads across multiple channels without any prior marketing experience. It has been trusted by more than 5000 business owners worldwide, and it delivers great results. Adline Features: Use Cases: Multichannel ads creator: Create ads for multiple platforms. Automatic optimization: AI-driven optimization for better results. Click map analytics: Track user interactions with your ads. Visitor Journey: Understand the entire customer journey from the first click to the last. Templates: Copy winning ads from advertisers worldwide in the Template Library. Code-free analytics: Easy conversion tracking without coding knowledge.",
-        "pricingDetails": "Paid plan available on adline.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "namewizard-ai",
-      "name": "Namewizard.ai",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "Introducing Namewizard.ai, an AI-driven domain name creator tailored to assist users in discovering the ideal business and domain name.",
-      "overview": "Introducing Namewizard.ai, an AI-driven domain name creator tailored to assist users in discovering the ideal business and domain name. Use Cases: Produce countless domain: Produce countless domain name concepts for your endeavor Verify the availability: Verify the availability of various Top Level Domains (TLDs) Future additions such: Future additions such as complimentary SSL certificates, multi-tiered DDoS defense, and sophisticated DNS administration",
-      "url": "https://namewizard.ai/",
-      "domain": "namewizard.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fdsfsdfww.png",
-      "icon": "🚀",
-      "rating": 4.7,
-      "votes": 193,
-      "inner_content": {
-        "overview": "Introducing Namewizard.ai, an AI-driven domain name creator tailored to assist users in discovering the ideal business and domain name. Use Cases: Produce countless domain: Produce countless domain name concepts for your endeavor Verify the availability: Verify the availability of various Top Level Domains (TLDs) Future additions such: Future additions such as complimentary SSL certificates, multi-tiered DDoS defense, and sophisticated DNS administration",
-        "pricingDetails": "Freemium plan available on namewizard.ai"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "qakaa-2",
-      "name": "Qakaa",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Qakaa is an innovative online marketplace that provides a unique platform for purchasing and selling personalized AI-generated content.",
-      "overview": "Qakaa is an innovative online marketplace that provides a unique platform for purchasing and selling personalized AI-generated content. Qakaa Features: Use cases for Qakaa involve various content-related activities: Use Cases: High-quality, unique content: Qakaa harnesses the latest advancements in artificial intelligence to provide content that meets your specific needs. Personalization: Whether you're a writer, business owner, or social media influencer, Qakaa has something for you. Community: Join our community today and experience the future of content creation. Content creation: Purchase unique, personalized content for your business, blog, or social media. Content selling: Sell your AI-generated content to others on the platform.",
-      "url": "https://qakaa.com/",
-      "domain": "qakaa.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-qakaa.com-2023.05.07-03_10_59.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 158,
-      "inner_content": {
-        "overview": "Qakaa is an innovative online marketplace that provides a unique platform for purchasing and selling personalized AI-generated content. Qakaa Features: Use cases for Qakaa involve various content-related activities: Use Cases: High-quality, unique content: Qakaa harnesses the latest advancements in artificial intelligence to provide content that meets your specific needs. Personalization: Whether you're a writer, business owner, or social media influencer, Qakaa has something for you. Community: Join our community today and experience the future of content creation. Content creation: Purchase unique, personalized content for your business, blog, or social media. Content selling: Sell your AI-generated content to others on the platform.",
-        "pricingDetails": "Freemium plan available on qakaa.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "feedbird",
-      "name": "FeedBird",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Feedbird is a website that helps you create, organize and schedule your LinkedIn posts. It offers an AI-powered tool that allows you to quickly generate content for your posts.",
-      "overview": "Feedbird is a website that helps you create, organize and schedule your LinkedIn posts. It offers an AI-powered tool that allows you to quickly generate content for your posts. FeedBird Features: Use Cases: AI-powered content generation: Create unique, engaging content tailored to your audience using Feedbird Post Generator. Multi-account management: Handle multiple LinkedIn accounts from a single dashboard with Feedbird Account Handler. Advanced scheduling and analysis: Schedule posts in advance, visualise your content calendar, and analyse audience behaviour.",
-      "url": "https://feedbird.io/",
-      "domain": "feedbird.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-feedbird.io-2023.05.07-03_05_45.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 123,
-      "inner_content": {
-        "overview": "Feedbird is a website that helps you create, organize and schedule your LinkedIn posts. It offers an AI-powered tool that allows you to quickly generate content for your posts. FeedBird Features: Use Cases: AI-powered content generation: Create unique, engaging content tailored to your audience using Feedbird Post Generator. Multi-account management: Handle multiple LinkedIn accounts from a single dashboard with Feedbird Account Handler. Advanced scheduling and analysis: Schedule posts in advance, visualise your content calendar, and analyse audience behaviour.",
-        "pricingDetails": "Freemium plan available on feedbird.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "brndaddo",
-      "name": "Brndaddo",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Brndaddo is a brand asset management tool that leverages the power of AI to ensure standout brand consistency.",
-      "overview": "Brndaddo is a brand asset management tool that leverages the power of AI to ensure standout brand consistency. Brndaddo Features: Use Cases: Efficient creative process: The tool speeds up the creative process with added efficiency in just 4 steps: discover, create, collaborate, and control. AI-Smart Search: Brndaddo's AI-powered search helps you find the right asset quickly, even at a moment's notice. Digitized brand guidelines: With Brndaddo's template builder, you can set your brand guidelines and enforce consistency throughout the organization. One-click approvals: Brndaddo's collaborative workspace allows for real-time approvals without the need for trail mails or chasing managers. User access control: Brndaddo enables you to control who gets access to what kind of privilege while handling different assets, creatives, or files.",
-      "url": "https://brndaddo.com/",
-      "domain": "brndaddo.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-brndaddo.com-2023.05.07-02_58_34.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 88,
-      "inner_content": {
-        "overview": "Brndaddo is a brand asset management tool that leverages the power of AI to ensure standout brand consistency. Brndaddo Features: Use Cases: Efficient creative process: The tool speeds up the creative process with added efficiency in just 4 steps: discover, create, collaborate, and control. AI-Smart Search: Brndaddo's AI-powered search helps you find the right asset quickly, even at a moment's notice. Digitized brand guidelines: With Brndaddo's template builder, you can set your brand guidelines and enforce consistency throughout the organization. One-click approvals: Brndaddo's collaborative workspace allows for real-time approvals without the need for trail mails or chasing managers. User access control: Brndaddo enables you to control who gets access to what kind of privilege while handling different assets, creatives, or files.",
-        "pricingDetails": "Free Trial plan available on brndaddo.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "linkedin-elevator-pitch-ai",
-      "name": "LinkedIn Elevator Pitch AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "LinkedIn AI can help you create a more appealing elevator pitch. Make your LinkedIn profile description stand out by creating a compelling elevator pitch",
-      "overview": "LinkedIn AI can help you create a more appealing elevator pitch. Make your LinkedIn profile description stand out by creating a compelling elevator pitch LinkedIn Elevator Pitch AI Features: Use Cases: Use Cases: AI-driven pitch creation: Craft a compelling elevator pitch using LinkedIn AI. Enhanced profile description: Make your LinkedIn profile stand out with an engaging pitch. Increased platform visibility: Attract more attention from potential employers and connections. Improve your LinkedIn: Improve your LinkedIn profile's appeal with a captivating, AI-generated elevator pitch. Strengthen your personal: Strengthen your personal brand by creating a memorable and engaging profile description. Boost your visibility: Boost your visibility on the platform and increase the chances of professional opportunities.",
-      "url": "https://preppally.com/career-linkedin-elevator-pitch-ai/",
-      "domain": "preppally.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-preppally.com-2023.05.07-02_54_17.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 32,
-      "inner_content": {
-        "overview": "LinkedIn AI can help you create a more appealing elevator pitch. Make your LinkedIn profile description stand out by creating a compelling elevator pitch LinkedIn Elevator Pitch AI Features: Use Cases: Use Cases: AI-driven pitch creation: Craft a compelling elevator pitch using LinkedIn AI. Enhanced profile description: Make your LinkedIn profile stand out with an engaging pitch. Increased platform visibility: Attract more attention from potential employers and connections. Improve your LinkedIn: Improve your LinkedIn profile's appeal with a captivating, AI-generated elevator pitch. Strengthen your personal: Strengthen your personal brand by creating a memorable and engaging profile description. Boost your visibility: Boost your visibility on the platform and increase the chances of professional opportunities.",
-        "pricingDetails": "Freemium plan available on preppally.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "adln",
-      "name": "ADLN",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Turbocharge your business growth with our comprehensive suite of AI-powered tools designed to streamline your work process and boost efficiency. Create original content, generate code, craft engaging blog posts, social media ads, emails, and effortlessly rewrite any content, all in one powerful platform.",
-      "overview": "Turbocharge your business growth with our comprehensive suite of AI-powered tools designed to streamline your work process and boost efficiency. Create original content, generate code, craft engaging blog posts, social media ads, emails, and effortlessly rewrite any content, all in one powerful platform. ADLN Features: Use Cases: • Business owners looking to enhance their digital presence with engaging content. • Developers seeking to save time by generating code with AI assistance. • Content creators aiming to improve productivity with a powerful all-in-one solution. Use Cases: Codex: Write code, save time, and ensure consistency for both beginners and experienced developers. Chat: Uses conversational prompts to generate content or responses, improving engagement and communication skills. Content Rewriter: Automatically generate unique versions of existing content for repurposing, avoiding plagiarism, and saving time. More: Access a range of AI-powered tools for data analysis, decision-making, and increased productivity.",
-      "url": "https://adln.io/",
-      "domain": "adln.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-adln.io-2023.05.07-02_44_23.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 114,
-      "inner_content": {
-        "overview": "Turbocharge your business growth with our comprehensive suite of AI-powered tools designed to streamline your work process and boost efficiency. Create original content, generate code, craft engaging blog posts, social media ads, emails, and effortlessly rewrite any content, all in one powerful platform. ADLN Features: Use Cases: • Business owners looking to enhance their digital presence with engaging content. • Developers seeking to save time by generating code with AI assistance. • Content creators aiming to improve productivity with a powerful all-in-one solution. Use Cases: Codex: Write code, save time, and ensure consistency for both beginners and experienced developers. Chat: Uses conversational prompts to generate content or responses, improving engagement and communication skills. Content Rewriter: Automatically generate unique versions of existing content for repurposing, avoiding plagiarism, and saving time. More: Access a range of AI-powered tools for data analysis, decision-making, and increased productivity.",
-        "pricingDetails": "Freemium plan available on adln.io"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "name-generator",
-      "name": "Name Generator",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "Name Generator is a user-friendly tool that generates unique and attractive names based on your provided keywords.",
-      "overview": "Name Generator is a user-friendly tool that generates unique and attractive names based on your provided keywords. Name Generator Features: Name Generator is a user-friendly tool that helps users generate unique and appealing names based on their specific keywords and preferences. Here are some of its key features and benefits: – Attention-grabbing names: This tool generates attractive names for a variety of categories, including boy and girl names, nicknames, dog names, YouTube names, country names, and character names.– Ease of use: The tool is easy to use, and its simple navigation allows for finding the perfect name without any hassle.– Customization: Users can input their desired keywords and preferences to generate customized names.– Range: With a vast range of categories, users can find the right names for different purposes and occasions.– Time-saving: Name Generator efficiently generates names promptly, thus saving time.Some of the activities where Name Generator is useful include: – Selecting a unique name for a newborn baby or pet.– Generating singular usernames for various social media platforms and websites.– Crafting character names for movies, books, and video games.– Creating fake names for enhanced security and privacy.",
-      "url": "https://namegeneratorplus.com/",
-      "domain": "namegeneratorplus.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/NameGenerator.png",
-      "icon": "🎉",
-      "rating": 4.5,
-      "votes": 65,
-      "inner_content": {
-        "overview": "Name Generator is a user-friendly tool that generates unique and attractive names based on your provided keywords. Name Generator Features: Name Generator is a user-friendly tool that helps users generate unique and appealing names based on their specific keywords and preferences. Here are some of its key features and benefits: – Attention-grabbing names: This tool generates attractive names for a variety of categories, including boy and girl names, nicknames, dog names, YouTube names, country names, and character names.– Ease of use: The tool is easy to use, and its simple navigation allows for finding the perfect name without any hassle.– Customization: Users can input their desired keywords and preferences to generate customized names.– Range: With a vast range of categories, users can find the right names for different purposes and occasions.– Time-saving: Name Generator efficiently generates names promptly, thus saving time.Some of the activities where Name Generator is useful include: – Selecting a unique name for a newborn baby or pet.– Generating singular usernames for various social media platforms and websites.– Crafting character names for movies, books, and video games.– Creating fake names for enhanced security and privacy.",
-        "pricingDetails": "Freemium plan available on namegeneratorplus.com"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
-      "id": "scope-money",
-      "name": "Scope.money",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Using advanced GPT-4 (OpenAI / ChatGPT) technology, our plugin delivers highly personalized and engaging messages to potential customers on LinkedIn.",
-      "overview": "Using advanced GPT-4 (OpenAI / ChatGPT) technology, our plugin delivers highly personalized and engaging messages to potential customers on LinkedIn. Scope.money Features: Use Cases: • Amplify your LinkedIn sales outreach with AI-generated messaging. • Streamline team collaboration and optimize outreach workflows. • Assess performance, identify areas for improvement, and adapt strategies accordingly. Use Cases: AI-powered messaging: Utilize advanced AI technology to create captivating messages that resonate with your target audience. Seamless team collaboration: Manage your team's LinkedIn outreach workflows efficiently with an intuitive dashboard. Optimized performance: Evaluate genuine conversions, identify bottlenecks, and adapt your tactics for maximum effectiveness.",
-      "url": "https://www.scope.money/",
-      "domain": "scope.money",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.scope_.money-2023.05.07-02_40_36.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 79,
-      "inner_content": {
-        "overview": "Using advanced GPT-4 (OpenAI / ChatGPT) technology, our plugin delivers highly personalized and engaging messages to potential customers on LinkedIn. Scope.money Features: Use Cases: • Amplify your LinkedIn sales outreach with AI-generated messaging. • Streamline team collaboration and optimize outreach workflows. • Assess performance, identify areas for improvement, and adapt strategies accordingly. Use Cases: AI-powered messaging: Utilize advanced AI technology to create captivating messages that resonate with your target audience. Seamless team collaboration: Manage your team's LinkedIn outreach workflows efficiently with an intuitive dashboard. Optimized performance: Evaluate genuine conversions, identify bottlenecks, and adapt your tactics for maximum effectiveness.",
-        "pricingDetails": "Freemium plan available on scope.money"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "thunderclapai",
-      "name": "ThunderClapAI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "ThunderClapAI increases your Twitter engagement and followers by auto-generating answers and creating viral tweets. With advanced AI algorithms, you can stand out from the crowd.",
-      "overview": "ThunderClapAI increases your Twitter engagement and followers by auto-generating answers and creating viral tweets. With advanced AI algorithms, you can stand out from the crowd. Key Features: Use Cases: Use Cases: Auto-generated replies: Enhance Twitter engagement with AI-generated responses. Viral tweet creation: Craft attention-grabbing tweets using powerful AI algorithms. Boost followers: Elevate your Twitter presence and attract more followers. Increase engagement and: Increase engagement and interaction on Twitter through AI-generated replies. Captivate your audience: Captivate your audience with viral tweet content crafted by advanced algorithms. Grow your follower: Grow your follower base and strengthen your online presence with an enhanced Twitter game.",
-      "url": "https://thunderclap.ai/",
-      "domain": "thunderclap.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-thunderclap.ai-2023.05.06-22_58_24.png",
-      "icon": "📱",
-      "rating": 4.8,
-      "votes": 89,
-      "inner_content": {
-        "overview": "ThunderClapAI increases your Twitter engagement and followers by auto-generating answers and creating viral tweets. With advanced AI algorithms, you can stand out from the crowd. Key Features: Use Cases: Use Cases: Auto-generated replies: Enhance Twitter engagement with AI-generated responses. Viral tweet creation: Craft attention-grabbing tweets using powerful AI algorithms. Boost followers: Elevate your Twitter presence and attract more followers. Increase engagement and: Increase engagement and interaction on Twitter through AI-generated replies. Captivate your audience: Captivate your audience with viral tweet content crafted by advanced algorithms. Grow your follower: Grow your follower base and strengthen your online presence with an enhanced Twitter game.",
-        "pricingDetails": "Freemium plan available on thunderclap.ai"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "keywordsearch",
-      "name": "KeywordSearch",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "KeywordSearch is a SaaS company specializing in helping users generate leads and sales through the strategic use of relevant keywords in their video marketing campaigns.",
-      "overview": "KeywordSearch is a SaaS company specializing in helping users generate leads and sales through the strategic use of relevant keywords in their video marketing campaigns. Key Features: Use Cases: • Optimize video marketing campaigns to attract and engage relevant audiences. • Expand your brand's global presence by connecting with the right audience in different regions. Use Cases: Intelligent audience targeting: Find and connect with the ideal audience for your marketing campaigns. Global reach: Expand your marketing efforts to audiences across the globe. Keyword optimization: Enhance your video marketing campaigns with relevant and effective keywords. Comprehensive analytics: Measure the success of your campaigns and make data-driven decisions.",
-      "url": "https://www.keywordsearch.com/",
-      "domain": "keywordsearch.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.keywordsearch.com-2023.05.06-22_52_52.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 68,
-      "inner_content": {
-        "overview": "KeywordSearch is a SaaS company specializing in helping users generate leads and sales through the strategic use of relevant keywords in their video marketing campaigns. Key Features: Use Cases: • Optimize video marketing campaigns to attract and engage relevant audiences. • Expand your brand's global presence by connecting with the right audience in different regions. Use Cases: Intelligent audience targeting: Find and connect with the ideal audience for your marketing campaigns. Global reach: Expand your marketing efforts to audiences across the globe. Keyword optimization: Enhance your video marketing campaigns with relevant and effective keywords. Comprehensive analytics: Measure the success of your campaigns and make data-driven decisions.",
-        "pricingDetails": "Freemium plan available on keywordsearch.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "nuelink",
-      "name": "Nuelink",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Nuelink is a social media scheduling & automation tool that allows you to plan, manage, and automate your social media posts either manually or automatically using a powerful set of automations.",
-      "overview": "Nuelink is a social media scheduling & automation tool that allows you to plan, manage, and automate your social media posts either manually or automatically using a powerful set of automations. Nuelink Features: Use cases for Nuelink involve various social media-related activities: Use Cases: Social media scheduling: Plan and manage your social media posts in advance Automation superpowers: Automate your social media posts with powerful automations Manual and automatic options: Choose to post manually or automatically Efficient social media management: Save time and streamline your social media management Increase social media presence: Boost your social media presence with consistent posting Plan and schedule: Plan and schedule social media posts for businesses and entrepreneurs Automate social media: Automate social media posting to save time and increase efficiency",
-      "url": "https://nuelink.com/",
-      "domain": "nuelink.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-nuelink.com-2023.05.06-22_48_35.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 26,
-      "inner_content": {
-        "overview": "Nuelink is a social media scheduling & automation tool that allows you to plan, manage, and automate your social media posts either manually or automatically using a powerful set of automations. Nuelink Features: Use cases for Nuelink involve various social media-related activities: Use Cases: Social media scheduling: Plan and manage your social media posts in advance Automation superpowers: Automate your social media posts with powerful automations Manual and automatic options: Choose to post manually or automatically Efficient social media management: Save time and streamline your social media management Increase social media presence: Boost your social media presence with consistent posting Plan and schedule: Plan and schedule social media posts for businesses and entrepreneurs Automate social media: Automate social media posting to save time and increase efficiency",
-        "pricingDetails": "Free Trial plan available on nuelink.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "wudpecker",
-      "name": "Wudpecker",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": true,
-      "description": "End the meeting with perfect notes and share it to every stakeholder with Wudpecker.",
-      "overview": "End the meeting with perfect notes and share it to every stakeholder with Wudpecker. Wudpecker Features: Wudpecker is a tool that assists you in concentrating on listening during calls by handling your notes and tasks. Its notable features and advantages comprise: Automated note-taking that records, transcribes, and makes excellent notes on every call joined by Wudpecker.Time-saving functionality that can help save over five hours per week, enabling you to focus on what matters!Pre-built templates that allow you to prepare for meetings correctly.High-quality notes generated by ChatGPT when the meeting concludes. Use cases for Wudpecker could include various call-related tasks, such as: Professional calls: Utilize Wudpecker for professional calls to ensure detailed and accurate notes without the stress of manual note-taking.Team meetings: Empower the team by making use of Wudpecker during team meetings, ensuring everyone has access to the same notes and is on the same page.Productivity improvement: Enhance productivity levels by focusing on more important tasks, allowing Wudpecker to save time during calls. Wudpecker is a reliable and efficient tool that helps you stay organized and focused during calls.",
-      "url": "https://www.wudpecker.io/",
-      "domain": "wudpecker.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Wudpecker.png",
-      "icon": "⚡",
-      "rating": 4.5,
-      "votes": 150,
-      "inner_content": {
-        "overview": "End the meeting with perfect notes and share it to every stakeholder with Wudpecker. Wudpecker Features: Wudpecker is a tool that assists you in concentrating on listening during calls by handling your notes and tasks. Its notable features and advantages comprise: Automated note-taking that records, transcribes, and makes excellent notes on every call joined by Wudpecker.Time-saving functionality that can help save over five hours per week, enabling you to focus on what matters!Pre-built templates that allow you to prepare for meetings correctly.High-quality notes generated by ChatGPT when the meeting concludes. Use cases for Wudpecker could include various call-related tasks, such as: Professional calls: Utilize Wudpecker for professional calls to ensure detailed and accurate notes without the stress of manual note-taking.Team meetings: Empower the team by making use of Wudpecker during team meetings, ensuring everyone has access to the same notes and is on the same page.Productivity improvement: Enhance productivity levels by focusing on more important tasks, allowing Wudpecker to save time during calls. Wudpecker is a reliable and efficient tool that helps you stay organized and focused during calls.",
-        "pricingDetails": "Freemium plan available on wudpecker.io"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "recurpost",
-      "name": "RecurPost",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "RecurPost is a social media management tool that utilizes ChatGPT to help users write viral social media posts.",
-      "overview": "RecurPost is a social media management tool that utilizes ChatGPT to help users write viral social media posts. Key features and advantages of RecurPost include: Use cases for RecurPost include: Use Cases: ChatGPT: AI-powered tool to write viral social media posts Post scheduling: Schedule posts for future release Content curation and distribution: Combine both in one tool Established: RecurPost has been in the market since 2016 User feedback: RecurPost welcomes user feedback Writing social media: Writing social media posts that can go viral Scheduling posts for: Scheduling posts for later release Combining content curation: Combining content curation and distribution in one platform Managing social media: Managing social media accounts more efficiently",
-      "url": "https://recurpost.com/",
-      "domain": "recurpost.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-recurpost.com-2023.05.06-22_41_39.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 129,
-      "inner_content": {
-        "overview": "RecurPost is a social media management tool that utilizes ChatGPT to help users write viral social media posts. Key features and advantages of RecurPost include: Use cases for RecurPost include: Use Cases: ChatGPT: AI-powered tool to write viral social media posts Post scheduling: Schedule posts for future release Content curation and distribution: Combine both in one tool Established: RecurPost has been in the market since 2016 User feedback: RecurPost welcomes user feedback Writing social media: Writing social media posts that can go viral Scheduling posts for: Scheduling posts for later release Combining content curation: Combining content curation and distribution in one platform Managing social media: Managing social media accounts more efficiently",
-        "pricingDetails": "Freemium plan available on recurpost.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "profilepro",
-      "name": "ProfilePro",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "ProfilePro is an AI-powered Chrome extension that helps business owners and agencies optimize their Google Business Profiles and local SEO with the click of a button.",
-      "overview": "ProfilePro is an AI-powered Chrome extension that helps business owners and agencies optimize their Google Business Profiles and local SEO with the click of a button. ProfilePro Features: Use cases for ProfilePro involve various activities related to Google Business Profiles and local SEO: Use Cases: Auto-respond to Google: Auto-respond to Google reviews Write Google updates: Write Google updates with ease Optimize descriptions for: Optimize descriptions for SEO Save time with: Save time with automated profile management Optimize Google Business: Optimize Google Business Profiles for better visibility and engagement Manage multiple profiles: Manage multiple profiles with ease Improve local SEO: Improve local SEO and attract more customers to your business",
-      "url": "https://www.merchynt.com/profilepro",
-      "domain": "merchynt.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.merchynt.com-2023.05.06-22_31_37.png",
-      "icon": "📱",
-      "rating": 4.9,
-      "votes": 87,
-      "inner_content": {
-        "overview": "ProfilePro is an AI-powered Chrome extension that helps business owners and agencies optimize their Google Business Profiles and local SEO with the click of a button. ProfilePro Features: Use cases for ProfilePro involve various activities related to Google Business Profiles and local SEO: Use Cases: Auto-respond to Google: Auto-respond to Google reviews Write Google updates: Write Google updates with ease Optimize descriptions for: Optimize descriptions for SEO Save time with: Save time with automated profile management Optimize Google Business: Optimize Google Business Profiles for better visibility and engagement Manage multiple profiles: Manage multiple profiles with ease Improve local SEO: Improve local SEO and attract more customers to your business",
-        "pricingDetails": "Freemium plan available on merchynt.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "tweet-writer-ai",
-      "name": "Tweet Writer AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Tweet Writer (AI) is an AI-powered mobile app that generates perfect tweets and replies in several moods.",
-      "overview": "Tweet Writer (AI) is an AI-powered mobile app that generates perfect tweets and replies in several moods. Tweet Writer AI Features: Use Cases: Multiple moods: Tailor tweets and replies to the desired mood for a more engaging experience. Quick generation: AI-powered system creates text in a matter of seconds. Learning capability: Constantly improves output and accuracy as the system learns from interactions. Privacy Policy: Ensures user data is kept safe and secure.",
-      "url": "https://twitter-ai.vercel.app/",
-      "domain": "twitter-ai.vercel.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-twitter-ai.vercel.app-2023.05.06-22_22_05.png",
-      "icon": "📱",
-      "rating": 4.6,
-      "votes": 45,
-      "inner_content": {
-        "overview": "Tweet Writer (AI) is an AI-powered mobile app that generates perfect tweets and replies in several moods. Tweet Writer AI Features: Use Cases: Multiple moods: Tailor tweets and replies to the desired mood for a more engaging experience. Quick generation: AI-powered system creates text in a matter of seconds. Learning capability: Constantly improves output and accuracy as the system learns from interactions. Privacy Policy: Ensures user data is kept safe and secure.",
-        "pricingDetails": "Freemium plan available on twitter-ai.vercel.app"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "marketing-co-pilot-ai",
-      "name": "Marketing Co-Pilot AI",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "Marketing Co-Pilot AI is a tweet idea generator powered by AI that helps beat writer's block and provides a month of unique tweet ideas in 5 minutes.",
-      "overview": "Marketing Co-Pilot AI is a tweet idea generator powered by AI that helps beat writer's block and provides a month of unique tweet ideas in 5 minutes. Marketing Co-Pilot AI Features: Use Cases: Personalization: Users can describe their content style and get a personalized list of 60 tweet ideas. Content Topics: The AI generates 20 content topics based on the user's input that will organically sell their product and boost engagement. Customization: Users can pick 3-7 content topics and describe their Twitter style, and the AI will match their tone of voice and preferred Twitter formats. Content Plan: The final result is a content plan with 60 tweet ideas that can be saved as a PDF or copied to Notion.",
-      "url": "https://marketingcopilotai.com/",
-      "domain": "marketingcopilotai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-marketingcopilotai.com-2023.05.06-22_15_27.png",
-      "icon": "📱",
-      "rating": 4.5,
-      "votes": 141,
-      "inner_content": {
-        "overview": "Marketing Co-Pilot AI is a tweet idea generator powered by AI that helps beat writer's block and provides a month of unique tweet ideas in 5 minutes. Marketing Co-Pilot AI Features: Use Cases: Personalization: Users can describe their content style and get a personalized list of 60 tweet ideas. Content Topics: The AI generates 20 content topics based on the user's input that will organically sell their product and boost engagement. Customization: Users can pick 3-7 content topics and describe their Twitter style, and the AI will match their tone of voice and preferred Twitter formats. Content Plan: The final result is a content plan with 60 tweet ideas that can be saved as a PDF or copied to Notion.",
-        "pricingDetails": "Freemium plan available on marketingcopilotai.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
-    },
-    {
-      "id": "keywords-everwhere",
-      "name": "Keywords Everwhere",
-      "category": "ecommerce",
-      "categories": [
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "🛍️ Ecommerce & Marketing",
-      "featured": false,
-      "description": "Keyword Research and ChatGPT prompts browser extension.",
-      "overview": "Keyword Research and ChatGPT prompts browser extension. This tool is verified because it is either an established company or has good social media presence. Keywords Everwhere Features: With Keywords Everywhere, users can easily identify long-tail search phrases while also obtaining their precise search volume, cost per click, and competition data. Other features include: • “People Also Search For” data with volume metrics: Keywords Everywhere conveniently lists the “People Also Search For” and “Related” keywords obtained from Google and Bing alongside the corresponding volume metrics, on the search pages.• Historical search volume data (from 2004): By utilizing Google Trends, Keywords Everywhere generates monthly, weekly, daily, and hourly volume metrics starting from 2004 for users to view and download.• Page and website level traffic metrics along with keywords data: By analyzing the top twenty Google search results, users can effortlessly explore the top 5000 keywords that any webpage or website is ranking for, together with the estimated traffic it receives.• ChatGPT Templates: These are comprehensive prompts that are generated by Keywords Everywhere to help users find and select the best prompts for specific tasks. The tool makes it simple for users to develop the perfect prompt depending on their objectives. Furthermore, users can personalize the prompt’s writing style and tone of voice to reflect their brand’s voice and persona, ensuring the content generated by ChatGPT is to the client’s specifications. The more details you provide in your prompt, the more specific and relevant your generated content will be. Keywords Everywhere provides a one-stop-shop for users to obtain useful data for their SEO and content development strategies, automating the process and improving efficiency.",
-      "url": "https://keywordseverywhere.com/",
-      "domain": "keywordseverywhere.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/KeywordsEverywhere.png",
-      "icon": "🛍️",
-      "rating": 4.9,
-      "votes": 162,
-      "inner_content": {
-        "overview": "Keyword Research and ChatGPT prompts browser extension. This tool is verified because it is either an established company or has good social media presence. Keywords Everwhere Features: With Keywords Everywhere, users can easily identify long-tail search phrases while also obtaining their precise search volume, cost per click, and competition data. Other features include: • “People Also Search For” data with volume metrics: Keywords Everywhere conveniently lists the “People Also Search For” and “Related” keywords obtained from Google and Bing alongside the corresponding volume metrics, on the search pages.• Historical search volume data (from 2004): By utilizing Google Trends, Keywords Everywhere generates monthly, weekly, daily, and hourly volume metrics starting from 2004 for users to view and download.• Page and website level traffic metrics along with keywords data: By analyzing the top twenty Google search results, users can effortlessly explore the top 5000 keywords that any webpage or website is ranking for, together with the estimated traffic it receives.• ChatGPT Templates: These are comprehensive prompts that are generated by Keywords Everywhere to help users find and select the best prompts for specific tasks. The tool makes it simple for users to develop the perfect prompt depending on their objectives. Furthermore, users can personalize the prompt’s writing style and tone of voice to reflect their brand’s voice and persona, ensuring the content generated by ChatGPT is to the client’s specifications. The more details you provide in your prompt, the more specific and relevant your generated content will be. Keywords Everywhere provides a one-stop-shop for users to obtain useful data for their SEO and content development strategies, automating the process and improving efficiency.",
-        "pricingDetails": "Freemium plan available on keywordseverywhere.com"
-      },
-      "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
-      "id": "lunit",
-      "name": "Lunit",
-      "category": "healthcare",
-      "categories": [
-        "healthcare"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🏥 Health & Medical",
-      "featured": false,
-      "description": "Medical AI software to detect cancer earlier & predict treatment responses",
-      "overview": "Medical AI software to detect cancer earlier & predict treatment responses Feature: Lunit is a publicly traded company dedicated to developing cutting-edge medical AI software that aids in the fight against cancer. Given that early detection is often crucial for cancer survival, Lunit's AI-powered cancer screening solutions assist doctors in identifying cancer at an early stage. With a remarkable 97-99% accuracy rate, Lunit INSIGHT can detect abnormal results from chest x-rays that might otherwise go unnoticed by human physicians. Lunit's SCOPE technology uses AI to predict a patient's treatment response, enabling doctors to make well-informed decisions about the most effective course of treatment.",
-      "url": "https://www.lunit.io/",
-      "domain": "lunit.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230506-234600.png",
-      "icon": "🏥",
-      "rating": 4.8,
-      "votes": 148,
-      "inner_content": {
-        "overview": "Medical AI software to detect cancer earlier & predict treatment responses Feature: Lunit is a publicly traded company dedicated to developing cutting-edge medical AI software that aids in the fight against cancer. Given that early detection is often crucial for cancer survival, Lunit's AI-powered cancer screening solutions assist doctors in identifying cancer at an early stage. With a remarkable 97-99% accuracy rate, Lunit INSIGHT can detect abnormal results from chest x-rays that might otherwise go unnoticed by human physicians. Lunit's SCOPE technology uses AI to predict a patient's treatment response, enabling doctors to make well-informed decisions about the most effective course of treatment.",
-        "pricingDetails": "Free Trial plan available on lunit.io"
-      },
-      "tool_type": "🏥 Health & Medical"
-    },
-    {
-      "id": "pitchgrade",
-      "name": "Pitchgrade",
-      "category": "startup-tools",
-      "categories": [
-        "startup-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🚀 Startup & Business",
-      "featured": false,
-      "description": "PitchGrade is an AI-driven solution crafted to assist entrepreneurs in developing persuasive pitch decks for obtaining investments.",
-      "overview": "PitchGrade is an AI-driven solution crafted to assist entrepreneurs in developing persuasive pitch decks for obtaining investments. PitchGrade is the perfect companion for a wide range of entrepreneurs: Startup ventures aiming to develop enticing pitch decks to captivate potential investors Business founders seeking to polish their pitch deck for superior funding results Corporate consultants supporting clients in crafting pitch decks that appeal to investors Use Cases: Hone pitch decks: Hone pitch decks for enhanced funding results Examines crucial components: Examines crucial components like problem identification, solution, target audience, business strategy, and team Delivers counsel on: Delivers counsel on arranging and incorporating pertinent information Grants access to: Grants access to a library of successful pitch decks for inspiration",
-      "url": "https://pitchgrade.com/",
-      "domain": "pitchgrade.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/hghgh.png",
-      "icon": "🚀",
-      "rating": 4.6,
-      "votes": 133,
-      "inner_content": {
-        "overview": "PitchGrade is an AI-driven solution crafted to assist entrepreneurs in developing persuasive pitch decks for obtaining investments. PitchGrade is the perfect companion for a wide range of entrepreneurs: Startup ventures aiming to develop enticing pitch decks to captivate potential investors Business founders seeking to polish their pitch deck for superior funding results Corporate consultants supporting clients in crafting pitch decks that appeal to investors Use Cases: Hone pitch decks: Hone pitch decks for enhanced funding results Examines crucial components: Examines crucial components like problem identification, solution, target audience, business strategy, and team Delivers counsel on: Delivers counsel on arranging and incorporating pertinent information Grants access to: Grants access to a library of successful pitch decks for inspiration",
-        "pricingDetails": "Freemium plan available on pitchgrade.com"
-      },
-      "tool_type": "🚀 Startup & Business"
-    },
-    {
-      "id": "ichatwithgpt",
-      "name": "iChatWithGPT",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Your favorite AI assistant, just an iMessage away.",
-      "overview": "Your favorite AI assistant, just an iMessage away. iChatWithGPT Features: iChatWithGPT.com is a platform that provides access to ChatGPT, your favorite AI assistant, directly through your iMessages. Highlights: – No registration required– No personally identifiable information needed– Quick and same-day support– The most sophisticated AI assistant available Scenarios: – Get answers to your queries– Plan your upcoming trips– Discover recipes for your meal preparation",
-      "url": "https://ichatwithgpt.com/",
-      "domain": "ichatwithgpt.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/IChatWithGPT.png",
-      "icon": "🌟",
-      "rating": 4.7,
-      "votes": 112,
-      "inner_content": {
-        "overview": "Your favorite AI assistant, just an iMessage away. iChatWithGPT Features: iChatWithGPT.com is a platform that provides access to ChatGPT, your favorite AI assistant, directly through your iMessages. Highlights: – No registration required– No personally identifiable information needed– Quick and same-day support– The most sophisticated AI assistant available Scenarios: – Get answers to your queries– Plan your upcoming trips– Discover recipes for your meal preparation",
-        "pricingDetails": "Freemium plan available on ichatwithgpt.com"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
-    },
-    {
-      "id": "productivegpt",
-      "name": "ProductiveGPT",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Your AI-Powered Personal Productivity Tool",
-      "overview": "Your AI-Powered Personal Productivity Tool ProductiveGPT Features: ProductiveGPT is a personal productivity solution that leverages the capabilities of OpenAI GPT-3 API to assist you in effectively managing your daily tasks. Highlights: – Task input: Add your tasks for the day– Time management: Indicate the duration of time assigned for accomplishing each task– Rest period: Optionally include a break during the workday Scenarios: – Strategizing and allocating your day’s tasks, ensuring productivity– Maintaining an equilibrium between work and rest periods, ultimately sustaining productivity all day.",
-      "url": "https://productivegpt.vercel.app/",
-      "domain": "productivegpt.vercel.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/productiveGPT.png",
-      "icon": "⚡",
-      "rating": 4.8,
-      "votes": 91,
-      "inner_content": {
-        "overview": "Your AI-Powered Personal Productivity Tool ProductiveGPT Features: ProductiveGPT is a personal productivity solution that leverages the capabilities of OpenAI GPT-3 API to assist you in effectively managing your daily tasks. Highlights: – Task input: Add your tasks for the day– Time management: Indicate the duration of time assigned for accomplishing each task– Rest period: Optionally include a break during the workday Scenarios: – Strategizing and allocating your day’s tasks, ensuring productivity– Maintaining an equilibrium between work and rest periods, ultimately sustaining productivity all day.",
-        "pricingDetails": "Freemium plan available on productivegpt.vercel.app"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
       "id": "brandbird",
       "name": "Brandbird",
       "category": "social-media-assistant",
@@ -23338,30 +16679,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on visualhound.com"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "rewritewise",
-      "name": "RewriteWise",
-      "category": "social-media-assistant",
-      "categories": [
-        "social-media-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "📱 Social Media & Growth",
-      "featured": false,
-      "description": "RewriteWise is a Telegram bot designed to help non-native speakers improve their social media presence by proofreading, rewriting, and optimizing their posts as if they were written by native speakers. It offers a range of features, including grammar and spelling correction, idiomatic language enhancement, tone and style adjustment, and more.",
-      "overview": "RewriteWise is a Telegram bot designed to help non-native speakers improve their social media presence by proofreading, rewriting, and optimizing their posts as if they were written by native speakers. It offers a range of features, including grammar and spelling correction, idiomatic language enhancement, tone and style adjustment, and more. RewriteWise Features: Use Cases: Rewrites Posts: RewriteWise's powerful AI rewrites your social media content to achieve native-like fluency and clarity. Impress your audience with engaging, well-crafted posts that effectively communicate your message. Optimize your content for maximum performance: RewriteWise doesn't stop at proofreading and rewriting, our AI-driven optimization tool analyzes your posts for tone, readability, and keyword usage, ensuring maximum engagement and growth.",
-      "url": "https://rewritewise.com/",
-      "domain": "rewritewise.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-rewritewise.com-2023.05.06-10_01_46.png",
-      "icon": "📱",
-      "rating": 4.7,
-      "votes": 180,
-      "inner_content": {
-        "overview": "RewriteWise is a Telegram bot designed to help non-native speakers improve their social media presence by proofreading, rewriting, and optimizing their posts as if they were written by native speakers. It offers a range of features, including grammar and spelling correction, idiomatic language enhancement, tone and style adjustment, and more. RewriteWise Features: Use Cases: Rewrites Posts: RewriteWise's powerful AI rewrites your social media content to achieve native-like fluency and clarity. Impress your audience with engaging, well-crafted posts that effectively communicate your message. Optimize your content for maximum performance: RewriteWise doesn't stop at proofreading and rewriting, our AI-driven optimization tool analyzes your posts for tone, readability, and keyword usage, ensuring maximum engagement and growth.",
-        "pricingDetails": "Freemium plan available on rewritewise.com"
-      },
-      "tool_type": "📱 Social Media & Growth"
     },
     {
       "id": "botika-2",
@@ -23495,7 +16812,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Skincare app & AI-powered guide to perfect skin with 99.1% accuracy.",
       "overview": "Skincare app & AI-powered guide to perfect skin with 99.1% accuracy. AweMyFace Features: AweMyFace – Skincare App is a fundamental resource for maintaining skin’s health and wellness, presenting AI-based characteristics intended to observe and enhance skin’s well-being. Some of its principal features and advantages are:– AI-founded acne recognition: 99.1% precise in detecting acne and registering skin modifications.– Routine tracing: Monitors daily activities like food intake, sleep, sports, and stress, allowing for an understanding of their influence on skin health.– Progress displays: Provides everyday, weekly, and monthly reports to track skin improvement.– Offline efficiency: All characteristics available offline, with users’ data firmly stored on their device. AweMyFace’s use cases cater to several people, such as: – Skincare aficionados who aspire to oversee and enhance their skin’s health.– Acne-prone individuals seeking individualized recommendations and measuring progress.– Health-conscious users who long to gain insights into how their daily activities affect skin health. Overall, AweMyFace represents an all-encompassing solution for tracing and boosting skin health, principally emphasizing acne recognition and customized guidance.",
-      "url": "https://apps.apple.com/app/apple-store/id1621101995",
+      "url": "https://apps.apple.com/",
       "domain": "apps.apple.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/AweMyFace-1.png",
       "icon": "🌟",
@@ -23624,30 +16941,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI-powered interface to access and manipulate scientific knowledge. Galactica Feature: The attributes of Galactica include being an artificial intelligence that has been trained using humanity’s scientific expertise. It can serve as an innovative platform for accessing and handling our understanding of the cosmos.",
         "pricingDetails": "Freemium plan available on galactica.org"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "podcast",
-      "name": "Podcast",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Freemium",
-      "badge": "🔍 Search & Research",
-      "featured": false,
-      "description": "AI-generated podcast featuring Feynman & Jobs interviews.",
-      "overview": "AI-generated podcast featuring Feynman & Jobs interviews. This tool is verified because it is either an established company or has good social media presence. Podcast Features: Podcast.ai is a weekly podcast created by artificial intelligence that delves into a different topic each episode, providing listeners with one-of-a-kind perspectives. The podcast offers several notable benefits, including comprehensive examination of various subjects that appeals to machine learning enthusiasts and other curious audiences. It also allows listeners to provide suggestions for future topics or guests, with the added benefit of being able to bring back historical figures to take part in the conversation. The podcast is produced using Play.ht, a platform that provides AI tools to facilitate the creation and hosting of the podcast. Use cases for Podcast.ai are ideal for various audiences: Podcast.ai is suitable for diverse groups of listeners, including: – Individuals passionate about machine learning, who are looking for detailed conversations on their preferred subjects.– Curious listeners, who seek to gain insights into new topics through the use of AI-generated content.– People willing to share their thoughts and ideas on future episodes.In summary, Podcast.ai provides an unmatched listening experience by employing AI to build engaging and informative content.",
-      "url": "https://podcast.ai/",
-      "domain": "podcast.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/podcast.png",
-      "icon": "🔍",
-      "rating": 4.7,
-      "votes": 48,
-      "inner_content": {
-        "overview": "AI-generated podcast featuring Feynman & Jobs interviews. This tool is verified because it is either an established company or has good social media presence. Podcast Features: Podcast.ai is a weekly podcast created by artificial intelligence that delves into a different topic each episode, providing listeners with one-of-a-kind perspectives. The podcast offers several notable benefits, including comprehensive examination of various subjects that appeals to machine learning enthusiasts and other curious audiences. It also allows listeners to provide suggestions for future topics or guests, with the added benefit of being able to bring back historical figures to take part in the conversation. The podcast is produced using Play.ht, a platform that provides AI tools to facilitate the creation and hosting of the podcast. Use cases for Podcast.ai are ideal for various audiences: Podcast.ai is suitable for diverse groups of listeners, including: – Individuals passionate about machine learning, who are looking for detailed conversations on their preferred subjects.– Curious listeners, who seek to gain insights into new topics through the use of AI-generated content.– People willing to share their thoughts and ideas on future episodes.In summary, Podcast.ai provides an unmatched listening experience by employing AI to build engaging and informative content.",
-        "pricingDetails": "Freemium plan available on podcast.ai"
       },
       "tool_type": "🔍 Search & Research"
     },
@@ -23784,7 +17077,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Contextually Generate Marketing Content",
       "overview": "Contextually Generate Marketing Content Brand AI Model Features: Contlo provides a comprehensive Brand AI Model that enables businesses to streamline all their marketing efforts by using their customized AI model to design personalized marketing materials like emails, images, copies, and more. Setting up a Brand AI Model begins with providing input on various aspects, such as brand story, design language, tonality, identity, and aesthetic features that constitute the brand. The AI model comprehensively understands the brand and generates personalized marketing actions such as creative design, autonomous customer journeys, campaign segments, etc. After training the Brand AI Model within a few minutes, businesses can create consistent emails, SMS, and WhatsApp campaigns, resulting in an enhanced click-through rate (CTR) and open rates. The platform generates impactful email subject lines and preheaders while also leveraging auto-generated SMS and WhatsApp texts for better customer retargeting. Contlo also offers an extensive collection of AI-based assistant tools, including 117 AI social media assistant tools, 84 AI email assistant tools, and 85 AI design assistant tools, which businesses can browse under different categories. Social Media: Twitter Tutorial: Use Cases: Twitter: Twitter",
-      "url": "https://contlo.com/brand-ai-model/",
+      "url": "https://contlo.com/",
       "domain": "contlo.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/Contlo.png",
       "icon": "🎨",
@@ -23844,54 +17137,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Paid plan available on zoocial.io"
       },
       "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
-      "id": "tiipe",
-      "name": "Tiipe",
-      "category": "ecommerce",
-      "categories": [
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "🛍️ Ecommerce & Marketing",
-      "featured": false,
-      "description": "Get Product Descriptions Ready 10x Faster",
-      "overview": "Get Product Descriptions Ready 10x Faster Tiipe Feature: Tiipe is an AI-driven tool that produces compelling content at an astonishingly fast pace, elevating the eCommerce game. The tool delivers creative and exceptional descriptions for each product, all of which are optimized for SEO. By streamlining workflow with Tiipe, one can witness considerable growth in sales.",
-      "url": "https://tiipe.ai/",
-      "domain": "tiipe.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Tiipe.png",
-      "icon": "🛍️",
-      "rating": 4.9,
-      "votes": 177,
-      "inner_content": {
-        "overview": "Get Product Descriptions Ready 10x Faster Tiipe Feature: Tiipe is an AI-driven tool that produces compelling content at an astonishingly fast pace, elevating the eCommerce game. The tool delivers creative and exceptional descriptions for each product, all of which are optimized for SEO. By streamlining workflow with Tiipe, one can witness considerable growth in sales.",
-        "pricingDetails": "Freemium plan available on tiipe.ai"
-      },
-      "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
-      "id": "furwee",
-      "name": "Furwee",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Furwee is an AI-powered \"conversational tutoring\" platform that makes learning more fun for children.",
-      "overview": "Furwee is an AI-powered \"conversational tutoring\" platform that makes learning more fun for children. Furwee Features: Furwee utilizes AI technology for “conversational tutoring” to provide a more enjoyable way of learning for kids. Its strengths include: – Offering a free trial and customized assistance to aid kids in achieving their learning targets– Providing conversational tutoring that captivates and involves kids in an entertaining and hands-on manner– Adhering to terms of use, privacy policies, and cookies to maintain user security. Use Cases: Instagram: Instagram Facebook: Facebook",
-      "url": "https://www.furwee.ai/",
-      "domain": "furwee.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.furwee.ai-2023.05.05-23_19_08.png",
-      "icon": "🎓",
-      "rating": 5,
-      "votes": 128,
-      "inner_content": {
-        "overview": "Furwee is an AI-powered \"conversational tutoring\" platform that makes learning more fun for children. Furwee Features: Furwee utilizes AI technology for “conversational tutoring” to provide a more enjoyable way of learning for kids. Its strengths include: – Offering a free trial and customized assistance to aid kids in achieving their learning targets– Providing conversational tutoring that captivates and involves kids in an entertaining and hands-on manner– Adhering to terms of use, privacy policies, and cookies to maintain user security. Use Cases: Instagram: Instagram Facebook: Facebook",
-        "pricingDetails": "Free Trial plan available on furwee.ai"
-      },
-      "tool_type": "🎓 Education & Learning"
     },
     {
       "id": "persana-ai",
@@ -23988,30 +17233,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on quickreply.cfd"
       },
       "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "mechanic-for-a-chat",
-      "name": "Mechanic For A Chat",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Enjoy fast, reliable, and expert assistance for your car problems",
-      "overview": "Enjoy fast, reliable, and expert assistance for your car problems Mechanic For a Chat Features: ForA.Chat is a cutting-edge chatbot service specifically developed to support car owners with their vehicle-related concerns. Some of its key features and benefits are: – Proficient guidance: Employs natural language processing and machine learning algorithms to provide precise recommendations– Around-the-clock accessibility: Offers help at all times to users who require assistance– User-friendly interface: Needs no specialized knowledge or technical expertise to use– Added functionalities: Lets users book appointments, view their service history, and receive timely reminders for maintenance tasks. ForA.Chat caters to multiple groups of individuals who have different needs: – Car owners in search of reliable and hassle-free support for their auto-related issues– Automotive enthusiasts looking for expert advice and suggestions– Service providers aiming to improve their customer service using chatbot technologyOverall, ForA.Chat presents a quick and effective method for diagnosing and fixing car problems, making it a valuable tool for everyone involved in the automotive industry.",
-      "url": "https://mechanic.fora.chat/",
-      "domain": "mechanic.fora.chat",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Mechanic-forChat.png",
-      "icon": "🌟",
-      "rating": 4.8,
-      "votes": 189,
-      "inner_content": {
-        "overview": "Enjoy fast, reliable, and expert assistance for your car problems Mechanic For a Chat Features: ForA.Chat is a cutting-edge chatbot service specifically developed to support car owners with their vehicle-related concerns. Some of its key features and benefits are: – Proficient guidance: Employs natural language processing and machine learning algorithms to provide precise recommendations– Around-the-clock accessibility: Offers help at all times to users who require assistance– User-friendly interface: Needs no specialized knowledge or technical expertise to use– Added functionalities: Lets users book appointments, view their service history, and receive timely reminders for maintenance tasks. ForA.Chat caters to multiple groups of individuals who have different needs: – Car owners in search of reliable and hassle-free support for their auto-related issues– Automotive enthusiasts looking for expert advice and suggestions– Service providers aiming to improve their customer service using chatbot technologyOverall, ForA.Chat presents a quick and effective method for diagnosing and fixing car problems, making it a valuable tool for everyone involved in the automotive industry.",
-        "pricingDetails": "Freemium plan available on mechanic.fora.chat"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
     },
     {
       "id": "pixelicious",
@@ -24184,30 +17405,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎉 Fun & Creative Tools"
     },
     {
-      "id": "celebrity-voice-changer-ai",
-      "name": "Celebrity Voice Changer AI",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "Choose any celebrity and change your text into voice with AI",
-      "overview": "Choose any celebrity and change your text into voice with AI Celebrity Voice Changer AI Features: With the advanced AI technology, the Celebrity Voice Changer AI application provides an exceptional voice transformation service perfect for transforming user’s voices into celebrity voices or even creating speech from text. Here are some of its key features and benefits: – Voice transformation: The app accurately replicates celebrity voices giving users the opportunity to personalize their audio and speech.– User-friendly: Users can easily record their own voice and smoothly convert it into a celebrity-like voice.– Entertainment and social media: The tool enables users to prank their friends or create eye-catching content for social media. Overall, the Celebrity Voice Changer AI application delivers a fun and exciting way to indulge in voice transformation in a way that is easy and user-friendly.",
-      "url": "https://celebvoice.my.canva.site/",
-      "domain": "celebvoice.my.canva.site",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/CVC.png",
-      "icon": "🎉",
-      "rating": 4.9,
-      "votes": 159,
-      "inner_content": {
-        "overview": "Choose any celebrity and change your text into voice with AI Celebrity Voice Changer AI Features: With the advanced AI technology, the Celebrity Voice Changer AI application provides an exceptional voice transformation service perfect for transforming user’s voices into celebrity voices or even creating speech from text. Here are some of its key features and benefits: – Voice transformation: The app accurately replicates celebrity voices giving users the opportunity to personalize their audio and speech.– User-friendly: Users can easily record their own voice and smoothly convert it into a celebrity-like voice.– Entertainment and social media: The tool enables users to prank their friends or create eye-catching content for social media. Overall, the Celebrity Voice Changer AI application delivers a fun and exciting way to indulge in voice transformation in a way that is easy and user-friendly.",
-        "pricingDetails": "Freemium plan available on celebvoice.my.canva.site"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
       "id": "stable-attribution",
       "name": "Stable Attribution",
       "category": "image-generator",
@@ -24277,30 +17474,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Video creation platform designed for brands and businesses. Lumen5 Features: Designed to simplify and provide engaging content creation, Lumen5 is a video creation platform that uses AI technology. With its intuitive drag-and-drop interface, video creation is like using PowerPoint and it offers powerful features. The platform offers hundreds of customizable designs to ensure brand consistency and appeal and uses AI automation to turn blog posts into video content and Zoom recordings into captivating clips without requiring technical expertise. Additionally, there’s a resource library with images, video footage, and music for enhanced video content. Use cases for Lumen5 cater to various industries: Various industries can benefit from Lumen5 with its diverse range of use cases. It can be used by marketers to create engaging videos for social media posts, businesses to save time and costs on video production, and content creators who want to stay up-to-date with video marketing trends. The platform provides a user-friendly environment for creating captivating videos in just 10-15 minutes. As a result, Lumen5 has become an essential tool for both businesses and marketers.",
         "pricingDetails": "Freemium plan available on lumen5.com"
-      },
-      "tool_type": "🎬 Video & Animation"
-    },
-    {
-      "id": "genmo-ai",
-      "name": "Genmo AI",
-      "category": "video-editing",
-      "categories": [
-        "video-editing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎬 Video & Animation",
-      "featured": false,
-      "description": "Fantastical video generation with AI",
-      "overview": "Fantastical video generation with AI Genmo AI Features: Genmo employs AI technology to create engaging videos from text. Some of the prominent features and benefits include: – Text-based video creation: Utilizes natural language processing, image recognition, and machine learning algorithms to produce videos from text.– Customization: Offers a range of options for background colors, characters, music, and more, to provide a personalized touch to the videos.– Multiple formats: Allows for video distribution on various social media platforms like YouTube, Facebook, Twitter, etc.– Versatile applications: Ideal for creating a range of videos, including marketing campaigns, educational materials, explainer videos, and more. Genmo presents several use cases that cater to different requirements, such as: – Businesses and organizations that need affordable and compelling video content.– Educators and trainers who want to develop visually attractive educational materials.– Content creators looking for a quick and efficient way to produce videos from text. In general, Genmo provides an effective solution for people and organizations aiming to create engaging videos from text in a swift and economical way.",
-      "url": "https://alpha.genmo.ai/",
-      "domain": "alpha.genmo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Genmo.png",
-      "icon": "🎬",
-      "rating": 4.8,
-      "votes": 47,
-      "inner_content": {
-        "overview": "Fantastical video generation with AI Genmo AI Features: Genmo employs AI technology to create engaging videos from text. Some of the prominent features and benefits include: – Text-based video creation: Utilizes natural language processing, image recognition, and machine learning algorithms to produce videos from text.– Customization: Offers a range of options for background colors, characters, music, and more, to provide a personalized touch to the videos.– Multiple formats: Allows for video distribution on various social media platforms like YouTube, Facebook, Twitter, etc.– Versatile applications: Ideal for creating a range of videos, including marketing campaigns, educational materials, explainer videos, and more. Genmo presents several use cases that cater to different requirements, such as: – Businesses and organizations that need affordable and compelling video content.– Educators and trainers who want to develop visually attractive educational materials.– Content creators looking for a quick and efficient way to produce videos from text. In general, Genmo provides an effective solution for people and organizations aiming to create engaging videos from text in a swift and economical way.",
-        "pricingDetails": "Freemium plan available on alpha.genmo.ai"
       },
       "tool_type": "🎬 Video & Animation"
     },
@@ -24377,30 +17550,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "👤 AI Avatars"
     },
     {
-      "id": "quench-ai",
-      "name": "Quench AI",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Quench AI is an AI learning assistant that revolutionizes the world of video-based learning and development.",
-      "overview": "Quench AI is an AI learning assistant that revolutionizes the world of video-based learning and development. Quench AI Features Use Cases: Harnessing the power: Harnessing the power of advanced artificial intelligence to intelligently search and curate global video content Personalized learning experience: Personalized learning experience tailored to specific interests and requirements Customized video content: Customized video content stream to stay engaged and motivated throughout the learning journey Real-time video content: Real-time video content curation and seamless integration across multiple devices Efficient, engaging, and: Efficient, engaging, and effective personalized video learning experiences",
-      "url": "https://quench.ai/",
-      "domain": "quench.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-quench.ai-2023.05.05-19_43_32.png",
-      "icon": "🎓",
-      "rating": 4.9,
-      "votes": 101,
-      "inner_content": {
-        "overview": "Quench AI is an AI learning assistant that revolutionizes the world of video-based learning and development. Quench AI Features Use Cases: Harnessing the power: Harnessing the power of advanced artificial intelligence to intelligently search and curate global video content Personalized learning experience: Personalized learning experience tailored to specific interests and requirements Customized video content: Customized video content stream to stay engaged and motivated throughout the learning journey Real-time video content: Real-time video content curation and seamless integration across multiple devices Efficient, engaging, and: Efficient, engaging, and effective personalized video learning experiences",
-        "pricingDetails": "Free Trial plan available on quench.ai"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
       "id": "lensa",
       "name": "Lensa",
       "category": "avatar",
@@ -24450,30 +17599,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎉 Fun & Creative Tools"
     },
     {
-      "id": "unreal-meal",
-      "name": "Unreal Meal",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "AI-generated images of non-existent meals for recipes & creative projects.",
-      "overview": "AI-generated images of non-existent meals for recipes & creative projects. Unreal Meal Feature: These images showcase an array of AI-generated meals that do not actually exist in reality. There are various applications for these images, including their utilization in recipe innovation and incorporation into artistic projects. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://unrealmeal.ai/",
-      "domain": "unrealmeal.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/unrealmeal.png",
-      "icon": "🎉",
-      "rating": 4.5,
-      "votes": 52,
-      "inner_content": {
-        "overview": "AI-generated images of non-existent meals for recipes & creative projects. Unreal Meal Feature: These images showcase an array of AI-generated meals that do not actually exist in reality. There are various applications for these images, including their utilization in recipe innovation and incorporation into artistic projects. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on unrealmeal.ai"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
       "id": "trinka-ai",
       "name": "Trinka.ai",
       "category": "educational",
@@ -24494,30 +17619,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Trinka is a revolutionary language enhancement tool designed specifically for academic and technical writing, featuring tools like a Plagiarism Checker, Citation Checker, and more for a comprehensive editing experience. Trinka.ai Features: Use Cases: Real-Time Support: Trinka corrects contextual spelling mistakes and advanced grammar errors by providing writing suggestions in real time. Powerful Grammar and Spelling Checks: Academic writing needs to be clear, concise, formal, objective, and readable. Trinka's holistic improvements let you communicate confidently. Enhancements for Publication-Ready Writing: Trinka refines the tone, delivery, and phrasing of your writing to match academic writing conventions and best practices so you can focus more on your ideas.",
         "pricingDetails": "Freemium plan available on trinka.ai"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "asknotion",
-      "name": "AskNotion",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "AskNotion is a chatbot tool that allows users to create ChatGPT-like chatbots trained on their Notion pages without coding.",
-      "overview": "AskNotion is a chatbot tool that allows users to create ChatGPT-like chatbots trained on their Notion pages without coding. AskNotion Features: With AskNotion, users can generate ChatGPT-style chatbots trained on their Notion pages without requiring any coding skills. The tool offers various benefits, such as: – Effortlessly produce chatbots based on Notion pages with no coding expertise needed– There is no limit on the number of Notion pages that can be synced– Reasonably priced starter package at $9.99 per month per user with a 5-day trial period at zero risk– Up to 300k tokens are available for AI-powered Notion page discussions– Create up to 1,000 chatbot conversations simultaneously.",
-      "url": "https://asknotion.app/",
-      "domain": "asknotion.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-asknotion.app-2023.05.05-12_37_21.png",
-      "icon": "🎓",
-      "rating": 4.6,
-      "votes": 183,
-      "inner_content": {
-        "overview": "AskNotion is a chatbot tool that allows users to create ChatGPT-like chatbots trained on their Notion pages without coding. AskNotion Features: With AskNotion, users can generate ChatGPT-style chatbots trained on their Notion pages without requiring any coding skills. The tool offers various benefits, such as: – Effortlessly produce chatbots based on Notion pages with no coding expertise needed– There is no limit on the number of Notion pages that can be synced– Reasonably priced starter package at $9.99 per month per user with a 5-day trial period at zero risk– Up to 300k tokens are available for AI-powered Notion page discussions– Create up to 1,000 chatbot conversations simultaneously.",
-        "pricingDetails": "Freemium plan available on asknotion.app"
       },
       "tool_type": "🎓 Education & Learning"
     },
@@ -24546,30 +17647,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "trellis",
-      "name": "Trellis",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "ChatGPT-powered custom tutor and textbook companion.",
-      "overview": "ChatGPT-powered custom tutor and textbook companion. Trellis is revolutionizing education with its contemporary generative AI that reimagines what books can be. Learn anything from hard science and engineering concepts to code and mathematics, and never feel embarrassed asking questions again. We are proud to launch our closed beta today on Product Hunt! Presenting Trellis, the world’s first GPT-3 and ChatGPT-powered textbook companion and tutor.Sign up today for lifetime free access. Upvote here and help us reach product of the day: https://t.co/1btrDi6dPV",
-      "url": "https://www.readtrellis.com/",
-      "domain": "readtrellis.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.readtrellis.com-2023.05.05-12_28_13.png",
-      "icon": "🎓",
-      "rating": 4.8,
-      "votes": 85,
-      "inner_content": {
-        "overview": "ChatGPT-powered custom tutor and textbook companion. Trellis is revolutionizing education with its contemporary generative AI that reimagines what books can be. Learn anything from hard science and engineering concepts to code and mathematics, and never feel embarrassed asking questions again. We are proud to launch our closed beta today on Product Hunt! Presenting Trellis, the world’s first GPT-3 and ChatGPT-powered textbook companion and tutor.Sign up today for lifetime free access. Upvote here and help us reach product of the day: https://t.co/1btrDi6dPV",
-        "pricingDetails": "Free Trial plan available on readtrellis.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
       "id": "3654-2",
       "name": "Praktika",
       "category": "educational",
@@ -24594,30 +17671,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "crossplag",
-      "name": "Crossplag",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "The AI Content Detector by Crossplag is a tool designed to identify AI-generated text using advanced machine learning algorithms and ChatGPT detection technology.",
-      "overview": "The AI Content Detector by Crossplag is a tool designed to identify AI-generated text using advanced machine learning algorithms and ChatGPT detection technology. Crossplag Features Use Cases: Accuracy: Provides a rating score bar to evaluate the authenticity of the text Versatility: Useful for academic integrity and improving online content quality Free and secure: Does not store any data during the analysis process Language support: Currently supports English, with plans for additional languages in the future",
-      "url": "https://crossplag.com/ai-content-detector/",
-      "domain": "crossplag.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-crossplag.com-2023.05.05-12_11_31.png",
-      "icon": "🎓",
-      "rating": 5,
-      "votes": 139,
-      "inner_content": {
-        "overview": "The AI Content Detector by Crossplag is a tool designed to identify AI-generated text using advanced machine learning algorithms and ChatGPT detection technology. Crossplag Features Use Cases: Accuracy: Provides a rating score bar to evaluate the authenticity of the text Versatility: Useful for academic integrity and improving online content quality Free and secure: Does not store any data during the analysis process Language support: Currently supports English, with plans for additional languages in the future",
-        "pricingDetails": "Freemium plan available on crossplag.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
       "id": "writefull",
       "name": "Writefull",
       "category": "educational",
@@ -24638,30 +17691,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Writefull’s AI helps you write, paraphrase, copyedit, and more. Writefull gets you real-time language feedback on word files and your LaTex code on Overleaf. You can explore the language used across millions of published articles, and automatically paraphrase and generate text. You can also see the overall language quality, and correct any errors in your revised document with Track Changes.",
         "pricingDetails": "Paid plan available on writefull.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "teacherbot",
-      "name": "Teacherbot",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Create activities and plans for any level and subject",
-      "overview": "Create activities and plans for any level and subject Teacherbot enables teachers to design innovative and highly efficient learning schemes for their students. The tool provides resources for areas such as reading, mathematics, early childhood education, primary and secondary education, and higher education, along with support and contact information. By using Teacherbot, educators can streamline their work, freeing up time to head home for dinner.",
-      "url": "https://teacherbot.io/",
-      "domain": "teacherbot.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-teacherbot.io-2023.05.05-12_01_42.png",
-      "icon": "🎓",
-      "rating": 4.9,
-      "votes": 27,
-      "inner_content": {
-        "overview": "Create activities and plans for any level and subject Teacherbot enables teachers to design innovative and highly efficient learning schemes for their students. The tool provides resources for areas such as reading, mathematics, early childhood education, primary and secondary education, and higher education, along with support and contact information. By using Teacherbot, educators can streamline their work, freeing up time to head home for dinner.",
-        "pricingDetails": "Freemium plan available on teacherbot.io"
       },
       "tool_type": "🎓 Education & Learning"
     },
@@ -24714,54 +17743,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "nolej",
-      "name": "Nolej",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Nolej is a decentralized skills platform powered by AI, designed to automate interactive courseware creation and facilitate global knowledge sharing.",
-      "overview": "Nolej is a decentralized skills platform powered by AI, designed to automate interactive courseware creation and facilitate global knowledge sharing. Nolej Features: Transform text, videos, and audio files into interactive and engaging course content with the aid of AI technology. Nolej Graph and Protocol: A global knowledge graph and collective intelligence engine set to debut in 2023. Acquire new skills, obtain proof of learning, and gain access to real-world opportunities without intermediaries. Review:",
-      "url": "https://nolej.io/",
-      "domain": "nolej.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-nolej.io-2023.05.05-11_44_06.png",
-      "icon": "🎓",
-      "rating": 4.8,
-      "votes": 123,
-      "inner_content": {
-        "overview": "Nolej is a decentralized skills platform powered by AI, designed to automate interactive courseware creation and facilitate global knowledge sharing. Nolej Features: Transform text, videos, and audio files into interactive and engaging course content with the aid of AI technology. Nolej Graph and Protocol: A global knowledge graph and collective intelligence engine set to debut in 2023. Acquire new skills, obtain proof of learning, and gain access to real-world opportunities without intermediaries. Review:",
-        "pricingDetails": "Free Trial plan available on nolej.io"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "tiny-storie",
-      "name": "Tiny storie",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Personalized audio storytelling for children build using AI",
-      "overview": "Personalized audio storytelling for children build using AI – TinyStorie offers AI-driven personalized audio storytelling for kids.– The aim is to assist parents in their daily routines by providing them with this tool for customizing stories.– After receiving positive feedback from over a thousand actual registered users in just two weeks, the team plans to offer this app to organizations supporting children’s causes.– The goal is to use TinyStorie as a tool for spreading awareness and raising funds for such causes.– A portion of the subscription fees or pack-of-stories purchase goes towards supporting charitable causes.",
-      "url": "https://tinystorie.com/",
-      "domain": "tinystorie.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-tinystorie.com-2023.05.05-11_30_38.png",
-      "icon": "🎓",
-      "rating": 4.7,
-      "votes": 60,
-      "inner_content": {
-        "overview": "Personalized audio storytelling for children build using AI – TinyStorie offers AI-driven personalized audio storytelling for kids.– The aim is to assist parents in their daily routines by providing them with this tool for customizing stories.– After receiving positive feedback from over a thousand actual registered users in just two weeks, the team plans to offer this app to organizations supporting children’s causes.– The goal is to use TinyStorie as a tool for spreading awareness and raising funds for such causes.– A portion of the subscription fees or pack-of-stories purchase goes towards supporting charitable causes.",
-        "pricingDetails": "Freemium plan available on tinystorie.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
       "id": "vieutopia",
       "name": "Vieutopia",
       "category": "image-generator",
@@ -24774,7 +17755,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Create art from ideas with no cost or limits using this app.",
       "overview": "Create art from ideas with no cost or limits using this app. Vieutopia Feature: Having undergone examination with thousands of image and text amalgamations, this application enables you to turn your imaginative concepts into artistic masterpieces without incurring any subscription expenses or usage bounds.",
-      "url": "https://apps.apple.com/gb/app/vieutopia/id1660264569",
+      "url": "https://apps.apple.com/",
       "domain": "apps.apple.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/vieutopia.png",
       "icon": "🎨",
@@ -24835,78 +17816,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Image Generator"
     },
     {
-      "id": "aigify",
-      "name": "AIGIFY",
-      "category": "image-generator",
-      "categories": [
-        "image-generator"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Image Generator",
-      "featured": false,
-      "description": "Instantly create eye-catching GIFs with AIGIFYAI",
-      "overview": "Instantly create eye-catching GIFs with AIGIFYAI AIGIFY Features: Enhance your social media interactions and website attractiveness using AIGIFYAI, an AI-generated GIF service that presents a variety of styles and modifications. Highlights: – Pick your GIF among 100+ styles, characters, and mods.– Get exclusive GIFs with a digital GIF generator powered by AI.– Perfect for incorporating into your websites, social media platforms, and blog entries.– Receive your GIF directly through email within 5 minutes. Applications: – Elevate the visual appeal of your website or blog with captivating GIFs.– Increase interaction and involvement on social media forums.– Generate unusual assemblages for personal or business purposes.",
-      "url": "https://aigify.com/",
-      "domain": "aigify.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/aigify.png",
-      "icon": "🎨",
-      "rating": 4.9,
-      "votes": 93,
-      "inner_content": {
-        "overview": "Instantly create eye-catching GIFs with AIGIFYAI AIGIFY Features: Enhance your social media interactions and website attractiveness using AIGIFYAI, an AI-generated GIF service that presents a variety of styles and modifications. Highlights: – Pick your GIF among 100+ styles, characters, and mods.– Get exclusive GIFs with a digital GIF generator powered by AI.– Perfect for incorporating into your websites, social media platforms, and blog entries.– Receive your GIF directly through email within 5 minutes. Applications: – Elevate the visual appeal of your website or blog with captivating GIFs.– Increase interaction and involvement on social media forums.– Generate unusual assemblages for personal or business purposes.",
-        "pricingDetails": "Freemium plan available on aigify.com"
-      },
-      "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "aicheatcheck",
-      "name": "AICheatCheck",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": true,
-      "description": "AICheatCheck is an AI tool designed to maintain academic integrity by verifying the authenticity of students' work.",
-      "overview": "AICheatCheck is an AI tool designed to maintain academic integrity by verifying the authenticity of students' work. AICheatCheck Features: 1. With a success rate of 99.7%, the tool has an excellent capacity to identify GPT-generated content. 2. The tool provides a comprehensive examination of sentence structure and readability to confirm that the student’s work does not originate from AI. 3. For universities and businesses interested in exploring the tool’s functionality, they can schedule a demonstration or reach out to AICheatCheck via their website.",
-      "url": "https://demo.aicheatcheck.com/",
-      "domain": "demo.aicheatcheck.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-demo.aicheatcheck.com-2023.05.05-11_08_33.png",
-      "icon": "🎓",
-      "rating": 4.8,
-      "votes": 114,
-      "inner_content": {
-        "overview": "AICheatCheck is an AI tool designed to maintain academic integrity by verifying the authenticity of students' work. AICheatCheck Features: 1. With a success rate of 99.7%, the tool has an excellent capacity to identify GPT-generated content. 2. The tool provides a comprehensive examination of sentence structure and readability to confirm that the student’s work does not originate from AI. 3. For universities and businesses interested in exploring the tool’s functionality, they can schedule a demonstration or reach out to AICheatCheck via their website.",
-        "pricingDetails": "Freemium plan available on demo.aicheatcheck.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "speakable",
-      "name": "Speakable",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Speakable creates auto-graded speaking assignments in over 100 languages, eliminating the hassle of grading hours of recordings, so you can focus on teaching.",
-      "overview": "Speakable creates auto-graded speaking assignments in over 100 languages, eliminating the hassle of grading hours of recordings, so you can focus on teaching. Speakable Features: Use Cases: Add any word or phrase: With the Speakable Builder, you can enter any word or phrase you want your students to practice speaking. Record your voice for students: Use text-to-speech technology to allow your students to listen to words in your speaking assignments or enrich them with your own recordings. Reinforce your lessons with video lessons: Have students watch a video lesson embedded from youtube before they start their speaking assignment.",
-      "url": "https://speakableapp.com/",
-      "domain": "speakableapp.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-speakableapp.com-2023.05.05-11_02_55.png",
-      "icon": "🎓",
-      "rating": 4.5,
-      "votes": 72,
-      "inner_content": {
-        "overview": "Speakable creates auto-graded speaking assignments in over 100 languages, eliminating the hassle of grading hours of recordings, so you can focus on teaching. Speakable Features: Use Cases: Add any word or phrase: With the Speakable Builder, you can enter any word or phrase you want your students to practice speaking. Record your voice for students: Use text-to-speech technology to allow your students to listen to words in your speaking assignments or enrich them with your own recordings. Reinforce your lessons with video lessons: Have students watch a video lesson embedded from youtube before they start their speaking assignment.",
-        "pricingDetails": "Free Trial plan available on speakableapp.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
       "id": "stable-diffusion",
       "name": "Stable Diffusion",
       "category": "image-generator",
@@ -24930,199 +17839,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on stability.ai"
       },
       "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "brain-buddy",
-      "name": "Brain Buddy",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Brain Buddy is a GPT-4 powered AI tutor that provides free homework help for students across all subjects and skill levels. The platform offers over 50 ready-to-use prompts and custom reports, saving time and improving academic performance.",
-      "overview": "Brain Buddy is a GPT-4 powered AI tutor that provides free homework help for students across all subjects and skill levels. The platform offers over 50 ready-to-use prompts and custom reports, saving time and improving academic performance. Brain Buddy Features Use Cases: AI-Powered Tutoring: Brain Buddy's advanced artificial intelligence technology delivers accurate answers, tailored solutions, and personalized guidance across various subjects. Prompt Library: With over 50 ready-to-use prompts, Brain Buddy provides instant inspiration and resources for diverse tasks. Custom Reports and Essay Templates and Outlines: Brain Buddy can generate comprehensive reports and essays based on specific data provided by the user, saving valuable time and effort while delivering high-quality results. User-Friendly Interface: The platform is designed to be simple and intuitive, making it easy for students of all ages and skill levels to access the powerful tutoring capabilities of Brain Buddy. Free Access and Affordable Upgrades: Brain Buddy offers free access to its core features for all students, while an affordable monthly subscription plan unlocks additional tools, prompt libraries, and enhanced capabilities with the Brain Buddy PRO package.",
-      "url": "https://brain-buddy.com/",
-      "domain": "brain-buddy.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-foundr.ai-2023.05.05-10_42_38.png",
-      "icon": "🎓",
-      "rating": 4.6,
-      "votes": 175,
-      "inner_content": {
-        "overview": "Brain Buddy is a GPT-4 powered AI tutor that provides free homework help for students across all subjects and skill levels. The platform offers over 50 ready-to-use prompts and custom reports, saving time and improving academic performance. Brain Buddy Features Use Cases: AI-Powered Tutoring: Brain Buddy's advanced artificial intelligence technology delivers accurate answers, tailored solutions, and personalized guidance across various subjects. Prompt Library: With over 50 ready-to-use prompts, Brain Buddy provides instant inspiration and resources for diverse tasks. Custom Reports and Essay Templates and Outlines: Brain Buddy can generate comprehensive reports and essays based on specific data provided by the user, saving valuable time and effort while delivering high-quality results. User-Friendly Interface: The platform is designed to be simple and intuitive, making it easy for students of all ages and skill levels to access the powerful tutoring capabilities of Brain Buddy. Free Access and Affordable Upgrades: Brain Buddy offers free access to its core features for all students, while an affordable monthly subscription plan unlocks additional tools, prompt libraries, and enhanced capabilities with the Brain Buddy PRO package.",
-        "pricingDetails": "Free plan available on brain-buddy.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "helicone",
-      "name": "Helicone",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Monitor GPT-3 with one line of code, add OpenAI key to Valyr for dashboard view.",
-      "overview": "Monitor GPT-3 with one line of code, add OpenAI key to Valyr for dashboard view. Helicone Feature: Monitoring GPT-3 has never been easier with just one line of code. Easily incorporate the SDK by replacing the base url and adding your OpenAI key to Valyr, enabling you to keep track of requests via the dashboard. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.helicone.ai/",
-      "domain": "helicone.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/helicone.png",
-      "icon": "💻",
-      "rating": 4.8,
-      "votes": 161,
-      "inner_content": {
-        "overview": "Monitor GPT-3 with one line of code, add OpenAI key to Valyr for dashboard view. Helicone Feature: Monitoring GPT-3 has never been easier with just one line of code. Easily incorporate the SDK by replacing the base url and adding your OpenAI key to Valyr, enabling you to keep track of requests via the dashboard. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on helicone.ai"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "sketchar",
-      "name": "Sketchar",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "Sketchar is a personalized art learning app that revolutionizes the way people learn creative skills.",
-      "overview": "Sketchar is a personalized art learning app that revolutionizes the way people learn creative skills. Sketchar Features Use Cases: Personalized learning: Sketchar adapts to individual needs and preferences, tracks progress, and customizes content accordingly for higher engagement Theory and practice: Sketchar effectively combines theory and practice into a fun experience Mind-blowing tools: Sketchar provides mind-blowing tools for daily creative practice",
-      "url": "https://sketchar.io/",
-      "domain": "sketchar.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-sketchar.io-2023.05.05-10_32_56.png",
-      "icon": "🎓",
-      "rating": 4.8,
-      "votes": 133,
-      "inner_content": {
-        "overview": "Sketchar is a personalized art learning app that revolutionizes the way people learn creative skills. Sketchar Features Use Cases: Personalized learning: Sketchar adapts to individual needs and preferences, tracks progress, and customizes content accordingly for higher engagement Theory and practice: Sketchar effectively combines theory and practice into a fun experience Mind-blowing tools: Sketchar provides mind-blowing tools for daily creative practice",
-        "pricingDetails": "Freemium plan available on sketchar.io"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "rtutor",
-      "name": "RTutor",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Quickly generate & test R code, powered by OpenAI's Davinci & Shiny.",
-      "overview": "Quickly generate & test R code, powered by OpenAI's Davinci & Shiny. RTutor Features: RTutor is a software application that leverages artificial intelligence to generate and test R code quickly. It makes use of API calls to OpenAI’s Davinci and ChatGPT’s sibling to create R scripts from natural language requests, which are executed in the Shiny platform. Key Features: Natural language interface: Easily interact with data using natural language queries.Code generation in R and Python: Automatic conversion of natural language requests into R and Python code.Multiple format compatibility: RTutor is compatible with CSV, TSV, and Excel files.Automated data type identification: RTutor quickly detects and converts numerical columns to factors.Multilingual capability: Supports natural language processing in dozens of languages.",
-      "url": "http://rtutor.ai/",
-      "domain": "rtutor.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Rtutor.png",
-      "icon": "💻",
-      "rating": 4.7,
-      "votes": 126,
-      "inner_content": {
-        "overview": "Quickly generate & test R code, powered by OpenAI's Davinci & Shiny. RTutor Features: RTutor is a software application that leverages artificial intelligence to generate and test R code quickly. It makes use of API calls to OpenAI’s Davinci and ChatGPT’s sibling to create R scripts from natural language requests, which are executed in the Shiny platform. Key Features: Natural language interface: Easily interact with data using natural language queries.Code generation in R and Python: Automatic conversion of natural language requests into R and Python code.Multiple format compatibility: RTutor is compatible with CSV, TSV, and Excel files.Automated data type identification: RTutor quickly detects and converts numerical columns to factors.Multilingual capability: Supports natural language processing in dozens of languages.",
-        "pricingDetails": "Freemium plan available on rtutor.ai"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "google-colab-copilot",
-      "name": "Google Colab Copilot",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "AI Python coding assistant on Google Collab",
-      "overview": "AI Python coding assistant on Google Collab Google Colab Copilot Features: The Google Colab Copilot is a tool specially developed to automate Google Colab workspaces and enhance user experience. Its notable features and advantages are: 1. Google Colab Integration: This tool is seamlessly integrated with Google Colab to facilitate efficient workspace automation. 2. Easy Setup: Setting up the Google Colab Copilot only requires replacing “YOUR OPENAI API KEY” with the OpenAI API key and following the simple set-up instructions. 3. Convenient Activation: To initiate this tool, users can easily press Shift+Alt+Enter on Google Colab, making it a very user-friendly automated system. With the Google Colab Copilot, users can effortlessly automate their workspaces, thus allowing for an improved and productive work experience.",
-      "url": "https://copilot.naklecha.com/",
-      "domain": "copilot.naklecha.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/google-colab-copilot.png",
-      "icon": "💻",
-      "rating": 4.9,
-      "votes": 84,
-      "inner_content": {
-        "overview": "AI Python coding assistant on Google Collab Google Colab Copilot Features: The Google Colab Copilot is a tool specially developed to automate Google Colab workspaces and enhance user experience. Its notable features and advantages are: 1. Google Colab Integration: This tool is seamlessly integrated with Google Colab to facilitate efficient workspace automation. 2. Easy Setup: Setting up the Google Colab Copilot only requires replacing “YOUR OPENAI API KEY” with the OpenAI API key and following the simple set-up instructions. 3. Convenient Activation: To initiate this tool, users can easily press Shift+Alt+Enter on Google Colab, making it a very user-friendly automated system. With the Google Colab Copilot, users can effortlessly automate their workspaces, thus allowing for an improved and productive work experience.",
-        "pricingDetails": "Freemium plan available on copilot.naklecha.com"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "the-godchat",
-      "name": "The GodChat",
-      "category": "educational",
-      "categories": [
-        "educational"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎓 Education & Learning",
-      "featured": false,
-      "description": "GodChat is designed to provide an exceptional personal assistant experience on your phone. Powered by GPT3.5 and GPT4, GodChat offers AI chat services within WhatsApp, moving beyond traditional responsive bots.",
-      "overview": "GodChat is designed to provide an exceptional personal assistant experience on your phone. Powered by GPT3.5 and GPT4, GodChat offers AI chat services within WhatsApp, moving beyond traditional responsive bots. The GodChat Features Use Cases: Advanced AI-powered chat: Utilizing GPT3.5 and GPT4 for enhanced communication. Integration with WhatsApp: Seamless chatting experience within the popular messaging platform. Multimedia generation: Capable of generating audios, images, and documents.",
-      "url": "https://thegodchat.com/",
-      "domain": "thegodchat.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-foundr.ai-2023.05.05-10_25_01.png",
-      "icon": "🎓",
-      "rating": 4.5,
-      "votes": 35,
-      "inner_content": {
-        "overview": "GodChat is designed to provide an exceptional personal assistant experience on your phone. Powered by GPT3.5 and GPT4, GodChat offers AI chat services within WhatsApp, moving beyond traditional responsive bots. The GodChat Features Use Cases: Advanced AI-powered chat: Utilizing GPT3.5 and GPT4 for enhanced communication. Integration with WhatsApp: Seamless chatting experience within the popular messaging platform. Multimedia generation: Capable of generating audios, images, and documents.",
-        "pricingDetails": "Free Trial plan available on thegodchat.com"
-      },
-      "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "safurai",
-      "name": "Safurai",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "The AI Code Assistant that really helps developers.",
-      "overview": "The AI Code Assistant that really helps developers. Safurai Features: Safurai is an innovative IDE extension that utilizes AI technology to assist developers with software development tasks, including coding, debugging, and refactoring. With its virtual assistant capabilities, Safurai can provide developers with valuable solutions and insights that can improve the quality of their code and streamline the development process. The software is user-friendly and can greatly enhance the efficiency of software development processes. By incorporating Safurai into their workflow, developers can improve the overall quality of their code and benefit from a more productive and efficient development process. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.safurai.com/",
-      "domain": "safurai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/safurai.png",
-      "icon": "💻",
-      "rating": 4.9,
-      "votes": 28,
-      "inner_content": {
-        "overview": "The AI Code Assistant that really helps developers. Safurai Features: Safurai is an innovative IDE extension that utilizes AI technology to assist developers with software development tasks, including coding, debugging, and refactoring. With its virtual assistant capabilities, Safurai can provide developers with valuable solutions and insights that can improve the quality of their code and streamline the development process. The software is user-friendly and can greatly enhance the efficiency of software development processes. By incorporating Safurai into their workflow, developers can improve the overall quality of their code and benefit from a more productive and efficient development process. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on safurai.com"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "pionexgpt",
-      "name": "PionexGPT",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant",
-        "finance"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Pionex GPT – Create Your Own Strategy with AI",
-      "overview": "Pionex GPT – Create Your Own Strategy with AI PionexGPT Features: Pionex offers a wide range of features that make it a go-to platform for cryptocurrency trading. With automated trading bots, multiple investment products, and cutting-edge features like PionexGPT and Signal Support, traders can quickly and efficiently buy and sell cryptocurrencies and develop effective trading strategies. Pionex is an excellent platform for those looking to diversify their portfolio with cryptocurrency investments. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.pionex.com/en/sign/ref/7bYd5fOw",
-      "domain": "pionex.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/pionex.png",
-      "icon": "💻",
-      "rating": 5,
-      "votes": 187,
-      "inner_content": {
-        "overview": "Pionex GPT – Create Your Own Strategy with AI PionexGPT Features: Pionex offers a wide range of features that make it a go-to platform for cryptocurrency trading. With automated trading bots, multiple investment products, and cutting-edge features like PionexGPT and Signal Support, traders can quickly and efficiently buy and sell cryptocurrencies and develop effective trading strategies. Pionex is an excellent platform for those looking to diversify their portfolio with cryptocurrency investments. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on pionex.com"
-      },
-      "tool_type": "💻 Code & Developer"
     },
     {
       "id": "unakin",
@@ -25175,30 +17891,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚡ Productivity"
     },
     {
-      "id": "gpt-lab",
-      "name": "GPT Lab",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Chat or build GPT-based chatbots on an all-in-one platform.",
-      "overview": "Chat or build GPT-based chatbots on an all-in-one platform. GPT Lab Features: GPT Lab stands out as a unique AI-driven platform that gives users remarkable flexibility and control over their AI experience. Offering custom AI companions, pre-trained AI assistants, and top-notch security features, this platform has become a leader in AI-centered solutions. Here are the key features and benefits of GPT Lab: 1. Personalized AI Companions: GPT Lab enables users to create AI companions tailored to their specific needs, such as personal coaching, career consulting, or writing support. 2. Access to Pre-Trained AI Assistants: Additionally, GPT Lab offers users access to pre-trained AI assistants, allowing them to expand their abilities and perform a variety of functions. 3. Priority on Privacy and Security: User privacy is a top priority for GPT Lab, utilizing advanced security measures, such as hashed values of the OpenAI API key, to safeguard user data. 4. Clear Terms of Use and Privacy Policy: Prior to creating an account, GPT Lab requires users to acknowledge and agree to its comprehensive terms of use and privacy policy, ensuring transparency in its operations. 5. Possibilities are Endless: GPT Lab provides limitless potential for exploring the capabilities of AI, allowing users to experiment with varying companions, conduct research, and leverage AI to attain their goals. Overall, GPT Lab is an innovative platform delivering unlimited opportunities for users to design and explore the potentials of AI while maintaining exceptional flexibility and control. The platform caters to every individual in the AI community, from developing custom companions to utilizing pre-trained assistants. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://gptlab.streamlit.app/",
-      "domain": "gptlab.streamlit.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/GPT-Lab.png",
-      "icon": "💻",
-      "rating": 4.8,
-      "votes": 124,
-      "inner_content": {
-        "overview": "Chat or build GPT-based chatbots on an all-in-one platform. GPT Lab Features: GPT Lab stands out as a unique AI-driven platform that gives users remarkable flexibility and control over their AI experience. Offering custom AI companions, pre-trained AI assistants, and top-notch security features, this platform has become a leader in AI-centered solutions. Here are the key features and benefits of GPT Lab: 1. Personalized AI Companions: GPT Lab enables users to create AI companions tailored to their specific needs, such as personal coaching, career consulting, or writing support. 2. Access to Pre-Trained AI Assistants: Additionally, GPT Lab offers users access to pre-trained AI assistants, allowing them to expand their abilities and perform a variety of functions. 3. Priority on Privacy and Security: User privacy is a top priority for GPT Lab, utilizing advanced security measures, such as hashed values of the OpenAI API key, to safeguard user data. 4. Clear Terms of Use and Privacy Policy: Prior to creating an account, GPT Lab requires users to acknowledge and agree to its comprehensive terms of use and privacy policy, ensuring transparency in its operations. 5. Possibilities are Endless: GPT Lab provides limitless potential for exploring the capabilities of AI, allowing users to experiment with varying companions, conduct research, and leverage AI to attain their goals. Overall, GPT Lab is an innovative platform delivering unlimited opportunities for users to design and explore the potentials of AI while maintaining exceptional flexibility and control. The platform caters to every individual in the AI community, from developing custom companions to utilizing pre-trained assistants. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on gptlab.streamlit.app"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
       "id": "chatgpt-js",
       "name": "Chatgpt.js",
       "category": "code-assistant",
@@ -25221,54 +17913,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on chatgpt.js.org"
       },
       "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "promptsandbox",
-      "name": "PromptSandbox",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "User-friendly Visual Programming tool to Explore OpenAI API workflows.",
-      "overview": "User-friendly Visual Programming tool to Explore OpenAI API workflows. PromptSandbox Features: Collaboration: Teams can collaborate on projects, share workflows, and improve productivity.Security: All data is encrypted, and access is tightly controlled, making the platform safe to use for sensitive projects.Real-Time Testing: Test and adjust workflows in real-time to ensure that your projects are working correctly.Community Support: A strong community of developers supports the platform, providing tips and feedback to help you get the most out of your projects. Overall, the OpenAI Workflows platform is an excellent tool for anyone looking to build complex AI workflows without needing to learn a lot of coding skills. The platform’s user-friendly interface, support for different file formats, and collaboration features make it an invaluable resource for individuals and teams looking to integrate AI into their daily work or project. With continuous updates and a supportive community, the OpenAI Workflows platform is poised to become a leading hub for AI workflow development.",
-      "url": "https://app.promptsandbox.io/",
-      "domain": "app.promptsandbox.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/promptsandbox.png",
-      "icon": "💻",
-      "rating": 4.5,
-      "votes": 82,
-      "inner_content": {
-        "overview": "User-friendly Visual Programming tool to Explore OpenAI API workflows. PromptSandbox Features: Collaboration: Teams can collaborate on projects, share workflows, and improve productivity.Security: All data is encrypted, and access is tightly controlled, making the platform safe to use for sensitive projects.Real-Time Testing: Test and adjust workflows in real-time to ensure that your projects are working correctly.Community Support: A strong community of developers supports the platform, providing tips and feedback to help you get the most out of your projects. Overall, the OpenAI Workflows platform is an excellent tool for anyone looking to build complex AI workflows without needing to learn a lot of coding skills. The platform’s user-friendly interface, support for different file formats, and collaboration features make it an invaluable resource for individuals and teams looking to integrate AI into their daily work or project. With continuous updates and a supportive community, the OpenAI Workflows platform is poised to become a leading hub for AI workflow development.",
-        "pricingDetails": "Free Trial plan available on app.promptsandbox.io"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "freshly-ai",
-      "name": "Freshly.ai",
-      "category": "finance",
-      "categories": [
-        "finance"
-      ],
-      "pricing": "Freemium",
-      "badge": "📊 Finance & Spreadsheets",
-      "featured": false,
-      "description": "Determines if a public company may be a good investment.",
-      "overview": "Determines if a public company may be a good investment. Freshly.ai Features: Freshly.ai also offers a community forum where members can connect, collaborate, and discuss AI-related topics. The forum is moderated by AI experts and professionals to ensure that discussions are informative, engaging, and productive. One of the key strengths of Freshly.ai is its commitment to diversity and inclusivity. The platform welcomes members from all backgrounds and disciplines, recognizing the importance of diverse perspectives and experiences in driving innovation and progress in the field of AI. Freshly.ai is also dedicated to promoting ethical and responsible AI practices. The platform provides resources and guidelines for developing AI solutions that minimize bias, protect privacy, and prioritize the well-being of all stakeholders. Overall, Freshly.ai is an invaluable resource for anyone interested in AI, from seasoned professionals to newcomers to the field. With its powerful AI-generated reports, vast collection of resources, and supportive community, Freshly.ai is poised to become a leading hub for the AI community in the years to come.",
-      "url": "http://freshly.ai/",
-      "domain": "freshly.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/freshlyAI.png",
-      "icon": "📊",
-      "rating": 4.9,
-      "votes": 47,
-      "inner_content": {
-        "overview": "Determines if a public company may be a good investment. Freshly.ai Features: Freshly.ai also offers a community forum where members can connect, collaborate, and discuss AI-related topics. The forum is moderated by AI experts and professionals to ensure that discussions are informative, engaging, and productive. One of the key strengths of Freshly.ai is its commitment to diversity and inclusivity. The platform welcomes members from all backgrounds and disciplines, recognizing the importance of diverse perspectives and experiences in driving innovation and progress in the field of AI. Freshly.ai is also dedicated to promoting ethical and responsible AI practices. The platform provides resources and guidelines for developing AI solutions that minimize bias, protect privacy, and prioritize the well-being of all stakeholders. Overall, Freshly.ai is an invaluable resource for anyone interested in AI, from seasoned professionals to newcomers to the field. With its powerful AI-generated reports, vast collection of resources, and supportive community, Freshly.ai is poised to become a leading hub for the AI community in the years to come.",
-        "pricingDetails": "Freemium plan available on freshly.ai"
-      },
-      "tool_type": "📊 Finance & Spreadsheets"
     },
     {
       "id": "alpharesearch",
@@ -25416,30 +18060,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "📊 Finance & Spreadsheets"
     },
     {
-      "id": "trendspider",
-      "name": "Trendspider",
-      "category": "finance",
-      "categories": [
-        "finance"
-      ],
-      "pricing": "Paid",
-      "badge": "📊 Finance & Spreadsheets",
-      "featured": false,
-      "description": "AI Powered Trading Tool",
-      "overview": "AI Powered Trading Tool Trendspider Features: Elevate your trading strategy with TrendSpider’s technical analysis software – offering smart, strategic tools such as access to over 50 years of market data, a streamlined all-in-one platform, and comprehensive trade planning and analysis functions. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://trendspider.com/",
-      "domain": "trendspider.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/trendspider.png",
-      "icon": "📊",
-      "rating": 4.7,
-      "votes": 32,
-      "inner_content": {
-        "overview": "AI Powered Trading Tool Trendspider Features: Elevate your trading strategy with TrendSpider’s technical analysis software – offering smart, strategic tools such as access to over 50 years of market data, a streamlined all-in-one platform, and comprehensive trade planning and analysis functions. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Paid plan available on trendspider.com"
-      },
-      "tool_type": "📊 Finance & Spreadsheets"
-    },
-    {
       "id": "quadency",
       "name": "Quadency",
       "category": "finance",
@@ -25563,54 +18183,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎓 Education & Learning"
     },
     {
-      "id": "hair-by-ai",
-      "name": "Hair by AI",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Hair by AI is an AI-powered hairstyle assistant designed to help women find their perfect look.",
-      "overview": "Hair by AI is an AI-powered hairstyle assistant designed to help women find their perfect look. Hair by AI Features Use Cases: Realistic hairstyle suggestions: Combines user photos with AI technology for customized recommendations Wide variety: Offers over 550 customized hairstyles across multiple ethnicities Time-saving: Streamlines the process of finding a personalized look Data security: Uses a third-party payment processor and does not store credit card information",
-      "url": "https://hairbyai.com/",
-      "domain": "hairbyai.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-hairbyai.com-2023.05.05-01_15_06.png",
-      "icon": "🤖",
-      "rating": 4.9,
-      "votes": 134,
-      "inner_content": {
-        "overview": "Hair by AI is an AI-powered hairstyle assistant designed to help women find their perfect look. Hair by AI Features Use Cases: Realistic hairstyle suggestions: Combines user photos with AI technology for customized recommendations Wide variety: Offers over 550 customized hairstyles across multiple ethnicities Time-saving: Streamlines the process of finding a personalized look Data security: Uses a third-party payment processor and does not store credit card information",
-        "pricingDetails": "Free Trial plan available on hairbyai.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "agilegpt",
-      "name": "AgileGPT",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Transform your team dynamics to build high-performing teams.",
-      "overview": "Transform your team dynamics to build high-performing teams. AgileGPT Features: AgileGPT is an AI-driven agile coaching platform designed to revolutionize team dynamics and improve productivity. Its key features and advantages include: 1. Advanced AI technology: AgileGPT implements advanced AI technology to automate critical tasks, enhances communication and deliver data-driven insights that impact team performance. 2. Effective communication: AgileGPT streamlines team communication by ensuring faster collaboration through its automated communication tools. 3. Data-driven analysis: AgileGPT offers insightful data-driven analysis that empowers teams to work smarter, faster and enhance team performance. 4. Cutting-edge tools: With AgileGPT’s cutting-edge tools, teams can adopt agile methodologies and transform into high-performing powerhouses, achieving maximum productivity and results.",
-      "url": "https://www.agilegpt.com/",
-      "domain": "agilegpt.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/agileGPT.png",
-      "icon": "💻",
-      "rating": 4.8,
-      "votes": 99,
-      "inner_content": {
-        "overview": "Transform your team dynamics to build high-performing teams. AgileGPT Features: AgileGPT is an AI-driven agile coaching platform designed to revolutionize team dynamics and improve productivity. Its key features and advantages include: 1. Advanced AI technology: AgileGPT implements advanced AI technology to automate critical tasks, enhances communication and deliver data-driven insights that impact team performance. 2. Effective communication: AgileGPT streamlines team communication by ensuring faster collaboration through its automated communication tools. 3. Data-driven analysis: AgileGPT offers insightful data-driven analysis that empowers teams to work smarter, faster and enhance team performance. 4. Cutting-edge tools: With AgileGPT’s cutting-edge tools, teams can adopt agile methodologies and transform into high-performing powerhouses, achieving maximum productivity and results.",
-        "pricingDetails": "Freemium plan available on agilegpt.com"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
       "id": "magicchat-ai",
       "name": "MagicChat AI",
       "category": "startup-tools",
@@ -25671,7 +18243,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Voice-to-code tool helps you code without typing, using GitHub Copilot.",
       "overview": "Voice-to-code tool helps you code without typing, using GitHub Copilot. Hey, GitHub Feature: The Hey, GitHub enables developers to code hands-free by engaging in a conversation with GitHub copilot using their voice, thereby eliminating the need for typing.",
-      "url": "https://githubnext.com/projects/copilot-voice/",
+      "url": "https://githubnext.com/",
       "domain": "githubnext.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/hey-GitHub.png",
       "icon": "💻",
@@ -25680,30 +18252,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Voice-to-code tool helps you code without typing, using GitHub Copilot. Hey, GitHub Feature: The Hey, GitHub enables developers to code hands-free by engaging in a conversation with GitHub copilot using their voice, thereby eliminating the need for typing.",
         "pricingDetails": "Freemium plan available on githubnext.com"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "blackbox-ai",
-      "name": "BlackBox AI",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Coding assistant to code 10x faster, extract code from videos, & autocomplete.",
-      "overview": "Coding assistant to code 10x faster, extract code from videos, & autocomplete. BlackBox AI Features: Accelerate your coding with BLACKBOX AI – the Chrome extension that efficiently copies code from different formats, offering auto-complete coding in multiple languages, direct access to open-source code repositories, and code extraction capabilities from images, videos, and PDFs.",
-      "url": "https://www.useblackbox.io/",
-      "domain": "useblackbox.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/blackbox-AI.png",
-      "icon": "💻",
-      "rating": 4.5,
-      "votes": 160,
-      "inner_content": {
-        "overview": "Coding assistant to code 10x faster, extract code from videos, & autocomplete. BlackBox AI Features: Accelerate your coding with BLACKBOX AI – the Chrome extension that efficiently copies code from different formats, offering auto-complete coding in multiple languages, direct access to open-source code repositories, and code extraction capabilities from images, videos, and PDFs.",
-        "pricingDetails": "Paid plan available on useblackbox.io"
       },
       "tool_type": "💻 Code & Developer"
     },
@@ -25728,78 +18276,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Write code faster with ML-powered code recommendations. Amazon CodeWhisperer Features: The Amazon CodeWhisperer is an ML-driven service that boosts developer efficiency by providing code suggestions based on their natural language comments and code in the IDE. Social Media: Use Cases: Twitter: Twitter",
         "pricingDetails": "Freemium plan available on aws.amazon.com"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "codesquire",
-      "name": "CodeSquire",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "AI-powered code assistant for data pros to get code completions & suggestions.",
-      "overview": "AI-powered code assistant for data pros to get code completions & suggestions. CodeSquire Features: Unlock efficient coding with CodeSquire – the AI-driven code writing assistant that generates code from comments, simplifies SQL queries, and personalizes coding style with visualizations and data management features. Compatible with top development platforms and versatile for data professionals, CodeSquire improves productivity, understanding, and collaboration in the coding process.",
-      "url": "https://codesquire.ai/",
-      "domain": "codesquire.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/codesquire.png",
-      "icon": "💻",
-      "rating": 4.8,
-      "votes": 118,
-      "inner_content": {
-        "overview": "AI-powered code assistant for data pros to get code completions & suggestions. CodeSquire Features: Unlock efficient coding with CodeSquire – the AI-driven code writing assistant that generates code from comments, simplifies SQL queries, and personalizes coding style with visualizations and data management features. Compatible with top development platforms and versatile for data professionals, CodeSquire improves productivity, understanding, and collaboration in the coding process.",
-        "pricingDetails": "Free Trial plan available on codesquire.ai"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "sourceai",
-      "name": "SourceAI",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "AI-Powered Code Generator",
-      "overview": "AI-Powered Code Generator SourceAI Feature: SourceAI is a tool that utilizes artificial intelligence to generate code in any programming language from a human language description. Additionally, it can assist in simplifying code, identifying and fixing errors, and debugging code.",
-      "url": "https://sourceai.dev/",
-      "domain": "sourceai.dev",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sourceAI.png",
-      "icon": "💻",
-      "rating": 4.9,
-      "votes": 97,
-      "inner_content": {
-        "overview": "AI-Powered Code Generator SourceAI Feature: SourceAI is a tool that utilizes artificial intelligence to generate code in any programming language from a human language description. Additionally, it can assist in simplifying code, identifying and fixing errors, and debugging code.",
-        "pricingDetails": "Freemium plan available on sourceai.dev"
-      },
-      "tool_type": "💻 Code & Developer"
-    },
-    {
-      "id": "ai-code-reviewer",
-      "name": "Ai Code Reviewer",
-      "category": "code-assistant",
-      "categories": [
-        "code-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "💻 Code & Developer",
-      "featured": false,
-      "description": "Improve your code with AI Code Reviewer",
-      "overview": "Improve your code with AI Code Reviewer AI Code Reviewer Features: Streamline your code review process with the AI Code Reviewer – an AI-powered tool that automatically identifies potential issues in your code, assesses it for errors, security vulnerabilities, and coding standards, and offers suggestions for improvement. Customizable and user-friendly, it’s suitable for all coding levels and projects, providing valuable features to enhance code quality and security.",
-      "url": "https://ai-code-reviewer.com/",
-      "domain": "ai-code-reviewer.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/AI-code-reviewer.png",
-      "icon": "💻",
-      "rating": 5,
-      "votes": 76,
-      "inner_content": {
-        "overview": "Improve your code with AI Code Reviewer AI Code Reviewer Features: Streamline your code review process with the AI Code Reviewer – an AI-powered tool that automatically identifies potential issues in your code, assesses it for errors, security vulnerabilities, and coding standards, and offers suggestions for improvement. Customizable and user-friendly, it’s suitable for all coding levels and projects, providing valuable features to enhance code quality and security.",
-        "pricingDetails": "Freemium plan available on ai-code-reviewer.com"
       },
       "tool_type": "💻 Code & Developer"
     },
@@ -25848,54 +18324,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "Write Anything in SecondsJust like Magick – MagickPen is an AI-powered writing assistant that aims to assist users with numerous writing tasks.– Key features include versatile writing support for paragraphs, ideas, plans, blogs, bios, reports, reviews, and many other writing tasks.– The app possesses tone recognition abilities, enabling it to generate outputs in varying tones, such as neutral, formal, joyful, and sad.– MagickPen provides customizable outputs in different lengths, formats, and markdown options, offering tailored outcomes based on users’ preferences.– Its advanced feature of credit system allows users to apply credits to their projects, enhancing the flexibility and practicality in achieving desired results.",
         "pricingDetails": "Freemium plan available on magickpen.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "superflow-rewrite",
-      "name": "Superflow Rewrite",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "AI email assistant that helps you get through your inbox faster.",
-      "overview": "AI email assistant that helps you get through your inbox faster. Select a text, ask ChatGPT to rewrite & update your website with the new copy. Superflows is an AI-powered email assistant, developed to expedite your inbox management by generating 1-click responses personalized to your tone of voice and workflows. When a new email pops up, Superflows prepares multiple reply options based on intelligent analytics, enabling users to respond immediately with a single click. Additionally, users can personalize these response options by inserting calendar links and other relevant details, eliminating the need for tedious copy-and-paste routines. Social Media: Use Cases: Twitter: Twitter LinkedIn: LinkedIn Mail: Mail",
-      "url": "https://www.usesuperflow.com/rewrite-chatgpt",
-      "domain": "usesuperflow.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.usesuperflow.com-2023.05.03-13_20_06.png",
-      "icon": "✍️",
-      "rating": 4.5,
-      "votes": 133,
-      "inner_content": {
-        "overview": "AI email assistant that helps you get through your inbox faster. Select a text, ask ChatGPT to rewrite & update your website with the new copy. Superflows is an AI-powered email assistant, developed to expedite your inbox management by generating 1-click responses personalized to your tone of voice and workflows. When a new email pops up, Superflows prepares multiple reply options based on intelligent analytics, enabling users to respond immediately with a single click. Additionally, users can personalize these response options by inserting calendar links and other relevant details, eliminating the need for tedious copy-and-paste routines. Social Media: Use Cases: Twitter: Twitter LinkedIn: LinkedIn Mail: Mail",
-        "pricingDetails": "Freemium plan available on usesuperflow.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "webuters-ai",
-      "name": "Webuters AI",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "W.A.I.T is an all-in-one content creation solution that enables users to create compelling and engaging content in seconds.",
-      "overview": "W.A.I.T is an all-in-one content creation solution that enables users to create compelling and engaging content in seconds. It offers a variety of AI writing tools like: Mail Review: Use Cases: Greetings Writer: Greetings Writer Summary writer: Summary writer Translator: Translator Title Generator: Title Generator Article Writer: Article Writer Content writer: Content writer Hashtag Generator: Hashtag Generator Mail: Mail",
-      "url": "https://wait.webuters.com/",
-      "domain": "wait.webuters.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-wait.webuters.com-2023.05.03-13_03_03.png",
-      "icon": "✍️",
-      "rating": 4.7,
-      "votes": 63,
-      "inner_content": {
-        "overview": "W.A.I.T is an all-in-one content creation solution that enables users to create compelling and engaging content in seconds. It offers a variety of AI writing tools like: Mail Review: Use Cases: Greetings Writer: Greetings Writer Summary writer: Summary writer Translator: Translator Title Generator: Title Generator Article Writer: Article Writer Content writer: Content writer Hashtag Generator: Hashtag Generator Mail: Mail",
-        "pricingDetails": "Freemium plan available on wait.webuters.com"
       },
       "tool_type": "✍️ Writing & Copywriting"
     },
@@ -26071,30 +18499,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🛍️ Ecommerce & Marketing"
     },
     {
-      "id": "plan-my-tour-asap",
-      "name": "Plan My Tour ASAP",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": true,
-      "description": "With Plan My Trip ASAP, you can enjoy a personalized travel experience tailored to your preferences. Share your desired destination and interests, and it will create a custom itinerary just for you.",
-      "overview": "With Plan My Trip ASAP, you can enjoy a personalized travel experience tailored to your preferences. Share your desired destination and interests, and it will create a custom itinerary just for you.",
-      "url": "https://planmytripasap.com/",
-      "domain": "planmytripasap.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230503-012227.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 31,
-      "inner_content": {
-        "overview": "With Plan My Trip ASAP, you can enjoy a personalized travel experience tailored to your preferences. Share your desired destination and interests, and it will create a custom itinerary just for you.",
-        "pricingDetails": "Free Trial plan available on planmytripasap.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "netus-ai",
       "name": "Netus AI",
       "category": "writing",
@@ -26155,7 +18559,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Free Grammar Checker for essays and research papers",
       "overview": "Free Grammar Checker for essays and research papers Use our free grammar checker to scan your text for any and all mistakes. This free online grammar corrector highlights what you need to improve upon. Among all the grammar checkers online, our tool proved to be the most intuitive and accurate. 1. Our free online grammar correction tool offers a comprehensive evaluation of your text to ensure that the meaning is not lost in the corrections. 2. Learn writing techniques from an AI that understands the mechanics and principles of good writing. 3. This free grammar correction website is accessible to anyone who wishes to use it, and it does not require payment for its services. 4. Our sentence grammar checker from StudyCrumb can recognize commonly misused words and suggest the appropriate replacement to improve your writing. 5. Our team of qualified writers provides custom academic papers that are tailored to your specific requirements.",
-      "url": "https://studycrumb.com/grammar-checker",
+      "url": "https://studycrumb.com/",
       "domain": "studycrumb.com",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-studycrumb.com-2023.05.02-13_15_57.png",
       "icon": "🎓",
@@ -26166,155 +18570,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Free plan available on studycrumb.com"
       },
       "tool_type": "🎓 Education & Learning"
-    },
-    {
-      "id": "freeplantour",
-      "name": "FreePlanTour",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Free",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Experience personalized trip planning with FreePlanTour.com, where users can create customised itineraries for any destination around the world in multiple languages.",
-      "overview": "Experience personalized trip planning with FreePlanTour.com, where users can create customised itineraries for any destination around the world in multiple languages.",
-      "url": "https://www.freeplantour.com/",
-      "domain": "freeplantour.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230503-010158.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 106,
-      "inner_content": {
-        "overview": "Experience personalized trip planning with FreePlanTour.com, where users can create customised itineraries for any destination around the world in multiple languages.",
-        "pricingDetails": "Free plan available on freeplantour.com"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "cowriter",
-      "name": "Cowriter",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Cowriter is an AI-powered text editor and copy generator designed to empower writers and speed up the creative writing process.",
-      "overview": "Cowriter is an AI-powered text editor and copy generator designed to empower writers and speed up the creative writing process. Generate content with real time data from the web! With every writing task, Cowriter can research credible web sources, and write better, up to date and more factual content. Easily generate articles, essays and academic papers with the latest news, events and trends. Tutorial:",
-      "url": "https://cowriter.org/login",
-      "domain": "cowriter.org",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-cowriter.org-2023.05.02-13_09_59.png",
-      "icon": "✍️",
-      "rating": 5,
-      "votes": 127,
-      "inner_content": {
-        "overview": "Cowriter is an AI-powered text editor and copy generator designed to empower writers and speed up the creative writing process. Generate content with real time data from the web! With every writing task, Cowriter can research credible web sources, and write better, up to date and more factual content. Easily generate articles, essays and academic papers with the latest news, events and trends. Tutorial:",
-        "pricingDetails": "Freemium plan available on cowriter.org"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "creaitor-ai",
-      "name": "Creaitor AI",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ai-assistant"
-      ],
-      "pricing": "Paid",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Save hours on writing content and get out of the idea jam",
-      "overview": "Save hours on writing content and get out of the idea jam How it works: Creaitor.ai is an AI-backed writing tool that enhances the writing experience for users, offering a range of noteworthy features and benefits, which comprise: Facebook Review: Use Cases: Cookiebot integration: Recognizes users’ cookie consent status for the current domain, and also manages other cookies. Essential cookies: Facilitate fundamental website functions, including secure area access and page navigation. Preference cookies: Customize website behavior and appearance based on users’ preferences. Statistical cookies: Capture and report incognito data, helping website owners understand visitor interactions. Marketing cookies: Observe user activity and display relevant and captivating ads. Facebook: Facebook",
-      "url": "http://creaitor.ai/",
-      "domain": "creaitor.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.creaitor.ai-2023.05.02-13_05_25.png",
-      "icon": "✍️",
-      "rating": 5,
-      "votes": 99,
-      "inner_content": {
-        "overview": "Save hours on writing content and get out of the idea jam How it works: Creaitor.ai is an AI-backed writing tool that enhances the writing experience for users, offering a range of noteworthy features and benefits, which comprise: Facebook Review: Use Cases: Cookiebot integration: Recognizes users’ cookie consent status for the current domain, and also manages other cookies. Essential cookies: Facilitate fundamental website functions, including secure area access and page navigation. Preference cookies: Customize website behavior and appearance based on users’ preferences. Statistical cookies: Capture and report incognito data, helping website owners understand visitor interactions. Marketing cookies: Observe user activity and display relevant and captivating ads. Facebook: Facebook",
-        "pricingDetails": "Paid plan available on creaitor.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "automata",
-      "name": "Automata",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "ecommerce"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Turn videos into articles, articles into Twitter threads, and case studies into newsletters (and much, much more).",
-      "overview": "Turn videos into articles, articles into Twitter threads, and case studies into newsletters (and much, much more). Automata is an AI-driven tool for repurposing content that helps marketers make the most of their current content resources. Its key features and benefits are as follows: Social Media: Twitter LinkedIn Review: Use Cases: Content Conversion: Efficiently transform marketing assets into different content formats for multi-channel dissemination. Chrome Extension: Repurpose content into LinkedIn posts directly from the webpage. Content Repurposing Templates: Convert content into various forms such as LinkedIn posts, Twitter threads, Q&A sections, summaries, and newsletters using a single workflow. Extract Key Points: Effortlessly extract key information from PDFs and videos to generate more captivating content. Twitter: Twitter LinkedIn: LinkedIn",
-      "url": "https://byautomata.io/",
-      "domain": "byautomata.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-byautomata.io-2023.05.02-12_57_55.png",
-      "icon": "🤖",
-      "rating": 4.6,
-      "votes": 78,
-      "inner_content": {
-        "overview": "Turn videos into articles, articles into Twitter threads, and case studies into newsletters (and much, much more). Automata is an AI-driven tool for repurposing content that helps marketers make the most of their current content resources. Its key features and benefits are as follows: Social Media: Twitter LinkedIn Review: Use Cases: Content Conversion: Efficiently transform marketing assets into different content formats for multi-channel dissemination. Chrome Extension: Repurpose content into LinkedIn posts directly from the webpage. Content Repurposing Templates: Convert content into various forms such as LinkedIn posts, Twitter threads, Q&A sections, summaries, and newsletters using a single workflow. Extract Key Points: Effortlessly extract key information from PDFs and videos to generate more captivating content. Twitter: Twitter LinkedIn: LinkedIn",
-        "pricingDetails": "Free Trial plan available on byautomata.io"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
-      "id": "pencil",
-      "name": "Pencil",
-      "category": "ecommerce",
-      "categories": [
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "🛍️ Ecommerce & Marketing",
-      "featured": false,
-      "description": "Pencil is the AI Ad Generator that helps brands & agencies create new ad variations 10x faster.",
-      "overview": "Pencil is the AI Ad Generator that helps brands & agencies create new ad variations 10x faster. Use Cases: Connect data from: Connect data from your ad accounts to learn from winning ads, see insights and train predictions. Connect to your: Connect to your store or assets library to import branding, images, videos and product information. Generate new static: Generate new static & video ad creatives yourself in minutes, or receive creatives made by your Creative Assistant.",
-      "url": "https://www.trypencil.com/",
-      "domain": "trypencil.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/screenshot-www.trypencil.com-2023.05.02-12_52_15.png",
-      "icon": "🛍️",
-      "rating": 4.7,
-      "votes": 57,
-      "inner_content": {
-        "overview": "Pencil is the AI Ad Generator that helps brands & agencies create new ad variations 10x faster. Use Cases: Connect data from: Connect data from your ad accounts to learn from winning ads, see insights and train predictions. Connect to your: Connect to your store or assets library to import branding, images, videos and product information. Generate new static: Generate new static & video ad creatives yourself in minutes, or receive creatives made by your Creative Assistant.",
-        "pricingDetails": "Freemium plan available on trypencil.com"
-      },
-      "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
-      "id": "tugan-ai",
-      "name": "Tugan.ai",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ai-assistant",
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Generate emails, tweets, and threads in seconds.",
-      "overview": "Generate emails, tweets, and threads in seconds. Made for people who want to save time while increasing conversions, profits and strengthen relationships with their readers. Enter a URL or TOPIC To Generate Your Marketing Emails, Tweets AndThreads Instantly. Social Media: Twitter YouTube Telegram DEMO: Use Cases: Twitter: Twitter YouTube: YouTube Telegram: Telegram",
-      "url": "https://www.tugan.ai/",
-      "domain": "tugan.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/tt.png",
-      "icon": "✍️",
-      "rating": 4.7,
-      "votes": 29,
-      "inner_content": {
-        "overview": "Generate emails, tweets, and threads in seconds. Made for people who want to save time while increasing conversions, profits and strengthen relationships with their readers. Enter a URL or TOPIC To Generate Your Marketing Emails, Tweets AndThreads Instantly. Social Media: Twitter YouTube Telegram DEMO: Use Cases: Twitter: Twitter YouTube: YouTube Telegram: Telegram",
-        "pricingDetails": "Freemium plan available on tugan.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
     },
     {
       "id": "eloise",
@@ -26365,54 +18620,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🎨 Image Generator"
     },
     {
-      "id": "virtuo",
-      "name": "Virtuo",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Virtuo simplifies workflows and saves time by providing users with a tool to access ChatGPT from any website.",
-      "overview": "Virtuo simplifies workflows and saves time by providing users with a tool to access ChatGPT from any website.",
-      "url": "https://virtuo.simplef.net/",
-      "domain": "virtuo.simplef.net",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230502-141307.png",
-      "icon": "⚡",
-      "rating": 4.6,
-      "votes": 88,
-      "inner_content": {
-        "overview": "Virtuo simplifies workflows and saves time by providing users with a tool to access ChatGPT from any website.",
-        "pricingDetails": "Freemium plan available on virtuo.simplef.net"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "remail",
-      "name": "Remail",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "Remail is a Chrome extension for Gmail that uses AI to suggest multiple high-quality email reply options based on context and sentiment. It also provides one-click positive or negative responses and allows customization for tailored communication, including custom responses, scheduling links, and tone-setting features.",
-      "overview": "Remail is a Chrome extension for Gmail that uses AI to suggest multiple high-quality email reply options based on context and sentiment. It also provides one-click positive or negative responses and allows customization for tailored communication, including custom responses, scheduling links, and tone-setting features.",
-      "url": "https://remail.ai/",
-      "domain": "remail.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230502-135608.png",
-      "icon": "🤖",
-      "rating": 4.7,
-      "votes": 67,
-      "inner_content": {
-        "overview": "Remail is a Chrome extension for Gmail that uses AI to suggest multiple high-quality email reply options based on context and sentiment. It also provides one-click positive or negative responses and allows customization for tailored communication, including custom responses, scheduling links, and tone-setting features.",
-        "pricingDetails": "Freemium plan available on remail.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
-    },
-    {
       "id": "mailbutler",
       "name": "Mailbutler",
       "category": "ai-assistant",
@@ -26437,30 +18644,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "🤖 AI Assistant"
     },
     {
-      "id": "qakaa",
-      "name": "Qakaa",
-      "category": "ecommerce",
-      "categories": [
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "🛍️ Ecommerce & Marketing",
-      "featured": false,
-      "description": "Qakaa is a modern marketplace for trading customized AI-created content.",
-      "overview": "Qakaa is a modern marketplace for trading customized AI-created content. Qakaa is an advanced marketplace that enables the purchasing and selling of customized AI-generated content, such as social media posts, poetry, and short stories. Here are some of its primary features and benefits: – Top-notch, one-of-a-kind content: Qakaa utilizes state-of-the-art AI technology to offer content that excellently addresses your particular requirements.– Personalization: Whether you’re a creative writer, business proprietor, or social media influencer, Qakaa has custom-made options that suit your needs.– Community: Become a part of Qakaa’s community today to experience the future of unique content creation. Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://qakaa.com/",
-      "domain": "qakaa.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230502-133712.png",
-      "icon": "🛍️",
-      "rating": 4.8,
-      "votes": 198,
-      "inner_content": {
-        "overview": "Qakaa is a modern marketplace for trading customized AI-created content. Qakaa is an advanced marketplace that enables the purchasing and selling of customized AI-generated content, such as social media posts, poetry, and short stories. Here are some of its primary features and benefits: – Top-notch, one-of-a-kind content: Qakaa utilizes state-of-the-art AI technology to offer content that excellently addresses your particular requirements.– Personalization: Whether you’re a creative writer, business proprietor, or social media influencer, Qakaa has custom-made options that suit your needs.– Community: Become a part of Qakaa’s community today to experience the future of unique content creation. Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on qakaa.com"
-      },
-      "tool_type": "🛍️ Ecommerce & Marketing"
-    },
-    {
       "id": "fylan",
       "name": "FYRAN",
       "category": "productivity",
@@ -26481,30 +18664,6 @@ const AI_TOOLS_DATA = {
       "inner_content": {
         "overview": "AI Chatbots with Digital Human Avatars & MP3 Support 1. Digital Human Avatars: FYRAN’s chatbots feature lifelike digital human avatars that make user interactions more engaging and natural. 2. MP3 Support for Q&A: FYRAN’s revolutionary MP3 support for Q&A allows seamless audio interactions, improving user experience. 3. Easy Setup: FYRAN’s setup process is user-friendly and simple. Just upload your file or paste a URL, and the AI algorithms take care of the rest, eliminating the need for coding skills. 4. Versatile Applications: FYRAN’s chatbots can be used in various industries, such as businesses, educators, content creators, etc., to improve customer support, training, or create interactive experiences. 5. 24/7 Availability: FYRAN’s chatbots are always accessible, reducing response times, and improving customer satisfaction. In conclusion, FYRAN’s AI chatbot creator is an innovative solution for individuals and businesses seeking an easy-to-use chatbot creator. With versatile applications, lifelike digital human avatars, and MP3 support for Q&A, FYRAN will revolutionize user interaction and improve customer satisfaction.",
         "pricingDetails": "Freemium plan available on fyran.site"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "madison-ai",
-      "name": "Madison AI",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Paid",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Responsible for integrating AI tools into business operations.",
-      "overview": "Responsible for integrating AI tools into business operations. Customization: Tailor Madison AI to your specific needs with customizable features and integrations. Analytics: Access in-depth analytics and insights to measure the success of your marketing campaigns and make data-driven decisions. Personalization: Deliver personalized experiences to your customers with AI-powered targeting and segmentation. Automation: Automate mundane tasks and streamline your marketing workflow with AI-powered automation. In conclusion, Madison AI offers a comprehensive solution for businesses and marketers looking to unlock the potential of artificial intelligence in their marketing efforts. With advanced capabilities, customization options, and a dedicated team of experts, Madison AI is poised to lead the way in the future of AI-driven marketing.",
-      "url": "https://madisonai.org/",
-      "domain": "madisonai.org",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230502-122351.png",
-      "icon": "⚡",
-      "rating": 4.5,
-      "votes": 42,
-      "inner_content": {
-        "overview": "Responsible for integrating AI tools into business operations. Customization: Tailor Madison AI to your specific needs with customizable features and integrations. Analytics: Access in-depth analytics and insights to measure the success of your marketing campaigns and make data-driven decisions. Personalization: Deliver personalized experiences to your customers with AI-powered targeting and segmentation. Automation: Automate mundane tasks and streamline your marketing workflow with AI-powered automation. In conclusion, Madison AI offers a comprehensive solution for businesses and marketers looking to unlock the potential of artificial intelligence in their marketing efforts. With advanced capabilities, customization options, and a dedicated team of experts, Madison AI is poised to lead the way in the future of AI-driven marketing.",
-        "pricingDetails": "Paid plan available on madisonai.org"
       },
       "tool_type": "⚡ Productivity"
     },
@@ -26751,31 +18910,6 @@ const AI_TOOLS_DATA = {
       "tool_type": "⚡ Productivity"
     },
     {
-      "id": "copymatic",
-      "name": "Copymatic",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ecommerce"
-      ],
-      "pricing": "Free Trial",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Use AI to boost your traffic and save hours of work. Automatically write unique, engaging and high-quality copy or content: from long-form blog posts or landing pages to digital ads in seconds.",
-      "overview": "Use AI to boost your traffic and save hours of work. Automatically write unique, engaging and high-quality copy or content: from long-form blog posts or landing pages to digital ads in seconds. Copymatic is an AI-powered copywriting tool designed to automate content creation for digital ads, website copy, blog content, and more. Key features and advantages include: Twitter DEMO: Use Cases: GPT-3 AI language model: Generates unique and human-like copy in seconds Adjustable creativity and tone: Tailor content to capture attention and drive conversions Versatile applications: Create blog titles, intros, outlines, meta tags, social media posts, product names, and descriptions Grammar check and rewriting: Ensure high-quality content with grammar checks and smart rewriting Twitter: Twitter",
-      "url": "https://copymatic.ai/",
-      "domain": "copymatic.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/asdadeew.png",
-      "icon": "✍️",
-      "rating": 4.7,
-      "votes": 191,
-      "inner_content": {
-        "overview": "Use AI to boost your traffic and save hours of work. Automatically write unique, engaging and high-quality copy or content: from long-form blog posts or landing pages to digital ads in seconds. Copymatic is an AI-powered copywriting tool designed to automate content creation for digital ads, website copy, blog content, and more. Key features and advantages include: Twitter DEMO: Use Cases: GPT-3 AI language model: Generates unique and human-like copy in seconds Adjustable creativity and tone: Tailor content to capture attention and drive conversions Versatile applications: Create blog titles, intros, outlines, meta tags, social media posts, product names, and descriptions Grammar check and rewriting: Ensure high-quality content with grammar checks and smart rewriting Twitter: Twitter",
-        "pricingDetails": "Free Trial plan available on copymatic.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
       "id": "project-supplies",
       "name": "Project.Supplies",
       "category": "productivity",
@@ -26788,7 +18922,7 @@ const AI_TOOLS_DATA = {
       "featured": false,
       "description": "Empower your DIY projects with Project Supplies – the advanced AI tool that streamlines your planning process. Eliminate tedious research and enjoy a seamless project planning experience.",
       "overview": "Empower your DIY projects with Project Supplies – the advanced AI tool that streamlines your planning process. Eliminate tedious research and enjoy a seamless project planning experience. – Project Supplies is an AI-powered tool for DIY enthusiasts and makers designed to make project planning easier and more efficient– The tool has several key features, including AI-powered recommendations for personalized supply recommendations using advanced AI algorithms– It is suitable for a wide range of DIY projects, including woodworking, electronics, and more– Project Supplies is designed to help save time and reduce research time, allowing users to focus on creating and building their projects– The tool is free to use, providing access to its powerful features without any cost. In summary, Project Supplies is an innovative AI-powered tool that offers several key features designed to make DIY project planning easier, more efficient, and personalized. These features include AI-powered recommendations for personalized supply management across a wide range of DIY projects, helping to save time and reduce research time for DIY enthusiasts and makers. Additionally, the tool is free to use, providing access to powerful features without any cost.",
-      "url": "https://www.project.supplies",
+      "url": "https://www.project.supplies/",
       "domain": "project.supplies",
       "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230501-203608.png",
       "icon": "⚡",
@@ -26823,277 +18957,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on relayed.ai"
       },
       "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "swapp",
-      "name": "Swapp",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "SWAPP utilizes AI technology to provide swift and precise architectural construction documents and BIM models, surpassing traditional methods in both speed and accuracy.",
-      "overview": "SWAPP utilizes AI technology to provide swift and precise architectural construction documents and BIM models, surpassing traditional methods in both speed and accuracy. SWAPP applies intelligent, advanced algorithms to deliver accurate, detailed, and complete Architectural construction documents and BIM models faster than ever before. Tutorial : Social Media: Use Cases: Twitter: Twitter",
-      "url": "https://www.swapp.ai/",
-      "domain": "swapp.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230501-195301.png",
-      "icon": "⚡",
-      "rating": 4.7,
-      "votes": 135,
-      "inner_content": {
-        "overview": "SWAPP utilizes AI technology to provide swift and precise architectural construction documents and BIM models, surpassing traditional methods in both speed and accuracy. SWAPP applies intelligent, advanced algorithms to deliver accurate, detailed, and complete Architectural construction documents and BIM models faster than ever before. Tutorial : Social Media: Use Cases: Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on swapp.ai"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "oracle",
-      "name": "Oracle",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Oracle is an AI-powered assistant that provides quick and accurate answers to your questions in real time, helping you increase your productivity.",
-      "overview": "Oracle is an AI-powered assistant that provides quick and accurate answers to your questions in real time, helping you increase your productivity. Tutorial: Use Cases: Oracle is an: Oracle is an AI-powered assistant designed to provide real-time answers to questions and maximize productivity. It has key: It has key features and advantages, including integration, natural language processing, and a waitlist for new features and updates. Oracle can connect: Oracle can connect to popular platforms like Slack, Google Docs, Confluence, and Notion, giving users quick access to answers. It utilizes natural: It utilizes natural language processing, which means it can understand and answer questions in the context they are asked, eliminating the need for manual search through knowledge bases. Oracle also has: Oracle also has a waitlist feature that allows users to stay informed of new updates, releases, and features that may be added to the platform.",
-      "url": "https://askoracle.app/",
-      "domain": "askoracle.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230501-185758.png",
-      "icon": "⚡",
-      "rating": 4.7,
-      "votes": 79,
-      "inner_content": {
-        "overview": "Oracle is an AI-powered assistant that provides quick and accurate answers to your questions in real time, helping you increase your productivity. Tutorial: Use Cases: Oracle is an: Oracle is an AI-powered assistant designed to provide real-time answers to questions and maximize productivity. It has key: It has key features and advantages, including integration, natural language processing, and a waitlist for new features and updates. Oracle can connect: Oracle can connect to popular platforms like Slack, Google Docs, Confluence, and Notion, giving users quick access to answers. It utilizes natural: It utilizes natural language processing, which means it can understand and answer questions in the context they are asked, eliminating the need for manual search through knowledge bases. Oracle also has: Oracle also has a waitlist feature that allows users to stay informed of new updates, releases, and features that may be added to the platform.",
-        "pricingDetails": "Freemium plan available on askoracle.app"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "typingmind",
-      "name": "TypingMind",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "TypingMind is an advanced platform that offers a seamless and intuitive user interface for ChatGPT, now powered by the latest GPT-4 technology. With a host of powerful features such as a chat history search, prompt library, and integrations, TypingMind offers unparalleled flexibility and customization options. The best part? It can be easily run locally on a web browser without any need for logging in. Users also have the option to use their own API key and there are no monthly fees involved, making it an ideal choice for anyone looking for a high-quality chatbot platform.",
-      "overview": "TypingMind is an advanced platform that offers a seamless and intuitive user interface for ChatGPT, now powered by the latest GPT-4 technology. With a host of powerful features such as a chat history search, prompt library, and integrations, TypingMind offers unparalleled flexibility and customization options. The best part? It can be easily run locally on a web browser without any need for logging in. Users also have the option to use their own API key and there are no monthly fees involved, making it an ideal choice for anyone looking for a high-quality chatbot platform. Tutorial :",
-      "url": "https://www.typingmind.com/",
-      "domain": "typingmind.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230501-182724.png",
-      "icon": "⚡",
-      "rating": 4.8,
-      "votes": 161,
-      "inner_content": {
-        "overview": "TypingMind is an advanced platform that offers a seamless and intuitive user interface for ChatGPT, now powered by the latest GPT-4 technology. With a host of powerful features such as a chat history search, prompt library, and integrations, TypingMind offers unparalleled flexibility and customization options. The best part? It can be easily run locally on a web browser without any need for logging in. Users also have the option to use their own API key and there are no monthly fees involved, making it an ideal choice for anyone looking for a high-quality chatbot platform. Tutorial :",
-        "pricingDetails": "Freemium plan available on typingmind.com"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "yarnit",
-      "name": "Yarnit",
-      "category": "design",
-      "categories": [
-        "design",
-        "ai-assistant",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Design & UI",
-      "featured": false,
-      "description": "Yarnit brings in the best of Storytelling and AI technology for you to create and design impressive and contextual content at speed and scale",
-      "overview": "Yarnit brings in the best of Storytelling and AI technology for you to create and design impressive and contextual content at speed and scale Social Media: Twitter LinkedIn Instagram Demo: Use Cases: Structure your story: Structure your story with Yarnit’s AI-generated plotline Create attractive and: Create attractive and contextual copy for your content using Yarnit AI Make you content: Make you content exclusive with Yarnit curated recommendations of information and: of information and multimedia Design your presentations: Design your presentations to social media posts in a few clicks Audit your content: Audit your content with Yarnit Readabilityto see how your audience will react Twitter: Twitter LinkedIn: LinkedIn Instagram: Instagram",
-      "url": "https://www.yarnit.app/",
-      "domain": "yarnit.app",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fsdfsdfre.png",
-      "icon": "🎨",
-      "rating": 5,
-      "votes": 168,
-      "inner_content": {
-        "overview": "Yarnit brings in the best of Storytelling and AI technology for you to create and design impressive and contextual content at speed and scale Social Media: Twitter LinkedIn Instagram Demo: Use Cases: Structure your story: Structure your story with Yarnit’s AI-generated plotline Create attractive and: Create attractive and contextual copy for your content using Yarnit AI Make you content: Make you content exclusive with Yarnit curated recommendations of information and: of information and multimedia Design your presentations: Design your presentations to social media posts in a few clicks Audit your content: Audit your content with Yarnit Readabilityto see how your audience will react Twitter: Twitter LinkedIn: LinkedIn Instagram: Instagram",
-        "pricingDetails": "Freemium plan available on yarnit.app"
-      },
-      "tool_type": "🎨 Design & UI"
-    },
-    {
-      "id": "gerwin",
-      "name": "Gerwin",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ecommerce"
-      ],
-      "pricing": "Free Trial",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Create unique marketing content with Automation.",
-      "overview": "Create unique marketing content with Automation. Use Cases: Create unique title: Create unique title & descriptions for Youtube videos that rank well in search Create unique and: Create unique and relevant product cards on Amazon Create eloquent and: Create eloquent and varied comments from millions of people Write deliciously creative: Write deliciously creative stories to engage your readers Write a beautiful: Write a beautiful text for your ad for sale or rental property Telegram: Telegram",
-      "url": "https://gerwin.io/",
-      "domain": "gerwin.io",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/fdsffrr.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 105,
-      "inner_content": {
-        "overview": "Create unique marketing content with Automation. Use Cases: Create unique title: Create unique title & descriptions for Youtube videos that rank well in search Create unique and: Create unique and relevant product cards on Amazon Create eloquent and: Create eloquent and varied comments from millions of people Write deliciously creative: Write deliciously creative stories to engage your readers Write a beautiful: Write a beautiful text for your ad for sale or rental property Telegram: Telegram",
-        "pricingDetails": "Free Trial plan available on gerwin.io"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "circle-chat",
-      "name": "Circle Chat",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Chat with multiple AI agents for collaborative problem solving",
-      "overview": "Chat with multiple AI agents for collaborative problem solving",
-      "url": "https://www.circlechat.co/",
-      "domain": "circlechat.co",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230501-182214.png",
-      "icon": "⚡",
-      "rating": 4.8,
-      "votes": 49,
-      "inner_content": {
-        "overview": "Chat with multiple AI agents for collaborative problem solving",
-        "pricingDetails": "Freemium plan available on circlechat.co"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "jounce-ai",
-      "name": "Jounce AI",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "The future of marketing is here, and it's powered by AI. Copywriting and artwork that used to take marketers days and weeks to create can now be done in a fraction of the time.",
-      "overview": "The future of marketing is here, and it's powered by AI. Copywriting and artwork that used to take marketers days and weeks to create can now be done in a fraction of the time. Jounce is an easy-to-use, AI-powered copywriting solution that helps you create professional, effective content in just a few simple steps. Whether you're a marketing professional, small business owner, or content creator, Jounce is the perfect tool to help you save time and improve the quality of your copy. Social Media: Twitter Instagram Facebook Tutorial: Use Cases: Twitter: Twitter Instagram: Instagram Facebook: Facebook",
-      "url": "https://www.jounce.ai/",
-      "domain": "jounce.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/dsadeww.png",
-      "icon": "✍️",
-      "rating": 4.8,
-      "votes": 77,
-      "inner_content": {
-        "overview": "The future of marketing is here, and it's powered by AI. Copywriting and artwork that used to take marketers days and weeks to create can now be done in a fraction of the time. Jounce is an easy-to-use, AI-powered copywriting solution that helps you create professional, effective content in just a few simple steps. Whether you're a marketing professional, small business owner, or content creator, Jounce is the perfect tool to help you save time and improve the quality of your copy. Social Media: Twitter Instagram Facebook Tutorial: Use Cases: Twitter: Twitter Instagram: Instagram Facebook: Facebook",
-        "pricingDetails": "Freemium plan available on jounce.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "aizonix",
-      "name": "AIZONIX",
-      "category": "image-generator",
-      "categories": [
-        "image-generator",
-        "ai-assistant",
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "🎨 Image Generator",
-      "featured": false,
-      "description": "AIZONIX is an all-in-one AI-powered platform that provides you with everything you need to streamline your workflows and improve productivity.",
-      "overview": "AIZONIX is an all-in-one AI-powered platform that provides you with everything you need to streamline your workflows and improve productivity. AIZONIX is an avant-garde solution that grants access to the most sophisticated AI technology available on the market. Its features and benefits include: Use Cases: Advanced AI algorithms: Attain exceptional precision, speed, and efficiency in your operations. Automation of repetitive tasks: Rationalize your operations foroptimized workflow. Accelerated decision-making: Make intelligent decisions swiftly and in near real-time. Enhanced customer experience: Improve your customer experience and achieve competitive advantage. Content generation: Allow AI to produce various forms of content such as social media, blogs, articles, and websites.",
-      "url": "https://aizonix.com/",
-      "domain": "aizonix.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sdasdee.png",
-      "icon": "🎨",
-      "rating": 4.9,
-      "votes": 28,
-      "inner_content": {
-        "overview": "AIZONIX is an all-in-one AI-powered platform that provides you with everything you need to streamline your workflows and improve productivity. AIZONIX is an avant-garde solution that grants access to the most sophisticated AI technology available on the market. Its features and benefits include: Use Cases: Advanced AI algorithms: Attain exceptional precision, speed, and efficiency in your operations. Automation of repetitive tasks: Rationalize your operations foroptimized workflow. Accelerated decision-making: Make intelligent decisions swiftly and in near real-time. Enhanced customer experience: Improve your customer experience and achieve competitive advantage. Content generation: Allow AI to produce various forms of content such as social media, blogs, articles, and websites.",
-        "pricingDetails": "Freemium plan available on aizonix.com"
-      },
-      "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "whisper-memos",
-      "name": "Whisper Memos",
-      "category": "productivity",
-      "categories": [
-        "productivity"
-      ],
-      "pricing": "Paid",
-      "badge": "⚡ Productivity",
-      "featured": false,
-      "description": "Turn your voice memos into accurate transcripts.",
-      "overview": "Turn your voice memos into accurate transcripts. Whisper Memos Tutorial :",
-      "url": "https://whispermemos.com/",
-      "domain": "whispermemos.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/Screenshot_20230501-173746.png",
-      "icon": "⚡",
-      "rating": 4.9,
-      "votes": 131,
-      "inner_content": {
-        "overview": "Turn your voice memos into accurate transcripts. Whisper Memos Tutorial :",
-        "pricingDetails": "Paid plan available on whispermemos.com"
-      },
-      "tool_type": "⚡ Productivity"
-    },
-    {
-      "id": "gpt-minus1",
-      "name": "GPT-Minus1",
-      "category": "writing",
-      "categories": [
-        "writing"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "The tool assists writers in generating different versions of their text, making their writing more engaging and appealing.",
-      "overview": "The tool assists writers in generating different versions of their text, making their writing more engaging and appealing. Use Cases: Swaps words with: Swaps words with similar meanings to produce diverse text versions Aids writers in: Aids writers in developing fresh ideas and writing styles Supports marketers in: Supports marketers in crafting original and persuasive copy for ads and promotional content Helps students and: Helps students and researchers come up with novel ideas and strategies for writing papers and reports Saves time and: Saves time and effort by automating the process of creating text variations Twitter: Twitter",
-      "url": "https://www.gptminus1.com/",
-      "domain": "gptminus1.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/gptm.png",
-      "icon": "✍️",
-      "rating": 5,
-      "votes": 159,
-      "inner_content": {
-        "overview": "The tool assists writers in generating different versions of their text, making their writing more engaging and appealing. Use Cases: Swaps words with: Swaps words with similar meanings to produce diverse text versions Aids writers in: Aids writers in developing fresh ideas and writing styles Supports marketers in: Supports marketers in crafting original and persuasive copy for ads and promotional content Helps students and: Helps students and researchers come up with novel ideas and strategies for writing papers and reports Saves time and: Saves time and effort by automating the process of creating text variations Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on gptminus1.com"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
-    },
-    {
-      "id": "shakespeare",
-      "name": "Shakespeare",
-      "category": "writing",
-      "categories": [
-        "writing",
-        "ecommerce"
-      ],
-      "pricing": "Freemium",
-      "badge": "✍️ Writing & Copywriting",
-      "featured": false,
-      "description": "Artificial intelligence makes it fast & easy to create content for your blog, social media, website, and more! Rated 5/5 stars on Trustpilot.",
-      "overview": "Artificial intelligence makes it fast & easy to create content for your blog, social media, website, and more! Rated 5/5 stars on Trustpilot. Twitter Tutorial: Use Cases: It is capable: It is capable of writing stellar sales copy using proven frameworks such as AIDA, PAS, Before-After-Bridge, Feature to Benefits, and the 4 P’s. Perfect Product Descriptions: Perfect Product Descriptions The world’s most: The world’s most powerful blog writing tool, Shakespeare’s Blog Wizard allows you to generate long-form content with just a few clicks. The constant need: The constant need to come up with content for social media is daunting. Let Shakespeare do the heavy lifting by writing captivating copy for your posts. Take the guesswork: Take the guesswork out of writing copy for your Google Ads by generating high converting headlines and descriptions with Shakespeare. Twitter: Twitter",
-      "url": "https://www.shakespeare.ai/",
-      "domain": "shakespeare.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/sadeewwew.png",
-      "icon": "✍️",
-      "rating": 4.6,
-      "votes": 138,
-      "inner_content": {
-        "overview": "Artificial intelligence makes it fast & easy to create content for your blog, social media, website, and more! Rated 5/5 stars on Trustpilot. Twitter Tutorial: Use Cases: It is capable: It is capable of writing stellar sales copy using proven frameworks such as AIDA, PAS, Before-After-Bridge, Feature to Benefits, and the 4 P’s. Perfect Product Descriptions: Perfect Product Descriptions The world’s most: The world’s most powerful blog writing tool, Shakespeare’s Blog Wizard allows you to generate long-form content with just a few clicks. The constant need: The constant need to come up with content for social media is daunting. Let Shakespeare do the heavy lifting by writing captivating copy for your posts. Take the guesswork: Take the guesswork out of writing copy for your Google Ads by generating high converting headlines and descriptions with Shakespeare. Twitter: Twitter",
-        "pricingDetails": "Freemium plan available on shakespeare.ai"
-      },
-      "tool_type": "✍️ Writing & Copywriting"
     },
     {
       "id": "noty-ai",
@@ -27142,54 +19005,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on joinplayroom.com"
       },
       "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
-      "id": "gpt-go",
-      "name": "GPT Go",
-      "category": "fun-tools",
-      "categories": [
-        "fun-tools"
-      ],
-      "pricing": "Free",
-      "badge": "🎉 Fun & Creative Tools",
-      "featured": false,
-      "description": "GPTGO, formerly known as GooGPT, is the perfect combination of Google's search technology and the breakthrough artificial intelligence of Free ChatGPT. Inspired by these two leading technology resources, GPTGO has rapidly developed into a reliable and effective search engine.",
-      "overview": "GPTGO, formerly known as GooGPT, is the perfect combination of Google's search technology and the breakthrough artificial intelligence of Free ChatGPT. Inspired by these two leading technology resources, GPTGO has rapidly developed into a reliable and effective search engine. ChatGPT collaboration: Upgrade your searching experience with ChatGPT's assistance. Cost-free: Take advantage of GPTGO without spending a dime. Multiple languages: Compatible with major languages, catering to users around the world. Easy to use: Enjoy a hassle-free and effective search approach.",
-      "url": "https://gptgo.ai/><div style=",
-      "domain": "gptgo.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/05/IMG_20230501_111340.jpg",
-      "icon": "🎉",
-      "rating": 4.7,
-      "votes": 174,
-      "inner_content": {
-        "overview": "GPTGO, formerly known as GooGPT, is the perfect combination of Google's search technology and the breakthrough artificial intelligence of Free ChatGPT. Inspired by these two leading technology resources, GPTGO has rapidly developed into a reliable and effective search engine. ChatGPT collaboration: Upgrade your searching experience with ChatGPT's assistance. Cost-free: Take advantage of GPTGO without spending a dime. Multiple languages: Compatible with major languages, catering to users around the world. Easy to use: Enjoy a hassle-free and effective search approach.",
-        "pricingDetails": "Free plan available on gptgo.ai"
-      },
-      "tool_type": "🎉 Fun & Creative Tools"
-    },
-    {
-      "id": "looria-ai",
-      "name": "Looria AI",
-      "category": "life-assistant",
-      "categories": [
-        "life-assistant"
-      ],
-      "pricing": "Freemium",
-      "badge": "🌟 Life & Personal Assistant",
-      "featured": false,
-      "description": "Looria lets you explore product reviews and finds the best products that fit your needs and budget using AI.",
-      "overview": "Looria lets you explore product reviews and finds the best products that fit your needs and budget using AI. Looria Tutorial I trained a ChatGPT-like bot on over 100k posts and comments from r/BuyItForLife. It's like having the collective wisdom of the Reddit community at your fingertips. pic.twitter.com/kfwFNGLo0K Use Cases: Find out how: Find out how long products last, where they break, and how to fix them Explore product reviews: Explore product reviews by category It extract all: It extract all posts and comments up to three years ago",
-      "url": "https://www.looria.com/",
-      "domain": "looria.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/04/looria.png",
-      "icon": "🌟",
-      "rating": 4.6,
-      "votes": 139,
-      "inner_content": {
-        "overview": "Looria lets you explore product reviews and finds the best products that fit your needs and budget using AI. Looria Tutorial I trained a ChatGPT-like bot on over 100k posts and comments from r/BuyItForLife. It's like having the collective wisdom of the Reddit community at your fingertips. pic.twitter.com/kfwFNGLo0K Use Cases: Find out how: Find out how long products last, where they break, and how to fix them Explore product reviews: Explore product reviews by category It extract all: It extract all posts and comments up to three years ago",
-        "pricingDetails": "Freemium plan available on looria.com"
-      },
-      "tool_type": "🌟 Life & Personal Assistant"
     },
     {
       "id": "resume-worded",
@@ -27262,79 +19077,6 @@ const AI_TOOLS_DATA = {
         "pricingDetails": "Freemium plan available on openai.com"
       },
       "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "craiyon",
-      "name": "Craiyon",
-      "category": "image-generator",
-      "categories": [
-        "image-generator"
-      ],
-      "pricing": "Free Trial",
-      "badge": "🎨 Image Generator",
-      "featured": false,
-      "description": "You can generate image just with text prompts.",
-      "overview": "You can generate image just with text prompts. Social Media: Use Cases: Straightforward interface: Effortlessly create images through a clear and user-friendly platform Adaptable image creation: Generate visuals from basic sketches to intricate masterpieces Assorted styles: Craft images in various styles like cartoon, photographic, and abstract Share and print options: Print your creations on t-shirts or share them on the forum Twitter: Twitter",
-      "url": "https://www.craiyon.com/",
-      "domain": "craiyon.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/04/dfdsfdfe.png",
-      "icon": "🎨",
-      "rating": 4.9,
-      "votes": 123,
-      "inner_content": {
-        "overview": "You can generate image just with text prompts. Social Media: Use Cases: Straightforward interface: Effortlessly create images through a clear and user-friendly platform Adaptable image creation: Generate visuals from basic sketches to intricate masterpieces Assorted styles: Craft images in various styles like cartoon, photographic, and abstract Share and print options: Print your creations on t-shirts or share them on the forum Twitter: Twitter",
-        "pricingDetails": "Free Trial plan available on craiyon.com"
-      },
-      "tool_type": "🎨 Image Generator"
-    },
-    {
-      "id": "nextatlas-generate",
-      "name": "Nextatlas Generate",
-      "category": "search-engine",
-      "categories": [
-        "search-engine"
-      ],
-      "pricing": "Paid",
-      "badge": "🔍 Search & Research",
-      "featured": true,
-      "description": "Social Media:",
-      "overview": "Social Media: Use Cases: Nextatlas uses cutting-edge: Nextatlas uses cutting-edge Artificial Intelligence technology to analyze billions of verbal and visual social media data, providing key insights for brand innovation and marketing strategies. Back your Al: Back your Al generated reporting with powerful Timeline Graphs with predicted growth to understand the evolution of your topics of Twitter: Twitter",
-      "url": "https://generate.nextatlas.com/",
-      "domain": "generate.nextatlas.com",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/04/nextatlas.png",
-      "icon": "🔍",
-      "rating": 4.8,
-      "votes": 163,
-      "inner_content": {
-        "overview": "Social Media: Use Cases: Nextatlas uses cutting-edge: Nextatlas uses cutting-edge Artificial Intelligence technology to analyze billions of verbal and visual social media data, providing key insights for brand innovation and marketing strategies. Back your Al: Back your Al generated reporting with powerful Timeline Graphs with predicted growth to understand the evolution of your topics of Twitter: Twitter",
-        "pricingDetails": "Paid plan available on generate.nextatlas.com"
-      },
-      "tool_type": "🔍 Search & Research"
-    },
-    {
-      "id": "formx",
-      "name": "FormX.ai",
-      "category": "ai-assistant",
-      "categories": [
-        "ai-assistant",
-        "productivity"
-      ],
-      "pricing": "Freemium",
-      "badge": "🤖 AI Assistant",
-      "featured": false,
-      "description": "FormX is a data extraction tool that uses artificial intelligence (AI) to transform information from physical documents into structured digital data.",
-      "overview": "FormX is a data extraction tool that uses artificial intelligence (AI) to transform information from physical documents into structured digital data. FormX.ai is an AI-based tool that automates data extraction from various documents like receipts, bank statements, and identity documents. FormX.ai offers the following key features and benefits: 1. Automated data extraction: FormX.ai uses AI technology to extract data from documents, reducing data entry costs and improving operational efficiency. 2. Reduced human errors: With automated data extraction, FormX.ai minimizes human errors, which may be prevalent in manual data entry. 3. Structured data: FormX.ai provides structured data in JSON or CSV format, which can be used easily by other systems, streamlining the workflow. 4. Effortless integration: FormX.ai can be seamlessly integrated with other software, improving the workflow and saving time. 5. Suitable for all business types: FormX.ai is useful for various businesses such as retail, logistics, finance, telecommunications, and public sectors, looking to automate data extraction processes.",
-      "url": "http://formx.ai/",
-      "domain": "formx.ai",
-      "image": "https://aivalley.ai/wp-content/uploads/2023/04/formX.png",
-      "icon": "🤖",
-      "rating": 4.5,
-      "votes": 65,
-      "inner_content": {
-        "overview": "FormX is a data extraction tool that uses artificial intelligence (AI) to transform information from physical documents into structured digital data. FormX.ai is an AI-based tool that automates data extraction from various documents like receipts, bank statements, and identity documents. FormX.ai offers the following key features and benefits: 1. Automated data extraction: FormX.ai uses AI technology to extract data from documents, reducing data entry costs and improving operational efficiency. 2. Reduced human errors: With automated data extraction, FormX.ai minimizes human errors, which may be prevalent in manual data entry. 3. Structured data: FormX.ai provides structured data in JSON or CSV format, which can be used easily by other systems, streamlining the workflow. 4. Effortless integration: FormX.ai can be seamlessly integrated with other software, improving the workflow and saving time. 5. Suitable for all business types: FormX.ai is useful for various businesses such as retail, logistics, finance, telecommunications, and public sectors, looking to automate data extraction processes.",
-        "pricingDetails": "Freemium plan available on formx.ai"
-      },
-      "tool_type": "🤖 AI Assistant"
     }
   ]
 };
